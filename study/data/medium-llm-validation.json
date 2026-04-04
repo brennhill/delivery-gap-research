@@ -1,0 +1,272 @@
+{
+  "denoland/deno#31118->31131": {
+    "pair_index": 0,
+    "repo": "denoland/deno",
+    "target": 31118,
+    "source": 31131,
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "PR B addresses path normalization on Windows (a separate concern) while PR A fixes argument escaping for bat/cmd spawning; these are independent bug fixes in the same module rather than PR B correcting something PR A left broken or incomplete."
+  },
+  "mendableai/firecrawl#2536->2537": {
+    "pair_index": 1,
+    "repo": "mendableai/firecrawl",
+    "target": 2536,
+    "source": 2537,
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR A updated generateBasicCompletion to use gpt-4.1 but failed to update the model ID passed to calculateCost, causing incorrect cost tracking; PR B fixes this oversight by correcting the model parameter to match the actual model being used."
+  },
+  "clerkinc/javascript#6913->7147": {
+    "pair_index": 2,
+    "repo": "clerkinc/javascript",
+    "target": 6913,
+    "source": 7147,
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B corrects the return type of `useSubscription` in the React Query implementation introduced by PR A to match the SWR contract, indicating PR A had an incomplete or incorrect type signature."
+  },
+  "denoland/deno#31829->31850": {
+    "pair_index": 3,
+    "repo": "denoland/deno",
+    "target": 31829,
+    "source": 31850,
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "PR B implements a separate missing function (getValidStdio) that is independent from PR A's type validation improvements; both are planned incremental work addressing different aspects of child_process compatibility, not PR B fixing something PR A broke or left incomplete."
+  },
+  "clerkinc/javascript#7243->7296": {
+    "pair_index": 4,
+    "repo": "clerkinc/javascript",
+    "target": 7243,
+    "source": 7296,
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B corrects a mistake in PR A's changeset where the wrong package name (@clerk/clerk-react instead of @clerk/react) was referenced, which is a direct follow-up fix for an incomplete/incorrect change."
+  },
+  "calcom/cal.com#26588->26824": {
+    "pair_index": 5,
+    "repo": "calcom/cal.com",
+    "target": 26588,
+    "source": 26824,
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B fixes a critical error-handling bug in the `voidInvoice` method introduced by PR A that could cause silent failures and double-charging, making it a necessary correction to incomplete error handling in the original implementation."
+  },
+  "kubernetes/kubernetes#135369->136199": {
+    "pair_index": 6,
+    "repo": "kubernetes/kubernetes",
+    "target": 135369,
+    "source": 136199,
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "PR B addresses a different root cause (kubelet policy configuration) for a different failing test scenario (unauthorized access) than PR A's node scheduling fix, representing independent bug fixes for the same test suite rather than rework."
+  },
+  "promptfoo/promptfoo#6923->6987": {
+    "pair_index": 7,
+    "repo": "promptfoo/promptfoo",
+    "target": 6923,
+    "source": 6987,
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "PR B fixes an unrelated flaky test in fetch.test.ts caused by environment variable pollution, while PR A changes blob storage logic in evaluator.ts and extractor.ts\u2014these are completely independent issues that happen to be authored by the same person."
+  },
+  "sveltejs/svelte#17200->17212": {
+    "pair_index": 8,
+    "repo": "sveltejs/svelte",
+    "target": 17200,
+    "source": 17212,
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly states it fixes a situation that was supposed to be handled by PR A (#17163) but was incorrectly ignored, making it a direct correction of incomplete work from PR A."
+  },
+  "vercel/next.js#89173->89553": {
+    "pair_index": 9,
+    "repo": "vercel/next.js",
+    "target": 89173,
+    "source": 89553,
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "PR B is a documentation typo fix by a different author with no stated connection to PR A's feature change, representing independent maintenance work rather than rework of PR A."
+  },
+  "denoland/deno#31943->32068": {
+    "pair_index": 10,
+    "repo": "denoland/deno",
+    "target": 31943,
+    "source": 32068,
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "PR A implements FileHandle.readv() for fs/promises while PR B fixes console.trace severity in OTEL instrumentation\u2014completely different features in different modules with different authors, unrelated to each other."
+  },
+  "calcom/cal.com#24812->24828": {
+    "pair_index": 11,
+    "repo": "calcom/cal.com",
+    "target": 24812,
+    "source": 24828,
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B directly addresses a missing configuration in the changesets workflow (always-auth: false) that PR A's Node version pin alone did not resolve, completing the fix for the publish failure issue."
+  },
+  "sveltejs/svelte#17245->17240": {
+    "pair_index": 12,
+    "repo": "sveltejs/svelte",
+    "target": 17245,
+    "source": 17240,
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "PR B is the actual fix implementation that was included/referenced in PR A's release notes, not a rework of PR A \u2014 PR A is a release automation PR that bundles PR B as one of its patch changes."
+  },
+  "promptfoo/promptfoo#6572->6610": {
+    "pair_index": 13,
+    "repo": "promptfoo/promptfoo",
+    "target": 6572,
+    "source": 6610,
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B fixes a concrete problem introduced by PR A: the release-please workflow changes in PR A generate incorrectly formatted CHANGELOG.md (asterisks instead of dashes, extra blank lines) that fail style checks, requiring PR B to add proper formatting steps and fix the generated output."
+  },
+  "PostHog/posthog#49541->49560": {
+    "pair_index": 14,
+    "repo": "PostHog/posthog",
+    "target": 49541,
+    "source": 49560,
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "PR B addresses an OAuth flow issue in external MCP integrations that is independent from PR A's admin interface feature; there is no evidence PR A broke this or that it was missed by PR A."
+  },
+  "kubernetes/kubernetes#136353->136370": {
+    "pair_index": 15,
+    "repo": "kubernetes/kubernetes",
+    "target": 136353,
+    "source": 136370,
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR A attempted to fix a build failure by bumping tags, but the root cause was actually a GOPATH/GOROOT mismatch in the build process that PR A didn't address; PR B identifies and fixes the underlying issue that PR A's tag bump failed to resolve."
+  },
+  "antiwork/gumroad#3877->3909": {
+    "pair_index": 16,
+    "repo": "antiwork/gumroad",
+    "target": 3877,
+    "source": 3909,
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "PR B fixes bugs in workflow automation (#3881) that are completely unrelated to PR A's removal of a progress bar UI component; they touch different files and systems."
+  },
+  "promptfoo/promptfoo#6589->6610": {
+    "pair_index": 17,
+    "repo": "promptfoo/promptfoo",
+    "target": 6589,
+    "source": 6610,
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "PR B addresses a separate CI issue (CHANGELOG formatting and release-please workflow improvements) that is independent of PR A's fixes (release workflow flag and Python version), not a fix or completion of PR A's work."
+  },
+  "clerkinc/javascript#7708->7710": {
+    "pair_index": 18,
+    "repo": "clerkinc/javascript",
+    "target": 7708,
+    "source": 7710,
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "PR B is a port of PR A's fix to a different component (`<Show>` instead of `<SignedIn>`, `<SignedOut>`, `<Protect>`), representing planned incremental work to apply the same pattern across the component library, not a fix for something PR A missed or broke."
+  },
+  "clerkinc/javascript#7286->7344": {
+    "pair_index": 19,
+    "repo": "clerkinc/javascript",
+    "target": 7286,
+    "source": 7344,
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B fixes a regression introduced by PR A (#7270): the migration of hooks in @clerk/shared stripped the `subject` parameter from API requests, breaking the UserProfile API keys functionality, which PR B corrects."
+  },
+  "promptfoo/promptfoo#6425->6482": {
+    "pair_index": 20,
+    "repo": "promptfoo/promptfoo",
+    "target": 6425,
+    "source": 6482,
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B directly addresses failures and incomplete coverage from PR A: PR A's test results show 1 of 4 cases still failing ('Q4 2024 sales' marked as \u274c), and PR B adds a fallback mechanism for iframe extraction failures and increases wait times, improving pass rates from 0% to 80% on previously broken approval flows\u2014indicating PR A's solution was incomplete for certain workflow patterns."
+  },
+  "microsoft/vscode#290289->290341": {
+    "pair_index": 21,
+    "repo": "microsoft/vscode",
+    "target": 290289,
+    "source": 290341,
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "Both PRs appear to be independent setting tweaks by the same author on consecutive days with no indication that PR B fixes or completes work left incomplete by PR A; the titles suggest distinct settings being adjusted (click behaviour vs viewSessions display)."
+  },
+  "clerkinc/javascript#7556->7563": {
+    "pair_index": 22,
+    "repo": "clerkinc/javascript",
+    "target": 7556,
+    "source": 7563,
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "PR B is explicitly a cherry-pick of changes from PR #7556 to another branch, which is a backport scenario, not rework caused by PR A being incomplete or broken."
+  },
+  "microsoft/vscode#293308->293409": {
+    "pair_index": 23,
+    "repo": "microsoft/vscode",
+    "target": 293308,
+    "source": 293409,
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B is explicitly marked 'Part of #293200' (PR A's issue), indicating it addresses leaks that PR A's broader leak-fixing work either missed or left incomplete in the port auto forwarding subsystem."
+  },
+  "mendableai/firecrawl#2681->2688": {
+    "pair_index": 24,
+    "repo": "mendableai/firecrawl",
+    "target": 2681,
+    "source": 2688,
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "PR B addresses different, newly-discovered vulnerabilities (GHSA-mp2g-9vg9-f4cg, GHSA-g2pg-6438-jwpf) in different packages/allowlists than PR A, representing scope expansion rather than fixing incompleteness or errors in PR A."
+  },
+  "calcom/cal.com#26688->26716": {
+    "pair_index": 25,
+    "repo": "calcom/cal.com",
+    "target": 26688,
+    "source": 26716,
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B directly addresses the incompleteness of PR A's fix by expanding the mock scope from just Salesforce GraphQL queries to all CRM services, solving the same flakiness issue that PR A's narrower approach failed to fully resolve across all test suites."
+  },
+  "calcom/cal.com#27578->27653": {
+    "pair_index": 26,
+    "repo": "calcom/cal.com",
+    "target": 27578,
+    "source": 27653,
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR A implemented a feedback dialog for feature opt-in but didn't enable it for the bookings-v3 feature, and PR B fixes this omission by actually showing the opt-in banner that PR A's infrastructure was supposed to support."
+  },
+  "sveltejs/svelte#17441->17445": {
+    "pair_index": 27,
+    "repo": "sveltejs/svelte",
+    "target": 17441,
+    "source": 17445,
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "PR B is planned incremental work extracting one of two separate fixes from PR A's parent issue #17362, not a correction of PR A itself which was only a refactoring chore."
+  },
+  "denoland/deno#32409->32401": {
+    "pair_index": 28,
+    "repo": "denoland/deno",
+    "target": 32409,
+    "source": 32401,
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "PR B addresses an independent, separate bug (SEC1 EC key import/export) discovered after PR A was merged, rather than fixing something PR A broke or left incomplete\u2014this is scope expansion/discovered problem, not rework of PR A's changes."
+  },
+  "sveltejs/svelte#17615->17652": {
+    "pair_index": 29,
+    "repo": "sveltejs/svelte",
+    "target": 17615,
+    "source": 17652,
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly fixes a hydration mismatch bug introduced by PR A's async block hydration fix (#17641), addressing a missed edge case where render tags wrapped in $.async need special handling."
+  }
+}

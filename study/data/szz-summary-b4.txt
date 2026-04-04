@@ -1,0 +1,44 @@
+======================================================================
+SZZ ANALYSIS SUMMARY
+======================================================================
+
+Total PRs analyzed: 3,227
+PRs identified as bug-introducing: 441 (13.7%)
+Total SZZ links (fix -> bug): 1,689
+
+Bug-introducing rate by repo:
+--------------------------------------------------
+  dagster-io/dagster                        441/ 3227 (13.7%)
+
+Bug-introducing rate by AI classification:
+--------------------------------------------------
+  escape                  26/    29 (89.7%)
+  human_save             412/ 3,119 (13.2%)
+  machine_catch            0/    12 (0.0%)
+  pending                  2/    18 (11.1%)
+  ungated                  0/     2 (0.0%)
+
+Bug-introducing rate by tier:
+--------------------------------------------------
+  ?                      441/ 3,227 (13.7%)
+
+Top 10 most bug-introducing PRs (by number of subsequent fixes):
+----------------------------------------------------------------------
+  dagster-io/dagster             #29506  fixes= 8  Component-ize docs and examples
+  dagster-io/dagster             #30230  fixes= 7  DOC-1187 Docs IA reorg: User guide and Deployments...
+  dagster-io/dagster             #29151  fixes= 7  [1/2] Asset Health Observe UIs phase 1
+  dagster-io/dagster             #29344  fixes= 6  [Catalogv2] Update asset health summary cards + fi...
+  dagster-io/dagster             #29275  fixes= 6  Replicate dagster-cloud-cli in OSS
+  dagster-io/dagster             #28571  fixes= 6  [ruff] 0.8.4 -> 0.11.5
+  dagster-io/dagster             #28755  fixes= 6  Asset failed events UI
+  dagster-io/dagster             #31059  fixes= 5  [refactor] Update all imports in test files
+  dagster-io/dagster             #30984  fixes= 5  Update links that redirect
+  dagster-io/dagster             #30922  fixes= 5  [ui] List items for Assets
+
+
+======================================================================
+CORRELATION ANALYSIS: Spec Quality vs Bug Introduction
+======================================================================
+
+PRs with spec quality scores: 0
+Too few scored PRs for meaningful analysis

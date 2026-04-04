@@ -1,0 +1,662 @@
+{
+  "repo": "Aider-AI/aider",
+  "lookback_days": 90,
+  "windows": [
+    {
+      "period_start": "2025-03-31T17:53:26+00:00",
+      "period_end": "2025-09-30T13:23:29+00:00",
+      "mechanisms": {
+        "cr_approve": 0.0,
+        "comment_approve": 0.0,
+        "approve_only": 0.03076923076923077,
+        "label_based": 0.015384615384615385,
+        "no_review": 0.9384615384615385,
+        "self_approved": 0.015384615384615385,
+        "rubber_stamp": 0.0,
+        "sample_size": 65
+      },
+      "depth": {
+        "median_human_reviews": 0,
+        "median_unique_reviewers": 0,
+        "median_review_rounds": 0,
+        "rubber_stamp_rate": 0.0,
+        "substantive_review_rate": 0.015384615384615385
+      },
+      "participants": {
+        "unique_reviewers": 4,
+        "top_reviewers": [
+          {
+            "login": "ei-grad",
+            "review_count": 3,
+            "role": "human"
+          },
+          {
+            "login": "bramburn",
+            "review_count": 1,
+            "role": "human"
+          },
+          {
+            "login": "Alexdelia",
+            "review_count": 1,
+            "role": "human"
+          },
+          {
+            "login": "jdanbrown",
+            "review_count": 1,
+            "role": "human"
+          }
+        ],
+        "reviewer_concentration": 0.25,
+        "bot_reviewers": []
+      },
+      "timing": {
+        "median_time_to_first_review_hours": 16.38652777777778,
+        "median_ttm_by_mechanism": {
+          "no_review": 5.440555555555555,
+          "approve_only": 46.82111111111111,
+          "self_approved": 606.6702777777778,
+          "label_based": 2.4694444444444446
+        }
+      },
+      "workflow_type": "minimal-review",
+      "sample_size": 65
+    },
+    {
+      "period_start": "2025-10-03T12:54:06+00:00",
+      "period_end": "2026-03-16T23:07:00+00:00",
+      "mechanisms": {
+        "cr_approve": 0.0,
+        "comment_approve": 0.0,
+        "approve_only": 0.0,
+        "label_based": 0.0,
+        "no_review": 0.8666666666666667,
+        "self_approved": 0.13333333333333333,
+        "rubber_stamp": 0.0,
+        "sample_size": 15
+      },
+      "depth": {
+        "median_human_reviews": 0,
+        "median_unique_reviewers": 0,
+        "median_review_rounds": 0,
+        "rubber_stamp_rate": 0.0,
+        "substantive_review_rate": 0.0
+      },
+      "participants": {
+        "unique_reviewers": 1,
+        "top_reviewers": [
+          {
+            "login": "gcp",
+            "review_count": 2,
+            "role": "human"
+          }
+        ],
+        "reviewer_concentration": 0.0,
+        "bot_reviewers": []
+      },
+      "timing": {
+        "median_time_to_first_review_hours": 11.029861111111112,
+        "median_ttm_by_mechanism": {
+          "self_approved": 2.359861111111111,
+          "no_review": 2.258888888888889
+        }
+      },
+      "workflow_type": "minimal-review",
+      "sample_size": 15
+    }
+  ],
+  "current": {
+    "period_start": "2025-10-03T12:54:06+00:00",
+    "period_end": "2026-03-16T23:07:00+00:00",
+    "mechanisms": {
+      "cr_approve": 0.0,
+      "comment_approve": 0.0,
+      "approve_only": 0.0,
+      "label_based": 0.0,
+      "no_review": 0.8666666666666667,
+      "self_approved": 0.13333333333333333,
+      "rubber_stamp": 0.0,
+      "sample_size": 15
+    },
+    "depth": {
+      "median_human_reviews": 0,
+      "median_unique_reviewers": 0,
+      "median_review_rounds": 0,
+      "rubber_stamp_rate": 0.0,
+      "substantive_review_rate": 0.0
+    },
+    "participants": {
+      "unique_reviewers": 1,
+      "top_reviewers": [
+        {
+          "login": "gcp",
+          "review_count": 2,
+          "role": "human"
+        }
+      ],
+      "reviewer_concentration": 0.0,
+      "bot_reviewers": []
+    },
+    "timing": {
+      "median_time_to_first_review_hours": 11.029861111111112,
+      "median_ttm_by_mechanism": {
+        "self_approved": 2.359861111111111,
+        "no_review": 2.258888888888889
+      }
+    },
+    "workflow_type": "minimal-review",
+    "sample_size": 15
+  },
+  "transitions": [
+    {
+      "timestamp": "2025-10-02T01:08:47.500000+00:00",
+      "last_old_pr": 4547,
+      "first_new_pr": 4551,
+      "description": "no_review shifted from 100% to 33%",
+      "dimension": "no_review",
+      "before_value": 1.0,
+      "after_value": 0.3333333333333333
+    },
+    {
+      "timestamp": "2025-10-02T01:08:47.500000+00:00",
+      "last_old_pr": 4547,
+      "first_new_pr": 4551,
+      "description": "self_approved shifted from 0% to 67%",
+      "dimension": "self_approved",
+      "before_value": 0.0,
+      "after_value": 0.6666666666666666
+    }
+  ],
+  "recommendations": {
+    "catchrate_signals": [
+      "changes_requested"
+    ],
+    "catchrate_cycle_method": "combined",
+    "catchrate_warnings": [
+      "2 workflow transition(s) detected \u2014 per-PR classification recommended over aggregate rates"
+    ],
+    "upfront_friction_baseline": "overall TTM",
+    "upfront_warnings": []
+  },
+  "pr_tags": [
+    {
+      "pr_number": 3692,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-03-31T17:53:26+00:00 to 2025-09-30T13:23:29+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 3698,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-03-31T17:53:26+00:00 to 2025-09-30T13:23:29+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 3736,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-03-31T17:53:26+00:00 to 2025-09-30T13:23:29+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 3735,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-03-31T17:53:26+00:00 to 2025-09-30T13:23:29+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 3733,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-03-31T17:53:26+00:00 to 2025-09-30T13:23:29+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 3752,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-03-31T17:53:26+00:00 to 2025-09-30T13:23:29+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 3776,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-03-31T17:53:26+00:00 to 2025-09-30T13:23:29+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 3831,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-03-31T17:53:26+00:00 to 2025-09-30T13:23:29+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 3828,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-03-31T17:53:26+00:00 to 2025-09-30T13:23:29+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 3898,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-03-31T17:53:26+00:00 to 2025-09-30T13:23:29+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 3930,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-03-31T17:53:26+00:00 to 2025-09-30T13:23:29+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 3931,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-03-31T17:53:26+00:00 to 2025-09-30T13:23:29+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 3869,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-03-31T17:53:26+00:00 to 2025-09-30T13:23:29+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 3789,
+      "approval_mechanism": "self_approved",
+      "workflow_window": "2025-03-31T17:53:26+00:00 to 2025-09-30T13:23:29+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 3806,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-03-31T17:53:26+00:00 to 2025-09-30T13:23:29+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 3679,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-03-31T17:53:26+00:00 to 2025-09-30T13:23:29+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 3381,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-03-31T17:53:26+00:00 to 2025-09-30T13:23:29+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 3564,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-03-31T17:53:26+00:00 to 2025-09-30T13:23:29+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 3823,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-03-31T17:53:26+00:00 to 2025-09-30T13:23:29+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 3982,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-03-31T17:53:26+00:00 to 2025-09-30T13:23:29+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 3983,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-03-31T17:53:26+00:00 to 2025-09-30T13:23:29+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 3993,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-03-31T17:53:26+00:00 to 2025-09-30T13:23:29+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 4008,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-03-31T17:53:26+00:00 to 2025-09-30T13:23:29+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 4096,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-03-31T17:53:26+00:00 to 2025-09-30T13:23:29+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 4092,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-03-31T17:53:26+00:00 to 2025-09-30T13:23:29+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 4114,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-03-31T17:53:26+00:00 to 2025-09-30T13:23:29+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 4146,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-03-31T17:53:26+00:00 to 2025-09-30T13:23:29+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 4150,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-03-31T17:53:26+00:00 to 2025-09-30T13:23:29+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 4156,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-03-31T17:53:26+00:00 to 2025-09-30T13:23:29+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 4057,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-03-31T17:53:26+00:00 to 2025-09-30T13:23:29+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 4161,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-03-31T17:53:26+00:00 to 2025-09-30T13:23:29+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 4163,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-03-31T17:53:26+00:00 to 2025-09-30T13:23:29+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 4172,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-03-31T17:53:26+00:00 to 2025-09-30T13:23:29+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 3609,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-03-31T17:53:26+00:00 to 2025-09-30T13:23:29+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 4193,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-03-31T17:53:26+00:00 to 2025-09-30T13:23:29+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 4182,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-03-31T17:53:26+00:00 to 2025-09-30T13:23:29+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 4199,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-03-31T17:53:26+00:00 to 2025-09-30T13:23:29+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 4210,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-03-31T17:53:26+00:00 to 2025-09-30T13:23:29+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 4022,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-03-31T17:53:26+00:00 to 2025-09-30T13:23:29+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 4228,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-03-31T17:53:26+00:00 to 2025-09-30T13:23:29+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 4236,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-03-31T17:53:26+00:00 to 2025-09-30T13:23:29+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 4242,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-03-31T17:53:26+00:00 to 2025-09-30T13:23:29+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 4254,
+      "approval_mechanism": "label_based",
+      "workflow_window": "2025-03-31T17:53:26+00:00 to 2025-09-30T13:23:29+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 4260,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-03-31T17:53:26+00:00 to 2025-09-30T13:23:29+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 4268,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-03-31T17:53:26+00:00 to 2025-09-30T13:23:29+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 4269,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-03-31T17:53:26+00:00 to 2025-09-30T13:23:29+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 4257,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-03-31T17:53:26+00:00 to 2025-09-30T13:23:29+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 4271,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-03-31T17:53:26+00:00 to 2025-09-30T13:23:29+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 4264,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-03-31T17:53:26+00:00 to 2025-09-30T13:23:29+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 4028,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-03-31T17:53:26+00:00 to 2025-09-30T13:23:29+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 3870,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-03-31T17:53:26+00:00 to 2025-09-30T13:23:29+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 3764,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-03-31T17:53:26+00:00 to 2025-09-30T13:23:29+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 4300,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-03-31T17:53:26+00:00 to 2025-09-30T13:23:29+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 4307,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-03-31T17:53:26+00:00 to 2025-09-30T13:23:29+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 4321,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-03-31T17:53:26+00:00 to 2025-09-30T13:23:29+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 4324,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-03-31T17:53:26+00:00 to 2025-09-30T13:23:29+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 4342,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-03-31T17:53:26+00:00 to 2025-09-30T13:23:29+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 4410,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-03-31T17:53:26+00:00 to 2025-09-30T13:23:29+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 4412,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-03-31T17:53:26+00:00 to 2025-09-30T13:23:29+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 4475,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-03-31T17:53:26+00:00 to 2025-09-30T13:23:29+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 4493,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-03-31T17:53:26+00:00 to 2025-09-30T13:23:29+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 4534,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-03-31T17:53:26+00:00 to 2025-09-30T13:23:29+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 4541,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-03-31T17:53:26+00:00 to 2025-09-30T13:23:29+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 4544,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-03-31T17:53:26+00:00 to 2025-09-30T13:23:29+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 4547,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-03-31T17:53:26+00:00 to 2025-09-30T13:23:29+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 4551,
+      "approval_mechanism": "self_approved",
+      "workflow_window": "2025-10-03T12:54:06+00:00 to 2026-03-16T23:07:00+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 4552,
+      "approval_mechanism": "self_approved",
+      "workflow_window": "2025-10-03T12:54:06+00:00 to 2026-03-16T23:07:00+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 4557,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-10-03T12:54:06+00:00 to 2026-03-16T23:07:00+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 4620,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-10-03T12:54:06+00:00 to 2026-03-16T23:07:00+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 4621,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-10-03T12:54:06+00:00 to 2026-03-16T23:07:00+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 4656,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-10-03T12:54:06+00:00 to 2026-03-16T23:07:00+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 4698,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-10-03T12:54:06+00:00 to 2026-03-16T23:07:00+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 4748,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-10-03T12:54:06+00:00 to 2026-03-16T23:07:00+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 4772,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-10-03T12:54:06+00:00 to 2026-03-16T23:07:00+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 4830,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-10-03T12:54:06+00:00 to 2026-03-16T23:07:00+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 4838,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-10-03T12:54:06+00:00 to 2026-03-16T23:07:00+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 4682,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-10-03T12:54:06+00:00 to 2026-03-16T23:07:00+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 4674,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-10-03T12:54:06+00:00 to 2026-03-16T23:07:00+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 4899,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-10-03T12:54:06+00:00 to 2026-03-16T23:07:00+00:00",
+      "active_workflow_type": "minimal-review"
+    },
+    {
+      "pr_number": 4935,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-10-03T12:54:06+00:00 to 2026-03-16T23:07:00+00:00",
+      "active_workflow_type": "minimal-review"
+    }
+  ]
+}

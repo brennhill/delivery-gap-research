@@ -1,0 +1,5152 @@
+{
+  "repo": "nats-io/nats-server",
+  "lookback_days": 90,
+  "rework_window_days": 14,
+  "coverage": {
+    "coverage_pct": 13,
+    "total_prs": 338,
+    "specd_prs": 45,
+    "prs": [
+      {
+        "number": 7973,
+        "sha": null,
+        "title": "Report the account and user name in USER.INFO request",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-19T15:12:51+00:00"
+      },
+      {
+        "number": 7971,
+        "sha": null,
+        "title": "[FIXED] Incomplete route pool on premature pong",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-19T15:23:29+00:00"
+      },
+      {
+        "number": 7970,
+        "sha": null,
+        "title": "[FIXED] Avoid stalling read loop on leafnode ErrMinimumVersionRequired",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-19T15:17:25+00:00"
+      },
+      {
+        "number": 7968,
+        "sha": null,
+        "title": "Revert \"[FIXED] Hash MQTT clients IDs in server logs\"",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-18T14:35:42+00:00"
+      },
+      {
+        "number": 7966,
+        "sha": null,
+        "title": "[FIXED] Hash MQTT clients IDs in server logs",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-18T10:21:51+00:00"
+      },
+      {
+        "number": 7964,
+        "sha": null,
+        "title": "[FIXED] Compressed data coalesced with INFO causing disconnect",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-18T10:21:28+00:00"
+      },
+      {
+        "number": 7963,
+        "sha": null,
+        "title": "Fix TestJetStreamClusterConsumerScaleDownChanges flake",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-17T17:32:43+00:00"
+      },
+      {
+        "number": 7962,
+        "sha": null,
+        "title": "[FIXED] PROXY v1 parsing may discard client bytes",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-17T16:27:11+00:00"
+      },
+      {
+        "number": 7961,
+        "sha": null,
+        "title": "[FIXED] Missed account service import cycle",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-17T16:00:58+00:00"
+      },
+      {
+        "number": 7959,
+        "sha": null,
+        "title": "[FIXED] ParseFileWithChecksDigest deletes referenced config entries",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-17T14:19:07+00:00"
+      },
+      {
+        "number": 7958,
+        "sha": null,
+        "title": "[FIXED] Windows Service: LameDuckMode doesn't exit the process",
+        "specd": true,
+        "spec_source": "#7931",
+        "merged_at": "2026-03-17T14:18:34+00:00"
+      },
+      {
+        "number": 7957,
+        "sha": null,
+        "title": "[FIXED] Orphaned check doesn't remove direct consumers",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-16T14:59:43+00:00"
+      },
+      {
+        "number": 7956,
+        "sha": null,
+        "title": "NRG: Candidate resets vote",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-16T14:51:02+00:00"
+      },
+      {
+        "number": 7955,
+        "sha": null,
+        "title": "NRG: Don't commit previous terms",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-16T16:22:53+00:00"
+      },
+      {
+        "number": 7954,
+        "sha": null,
+        "title": "[FIXED] Avoid parsing trace headers from HPUB payload",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-16T14:09:18+00:00"
+      },
+      {
+        "number": 7952,
+        "sha": null,
+        "title": "[IMPROVED] Stream peer-remove by ID",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-16T10:31:17+00:00"
+      },
+      {
+        "number": 7945,
+        "sha": null,
+        "title": "(2.14) Fast batch limits",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-17T14:47:38+00:00"
+      },
+      {
+        "number": 7944,
+        "sha": null,
+        "title": "[FIXED] Propagate meta snapshot apply errors",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-16T10:31:04+00:00"
+      },
+      {
+        "number": 7942,
+        "sha": null,
+        "title": "[FIXED] Incomplete secret redaction in trace logs",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-16T10:30:40+00:00"
+      },
+      {
+        "number": 7941,
+        "sha": null,
+        "title": "[FIXED] Panic on malformed fixed32/fixed64 fields",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-12T13:10:37+00:00"
+      },
+      {
+        "number": 7940,
+        "sha": null,
+        "title": "[FIXED] Panic on inflight stream and consumer iteration",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-12T12:24:16+00:00"
+      },
+      {
+        "number": 7939,
+        "sha": null,
+        "title": "[FIXED] Stream update loses consumers in async meta snapshot",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-12T12:05:35+00:00"
+      },
+      {
+        "number": 7938,
+        "sha": null,
+        "title": "[FIXED] Data race in jsClusteredStreamRequest",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-12T12:05:25+00:00"
+      },
+      {
+        "number": 7936,
+        "sha": null,
+        "title": "(2.14) [FIXED] Race condition removing messages for replicated WQ/Interest stream",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-12T11:47:59+00:00"
+      },
+      {
+        "number": 7935,
+        "sha": null,
+        "title": "Data race in TestJetStreamClusterConsumerSetStoreStateOldUpdateRestart",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-12T11:47:24+00:00"
+      },
+      {
+        "number": 7933,
+        "sha": null,
+        "title": "MQTT compliance improvements",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-11T11:08:48+00:00"
+      },
+      {
+        "number": 7932,
+        "sha": null,
+        "title": "[FIXED] Skip closed connection register after auth callout timeout",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-10T11:10:52+00:00"
+      },
+      {
+        "number": 7929,
+        "sha": null,
+        "title": "[FIXED] Stuck mirror goroutine or waitgroup",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-10T09:39:13+00:00"
+      },
+      {
+        "number": 7928,
+        "sha": null,
+        "title": "[FIXED] Idempotent stream sources create",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-10T09:38:50+00:00"
+      },
+      {
+        "number": 7926,
+        "sha": null,
+        "title": "Add `govulncheck` to GHA",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-09T12:24:29+00:00"
+      },
+      {
+        "number": 7925,
+        "sha": null,
+        "title": "(2.14) Fix panic in filestore on Windows from unsupported directory fsync",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-09T11:26:53+00:00"
+      },
+      {
+        "number": 7915,
+        "sha": null,
+        "title": "Fix MetaClusterInfo.Snapshot not populated in Varz and Statsz responses",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-06T15:09:37+00:00"
+      },
+      {
+        "number": 7914,
+        "sha": null,
+        "title": "Update to Go 1.26.1/1.25.8",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-06T13:46:24+00:00"
+      },
+      {
+        "number": 7913,
+        "sha": null,
+        "title": "[IMPROVED] Always compact, even for non-changed state",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-06T15:18:06+00:00"
+      },
+      {
+        "number": 7912,
+        "sha": null,
+        "title": "(2.14) Filestore locking fixes",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-06T11:09:26+00:00"
+      },
+      {
+        "number": 7908,
+        "sha": null,
+        "title": "[FIXED] Don't encode consumer state in meta snapshot",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-05T10:16:44+00:00"
+      },
+      {
+        "number": 7905,
+        "sha": null,
+        "title": "[FIXED] Prevent stale consumer state losing consumers",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-05T10:16:36+00:00"
+      },
+      {
+        "number": 7903,
+        "sha": null,
+        "title": "[FIXED] Stream sources checks with External",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-04T16:02:31+00:00"
+      },
+      {
+        "number": 7902,
+        "sha": null,
+        "title": "Add Claude auto-review",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-10T15:22:28+00:00"
+      },
+      {
+        "number": 7901,
+        "sha": null,
+        "title": "Fix nbPool buffer recycling in WebSocket and S2 compression paths",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-04T10:24:39+00:00"
+      },
+      {
+        "number": 7900,
+        "sha": null,
+        "title": "Rename TestJetStreamClusterAccountStoreLimits",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-04T10:24:33+00:00"
+      },
+      {
+        "number": 7898,
+        "sha": null,
+        "title": "(2.14) Separate info requests into their own JS API queue",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-04T16:49:53+00:00"
+      },
+      {
+        "number": 7897,
+        "sha": null,
+        "title": "memstore: take write lock in memstore.State",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-03T17:08:19+00:00"
+      },
+      {
+        "number": 7896,
+        "sha": null,
+        "title": "Make the deduplication work for sourcing using either the deduplication window",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-18T18:00:37+00:00"
+      },
+      {
+        "number": 7895,
+        "sha": null,
+        "title": "[FIXED] Only use store limits for resources exceeded",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-03T17:06:40+00:00"
+      },
+      {
+        "number": 7894,
+        "sha": null,
+        "title": "(2.14) Fast batch: support clean leader changes",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-03T17:07:28+00:00"
+      },
+      {
+        "number": 7893,
+        "sha": null,
+        "title": "De-flake TestJetStreamLeafNodeDefaultDomainClusterBothEnds",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-02T16:57:06+00:00"
+      },
+      {
+        "number": 7892,
+        "sha": null,
+        "title": "(2.14) Fast batch: support acount imports/exports",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-02T14:55:25+00:00"
+      },
+      {
+        "number": 7891,
+        "sha": null,
+        "title": "[FIXED] Scale down non-durable consumer",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-02T13:01:45+00:00"
+      },
+      {
+        "number": 7889,
+        "sha": null,
+        "title": "[IMPROVED] R1 Consumer leader process in goroutine",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-02T13:29:27+00:00"
+      },
+      {
+        "number": 7886,
+        "sha": null,
+        "title": "[FIXED] JetStream: Delete consumer may fail with \"directory not empty\" error",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-03T17:02:04+00:00"
+      },
+      {
+        "number": 7885,
+        "sha": null,
+        "title": "[IMPROVED] NRG: Reliable peer current/lag state",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-02T11:49:54+00:00"
+      },
+      {
+        "number": 7884,
+        "sha": null,
+        "title": "Add Claude Code review to GHA",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-26T18:22:30+00:00"
+      },
+      {
+        "number": 7883,
+        "sha": null,
+        "title": "[FIXED] Scale down/up of consumer monitor race conditions",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-02T10:20:21+00:00"
+      },
+      {
+        "number": 7880,
+        "sha": null,
+        "title": "[FIXED] Tiered reservation consistency & recovery",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-26T13:19:21+00:00"
+      },
+      {
+        "number": 7879,
+        "sha": null,
+        "title": "Cherry-picks for 2.12.5",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-25T15:39:48+00:00"
+      },
+      {
+        "number": 7877,
+        "sha": null,
+        "title": "Allow refusing all client connections with `max_conns: 0`",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-25T11:55:39+00:00"
+      },
+      {
+        "number": 7870,
+        "sha": null,
+        "title": "[IMPROVED] Stream subjects collide scan",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-24T10:56:45+00:00"
+      },
+      {
+        "number": 7867,
+        "sha": null,
+        "title": "Fix heap escape of stack array per call in processRoutedMsgArgs and others",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-24T10:27:44+00:00"
+      },
+      {
+        "number": 7865,
+        "sha": null,
+        "title": "memstore: refresh stale Last values and hold write lock in MultiLastSeqs",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-24T10:28:06+00:00"
+      },
+      {
+        "number": 7861,
+        "sha": null,
+        "title": "Cherry-picks for 2.12.5-RC.2",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-20T13:16:02+00:00"
+      },
+      {
+        "number": 7857,
+        "sha": null,
+        "title": "Add test for flow control with cross-account source fan-out",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-20T10:08:26+00:00"
+      },
+      {
+        "number": 7856,
+        "sha": null,
+        "title": "[IMPROVED] Single subject in FilterSubjects field",
+        "specd": true,
+        "spec_source": "https://github.com/nats-io/nats-server/issues/7852",
+        "merged_at": "2026-02-20T11:41:06+00:00"
+      },
+      {
+        "number": 7855,
+        "sha": null,
+        "title": "memstore: use matchLiteral for wildcard checks in loadNextMsgLocked",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-19T15:35:58+00:00"
+      },
+      {
+        "number": 7850,
+        "sha": null,
+        "title": "NRG: Fix cluster size drop to 1 on replaying EntryAddPeer after restart",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-19T15:38:23+00:00"
+      },
+      {
+        "number": 7849,
+        "sha": null,
+        "title": "NRG: Preserve papplied on truncate after unapplied catchup snapshot",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-19T12:49:50+00:00"
+      },
+      {
+        "number": 7848,
+        "sha": null,
+        "title": "[FIXED] Legacy durable consumer request consistency",
+        "specd": true,
+        "spec_source": "https://github.com/nats-io/nats-server/issues/7847",
+        "merged_at": "2026-02-19T10:30:37+00:00"
+      },
+      {
+        "number": 7846,
+        "sha": null,
+        "title": "[IMPROVED] Eventually force snapshots if blocked due to catchups",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-19T10:29:56+00:00"
+      },
+      {
+        "number": 7845,
+        "sha": null,
+        "title": "[FIXED] Preserve max delivered messages with WorkQueue retention",
+        "specd": true,
+        "spec_source": "https://github.com/nats-io/nats-server/issues/7817",
+        "merged_at": "2026-02-18T09:53:45+00:00"
+      },
+      {
+        "number": 7844,
+        "sha": null,
+        "title": "Fix crasher on callout for a leafnode connection with hand-rolled creds that are mistmatched",
+        "specd": true,
+        "spec_source": "#7841",
+        "merged_at": "2026-02-18T09:54:53+00:00"
+      },
+      {
+        "number": 7843,
+        "sha": null,
+        "title": "API level 3",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-17T17:34:07+00:00"
+      },
+      {
+        "number": 7840,
+        "sha": null,
+        "title": "memstore: speed up LoadNextMsg when using wildcard filter",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-18T09:56:29+00:00"
+      },
+      {
+        "number": 7839,
+        "sha": null,
+        "title": "Allow optional `window_size` for stream snapshot flow control",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-17T16:01:19+00:00"
+      },
+      {
+        "number": 7837,
+        "sha": null,
+        "title": "[FIXED] Recreate monitor quit channel",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-16T14:40:37+00:00"
+      },
+      {
+        "number": 7836,
+        "sha": null,
+        "title": "Cherry-picks for 2.12.5-RC.1",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-16T15:36:51+00:00"
+      },
+      {
+        "number": 7828,
+        "sha": null,
+        "title": "Improved flow control for stream snapshots",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-13T17:53:33+00:00"
+      },
+      {
+        "number": 7827,
+        "sha": null,
+        "title": "[IMPROVED] Asynchronous meta stream/consumer assignments snapshots",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-18T12:32:36+00:00"
+      },
+      {
+        "number": 7826,
+        "sha": null,
+        "title": "(2.12) [IMPROVED] Align cleanup with checkForOrphans",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-17T17:58:04+00:00"
+      },
+      {
+        "number": 7825,
+        "sha": null,
+        "title": "Don't leak timers when setting up mirrors",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-13T13:25:32+00:00"
+      },
+      {
+        "number": 7824,
+        "sha": null,
+        "title": "(2.12) [FIXED] Remove recovered streams/consumers if not in catchup meta snapshot",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-13T11:50:22+00:00"
+      },
+      {
+        "number": 7820,
+        "sha": null,
+        "title": "[FIXED] Race condition when remapping group",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-13T10:11:44+00:00"
+      },
+      {
+        "number": 7819,
+        "sha": null,
+        "title": "[FIXED] Consumer unpin behavior and advisories & added test",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-13T10:11:14+00:00"
+      },
+      {
+        "number": 7818,
+        "sha": null,
+        "title": "Update to Go 1.26.0/1.25.7",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-11T12:20:29+00:00"
+      },
+      {
+        "number": 7816,
+        "sha": null,
+        "title": "Various filestore fixes",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-11T10:37:41+00:00"
+      },
+      {
+        "number": 7815,
+        "sha": null,
+        "title": "[IMPROVED] Include pending msgs/bytes when being unpinned",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-11T09:56:55+00:00"
+      },
+      {
+        "number": 7814,
+        "sha": null,
+        "title": "(2.14) Add sanity checks and tests around removeMsgsInRange",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-10T11:58:34+00:00"
+      },
+      {
+        "number": 7811,
+        "sha": null,
+        "title": "Add RELEASES.md",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-09T13:05:52+00:00"
+      },
+      {
+        "number": 7810,
+        "sha": null,
+        "title": "[FIXED] Consumer with overlapping filter subjects but not subset",
+        "specd": true,
+        "spec_source": "https://github.com/nats-io/nats-server/issues/7779",
+        "merged_at": "2026-02-09T11:39:08+00:00"
+      },
+      {
+        "number": 7809,
+        "sha": null,
+        "title": "NRG: Improve membership changes checks & leader is caught-up for forwarded proposals",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-10T13:59:44+00:00"
+      },
+      {
+        "number": 7805,
+        "sha": null,
+        "title": "[FIXED] MQTT: Did not reject Packet Identifier set to 0 for SUB/UNSUB",
+        "specd": true,
+        "spec_source": "#7803",
+        "merged_at": "2026-02-09T10:17:15+00:00"
+      },
+      {
+        "number": 7802,
+        "sha": null,
+        "title": "(2.14) [FIXED] Consistent group rename when moving to or off R1",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-06T16:00:02+00:00"
+      },
+      {
+        "number": 7799,
+        "sha": null,
+        "title": "Consumer inactive threshold cleanup should stop when consumer stops",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-05T14:49:37+00:00"
+      },
+      {
+        "number": 7798,
+        "sha": null,
+        "title": "[FIXED] Inflight meta change tracking",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-05T14:08:20+00:00"
+      },
+      {
+        "number": 7781,
+        "sha": null,
+        "title": "[IMPROVED] Support HTTP proxy connection from leaf nodes also for TCP",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-19T13:22:49+00:00"
+      },
+      {
+        "number": 7688,
+        "sha": null,
+        "title": "(2.14) Cron schedules",
+        "specd": true,
+        "spec_source": "ADR-51",
+        "merged_at": "2026-03-06T11:09:00+00:00"
+      },
+      {
+        "number": 7788,
+        "sha": null,
+        "title": "(2.14) [IMPROVED] Filestore error handling",
+        "specd": true,
+        "spec_source": "https://github.com/nats-io/nats-server/issues/7629",
+        "merged_at": "2026-03-02T14:53:08+00:00"
+      },
+      {
+        "number": 7692,
+        "sha": null,
+        "title": "(2.14) reset invalid consumer state to stream state on startup",
+        "specd": true,
+        "spec_source": "https://github.com/nats-io/nats-server/issues/7693",
+        "merged_at": "2026-03-02T13:45:02+00:00"
+      },
+      {
+        "number": 7778,
+        "sha": null,
+        "title": "(2.14) Add fast batch publish support",
+        "specd": true,
+        "spec_source": "ADR-50",
+        "merged_at": "2026-03-02T12:36:52+00:00"
+      },
+      {
+        "number": 7690,
+        "sha": null,
+        "title": "(2.14) [FIXED] Filestore partial purge flushes tombstone",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-26T15:53:05+00:00"
+      },
+      {
+        "number": 7795,
+        "sha": null,
+        "title": "Fixed incorrectly inverted Overflow check logic",
+        "specd": true,
+        "spec_source": "https://github.com/nats-io/nats-server/issues/7794",
+        "merged_at": "2026-02-13T11:30:37+00:00"
+      },
+      {
+        "number": 7489,
+        "sha": null,
+        "title": "(2.14) Reset consumer to new starting sequence",
+        "specd": true,
+        "spec_source": "https://github.com/nats-io/nats-server/issues/4121,",
+        "merged_at": "2026-02-12T10:39:24+00:00"
+      },
+      {
+        "number": 7724,
+        "sha": null,
+        "title": "[IMPROVED] Allow updating stream's MaxConsumers limit",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-11T09:53:30+00:00"
+      },
+      {
+        "number": 7790,
+        "sha": null,
+        "title": "[FIXED] Reuse msg/hdr from pooled jsPubMsg",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-06T17:09:33+00:00"
+      },
+      {
+        "number": 7770,
+        "sha": null,
+        "title": "(2.14) Optimize SyncDeleted so that it purges entire blocks if possible",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-04T16:29:58+00:00"
+      },
+      {
+        "number": 7620,
+        "sha": null,
+        "title": "(2.14?) NRG: WAL must align with snapshot",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-05T16:15:32+00:00"
+      },
+      {
+        "number": 7506,
+        "sha": null,
+        "title": "(2.14) Schedule subject sourcing/sampling",
+        "specd": true,
+        "spec_source": "ADR-51",
+        "merged_at": "2026-02-05T15:23:51+00:00"
+      },
+      {
+        "number": 7793,
+        "sha": null,
+        "title": "NRG: Small tweaks",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-03T18:42:56+00:00"
+      },
+      {
+        "number": 7789,
+        "sha": null,
+        "title": "[FIXED] Data race on deduplication seq",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-03T11:12:42+00:00"
+      },
+      {
+        "number": 7774,
+        "sha": null,
+        "title": "(2.14) [FIXED] Slow meta changes during fast stream/consumer rescale can desync",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-02T16:32:00+00:00"
+      },
+      {
+        "number": 7787,
+        "sha": null,
+        "title": "[FIXED] Filestore message block binary search",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-02T12:31:20+00:00"
+      },
+      {
+        "number": 7783,
+        "sha": null,
+        "title": "[FIXED] Filestore race if rebuild during recovery",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-02T10:11:44+00:00"
+      },
+      {
+        "number": 7782,
+        "sha": null,
+        "title": "[FIXED] Filestore always use tombstone for recovered trailing deletes",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-02T08:50:45+00:00"
+      },
+      {
+        "number": 7784,
+        "sha": null,
+        "title": "[IMPROVED] Stream catchup complete message",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-02T08:41:19+00:00"
+      },
+      {
+        "number": 7780,
+        "sha": null,
+        "title": "Add defer to newFileStoreWithCreated to unlock if needed on exit",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-01-29T14:13:25+00:00"
+      },
+      {
+        "number": 7755,
+        "sha": null,
+        "title": "(2.14) [CHANGED] Message Tracing: Do not rewrite `traceparent` header",
+        "specd": true,
+        "spec_source": "https://github.com/nats-io/nats-architecture-and-design/issues/392)",
+        "merged_at": "2026-01-28T12:29:06+00:00"
+      },
+      {
+        "number": 7776,
+        "sha": null,
+        "title": "Cherry-picks for 2.11.12",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-01-27T14:24:40+00:00"
+      },
+      {
+        "number": 7775,
+        "sha": null,
+        "title": "Cherry-picks for 2.12.4",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-01-27T14:24:36+00:00"
+      },
+      {
+        "number": 7773,
+        "sha": null,
+        "title": "[FIXED] Interest stream desync after consumer filter update",
+        "specd": true,
+        "spec_source": "https://github.com/nats-io/nats-server/issues/7760",
+        "merged_at": "2026-01-27T09:45:59+00:00"
+      },
+      {
+        "number": 7766,
+        "sha": null,
+        "title": "[IMPROVED] Remove no interest messages from head of stream",
+        "specd": true,
+        "spec_source": "https://github.com/nats-io/nats-server/issues/6747,",
+        "merged_at": "2026-01-27T11:18:35+00:00"
+      },
+      {
+        "number": 7769,
+        "sha": null,
+        "title": "[FIXED] Many concurrent checkInterestState goroutines",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-01-27T10:48:44+00:00"
+      },
+      {
+        "number": 7772,
+        "sha": null,
+        "title": "[IMPROVED] Simplify recalculate pending with updated filter subject(s)",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-01-27T09:45:24+00:00"
+      },
+      {
+        "number": 7771,
+        "sha": null,
+        "title": "[FIXED] Filestore writeFullState deadlock on stop",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-01-27T09:44:50+00:00"
+      },
+      {
+        "number": 7768,
+        "sha": null,
+        "title": "Cherry-picks for 2.11.12-RC.6",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-01-26T17:54:51+00:00"
+      },
+      {
+        "number": 7767,
+        "sha": null,
+        "title": "Cherry-picks for 2.12.4-RC.5",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-01-26T17:54:48+00:00"
+      },
+      {
+        "number": 7757,
+        "sha": null,
+        "title": "deleteBlocks merges gaps incorrectly",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-01-26T13:20:20+00:00"
+      },
+      {
+        "number": 7763,
+        "sha": null,
+        "title": "Expose Healthz method from Server",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-01-26T12:31:15+00:00"
+      },
+      {
+        "number": 7759,
+        "sha": null,
+        "title": "Perform `_writeFullState` under read lock only",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-01-23T15:26:02+00:00"
+      },
+      {
+        "number": 7758,
+        "sha": null,
+        "title": "Don't recalculate num pending inline on consumer info",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-01-23T14:49:38+00:00"
+      },
+      {
+        "number": 7752,
+        "sha": null,
+        "title": "Fix `setHeader()` and `msgParts()`",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-01-22T12:05:14+00:00"
+      },
+      {
+        "number": 7753,
+        "sha": null,
+        "title": "[IMPROVED] Only recalculate pending with updated filter subject(s)",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-01-22T12:06:14+00:00"
+      },
+      {
+        "number": 7751,
+        "sha": null,
+        "title": "[FIXED] Start time binary search is delete-aware",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-01-22T12:05:59+00:00"
+      },
+      {
+        "number": 7750,
+        "sha": null,
+        "title": "[IMPROVED] Filestore LoadNextMsgMulti can skip blocks",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-01-21T16:00:12+00:00"
+      },
+      {
+        "number": 7746,
+        "sha": null,
+        "title": "Cherry-picks for 2.11.12-RC.5",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-01-20T14:23:42+00:00"
+      },
+      {
+        "number": 7747,
+        "sha": null,
+        "title": "Cherry-picks for v2.12.4-RC.4",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-01-20T14:23:40+00:00"
+      },
+      {
+        "number": 7745,
+        "sha": null,
+        "title": "Fix subject intersection bug due to early return",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-01-20T14:07:58+00:00"
+      },
+      {
+        "number": 7742,
+        "sha": null,
+        "title": "Cherry-picks for v2.12.4-RC.3",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-01-20T12:03:46+00:00"
+      },
+      {
+        "number": 7743,
+        "sha": null,
+        "title": "Cherry-picks for v2.11.12-RC.4",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-01-20T12:00:48+00:00"
+      },
+      {
+        "number": 7744,
+        "sha": null,
+        "title": "Fix data race in HasInterestStartingIn",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-01-20T11:33:39+00:00"
+      },
+      {
+        "number": 7737,
+        "sha": null,
+        "title": "Fix config parsing with self referencing environment variables",
+        "specd": true,
+        "spec_source": "#7730",
+        "merged_at": "2026-01-20T10:44:08+00:00"
+      },
+      {
+        "number": 7741,
+        "sha": null,
+        "title": "Subject tree-driven intersection",
+        "specd": true,
+        "spec_source": "#7713",
+        "merged_at": "2026-01-19T16:50:18+00:00"
+      },
+      {
+        "number": 7736,
+        "sha": null,
+        "title": "Update to Go 1.25.6/1.24.12, dependencies",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-01-16T10:39:45+00:00"
+      },
+      {
+        "number": 7735,
+        "sha": null,
+        "title": "Fixes panic if the stream config is invalid",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-01-16T10:18:44+00:00"
+      },
+      {
+        "number": 7731,
+        "sha": null,
+        "title": "Cherry-picks for v2.12.4-RC.2",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-01-15T16:19:22+00:00"
+      },
+      {
+        "number": 7732,
+        "sha": null,
+        "title": "Cherry-picks for v2.11.12-RC.3",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-01-15T16:16:24+00:00"
+      },
+      {
+        "number": 7729,
+        "sha": null,
+        "title": "Revert #7725",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-01-15T12:35:38+00:00"
+      },
+      {
+        "number": 7728,
+        "sha": null,
+        "title": "Fix `HasInterest` early exit on partial wildcard",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-01-15T12:27:07+00:00"
+      },
+      {
+        "number": 7725,
+        "sha": null,
+        "title": "Subject tree intersection improvements",
+        "specd": true,
+        "spec_source": "#7713",
+        "merged_at": "2026-01-14T17:55:46+00:00"
+      },
+      {
+        "number": 7723,
+        "sha": null,
+        "title": "Fix configuring `cluster_traffic` in config mode",
+        "specd": true,
+        "spec_source": "#7722",
+        "merged_at": "2026-01-14T13:26:16+00:00"
+      },
+      {
+        "number": 7721,
+        "sha": null,
+        "title": "Don't rebuild subject state in filestore on `noTrack` stores after truncate",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-01-13T18:56:17+00:00"
+      },
+      {
+        "number": 7720,
+        "sha": null,
+        "title": "[FIXED] JetStream leaks subs with overlapping stream import",
+        "specd": true,
+        "spec_source": "https://github.com/nats-io/nats-server/issues/7718",
+        "merged_at": "2026-01-13T15:20:48+00:00"
+      },
+      {
+        "number": 7716,
+        "sha": null,
+        "title": "[FIXED] Mirror consumer data race",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-01-12T17:32:24+00:00"
+      },
+      {
+        "number": 7709,
+        "sha": null,
+        "title": "Add `tls_cert_not_after` to varz",
+        "specd": true,
+        "spec_source": "#7684",
+        "merged_at": "2026-01-09T15:21:03+00:00"
+      },
+      {
+        "number": 7712,
+        "sha": null,
+        "title": "Update copyright notices",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-01-09T18:02:21+00:00"
+      },
+      {
+        "number": 7711,
+        "sha": null,
+        "title": "(2.12) [FIXED] Required API level error spam",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-01-09T14:16:50+00:00"
+      },
+      {
+        "number": 7710,
+        "sha": null,
+        "title": "Fix a jetStream / jsAccount lock ordering violation",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-01-09T12:35:08+00:00"
+      },
+      {
+        "number": 7708,
+        "sha": null,
+        "title": "[FIXED] Concurrent map iter/write for WQ stream unique consumer partition",
+        "specd": true,
+        "spec_source": "https://github.com/nats-io/nats-server/issues/7707",
+        "merged_at": "2026-01-08T09:02:07+00:00"
+      },
+      {
+        "number": 7704,
+        "sha": null,
+        "title": "[FIXED] Filestore can't open msg block after single truncated block",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-01-08T09:01:41+00:00"
+      },
+      {
+        "number": 7702,
+        "sha": null,
+        "title": "Cherry-picks for 2.12.4-RC.1",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-01-06T13:34:00+00:00"
+      },
+      {
+        "number": 7701,
+        "sha": null,
+        "title": "Cherry-picks for 2.11.12-RC.2",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-01-06T12:53:08+00:00"
+      },
+      {
+        "number": 7700,
+        "sha": null,
+        "title": "Reduce contention on `ConsumerStore` creation",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-01-06T10:29:44+00:00"
+      },
+      {
+        "number": 7699,
+        "sha": null,
+        "title": "[FIXED] Don't delete consumer on concurrent shutdown and leader change",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-01-05T13:20:18+00:00"
+      },
+      {
+        "number": 7698,
+        "sha": null,
+        "title": "NRG: No repeated votes for same term after stepdown or leader transfer",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-01-05T12:11:38+00:00"
+      },
+      {
+        "number": 7697,
+        "sha": null,
+        "title": "[FIXED] Panic after hash check and concurrent compact",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-01-05T11:44:35+00:00"
+      },
+      {
+        "number": 7691,
+        "sha": null,
+        "title": "[FIXED] Consumer with corrupt data file gets deleted automatically",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-01-05T09:49:03+00:00"
+      },
+      {
+        "number": 7678,
+        "sha": null,
+        "title": "[FIXED] Filestore with encryption may erroneously reset meta.key",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-01-01T12:14:05+00:00"
+      },
+      {
+        "number": 7687,
+        "sha": null,
+        "title": "(2.14) [FIXED] Repeating schedule on an interval after shutdown",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-01-01T12:13:11+00:00"
+      },
+      {
+        "number": 7686,
+        "sha": null,
+        "title": "De-flake TestJetStreamBackOffCheckPending",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-01-01T12:12:07+00:00"
+      },
+      {
+        "number": 7685,
+        "sha": null,
+        "title": "[FIXED] Filestore MaxMsgs/Bytes purge block accounting",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-01-01T12:11:28+00:00"
+      },
+      {
+        "number": 7683,
+        "sha": null,
+        "title": "Panic on concurrent JetStream startup/shutdown",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-01-01T12:10:48+00:00"
+      },
+      {
+        "number": 7676,
+        "sha": null,
+        "title": "(2.14) [FIXED] Filestore recovers from partial purge after hard kill",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-01-01T12:10:24+00:00"
+      },
+      {
+        "number": 7668,
+        "sha": null,
+        "title": "[FIXED] Deleted raft node's stream is revived",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-12-22T14:03:33+00:00"
+      },
+      {
+        "number": 7669,
+        "sha": null,
+        "title": "Cherry-picks for 2.11.12-RC.1",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-12-18T14:10:36+00:00"
+      },
+      {
+        "number": 7642,
+        "sha": null,
+        "title": "NRG: Fix single node election",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-12-17T15:32:29+00:00"
+      },
+      {
+        "number": 7651,
+        "sha": null,
+        "title": "(2.14) [IMPROVED] Allow disabling dedupe when stream sourcing",
+        "specd": true,
+        "spec_source": "https://github.com/nats-io/nats-server/issues/4459",
+        "merged_at": "2025-12-17T15:15:45+00:00"
+      },
+      {
+        "number": 7663,
+        "sha": null,
+        "title": "De-flake TestNoRaceStoreReverseWalkWithDeletesPerf",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-12-17T14:55:55+00:00"
+      },
+      {
+        "number": 7662,
+        "sha": null,
+        "title": "De-flake TestJetStreamClusterAckPendingWithExpired",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-12-17T14:55:27+00:00"
+      },
+      {
+        "number": 7661,
+        "sha": null,
+        "title": "De-flake TestJetStreamJWTClusterAccountNRGPersistsAfterRestart",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-12-17T14:55:15+00:00"
+      },
+      {
+        "number": 7660,
+        "sha": null,
+        "title": "Revert \"(2.14) [IMPROVED] Make most StreamConfig/ConsumerConfig fields omitempty\"",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-12-17T14:54:56+00:00"
+      },
+      {
+        "number": 7659,
+        "sha": null,
+        "title": "De-flake TestFileStoreSparseCompaction",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-12-17T10:51:13+00:00"
+      },
+      {
+        "number": 7658,
+        "sha": null,
+        "title": "[FIXED] R1 mset.lseq desync when exceeding limits",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-12-17T10:30:16+00:00"
+      },
+      {
+        "number": 7657,
+        "sha": null,
+        "title": "Cherry-picks for 2.12.3-RC.5",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-12-16T15:17:24+00:00"
+      },
+      {
+        "number": 7656,
+        "sha": null,
+        "title": "[IMPROVED] Consumer interest check with large gap",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-12-16T14:22:05+00:00"
+      },
+      {
+        "number": 7655,
+        "sha": null,
+        "title": "[FIXED] Filestore desync during stream snapshot",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-12-16T12:06:23+00:00"
+      },
+      {
+        "number": 7652,
+        "sha": null,
+        "title": "Cherry-picks for 2.12.3-RC.4",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-12-15T16:11:16+00:00"
+      },
+      {
+        "number": 7643,
+        "sha": null,
+        "title": "[FIXED] MQTT: QoS2 subscription not getting messages after restart",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-12-15T09:52:19+00:00"
+      },
+      {
+        "number": 7649,
+        "sha": null,
+        "title": "NRG: Removed leader may reappear in membership",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-12-15T15:06:30+00:00"
+      },
+      {
+        "number": 7639,
+        "sha": null,
+        "title": "Make sort by monitoring structs public",
+        "specd": true,
+        "spec_source": "#7638",
+        "merged_at": "2025-12-15T09:53:00+00:00"
+      },
+      {
+        "number": 7634,
+        "sha": null,
+        "title": "[FIXED] Filestore idx mismatch & 'no idx present' errors",
+        "specd": true,
+        "spec_source": "https://github.com/nats-io/nats-server/issues/7626",
+        "merged_at": "2025-12-15T10:53:36+00:00"
+      },
+      {
+        "number": 7637,
+        "sha": null,
+        "title": "[CHANGED] MQTT: Permissions to \"$MQTT.\" are now implicit",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-12-12T16:21:09+00:00"
+      },
+      {
+        "number": 7636,
+        "sha": null,
+        "title": "[IMPROVED] MQTT: Retained msgs handling with cross account and transform",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-12-12T16:16:47+00:00"
+      },
+      {
+        "number": 7635,
+        "sha": null,
+        "title": "Cherry-picks for 2.12.3-RC.3",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-12-11T17:49:31+00:00"
+      },
+      {
+        "number": 7632,
+        "sha": null,
+        "title": "Test and fix Raft peer additions",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-12-11T17:17:06+00:00"
+      },
+      {
+        "number": 7631,
+        "sha": null,
+        "title": "Surface filestore errors from `loadMsgsWithLock` correctly",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-12-11T11:15:28+00:00"
+      },
+      {
+        "number": 7630,
+        "sha": null,
+        "title": "Expire filestore cache on failed `cacheLookupEx` when `errNoCache`",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-12-10T15:59:16+00:00"
+      },
+      {
+        "number": 7627,
+        "sha": null,
+        "title": "[FIXED] Filestore compaction issues",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-12-09T14:35:14+00:00"
+      },
+      {
+        "number": 7625,
+        "sha": null,
+        "title": "[FIXED] Websocket: limit buffer size during decompression of a frame",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-12-08T23:02:34+00:00"
+      },
+      {
+        "number": 7624,
+        "sha": null,
+        "title": "Fixed MQTT tests",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-12-08T15:26:34+00:00"
+      },
+      {
+        "number": 7619,
+        "sha": null,
+        "title": "Fix data race in isStreamHealthy",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-12-08T15:26:12+00:00"
+      },
+      {
+        "number": 7622,
+        "sha": null,
+        "title": "[FIXED] MQTT: Retained message body possibly corrupt in cluster mode",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-12-08T09:24:15+00:00"
+      },
+      {
+        "number": 7617,
+        "sha": null,
+        "title": "Cherry-picks for 2.12.3-RC.2",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-12-05T13:01:51+00:00"
+      },
+      {
+        "number": 7614,
+        "sha": null,
+        "title": "Add WebSocket-specific ping interval configuration option",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-12-05T10:31:05+00:00"
+      },
+      {
+        "number": 7616,
+        "sha": null,
+        "title": "[FIXED] MQTT: Timing out waiting to load x retained messages",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-12-05T10:28:21+00:00"
+      },
+      {
+        "number": 7610,
+        "sha": null,
+        "title": "NRG: prevent peer remove of the last peer",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-12-04T17:18:59+00:00"
+      },
+      {
+        "number": 7612,
+        "sha": null,
+        "title": "Docker nightly: Refactor to use Go toolchain cross-compile",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-12-04T15:54:19+00:00"
+      },
+      {
+        "number": 7611,
+        "sha": null,
+        "title": "Docker nightly: Use `APK_NOTRIGGERS` and `update-ca-certificates`",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-12-04T13:39:30+00:00"
+      },
+      {
+        "number": 7608,
+        "sha": null,
+        "title": "(2.14) [FIXED] Only use store's DiscardNew error for R1 & off-by-ones",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-12-04T13:21:17+00:00"
+      },
+      {
+        "number": 7609,
+        "sha": null,
+        "title": "NRG: peer removing all followers leaves membership in progress",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-12-04T10:55:01+00:00"
+      },
+      {
+        "number": 7607,
+        "sha": null,
+        "title": "[FIXED] Enforce DiscardNewPerSubject as stream leader",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-12-03T14:14:09+00:00"
+      },
+      {
+        "number": 7605,
+        "sha": null,
+        "title": "[FIXED] MQTT: QoS0 msgs across accounts would not be mapped properly",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-12-03T10:01:27+00:00"
+      },
+      {
+        "number": 7604,
+        "sha": null,
+        "title": "Update Go version, dependencies",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-12-02T19:19:11+00:00"
+      },
+      {
+        "number": 7602,
+        "sha": null,
+        "title": "NRG: Leader resurrects removed peers on restarts",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-12-02T16:31:22+00:00"
+      },
+      {
+        "number": 7601,
+        "sha": null,
+        "title": "Fix subject tracking with filestore secure erase",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-12-02T12:15:38+00:00"
+      },
+      {
+        "number": 7504,
+        "sha": null,
+        "title": "(2.14) Repeating schedule on an interval",
+        "specd": true,
+        "spec_source": "ADR-51",
+        "merged_at": "2025-12-02T11:50:09+00:00"
+      },
+      {
+        "number": 7600,
+        "sha": null,
+        "title": "NRG: Fix leader peer removal",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-12-02T10:33:01+00:00"
+      },
+      {
+        "number": 7598,
+        "sha": null,
+        "title": "[FIXED] MQTT: Account mapping was not used when sending JS requests",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-12-02T03:01:32+00:00"
+      },
+      {
+        "number": 7597,
+        "sha": null,
+        "title": "Cleanup .tmp file in TestFileStoreEraseMsgErr",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-12-01T21:41:12+00:00"
+      },
+      {
+        "number": 7596,
+        "sha": null,
+        "title": "[FIXED] MQTT: Possible panic with retained messages and config reload",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-12-01T17:35:16+00:00"
+      },
+      {
+        "number": 7595,
+        "sha": null,
+        "title": "Filestore message remove I/O before accounting",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-12-01T16:46:47+00:00"
+      },
+      {
+        "number": 7594,
+        "sha": null,
+        "title": "[FIXED] SyncBlocks may lose pending writes",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-12-01T15:50:34+00:00"
+      },
+      {
+        "number": 7589,
+        "sha": null,
+        "title": "NRG: do not count messages from removed peers towards quorum",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-12-01T13:38:53+00:00"
+      },
+      {
+        "number": 7593,
+        "sha": null,
+        "title": "Correct per-subject state and schedules when purging message blocks",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-12-01T13:38:35+00:00"
+      },
+      {
+        "number": 7588,
+        "sha": null,
+        "title": "[FIXED] Panic processing snapshot with nil node/assignment after stream delete",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-11-28T09:51:59+00:00"
+      },
+      {
+        "number": 7565,
+        "sha": null,
+        "title": "Avoid concurrent raft membership changes ",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-11-27T17:37:27+00:00"
+      },
+      {
+        "number": 7586,
+        "sha": null,
+        "title": "Fix data race in processClusterCreateStream",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-11-27T14:58:38+00:00"
+      },
+      {
+        "number": 7585,
+        "sha": null,
+        "title": "Fix subject tree invalid handling of non-terminating full wildcard",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-11-27T14:14:26+00:00"
+      },
+      {
+        "number": 7583,
+        "sha": null,
+        "title": "Cherry-picks for 2.12.3-RC.1",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-11-26T16:36:00+00:00"
+      },
+      {
+        "number": 7580,
+        "sha": null,
+        "title": "(2.14?) NRG: Don't reset WAL when failing to load last snapshot",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-11-24T12:55:33+00:00"
+      },
+      {
+        "number": 7566,
+        "sha": null,
+        "title": "(2.14?) NRG: Snapshot error handling",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-11-20T09:53:52+00:00"
+      },
+      {
+        "number": 7581,
+        "sha": null,
+        "title": "[FIXED] Meta peer-remove response after quorum & disallow concurrent changes",
+        "specd": true,
+        "spec_source": "https://github.com/nats-io/nats-server/issues/7545",
+        "merged_at": "2025-11-25T10:39:54+00:00"
+      },
+      {
+        "number": 7579,
+        "sha": null,
+        "title": "[FIXED] JS ack reply protocol error with stream import",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-11-24T11:09:43+00:00"
+      },
+      {
+        "number": 7555,
+        "sha": null,
+        "title": "fix: ensure mqtt max_payload is enforced and tests are included",
+        "specd": true,
+        "spec_source": "https://github.com/nats-io/nats-server/issues/7439",
+        "merged_at": "2025-11-20T17:46:23+00:00"
+      },
+      {
+        "number": 7540,
+        "sha": null,
+        "title": "[IMPROVED] Stage meta operations during Raft catchup",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-11-19T14:34:01+00:00"
+      },
+      {
+        "number": 7563,
+        "sha": null,
+        "title": "Fix data race in TestFileStoreCompactTombstonesBelowFirstSeq",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-11-19T14:23:17+00:00"
+      },
+      {
+        "number": 7560,
+        "sha": null,
+        "title": "(2.14) [FIXED] Filestore delete map race",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-11-18T10:38:28+00:00"
+      },
+      {
+        "number": 7553,
+        "sha": null,
+        "title": "Improved sourcing first sequence scan with filter-aware walk",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-11-18T10:07:46+00:00"
+      },
+      {
+        "number": 7543,
+        "sha": null,
+        "title": "Add `direct-consumers` flag to `jsz` monitoring endpoint",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-11-11T14:23:40+00:00"
+      },
+      {
+        "number": 7390,
+        "sha": null,
+        "title": "(2.14) [IMPROVED] Make most StreamConfig/ConsumerConfig fields omitempty",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-11-13T17:01:01+00:00"
+      },
+      {
+        "number": 7389,
+        "sha": null,
+        "title": "(2.14) Remove stream templates",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-11-13T16:08:08+00:00"
+      },
+      {
+        "number": 7387,
+        "sha": null,
+        "title": "(2.14) [FIXED] Filestore lost tombstones",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-11-13T15:48:01+00:00"
+      },
+      {
+        "number": 7547,
+        "sha": null,
+        "title": "Cherry-picks for v2.12.2",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-11-13T12:06:45+00:00"
+      },
+      {
+        "number": 7548,
+        "sha": null,
+        "title": "Cherry-picks for v2.11.11",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-11-13T11:59:40+00:00"
+      },
+      {
+        "number": 7546,
+        "sha": null,
+        "title": "Fix deadlock on stream purge when consumer store returns error",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-11-13T11:33:38+00:00"
+      },
+      {
+        "number": 7542,
+        "sha": null,
+        "title": "Cherry-picks for v2.12.2-RC.4",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-11-12T10:23:17+00:00"
+      },
+      {
+        "number": 7541,
+        "sha": null,
+        "title": "Cherry-picks for v2.11.11-RC.4",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-11-12T10:13:04+00:00"
+      },
+      {
+        "number": 7456,
+        "sha": null,
+        "title": "(2.12) Add opt-in support for the PROXY protocol",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-11-11T20:10:09+00:00"
+      },
+      {
+        "number": 7544,
+        "sha": null,
+        "title": "De-flake `TestMonitorJsz`",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-11-11T16:50:46+00:00"
+      },
+      {
+        "number": 7539,
+        "sha": null,
+        "title": "Use concrete highwayhash `Digest64` instead of hash interface",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-11-10T16:58:26+00:00"
+      },
+      {
+        "number": 7537,
+        "sha": null,
+        "title": "[IMPROVED] Faster meta operations by not fetching accounts if not member",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-11-10T15:14:57+00:00"
+      },
+      {
+        "number": 7536,
+        "sha": null,
+        "title": "Fix logical race on shutting down clustered JetStream",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-11-10T15:03:34+00:00"
+      },
+      {
+        "number": 7535,
+        "sha": null,
+        "title": "[IMPROVED] Stream catchup shows up in health check",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-11-10T13:33:34+00:00"
+      },
+      {
+        "number": 7534,
+        "sha": null,
+        "title": "[FIXED] Filestore SkipMsgs misses IDX accounting",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-11-10T11:04:40+00:00"
+      },
+      {
+        "number": 7528,
+        "sha": null,
+        "title": "Cherry-picks for v2.12.2-RC.3",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-11-07T14:07:09+00:00"
+      },
+      {
+        "number": 7529,
+        "sha": null,
+        "title": "Cherry-picks for v2.11.11-RC.3",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-11-07T14:07:05+00:00"
+      },
+      {
+        "number": 7524,
+        "sha": null,
+        "title": "Add meta snapshot metrics to jsz monitoring",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-11-07T13:16:39+00:00"
+      },
+      {
+        "number": 7527,
+        "sha": null,
+        "title": "[FIXED] LDM results in max connections exceeded errors",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-11-07T13:13:33+00:00"
+      },
+      {
+        "number": 7526,
+        "sha": null,
+        "title": "Limit JetStream startup concurrency to same as I/O semaphore",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-11-07T11:54:02+00:00"
+      },
+      {
+        "number": 7525,
+        "sha": null,
+        "title": "[FIXED] Filestore missing deletes",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-11-07T11:51:32+00:00"
+      },
+      {
+        "number": 7517,
+        "sha": null,
+        "title": "Convenience method: Server.WebsocketURL",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-11-07T10:46:12+00:00"
+      },
+      {
+        "number": 7523,
+        "sha": null,
+        "title": "[FIXED] Consumer not found after meta recovery",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-11-07T08:32:27+00:00"
+      },
+      {
+        "number": 7519,
+        "sha": null,
+        "title": "Reduce allocations in sublist and subject transforms",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-11-06T10:25:24+00:00"
+      },
+      {
+        "number": 7521,
+        "sha": null,
+        "title": "Add `meta_compact_size` option to further control JetStream meta group compaction/snapshotting",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-11-06T16:29:34+00:00"
+      },
+      {
+        "number": 7522,
+        "sha": null,
+        "title": "[FIXED] NRG: Quorum reporting after leader stepdown",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-11-06T17:39:49+00:00"
+      },
+      {
+        "number": 7520,
+        "sha": null,
+        "title": "Update to Go 1.25.4/1.24.10",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-11-06T10:41:15+00:00"
+      },
+      {
+        "number": 7518,
+        "sha": null,
+        "title": "[IMPROVED] Scale up stalled race condition",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-11-06T09:08:32+00:00"
+      },
+      {
+        "number": 7514,
+        "sha": null,
+        "title": "Cherry-picks for 2.11.11-RC.2",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-11-05T15:24:44+00:00"
+      },
+      {
+        "number": 7513,
+        "sha": null,
+        "title": "Cherry-picks for 2.12.2-RC.2",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-11-05T14:59:01+00:00"
+      },
+      {
+        "number": 7515,
+        "sha": null,
+        "title": "[IMPROVED] Implicit RePublish based on SubjectTransform",
+        "specd": true,
+        "spec_source": "https://github.com/nats-io/nats-server/issues/7511",
+        "merged_at": "2025-11-05T14:14:13+00:00"
+      },
+      {
+        "number": 7516,
+        "sha": null,
+        "title": "Fix race conditions in `TestGatewayConfigureWriteDeadline`",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-11-05T14:14:04+00:00"
+      },
+      {
+        "number": 7512,
+        "sha": null,
+        "title": "[IMPROVED] Stream catchup with many deleted messages",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-11-05T13:02:22+00:00"
+      },
+      {
+        "number": 7509,
+        "sha": null,
+        "title": "NRG: Install leader snapshot on scaleup",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-11-05T10:14:31+00:00"
+      },
+      {
+        "number": 7510,
+        "sha": null,
+        "title": "[FIXED] Recreated stream/consumer meta snapshot consistency",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-11-05T09:57:30+00:00"
+      },
+      {
+        "number": 7508,
+        "sha": null,
+        "title": "Filestore fixes",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-11-04T16:55:52+00:00"
+      },
+      {
+        "number": 7503,
+        "sha": null,
+        "title": "[FIXED] Parallel stream restore panic",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-11-03T16:38:17+00:00"
+      },
+      {
+        "number": 7499,
+        "sha": null,
+        "title": "Add `write_timeout` policy configuration option",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-10-31T13:30:37+00:00"
+      },
+      {
+        "number": 7497,
+        "sha": null,
+        "title": "Cherry-picks for v2.12.2-RC.1",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-10-30T16:48:21+00:00"
+      },
+      {
+        "number": 7496,
+        "sha": null,
+        "title": "[FIXED] Inconsistent index race condition",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-10-30T15:53:14+00:00"
+      },
+      {
+        "number": 7482,
+        "sha": null,
+        "title": "Parallelisation when enabling JetStream",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-10-30T15:42:54+00:00"
+      },
+      {
+        "number": 7495,
+        "sha": null,
+        "title": "Don't snapshot on monitor goroutine or Raft node quit signal unless shutting down",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-10-30T13:24:54+00:00"
+      },
+      {
+        "number": 7486,
+        "sha": null,
+        "title": "[TEST] Add assert.Unreachable when using legacy JSON stream snapshot",
+        "specd": true,
+        "spec_source": "#7485",
+        "merged_at": "2025-10-29T09:58:37+00:00"
+      },
+      {
+        "number": 7480,
+        "sha": null,
+        "title": "Cherry-picks for v2.11.11-RC.1",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-10-28T17:59:31+00:00"
+      },
+      {
+        "number": 7479,
+        "sha": null,
+        "title": "[FIXED] Default to allowing binary stream snapshots",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-10-28T17:07:55+00:00"
+      },
+      {
+        "number": 7484,
+        "sha": null,
+        "title": "Add `meta_compact` option to control JetStream meta group compaction/snapshotting",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-10-28T17:05:08+00:00"
+      },
+      {
+        "number": 7449,
+        "sha": null,
+        "title": "[FIXED] Gateway RS+/- blocks on account fetch",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-10-28T12:16:19+00:00"
+      },
+      {
+        "number": 7460,
+        "sha": null,
+        "title": "[FIXED] NRG: Always only report leader after noop-entry",
+        "specd": true,
+        "spec_source": "NOOP-ENTRY",
+        "merged_at": "2025-10-28T12:13:50+00:00"
+      },
+      {
+        "number": 7469,
+        "sha": null,
+        "title": "Add expvarz to http endpoints",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-10-27T10:57:32+00:00"
+      },
+      {
+        "number": 7466,
+        "sha": null,
+        "title": "[FIXED] Consumer send 404 No Messages on EOS",
+        "specd": true,
+        "spec_source": "https://github.com/nats-io/nats-server/issues/7457,",
+        "merged_at": "2025-10-24T09:58:09+00:00"
+      },
+      {
+        "number": 7465,
+        "sha": null,
+        "title": "[FIXED] Header search without alloc & bug fixes",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-10-24T09:56:31+00:00"
+      },
+      {
+        "number": 7458,
+        "sha": null,
+        "title": "(2.12) [FIXED] DirectGet batch deadlock with parallel write",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-10-24T09:50:41+00:00"
+      },
+      {
+        "number": 7455,
+        "sha": null,
+        "title": "[IMPROVED] Filestore MaxBytes/Msgs update performance",
+        "specd": true,
+        "spec_source": "https://github.com/nats-io/nats-server/issues/7450",
+        "merged_at": "2025-10-21T22:09:07+00:00"
+      },
+      {
+        "number": 7452,
+        "sha": null,
+        "title": "(2.12) [FIXED] Leaf node token auth",
+        "specd": true,
+        "spec_source": "https://github.com/nats-io/nats-server/issues/7441",
+        "merged_at": "2025-10-21T22:08:38+00:00"
+      },
+      {
+        "number": 7444,
+        "sha": null,
+        "title": "[FIXED] LeafNode proxy validation",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-10-19T16:10:42+00:00"
+      },
+      {
+        "number": 7440,
+        "sha": null,
+        "title": "[IMPROVED] Interest desync after consumer create/update",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-10-19T16:10:05+00:00"
+      },
+      {
+        "number": 7443,
+        "sha": null,
+        "title": "[FIXED] Message Tracing: Hop header set properly per gateway",
+        "specd": true,
+        "spec_source": "#7442",
+        "merged_at": "2025-10-19T16:09:08+00:00"
+      },
+      {
+        "number": 7436,
+        "sha": null,
+        "title": "(2.12) [FIXED] Atomic batch: check correct header for unsupported error",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-10-15T20:11:13+00:00"
+      },
+      {
+        "number": 7433,
+        "sha": null,
+        "title": "Improved warning for Observer mode",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-10-14T18:00:24+00:00"
+      },
+      {
+        "number": 7435,
+        "sha": null,
+        "title": "Tweak cache expiry in `firstMatching` or `firstMatchingMulti`",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-10-14T17:47:11+00:00"
+      },
+      {
+        "number": 7430,
+        "sha": null,
+        "title": "Cherry-picks for v2.12.1",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-10-14T11:31:27+00:00"
+      },
+      {
+        "number": 7431,
+        "sha": null,
+        "title": "[FIXED] Filestore unlock when message erase fails",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-10-14T11:11:53+00:00"
+      },
+      {
+        "number": 7429,
+        "sha": null,
+        "title": "[IMPROVED] JSZ Raft leader stats",
+        "specd": true,
+        "spec_source": "https://github.com/nats-io/nats-server/issues/7407",
+        "merged_at": "2025-10-14T10:41:39+00:00"
+      },
+      {
+        "number": 7428,
+        "sha": null,
+        "title": "Update to Go 1.25.3/1.24.9",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-10-14T09:23:31+00:00"
+      },
+      {
+        "number": 7427,
+        "sha": null,
+        "title": "[FIXED] Trusted Proxies: Reload log message report added keys as removed",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-10-14T08:39:26+00:00"
+      },
+      {
+        "number": 7426,
+        "sha": null,
+        "title": "Cherry-picks for v2.12.1-RC.5",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-10-13T14:16:54+00:00"
+      },
+      {
+        "number": 7411,
+        "sha": null,
+        "title": "[ADDED] - `riscv64` support",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-10-13T13:55:47+00:00"
+      },
+      {
+        "number": 7424,
+        "sha": null,
+        "title": "NRG: Parallel catchups can truncate committed",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-10-13T12:24:04+00:00"
+      },
+      {
+        "number": 7425,
+        "sha": null,
+        "title": "Offline assets: use strict err",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-10-13T12:23:22+00:00"
+      },
+      {
+        "number": 7416,
+        "sha": null,
+        "title": "Offline assets: Improve error reporting/logging",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-10-10T16:26:28+00:00"
+      },
+      {
+        "number": 7415,
+        "sha": null,
+        "title": "Cherry-picks for v2.12.1-RC.4",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-10-10T11:50:03+00:00"
+      },
+      {
+        "number": 7413,
+        "sha": null,
+        "title": "[FIXED] JWT claims delete with headers",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-10-10T09:22:05+00:00"
+      },
+      {
+        "number": 7403,
+        "sha": null,
+        "title": "(2.14) Atomic batch: commit by EOB",
+        "specd": true,
+        "spec_source": "ADR-50",
+        "merged_at": "2025-10-09T15:50:47+00:00"
+      },
+      {
+        "number": 7409,
+        "sha": null,
+        "title": "FIPS 140-3 mode support",
+        "specd": true,
+        "spec_source": "#7406",
+        "merged_at": "2025-10-09T12:45:09+00:00"
+      },
+      {
+        "number": 7405,
+        "sha": null,
+        "title": "Add `write_deadline` to cluster, leafnode and gateway config",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-10-08T17:08:09+00:00"
+      },
+      {
+        "number": 7404,
+        "sha": null,
+        "title": "Update to Go 1.25.2/1.24.8",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-10-08T10:04:44+00:00"
+      },
+      {
+        "number": 7402,
+        "sha": null,
+        "title": "[IMPROVED] NRG: Peer activity tracking",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-10-08T08:56:41+00:00"
+      },
+      {
+        "number": 7401,
+        "sha": null,
+        "title": "[FIXED] Filestore don't add deletes for empty block with SkipMsgs",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-10-08T08:44:21+00:00"
+      },
+      {
+        "number": 7399,
+        "sha": null,
+        "title": "[FIXED] Filestore detect delete gap with last SkipMsg",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-10-07T08:18:36+00:00"
+      },
+      {
+        "number": 7400,
+        "sha": null,
+        "title": "[FIXED] Stream desync after out-of-order SkipMsg",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-10-07T08:17:35+00:00"
+      },
+      {
+        "number": 7398,
+        "sha": null,
+        "title": "Cherry-picks for v2.12.1-RC.3",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-10-06T15:29:10+00:00"
+      },
+      {
+        "number": 7396,
+        "sha": null,
+        "title": "Improve filestore partial cache logging, expire on incorrect sequence, slot check on erase",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-10-06T12:24:09+00:00"
+      },
+      {
+        "number": 7395,
+        "sha": null,
+        "title": "[FIXED] Mirror consumer data race",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-10-06T11:29:49+00:00"
+      },
+      {
+        "number": 7392,
+        "sha": null,
+        "title": "Cherry-picks for v2.12.1-RC.2",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-10-03T10:01:45+00:00"
+      },
+      {
+        "number": 7242,
+        "sha": null,
+        "title": "Add HTTP proxy support for WebSocket leaf node connections",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-10-03T09:25:25+00:00"
+      },
+      {
+        "number": 7391,
+        "sha": null,
+        "title": "(2.12) Atomic batch: support deduplication",
+        "specd": true,
+        "spec_source": "ADR-50",
+        "merged_at": "2025-10-02T15:43:01+00:00"
+      },
+      {
+        "number": 7386,
+        "sha": null,
+        "title": "(2.12) Atomic batch: remove TODO comments",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-10-02T15:24:10+00:00"
+      },
+      {
+        "number": 7388,
+        "sha": null,
+        "title": "Always use temporary staging for filestore meta file writes",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-10-02T15:23:39+00:00"
+      },
+      {
+        "number": 7385,
+        "sha": null,
+        "title": "Use optional sync when writing TTL and scheduling state in filestore",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-10-02T10:18:18+00:00"
+      },
+      {
+        "number": 7384,
+        "sha": null,
+        "title": "[FIXED] Filestore lost tombstones",
+        "specd": true,
+        "spec_source": "https://github.com/nats-io/nats-server/issues/5412,",
+        "merged_at": "2025-10-02T09:21:00+00:00"
+      },
+      {
+        "number": 7364,
+        "sha": null,
+        "title": "feat: add NewServerFromConfig function for embedded server config processing",
+        "specd": true,
+        "spec_source": "#7092",
+        "merged_at": "2025-10-01T15:37:55+00:00"
+      },
+      {
+        "number": 7382,
+        "sha": null,
+        "title": "Refactor Docker nightly builds",
+        "specd": true,
+        "spec_source": "#7263",
+        "merged_at": "2025-10-01T15:11:01+00:00"
+      },
+      {
+        "number": 7381,
+        "sha": null,
+        "title": "Fast-path check for empty block on filestore cache lookup",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-10-01T15:11:14+00:00"
+      },
+      {
+        "number": 7380,
+        "sha": null,
+        "title": "Fix race conditions and potential panics in JS API endpoint meta handling",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-10-01T09:52:47+00:00"
+      },
+      {
+        "number": 7376,
+        "sha": null,
+        "title": "Cherry-picks for v2.11.10",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-30T14:19:40+00:00"
+      },
+      {
+        "number": 7373,
+        "sha": null,
+        "title": "[IMPROVED] Don't perform meta snapshot on every stream removal",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-30T10:05:19+00:00"
+      },
+      {
+        "number": 7372,
+        "sha": null,
+        "title": "Cherry-picks for v2.12.1-RC.1",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-29T16:58:32+00:00"
+      },
+      {
+        "number": 7370,
+        "sha": null,
+        "title": "Cherry-picks for v2.11.10-RC.1",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-29T13:30:35+00:00"
+      },
+      {
+        "number": 7368,
+        "sha": null,
+        "title": "(2.12) Atomic batch: reject unsupported commit",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-29T10:18:12+00:00"
+      },
+      {
+        "number": 7293,
+        "sha": null,
+        "title": "NRG: Replay snapshot upon timeout instead of reset",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-29T09:00:00+00:00"
+      },
+      {
+        "number": 7367,
+        "sha": null,
+        "title": "[FIXED] Successful exit code during shutdown",
+        "specd": true,
+        "spec_source": "SIGTERM-ED",
+        "merged_at": "2025-09-29T08:58:03+00:00"
+      },
+      {
+        "number": 7366,
+        "sha": null,
+        "title": "(2.12) Deactivate message schedule on missing header",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-29T08:57:39+00:00"
+      }
+    ]
+  },
+  "quality": {
+    "mode": "heuristic",
+    "average_score": 46,
+    "verdicts": {
+      "REVIEW": 45
+    },
+    "specs": [
+      {
+        "pr_number": 7958,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 95,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 44,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 1,
+            "type": "ambiguity",
+            "term": "properly",
+            "suggestion": "Replace 'properly' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 7856,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 87,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 41,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 1,
+            "type": "ambiguity",
+            "term": "correctly",
+            "suggestion": "Replace 'correctly' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 7848,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 7845,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 95,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 44,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 1,
+            "type": "ambiguity",
+            "term": "clean",
+            "suggestion": "Replace 'clean' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 7844,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 7810,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 7805,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 7688,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 7788,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 96,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 44,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 1,
+            "type": "ambiguity",
+            "term": "properly",
+            "suggestion": "Replace 'properly' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "This PR adds error handling to the filestore such that any IO errors will be pro",
+            "suggestion": "Goal without test: 'This PR adds error handling to the filestore such that any I...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Once an error occurs, the stream/filestore will stop accepting new writes/change",
+            "suggestion": "Goal without test: 'Once an error occurs, the stream/filestore will stop accepti...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 7692,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 93,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 43,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 1,
+            "type": "ambiguity",
+            "term": "reasonable",
+            "suggestion": "Replace 'reasonable' with a specific, measurable term"
+          },
+          {
+            "line": 5,
+            "type": "ambiguity",
+            "term": "appropriate",
+            "suggestion": "Replace 'appropriate' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 7778,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 87,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 41,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 1,
+            "type": "ambiguity",
+            "term": "Fast",
+            "suggestion": "Replace 'Fast' with a specific, measurable term"
+          },
+          {
+            "line": 1,
+            "type": "ambiguity",
+            "term": "fast",
+            "suggestion": "Replace 'fast' with a specific, measurable term"
+          },
+          {
+            "line": 5,
+            "type": "ambiguity",
+            "term": "fast",
+            "suggestion": "Replace 'fast' with a specific, measurable term"
+          },
+          {
+            "line": 6,
+            "type": "ambiguity",
+            "term": "simple",
+            "suggestion": "Replace 'simple' with a specific, measurable term"
+          },
+          {
+            "line": 7,
+            "type": "ambiguity",
+            "term": "better",
+            "suggestion": "Replace 'better' with a specific, measurable term"
+          },
+          {
+            "line": 7,
+            "type": "ambiguity",
+            "term": "fast",
+            "suggestion": "Replace 'fast' with a specific, measurable term"
+          },
+          {
+            "line": 14,
+            "type": "ambiguity",
+            "term": "fast",
+            "suggestion": "Replace 'fast' with a specific, measurable term"
+          },
+          {
+            "line": 15,
+            "type": "ambiguity",
+            "term": "Efficient",
+            "suggestion": "Replace 'Efficient' with a specific, measurable term"
+          },
+          {
+            "line": 15,
+            "type": "ambiguity",
+            "term": "fast",
+            "suggestion": "Replace 'fast' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "When using account imports/exports the original reply subject is lost. The Clien",
+            "suggestion": "Goal without test: 'When using account imports/exports the original reply subjec...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 7795,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 90,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 42,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 5,
+            "type": "ambiguity",
+            "term": "clean",
+            "suggestion": "Replace 'clean' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 7489,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "This PR introduces a new API to reset the starting sequence of a consumer, such ",
+            "suggestion": "Goal without test: 'This PR introduces a new API to reset the starting sequence ...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 7506,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 7755,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Vendors MUST expect the header in any case (upper, lower, mixed), and",
+            "suggestion": "Goal without test: 'Vendors MUST expect the header in any case (upper, lower, mi...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "The header will no longer be changed, including its case. The specification (htt",
+            "suggestion": "Goal without test: 'The header will no longer be changed, including its case. Th...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "SHOULD send the header name in lowercase.",
+            "suggestion": "Goal without test: 'SHOULD send the header name in lowercase.' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Since it was \"SHOULD\", we have no obligation to rewrite it in lower case.",
+            "suggestion": "Goal without test: 'Since it was \"SHOULD\", we have no obligation to rewrite it i...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "In the ADR issue, it was discussed to add a new header that would disable tracin",
+            "suggestion": "Goal without test: 'In the ADR issue, it was discussed to add a new header that ...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "For older servers, the presence of Nats-Trace-Dest takes precedence, so tracepar",
+            "suggestion": "Goal without test: 'For older servers, the presence of Nats-Trace-Dest takes pre...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "will be logged, and the message will not be traced. It is not ideal that an erro",
+            "suggestion": "Goal without test: 'will be logged, and the message will not be traced. It is no...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 7773,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 7766,
+        "format": "freeform",
+        "completeness": 50,
+        "ambiguity": 100,
+        "testability": 100,
+        "consistency": 100,
+        "overall": 85,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 7737,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "variables can reference other variables, as well as environment variables",
+            "suggestion": "Goal without test: 'variables can reference other variables, as well as environm...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "environment variables can reference other evironment variables, but not local va",
+            "suggestion": "Goal without test: 'environment variables can reference other evironment variabl...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 7741,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 96,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 44,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 3,
+            "type": "ambiguity",
+            "term": "simple",
+            "suggestion": "Replace 'simple' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 7725,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 7723,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 7720,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 7709,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 7708,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 7651,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 7639,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 7634,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 95,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 44,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 1,
+            "type": "ambiguity",
+            "term": "usual",
+            "suggestion": "Replace 'usual' with a specific, measurable term"
+          },
+          {
+            "line": 5,
+            "type": "ambiguity",
+            "term": "properly",
+            "suggestion": "Replace 'properly' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "The mb.cache.idx could be mismatched with mb.first.seq and mb.last.seq leading t",
+            "suggestion": "Goal without test: 'The mb.cache.idx could be mismatched with mb.first.seq and m...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "indexCacheBuf now checks that the in-memory state of the message block matches w",
+            "suggestion": "Goal without test: 'indexCacheBuf now checks that the in-memory state of the mes...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 7504,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "A schedule like @every 1s will publish a message every second. A schedule can't ",
+            "suggestion": "Goal without test: 'A schedule like @every 1s will publish a message every secon...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 7581,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Only allow a single meta peer-remove operation to happen at any given time. The ",
+            "suggestion": "Goal without test: 'Only allow a single meta peer-remove operation to happen at ...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 7555,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "add TestMQTTMaxPayloadEnforced into server/mqtt_test.go, reuse existing helpers.",
+            "suggestion": "Goal without test: 'add TestMQTTMaxPayloadEnforced into server/mqtt_test.go, reu...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "ensure oversized MQTT publish now fails the connection check instead of silently",
+            "suggestion": "Goal without test: 'ensure oversized MQTT publish now fails the connection check...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "keep max_payload violation handling consistent with other protocols and replicat",
+            "suggestion": "Goal without test: 'keep max_payload violation handling consistent with other pr...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "go test ./server -run TestMQTTMaxPayloadEnforced -count=1 -v",
+            "suggestion": "Goal without test: 'go test ./server -run TestMQTTMaxPayloadEnforced -count=1 -v' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 7515,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 7486,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 7460,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 97,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 44,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 3,
+            "type": "ambiguity",
+            "term": "properly",
+            "suggestion": "Replace 'properly' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "If an atomic batch is only partially proposed in separate append entries (so it ",
+            "suggestion": "Goal without test: 'If an atomic batch is only partially proposed in separate ap...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 7466,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 7455,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 7452,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 88,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 41,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 1,
+            "type": "ambiguity",
+            "term": "simple",
+            "suggestion": "Replace 'simple' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 7443,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 7429,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 7403,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 7409,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "1. auth_callout cannot be configured and will error at startup if it is;",
+            "suggestion": "Goal without test: '1. auth_callout cannot be configured and will error at start...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "2. chacha filestore encryption mode cannot be configured and will error at start",
+            "suggestion": "Goal without test: '2. chacha filestore encryption mode cannot be configured and...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "4. TLS handshakes that require non-FIPS-compliant algorithms will fail.",
+            "suggestion": "Goal without test: '4. TLS handshakes that require non-FIPS-compliant algorithms...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 7391,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 7384,
+        "format": "freeform",
+        "completeness": 50,
+        "ambiguity": 100,
+        "testability": 100,
+        "consistency": 100,
+        "overall": 85,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 7364,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 98,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 44,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 49,
+            "type": "ambiguity",
+            "term": "comprehensive",
+            "suggestion": "Replace 'comprehensive' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "TestNewServerFromConfigFunctionality: Tests basic functionality and error handli",
+            "suggestion": "Goal without test: 'TestNewServerFromConfigFunctionality: Tests basic functional...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "TestNewServerFromConfigVsLoadConfig: Validates equivalence with traditional Load",
+            "suggestion": "Goal without test: 'TestNewServerFromConfigVsLoadConfig: Validates equivalence w...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 7382,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 7367,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      }
+    ]
+  },
+  "effectiveness": {
+    "specd_rework_rate": 0.1111,
+    "unspecd_rework_rate": 0.1195,
+    "delta": -0.0083,
+    "specd_sample_size": 45,
+    "unspecd_sample_size": 293,
+    "significance": "significant",
+    "signals": [
+      {
+        "type": "bug-fix",
+        "source": "7380",
+        "target": "7376",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "server/jetstream_api.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7384",
+        "target": "7381",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "server/filestore.go",
+          "server/filestore_test.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7388",
+        "target": "7384",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "server/filestore.go",
+          "server/filestore_test.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7395",
+        "target": "7392",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "server/stream.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7400",
+        "target": "7372",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "server/filestore.go",
+          "server/filestore_test.go",
+          "server/jetstream_cluster.go",
+          "server/jetstream_cluster_1_test.go",
+          "server/memstore.go",
+          "server/stream.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7452",
+        "target": "7415",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "server/leafnode_test.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7458",
+        "target": "7440",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "server/stream.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7465",
+        "target": "7415",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "server/client.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7508",
+        "target": "7497",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "server/filestore.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7516",
+        "target": "7499",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "server/gateway_test.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7536",
+        "target": "7528",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "server/jetstream.go",
+          "server/jetstream_cluster.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7546",
+        "target": "7497",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "server/consumer.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7560",
+        "target": "7553",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "server/filestore.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7563",
+        "target": "7387",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "server/filestore_test.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7586",
+        "target": "7583",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "server/jetstream_cluster.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7598",
+        "target": "7596",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "server/mqtt.go",
+          "server/mqtt_test.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7601",
+        "target": "7594",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "server/filestore.go",
+          "server/filestore_test.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7609",
+        "target": "7602",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "server/raft.go",
+          "server/raft_test.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7619",
+        "target": "7617",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "server/jetstream_cluster.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7624",
+        "target": "7622",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "server/mqtt_test.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7627",
+        "target": "7617",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "server/filestore.go",
+          "server/filestore_test.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7660",
+        "target": "7635",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "server/consumer.go",
+          "server/stream.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7642",
+        "target": "7635",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "server/raft.go",
+          "server/raft_helpers_test.go",
+          "server/raft_test.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7710",
+        "target": "7708",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "server/stream.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7723",
+        "target": "7702",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "server/jetstream_cluster_4_test.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7728",
+        "target": "7725",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "server/gsl/gsl.go",
+          "server/gsl/gsl_test.go"
+        ]
+      },
+      {
+        "type": "revert",
+        "source": "7729",
+        "target": "7725",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "server/gsl/gsl.go",
+          "server/gsl/gsl_test.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7735",
+        "target": "7731",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "server/jetstream_test.go",
+          "server/stream.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7741",
+        "target": "7731",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "server/filestore.go",
+          "server/gsl/gsl.go",
+          "server/gsl/gsl_test.go",
+          "server/sublist.go",
+          "server/sublist_test.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7744",
+        "target": "7741",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "server/gsl/gsl.go",
+          "server/gsl/gsl_test.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7745",
+        "target": "7742",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "server/gsl/gsl.go",
+          "server/stree/stree_test.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7752",
+        "target": "7731",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "server/client.go",
+          "server/jetstream_cluster_4_test.go",
+          "server/mqtt_test.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7751",
+        "target": "7742",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "server/filestore.go",
+          "server/memstore.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7757",
+        "target": "7750",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "server/filestore.go",
+          "server/filestore_test.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7798",
+        "target": "7774",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "server/jetstream_cluster.go",
+          "server/jetstream_cluster_3_test.go",
+          "server/jetstream_cluster_4_test.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7816",
+        "target": "7814",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "server/filestore.go",
+          "server/filestore_test.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7795",
+        "target": "7819",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "server/consumer.go",
+          "server/jetstream_consumer_test.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7839",
+        "target": "7836",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "server/jetstream_api.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7867",
+        "target": "7836",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "server/routes_test.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7692",
+        "target": "7836",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "server/consumer.go",
+          "server/filestore.go",
+          "server/filestore_test.go",
+          "server/jetstream_consumer_test.go",
+          "server/memstore.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7901",
+        "target": "7892",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "server/client.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7912",
+        "target": "7905",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "server/filestore.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7915",
+        "target": "7898",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "server/events.go",
+          "server/monitor.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7929",
+        "target": "7688",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "server/jetstream_test.go",
+          "server/stream.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7938",
+        "target": "7928",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "server/jetstream_cluster.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7941",
+        "target": "7933",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "server/mqtt_test.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7954",
+        "target": "7942",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "server/client.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7963",
+        "target": "7957",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "server/jetstream_cluster_3_test.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7964",
+        "target": "7954",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "server/client.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7968",
+        "target": "7966",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "server/mqtt.go",
+          "server/mqtt_test.go"
+        ]
+      }
+    ],
+    "by_complexity": {
+      "small": {
+        "specd_rework_rate": 0.1053,
+        "unspecd_rework_rate": 0.0469,
+        "specd_count": 19,
+        "unspecd_count": 192
+      },
+      "medium": {
+        "specd_rework_rate": 0.0952,
+        "unspecd_rework_rate": 0.1446,
+        "specd_count": 21,
+        "unspecd_count": 83
+      },
+      "large": {
+        "specd_rework_rate": 0.2,
+        "unspecd_rework_rate": 0.4118,
+        "specd_count": 5,
+        "unspecd_count": 34
+      }
+    }
+  }
+}

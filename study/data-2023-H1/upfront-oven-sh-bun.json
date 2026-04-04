@@ -1,0 +1,3976 @@
+{
+  "repo": "oven-sh/bun",
+  "lookback_days": 90,
+  "rework_window_days": 14,
+  "coverage": {
+    "coverage_pct": 30,
+    "total_prs": 135,
+    "specd_prs": 41,
+    "prs": [
+      {
+        "number": 23228,
+        "sha": null,
+        "title": "Unify timer enum",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-10-04T08:50:09+00:00"
+      },
+      {
+        "number": 23225,
+        "sha": null,
+        "title": "Increase crash report stack trace buffer from 10 to 20 frames",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-10-04T07:54:24+00:00"
+      },
+      {
+        "number": 23232,
+        "sha": null,
+        "title": "fix(pnpm migration): fix `\"lockfileVersion\"` number parsing",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-10-04T07:53:16+00:00"
+      },
+      {
+        "number": 23229,
+        "sha": null,
+        "title": "fix(install): make negative workspace patterns work",
+        "specd": true,
+        "spec_source": "#4621",
+        "merged_at": "2025-10-04T07:31:47+00:00"
+      },
+      {
+        "number": 23218,
+        "sha": null,
+        "title": "Add `jsc.DecodedJSValue`; make `jsc.Strong` more efficient",
+        "specd": true,
+        "spec_source": "ABI-COMPATIBLE",
+        "merged_at": "2025-10-04T05:05:29+00:00"
+      },
+      {
+        "number": 23221,
+        "sha": null,
+        "title": "fix(Bun.SQL) fix command detection on sqlite",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-10-04T00:50:47+00:00"
+      },
+      {
+        "number": 22919,
+        "sha": null,
+        "title": "bun test dots reporter",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-10-04T00:13:23+00:00"
+      },
+      {
+        "number": 23203,
+        "sha": null,
+        "title": "Refactor: Split JSNodeHTTPServerSocket into separate files",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-10-04T00:13:06+00:00"
+      },
+      {
+        "number": 23216,
+        "sha": null,
+        "title": "fix(crypto): hkdf callback should pass null (not undefined) on success",
+        "specd": true,
+        "spec_source": "#23211",
+        "merged_at": "2025-10-03T22:55:57+00:00"
+      },
+      {
+        "number": 23169,
+        "sha": null,
+        "title": "Add new bindings generator; port `SSLConfig`",
+        "specd": true,
+        "spec_source": "FFI-SAFE",
+        "merged_at": "2025-10-04T00:10:28+00:00"
+      },
+      {
+        "number": 23201,
+        "sha": null,
+        "title": "Add `.cloneUpgrade()` to fix clone-upgrade",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-10-03T23:13:07+00:00"
+      },
+      {
+        "number": 23184,
+        "sha": null,
+        "title": "Fix Windows crash in process.title when console title is empty",
+        "specd": true,
+        "spec_source": "#23183",
+        "merged_at": "2025-10-03T09:54:23+00:00"
+      },
+      {
+        "number": 23204,
+        "sha": null,
+        "title": "fix(install): isolated install with `file` dependency resolving to root package",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-10-03T09:38:55+00:00"
+      },
+      {
+        "number": 23202,
+        "sha": null,
+        "title": "Use cached structure in JSBunRequest::clone",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-10-03T04:42:47+00:00"
+      },
+      {
+        "number": 23199,
+        "sha": null,
+        "title": "bun:test performance regression fix",
+        "specd": true,
+        "spec_source": "#23120",
+        "merged_at": "2025-10-03T03:13:00+00:00"
+      },
+      {
+        "number": 23168,
+        "sha": null,
+        "title": "Rereun-each fix",
+        "specd": true,
+        "spec_source": "#21409",
+        "merged_at": "2025-10-03T02:12:45+00:00"
+      },
+      {
+        "number": 23193,
+        "sha": null,
+        "title": "fix(Bun.SQL) time should be represented as a string and date as a time",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-10-03T02:00:14+00:00"
+      },
+      {
+        "number": 23195,
+        "sha": null,
+        "title": "fix(Bun.RedisClient) keep it alive when connecting",
+        "specd": true,
+        "spec_source": "https://github.com/oven-sh/bun/issues/23178",
+        "merged_at": "2025-10-03T01:50:06+00:00"
+      },
+      {
+        "number": 23197,
+        "sha": null,
+        "title": "Add 'bun why' to help menu",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-10-03T01:43:11+00:00"
+      },
+      {
+        "number": 23150,
+        "sha": null,
+        "title": "fix(node:http) fix closing socket after upgraded to websocket",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-10-02T21:55:28+00:00"
+      },
+      {
+        "number": 23176,
+        "sha": null,
+        "title": "Passthrough anyerror when using handleOom",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-10-02T21:11:29+00:00"
+      },
+      {
+        "number": 23122,
+        "sha": null,
+        "title": "Upgrade WebKit",
+        "specd": true,
+        "spec_source": "JSC-RELATED",
+        "merged_at": "2025-10-02T00:16:25+00:00"
+      },
+      {
+        "number": 22710,
+        "sha": null,
+        "title": "`bun feedback`",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-26T10:47:26+00:00"
+      },
+      {
+        "number": 23155,
+        "sha": null,
+        "title": "Enable `--useExplicitResourceManagement` by default",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-10-01T22:29:48+00:00"
+      },
+      {
+        "number": 23117,
+        "sha": null,
+        "title": "Allow multiple inline snapshots in one call if they are the same",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-10-01T19:09:26+00:00"
+      },
+      {
+        "number": 18196,
+        "sha": null,
+        "title": "fix(SQL) implement unix socket support",
+        "specd": true,
+        "spec_source": "https://github.com/oven-sh/bun/issues/17617",
+        "merged_at": "2025-03-15T18:51:20+00:00"
+      },
+      {
+        "number": 23113,
+        "sha": null,
+        "title": "run beforeAll before the first file and afterAll after the last file",
+        "specd": true,
+        "spec_source": "#23066",
+        "merged_at": "2025-10-01T04:47:31+00:00"
+      },
+      {
+        "number": 23110,
+        "sha": null,
+        "title": "Re-enable afterAll inside a test",
+        "specd": true,
+        "spec_source": "#23064",
+        "merged_at": "2025-10-01T02:41:35+00:00"
+      },
+      {
+        "number": 23125,
+        "sha": null,
+        "title": "test: break up node-http.test.ts",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-10-01T00:25:17+00:00"
+      },
+      {
+        "number": 23144,
+        "sha": null,
+        "title": "fix: Ordering Semantics",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-30T23:13:24+00:00"
+      },
+      {
+        "number": 23032,
+        "sha": null,
+        "title": "Fix `memory.deinit`; handle more types",
+        "specd": true,
+        "spec_source": "STAB-1295",
+        "merged_at": "2025-09-30T23:14:55+00:00"
+      },
+      {
+        "number": 23075,
+        "sha": null,
+        "title": "Faster linux zig build",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-30T21:59:06+00:00"
+      },
+      {
+        "number": 22700,
+        "sha": null,
+        "title": "fix(Bun.SQL) fix IN, UPDATE support in helpers, and fix JSONB/JSON serialization",
+        "specd": true,
+        "spec_source": "https://github.com/oven-sh/bun/issues/20669",
+        "merged_at": "2025-09-30T20:26:15+00:00"
+      },
+      {
+        "number": 23141,
+        "sha": null,
+        "title": "fix(redis) refactor valkey connection status and lifecycle handling",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-30T20:32:04+00:00"
+      },
+      {
+        "number": 22381,
+        "sha": null,
+        "title": "Fix --tolerate-republish flag in bun publish (continues PR #22107)",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-30T20:25:50+00:00"
+      },
+      {
+        "number": 22138,
+        "sha": null,
+        "title": "ssg 3",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-30T12:26:32+00:00"
+      },
+      {
+        "number": 23127,
+        "sha": null,
+        "title": "fix(lint): resolve no-unused-expressions errors",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-30T11:45:34+00:00"
+      },
+      {
+        "number": 23095,
+        "sha": null,
+        "title": "docs: add zstd compression documentation for v1.2.14",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-30T07:26:02+00:00"
+      },
+      {
+        "number": 23086,
+        "sha": null,
+        "title": "docs: add missing v1.2.20 features documentation",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-30T06:34:09+00:00"
+      },
+      {
+        "number": 23089,
+        "sha": null,
+        "title": "docs: add v1.2.17 features to documentation",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-30T06:32:35+00:00"
+      },
+      {
+        "number": 23090,
+        "sha": null,
+        "title": "docs: add missing v1.2.16 feature documentation",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-30T06:30:13+00:00"
+      },
+      {
+        "number": 23091,
+        "sha": null,
+        "title": "docs: update for Bun v1.2.15 features",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-30T06:28:11+00:00"
+      },
+      {
+        "number": 23088,
+        "sha": null,
+        "title": "docs: add v1.2.18 features documentation",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-30T06:23:40+00:00"
+      },
+      {
+        "number": 23119,
+        "sha": null,
+        "title": "fix(test): update error message assertion for git clone failure",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-30T05:58:25+00:00"
+      },
+      {
+        "number": 23111,
+        "sha": null,
+        "title": "fix(pnpm migration): correctly resolve `link:` dependencies on the root package",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-30T07:10:15+00:00"
+      },
+      {
+        "number": 23080,
+        "sha": null,
+        "title": "docs: Add documentation for Bun v1.2.23 features",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-30T06:34:45+00:00"
+      },
+      {
+        "number": 23087,
+        "sha": null,
+        "title": "docs: add missing v1.2.19 features to documentation",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-30T06:33:08+00:00"
+      },
+      {
+        "number": 23085,
+        "sha": null,
+        "title": "docs: add missing v1.2.21 features to documentation",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-30T04:54:34+00:00"
+      },
+      {
+        "number": 23096,
+        "sha": null,
+        "title": "docs: add missing v1.2.13 features to documentation",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-30T04:53:33+00:00"
+      },
+      {
+        "number": 23083,
+        "sha": null,
+        "title": "docs: add v1.2.22 features to documentation",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-30T04:51:44+00:00"
+      },
+      {
+        "number": 22977,
+        "sha": null,
+        "title": "Fix crash in `toContainAnyKeys` and `toContainKeys` with non-object values",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-29T23:10:57+00:00"
+      },
+      {
+        "number": 23038,
+        "sha": null,
+        "title": "safety: a few more exception validation fixes",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-29T22:27:52+00:00"
+      },
+      {
+        "number": 23082,
+        "sha": null,
+        "title": "fix(parser): TSX arrow function bugfix",
+        "specd": true,
+        "spec_source": "#19697",
+        "merged_at": "2025-09-29T12:10:16+00:00"
+      },
+      {
+        "number": 23073,
+        "sha": null,
+        "title": "fix(parser): scope mismatch bug from `parseSuffix`",
+        "specd": true,
+        "spec_source": "#22013",
+        "merged_at": "2025-09-29T10:03:19+00:00"
+      },
+      {
+        "number": 23078,
+        "sha": null,
+        "title": "fix(parser): possible crash with --minify-syntax and string -> dot conversions",
+        "specd": true,
+        "spec_source": "#15926",
+        "merged_at": "2025-09-29T11:20:58+00:00"
+      },
+      {
+        "number": 8151,
+        "sha": null,
+        "title": "feat: Implement `using` keyword (explicit resource management)",
+        "specd": true,
+        "spec_source": "#4448",
+        "merged_at": "2024-01-16T07:14:42+00:00"
+      },
+      {
+        "number": 23055,
+        "sha": null,
+        "title": "fix(glob): fix index out of bounds in GlobWalker",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-29T09:21:13+00:00"
+      },
+      {
+        "number": 23003,
+        "sha": null,
+        "title": "vscode: remove old test runner codelens stuff",
+        "specd": true,
+        "spec_source": "#23001",
+        "merged_at": "2025-09-28T14:45:32+00:00"
+      },
+      {
+        "number": 20265,
+        "sha": null,
+        "title": "Introduce ahead of time bundling for HTML imports with `bun build`",
+        "specd": true,
+        "spec_source": "#17653",
+        "merged_at": "2025-06-11T04:26:01+00:00"
+      },
+      {
+        "number": 22262,
+        "sha": null,
+        "title": "implement pnpm migration",
+        "specd": true,
+        "spec_source": "#14662",
+        "merged_at": "2025-09-27T07:45:29+00:00"
+      },
+      {
+        "number": 23034,
+        "sha": null,
+        "title": "Fix V8StackTraceIterator to handle frames without parentheses",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-27T07:55:54+00:00"
+      },
+      {
+        "number": 22946,
+        "sha": null,
+        "title": "feat(sql.array) add support to sql.array",
+        "specd": true,
+        "spec_source": "https://github.com/oven-sh/bun/issues/17030",
+        "merged_at": "2025-09-27T08:12:29+00:00"
+      },
+      {
+        "number": 23027,
+        "sha": null,
+        "title": "Handle optionals in `bun.memory.deinit`",
+        "specd": true,
+        "spec_source": "STAB-1293",
+        "merged_at": "2025-09-27T06:02:44+00:00"
+      },
+      {
+        "number": 23028,
+        "sha": null,
+        "title": "revert this change made to ShellRmTask.DirTask",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-27T05:23:06+00:00"
+      },
+      {
+        "number": 23018,
+        "sha": null,
+        "title": "hotfix(redis): Automatically connect on .subscribe()",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-27T05:43:23+00:00"
+      },
+      {
+        "number": 22704,
+        "sha": null,
+        "title": "fix(build): Promise.all() async module dependencies",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-27T05:21:01+00:00"
+      },
+      {
+        "number": 23024,
+        "sha": null,
+        "title": "`bun.ptr.Shared`: fix dependency loop and add leak/adopt methods",
+        "specd": true,
+        "spec_source": "STAB-1292",
+        "merged_at": "2025-09-27T02:46:50+00:00"
+      },
+      {
+        "number": 22997,
+        "sha": null,
+        "title": "node:http2: fix leak in H2FrameParser",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-27T02:20:45+00:00"
+      },
+      {
+        "number": 23016,
+        "sha": null,
+        "title": "Fix fetch-preconnect test failure",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-27T02:01:02+00:00"
+      },
+      {
+        "number": 22981,
+        "sha": null,
+        "title": "fix(valkey/redis) fix tls (includes pub/sub)",
+        "specd": true,
+        "spec_source": "https://github.com/oven-sh/bun/issues/22186",
+        "merged_at": "2025-09-27T01:57:07+00:00"
+      },
+      {
+        "number": 23019,
+        "sha": null,
+        "title": "fix lint",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-27T01:05:02+00:00"
+      },
+      {
+        "number": 23015,
+        "sha": null,
+        "title": "Make `bun.webcore.Blob` smaller and ref-counted",
+        "specd": true,
+        "spec_source": "STAB-1289",
+        "merged_at": "2025-09-27T00:18:30+00:00"
+      },
+      {
+        "number": 22944,
+        "sha": null,
+        "title": "Concurrent limit `--max-concurrency`, defaults to 20",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-26T23:39:08+00:00"
+      },
+      {
+        "number": 22917,
+        "sha": null,
+        "title": "Add generic-allocator `ArrayList`",
+        "specd": true,
+        "spec_source": "STAB-1267",
+        "merged_at": "2025-09-26T22:19:45+00:00"
+      },
+      {
+        "number": 23013,
+        "sha": null,
+        "title": "Add `ExternalShared` and `RawRefCount`",
+        "specd": true,
+        "spec_source": "STAB-1287",
+        "merged_at": "2025-09-26T22:15:59+00:00"
+      },
+      {
+        "number": 22923,
+        "sha": null,
+        "title": "Require deinit function for memory.deinit()",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-26T20:47:24+00:00"
+      },
+      {
+        "number": 21728,
+        "sha": null,
+        "title": "Redis PUB/SUB",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-10T05:13:25+00:00"
+      },
+      {
+        "number": 22701,
+        "sha": null,
+        "title": "Fix server stability issue with oversized requests",
+        "specd": true,
+        "spec_source": "#22353",
+        "merged_at": "2025-09-26T11:59:07+00:00"
+      },
+      {
+        "number": 22849,
+        "sha": null,
+        "title": "fix(fetch): print request body for application/x-www-form-urlencoded in curl logs",
+        "specd": true,
+        "spec_source": "#12042",
+        "merged_at": "2025-09-26T10:54:41+00:00"
+      },
+      {
+        "number": 22978,
+        "sha": null,
+        "title": "Fix double-free in createArgv function",
+        "specd": true,
+        "spec_source": "#22975",
+        "merged_at": "2025-09-26T06:52:56+00:00"
+      },
+      {
+        "number": 22993,
+        "sha": null,
+        "title": "Move Bun__JSRequest__calculateEstimatedByteSize earlier",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-26T07:33:31+00:00"
+      },
+      {
+        "number": 22987,
+        "sha": null,
+        "title": "Add --randomize --seed flag",
+        "specd": true,
+        "spec_source": "#11847",
+        "merged_at": "2025-09-26T06:47:46+00:00"
+      },
+      {
+        "number": 22986,
+        "sha": null,
+        "title": "Fix vm destruction assertion failure in udp socket, reduce usage of protect()",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-26T05:41:02+00:00"
+      },
+      {
+        "number": 22988,
+        "sha": null,
+        "title": "Remove stale path assertion on Windows",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-26T05:34:49+00:00"
+      },
+      {
+        "number": 22960,
+        "sha": null,
+        "title": "feat(windows): implement authenticode stripping for --compile",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-26T01:03:27+00:00"
+      },
+      {
+        "number": 21161,
+        "sha": null,
+        "title": "node:tty: use terminal VT mode on Windows",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-26T02:58:45+00:00"
+      },
+      {
+        "number": 22985,
+        "sha": null,
+        "title": "Fix bun_dependency_versions.h regenerating on every CMake run",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-26T00:23:45+00:00"
+      },
+      {
+        "number": 22781,
+        "sha": null,
+        "title": "ci: ensure tests that require docker have it available",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-26T02:03:22+00:00"
+      },
+      {
+        "number": 22972,
+        "sha": null,
+        "title": "fix(build): Minor Linux Build Fixes",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-25T23:53:22+00:00"
+      },
+      {
+        "number": 22982,
+        "sha": null,
+        "title": "chore(build): Add build:debug:noasan and remove build:debug:asan",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-26T01:06:21+00:00"
+      },
+      {
+        "number": 22842,
+        "sha": null,
+        "title": "Fix aborting fetch() calls while the socket is connecting. Fix a thread-safety issue involving redirects and AbortSignal.",
+        "specd": true,
+        "spec_source": "#18536",
+        "merged_at": "2025-09-25T23:08:07+00:00"
+      },
+      {
+        "number": 22958,
+        "sha": null,
+        "title": "node:crypto: add blake2s256 hasher",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-25T22:28:42+00:00"
+      },
+      {
+        "number": 22945,
+        "sha": null,
+        "title": "feat(test): add --randomize flag to run tests in random order",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-25T21:20:47+00:00"
+      },
+      {
+        "number": 22928,
+        "sha": null,
+        "title": "Synchronous concurrent test fix",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-25T10:52:18+00:00"
+      },
+      {
+        "number": 22951,
+        "sha": null,
+        "title": "Fix double slash in error stack traces when root_path has trailing slash",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-25T07:37:10+00:00"
+      },
+      {
+        "number": 22441,
+        "sha": null,
+        "title": "Implement NODE_USE_SYSTEM_CA with --use-system-ca CLI flag ",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-25T04:55:57+00:00"
+      },
+      {
+        "number": 22942,
+        "sha": null,
+        "title": "chore(libuv): Update to 1.51.0",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-25T03:55:26+00:00"
+      },
+      {
+        "number": 22814,
+        "sha": null,
+        "title": "Fix dns.resolve callback parameters to match Node.js behavior",
+        "specd": true,
+        "spec_source": "#22712",
+        "merged_at": "2025-09-25T01:29:16+00:00"
+      },
+      {
+        "number": 22900,
+        "sha": null,
+        "title": "Improve --reporter flag help and error messages",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-25T01:26:37+00:00"
+      },
+      {
+        "number": 22827,
+        "sha": null,
+        "title": "Fix panic when macros return collections with 3+ arrays/objects",
+        "specd": true,
+        "spec_source": "#22656",
+        "merged_at": "2025-09-25T01:25:39+00:00"
+      },
+      {
+        "number": 22924,
+        "sha": null,
+        "title": "Fix YAML.parse to throw SyntaxError instead of BuildMessage",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-24T23:29:06+00:00"
+      },
+      {
+        "number": 21811,
+        "sha": null,
+        "title": "Prevent test.only and snapshot updates in CI",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-24T22:19:16+00:00"
+      },
+      {
+        "number": 11679,
+        "sha": null,
+        "title": "Update install.sh to try ~/.bash_profile first for PATH modification",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-24T19:53:45+00:00"
+      },
+      {
+        "number": 22780,
+        "sha": null,
+        "title": "package.json: add shorthands for creating remote machines",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-24T20:11:19+00:00"
+      },
+      {
+        "number": 22907,
+        "sha": null,
+        "title": "update no-validate-exceptions.txt",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-24T19:57:14+00:00"
+      },
+      {
+        "number": 22932,
+        "sha": null,
+        "title": "fix(install): serialize updated workspaces versions correctly for `bun.lockb`",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-24T09:42:57+00:00"
+      },
+      {
+        "number": 22806,
+        "sha": null,
+        "title": "lsan: fix reporting on linux ci",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-24T07:47:52+00:00"
+      },
+      {
+        "number": 22898,
+        "sha": null,
+        "title": "feat: add concurrent-test-glob option to bunfig.toml for selective concurrent test execution",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-24T06:01:15+00:00"
+      },
+      {
+        "number": 22913,
+        "sha": null,
+        "title": "node:net: fix handle leak",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-24T05:02:34+00:00"
+      },
+      {
+        "number": 22899,
+        "sha": null,
+        "title": "feat: add test.serial() API for forcing serial test execution",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-24T04:06:06+00:00"
+      },
+      {
+        "number": 22892,
+        "sha": null,
+        "title": "Make sure bun can be installed on Alpine Linux (musl) on arm64 hardware",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-24T03:14:57+00:00"
+      },
+      {
+        "number": 22925,
+        "sha": null,
+        "title": "fix(Bun.sql) handle numeric correctly",
+        "specd": true,
+        "spec_source": "https://github.com/oven-sh/bun/issues/21225",
+        "merged_at": "2025-09-24T03:14:19+00:00"
+      },
+      {
+        "number": 22926,
+        "sha": null,
+        "title": "fix(benchmark): postgres benchmark was not performing any queries under deno and node",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-24T00:48:10+00:00"
+      },
+      {
+        "number": 22921,
+        "sha": null,
+        "title": "docs: Add missing YAML.stringify() documentation",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-23T23:02:51+00:00"
+      },
+      {
+        "number": 22753,
+        "sha": null,
+        "title": "bun.ptr.Shared.Lazy fixes cppbind change",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-24T00:10:08+00:00"
+      },
+      {
+        "number": 22756,
+        "sha": null,
+        "title": "fix(node:http) allow CONNECT in node http/https servers",
+        "specd": true,
+        "spec_source": "https://github.com/oven-sh/bun/issues/22755",
+        "merged_at": "2025-09-23T23:47:00+00:00"
+      },
+      {
+        "number": 22916,
+        "sha": null,
+        "title": "ci: increase asan to 2xlarge",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-23T21:16:02+00:00"
+      },
+      {
+        "number": 22863,
+        "sha": null,
+        "title": "Fix infinite recursion when error.stack is a circular reference",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-23T05:22:58+00:00"
+      },
+      {
+        "number": 22896,
+        "sha": null,
+        "title": "bun test - don't send start events for skipped tests",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-23T05:09:18+00:00"
+      },
+      {
+        "number": 22889,
+        "sha": null,
+        "title": "fix(install): change semver core numbers to u64",
+        "specd": true,
+        "spec_source": "#16041",
+        "merged_at": "2025-09-23T02:28:26+00:00"
+      },
+      {
+        "number": 22862,
+        "sha": null,
+        "title": "fix(test): add EXPECTED_COLOR and RECEIVED_COLOR aliases",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-23T01:43:28+00:00"
+      },
+      {
+        "number": 22168,
+        "sha": null,
+        "title": "Remove remnants of '--only' flag in documentation",
+        "specd": true,
+        "spec_source": "#8676",
+        "merged_at": "2025-09-22T23:07:44+00:00"
+      },
+      {
+        "number": 22823,
+        "sha": null,
+        "title": "Start using test.concurrent in our tests",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-22T12:30:34+00:00"
+      },
+      {
+        "number": 22850,
+        "sha": null,
+        "title": "feat: add --cpu and --os flags to bun install for filtering optional dependencies",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-22T10:27:10+00:00"
+      },
+      {
+        "number": 22844,
+        "sha": null,
+        "title": "vscode extention - don't require start \" \" in test name pattern",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-21T08:14:39+00:00"
+      },
+      {
+        "number": 22824,
+        "sha": null,
+        "title": "Fix spurious LSAN errors",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-20T13:57:53+00:00"
+      },
+      {
+        "number": 22665,
+        "sha": null,
+        "title": "refactor: move jsxSideEffects from tsconfig to jsx build config",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-20T12:50:30+00:00"
+      },
+      {
+        "number": 22816,
+        "sha": null,
+        "title": "feat: Implement process.report.getReport() on Windows",
+        "specd": true,
+        "spec_source": "#11992",
+        "merged_at": "2025-09-20T09:44:33+00:00"
+      },
+      {
+        "number": 22534,
+        "sha": null,
+        "title": "Rewrite test/describe, add test.concurrent",
+        "specd": true,
+        "spec_source": "#12782",
+        "merged_at": "2025-09-20T07:35:42+00:00"
+      },
+      {
+        "number": 22787,
+        "sha": null,
+        "title": "Make the error better when you do `console.log(\\\"`",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-20T07:29:15+00:00"
+      },
+      {
+        "number": 22794,
+        "sha": null,
+        "title": "Refactor `Bun__canonicalizeIP`",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-20T07:02:16+00:00"
+      },
+      {
+        "number": 22813,
+        "sha": null,
+        "title": "shrink bun error modal by 250 KB",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-20T06:54:18+00:00"
+      },
+      {
+        "number": 22803,
+        "sha": null,
+        "title": "fix(bundler): minify `Array` constructor with ternary regression",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-20T00:32:13+00:00"
+      },
+      {
+        "number": 22740,
+        "sha": null,
+        "title": "Migrate all Docker usage to unified docker-compose infrastructure",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-19T11:20:58+00:00"
+      },
+      {
+        "number": 22786,
+        "sha": null,
+        "title": "Speculative fix for intermittent ETXTBUSY when installing binlinks",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-19T10:39:25+00:00"
+      }
+    ]
+  },
+  "quality": {
+    "mode": "heuristic",
+    "average_score": 45,
+    "verdicts": {
+      "REVIEW": 41
+    },
+    "specs": [
+      {
+        "pr_number": 23229,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "closes #4621 (note: patterns like \"packages/!(-standalone)\" will need to be writ",
+            "suggestion": "Goal without test: 'closes #4621 (note: patterns like \"packages/!(-standalone)\" ...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 23218,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 86,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 41,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 1,
+            "type": "ambiguity",
+            "term": "efficient",
+            "suggestion": "Replace 'efficient' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 23216,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Fixed crypto.hkdf callback to pass null instead of undefined for the error param",
+            "suggestion": "Goal without test: 'Fixed crypto.hkdf callback to pass null instead of undefined...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Added regression test to verify the fix",
+            "suggestion": "Goal without test: 'Added regression test to verify the fix' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Updated CryptoHkdf.cpp to pass jsNull() instead of jsUndefined() for the error p",
+            "suggestion": "Goal without test: 'Updated CryptoHkdf.cpp to pass jsNull() instead of jsUndefin...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Added regression test in test/regression/issue/23211.test.ts",
+            "suggestion": "Goal without test: 'Added regression test in test/regression/issue/23211.test.ts' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] Added regression test that verifies callback receives null on success",
+            "suggestion": "Goal without test: '[x] Added regression test that verifies callback receives nu...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] Test passes with the fix",
+            "suggestion": "Goal without test: '[x] Test passes with the fix' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] Ran existing crypto tests (no failures)",
+            "suggestion": "Goal without test: '[x] Ran existing crypto tests (no failures)' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 23169,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 98,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 44,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 14,
+            "type": "ambiguity",
+            "term": "better",
+            "suggestion": "Replace 'better' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Although this bindings generator has many features not present in bindgen.ts, it",
+            "suggestion": "Goal without test: 'Although this bindings generator has many features not prese...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 23184,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "process.title doesn't crash when accessed",
+            "suggestion": "Goal without test: 'process.title doesn't crash when accessed' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Returns a valid string (either the console title or \"bun\")",
+            "suggestion": "Goal without test: 'Returns a valid string (either the console title or \"bun\")' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 23199,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 23168,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 23195,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 23122,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 97,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 44,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 45,
+            "type": "ambiguity",
+            "term": "better",
+            "suggestion": "Replace 'better' with a specific, measurable term"
+          },
+          {
+            "line": 46,
+            "type": "ambiguity",
+            "term": "better",
+            "suggestion": "Replace 'better' with a specific, measurable term"
+          },
+          {
+            "line": 65,
+            "type": "ambiguity",
+            "term": "better",
+            "suggestion": "Replace 'better' with a specific, measurable term"
+          },
+          {
+            "line": 71,
+            "type": "ambiguity",
+            "term": "comprehensive",
+            "suggestion": "Replace 'comprehensive' with a specific, measurable term"
+          },
+          {
+            "line": 114,
+            "type": "ambiguity",
+            "term": "Better",
+            "suggestion": "Replace 'Better' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Use Latin1Character instead of LChar",
+            "suggestion": "Goal without test: 'Use Latin1Character instead of LChar' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Fix for https://github.com/oven-sh/WebKit/commit/0875bc8f628e0015a1ad4e74efa5b89",
+            "suggestion": "Goal without test: 'Fix for https://github.com/oven-sh/WebKit/commit/0875bc8f628...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "operationMaterializeObjectInOSR fix (5c7aadfa0a96): Fixed uninitialized Butterfl",
+            "suggestion": "Goal without test: 'operationMaterializeObjectInOSR fix (5c7aadfa0a96): Fixed un...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "FTL materialization fixes (a72d19840714, ed1e6fe03899): Added missing internal o",
+            "suggestion": "Goal without test: 'FTL materialization fixes (a72d19840714, ed1e6fe03899): Adde...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "JSPromiseReaction object (a1cb5e087a46, later reverted in b0566a4db201): Initial",
+            "suggestion": "Goal without test: 'JSPromiseReaction object (a1cb5e087a46, later reverted in b0...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Async stack traces enhancements:",
+            "suggestion": "Goal without test: 'Async stack traces enhancements:' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Added support for Promise.any in async stack traces (d9a997b3edaa)",
+            "suggestion": "Goal without test: 'Added support for Promise.any in async stack traces (d9a997b...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Added empty JSValue checking for async stack trace safety (9d26223d4bcb)",
+            "suggestion": "Goal without test: 'Added empty JSValue checking for async stack trace safety (9...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Promise.all support was added and later reverted due to performance concerns",
+            "suggestion": "Goal without test: 'Promise.all support was added and later reverted due to perf...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "B3 Immutable Loads (570a3530f949, 62300f8db3d9): Added immutability annotations ",
+            "suggestion": "Goal without test: 'B3 Immutable Loads (570a3530f949, 62300f8db3d9): Added immut...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "BBQ JIT enhancements:",
+            "suggestion": "Goal without test: 'BBQ JIT enhancements:' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Fixed callee-save register handling (c7ae05719045)",
+            "suggestion": "Goal without test: 'Fixed callee-save register handling (c7ae05719045)' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Simplified F32 copysign operations (e0651af57025)",
+            "suggestion": "Goal without test: 'Simplified F32 copysign operations (e0651af57025)' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "DFG optimizations:",
+            "suggestion": "Goal without test: 'DFG optimizations:' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Fixed RegExp constant folding with materialized NewRegExp nodes (7b53a04a5afa)",
+            "suggestion": "Goal without test: 'Fixed RegExp constant folding with materialized NewRegExp no...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Improved RegExp object node handling in strength reduction (eeb65e05095b)",
+            "suggestion": "Goal without test: 'Improved RegExp object node handling in strength reduction (...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "WASM SIMD Support:",
+            "suggestion": "Goal without test: 'WASM SIMD Support:' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Added v128 support for IPInt call and tail-call instructions (73f0c9d430cb)",
+            "suggestion": "Goal without test: 'Added v128 support for IPInt call and tail-call instructions...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Implemented v128 support in local.get, local.set, global.get, global.set (67d7bf",
+            "suggestion": "Goal without test: 'Implemented v128 support in local.get, local.set, global.get...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Added x86_64 SIMD integer arithmetic and float instructions",
+            "suggestion": "Goal without test: 'Added x86_64 SIMD integer arithmetic and float instructions' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "WASM Memory Management:",
+            "suggestion": "Goal without test: 'WASM Memory Management:' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Introduced WasmInstanceAnchor for better instance lifecycle management (f9f1ed18",
+            "suggestion": "Goal without test: 'Introduced WasmInstanceAnchor for better instance lifecycle ...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Attached AbstractHeap to wasm memory access for better optimization (f183c6f7def",
+            "suggestion": "Goal without test: 'Attached AbstractHeap to wasm memory access for better optim...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Added signal handling for null checks in wasm (bf18b5b709f3)",
+            "suggestion": "Goal without test: 'Added signal handling for null checks in wasm (bf18b5b709f3)' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "WASM Debugging: Added LLDB debugging infrastructure for WebAssembly (e03c10225cc",
+            "suggestion": "Goal without test: 'WASM Debugging: Added LLDB debugging infrastructure for WebA...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Merged Iterator.prototype.sliding into Iterator.prototype.windows (1d49e823702d)",
+            "suggestion": "Goal without test: 'Merged Iterator.prototype.sliding into Iterator.prototype.wi...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Optimized iterator next method calls using CachedCall (5ee92514060c)",
+            "suggestion": "Goal without test: 'Optimized iterator next method calls using CachedCall (5ee92...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Improved performance of Math.sumPrecise implementation (602294057337)",
+            "suggestion": "Goal without test: 'Improved performance of Math.sumPrecise implementation (6022...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Enhanced error messages for for-of loops without Symbol.iterator (0051bbf2491f)",
+            "suggestion": "Goal without test: 'Enhanced error messages for for-of loops without Symbol.iter...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "LChar to Latin1Character rename (63b97b511366, 1424f0687876): Major refactoring ",
+            "suggestion": "Goal without test: 'LChar to Latin1Character rename (63b97b511366, 1424f0687876)...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Additional fixes for Latin1Character usage (711eab3243f0, 50bf8e6fd4ca, 88e29ab7",
+            "suggestion": "Goal without test: 'Additional fixes for Latin1Character usage (711eab3243f0, 50...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Fixed builds with GCC 15.x (e33b18bc59d6)",
+            "suggestion": "Goal without test: 'Fixed builds with GCC 15.x (e33b18bc59d6)' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Added gitattributes for JSC test files (82c4cc796da6)",
+            "suggestion": "Goal without test: 'Added gitattributes for JSC test files (82c4cc796da6)' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Improved test runner with comprehensive verbose logging (7ef95c177a42)",
+            "suggestion": "Goal without test: 'Improved test runner with comprehensive verbose logging (7ef...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Added memory-limited annotations for tests using excessive memory (b991cd17d612)",
+            "suggestion": "Goal without test: 'Added memory-limited annotations for tests using excessive m...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Improved handling of missing test executables (db1e3bbb3be2)",
+            "suggestion": "Goal without test: 'Improved handling of missing test executables (db1e3bbb3be2)' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Added support for non-customized ICU 74.2 in intl tests (c922a28b6642)",
+            "suggestion": "Goal without test: 'Added support for non-customized ICU 74.2 in intl tests (c92...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Fixed various test configuration issues and timeouts",
+            "suggestion": "Goal without test: 'Fixed various test configuration issues and timeouts' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Maintained BUNJSCADDITIONS for Bun-specific features",
+            "suggestion": "Goal without test: 'Maintained BUNJSCADDITIONS for Bun-specific features' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Kept async context support for AsyncLocalStorage",
+            "suggestion": "Goal without test: 'Kept async context support for AsyncLocalStorage' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Preserved V8 heap snapshot compatibility layer",
+            "suggestion": "Goal without test: 'Preserved V8 heap snapshot compatibility layer' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Maintained custom inspector extensions",
+            "suggestion": "Goal without test: 'Maintained custom inspector extensions' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Successfully merged upstream changes while preserving Bun's event loop integrati",
+            "suggestion": "Goal without test: 'Successfully merged upstream changes while preserving Bun's ...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Resolved conflicts in promise handling while maintaining Bun's async behavior",
+            "suggestion": "Goal without test: 'Resolved conflicts in promise handling while maintaining Bun...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Fixed re-declaration issues with isAsyncFrame for async stack traces",
+            "suggestion": "Goal without test: 'Fixed re-declaration issues with isAsyncFrame for async stac...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Type safety improvements with uncheckedDowncast for Wasm::Callee (48425afd643d)",
+            "suggestion": "Goal without test: 'Type safety improvements with uncheckedDowncast for Wasm::Ca...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Added bounds checking and validation for Wasm array operations (b5148db1c4c1)",
+            "suggestion": "Goal without test: 'Added bounds checking and validation for Wasm array operatio...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Improved memory safety with proper initialization of materialized objects",
+            "suggestion": "Goal without test: 'Improved memory safety with proper initialization of materia...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "macOS: Continued support for x64/arm64",
+            "suggestion": "Goal without test: 'macOS: Continued support for x64/arm64' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Linux: Maintained glibc/musl compatibility",
+            "suggestion": "Goal without test: 'Linux: Maintained glibc/musl compatibility' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Windows: Preserved x64 support",
+            "suggestion": "Goal without test: 'Windows: Preserved x64 support' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Fixed platform-specific alignment issues for x86_64 (94a60eb123c5)",
+            "suggestion": "Goal without test: 'Fixed platform-specific alignment issues for x86_64 (94a60eb...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "LLDB infrastructure for WebAssembly debugging",
+            "suggestion": "Goal without test: 'LLDB infrastructure for WebAssembly debugging' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Improved verbose command logging in test runners",
+            "suggestion": "Goal without test: 'Improved verbose command logging in test runners' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Enhanced stack trace capabilities for async functions",
+            "suggestion": "Goal without test: 'Enhanced stack trace capabilities for async functions' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Better error reporting for missing Symbol.iterator",
+            "suggestion": "Goal without test: 'Better error reporting for missing Symbol.iterator' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Several memory optimizations for test execution",
+            "suggestion": "Goal without test: 'Several memory optimizations for test execution' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "JIT memory reservation size adjustments for debug builds",
+            "suggestion": "Goal without test: 'JIT memory reservation size adjustments for debug builds' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Optimized iterator operations with cached calls",
+            "suggestion": "Goal without test: 'Optimized iterator operations with cached calls' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Improved Math.sumPrecise performance",
+            "suggestion": "Goal without test: 'Improved Math.sumPrecise performance' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Async stack trace support for Promise.all requires performance optimization",
+            "suggestion": "Goal without test: 'Async stack trace support for Promise.all requires performan...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Continued work on WASM SIMD support for additional operations",
+            "suggestion": "Goal without test: 'Continued work on WASM SIMD support for additional operation...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 18196,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 99,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 8,
+            "type": "ambiguity",
+            "term": "fast",
+            "suggestion": "Replace 'fast' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "This adds a new flag --bail to bun test. When set, it will stop running tests af",
+            "suggestion": "Goal without test: 'This adds a new flag --bail to bun test. When set, it will s...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 23113,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 23110,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 23032,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Fix memory.deinit; the previous PR erroneously added non-comptime code in a comp",
+            "suggestion": "Goal without test: 'Fix memory.deinit; the previous PR erroneously added non-com...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Handle arrays (distinct from slices)",
+            "suggestion": "Goal without test: 'Handle arrays (distinct from slices)' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Handle error unions",
+            "suggestion": "Goal without test: 'Handle error unions' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Disallow untagged unions, as this is probably an error; usually a manual deinit ",
+            "suggestion": "Goal without test: 'Disallow untagged unions, as this is probably an error; usua...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Make switch exhaustive so we know we're not missing other types (thanks @pfgithu",
+            "suggestion": "Goal without test: 'Make switch exhaustive so we know we're not missing other ty...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 22700,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 23082,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 23073,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 23078,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 8151,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Note: this does not implement DisposableStack or AsyncDisposableStack or the ite",
+            "suggestion": "Goal without test: 'Note: this does not implement DisposableStack or AsyncDispos...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 23003,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 87,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 41,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 3,
+            "type": "ambiguity",
+            "term": "better",
+            "suggestion": "Replace 'better' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 20265,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "This + #20198 will fix #17653",
+            "suggestion": "Goal without test: 'This + #20198 will fix #17653' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 22262,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 22946,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 82,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 40,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 3,
+            "type": "ambiguity",
+            "term": "should work",
+            "suggestion": "Replace 'should work' with a specific, measurable term"
+          },
+          {
+            "line": 3,
+            "type": "ambiguity",
+            "term": "normal",
+            "suggestion": "Replace 'normal' with a specific, measurable term"
+          },
+          {
+            "line": 6,
+            "type": "ambiguity",
+            "term": "should work",
+            "suggestion": "Replace 'should work' with a specific, measurable term"
+          },
+          {
+            "line": 25,
+            "type": "ambiguity",
+            "term": "Should work",
+            "suggestion": "Replace 'Should work' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 23027,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Currently, if you try to deinit an optional, bun.memory.deinit will silently do ",
+            "suggestion": "Goal without test: 'Currently, if you try to deinit an optional, bun.memory.dein...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 23024,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 22981,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 86,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 41,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 2,
+            "type": "ambiguity",
+            "term": "properly",
+            "suggestion": "Replace 'properly' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 23015,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 22917,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 23013,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 96,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 44,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 35,
+            "type": "ambiguity",
+            "term": "simple",
+            "suggestion": "Replace 'simple' with a specific, measurable term"
+          },
+          {
+            "line": 35,
+            "type": "ambiguity",
+            "term": "flexible",
+            "suggestion": "Replace 'flexible' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 22701,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Added regression test in test/regression/issue/22353.test.ts",
+            "suggestion": "Goal without test: 'Added regression test in test/regression/issue/22353.test.ts' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Test verifies server continues operating normally after handling edge case reque",
+            "suggestion": "Goal without test: 'Test verifies server continues operating normally after hand...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "All existing HTTP server tests pass",
+            "suggestion": "Goal without test: 'All existing HTTP server tests pass' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 22849,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 96,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 44,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 12,
+            "type": "ambiguity",
+            "term": "correctly",
+            "suggestion": "Replace 'correctly' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "added Content-Type: application/x-www-form-urlencoded to a fetch request and con",
+            "suggestion": "Goal without test: 'added Content-Type: application/x-www-form-urlencoded to a f...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "verified the fix against the reproduction script provided in issue #12042",
+            "suggestion": "Goal without test: 'verified the fix against the reproduction script provided in...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "created and ran a regression test",
+            "suggestion": "Goal without test: 'created and ran a regression test' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "checked that existing content types (JSON, text, etc.) continue to print correct",
+            "suggestion": "Goal without test: 'checked that existing content types (JSON, text, etc.) conti...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 22978,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Fixed a double-free bug in the createArgv function in node_process.zig",
+            "suggestion": "Goal without test: 'Fixed a double-free bug in the createArgv function in node_p...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "One on line 164",
+            "suggestion": "Goal without test: 'One on line 164' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Another on line 192 (now removed)",
+            "suggestion": "Goal without test: 'Another on line 192 (now removed)' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 22987,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 22842,
+        "format": "freeform",
+        "completeness": 50,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 60,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 22814,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 97,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 44,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 4,
+            "type": "ambiguity",
+            "term": "comprehensive",
+            "suggestion": "Replace 'comprehensive' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Fixed dns.resolve() callback to pass 2 parameters instead of 3, matching Node.js",
+            "suggestion": "Goal without test: 'Fixed dns.resolve() callback to pass 2 parameters instead of...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Fixed dns.promises.resolve() to return array of strings for A/AAAA records inste",
+            "suggestion": "Goal without test: 'Fixed dns.promises.resolve() to return array of strings for ...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Added comprehensive regression tests",
+            "suggestion": "Goal without test: 'Added comprehensive regression tests' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Added regression test test/regression/issue/22712.test.ts with 6 test cases",
+            "suggestion": "Goal without test: 'Added regression test test/regression/issue/22712.test.ts wi...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "All tests pass with the fix",
+            "suggestion": "Goal without test: 'All tests pass with the fix' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Verified existing DNS tests still pass",
+            "suggestion": "Goal without test: 'Verified existing DNS tests still pass' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 22827,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 96,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 44,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 28,
+            "type": "ambiguity",
+            "term": "correctly",
+            "suggestion": "Replace 'correctly' with a specific, measurable term"
+          },
+          {
+            "line": 40,
+            "type": "ambiguity",
+            "term": "comprehensive",
+            "suggestion": "Replace 'comprehensive' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Before: panic(main thread): switch on corrupt value",
+            "suggestion": "Goal without test: 'Before: panic(main thread): switch on corrupt value' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "After: Works correctly",
+            "suggestion": "Goal without test: 'After: Works correctly' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Before: Segmentation fault at address 0x8 with deep nested structures",
+            "suggestion": "Goal without test: 'Before: Segmentation fault at address 0x8 with deep nested s...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "After: Handles deep nesting without crashes",
+            "suggestion": "Goal without test: 'After: Handles deep nesting without crashes' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Before: Crashes with objects containing 50+ properties (hash table stress)",
+            "suggestion": "Goal without test: 'Before: Crashes with objects containing 50+ properties (hash...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "After: Processes large complex arrays successfully",
+            "suggestion": "Goal without test: 'After: Processes large complex arrays successfully' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Collections with 3+ arrays",
+            "suggestion": "Goal without test: 'Collections with 3+ arrays' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Collections with 3+ objects",
+            "suggestion": "Goal without test: 'Collections with 3+ objects' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Deeply nested structures (5+ levels)",
+            "suggestion": "Goal without test: 'Deeply nested structures (5+ levels)' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Objects with many properties (50+) to stress hash table operations",
+            "suggestion": "Goal without test: 'Objects with many properties (50+) to stress hash table oper...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Mixed collections of arrays and objects",
+            "suggestion": "Goal without test: 'Mixed collections of arrays and objects' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 22925,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 22756,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 22889,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 97,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 44,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 4,
+            "type": "ambiguity",
+            "term": "better",
+            "suggestion": "Replace 'better' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Sometimes packages will use very large numbers exceeding max u32 for major/minor",
+            "suggestion": "Goal without test: 'Sometimes packages will use very large numbers exceeding max...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Because we serialize package information to disk for the binary lockfile and pac",
+            "suggestion": "Goal without test: 'Because we serialize package information to disk for the bin...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 22168,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 22816,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 95,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 44,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 15,
+            "type": "ambiguity",
+            "term": "comprehensive",
+            "suggestion": "Replace 'comprehensive' with a specific, measurable term"
+          },
+          {
+            "line": 32,
+            "type": "ambiguity",
+            "term": "comprehensive",
+            "suggestion": "Replace 'comprehensive' with a specific, measurable term"
+          },
+          {
+            "line": 44,
+            "type": "ambiguity",
+            "term": "Correctly",
+            "suggestion": "Replace 'Correctly' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Full Windows support for process.report.getReport()",
+            "suggestion": "Goal without test: 'Full Windows support for process.report.getReport()' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Uses libuv APIs (uvcpuinfo, uvinterfaceaddresses) for cross-platform consistency",
+            "suggestion": "Goal without test: 'Uses libuv APIs (uvcpuinfo, uvinterfaceaddresses) for cross-...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Refactored to share common code between Windows and POSIX platforms (~150 lines ",
+            "suggestion": "Goal without test: 'Refactored to share common code between Windows and POSIX pl...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Returns comprehensive diagnostic information matching Node.js structure",
+            "suggestion": "Goal without test: 'Returns comprehensive diagnostic information matching Node.j...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "\u2705 CPU information: All processors with model, speed, and usage times",
+            "suggestion": "Goal without test: '\u2705 CPU information: All processors with model, speed, and usa...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "\u2705 Network interfaces: Complete with MAC addresses, IPs, and netmasks",
+            "suggestion": "Goal without test: '\u2705 Network interfaces: Complete with MAC addresses, IPs, and ...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "\u2705 Memory statistics: RSS, page faults, system memory info using Windows APIs",
+            "suggestion": "Goal without test: '\u2705 Memory statistics: RSS, page faults, system memory info us...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "\u2705 Process information: PID, CWD, command line arguments, Windows version detecti",
+            "suggestion": "Goal without test: '\u2705 Process information: PID, CWD, command line arguments, Win...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "\u2705 JavaScript heap information with all V8-compatible heap spaces",
+            "suggestion": "Goal without test: '\u2705 JavaScript heap information with all V8-compatible heap sp...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "\u2705 JavaScript stack traces with proper formatting",
+            "suggestion": "Goal without test: '\u2705 JavaScript stack traces with proper formatting' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "\u2705 Environment variables",
+            "suggestion": "Goal without test: '\u2705 Environment variables' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "\u2705 Loaded DLLs in sharedObjects array",
+            "suggestion": "Goal without test: '\u2705 Loaded DLLs in sharedObjects array' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Added comprehensive test suite with 10 tests covering all report sections",
+            "suggestion": "Goal without test: 'Added comprehensive test suite with 10 tests covering all re...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Tests validate structure, data types, and field presence",
+            "suggestion": "Goal without test: 'Tests validate structure, data types, and field presence' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "All tests passing on Windows",
+            "suggestion": "Goal without test: 'All tests passing on Windows' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Correctly omits userLimits and uvthreadResourceUsage (not present in Node.js on ",
+            "suggestion": "Goal without test: 'Correctly omits userLimits and uvthreadResourceUsage (not pr...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Includes Windows-specific libUrl field in release object",
+            "suggestion": "Goal without test: 'Includes Windows-specific libUrl field in release object' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Returns same top-level keys as Node.js",
+            "suggestion": "Goal without test: 'Returns same top-level keys as Node.js' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 22534,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 99,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 478,
+            "type": "ambiguity",
+            "term": "clean",
+            "suggestion": "Replace 'clean' with a specific, measurable term"
+          },
+          {
+            "line": 478,
+            "type": "ambiguity",
+            "term": "clean",
+            "suggestion": "Replace 'clean' with a specific, measurable term"
+          },
+          {
+            "line": 479,
+            "type": "ambiguity",
+            "term": "clean",
+            "suggestion": "Replace 'clean' with a specific, measurable term"
+          },
+          {
+            "line": 509,
+            "type": "ambiguity",
+            "term": "good",
+            "suggestion": "Replace 'good' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "beforeAll/afterAll will never be executed concurrently. beforeEach/afterEach wil",
+            "suggestion": "Goal without test: 'beforeAll/afterAll will never be executed concurrently. befo...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Now, this will print",
+            "suggestion": "Goal without test: 'Now, this will print' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Previously, beforeAll in a preload ran before the first file and afterAll ran af",
+            "suggestion": "Goal without test: 'Previously, beforeAll in a preload ran before the first file...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Current behaviour is that when an error is thrown inside a describe callback, no",
+            "suggestion": "Goal without test: 'Current behaviour is that when an error is thrown inside a d...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Previously, an async beforeEach failure would still allow the test to run. Now, ",
+            "suggestion": "Goal without test: 'Previously, an async beforeEach failure would still allow th...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Hooks will now time out, and can have their timeout configured in an options par",
+            "suggestion": "Goal without test: 'Hooks will now time out, and can have their timeout configur...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "beforeAll will now execute before the tests in the scope, rather than immediatel",
+            "suggestion": "Goal without test: 'beforeAll will now execute before the tests in the scope, ra...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "With no inner only, the outer only will still run all tests:",
+            "suggestion": "Goal without test: 'With no inner only, the outer only will still run all tests:' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "this will need async context or similar",
+            "suggestion": "Goal without test: 'this will need async context or similar' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[ ] we will need one global still, stored in the globalobject/vm/?. but it shoul",
+            "suggestion": "Goal without test: '[ ] we will need one global still, stored in the globalobjec...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      }
+    ]
+  },
+  "effectiveness": {
+    "specd_rework_rate": 0.4634,
+    "unspecd_rework_rate": 0.1064,
+    "delta": 0.357,
+    "specd_sample_size": 41,
+    "unspecd_sample_size": 94,
+    "significance": "significant",
+    "signals": [
+      {
+        "type": "bug-fix",
+        "source": "22824",
+        "target": "22534",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/bun.js/Debugger.zig",
+          "src/bun.js/VirtualMachine.zig"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "22862",
+        "target": "22168",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/bun-types/test.d.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "22889",
+        "target": "22850",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/install/lockfile.zig",
+          "src/install/lockfile/Package.zig",
+          "src/install/npm.zig"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "22863",
+        "target": "22534",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/bun.js/VirtualMachine.zig",
+          "src/bun.js/bindings/bindings.cpp"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "22756",
+        "target": "21728",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/deps/uws/us_socket_t.zig"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "22925",
+        "target": "22740",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "test/js/sql/sql.test.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "22932",
+        "target": "22889",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/install/lockfile/Package.zig",
+          "src/install/lockfile/bun.lockb.zig",
+          "src/install/resolution.zig",
+          "test/cli/install/migrate-bun-lockb-v2.test.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "22842",
+        "target": "22823",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "test/js/web/fetch/fetch.test.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "22986",
+        "target": "22781",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/bun.js/api/bun/udp_socket.zig",
+          "test/internal/ban-limits.json"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "22701",
+        "target": "22781",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/bun.js/api/server.zig"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "22981",
+        "target": "22781",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/valkey/js_valkey_functions.zig",
+          "test/js/valkey/test-utils.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "23016",
+        "target": "22842",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/http/HTTPContext.zig"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "23024",
+        "target": "23013",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/ptr/external_shared.zig"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "22704",
+        "target": "22665",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/bundler/bundle_v2.zig"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "23028",
+        "target": "22806",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/shell/builtin/rm.zig"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "23018",
+        "target": "22981",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/valkey/js_valkey.zig",
+          "src/valkey/js_valkey_functions.zig",
+          "src/valkey/valkey.zig"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "23034",
+        "target": "23018",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/bun.js/bindings/bindings.cpp"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "22946",
+        "target": "22925",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "test/js/sql/sql.test.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "23078",
+        "target": "23073",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "test/bundler/transpiler/transpiler.test.js"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "23082",
+        "target": "23078",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "test/bundler/transpiler/transpiler.test.js"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "22977",
+        "target": "22534",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/bun.js/test/expect/toContainAnyKeys.zig",
+          "src/bun.js/test/expect/toContainKeys.zig"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "23119",
+        "target": "22262",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "test/cli/install/bun-install.test.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "23111",
+        "target": "22262",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/install/pnpm.zig",
+          "test/cli/install/migration/pnpm-migration.test.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "23127",
+        "target": "22441",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/js/node/tls.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "22381",
+        "target": "22850",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/install/PackageManager/CommandLineArguments.zig",
+          "src/install/PackageManager/PackageManagerOptions.zig"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "22700",
+        "target": "22946",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/js/internal/sql/mysql.ts",
+          "src/js/internal/sql/postgres.ts",
+          "src/js/internal/sql/sqlite.ts",
+          "test/js/sql/sql.test.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "23141",
+        "target": "23018",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/valkey/js_valkey.zig",
+          "src/valkey/valkey.zig"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "23144",
+        "target": "23111",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/bun.zig"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "23032",
+        "target": "23027",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/memory.zig"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "23110",
+        "target": "22534",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/bun.js/test/Execution.zig",
+          "src/bun.js/test/Order.zig",
+          "src/bun.js/test/ScopeFunctions.zig",
+          "src/bun.js/test/bun_test.zig",
+          "src/bun.js/test/debug.zig"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "23113",
+        "target": "23110",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/bun.js/test/Order.zig",
+          "src/bun.js/test/bun_test.zig",
+          "test/js/bun/test/bun_test.test.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "23150",
+        "target": "22756",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/bun-uws/src/App.h",
+          "packages/bun-uws/src/HttpContextData.h",
+          "packages/bun-uws/src/HttpResponse.h",
+          "src/bun.js/bindings/NodeHTTP.cpp",
+          "src/js/node/_http_server.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "23195",
+        "target": "22981",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/valkey/js_valkey.zig",
+          "test/js/valkey/valkey.test.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "23193",
+        "target": "23195",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/bun.js/bindings/napi.cpp"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "23199",
+        "target": "23113",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/bun.js/test/bun_test.zig",
+          "src/cli/test_command.zig"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "23204",
+        "target": "22262",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/install/PackageManager.zig",
+          "test/cli/install/isolated-install.test.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "23184",
+        "target": "23122",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/bun.js/bindings/BunProcess.cpp"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "23216",
+        "target": "23184",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "test/regression/issue/23183.test.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "23221",
+        "target": "22700",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/js/internal/sql/sqlite.ts",
+          "test/js/sql/sqlite-sql.test.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "23229",
+        "target": "22262",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/cli/outdated_command.zig",
+          "src/cli/update_interactive_command.zig",
+          "src/install/PackageManager/install_with_manager.zig"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "23232",
+        "target": "22262",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/install/migration.zig",
+          "src/install/pnpm.zig",
+          "test/cli/install/migration/pnpm-migration.test.ts"
+        ]
+      }
+    ],
+    "by_complexity": {
+      "small": {
+        "specd_rework_rate": 0.3529,
+        "unspecd_rework_rate": 0.0,
+        "specd_count": 17,
+        "unspecd_count": 59
+      },
+      "medium": {
+        "specd_rework_rate": 0.3846,
+        "unspecd_rework_rate": 0.2083,
+        "specd_count": 13,
+        "unspecd_count": 24
+      },
+      "large": {
+        "specd_rework_rate": 0.7273,
+        "unspecd_rework_rate": 0.4167,
+        "specd_count": 11,
+        "unspecd_count": 12
+      }
+    }
+  }
+}

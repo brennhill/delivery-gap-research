@@ -1,0 +1,43 @@
+======================================================================
+SZZ ANALYSIS SUMMARY
+======================================================================
+
+Total PRs analyzed: 1,890
+PRs identified as bug-introducing: 392 (20.7%)
+Total SZZ links (fix -> bug): 1,481
+
+Bug-introducing rate by repo:
+--------------------------------------------------
+  chroma-core/chroma                        392/ 1890 (20.7%)
+
+Bug-introducing rate by AI classification:
+--------------------------------------------------
+  escape                  16/    16 (100.0%)
+  human_save             321/ 1,500 (21.4%)
+  machine_catch           44/   306 (14.4%)
+  pending                 10/    65 (15.4%)
+
+Bug-introducing rate by tier:
+--------------------------------------------------
+  ?                      392/ 1,890 (20.7%)
+
+Top 10 most bug-introducing PRs (by number of subsequent fixes):
+----------------------------------------------------------------------
+  chroma-core/chroma             #6257   fixes=12  [DOC] Mintlify documentation site
+  chroma-core/chroma             #4632   fixes=12  [ENH]New JS Client
+  chroma-core/chroma             #4084   fixes=10  [ENH]  Wire up the log service's offline path.
+  chroma-core/chroma             #4832   fixes= 9  [ENH]  Garbage collection for wal3.
+  chroma-core/chroma             #4272   fixes= 7  [ENH] Dynamic adjustment of priority for s3 gets +...
+  chroma-core/chroma             #6171   fixes= 6  [ENH]  Wire up the rust-log-service with MCMR conf...
+  chroma-core/chroma             #4700   fixes= 6  [ENH] Refactor dirty log rollup for async implemen...
+  chroma-core/chroma             #4309   fixes= 6  [ENH] Wire up collection forking for RFE
+  chroma-core/chroma             #4195   fixes= 6  [ENH] Add Spann configuration to collection config
+  chroma-core/chroma             #4753   fixes= 5  [ENH]: Support writing data to separate prefixes i...
+
+
+======================================================================
+CORRELATION ANALYSIS: Spec Quality vs Bug Introduction
+======================================================================
+
+PRs with spec quality scores: 0
+Too few scored PRs for meaningful analysis

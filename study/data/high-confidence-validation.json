@@ -1,0 +1,1662 @@
+{
+  "antiwork/gumroad#2755->2766": {
+    "repo": "antiwork/gumroad",
+    "target": 2755,
+    "source": 2766,
+    "target_title": "Inertia Migrate - Auth (Part 3)",
+    "source_title": "fix(tests): race condition caused by #2755 ",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly fixes a race condition caused by PR A (#2755, which is the auth migration PR), same author within hours, and the title directly references the causal PR number."
+  },
+  "antiwork/gumroad#2521->2545": {
+    "repo": "antiwork/gumroad",
+    "target": 2521,
+    "source": 2545,
+    "target_title": "fix(exports): Show email notification when exporting Sales CSV from all time",
+    "source_title": "Fix flash message not showing when exporting sales",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly states 'Follow-up to #2521' (PR A), addresses the same issue (#1930) that PR A failed to solve in production, and fixes the flash message problem using a different approach after PR A's solution proved insufficient."
+  },
+  "antiwork/gumroad#3881->3909": {
+    "repo": "antiwork/gumroad",
+    "target": 3881,
+    "source": 3909,
+    "target_title": "Add workflow to close stale issues",
+    "source_title": "Fix stale workflow grace period and add PR activity tracking",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly fixes two bugs introduced in PR A (#3881): grace period logic not being respected and linked PRs not counting as activity, with the same author shipping the follow-up one day later."
+  },
+  "antiwork/gumroad#3825->3853": {
+    "repo": "antiwork/gumroad",
+    "target": 3825,
+    "source": 3853,
+    "target_title": "Optimize sales tax summary report with SQL GROUP BY",
+    "source_title": "Fix global sales tax summary report timeout on primary DB",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B directly addresses a critical limitation missed in PR A: while A solved the timeout on read replicas, it introduced a regression on the primary database where the LEFT JOIN on refunds exceeds the 1-hour execution limit, requiring B's architectural fix to split the refund logic into a separate pre-fetch step."
+  },
+  "antiwork/gumroad#3233->3559": {
+    "repo": "antiwork/gumroad",
+    "target": 3233,
+    "source": 3559,
+    "target_title": " migrate communities page to Inertia",
+    "source_title": "Fix: Preserve chat scroll after message actions",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B directly fixes a regression introduced by PR A: the chat scroll position reset bug that occurred after message mutations, which PR A's Inertia migration created but incompletely addressed."
+  },
+  "antiwork/gumroad#2942->3294": {
+    "repo": "antiwork/gumroad",
+    "target": 2942,
+    "source": 3294,
+    "target_title": "Migrate `_forms.scss` to Tailwind: Part 1",
+    "source_title": "Fix Discover search section padding",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly fixes a regression introduced by PR A's migration work\u2014the missing padding in the Discover search section that resulted from the Tailwind migration in PR A."
+  },
+  "antiwork/gumroad#2324->3131": {
+    "repo": "antiwork/gumroad",
+    "target": 2324,
+    "source": 3131,
+    "target_title": "Migrate button.scss to Tailwind ",
+    "source_title": "fix(audience): Fix upload files button appearing as plain text on commission products",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR A migrated button.scss to Tailwind and removed the .button CSS class, but failed to update the CommissionSection component in CustomersPage.tsx, causing a visual regression that PR B explicitly fixes 8 days later."
+  },
+  "antiwork/gumroad#2558->3132": {
+    "repo": "antiwork/gumroad",
+    "target": 2558,
+    "source": 3132,
+    "target_title": "Migrate _stack.scss to tailwind",
+    "source_title": "fix(audience): Add missing className prop to ReviewResponseForm and ChargeRow",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly fixes a padding regression introduced by PR A's migration to Tailwind, where two components (ReviewResponseForm and ChargeRow) were not updated to accept the className prop needed for CardContent styling to propagate."
+  },
+  "antiwork/gumroad#2223->2416": {
+    "repo": "antiwork/gumroad",
+    "target": 2223,
+    "source": 2416,
+    "target_title": "Migrate `_product.scss` to Tailwind",
+    "source_title": "Fix: upsell modal image overflowing and hiding product details",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly states the overflow issue was 'probably created during #2223 tailwind migration' (PR A's related work), fixing a regression in ProductCardFigure that PR A's migration introduced by removing width constraints."
+  },
+  "antiwork/gumroad#1989->2158": {
+    "repo": "antiwork/gumroad",
+    "target": 1989,
+    "source": 2158,
+    "target_title": "Migrate _table.scss to Tailwind",
+    "source_title": "Fix table hover state",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly fixes a regression introduced by PR A (the table migration): the hover state and pointer cursor were removed from selectable table rows during the Tailwind migration, and PR B restores this functionality."
+  },
+  "antiwork/gumroad#1979->1987": {
+    "repo": "antiwork/gumroad",
+    "target": 1979,
+    "source": 1987,
+    "target_title": "chore: remove foreign key from installment_plan_snapshots",
+    "source_title": "Fix db schema version",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly fixes the schema version for the migration in PR A (#1979), addressing an incomplete or incorrect aspect of PR A's database schema change."
+  },
+  "antiwork/gumroad#1707->1742": {
+    "repo": "antiwork/gumroad",
+    "target": 1707,
+    "source": 1742,
+    "target_title": "Migrate _price.scss to Tailwind",
+    "source_title": "Fix price tag on dark seller themes",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly states 'Follow-up to #1707' (PR A), same author, same file area, merged one day later, and directly addresses a visual bug (dark theme rendering) that PR A's refactoring introduced."
+  },
+  "antiwork/gumroad#1724->1767": {
+    "repo": "antiwork/gumroad",
+    "target": 1724,
+    "source": 1767,
+    "target_title": "feat(settings): bolden resend confirmation button text",
+    "source_title": "fix: Restore underline styling for links",
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "PR B addresses a systemic styling problem with the `link` class across 30+ instances unrelated to PR A's single button text bolding change; they are independent solutions to different clickability issues."
+  },
+  "antiwork/gumroad#1706->1717": {
+    "repo": "antiwork/gumroad",
+    "target": 1706,
+    "source": 1717,
+    "target_title": "Fix product grid item columns when there's no sidebar",
+    "source_title": "fix product grid item columns when no filters on library page",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly fixes an edge case (library page with no filters) that PR A's solution missed\u2014PR A only addressed the creator's page scenario, and PR B identifies that the same conditional class logic needed to be applied elsewhere to prevent layout breakage when filters are hidden."
+  },
+  "antiwork/gumroad#1680->1717": {
+    "repo": "antiwork/gumroad",
+    "target": 1680,
+    "source": 1717,
+    "target_title": "Migrate _sidebar.scss to Tailwind",
+    "source_title": "fix product grid item columns when no filters on library page",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly identifies PR A (#1680) as the source of a regression (products squashed into sidebar), and fixes the conditional logic that PR A introduced unconditionally."
+  },
+  "biomejs/biome#9353->9373": {
+    "repo": "biomejs/biome",
+    "target": 9353,
+    "source": 9373,
+    "target_title": "fix(organizeImports): sort specifiers in bare exports",
+    "source_title": "fix(organizeImports): merge bare exports",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly states 'Follow-up of #9353' (PR A), completes the incomplete work by merging bare exports and fixing related issues (blank line spacing) that PR A's sorting fix didn't address, and same author within hours."
+  },
+  "calcom/cal.com#28252->28260": {
+    "repo": "calcom/cal.com",
+    "target": 28252,
+    "source": 28260,
+    "target_title": "chore: upgrade PostgreSQL from 13 to 18 in CI and docker-compose",
+    "source_title": "fix: use docker postgres:18 for pg_dump/psql to fix CI version mismatch",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B directly fixes a CI failure introduced by PR A's PostgreSQL 13\u219218 upgrade, where the host runner's pg_dump v16 refused to work against the new Postgres 18 server."
+  },
+  "calcom/cal.com#27912->27923": {
+    "repo": "calcom/cal.com",
+    "target": 27912,
+    "source": 27923,
+    "target_title": "feat: add signup watchlist review mode",
+    "source_title": "fix: resolve signup watchlist review issues and auto-unlock on SIGNUP entry removal",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly fixes three bugs introduced by PR A (missing await, email verification race condition, missing verification on unlock) and adds auto-unlock behavior that PR A's design lacked, all within 24 hours and directly referencing PR A's issue number."
+  },
+  "calcom/cal.com#27833->27900": {
+    "repo": "calcom/cal.com",
+    "target": 27833,
+    "source": 27900,
+    "target_title": "refactor: move data-table hooks/contexts/provider from features to web modules",
+    "source_title": "fix: update data-table hook imports missed in #27833 refactor",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly fixes broken imports from PR A's refactor (#27833), addressing a missed file that caused build errors during the hook migration."
+  },
+  "calcom/cal.com#27458->27924": {
+    "repo": "calcom/cal.com",
+    "target": 27458,
+    "source": 27924,
+    "target_title": "refactor: migrate Icon to component icons from @coss/ui/icons",
+    "source_title": "fix: default icon size to 16px in createIcon wrapper and fix download button alignment",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B directly fixes a visual regression introduced by PR A's icon migration \u2014 the wrapped icons defaulted to 24px instead of the original 16px, and PR B corrects this by setting the proper default in the createIcon wrapper, plus fixes a related alignment issue on the same page."
+  },
+  "calcom/cal.com#27497->27752": {
+    "repo": "calcom/cal.com",
+    "target": 27497,
+    "source": 27752,
+    "target_title": "feat: `Troubleshooter` atom",
+    "source_title": "fix: restore listWithTeam query to include team events with userId set and add comprehensive tests",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly states it fixes a 'behavioral regression introduced in #27497' (PR A), restoring functionality that PR A's SQL query change broke by adding an incorrect `teamId IS NULL` filter that caused team events to disappear, plus adds comprehensive tests for edge cases PR A left untested."
+  },
+  "calcom/cal.com#27631->27635": {
+    "repo": "calcom/cal.com",
+    "target": 27631,
+    "source": 27635,
+    "target_title": "fix: verification code perf",
+    "source_title": "fix: use SMS-specific rate limits for verification code",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly references PR A (#27631), refines the rate limiting approach by switching from generic `core` limits to SMS-specific limits, moves the rate limit check earlier in the flow, and adds a monthly cap\u2014indicating PR A's implementation was incomplete or needed optimization for the specific SMS use case."
+  },
+  "calcom/cal.com#26976->27625": {
+    "repo": "calcom/cal.com",
+    "target": 26976,
+    "source": 27625,
+    "target_title": "fix: add input validation to analytics app schemas",
+    "source_title": "fix: handle null/undefined tracking IDs in analytics schemas",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B directly fixes a breaking change introduced by PR A: PR A's strict validation broke the embed endpoint for unconfigured analytics apps, and PR B adds null/undefined handling to restore backwards compatibility."
+  },
+  "calcom/cal.com#27248->27293": {
+    "repo": "calcom/cal.com",
+    "target": 27248,
+    "source": 27293,
+    "target_title": "chore: use gh auth login with token for commit step in draft-release job",
+    "source_title": "revert: chore: use gh auth login with token for commit step in draft-release job",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly reverts PR A by title and body reference (reverts #27248), making it a direct fix that undoes the original change."
+  },
+  "calcom/cal.com#27409->27413": {
+    "repo": "calcom/cal.com",
+    "target": 27409,
+    "source": 27413,
+    "target_title": "feat: add configurable wildcard domain matching to watchlist",
+    "source_title": "fix: allow wildcard prefix in domain validation",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B is an explicit follow-up to PR A that fixes a critical validation gap: PR A introduced wildcard domain matching but didn't update domain validation to accept the `*.` prefix, making the feature non-functional in practice\u2014PR B completes the feature by enabling validation of wildcard domains."
+  },
+  "calcom/cal.com#27187->27386": {
+    "repo": "calcom/cal.com",
+    "target": 27187,
+    "source": 27386,
+    "target_title": "feat: Add infrastructure for no-show audit integration",
+    "source_title": "fix: Update search filter to check value and values fields in displayFields",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly fixes an incomplete implementation from PR A: PR A introduced a new `NoShowUpdatedAuditActionService` that returns display fields with `value` and `values` properties, but PR A's UI changes didn't account for searching these new fields, making the feature non-functional for end users until PR B added the search logic."
+  },
+  "calcom/cal.com#27285->27560": {
+    "repo": "calcom/cal.com",
+    "target": 27285,
+    "source": 27560,
+    "target_title": "refactor: fix 413 Request Entity too large error when big image files are uploaded",
+    "source_title": "fix: clear oversized images from onboarding store during migration",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B is explicitly a follow-up to PR A (#27285), addressing a migration issue where pre-existing oversized images in storage cause 429 errors after PR A's new cropping functionality was deployed, requiring data cleanup for users with stale state."
+  },
+  "calcom/cal.com#27258->27359": {
+    "repo": "calcom/cal.com",
+    "target": 27258,
+    "source": 27359,
+    "target_title": "feat: add forcedSlowMode rate limit to Team and Organization DELETE endpoints",
+    "source_title": "fix: reduce forcedSlowMode rate limit from 30s to 1s",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B is an explicit follow-up to PR A (references #27258), made by the same author one day later, adjusting the rate limit configuration that PR A introduced from 30s to 1s based on what appears to be feedback or reconsideration of the appropriate throttle duration."
+  },
+  "calcom/cal.com#27012->27071": {
+    "repo": "calcom/cal.com",
+    "target": 27012,
+    "source": 27071,
+    "target_title": "chore: disable apps with missing required keys",
+    "source_title": "fix: enable alby app in E2E tests to fix payment-apps test failures",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly states it fixes E2E test failures caused by PR A #27012's logic to disable apps without valid keys, and implements a workaround by enabling the app in test setup."
+  },
+  "calcom/cal.com#26931->26960": {
+    "repo": "calcom/cal.com",
+    "target": 26931,
+    "source": 26960,
+    "target_title": "feat(companion): add optimistic updates to availability edit screens",
+    "source_title": "fix(companion): add missing useEffect import and fix type errors",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B directly fixes critical bugs introduced by PR A's refactoring: a missing `useEffect` import causing app crashes and type mismatches from the hook return type change, completed one day after by the same author."
+  },
+  "calcom/cal.com#26528->27289": {
+    "repo": "calcom/cal.com",
+    "target": 26528,
+    "source": 27289,
+    "target_title": "feat: allow link cloaking for Organization accounts in workflow emails",
+    "source_title": "revert: remove link cloaking restrictions (reverts #26292 and #26528)",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly reverts PR A (and its predecessor) due to a strategic decision to use Cloudflare URL Scanner instead of link cloaking restrictions, making A's organization-account workaround obsolete."
+  },
+  "calcom/cal.com#26896->26924": {
+    "repo": "calcom/cal.com",
+    "target": 26896,
+    "source": 26924,
+    "target_title": "fix: api v2 get event-types non org users",
+    "source_title": "revert: \"fix: api v2 get event-types non org users (#26896)\"",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly reverts PR A the next day with title 'revert: fix: api v2 get event-types non org users (#26896)', removing the findByUsernameExcludingOrgUsers method and restoring simpler behavior, indicating PR A's approach was rejected as problematic."
+  },
+  "calcom/cal.com#26823->26824": {
+    "repo": "calcom/cal.com",
+    "target": 26823,
+    "source": 26824,
+    "target_title": "fix: address proration implementation flaws",
+    "source_title": "fix: re-throw error in voidInvoice to prevent silent failures",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B directly addresses a critical bug in PR A's `voidInvoice` method that was identified during code review\u2014silent error swallowing that could cause double charging\u2014making it a necessary correctional follow-up to complete the safe implementation of PR A's proration retry logic."
+  },
+  "calcom/cal.com#26195->26826": {
+    "repo": "calcom/cal.com",
+    "target": 26195,
+    "source": 26826,
+    "target_title": "feat(api): add bookingUrl field to event types API v2 response",
+    "source_title": "fix(api): return empty bookingUrl for managed users in API v2",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly addresses a missed edge case in PR A (managed users should return empty bookingUrl), authored by the same person 2 days later, with PR B's body referencing PR A as a follow-up to feedback."
+  },
+  "calcom/cal.com#26743->26744": {
+    "repo": "calcom/cal.com",
+    "target": 26743,
+    "source": 26744,
+    "target_title": "fix: add withSentryConfig to enable Sentry tracing in production",
+    "source_title": "revert: \"fix: add withSentryConfig to enable Sentry tracing in production\"",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly reverts PR A (same author, same day, revert title references PR #26743), indicating PR A introduced a problem requiring immediate rollback."
+  },
+  "calcom/cal.com#26702->26703": {
+    "repo": "calcom/cal.com",
+    "target": 26702,
+    "source": 26703,
+    "target_title": "fix: refactor cache-checkout to use actions/cache@v4 with fallback",
+    "source_title": "fix: add fallback for ref parameter in cache-checkout action",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B directly addresses an incomplete edge case in PR A's `cache-checkout` action implementation that was caught during code review\u2014the missing fallback for the `ref` parameter in non-PR contexts, which would have caused the action to fail in `workflow_dispatch` scenarios."
+  },
+  "calcom/cal.com#26582->26589": {
+    "repo": "calcom/cal.com",
+    "target": 26582,
+    "source": 26589,
+    "target_title": "fix: remove \"+\" from Add Guests translations",
+    "source_title": "fix: update E2E test to match German translation without '+' prefix",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B directly fixes a broken E2E test caused by PR A's translation change\u2014PR A removed the '+' from German translations but didn't update the corresponding test expectation, causing test failures that PR B corrects."
+  },
+  "calcom/cal.com#26351->26828": {
+    "repo": "calcom/cal.com",
+    "target": 26351,
+    "source": 26828,
+    "target_title": "chore: upgrade Vitest to 4.0.16 and Vite to 6.4.1",
+    "source_title": "fix: load .env file in vitest config and update integration test docs",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B directly addresses a critical missing piece from PR A's Vitest 4.0 upgrade: environment variable loading was not configured in the new vitest config, causing integration tests to fail with ECONNREFUSED errors due to missing DATABASE_URL."
+  },
+  "calcom/cal.com#26204->26205": {
+    "repo": "calcom/cal.com",
+    "target": 26204,
+    "source": 26205,
+    "target_title": "chore: lock all package versions to match yarn.lock",
+    "source_title": "fix: add undeclared dependencies and remove unused/misplaced dependencies",
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "PR B is a separate dependency management task (adding undeclared, removing unused dependencies) that is independent of PR A's version pinning work; PR B is explicitly stacked on PR A but addresses a different problem that existed before PR A and would exist regardless of version pinning."
+  },
+  "calcom/cal.com#25765->26027": {
+    "repo": "calcom/cal.com",
+    "target": 25765,
+    "source": 26027,
+    "target_title": "feat: add enabled column to UserFeatures and TeamFeatures for tri-state semantics",
+    "source_title": "fix: integration test of booking audit service",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly states 'follow up of #25765' (PR A), same author within hours, and fixes an integration test that failed due to PR A's schema change requiring `enabled: true` to be set during test setup."
+  },
+  "calcom/cal.com#25450->25621": {
+    "repo": "calcom/cal.com",
+    "target": 25450,
+    "source": 25621,
+    "target_title": "fix: preserve seatsPerTimeSlot during partial event type updates",
+    "source_title": "fix: preserve metadata fields during partial event type updates",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B is an explicit follow-up fixing the same root cause pattern that PR A missed: unconditional field spreading during partial updates was resetting three additional metadata fields, not just seatsPerTimeSlot."
+  },
+  "clerkinc/javascript#8024->8025": {
+    "repo": "clerkinc/javascript",
+    "target": 8024,
+    "source": 8025,
+    "target_title": "fix(repo): disable turbo remote cache for release workflow",
+    "source_title": "fix(repo): disable turbo remote cache for release-preflight workflow",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B applies the same turbo remote cache fix from PR A to a different workflow file that was missed in the original PR, making it a necessary follow-up to complete the solution across all affected workflows."
+  },
+  "clerkinc/javascript#8015->8024": {
+    "repo": "clerkinc/javascript",
+    "target": 8015,
+    "source": 8024,
+    "target_title": "ci(repo): Re-enable Turbo remote cache for all CI jobs",
+    "source_title": "fix(repo): disable turbo remote cache for release workflow",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly fixes the 'turbo-team input is required' error introduced by PR A's credential validation, and disables remote cache for jobs that PR A's changes broke."
+  },
+  "clerkinc/javascript#7990->7991": {
+    "repo": "clerkinc/javascript",
+    "target": 7990,
+    "source": 7991,
+    "target_title": "fix(ci): Remove registry-url to fix OIDC auth",
+    "source_title": "fix(ci): Set registry for OIDC through pnpm config",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly references PR A (#7990), acknowledges that removing `.npmrc` was incomplete, and provides the missing registry configuration through an alternative method (`pnpm config`) to make the OIDC solution actually work."
+  },
+  "clerkinc/javascript#7915->7992": {
+    "repo": "clerkinc/javascript",
+    "target": 7915,
+    "source": 7992,
+    "target_title": "chore(repo): Move to trusted publishing",
+    "source_title": "fix(repo): Upgrade npm for trusted publishing",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B directly fixes a critical regression introduced by PR A: the removal of NODE_AUTH_TOKEN broke the canary release immediately, and PR B provides the specific npm upgrade needed to make OIDC-based auth work as PR A intended."
+  },
+  "clerkinc/javascript#7899->7957": {
+    "repo": "clerkinc/javascript",
+    "target": 7899,
+    "source": 7957,
+    "target_title": "fix(js): Turnstile retry logic",
+    "source_title": "fix(clerk-js): Turnstile retry logic",
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "PR B is a port of PR A to a different package (Core 2), not a fix for problems with PR A itself."
+  },
+  "clerkinc/javascript#7875->7882": {
+    "repo": "clerkinc/javascript",
+    "target": 7875,
+    "source": 7882,
+    "target_title": "fix(clerk-js): Prevent duplicate __client_uat cookies in iframe contexts",
+    "source_title": "fix(clerk-js): Backport iframe __client_uat cookie domain fix",
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "PR B is a backport of PR A to a different branch (release/core-2), not a fix for problems introduced by PR A \u2014 they contain identical changes to the same issue."
+  },
+  "clerkinc/javascript#7857->7876": {
+    "repo": "clerkinc/javascript",
+    "target": 7857,
+    "source": 7876,
+    "target_title": "fix(nextjs): prevent infinite handshake redirect loop on Netlify",
+    "source_title": "fix(nextjs): Prevent infinite handshake redirect loop on Netlify (#7857)",
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "PR B is explicitly described as a 'cherry-pick' of PR A to a different branch/location, not a fix for problems introduced by PR A."
+  },
+  "clerkinc/javascript#7846->7864": {
+    "repo": "clerkinc/javascript",
+    "target": 7846,
+    "source": 7864,
+    "target_title": "fix(clerk-js): Set SameSite=None on cookies for .replit.dev origins",
+    "source_title": "fix(clerk-js): Set SameSite=None on cookies for .replit.dev origins (core 2)",
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "PR B is a cherry-pick of PR A into a different branch (release/core-2), not a fix or rework of PR A itself."
+  },
+  "clerkinc/javascript#7774->7788": {
+    "repo": "clerkinc/javascript",
+    "target": 7774,
+    "source": 7788,
+    "target_title": "fix(ui): prevent infinite spinner on factor-two without active 2FA session",
+    "source_title": "fix(ui): redirect signed-in users forward from factor-two",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly references PR A (#7774) as a follow-up, addresses an incomplete edge case (signed-in users) that PR A's fix didn't handle, and was authored by the same person 7 days later in the same feature area."
+  },
+  "clerkinc/javascript#7775->7818": {
+    "repo": "clerkinc/javascript",
+    "target": 7775,
+    "source": 7818,
+    "target_title": "fix(clerk-js): Remove beforeunload event listener from SafeLock",
+    "source_title": "fix(clerk-js): Remove beforeunload event listener from SafeLock (#7775)",
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "PR B is an independent implementation of the same fix for a different codebase version (Core 2), not a rework correcting problems introduced by PR A."
+  },
+  "clerkinc/javascript#7664->7802": {
+    "repo": "clerkinc/javascript",
+    "target": 7664,
+    "source": 7802,
+    "target_title": "feat(ui): Add unified ui prop with RSC support via conditional exports",
+    "source_title": "fix(clerk-js): Restore backwards compat for legacy clerkUICtor option",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly restores backwards compatibility that PR A removed, fixing a regression where legacy `clerkUICtor` options broke downstream consumers like the dashboard."
+  },
+  "clerkinc/javascript#7136->7702": {
+    "repo": "clerkinc/javascript",
+    "target": 7136,
+    "source": 7702,
+    "target_title": "fix(backend): correct `createInvitationBulk` return type to `Promise<\u2026",
+    "source_title": "fix(backend): correct `createInvitationBulk` return type to `Promise<Invitation[]>`",
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "PR B is a backport of PR A to a different branch (`release/core-2`), not a fix for problems with PR A itself."
+  },
+  "clerkinc/javascript#7657->7660": {
+    "repo": "clerkinc/javascript",
+    "target": 7657,
+    "source": 7660,
+    "target_title": "fix(clerk-js): Pass `unsafeMetadata` with sign up `ticket` flows",
+    "source_title": "fix(ui): Handle `unsafeMetadata` in `ticket` flows",
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "PR B is a port of the same fix to a different package/repository layer (Core 2 \u2192 UI layer), not a rework caused by PR A failing; they are parallel implementations of the same bug fix in different codebases."
+  },
+  "clerkinc/javascript#7621->7625": {
+    "repo": "clerkinc/javascript",
+    "target": 7621,
+    "source": 7625,
+    "target_title": "fix(shared): prevent prototype pollution in deep merge utilities",
+    "source_title": "fix(shared): prevent prototype pollution in deep merge utilities (backport #7621)",
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "PR B is a backport of PR A to a different branch (release/core-2), not a fix for issues caused by PR A \u2014 they implement identical changes on separate release tracks."
+  },
+  "clerkinc/javascript#7568->7639": {
+    "repo": "clerkinc/javascript",
+    "target": 7568,
+    "source": 7639,
+    "target_title": "feat(shared): Remove SWR",
+    "source_title": "fix(shared): Remove billingEnabled gate from useStripeClerkLibs",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B directly fixes a regression introduced in PR A (SWR removal): an inadvertently added `billingEnabled` gate that broke Stripe SDK loading, which the original SWR implementation didn't have."
+  },
+  "clerkinc/javascript#7588->7589": {
+    "repo": "clerkinc/javascript",
+    "target": 7588,
+    "source": 7589,
+    "target_title": "fix(react): Prevent props from leaking to child elements in `SignUpButton` & `SignInButton`",
+    "source_title": "fix(clerk-react): Prevent props from leaking to child elements in SignUpButton & SignInButton",
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "PR B is an independent port of the same fix to a different codebase (Core 2), explicitly stated as 'Core 2 port of #7588', not a fix for problems introduced by PR A."
+  },
+  "clerkinc/javascript#7529->7614": {
+    "repo": "clerkinc/javascript",
+    "target": 7529,
+    "source": 7614,
+    "target_title": "fix(ui): add clerk dependency to redirect effect hooks",
+    "source_title": "fix(clerk-js): Add clerk dependency to redirect effect hooks",
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "PR B is a backport to a different release branch (release/core-2), not a fix for PR A's incomplete work on the main branch."
+  },
+  "clerkinc/javascript#7512->7513": {
+    "repo": "clerkinc/javascript",
+    "target": 7512,
+    "source": 7513,
+    "target_title": "fix(repo): Use ~ instead of ^ for react peers",
+    "source_title": "fix(repo): Use ~ instead of ^ for react peers (#7512)",
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "PR B is a cherry-pick of the same commit to a different branch (Core-2), not a fix for issues in PR A\u2014both PRs implement the identical change in parallel codelines."
+  },
+  "clerkinc/javascript#7489->7511": {
+    "repo": "clerkinc/javascript",
+    "target": 7489,
+    "source": 7511,
+    "target_title": "fix(clerk-js): Update error handling and adjust Web3WalletMenu logic with verification status",
+    "source_title": "fix(clerk-js): Update error handling, Web3WalletMenu checks verification status, port from core 2",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly states it 'ports over #7489' (PR A) into core 3, same author, same feature (Web3 wallet verification status handling), one day apart, with identical bug fix scope."
+  },
+  "clerkinc/javascript#7450->7500": {
+    "repo": "clerkinc/javascript",
+    "target": 7450,
+    "source": 7500,
+    "target_title": "feat(clerk-js,react,localizations,shared,ui): Add Solana feature support to core 3",
+    "source_title": "fix(clerk-js): Implement fixes from core-3 merge of Solana feature",
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "PR B is a forward-port of fixes from Core 3 back to Core 2 (opposite direction from PR A), not a fix of PR A itself\u2014they are parallel maintenance work on different branches."
+  },
+  "clerkinc/javascript#7443->7459": {
+    "repo": "clerkinc/javascript",
+    "target": 7443,
+    "source": 7459,
+    "target_title": "fix(ui): Await the navigation on password submit",
+    "source_title": "fix(clerk-js): Await the navigation on password sign-in completion",
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "PR B is a port of PR A to a different package/codebase (Core 2), not a fix for PR A's incompleteness or breakage."
+  },
+  "clerkinc/javascript#7329->7340": {
+    "repo": "clerkinc/javascript",
+    "target": 7329,
+    "source": 7340,
+    "target_title": "fix(clerk-js): Remove the hydrate cache change for session",
+    "source_title": "fix(clerk-js): Remove the hydrate cache change for session (#7329)",
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "Both PRs have identical titles and appear to be the same fix applied to different branches/codebases (PR A is the original, PR B is explicitly a 'Port of' PR A), not a rework of PR A."
+  },
+  "clerkinc/javascript#7270->7344": {
+    "repo": "clerkinc/javascript",
+    "target": 7270,
+    "source": 7344,
+    "target_title": "chore(clerk-js, shared): Remove SWR from clerk-js and create variants for existing internal hooks",
+    "source_title": "fix(shared): Explicitly pass subject parameter to API keys fetcher hook",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly fixes a bug introduced in PR A (#7270) where the `subject` parameter was not being passed to the API keys fetcher during the hook migration to @clerk/shared, causing incorrect data to load in UserProfile."
+  },
+  "continuedev/continue#10958->10961": {
+    "repo": "continuedev/continue",
+    "target": 10958,
+    "source": 10961,
+    "target_title": "Fix npm OIDC publish by removing setup-node registry config",
+    "source_title": "Fix npm OIDC publish: restore registry-url, clear token, use Node 22",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly references PR A (#10958) as causing the problem it fixes\u2014PR A's removal of `registry-url` caused `ENEEDAUTH` errors, and PR B restores it with a corrected approach (clearing the token instead), making this a direct follow-up correction of an incomplete solution."
+  },
+  "continuedev/continue#9425->9427": {
+    "repo": "continuedev/continue",
+    "target": 9425,
+    "source": 9427,
+    "target_title": "fix: use env vars for safe string handling in continue-agents workflow",
+    "source_title": "fix: use env vars in Write job summary step for safe string handling",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly fixes a remaining failure in the same workflow that PR A partially addressed\u2014PR A fixed the 'Update Check Run' step but missed the 'Write job summary' step which was still failing with backticks, requiring the same environment variable + safe string handling pattern to be applied."
+  },
+  "continuedev/continue#9679->9740": {
+    "repo": "continuedev/continue",
+    "target": 9679,
+    "source": 9740,
+    "target_title": "fix: use ide.runCommand when Windows host connects to WSL",
+    "source_title": "fix: skip cmd.exe wrapping for MCP servers when Windows host connects to WSL",
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "PR B is a separate, independent bug fix that addresses a different problem (MCP server cmd.exe wrapping) in a different code path (resolveCommandForPlatform), not a correction or completion of PR A's terminal spawn fix."
+  },
+  "continuedev/continue#9325->9679": {
+    "repo": "continuedev/continue",
+    "target": 9325,
+    "source": 9679,
+    "target_title": "fix: handle non-file URI schemes in runTerminalCommand for WSL2",
+    "source_title": "fix: use ide.runCommand when Windows host connects to WSL",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B fixes a regression introduced by PR A: PR A's try-catch fallback to HOME directory doesn't handle the Windows+WSL scenario where the host process can't spawn powershell.exe in WSL context, requiring PR B's additional detection logic to route through ide.runCommand instead."
+  },
+  "continuedev/continue#8684->8779": {
+    "repo": "continuedev/continue",
+    "target": 8684,
+    "source": 8779,
+    "target_title": "openai-adapters: allow overriding authorization header",
+    "source_title": "fix(openai-adapters): extend auth header override to support x-api-key",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly extends PR A's auth header override logic to handle `x-api-key` in addition to `Authorization`, fixing the same root cause (duplicate auth headers) for a different header type that PR A missed."
+  },
+  "denoland/deno#32582->32593": {
+    "repo": "denoland/deno",
+    "target": 32582,
+    "source": 32593,
+    "target_title": "refactor(napi): replace external napi-sys with in-tree napi_sys crate",
+    "source_title": "fix(napi): remove unimplemented Node-API symbols from napi_sys",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B directly removes 4 symbols that PR A added but were never actually implemented, fixing CI failures caused by PR A's incomplete implementation."
+  },
+  "denoland/deno#32267->32409": {
+    "repo": "denoland/deno",
+    "target": 32267,
+    "source": 32409,
+    "target_title": "fix(ext/node): support Ed25519, X25519, and P-521 keys in X509Certificate.publicKey",
+    "source_title": "fix(ext/node): implement KeyObject.equals, fix createCipheriv with KeyObject/null IV",
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "PR B is an independent feature addition (KeyObject.equals and createCipheriv fixes) that happens to build on PR A's foundation, not a fix for problems PR A left unsolved."
+  },
+  "dotnet/aspire#14422->14497": {
+    "repo": "dotnet/aspire",
+    "target": 14422,
+    "source": 14497,
+    "target_title": "Fix Spectre markup escaping bugs across CLI commands",
+    "source_title": "Fix Spectre markup rendering in CLI selection prompts",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B directly reverts part of PR A's fix because it introduced a regression \u2014 the blanket escaping in ConsoleInteractionService broke intentional markup formatting \u2014 and PR B moves the escaping to caller sites instead, which is the correct solution."
+  },
+  "dotnet/aspire#14811->14868": {
+    "repo": "dotnet/aspire",
+    "target": 14811,
+    "source": 14868,
+    "target_title": "Remove the dotnetSdkInstallationEnabled feature flag",
+    "source_title": "Fix flaky E2E test: retry MSBuild evaluation on empty output",
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "PR B is an independent bug fix for a flaky E2E test caused by MSBuild server contention, unrelated to PR A's feature flag removal and SDK installer simplification."
+  },
+  "envoyproxy/envoy#43400->43646": {
+    "repo": "envoyproxy/envoy",
+    "target": 43400,
+    "source": 43646,
+    "target_title": "Add configuration for MCP JSON Rest bridge filter",
+    "source_title": "Fix fuzz test failure introduced by #43400",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly references PR #43400 (which is PR A based on timeline) in its title as introducing a fuzz test failure that needs fixing, establishing a direct causal relationship."
+  },
+  "grafana/grafana#116549->116604": {
+    "repo": "grafana/grafana",
+    "target": 116549,
+    "source": 116604,
+    "target_title": "Bugfix: Let API accept content-type declared in OpenAPI schema",
+    "source_title": "Bugfix: Let API accept content-type declared in OpenAPI schema (#116549)",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "Same author, identical title, submitted one day apart with empty body suggests PR B is a corrected resubmission or completion of PR A."
+  },
+  "huggingface/transformers#44549->44624": {
+    "repo": "huggingface/transformers",
+    "target": 44549,
+    "source": 44624,
+    "target_title": "Fix wrong (non-existing) checkpoints",
+    "source_title": "Fix more wrong HF hub checkpoint names",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly states 'Follow-up of #44549' (PR A), same author fixing checkpoint names one day later, indicating PR A's fix was incomplete."
+  },
+  "kubernetes/kubernetes#136046->136229": {
+    "repo": "kubernetes/kubernetes",
+    "target": 136046,
+    "source": 136229,
+    "target_title": "fix(controller/storageversionmigrator) Reduce log level",
+    "source_title": "fix(apiserver): convert V().Error() to V().Info()",
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "PR A and PR B address the same underlying issue (klog verbosity problem) but in different files/functions (storageversionmigrator vs apiserver delete handler), making them independent fixes for the same systematic problem across the codebase, not rework of each other."
+  },
+  "langchain-ai/langchain#35598->35603": {
+    "repo": "langchain-ai/langchain",
+    "target": 35598,
+    "source": 35603,
+    "target_title": "fix(langchain-classic): patch ReDoS vulnerability in MRKL and ReAct action regex (CVE-2024-58340)",
+    "source_title": "fix(langchain): backport patch ReDoS vulnerability in MRKL and ReAct action regex (CVE-2024-58340)",
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "PR B is a backport to a different branch (v0.3), not a fix for issues in PR A\u2014they apply the same patch to different codebases and are part of coordinated release management, not rework."
+  },
+  "langchain-ai/langchain#35317->35319": {
+    "repo": "langchain-ai/langchain",
+    "target": 35317,
+    "source": 35319,
+    "target_title": "fix(core): accept integer temperature values in _get_ls_params",
+    "source_title": "revert: accept integer temperature values in _get_ls_params",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly reverts PR A (langchain#35317) with a clear revert commit message, making this definitional rework regardless of whether PR A's approach was correct."
+  },
+  "langchain-ai/langchain#35238->35270": {
+    "repo": "langchain-ai/langchain",
+    "target": 35238,
+    "source": 35270,
+    "target_title": "fix(mistralai): update exception retry logic in embeddings",
+    "source_title": "fix(mistralai): update test",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly updates a test to reflect the retry logic change introduced in PR A (no longer retrying on 400 errors), indicating PR A's implementation required test corrections that were missed in the original PR."
+  },
+  "langchain-ai/langchain#35012->35013": {
+    "repo": "langchain-ai/langchain",
+    "target": 35012,
+    "source": 35013,
+    "target_title": "chore: add typing target in `Makefile`",
+    "source_title": "revert: \"chore: add typing target in `Makefile`\"",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly reverts PR A by title and references PR A's commit number in the revert message, making this a direct correction of the prior change."
+  },
+  "langchain-ai/langchain#35001->35002": {
+    "repo": "langchain-ai/langchain",
+    "target": 35001,
+    "source": 35002,
+    "target_title": "fix(langchain): use usage metadata scaling in SummarizationMiddleware default token counter",
+    "source_title": "revert: use usage metadata scaling in SummarizationMiddleware default token counter",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly reverts PR A (titled 'revert' and references PR #35001), identifying a critical bug where PR A's token counting approach caused incorrect scale factors that broke the summarization logic."
+  },
+  "langchain-ai/langchain#34980->34997": {
+    "repo": "langchain-ai/langchain",
+    "target": 34980,
+    "source": 34997,
+    "target_title": "chore: enrich `pyproject.toml` files",
+    "source_title": "fix(chroma): remove Python 3.14 classifier until Chroma supports it",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly fixes a mistake introduced in PR A (#34980) by removing an incorrectly added Python 3.14 classifier from the same file that PR A modified."
+  },
+  "langchain-ai/langchain#34127->34162": {
+    "repo": "langchain-ai/langchain",
+    "target": 34127,
+    "source": 34162,
+    "target_title": "fix(model-profiles): update docs link",
+    "source_title": "revert(model-profiles): update docs link",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly reverts PR A (title says 'revert', body references PR A's number #34127), indicating PR A's changes were problematic and needed to be undone."
+  },
+  "langchain-ai/langchain#34327->34329": {
+    "repo": "langchain-ai/langchain",
+    "target": 34327,
+    "source": 34329,
+    "target_title": "chore(infra,openai): make integration tests output verbose",
+    "source_title": "revert: make integration tests output verbose",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly reverts PR A (same author, same day, title says 'revert' and body references the exact PR #34327 that A modified)."
+  },
+  "langchain-ai/langchain#34336->34394": {
+    "repo": "langchain-ai/langchain",
+    "target": 34336,
+    "source": 34394,
+    "target_title": "test(openai): switch model from nano to mini when using flex",
+    "source_title": "revert(openai): switch model from nano to mini when using flex",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly reverts PR A (title says 'revert', body references PR #34336 which is PR A), same author, 4 days later, addressing the server errors that PR A introduced."
+  },
+  "langchain-ai/langchain#34397->34428": {
+    "repo": "langchain-ai/langchain",
+    "target": 34397,
+    "source": 34428,
+    "target_title": "feat(infra): add CI check for out of date lockfiles",
+    "source_title": "revert(infra): temp disable lockfile CI check",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly reverts PR A (same author, 2 days later, title says 'revert', and body references issue #34397 suggesting the CI check caused problems that required immediate rollback)."
+  },
+  "mendableai/firecrawl#2902->2914": {
+    "repo": "mendableai/firecrawl",
+    "target": 2902,
+    "source": 2914,
+    "target_title": "fix(sdk): add missing deduplicateSimilarURLs param to JS and Python SDKs",
+    "source_title": "fix(sdk): add missing deduplicate_similar_urls to v2 Python client crawl/start_crawl signatures",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B directly addresses an incomplete implementation in PR A: PR A added the parameter to type definitions and serialization but missed exposing it in the user-facing method signatures, causing TypeErrors when users tried to pass the parameter."
+  },
+  "mendableai/firecrawl#2845->2847": {
+    "repo": "mendableai/firecrawl",
+    "target": 2845,
+    "source": 2847,
+    "target_title": "feat(api): log to db async",
+    "source_title": "fix(api): add missing await to logScrape causing GCS race condition",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B directly fixes a critical regression introduced by PR A: PR A removed awaits from logScrape calls to make logging async, but PR B identifies that one call site (non-crawl success path) needed the await to prevent a race condition where GCS writes weren't completing before job completion signals, causing production errors affecting 53+ jobs daily."
+  },
+  "microsoft/vscode#291876->291894": {
+    "repo": "microsoft/vscode",
+    "target": 291876,
+    "source": 291894,
+    "target_title": "fix #290501",
+    "source_title": "fix #290501 (#291876)",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "Both PRs have identical titles and bodies referencing the same issue (#290501), same author, same date, and PR B explicitly includes the issue number in its PR number reference (#291876), indicating it's a direct follow-up correction to PR A."
+  },
+  "microsoft/vscode#291862->291886": {
+    "repo": "microsoft/vscode",
+    "target": 291862,
+    "source": 291886,
+    "target_title": "fix #291851",
+    "source_title": "fix #291851 (#291862)",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "Both PRs have identical titles and bodies referencing the same issue (#291851), same author, same date, and PR B explicitly references PR A's number in its title, indicating it's a direct follow-up correction."
+  },
+  "mlflow/mlflow#21278->21410": {
+    "repo": "mlflow/mlflow",
+    "target": 21278,
+    "source": 21410,
+    "target_title": "Fix Pydantic AI autologging: auto-enable instrumentation and fix Chat UI",
+    "source_title": "Fix Pydantic AI Chat UI rendering for InstrumentedModel LLM spans",
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "PR B is a deliberate split of PR A per review feedback to separate TypeScript changes, not a fix for incomplete or broken work in PR A."
+  },
+  "mlflow/mlflow#21411->21471": {
+    "repo": "mlflow/mlflow",
+    "target": 21411,
+    "source": 21471,
+    "target_title": "Update `actions/checkout` to v6.0.2",
+    "source_title": "Fix ONNX install_dev script broken by actions/checkout v6",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B directly fixes a regression introduced by PR A: the actions/checkout v6 upgrade broke the ONNX install_dev script by changing how credentials are stored, and PR B explicitly addresses this breakage by removing the now-incompatible extraheader authentication logic."
+  },
+  "mlflow/mlflow#20809->21105": {
+    "repo": "mlflow/mlflow",
+    "target": 20809,
+    "source": 21105,
+    "target_title": "Fix RecursionError in strands, semantic_kernel, and haystack autologgers with shared tracer provider",
+    "source_title": "Fix flush_trace_async_logging AttributeError with non-default tracer provider",
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "PR B addresses a separate bug in flush_trace_async_logging() that exists independently of PR A's recursion fix and would occur even without PR A's changes; they are distinct issues in different code paths that happen to both relate to tracer provider modes."
+  },
+  "mlflow/mlflow#20820->20823": {
+    "repo": "mlflow/mlflow",
+    "target": 20820,
+    "source": 20823,
+    "target_title": "Fix PR size workflow to auto-create missing labels",
+    "source_title": "Fix `PR_LABELS` delimiter bug in `pr-size.yml`",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B fixes a critical bug in the `PR_LABELS` delimiter handling that PR A introduced\u2014the literal `'\n'` string breaks label removal and duplicate detection, making PR A's auto-create logic unreliable."
+  },
+  "n8n-io/n8n#26848->26929": {
+    "repo": "n8n-io/n8n",
+    "target": 26848,
+    "source": 26929,
+    "target_title": "fix(core): Fix task runner hanging when connection attempt fails",
+    "source_title": "fix(core): Fix task runner hanging when connection attempt fails (backport to release-candidate/2.11",
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "PR B is a backport of PR A to a different release branch, not a fix for problems in PR A \u2014 it's the same change being applied to maintenance track, which is standard release management practice."
+  },
+  "n8n-io/n8n#26785->26813": {
+    "repo": "n8n-io/n8n",
+    "target": 26785,
+    "source": 26813,
+    "target_title": "fix(editor): Show version name instead of current changes label for named versions",
+    "source_title": "fix(editor): Show version name instead of current changes label for named versions (backport to rele",
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "PR B is a backport of PR A to a release branch, not a fix for problems in PR A \u2014 it's the same change applied to a different branch for release management purposes."
+  },
+  "n8n-io/n8n#26765->26869": {
+    "repo": "n8n-io/n8n",
+    "target": 26765,
+    "source": 26869,
+    "target_title": "fix: Fix segfault in arm64 image due to missing native addon",
+    "source_title": "fix: Fix segfault in arm64 image due to missing native addon (backport to release-candidate/2.11.x)",
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "PR B is a backport of PR A to a different release branch, not rework caused by issues with PR A \u2014 both PRs implement the identical fix for the same problem across different branches."
+  },
+  "n8n-io/n8n#26759->26875": {
+    "repo": "n8n-io/n8n",
+    "target": 26759,
+    "source": 26875,
+    "target_title": "fix(editor): Adjust chat input styling after design system update (no-changelog)",
+    "source_title": "fix(editor): Fix ChatHub chat UI layout (no-changelog)",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly states 'Follows up #26759' (PR A), identifies layout issues in the ChatHub UI that resulted from PR A's styling changes, and addresses visual regressions (uncentered message, border cutoff) introduced by the previous PR."
+  },
+  "n8n-io/n8n#26672->26745": {
+    "repo": "n8n-io/n8n",
+    "target": 26672,
+    "source": 26745,
+    "target_title": "fix: Rebuild isolated-vm in Dockerfile",
+    "source_title": "fix: Remove isolated-vm from Dockerfile npm rebuild",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly reverts the Dockerfile change from PR A (#26672), identifying that PR A's fix only passed CI due to layer caching and actually breaks builds from scratch due to missing Python and unavailable prebuilt binaries for Node 24 on Alpine Linux."
+  },
+  "n8n-io/n8n#26628->26823": {
+    "repo": "n8n-io/n8n",
+    "target": 26628,
+    "source": 26823,
+    "target_title": "fix(core): Fix entity import failing in Kubernetes due to ZIP self-inclusion and local header size p",
+    "source_title": "fix(core): Fix entity import failing in Kubernetes due to ZIP self-inclusion and local header size p",
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "PR B is a backport of PR A to a different branch (1.x), not a fix for problems introduced by PR A\u2014it applies the same solution to an older release line."
+  },
+  "n8n-io/n8n#26623->26668": {
+    "repo": "n8n-io/n8n",
+    "target": 26623,
+    "source": 26668,
+    "target_title": "fix(Form Node): Improve custom CSS sanitization",
+    "source_title": "fix(Form Node): Improve custom CSS sanitization (backport to 1.x)",
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "PR B is a backport of PR A to a different branch (1.x), not a fix for problems introduced by PR A\u2014both PRs contain identical changes addressing the same security issue."
+  },
+  "n8n-io/n8n#26558->26595": {
+    "repo": "n8n-io/n8n",
+    "target": 26558,
+    "source": 26595,
+    "target_title": "fix(ai-builder): Don't use autoGenerate for UUID columns for WFB persistence migration",
+    "source_title": "fix(ai-builder): Don't use autoGenerate for UUID columns for WFB persistence migration (backport to ",
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "PR B is an automated backport of PR A to a release branch, not a fix for problems introduced by PR A."
+  },
+  "n8n-io/n8n#26552->26619": {
+    "repo": "n8n-io/n8n",
+    "target": 26552,
+    "source": 26619,
+    "target_title": "fix: Fix credential resolver RBAC for member users",
+    "source_title": "fix: Fix credential resolver RBAC for member users (backport to release-candidate/2.11.x)",
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "PR B is a backport of PR A to a release branch, not a fix for incomplete or broken work in PR A."
+  },
+  "n8n-io/n8n#26540->26656": {
+    "repo": "n8n-io/n8n",
+    "target": 26540,
+    "source": 26656,
+    "target_title": "fix(Form Node): Improve form rendering consistency",
+    "source_title": "fix(Form Node): Improve form rendering consistency (backport to 1.x)",
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "PR B is a backport of PR A to a different branch (1.x), not a fix for incomplete or broken work in PR A."
+  },
+  "n8n-io/n8n#26527->26594": {
+    "repo": "n8n-io/n8n",
+    "target": 26527,
+    "source": 26594,
+    "target_title": "fix(editor): Remove light-dark and use mixin (no-changelog)",
+    "source_title": "fix(editor): Remove light-dark and use mixin (no-changelog) (backport to release-candidate/2.11.x)",
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "PR B is a backport of PR A to a different branch (release-candidate/2.11.x), not a fix for issues caused by PR A\u2014they are the same change applied to different codebases."
+  },
+  "n8n-io/n8n#26492->26591": {
+    "repo": "n8n-io/n8n",
+    "target": 26492,
+    "source": 26591,
+    "target_title": "fix: Log streaming config works with proxy",
+    "source_title": "fix: Log streaming config works with proxy (backport to release-candidate/2.10.x)",
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "PR B is an automated backport of PR A to a release branch, not rework\u2014it's the same fix being applied to multiple release lines per standard versioning practice."
+  },
+  "n8n-io/n8n#26411->26762": {
+    "repo": "n8n-io/n8n",
+    "target": 26411,
+    "source": 26762,
+    "target_title": "fix(editor): Reduce fixed collection add button sizes",
+    "source_title": "fix(editor): Reduce fixed collection add button sizes (backport to release-candidate/2.11.x)",
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "PR B is a backport of PR A to a release branch, not a fix for problems caused by PR A \u2014 it's the same change applied to a different branch for release management purposes."
+  },
+  "n8n-io/n8n#24517->26898": {
+    "repo": "n8n-io/n8n",
+    "target": 24517,
+    "source": 26898,
+    "target_title": "fix: Task Runner Initialize NODE_PATH for external npm packages",
+    "source_title": "fix(core): Preserve NODE_PATH for globally installed npm packages in Docker",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B directly addresses a critical flaw in PR A's approach: PR A added `_initPaths()` to the task runner, but PR B reveals that `load-nodes-and-credentials.ts` was simultaneously clobbering `NODE_PATH`, making PR A's fix ineffective for Docker-based global packages. PR B fixes the root cause that PR A's solution couldn't overcome."
+  },
+  "nats-io/nats-server#7595->7601": {
+    "repo": "nats-io/nats-server",
+    "target": 7595,
+    "source": 7601,
+    "target_title": "Filestore message remove I/O before accounting",
+    "source_title": "Fix subject tracking with filestore secure erase",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly states it fixes a regression introduced by PR A (#7595), addresses a missed case in subject tracking during secure erase that PR A's refactoring broke."
+  },
+  "novuhq/novu#10063->10064": {
+    "repo": "novuhq/novu",
+    "target": 10063,
+    "source": 10064,
+    "target_title": "fix(api-service): Environment ID organization check",
+    "source_title": "fix(api-service): Workflow sync environment check",
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "PR B is an independent security enhancement applying the same validation pattern to a different endpoint (workflow sync), not a fix for incompleteness or breakage in PR A."
+  },
+  "novuhq/novu#9854->9868": {
+    "repo": "novuhq/novu",
+    "target": 9854,
+    "source": 9868,
+    "target_title": "refactor(dashboard): Usage page charts fetching batch",
+    "source_title": "fix(dashboard): Workflow runs loading state usage page",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B directly addresses an incomplete implementation in PR A: PR A split chart fetching into multiple queries but failed to implement granular loading states, causing all charts to wait for all queries; PR B fixes this by adding distinct loading states per query."
+  },
+  "novuhq/novu#9280->9283": {
+    "repo": "novuhq/novu",
+    "target": 9280,
+    "source": 9283,
+    "target_title": "fix(api): liquid digest step variable parsing fixes NV-6757",
+    "source_title": "fix(api): liquid digest step variable parsing fixes NV-6757 (#9280)",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "Identical titles and ticket number (NV-6757), same author, same day, with PR B including a PR number (#9280) suggests PR A was incomplete/rejected and PR B is the corrected version merged to main."
+  },
+  "oven-sh/bun#26819->26822": {
+    "repo": "oven-sh/bun",
+    "target": 26819,
+    "source": 26822,
+    "target_title": "perf(buffer): move Buffer.slice/subarray to native C++ with int32 fast path",
+    "source_title": "fix(buffer): return fixed-length view from slice on resizable ArrayBuffer",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly states it's a follow-up to PR A (#26819), fixes a missed edge case (resizable/growable ArrayBuffer handling) that PR A's implementation didn't handle correctly, and was filed the same day with the same author in the same feature area."
+  },
+  "oven-sh/bun#26011->26064": {
+    "repo": "oven-sh/bun",
+    "target": 26011,
+    "source": 26064,
+    "target_title": "fix(Bun.SQL): handle binary columns in MySQL correctly",
+    "source_title": "fix(sql): MySQL VARCHAR with binary collations returns string instead of Buffer",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B directly addresses a regression introduced by PR A: PR A's binary column detection was too broad (checking only BINARY flag), causing VARCHAR/CHAR/TEXT with binary collations to incorrectly return Buffers instead of strings, which PR B fixes by adding a character_set check."
+  },
+  "oven-sh/bun#25846->25965": {
+    "repo": "oven-sh/bun",
+    "target": 25846,
+    "source": 25965,
+    "target_title": "fix(fetch): fix ReadableStream memory leak when using stream body",
+    "source_title": "fix(http): fix Strong reference leak in server response streaming",
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "PR B fixes a completely different memory leak in a different code path (server response streaming in RequestContext) unrelated to PR A's fetch ReadableStream body leak, despite being by the same author in the same general memory-leak area."
+  },
+  "oven-sh/bun#24910->25257": {
+    "repo": "oven-sh/bun",
+    "target": 24910,
+    "source": 25257,
+    "target_title": "remove `jsc.createCallback`",
+    "source_title": "fix(ffi): restore CString constructor functionality",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly identifies PR A (#24910) as the root cause of a regression it fixes\u2014the removal of `jsc.createCallback` broke constructor functionality for CString, which PR B restores by passing the function as both implementation and constructor callback."
+  },
+  "prometheus/prometheus#17631->17731": {
+    "repo": "prometheus/prometheus",
+    "target": 17631,
+    "source": 17731,
+    "target_title": "refactor(scrape)[PART2]: simplified scrapeLoop constructors & tests; add teststorage.Appendable mock",
+    "source_title": "fix(scrape): use HonorLabels instead of HonorTimestamps in newScrapeLoop",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly fixes a wiring bug introduced in PR A's refactor where HonorTimestamps was incorrectly passed instead of HonorLabels to mutateSampleLabels, causing user-facing configuration to be ignored."
+  },
+  "prometheus/prometheus#17138->17527": {
+    "repo": "prometheus/prometheus",
+    "target": 17138,
+    "source": 17527,
+    "target_title": "feat(metrics): add config label to refresh metrics",
+    "source_title": "fix(discovery): aws discovery test fix",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly states it fixes a problem introduced by PR A (#17138), with concrete compilation errors showing PR A's signature changes to NewEC2Discovery and NewLightsailDiscovery weren't applied consistently across the codebase."
+  },
+  "promptfoo/promptfoo#7979->8034": {
+    "repo": "promptfoo/promptfoo",
+    "target": 7979,
+    "source": 8034,
+    "target_title": "feat: handle email_verification_required in redteam prechecks (ENG-1531)",
+    "source_title": "fix(ci): skip email verification API call in CI environments",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly fixes a regression introduced by PR A (#7979): PR A added email_verification_required handling that broke CI by calling the production API with a placeholder email, and PR B adds CI guards to prevent this failure."
+  },
+  "promptfoo/promptfoo#7985->7986": {
+    "repo": "promptfoo/promptfoo",
+    "target": 7985,
+    "source": 7986,
+    "target_title": "feat(eval): add promptfoo-evals agent skill for Claude Code and Codex",
+    "source_title": "fix(skill): correct plugin structure, transform syntax, and provider format",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly states it's a follow-up to PR A (#7985) fixing correctness issues found in post-merge review: incorrect plugin structure, wrong transform syntax, invalid provider format, and version drift \u2014 all functional problems with the skill that PR A introduced."
+  },
+  "promptfoo/promptfoo#7790->7821": {
+    "repo": "promptfoo/promptfoo",
+    "target": 7790,
+    "source": 7821,
+    "target_title": "feat(providers): expose tool calls in Claude Agent SDK response metadata",
+    "source_title": "fix(providers): improve Claude Agent SDK tool call tracking",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly references PR A (#7790) as a follow-up, fixes incomplete API design (missing export), normalizes inconsistent data shapes, and corrects a code quality issue (loose equality) all within 2 days of the original feature."
+  },
+  "promptfoo/promptfoo#7678->8012": {
+    "repo": "promptfoo/promptfoo",
+    "target": 7678,
+    "source": 8012,
+    "target_title": "fix(webui): render inline base64 images from markdown syntax",
+    "source_title": "fix(app): deduplicate image outputs in eval cell",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly states 'Follow-up to #7678' (PR A), addresses a duplicate image rendering issue that PR A's markdown image extraction created, and filters out redundant images from the same feature area within 2 weeks."
+  },
+  "promptfoo/promptfoo#7506->7543": {
+    "repo": "promptfoo/promptfoo",
+    "target": 7506,
+    "source": 7543,
+    "target_title": "feat(providers): add Claude Opus 4.6 support across all platforms",
+    "source_title": "fix(providers): add missing Claude Opus 4.6 entries for Bedrock, Vertex, and OpenRouter",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly states 'Follow-up to #7506' and fills in gaps where Claude Opus 4.6 was missing from UI selectors, docs, and examples that PR A did not fully cover across all platforms."
+  },
+  "promptfoo/promptfoo#7492->7615": {
+    "repo": "promptfoo/promptfoo",
+    "target": 7492,
+    "source": 7615,
+    "target_title": "fix(redteam): include specific policy IDs in severity map",
+    "source_title": "fix(redteam): fix severity card counts for custom policy vulnerabilities",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly states it 'Follows up on #7492' (PR A), fixing the severity *counting* that PR A's severity *map* fix missed\u2014a clear case of incomplete work requiring follow-up correction."
+  },
+  "promptfoo/promptfoo#7387->7475": {
+    "repo": "promptfoo/promptfoo",
+    "target": 7387,
+    "source": 7475,
+    "target_title": "fix(app): show all table rows when printing instead of just current page",
+    "source_title": "fix(app): move rows useMemo after table declaration to fix build",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B directly fixes a TypeScript compilation error and runtime failure introduced by PR A's code changes, explicitly referencing PR #7387 and addressing the broken variable declaration order and missing jsdom guard."
+  },
+  "promptfoo/promptfoo#7345->7474": {
+    "repo": "promptfoo/promptfoo",
+    "target": 7345,
+    "source": 7474,
+    "target_title": "test: remove flaky timing assertion from python integration test",
+    "source_title": "fix(deps): override lodash-es to 4.17.23 to resolve prototype pollution",
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "PR B is an independent security dependency update (lodash-es prototype pollution CVE) completely unrelated to PR A's test flakiness fix; they address different problems in different areas."
+  },
+  "promptfoo/promptfoo#7222->7232": {
+    "repo": "promptfoo/promptfoo",
+    "target": 7222,
+    "source": 7232,
+    "target_title": "feat(redteam): add early CLI error for missing sharp dependency",
+    "source_title": "fix(redteam): make sharp availability tests deterministic",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B directly fixes CI failures introduced by PR A's tests, which were environment-dependent and flaky due to missing mocking infrastructure that PR B adds."
+  },
+  "promptfoo/promptfoo#7186->7192": {
+    "repo": "promptfoo/promptfoo",
+    "target": 7186,
+    "source": 7192,
+    "target_title": "fix(webui): prevent form submission during ime composition",
+    "source_title": "fix(ci): use gh pr diff for full reviews to avoid false positives",
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "PR B is a CI/bot infrastructure fix unrelated to PR A's IME composition handling\u2014they address completely different problems (code review bot false positives vs form submission during IME) and only coincidentally interact because the bot was checking code from PR A."
+  },
+  "promptfoo/promptfoo#7030->7080": {
+    "repo": "promptfoo/promptfoo",
+    "target": 7030,
+    "source": 7080,
+    "target_title": "feat(redteam): add numTests config option for strategy test capping",
+    "source_title": "fix(redteam): apply strategy numTests as pre-generation limit",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly states it's a follow-up fix to PR A (#7030), identifies a performance problem with the post-generation approach, and changes the implementation strategy from post-cap to pre-limit to address wasted computation on expensive strategies."
+  },
+  "promptfoo/promptfoo#7001->7003": {
+    "repo": "promptfoo/promptfoo",
+    "target": 7001,
+    "source": 7003,
+    "target_title": "fix(mcp): fix stdio server lifecycle and shutdown",
+    "source_title": "fix(mcp): fix stdio server lifecycle and shutdown",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly supersedes PR A (#7001) with the same fix scope but additional improvements (double-shutdown prevention, client disconnect handling, dead code removal, telemetry consistency), indicating PR A was incomplete."
+  },
+  "promptfoo/promptfoo#6963->6985": {
+    "repo": "promptfoo/promptfoo",
+    "target": 6963,
+    "source": 6985,
+    "target_title": "ci(docker): add build attestation to multi-arch workflow",
+    "source_title": "fix(ci): add missing permissions for docker attestation workflow call",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B directly fixes a startup failure introduced by PR A's attestation job, which lacked required permissions in the reusable workflow caller (release-please.yml), making this a clear follow-up correction to incomplete work."
+  },
+  "promptfoo/promptfoo#6960->6975": {
+    "repo": "promptfoo/promptfoo",
+    "target": 6960,
+    "source": 6975,
+    "target_title": "fix(providers): await finalizeResponse to prevent race condition",
+    "source_title": "fix(providers): prevent race condition in Google Live finalizeResponse",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B directly addresses a race condition that PR A's await-based fix did not fully prevent\u2014PR A fixed async leaks between tests, but PR B adds an idempotency guard to prevent duplicate `finalizeResponse()` calls from multiple concurrent code paths, which was the actual root cause of the flakiness."
+  },
+  "promptfoo/promptfoo#6930->6944": {
+    "repo": "promptfoo/promptfoo",
+    "target": 6930,
+    "source": 6944,
+    "target_title": "fix(providers): skip delay on cache hit in Bedrock Converse provider",
+    "source_title": "fix(providers): set cached flag on cache hits across 10 providers",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B is a systematic audit that discovered PR A's fix was incomplete \u2014 the same `cached: true` bug existed in 10 additional providers, making this a direct follow-up correction of the underlying issue PR A partially addressed."
+  },
+  "promptfoo/promptfoo#6812->6818": {
+    "repo": "promptfoo/promptfoo",
+    "target": 6812,
+    "source": 6818,
+    "target_title": "fix(redteam): use XML format for MCP tool call generation to reduce error rate",
+    "source_title": "revert(redteam): use XML format for MCP tool call generation",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B is an explicit revert of PR A by the same author one day later, directly stated in the title and body as reverting the exact commit from PR A."
+  },
+  "promptfoo/promptfoo#6738->6744": {
+    "repo": "promptfoo/promptfoo",
+    "target": 6738,
+    "source": 6744,
+    "target_title": "feat(bedrock): configurable numberOfResults for Bedrock Knowledge Base",
+    "source_title": "fix(bedrock): improve Knowledge Base provider backwards compatibility",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly corrects PR A's backwards compatibility issue by conditionally sending retrievalConfiguration only when numberOfResults is explicitly configured, directly addressing an API behavior change that PR A introduced."
+  },
+  "promptfoo/promptfoo#6626->6647": {
+    "repo": "promptfoo/promptfoo",
+    "target": 6626,
+    "source": 6647,
+    "target_title": "fix(redteam): prevent infinite loop in Plugins page when selecting presets",
+    "source_title": "fix(redteam): fix infinite loop in updatePlugins by comparing output vs state",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly identifies PR A's fix as a workaround, moves the solution to the root cause location, removes PR A's normalization logic, and was authored by the same developer on the same day addressing the same infinite loop bug."
+  },
+  "promptfoo/promptfoo#6554->6588": {
+    "repo": "promptfoo/promptfoo",
+    "target": 6554,
+    "source": 6588,
+    "target_title": "fix(assertions): allow Nunjucks templates in JSON rubricPrompt files",
+    "source_title": "fix(build): exclude Nunjucks template fixture from TypeScript",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B fixes a build failure (npm run tsc) that PR A directly caused by adding a test fixture with intentional Nunjucks syntax that TypeScript couldn't parse, which PR A's tsconfig.json configuration missed."
+  },
+  "promptfoo/promptfoo#6483->6512": {
+    "repo": "promptfoo/promptfoo",
+    "target": 6483,
+    "source": 6512,
+    "target_title": "fix(ci): enforce npm version to prevent lockfile incompatibility",
+    "source_title": "fix(ci): remove packageManager to allow pnpm/yarn",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B directly addresses an unintended consequence of PR A's `packageManager` field addition by removing it while preserving the core npm version enforcement, and explicitly references PR A in its body."
+  },
+  "promptfoo/promptfoo#6511->6593": {
+    "repo": "promptfoo/promptfoo",
+    "target": 6511,
+    "source": 6593,
+    "target_title": "fix: prevent Winston logger 'write after end' error during shutdown",
+    "source_title": "fix(deps): update winston to v3.19.0 and simplify logger flush",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B directly addresses the root cause that PR A worked around: it replaces PR A's 100ms timeout workaround with a proper fix by updating Winston to v3.19.0, which fixes the underlying File transport bug that necessitated PR A's workaround in the first place."
+  },
+  "promptfoo/promptfoo#6498->6512": {
+    "repo": "promptfoo/promptfoo",
+    "target": 6498,
+    "source": 6512,
+    "target_title": "chore: pin npm version via corepack",
+    "source_title": "fix(ci): remove packageManager to allow pnpm/yarn",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly reverts PR A's `packageManager` field due to an unintended consequence (blocking alternative package managers), replacing it with an alternative enforcement mechanism that achieves the original goal without the breakage."
+  },
+  "sveltejs/svelte#17873->17884": {
+    "repo": "sveltejs/svelte",
+    "target": 17873,
+    "source": 17884,
+    "target_title": "fix: handle asnyc updates within pending boundary",
+    "source_title": "fix: set deferreds on initial suspense, too",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly states it fixes a bad merge caused by PR A (#17873) not being up to date with main, and both PRs are by the same author within 2 days targeting the same async/suspense boundary feature."
+  },
+  "sveltejs/svelte#17612->17623": {
+    "repo": "sveltejs/svelte",
+    "target": 17612,
+    "source": 17623,
+    "target_title": "fix: avoid 'node:crypto' cloudflare warnings",
+    "source_title": "fix: add vite-ignore comment inside dynamic crypto import",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly references PR A (#17612) as introducing 'console spam' that needs to be eliminated, indicating PR A's solution was incomplete and required follow-up refinement."
+  },
+  "sveltejs/svelte#17605->17604": {
+    "repo": "sveltejs/svelte",
+    "target": 17605,
+    "source": 17604,
+    "target_title": "fix: reschedule effects inside unskipped branches",
+    "source_title": "fix: avoid erroneous async derived expressions for blocks",
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "PR B addresses a completely different bug (async derived expressions in blocks) unrelated to PR A's fix (effect rescheduling in unskipped branches), despite same author and timing."
+  },
+  "sveltejs/svelte#17310->17311": {
+    "repo": "sveltejs/svelte",
+    "target": 17310,
+    "source": 17311,
+    "target_title": "fix: add `srcObject` to permitted `<audio>`/`<video>` attributes",
+    "source_title": "fix: don't issue a11y warning for video without captions if it has no `src`",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR A introduced `srcObject` support for video elements, which triggered an unwanted a11y warning; PR A's author explicitly stated in the body they would open a follow-up PR for this exact issue, and PR B does exactly that by relaxing the caption warning when `src` is absent."
+  },
+  "sveltejs/svelte#17244->17240": {
+    "repo": "sveltejs/svelte",
+    "target": 17244,
+    "source": 17240,
+    "target_title": "fix: link offscreen items and last effect in each block correctly (alternative)",
+    "source_title": "fix: link offscreen items and last effect in each block correctly",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly reverts PR A's approach (#17244), identifies a critical flaw in PR A's logic that causes items to fall out of the graph, provides a detailed test case demonstrating the failure, and implements a corrected solution."
+  },
+  "sveltejs/svelte#17163->17212": {
+    "repo": "sveltejs/svelte",
+    "target": 17163,
+    "source": 17212,
+    "target_title": "fix: don't set derived values during time traveling",
+    "source_title": "fix: store forked derived values",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly fixes a missed edge case from PR A: despite PR A's logic being designed to handle forked derived values, it still ignored this scenario in practice, requiring PR B to add a Map to properly store forked derived values."
+  },
+  "sveltejs/svelte#17147->17163": {
+    "repo": "sveltejs/svelte",
+    "target": 17147,
+    "source": 17163,
+    "target_title": "fix: ensure deferred effects can be rescheduled later on",
+    "source_title": "fix: don't set derived values during time traveling",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B directly addresses a regression introduced by PR A: PR A's fix for deferred effects caused derived values to be incorrectly updated during time traveling/forking, breaking SvelteKit preloading; PR B fixes this by preventing derived value updates in fork contexts."
+  },
+  "sveltejs/svelte#17096->17097": {
+    "repo": "sveltejs/svelte",
+    "target": 17096,
+    "source": 17097,
+    "target_title": "fix: preserve symbols when creating derived rest properties",
+    "source_title": "fix: do not spread non-enumerable symbols",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly states 'Follow up to #17096' (PR A's issue number), identifies a problem PR A missed (non-enumerable symbols being spread when they shouldn't be), and was created the day after PR A to correct the incomplete solution."
+  },
+  "sveltejs/svelte#17020->17021": {
+    "repo": "sveltejs/svelte",
+    "target": 17020,
+    "source": 17021,
+    "target_title": "fix: coordinate mount of snippets with await expressions",
+    "source_title": "fix: coordinate mount of snippets with await expressions",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly references PR A (#17020) as having 'borked up the git history', is authored by the same person one day later with identical title, mentions failing tests that need fixing, and is a corrective re-attempt of the same feature."
+  },
+  "sveltejs/svelte#16944->16947": {
+    "repo": "sveltejs/svelte",
+    "target": 16944,
+    "source": 16947,
+    "target_title": "fix: don't rerun async effects unnecessarily",
+    "source_title": "fix: ensure map iteration order is correct",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly states 'quick follow-up to #16944' (PR A), identifies an edge case in the same logic PR A introduced, and corrects the map iteration order behavior that PR A's batch-resetting logic missed."
+  },
+  "sveltejs/svelte#16935->16944": {
+    "repo": "sveltejs/svelte",
+    "target": 16935,
+    "source": 16944,
+    "target_title": "fix: unset context on stale promises",
+    "source_title": "fix: don't rerun async effects unnecessarily",
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "PR B addresses a separate bug ('derived running multiple times') that PR A explicitly acknowledged as unrelated and deferred, not a consequence of PR A's changes."
+  },
+  "temporalio/temporal#9467->9475": {
+    "repo": "temporalio/temporal",
+    "target": 9467,
+    "source": 9475,
+    "target_title": "Fix race in fairTaskReader",
+    "source_title": "Patch v1.31.0-150.6",
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "PR B is a routine patch release that includes PR A (#9467) as one of multiple PRs; it is release management, not a fix for PR A's incompleteness."
+  },
+  "temporalio/temporal#9414->9423": {
+    "repo": "temporalio/temporal",
+    "target": 9414,
+    "source": 9423,
+    "target_title": "Fix legacy query converter search attribute precedence",
+    "source_title": "Fix cherry pick compilation issues for #9414",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B's title explicitly states 'Fix cherry pick compilation issues for #9414', directly referencing PR A (which would be #9414), indicating it addresses compilation problems introduced by the original PR."
+  },
+  "temporalio/temporal#9371->9375": {
+    "repo": "temporalio/temporal",
+    "target": 9371,
+    "source": 9375,
+    "target_title": "Avoid finalGC when ack level is zero",
+    "source_title": "Patch v1.31.0-151.2",
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "PR B is a routine patch release automation commit that bundles multiple PRs (including PR A) into a release, not a fix for PR A's shortcomings."
+  },
+  "temporalio/temporal#9370->9375": {
+    "repo": "temporalio/temporal",
+    "target": 9370,
+    "source": 9375,
+    "target_title": "Fairness counter: fix heap bug in map counter",
+    "source_title": "Patch v1.31.0-151.2",
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "PR B is a routine patch release automation commit that bundles multiple PRs (including PR A) into a release, not a fix caused by PR A's deficiency."
+  },
+  "temporalio/temporal#9307->9336": {
+    "repo": "temporalio/temporal",
+    "target": 9307,
+    "source": 9336,
+    "target_title": "Do not return no poller errors for nexus tasks",
+    "source_title": "Patch v1.31.0-150.5",
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "PR B is a routine patch release that bundles PR #9307, not a targeted fix for PR A's specific nexus/poller error issue."
+  },
+  "temporalio/temporal#8989->8995": {
+    "repo": "temporalio/temporal",
+    "target": 8989,
+    "source": 8995,
+    "target_title": "Fix the bug fix: Don't put nil elements in the list of Worker Deployment Summaries",
+    "source_title": "Patch v1.30.0-148.2",
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "PR B is a routine patch release automation that bundles PR #8989, not a direct fix for PR A; they are independent PRs that happen to be released together."
+  },
+  "temporalio/temporal#8985->8987": {
+    "repo": "temporalio/temporal",
+    "target": 8985,
+    "source": 8987,
+    "target_title": "Protect against decode errors in list worker deployments",
+    "source_title": "Patch v1.30.0-147.6",
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "PR B is a routine patch release that bundles multiple PRs (#8985, #8890) for deployment; it is not a fix for PR A's decode error handling, but rather a release management activity."
+  },
+  "temporalio/temporal#9270->9281": {
+    "repo": "temporalio/temporal",
+    "target": 9270,
+    "source": 9281,
+    "target_title": "Remove branch clean up logic on state based replication",
+    "source_title": "Patch v1.31.0-150.2",
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "PR B is a patch release automation commit that bundles PR A and other changes, not a fix caused by PR A's incompleteness or failure."
+  },
+  "temporalio/temporal#9262->9276": {
+    "repo": "temporalio/temporal",
+    "target": 9262,
+    "source": 9276,
+    "target_title": "Add a fallback behaviour if the matching RPC: CheckTaskQueueVersionMembership does not exist in matc",
+    "source_title": "Patch v1.30.1",
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "PR B is a routine patch release notes PR listing multiple unrelated fixes across the codebase, not a follow-up to PR A's specific fallback behavior implementation."
+  },
+  "temporalio/temporal#8991->9009": {
+    "repo": "temporalio/temporal",
+    "target": 8991,
+    "source": 9009,
+    "target_title": "Ignore unknown fields when decoding Worker Deployment memo for backwards compatibility",
+    "source_title": "Patch v1.30.0-147.8",
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "PR B is a routine patch release automation that includes PR A as one of multiple cherry-picked commits, not a fix addressing problems with PR A itself."
+  },
+  "temporalio/temporal#9119->9121": {
+    "repo": "temporalio/temporal",
+    "target": 9119,
+    "source": 9121,
+    "target_title": "Accept empty deployment name and build ID for unversioned",
+    "source_title": "Patch v1.30.0-148.4",
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "PR B is a routine patch release automation PR that bundles multiple unrelated PRs (#8978 and #9119) into a release, not a fix for PR A's specific changes."
+  },
+  "temporalio/temporal#8978->9121": {
+    "repo": "temporalio/temporal",
+    "target": 8978,
+    "source": 9121,
+    "target_title": "Update replication task rate limiter priority based on active/standby\u2026",
+    "source_title": "Patch v1.30.0-148.4",
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "PR B is a routine patch release bundling multiple PRs (#8978, #9119) as standard release management, not a fix for PR A's replication task rate limiter changes."
+  },
+  "temporalio/temporal#8769->9068": {
+    "repo": "temporalio/temporal",
+    "target": 8769,
+    "source": 9068,
+    "target_title": "Fix TemporalReportedProblems SA application for buffered events",
+    "source_title": "Fix tests for degraded workflow visibility",
+    "is_fix": true,
+    "confidence": "high",
+    "reason": "PR B explicitly references PR A (#8769) as the source of missed comments that need to be addressed in tests, indicating it's a follow-up correction to complete PR A's work."
+  },
+  "temporalio/temporal#9053->9063": {
+    "repo": "temporalio/temporal",
+    "target": 9053,
+    "source": 9063,
+    "target_title": "Forward original HTTP headers for Nexus CompleteOperation",
+    "source_title": "Patch v1.30.0-148.3",
+    "is_fix": false,
+    "confidence": "high",
+    "reason": "PR B is a routine patch release automation PR that bundles PR A and other changes, not a fix or follow-up to PR A itself."
+  }
+}

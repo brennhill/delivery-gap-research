@@ -1,0 +1,371 @@
+Analysis run: 2026-04-04T07:54:42.768157+00:00
+Script: /Users/brenn/dev/ai-augmented-dev/research/study/scripts/pipeline/full-szz-analysis.py
+
+Dataset: 100,247 PRs, 119 repos
+SZZ: 64,805 blame links, 103 repos
+JIT: 88,847 feature rows, 119 repos
+Bot exclusion: 10,648 bot PRs removed, 89,599 remaining
+PRs in SZZ repos: 79,049
+SZZ buggy PRs: 9,983
+AI-tagged PRs: 2,650
+Spec'd PRs: 7,926
+Spec quality scored PRs: 5,246
+
+======================================================================
+ANALYSIS 1: DO SPECS REDUCE REAL BUGS (SZZ)?
+======================================================================
+
+Pooled rates:
+  Spec'd:   0.154 (7,575 PRs)
+  Unspec'd: 0.123 (71,474 PRs)
+  Fisher's exact: OR=1.294, p=0.000000
+
+Controlled (logistic regression + repo FE):
+  specd_int: coef=0.2951, p=0.000000
+  (with 102 repo dummies + size controls)
+
+Within-author (LPM, clustered SEs):
+  Within-author LPM: N=73,276, authors=4,346 (897 with treatment variation)
+  specd_int: coef=0.0192, p=0.011200
+  Interpretation: +0.0192 pp change in P(szz_buggy)
+  -> INCREASES (SIGNIFICANT)
+
+======================================================================
+ANALYSIS 2: DOES SPEC QUALITY REDUCE REAL BUGS (SZZ)?
+======================================================================
+
+Scored PRs in SZZ repos: 5,246
+  NOTE: Only 6.6% of PRs have quality scores.
+  Selection: only spec'd PRs with substantial descriptions were scored.
+  Results may not generalize to unscored PRs.
+
+Controlled (logistic regression + repo FE):
+  q_overall: coef=-0.0050, p=0.042237
+  (with 10 repo dummies + size controls)
+
+Within-author (LPM, clustered SEs):
+  Within-author LPM: N=4,955, authors=361 (358 with treatment variation)
+  q_overall: coef=-0.0008, p=0.017891
+  Interpretation: -0.0008 pp change in P(szz_buggy)
+  -> DECREASES (SIGNIFICANT)
+
+======================================================================
+ANALYSIS 3: DOES REVIEW ENGAGEMENT REDUCE REAL BUGS (SZZ)?
+======================================================================
+
+Engagement proxy: time_to_merge_hours
+  Median: 15.7
+  High engagement (>15.7): 0.144 (39,520 PRs)
+  Low engagement  (<=15.7): 0.109 (39,529 PRs)
+  Fisher's exact: OR=1.381, p=0.000000
+
+Within-author (LPM, clustered SEs) — continuous engagement:
+  Within-author LPM: N=73,276, authors=4,346 (4,336 with treatment variation)
+  eng_val: coef=0.0000, p=0.357656
+  Interpretation: +0.0000 pp change in P(szz_buggy)
+  -> INCREASES (not significant)
+
+======================================================================
+ANALYSIS 4: AI vs HUMAN BUG RATES (SZZ)
+======================================================================
+
+Pooled rates:
+  AI-tagged: 0.181 (2,493 PRs)
+  Human:     0.125 (76,556 PRs)
+  Fisher's exact: OR=1.553, p=0.000000
+
+Controlled (logistic regression + repo FE):
+  ai_int: coef=0.0997, p=0.161386
+  (with 102 repo dummies + size controls)
+
+Within-author (LPM, clustered SEs):
+  Within-author LPM: N=73,276, authors=4,346 (299 with treatment variation)
+  ai_int: coef=0.0076, p=0.576089
+  Interpretation: +0.0076 pp change in P(szz_buggy)
+  -> INCREASES (not significant)
+
+======================================================================
+ANALYSIS 5: DO SPECS CONSTRAIN AI SCOPE?
+======================================================================
+
+Median total churn (additions+deletions), excluding zero-churn PRs:
+  AI + spec:         125 (832 PRs)
+  AI no spec:         82 (1,656 PRs)
+  Human + spec:       80 (6,739 PRs)
+  Human no spec:      53 (69,694 PRs)
+
+  AI sprawl ratio (unspec/spec): 0.66x
+  Human sprawl ratio: 0.66x
+
+  Mann-Whitney (AI unspec > spec): U=608010, p=1.00e+00
+  Mann-Whitney (Human unspec > spec): U=210734201, p=1.00e+00
+
+Within-author (LPM) — AI PRs only, outcome=log_churn:
+  Within-author LPM: N=2,290, authors=196 (107 with treatment variation)
+  specd_int: coef=0.0581, p=0.520533
+  Interpretation: +6.0% change in log_churn (coef on log scale)
+  -> INCREASES (not significant)
+
+Within-author (LPM) — Human PRs only, outcome=log_churn:
+  Within-author LPM: N=70,824, authors=4,287 (836 with treatment variation)
+  specd_int: coef=0.1200, p=0.000160
+  Interpretation: +12.7% change in log_churn (coef on log scale)
+  -> INCREASES (SIGNIFICANT)
+
+Interaction test (spec x AI on log_churn):
+  Within-author LPM: N=73,161, authors=4,342 (189 with treatment variation)
+  spec_x_ai: coef=-0.0471, p=0.504660
+  Interpretation: -4.6% change in log_churn (coef on log scale)
+  -> DECREASES (not significant)
+
+======================================================================
+ANALYSIS 6: DO SPECS REDUCE REWORK?
+======================================================================
+
+Pooled rates:
+  Spec'd:   0.149 rework rate (7,926 PRs)
+  Unspec'd: 0.028 rework rate (81,673 PRs)
+  Fisher's exact: OR=6.071, p=0.000000
+
+Controlled (logistic regression + repo FE):
+  [specs-rework] Logit failed: Singular matrix
+  [specs-rework] Retrying without repo FE...
+  specd_int: coef=1.7794, p=0.000000
+  (size controls only — repo FE caused singular matrix)
+
+Within-author (LPM, clustered SEs):
+  Within-author LPM: N=83,188, authors=4,918 (988 with treatment variation)
+  specd_int: coef=0.0503, p=0.000000
+  Interpretation: +0.0503 pp change in P(reworked)
+  -> INCREASES (SIGNIFICANT)
+
+======================================================================
+ANALYSIS 7: DOES SPEC QUALITY REDUCE REWORK?
+======================================================================
+
+Scored PRs: 5,246
+  NOTE: 5.9% of all PRs — selection bias caveat applies.
+
+Controlled (logistic regression + repo FE):
+  q_overall: coef=0.0027, p=0.252887
+  (with 10 repo dummies + size controls)
+
+Within-author (LPM, clustered SEs):
+  Within-author LPM: N=4,955, authors=361 (358 with treatment variation)
+  q_overall: coef=-0.0001, p=0.766538
+  Interpretation: -0.0001 pp change in P(reworked)
+  -> DECREASES (not significant)
+
+======================================================================
+ANALYSIS 8: JIT FEATURES vs SZZ BUGS
+======================================================================
+
+PRs with JIT features in SZZ repos: 68,436
+
+Mann-Whitney U tests (buggy vs clean):
+     Feature   Buggy med   Clean med       p-value  Sig
+  ----------  ----------  ----------  ------------  ---
+          ns         2.0         1.0     2.26e-268  ***
+          nd         4.0         2.0      0.00e+00  ***
+          nf         6.0         2.0      0.00e+00  ***
+     entropy         1.7         0.8      0.00e+00  ***
+          la       161.0        28.0      0.00e+00  ***
+          ld        26.0         6.0      0.00e+00  ***
+          lt      2741.0       954.0      0.00e+00  ***
+         fix         0.0         0.0      7.71e-01  
+        ndev        13.0         8.0     3.03e-173  ***
+         age        14.6        10.7      1.12e-22  ***
+         nuc        96.0        30.0      0.00e+00  ***
+         exp       149.0        86.0      2.83e-66  ***
+        rexp        37.0        23.0      6.21e-92  ***
+        sexp         0.0         0.0      1.00e+00  
+
+JIT logistic regression on szz_buggy (+ repo FE):
+  NOTE: la/ld correlate with additions/deletions; ns/nd/nf are correlated.
+  Individual coefficients may be unstable due to multicollinearity.
+  Complete cases for JIT regression: 62,106/68,436
+  [jit-szz] Logit failed: Singular matrix
+  Retrying without repo FE...
+  [jit-szz-no-repo-fe] Logit failed: Singular matrix
+
+======================================================================
+ROBUSTNESS 1: ALTERNATIVE OUTCOME MEASURES
+======================================================================
+
+Do specs reduce escaped defects? (alternative to SZZ)
+  Escaped PRs: 780 (0.9%)
+
+  Specs -> escaped (within-author LPM):
+  Within-author LPM: N=83,188, authors=4,918 (988 with treatment variation)
+  specd_int: coef=-0.0021, p=0.169327
+  Interpretation: -0.0021 pp change in P(escaped)
+  -> DECREASES (not significant)
+
+  Strict escaped PRs: 146 (0.2%)
+
+  Specs -> strict_escaped (within-author LPM):
+  Within-author LPM: N=83,188, authors=4,918 (988 with treatment variation)
+  specd_int: coef=-0.0002, p=0.869504
+  Interpretation: -0.0002 pp change in P(strict_escaped)
+  -> DECREASES (not significant)
+
+======================================================================
+ROBUSTNESS 2: DO SPECS ADD PREDICTIVE POWER BEYOND JIT FEATURES?
+======================================================================
+
+If JIT features already predict bugs, does adding spec information
+improve prediction? (Incremental validity test)
+  Complete JIT cases: 62,106/68,436
+
+  Model 1 (JIT only):      Pseudo R² = 0.0753, AIC = 45850
+  Model 2 (JIT + spec):    Pseudo R² = 0.0753, AIC = 45851
+  specd_int in Model 2:    coef=0.0419, p=0.2496
+  ΔPseudo R²:              0.000027
+
+  On scored subset (5,246 PRs):
+  Model 1b (JIT only):     Pseudo R² = 0.0933
+  Model 3 (JIT + quality): Pseudo R² = 0.0943
+  q_overall in Model 3:    coef=0.0044, p=0.0437
+  ΔPseudo R²:              0.000974
+
+======================================================================
+ROBUSTNESS 3: INDIVIDUAL SPEC QUALITY DIMENSIONS
+======================================================================
+
+Do any of the 7 quality dimensions independently predict fewer bugs or rework?
+
+                  Dimension    → SZZ bugs         p      → rework         p
+  -------------------------  ------------  --------  ------------  --------
+  Within-author LPM: N=4,955, authors=361 (339 with treatment variation)
+  q_outcome_clarity: coef=-0.0005, p=0.140215
+  Interpretation: -0.0005 pp change in P(szz_buggy)
+  -> DECREASES (not significant)
+  Within-author LPM: N=4,955, authors=361 (339 with treatment variation)
+  q_outcome_clarity: coef=-0.0002, p=0.495317
+  Interpretation: -0.0002 pp change in P(reworked)
+  -> DECREASES (not significant)
+          q_outcome_clarity       -0.0005    0.1402       -0.0002    0.4953
+  Within-author LPM: N=4,955, authors=361 (334 with treatment variation)
+  q_error_states: coef=-0.0004, p=0.074418
+  Interpretation: -0.0004 pp change in P(szz_buggy)
+  -> DECREASES (not significant)
+  Within-author LPM: N=4,955, authors=361 (334 with treatment variation)
+  q_error_states: coef=0.0002, p=0.437473
+  Interpretation: +0.0002 pp change in P(reworked)
+  -> INCREASES (not significant)
+             q_error_states       -0.0004    0.0744       +0.0002    0.4375
+  Within-author LPM: N=4,955, authors=361 (350 with treatment variation)
+  q_scope_boundaries: coef=-0.0007, p=0.033101
+  Interpretation: -0.0007 pp change in P(szz_buggy)
+  -> DECREASES (SIGNIFICANT)
+  Within-author LPM: N=4,955, authors=361 (350 with treatment variation)
+  q_scope_boundaries: coef=-0.0004, p=0.214062
+  Interpretation: -0.0004 pp change in P(reworked)
+  -> DECREASES (not significant)
+         q_scope_boundaries       -0.0007    0.0331       -0.0004    0.2141
+  Within-author LPM: N=4,955, authors=361 (351 with treatment variation)
+  q_acceptance_criteria: coef=-0.0005, p=0.079217
+  Interpretation: -0.0005 pp change in P(szz_buggy)
+  -> DECREASES (not significant)
+  Within-author LPM: N=4,955, authors=361 (351 with treatment variation)
+  q_acceptance_criteria: coef=-0.0000, p=0.879457
+  Interpretation: -0.0000 pp change in P(reworked)
+  -> DECREASES (not significant)
+      q_acceptance_criteria       -0.0005    0.0792       -0.0000    0.8795
+  Within-author LPM: N=4,870, authors=361 (319 with treatment variation)
+  q_data_contracts: coef=-0.0005, p=0.031336
+  Interpretation: -0.0005 pp change in P(szz_buggy)
+  -> DECREASES (SIGNIFICANT)
+  Within-author LPM: N=4,870, authors=361 (319 with treatment variation)
+  q_data_contracts: coef=0.0001, p=0.601512
+  Interpretation: +0.0001 pp change in P(reworked)
+  -> INCREASES (not significant)
+           q_data_contracts       -0.0005    0.0313       +0.0001    0.6015
+  Within-author LPM: N=4,955, authors=361 (357 with treatment variation)
+  q_dependency_context: coef=-0.0002, p=0.512083
+  Interpretation: -0.0002 pp change in P(szz_buggy)
+  -> DECREASES (not significant)
+  Within-author LPM: N=4,955, authors=361 (357 with treatment variation)
+  q_dependency_context: coef=0.0002, p=0.460624
+  Interpretation: +0.0002 pp change in P(reworked)
+  -> INCREASES (not significant)
+       q_dependency_context       -0.0002    0.5121       +0.0002    0.4606
+  Within-author LPM: N=4,955, authors=361 (352 with treatment variation)
+  q_behavioral_specificity: coef=-0.0006, p=0.022917
+  Interpretation: -0.0006 pp change in P(szz_buggy)
+  -> DECREASES (SIGNIFICANT)
+  Within-author LPM: N=4,955, authors=361 (352 with treatment variation)
+  q_behavioral_specificity: coef=-0.0001, p=0.693260
+  Interpretation: -0.0001 pp change in P(reworked)
+  -> DECREASES (not significant)
+   q_behavioral_specificity       -0.0006    0.0229       -0.0001    0.6933
+
+======================================================================
+ROBUSTNESS 4: REPO-LEVEL ANALYSIS
+======================================================================
+
+Do repos with higher spec rates have lower defect/rework rates?
+(Ecological analysis — different unit, weaker but independent.)
+
+  Repos with ≥50 PRs: 98
+  Spec rate: mean=0.116, median=0.000
+
+  Spearman: spec_rate vs bug_rate: ρ=0.091, p=0.3708
+    higher specs → MORE bugs 
+  Spearman: spec_rate vs rework_rate: ρ=0.919, p=0.0000
+    higher specs → MORE rework ***
+
+  OLS: bug_rate ~ spec_rate + log(mean_additions), N=98 repos
+    spec_rate: coef=0.0249, p=0.6046
+    R² = 0.0754
+
+======================================================================
+SUMMARY OF FINDINGS
+======================================================================
+
+Dataset: 89,599 PRs across 119 repos
+SZZ coverage: 103 repos with blame data, 9,983 bug-introducing PRs
+JIT coverage: 119 repos with JIT features
+
+Methodology:
+  - Controlled regressions include repo fixed effects + size controls
+  - Within-author uses LPM with full demeaning (Frisch-Waugh-Lovell)
+    and author-clustered standard errors
+  - 8 analyses, no multiple-comparison correction applied
+  - Coefficients are percentage-point changes in probability
+
+Within-author results (the most credible estimates):
+
+  1. Specs -> SZZ bugs:
+    coef=+0.0192 pp, p=0.0112 — INCREASES (SIGNIFICANT)
+    Identified from 897 authors with treatment variation
+  2. Spec quality -> SZZ bugs:
+    coef=-0.0008 pp, p=0.0179 — DECREASES (SIGNIFICANT)
+    Identified from 358 authors with treatment variation
+  3. Review engagement -> SZZ bugs:
+    coef=+0.0000 pp, p=0.3577 — INCREASES (not significant)
+    Identified from 4336 authors with treatment variation
+  4. AI-tagged -> SZZ bugs:
+    coef=+0.0076 pp, p=0.5761 — INCREASES (not significant)
+    Identified from 299 authors with treatment variation
+  6. Specs -> rework:
+    coef=+0.0503 pp, p=0.0000 — INCREASES (SIGNIFICANT)
+    Identified from 988 authors with treatment variation
+  7. Spec quality -> rework:
+    coef=-0.0001 pp, p=0.7665 — DECREASES (not significant)
+    Identified from 358 authors with treatment variation
+
+  5. Scope constraint (AI PRs, spec -> log_churn):
+    AI: coef=+0.0581, p=0.5205 — INCREASES (not significant)
+    Human: coef=+0.1200, p=0.0002 — INCREASES (SIGNIFICANT)
+    Interaction (spec x AI): coef=-0.0471, p=0.5047 — not significant
+
+  8. JIT features: see detailed results above.
+
+Caveats:
+  - Spec quality scored on 5,246/89,599 PRs (5.9%) — selection bias
+  - AI detection uses co-author tags (voluntary) — unknown false negative rate
+  - Convenience sample of 119 repos — cannot generalize
+  - Within-author identification requires authors with variation in treatment
+
+Results saved to: /Users/brenn/dev/ai-augmented-dev/research/study/results/analysis-results.txt

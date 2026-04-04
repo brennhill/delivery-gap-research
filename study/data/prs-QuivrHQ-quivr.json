@@ -1,0 +1,717 @@
+[
+  {
+    "id": "3645",
+    "source": "github_graphql",
+    "repo": "QuivrHQ/quivr",
+    "title": "fix: add Claude 4 support",
+    "body": "Add claude 4 support\r\n",
+    "author": "chloedia",
+    "merged_at": "2025-06-19T13:02:37+00:00",
+    "created_at": "2025-06-19T12:42:44+00:00",
+    "files": [
+      "core/quivr_core/rag/entities/config.py"
+    ],
+    "additions": 10,
+    "deletions": 0,
+    "ticket_ids": [],
+    "merge_commit_sha": "947a785415c6c35ab2ae8157222b4720b0710b4d",
+    "pr_number": 3645,
+    "ci_status": "failed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "fix: add Claude 4 support",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 0
+  },
+  {
+    "id": "3641",
+    "source": "github_graphql",
+    "repo": "QuivrHQ/quivr",
+    "title": "feat: add default values for GPT-4.1 ",
+    "body": "Small PR that adds context window and output token length for gpt-4.1 and adds some robustness checks",
+    "author": "jacopo-chevallard",
+    "merged_at": "2025-06-12T18:41:19+00:00",
+    "created_at": "2025-05-27T07:56:39+00:00",
+    "files": [
+      "core/quivr_core/brain/brain.py",
+      "core/quivr_core/rag/entities/models.py",
+      "core/quivr_core/rag/quivr_rag_langgraph.py"
+    ],
+    "additions": 28,
+    "deletions": 8,
+    "ticket_ids": [
+      "GPT-4"
+    ],
+    "merge_commit_sha": "e48ff2f723cd44f3970ae385b862dd5dd73de53c",
+    "pr_number": 3641,
+    "ci_status": "failed",
+    "reviews": [
+      {
+        "reviewer": "AmineDiro",
+        "state": "commented",
+        "submitted_at": "2025-06-12T16:36:31+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "jacopo-chevallard",
+        "state": "commented",
+        "submitted_at": "2025-06-12T16:46:14+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "AmineDiro",
+        "state": "approved",
+        "submitted_at": "2025-06-12T18:41:13+00:00",
+        "is_bot": false,
+        "body": ""
+      }
+    ],
+    "commits": [
+      {
+        "message": "feat: add default values for GPT-4.1 and check that context and output length is larger than a minimum threshold",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "feat: adding useful langfuse metadata and passing them back to be able to access them from entreprise",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Merge branch 'main' into feat/lejuge_APIs",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 3,
+    "last_edited_at": null,
+    "total_comments_count": 2
+  },
+  {
+    "id": "3642",
+    "source": "github_graphql",
+    "repo": "QuivrHQ/quivr",
+    "title": "fix: historic and iterate",
+    "body": "\r\nfix: ENT-1146\r\nFix 1: context length to 0\r\n\r\nFix: 2: Historic is now added",
+    "author": "chloedia",
+    "merged_at": "2025-06-02T10:25:06+00:00",
+    "created_at": "2025-06-02T09:30:42+00:00",
+    "files": [
+      "core/quivr_core/rag/entities/config.py",
+      "core/quivr_core/rag/quivr_rag_langgraph.py"
+    ],
+    "additions": 36,
+    "deletions": 6,
+    "ticket_ids": [
+      "ENT-1146"
+    ],
+    "merge_commit_sha": "5dd44d8eb37b25e9d7c14c14df47f19849cdd031",
+    "pr_number": 3642,
+    "ci_status": "failed",
+    "reviews": [
+      {
+        "reviewer": "jacopo-chevallard",
+        "state": "commented",
+        "submitted_at": "2025-06-02T09:46:06+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "jacopo-chevallard",
+        "state": "approved",
+        "submitted_at": "2025-06-02T10:17:30+00:00",
+        "is_bot": false,
+        "body": ""
+      }
+    ],
+    "commits": [
+      {
+        "message": "fix: historic and iterate",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "fix: mistake",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 2,
+    "last_edited_at": "2025-06-02T09:41:59+00:00",
+    "total_comments_count": 1
+  },
+  {
+    "id": "3640",
+    "source": "github_graphql",
+    "repo": "QuivrHQ/quivr",
+    "title": "feat: metadata brain core",
+    "body": "# Description\r\n\r\npass metadata to last answer on `aask`\r\n",
+    "author": "AmineDiro",
+    "merged_at": "2025-05-26T13:10:43+00:00",
+    "created_at": "2025-05-23T09:28:12+00:00",
+    "files": [
+      "core/quivr_core/brain/brain.py"
+    ],
+    "additions": 4,
+    "deletions": 1,
+    "ticket_ids": [],
+    "merge_commit_sha": "ce95a3a18f472f777e0ba9dbecdb400332815948",
+    "pr_number": 3640,
+    "ci_status": "failed",
+    "reviews": [
+      {
+        "reviewer": "m-thenot",
+        "state": "approved",
+        "submitted_at": "2025-05-23T09:31:07+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "chloedia",
+        "state": "approved",
+        "submitted_at": "2025-05-23T09:37:01+00:00",
+        "is_bot": false,
+        "body": ""
+      }
+    ],
+    "commits": [
+      {
+        "message": "metadata brain core",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 0
+  },
+  {
+    "id": "3590",
+    "source": "github_graphql",
+    "repo": "QuivrHQ/quivr",
+    "title": "refactor: replace user_id with workspace_id in Brain class",
+    "body": "# Description\n\nPlease include a summary of the changes and the related issue. Please also include relevant motivation and context.\n\n## Checklist before requesting a review\n\nPlease delete options that are not relevant.\n\n- [ ] My code follows the style guidelines of this project\n- [ ] I have performed a self-review of my code\n- [ ] I have commented hard-to-understand areas\n- [ ] I have ideally added tests that prove my fix is effective or that my feature works\n- [ ] New and existing unit tests pass locally with my changes\n- [ ] Any dependent changes have been merged\n\n## Screenshots (if appropriate):\n",
+    "author": "StanGirard",
+    "merged_at": "2025-05-15T07:49:02+00:00",
+    "created_at": "2025-02-10T11:15:21+00:00",
+    "files": [
+      "core/quivr_core/brain/brain.py"
+    ],
+    "additions": 3,
+    "deletions": 3,
+    "ticket_ids": [],
+    "merge_commit_sha": "7dba0dc2178c982541e730d6ec109515d24a7e06",
+    "pr_number": 3590,
+    "ci_status": "failed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "refactor: replace user_id with workspace_id in Brain class",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "refactor: update workspace_id type to UUID in Brain class",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Merge branch 'main' into feat/worspace",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 3,
+    "last_edited_at": null,
+    "total_comments_count": 0
+  },
+  {
+    "id": "3636",
+    "source": "github_graphql",
+    "repo": "QuivrHQ/quivr",
+    "title": "fix: prompts to ensure correct formatting",
+    "body": "Fix : ENT-1043",
+    "author": "chloedia",
+    "merged_at": "2025-05-05T13:47:08+00:00",
+    "created_at": "2025-05-05T13:07:07+00:00",
+    "files": [
+      "core/quivr_core/rag/prompts.py"
+    ],
+    "additions": 1,
+    "deletions": 0,
+    "ticket_ids": [
+      "ENT-1043"
+    ],
+    "merge_commit_sha": "62a8585037680cda809022c3543c690fa98571df",
+    "pr_number": 3636,
+    "ci_status": "failed",
+    "reviews": [
+      {
+        "reviewer": "jacopo-chevallard",
+        "state": "approved",
+        "submitted_at": "2025-05-05T13:32:27+00:00",
+        "is_bot": false,
+        "body": ""
+      }
+    ],
+    "commits": [
+      {
+        "message": "fix: prompts to ensure correct formatting",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Merge remote-tracking branch 'origin' into fix/more_formating_in_generate",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 2,
+    "last_edited_at": null,
+    "total_comments_count": 0
+  },
+  {
+    "id": "3635",
+    "source": "github_graphql",
+    "repo": "QuivrHQ/quivr",
+    "title": "feat: cache llm endpoint",
+    "body": "# Description\r\n\r\n- Avoid recreating llm in from_config call. We are recreating an http connection\r\n- Fix liniting for langchain, their attributes are all over the place in langchain .... ",
+    "author": "AmineDiro",
+    "merged_at": "2025-05-01T21:32:24+00:00",
+    "created_at": "2025-05-01T16:08:50+00:00",
+    "files": [
+      "core/quivr_core/llm/llm_endpoint.py",
+      "core/quivr_core/rag/entities/config.py"
+    ],
+    "additions": 33,
+    "deletions": 7,
+    "ticket_ids": [],
+    "merge_commit_sha": "5bc8b561081474dd44134b34c656f5b4e46bba6b",
+    "pr_number": 3635,
+    "ci_status": "failed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "cache llm endpoint",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 0
+  },
+  {
+    "id": "3633",
+    "source": "github_graphql",
+    "repo": "QuivrHQ/quivr",
+    "title": "feat: add langchain-groq dependency and update LLMEndpoint to use ChatGroq",
+    "body": "Fix: coquille grok to groq\r\n",
+    "author": "chloedia",
+    "merged_at": "2025-04-23T15:42:00+00:00",
+    "created_at": "2025-04-23T10:45:19+00:00",
+    "files": [
+      "core/pyproject.toml",
+      "core/quivr_core/llm/llm_endpoint.py"
+    ],
+    "additions": 4,
+    "deletions": 4,
+    "ticket_ids": [],
+    "merge_commit_sha": "3556477993a8f3bbfab5d4a5e119a447d027bc61",
+    "pr_number": 3633,
+    "ci_status": "failed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "feat: add gemini support",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "fix: add pyproject xai and google-genai",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "feat: add langchain-groq dependency and update LLMEndpoint to use ChatGroq",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "fix :  remove grok dependencie",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "fix: add groq in possible models",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "fix: chatxopenai",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 6,
+    "last_edited_at": "2025-04-23T10:45:53+00:00",
+    "total_comments_count": 0
+  },
+  {
+    "id": "3632",
+    "source": "github_graphql",
+    "repo": "QuivrHQ/quivr",
+    "title": "feat: Add Gemini support for language models",
+    "body": "Introduce support for the Gemini model in the language model configuration, allowing users to utilize Gemini alongside existing models. Update the configuration to include Gemini-specific settings and ensure compatibility with the overall architecture.",
+    "author": "chloedia",
+    "merged_at": "2025-04-23T08:07:31+00:00",
+    "created_at": "2025-04-23T07:48:05+00:00",
+    "files": [
+      "core/pyproject.toml",
+      "core/quivr_core/llm/llm_endpoint.py",
+      "core/quivr_core/rag/entities/config.py",
+      "core/quivr_core/rag/quivr_rag_langgraph.py"
+    ],
+    "additions": 62,
+    "deletions": 1,
+    "ticket_ids": [],
+    "merge_commit_sha": "add322c8d6c3ee8cd712dface19fa615a4980cac",
+    "pr_number": 3632,
+    "ci_status": "failed",
+    "reviews": [
+      {
+        "reviewer": "copilot-pull-request-reviewer",
+        "state": "commented",
+        "submitted_at": "2025-04-23T07:49:09+00:00",
+        "is_bot": true,
+        "body": "## Pull Request Overview\n\nThis PR introduces Gemini support into the language model configuration, enabling users to utilize the new Gemini model alongside existing ones.  \n- Added Gemini as a new supplier in the model suppliers enumeration  \n- Updated the LLM model configuration to include Gemini-specific settings under both configuration and endpoint instantiation  \n- Extended the LLM endpoint to conditionally instantiate models for GEMINI using ChatGoogleGenerativeAI and GROQ using ChatXAI\n\n### Reviewed Changes\n\nCopilot reviewed 3 out of 3 changed files in this pull request and generated no comments.\n\n| File                                                     | Description                                                        |\n| -------------------------------------------------------- | ------------------------------------------------------------------ |\n| core/quivr_core/rag/quivr_rag_langgraph.py               | Minor formatting adjustment in the RAG generation method           |\n| core/quivr_core/rag/entities/config.py                   | Added Gemini supplier and new model configurations for Gemini and additional models |\n| core/quivr_core/llm/llm_endpoint.py                      | Updated endpoint logic to support instantiation of GEMINI and GROQ models using new imports |\n\n\n\n"
+      }
+    ],
+    "commits": [
+      {
+        "message": "feat: add gemini support",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "fix: add pyproject xai and google-genai",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 2,
+    "last_edited_at": null,
+    "total_comments_count": 1
+  },
+  {
+    "id": "3631",
+    "source": "github_graphql",
+    "repo": "QuivrHQ/quivr",
+    "title": "fix(brain): pass missing run_id",
+    "body": "# Description\n\nPlease include a summary of the changes and the related issue. Please also include relevant motivation and context.\n\n## Checklist before requesting a review\n\nPlease delete options that are not relevant.\n\n- [ ] My code follows the style guidelines of this project\n- [ ] I have performed a self-review of my code\n- [ ] I have commented hard-to-understand areas\n- [ ] I have ideally added tests that prove my fix is effective or that my feature works\n- [ ] New and existing unit tests pass locally with my changes\n- [ ] Any dependent changes have been merged\n\n## Screenshots (if appropriate):\n",
+    "author": "m-thenot",
+    "merged_at": "2025-04-18T07:41:20+00:00",
+    "created_at": "2025-04-17T14:38:32+00:00",
+    "files": [
+      "core/quivr_core/brain/brain.py"
+    ],
+    "additions": 3,
+    "deletions": 0,
+    "ticket_ids": [],
+    "merge_commit_sha": "4f0fb6f4c352585f9621eb8a588b28813eb96232",
+    "pr_number": 3631,
+    "ci_status": "failed",
+    "reviews": [
+      {
+        "reviewer": "AmineDiro",
+        "state": "approved",
+        "submitted_at": "2025-04-18T07:41:10+00:00",
+        "is_bot": false,
+        "body": ""
+      }
+    ],
+    "commits": [
+      {
+        "message": "fix(brain): pass missing run_id",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 0
+  },
+  {
+    "id": "3628",
+    "source": "github_graphql",
+    "repo": "QuivrHQ/quivr",
+    "title": "fix: fix grammar and typo in zendesk prompte template",
+    "body": "# Description\n\nFix grammar and typo in zendesk prompte template\n\n## Checklist before requesting a review\n\nPlease delete options that are not relevant.\n\n- [ ] My code follows the style guidelines of this project\n- [ ] I have performed a self-review of my code\n- [ ] I have commented hard-to-understand areas\n- [ ] I have ideally added tests that prove my fix is effective or that my feature works\n- [ ] New and existing unit tests pass locally with my changes\n- [ ] Any dependent changes have been merged\n\n## Screenshots (if appropriate):\n",
+    "author": "m-thenot",
+    "merged_at": "2025-04-17T07:29:46+00:00",
+    "created_at": "2025-04-16T13:14:30+00:00",
+    "files": [
+      "core/quivr_core/rag/prompts.py"
+    ],
+    "additions": 3,
+    "deletions": 3,
+    "ticket_ids": [],
+    "merge_commit_sha": "2898a5d511f826cbdca50e49ec0fa26e8cd27122",
+    "pr_number": 3628,
+    "ci_status": "failed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "fix: fix grammar and typo in zendesk prompte template",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 0
+  },
+  {
+    "id": "3629",
+    "source": "github_graphql",
+    "repo": "QuivrHQ/quivr",
+    "title": "feat: add run-id langfuse",
+    "body": "# Description\r\n\r\n\r\nAdd run_id",
+    "author": "AmineDiro",
+    "merged_at": "2025-04-17T07:28:57+00:00",
+    "created_at": "2025-04-16T16:06:29+00:00",
+    "files": [
+      "core/quivr_core/brain/brain.py",
+      "core/quivr_core/rag/quivr_rag_langgraph.py"
+    ],
+    "additions": 9,
+    "deletions": 1,
+    "ticket_ids": [],
+    "merge_commit_sha": "f8298c1311685732fc36d4381f1188c239277035",
+    "pr_number": 3629,
+    "ci_status": "failed",
+    "reviews": [
+      {
+        "reviewer": "chloedia",
+        "state": "approved",
+        "submitted_at": "2025-04-16T23:15:21+00:00",
+        "is_bot": false,
+        "body": ""
+      }
+    ],
+    "commits": [
+      {
+        "message": "feat: add run-id langfuse",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 0
+  },
+  {
+    "id": "3627",
+    "source": "github_graphql",
+    "repo": "QuivrHQ/quivr",
+    "title": "fix: format prompt for zendesk",
+    "body": "# Description\n\nPlease include a summary of the changes and the related issue. Please also include relevant motivation and context.\n\n## Checklist before requesting a review\n\nPlease delete options that are not relevant.\n\n- [ ] My code follows the style guidelines of this project\n- [ ] I have performed a self-review of my code\n- [ ] I have commented hard-to-understand areas\n- [ ] I have ideally added tests that prove my fix is effective or that my feature works\n- [ ] New and existing unit tests pass locally with my changes\n- [ ] Any dependent changes have been merged\n\n## Screenshots (if appropriate):\n",
+    "author": "StanGirard",
+    "merged_at": "2025-04-10T19:24:24+00:00",
+    "created_at": "2025-04-10T19:15:37+00:00",
+    "files": [
+      "core/quivr_core/rag/prompts.py",
+      "core/quivr_core/rag/quivr_rag_langgraph.py"
+    ],
+    "additions": 7,
+    "deletions": 7,
+    "ticket_ids": [],
+    "merge_commit_sha": "df2d345f550d9e79a6522bdc16bbbf28731fd08a",
+    "pr_number": 3627,
+    "ci_status": "failed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "fix: format prompt for zendesk",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 0
+  },
+  {
+    "id": "3626",
+    "source": "github_graphql",
+    "repo": "QuivrHQ/quivr",
+    "title": "refactor: improve assertion formatting and remove debug print statement in QuivrQARAGLangGraph",
+    "body": "# Description\n\nPlease include a summary of the changes and the related issue. Please also include relevant motivation and context.\n\n## Checklist before requesting a review\n\nPlease delete options that are not relevant.\n\n- [ ] My code follows the style guidelines of this project\n- [ ] I have performed a self-review of my code\n- [ ] I have commented hard-to-understand areas\n- [ ] I have ideally added tests that prove my fix is effective or that my feature works\n- [ ] New and existing unit tests pass locally with my changes\n- [ ] Any dependent changes have been merged\n\n## Screenshots (if appropriate):\n",
+    "author": "StanGirard",
+    "merged_at": "2025-04-10T18:56:03+00:00",
+    "created_at": "2025-04-10T18:55:19+00:00",
+    "files": [
+      "core/quivr_core/rag/quivr_rag_langgraph.py"
+    ],
+    "additions": 3,
+    "deletions": 4,
+    "ticket_ids": [],
+    "merge_commit_sha": "4f61fa988dced61f34a97b1cb08906e52828ed6b",
+    "pr_number": 3626,
+    "ci_status": "failed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "refactor: improve assertion formatting and remove debug print statement in QuivrQARAGLangGraph",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 0
+  },
+  {
+    "id": "3625",
+    "source": "github_graphql",
+    "repo": "QuivrHQ/quivr",
+    "title": "feat: add system_prompt parameter to Brain methods and enhance message handling in RAG pipeline",
+    "body": "# Description\n\nPlease include a summary of the changes and the related issue. Please also include relevant motivation and context.\n\n## Checklist before requesting a review\n\nPlease delete options that are not relevant.\n\n- [ ] My code follows the style guidelines of this project\n- [ ] I have performed a self-review of my code\n- [ ] I have commented hard-to-understand areas\n- [ ] I have ideally added tests that prove my fix is effective or that my feature works\n- [ ] New and existing unit tests pass locally with my changes\n- [ ] Any dependent changes have been merged\n\n## Screenshots (if appropriate):\n",
+    "author": "StanGirard",
+    "merged_at": "2025-04-10T18:53:47+00:00",
+    "created_at": "2025-04-10T18:51:54+00:00",
+    "files": [
+      "core/quivr_core/brain/brain.py",
+      "core/quivr_core/rag/prompts.py",
+      "core/quivr_core/rag/quivr_rag_langgraph.py"
+    ],
+    "additions": 72,
+    "deletions": 38,
+    "ticket_ids": [],
+    "merge_commit_sha": "500d7931582d4329044315b21675d1535ebcdcac",
+    "pr_number": 3625,
+    "ci_status": "failed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "feat: add system_prompt parameter to Brain methods and enhance message handling in RAG pipeline",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 0
+  },
+  {
+    "id": "3624",
+    "source": "github_graphql",
+    "repo": "QuivrHQ/quivr",
+    "title": "feat: enhance zendesk template with clearer guidelines and instructions",
+    "body": "# Description\n\nPlease include a summary of the changes and the related issue. Please also include relevant motivation and context.\n\n## Checklist before requesting a review\n\nPlease delete options that are not relevant.\n\n- [ ] My code follows the style guidelines of this project\n- [ ] I have performed a self-review of my code\n- [ ] I have commented hard-to-understand areas\n- [ ] I have ideally added tests that prove my fix is effective or that my feature works\n- [ ] New and existing unit tests pass locally with my changes\n- [ ] Any dependent changes have been merged\n\n## Screenshots (if appropriate):\n",
+    "author": "StanGirard",
+    "merged_at": "2025-04-09T11:09:27+00:00",
+    "created_at": "2025-04-09T11:09:02+00:00",
+    "files": [
+      "core/quivr_core/rag/prompts.py"
+    ],
+    "additions": 26,
+    "deletions": 21,
+    "ticket_ids": [],
+    "merge_commit_sha": "d37847807da28a7140281436a13f2d3f53eb1880",
+    "pr_number": 3624,
+    "ci_status": "failed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "feat: enhance zendesk template with clearer guidelines and instructions",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 0
+  },
+  {
+    "id": "3622",
+    "source": "github_graphql",
+    "repo": "QuivrHQ/quivr",
+    "title": "feat: renamed system_prompt to correct naming",
+    "body": "# Description\r\n\r\n\r\n- renamed system prompt",
+    "author": "AmineDiro",
+    "merged_at": "2025-04-02T09:31:49+00:00",
+    "created_at": "2025-04-01T17:05:04+00:00",
+    "files": [
+      "core/quivr_core/rag/prompts.py",
+      "core/quivr_core/rag/quivr_rag_langgraph.py"
+    ],
+    "additions": 4,
+    "deletions": 4,
+    "ticket_ids": [],
+    "merge_commit_sha": "3db473fe913f4d7d8049523ec3f9e0022840b6e6",
+    "pr_number": 3622,
+    "ci_status": "failed",
+    "reviews": [
+      {
+        "reviewer": "chloedia",
+        "state": "approved",
+        "submitted_at": "2025-04-02T09:01:46+00:00",
+        "is_bot": false,
+        "body": ""
+      }
+    ],
+    "commits": [
+      {
+        "message": "feat: renamed systemprompt to correct namin",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 0
+  },
+  {
+    "id": "3621",
+    "source": "github_graphql",
+    "repo": "QuivrHQ/quivr",
+    "title": "feat: add filters",
+    "body": "Ability to add filters in retrieval.\r\nFix : RAG-20 RAG-3 ENT-801\r\n\r\n",
+    "author": "chloedia",
+    "merged_at": "2025-03-31T16:28:47+00:00",
+    "created_at": "2025-03-31T15:11:42+00:00",
+    "files": [
+      "core/quivr_core/rag/quivr_rag_langgraph.py"
+    ],
+    "additions": 4,
+    "deletions": 0,
+    "ticket_ids": [
+      "ENT-801",
+      "RAG-20",
+      "RAG-3"
+    ],
+    "merge_commit_sha": "1707f18e3923ae7e32ecdbd38380434ee71df7d7",
+    "pr_number": 3621,
+    "ci_status": "failed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "feat: add filters",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": "2025-03-31T15:48:47+00:00",
+    "total_comments_count": 0
+  }
+]

@@ -1,0 +1,687 @@
+{
+  "labeler": "brenn",
+  "date": "2026-03-26",
+  "description": "Final human labels for 126 HIGH-confidence pairs with refined escape definitions",
+  "definitions": {
+    "escape": "Reached users/production, no automated system caught it. A human discovered the problem.",
+    "machine_catch": "CI/tests/build/lint broke. The infrastructure caught it before users were affected. System worked.",
+    "not_related": "Ports, backports, cherry-picks, release bundling, enhancements, unrelated PRs, planned follow-up work."
+  },
+  "sample_file": "human-validation-high-all.json",
+  "labels": [
+    {
+      "pair": 0,
+      "label": "no",
+      "notes": "stale integration tests, not user-facing"
+    },
+    {
+      "pair": 1,
+      "label": "yes",
+      "notes": "CPU pegged on oversized traces, A's fix insufficient"
+    },
+    {
+      "pair": 2,
+      "label": "yes",
+      "notes": "follow-up to revert, excludes encrypted flags correctly"
+    },
+    {
+      "pair": 3,
+      "label": "no",
+      "notes": "CI link checker config, not user-facing"
+    },
+    {
+      "pair": 4,
+      "label": "yes",
+      "notes": "same flaky tests, A's approach insufficient"
+    },
+    {
+      "pair": 5,
+      "label": "no",
+      "notes": "test race condition, machine caught",
+      "flipped": "was yes, haiku correct"
+    },
+    {
+      "pair": 6,
+      "label": "yes",
+      "notes": "chat scroll reset after migration"
+    },
+    {
+      "pair": 7,
+      "label": "yes",
+      "notes": "regression from Tailwind migration, missing padding"
+    },
+    {
+      "pair": 8,
+      "label": "yes",
+      "notes": "button appearing as plain text after migration"
+    },
+    {
+      "pair": 9,
+      "label": "yes",
+      "notes": "padding regression from SCSS migration"
+    },
+    {
+      "pair": 10,
+      "label": "yes",
+      "notes": "escape, users saw broken image layout from migration",
+      "resolved": "ambiguous resolved"
+    },
+    {
+      "pair": 11,
+      "label": "yes",
+      "notes": "hover state removed in table migration"
+    },
+    {
+      "pair": 12,
+      "label": "yes",
+      "notes": "schema version wrong after migration"
+    },
+    {
+      "pair": 13,
+      "label": "yes",
+      "notes": "price tag broken on dark themes after migration"
+    },
+    {
+      "pair": 14,
+      "label": "yes",
+      "notes": "link styling broken, users could see",
+      "flipped": "was no, haiku correct"
+    },
+    {
+      "pair": 15,
+      "label": "yes",
+      "notes": "escape, missed library page grid issue",
+      "resolved": "ambiguous resolved"
+    },
+    {
+      "pair": 16,
+      "label": "yes",
+      "notes": "sidebar migration broke grid layout"
+    },
+    {
+      "pair": 17,
+      "label": "yes",
+      "notes": "bare exports \u2014 same feature area"
+    },
+    {
+      "pair": 18,
+      "label": "yes",
+      "notes": "pg_dump version mismatch from PostgreSQL upgrade"
+    },
+    {
+      "pair": 19,
+      "label": "yes",
+      "notes": "three bugs in signup watchlist from PR A"
+    },
+    {
+      "pair": 20,
+      "label": "no",
+      "notes": "broken import, build would catch",
+      "flipped": "was yes, haiku correct"
+    },
+    {
+      "pair": 21,
+      "label": "yes",
+      "notes": "visual regressions from icon migration"
+    },
+    {
+      "pair": 22,
+      "label": "yes",
+      "notes": "behavioral regression from Troubleshooter atom"
+    },
+    {
+      "pair": 23,
+      "label": "no",
+      "notes": "refinement, not an error/break",
+      "resolved": "ambiguous resolved"
+    },
+    {
+      "pair": 24,
+      "label": "yes",
+      "notes": "breaking change, null tracking IDs cause embed crash"
+    },
+    {
+      "pair": 25,
+      "label": "yes",
+      "notes": "revert of #27248"
+    },
+    {
+      "pair": 26,
+      "label": "yes",
+      "notes": "wildcard domains rejected by validation"
+    },
+    {
+      "pair": 27,
+      "label": "yes",
+      "notes": "follow-up, search filter needs new fields"
+    },
+    {
+      "pair": 28,
+      "label": "yes",
+      "notes": "429 errors from large images before cropping added"
+    },
+    {
+      "pair": 29,
+      "label": "yes",
+      "notes": "webhook returning 200 but not triggering"
+    },
+    {
+      "pair": 30,
+      "label": "no",
+      "notes": "enhancement, adjusting rate limit values",
+      "resolved": "ambiguous resolved"
+    },
+    {
+      "pair": 31,
+      "label": "no",
+      "notes": "E2E test failure from disabling apps, machine catch",
+      "flipped": "was yes (H32)"
+    },
+    {
+      "pair": 32,
+      "label": "no",
+      "notes": "missing useEffect causing crash, machine catch (CI/build)",
+      "flipped": "was yes (H33), haiku correct"
+    },
+    {
+      "pair": 33,
+      "label": "yes",
+      "notes": "escape, revert for real problems with link cloaking approach",
+      "resolved": "ambiguous resolved"
+    },
+    {
+      "pair": 34,
+      "label": "yes",
+      "notes": "A missed release-preflight workflow"
+    },
+    {
+      "pair": 35,
+      "label": "yes",
+      "notes": "trusted publishing broke canary release, users saw ENEEDAUTH"
+    },
+    {
+      "pair": 36,
+      "label": "no",
+      "notes": "port to Core 2"
+    },
+    {
+      "pair": 37,
+      "label": "no",
+      "notes": "backport to release/core-2"
+    },
+    {
+      "pair": 38,
+      "label": "no",
+      "notes": "cherry-pick"
+    },
+    {
+      "pair": 39,
+      "label": "no",
+      "notes": "Core 2 version"
+    },
+    {
+      "pair": 40,
+      "label": "yes",
+      "notes": "Vitest 4.0 upgrade broke integration tests"
+    },
+    {
+      "pair": 41,
+      "label": "no",
+      "notes": "unrelated, dependency cleanup separate task",
+      "resolved": "ambiguous resolved"
+    },
+    {
+      "pair": 42,
+      "label": "no",
+      "notes": "integration test failure, machine catch",
+      "flipped": "was yes (H43), haiku correct"
+    },
+    {
+      "pair": 43,
+      "label": "yes",
+      "notes": "same partial update bug pattern, different fields"
+    },
+    {
+      "pair": 44,
+      "label": "yes",
+      "notes": "escape, A missed release-preflight workflow",
+      "resolved": "ambiguous resolved"
+    },
+    {
+      "pair": 45,
+      "label": "no",
+      "notes": "machine catch, canary release immediately failed"
+    },
+    {
+      "pair": 46,
+      "label": "no",
+      "notes": "port to Core 2"
+    },
+    {
+      "pair": 47,
+      "label": "no",
+      "notes": "backport to release/core-2"
+    },
+    {
+      "pair": 48,
+      "label": "no",
+      "notes": "cherry-pick"
+    },
+    {
+      "pair": 49,
+      "label": "no",
+      "notes": "Core 2 version"
+    },
+    {
+      "pair": 50,
+      "label": "no",
+      "notes": "port of Core 2 changes"
+    },
+    {
+      "pair": 51,
+      "label": "no",
+      "notes": "backport to release/core-2"
+    },
+    {
+      "pair": 52,
+      "label": "yes",
+      "notes": "SWR removal broke Stripe elements"
+    },
+    {
+      "pair": 53,
+      "label": "no",
+      "notes": "port to Core 2"
+    },
+    {
+      "pair": 54,
+      "label": "no",
+      "notes": "backport to release/core-2"
+    },
+    {
+      "pair": 55,
+      "label": "no",
+      "notes": "cherry-pick to Core-2"
+    },
+    {
+      "pair": 56,
+      "label": "yes",
+      "notes": "fixes from core-3 merge of Solana feature"
+    },
+    {
+      "pair": 57,
+      "label": "no",
+      "notes": "port to Core 2"
+    },
+    {
+      "pair": 58,
+      "label": "no",
+      "notes": "port"
+    },
+    {
+      "pair": 59,
+      "label": "yes",
+      "notes": "subject parameter not passed after SWR removal"
+    },
+    {
+      "pair": 60,
+      "label": "yes",
+      "notes": "job summary step still failing after A's fix"
+    },
+    {
+      "pair": 61,
+      "label": "yes",
+      "notes": "WSL fix insufficient, MCP servers failing"
+    },
+    {
+      "pair": 62,
+      "label": "yes",
+      "notes": "WSL fix insufficient, different approach needed"
+    },
+    {
+      "pair": 63,
+      "label": "yes",
+      "notes": "auth header override missed x-api-key"
+    },
+    {
+      "pair": 64,
+      "label": "no",
+      "notes": "machine catch, Windows CI failure from unimplemented symbols"
+    },
+    {
+      "pair": 65,
+      "label": "no",
+      "notes": "planned incremental work, builds on top of"
+    },
+    {
+      "pair": 66,
+      "label": "yes",
+      "notes": "blanket EscapeMarkup escaped all content incorrectly"
+    },
+    {
+      "pair": 67,
+      "label": "no",
+      "notes": "unrelated, flaky test not caused by A",
+      "resolved": "ambiguous resolved"
+    },
+    {
+      "pair": 68,
+      "label": "yes",
+      "notes": "fuzz test failure from PR A"
+    },
+    {
+      "pair": 69,
+      "label": "no",
+      "notes": "cherry-pick to different branch"
+    },
+    {
+      "pair": 70,
+      "label": "yes",
+      "notes": "wrong checkpoint names, users hit non-existing",
+      "flipped": "was no, haiku correct"
+    },
+    {
+      "pair": 71,
+      "label": "no",
+      "notes": "different log verbosity functions, unrelated"
+    },
+    {
+      "pair": 72,
+      "label": "yes",
+      "notes": "missed deduplicate_similar_urls in v2 Python client"
+    },
+    {
+      "pair": 73,
+      "label": "yes",
+      "notes": "missing await causing GCS race condition"
+    },
+    {
+      "pair": 74,
+      "label": "no",
+      "notes": "same-title cherry-pick"
+    },
+    {
+      "pair": 75,
+      "label": "no",
+      "notes": "same-title cherry-pick"
+    },
+    {
+      "pair": 76,
+      "label": "yes",
+      "notes": "Chat UI rendering broken for InstrumentedModel"
+    },
+    {
+      "pair": 77,
+      "label": "yes",
+      "notes": "escape, broke ONNX script for 3 days",
+      "resolved": "ambiguous resolved"
+    },
+    {
+      "pair": 78,
+      "label": "no",
+      "notes": "unrelated, different issue #21104",
+      "resolved": "ambiguous resolved"
+    },
+    {
+      "pair": 79,
+      "label": "no",
+      "notes": "machine catch, delimiter bug same day",
+      "resolved": "ambiguous resolved"
+    },
+    {
+      "pair": 80,
+      "label": "yes",
+      "notes": "environment validation missed on sync endpoint"
+    },
+    {
+      "pair": 81,
+      "label": "yes",
+      "notes": "loading state broken after usage page refactor"
+    },
+    {
+      "pair": 82,
+      "label": "no",
+      "notes": "same-title port"
+    },
+    {
+      "pair": 83,
+      "label": "yes",
+      "notes": "HonorLabels vs HonorTimestamps wrong field"
+    },
+    {
+      "pair": 84,
+      "label": "no",
+      "notes": "compilation error, CI caught",
+      "flipped": "was yes (H85), haiku correct"
+    },
+    {
+      "pair": 85,
+      "label": "yes",
+      "notes": "CI failure from email verification feature"
+    },
+    {
+      "pair": 86,
+      "label": "yes",
+      "notes": "correctness issues found in post-merge review"
+    },
+    {
+      "pair": 87,
+      "label": "no",
+      "notes": "enhancement, follow-up improvements not fixing bug",
+      "resolved": "ambiguous resolved"
+    },
+    {
+      "pair": 88,
+      "label": "yes",
+      "notes": "duplicate image rendering from provider"
+    },
+    {
+      "pair": 89,
+      "label": "yes",
+      "notes": "missing Opus 4.6 entries in selectors/docs"
+    },
+    {
+      "pair": 90,
+      "label": "yes",
+      "notes": "severity cards showing 0 for custom policies"
+    },
+    {
+      "pair": 91,
+      "label": "no",
+      "notes": "machine catch, build error same day",
+      "flipped": "was yes (H92)"
+    },
+    {
+      "pair": 92,
+      "label": "no",
+      "notes": "unrelated, flaky test vs dependency CVE"
+    },
+    {
+      "pair": 93,
+      "label": "no",
+      "notes": "machine catch, sharp tests not deterministic in CI"
+    },
+    {
+      "pair": 94,
+      "label": "no",
+      "notes": "unrelated, IME composition vs code review bot"
+    },
+    {
+      "pair": 95,
+      "label": "yes",
+      "notes": "release-please startup failure from attestation"
+    },
+    {
+      "pair": 96,
+      "label": "yes",
+      "notes": "race condition in finalizeResponse, A's fix insufficient"
+    },
+    {
+      "pair": 97,
+      "label": "yes",
+      "notes": "cached flag missing in 10 providers, A only fixed one"
+    },
+    {
+      "pair": 98,
+      "label": "yes",
+      "notes": "revert of XML format change"
+    },
+    {
+      "pair": 99,
+      "label": "yes",
+      "notes": "backwards compatibility broken, sends retrievalConfig always"
+    },
+    {
+      "pair": 100,
+      "label": "no",
+      "notes": "machine catch, TypeScript build failure"
+    },
+    {
+      "pair": 101,
+      "label": "no",
+      "notes": "machine catch, corepack blocked pnpm"
+    },
+    {
+      "pair": 102,
+      "label": "no",
+      "notes": "unrelated, winston upgrade not fixing A",
+      "resolved": "ambiguous resolved"
+    },
+    {
+      "pair": 103,
+      "label": "yes",
+      "notes": "escape, corepack blocked pnpm/yarn for users",
+      "resolved": "ambiguous resolved"
+    },
+    {
+      "pair": 104,
+      "label": "yes",
+      "notes": "bad merge from combining two PRs"
+    },
+    {
+      "pair": 105,
+      "label": "yes",
+      "notes": "console spam from crypto import"
+    },
+    {
+      "pair": 106,
+      "label": "no",
+      "notes": "different issue #17595, not referencing A"
+    },
+    {
+      "pair": 107,
+      "label": "no",
+      "notes": "borderline enhancement, a11y warning improvement",
+      "resolved": "ambiguous resolved"
+    },
+    {
+      "pair": 108,
+      "label": "yes",
+      "notes": "A was alternative attempt, B is proper fix"
+    },
+    {
+      "pair": 109,
+      "label": "yes",
+      "notes": "derived values still ignored despite fix"
+    },
+    {
+      "pair": 110,
+      "label": "yes",
+      "notes": "A didn't fix the issue, B says it thought A would"
+    },
+    {
+      "pair": 111,
+      "label": "yes",
+      "notes": "non-enumerable symbols missed"
+    },
+    {
+      "pair": 112,
+      "label": "no",
+      "notes": "re-do due to borked git history, not a bug",
+      "flipped": "was yes (H113), haiku correct"
+    },
+    {
+      "pair": 113,
+      "label": "yes",
+      "notes": "map iteration order wrong, same day follow-up"
+    },
+    {
+      "pair": 114,
+      "label": "no",
+      "notes": "release bundling by temporal-cicd"
+    },
+    {
+      "pair": 115,
+      "label": "no",
+      "notes": "cherry-pick compilation fix"
+    },
+    {
+      "pair": 116,
+      "label": "no",
+      "notes": "release bundling by temporal-cicd"
+    },
+    {
+      "pair": 117,
+      "label": "no",
+      "notes": "release bundling by temporal-cicd"
+    },
+    {
+      "pair": 118,
+      "label": "no",
+      "notes": "release bundling by temporal-cicd"
+    },
+    {
+      "pair": 119,
+      "label": "no",
+      "notes": "release bundling by temporal-cicd"
+    },
+    {
+      "pair": 120,
+      "label": "no",
+      "notes": "release bundling by temporal-cicd"
+    },
+    {
+      "pair": 121,
+      "label": "no",
+      "notes": "release bundling by temporal-cicd"
+    },
+    {
+      "pair": 122,
+      "label": "no",
+      "notes": "release bundling"
+    },
+    {
+      "pair": 123,
+      "label": "no",
+      "notes": "release bundling by temporal-cicd"
+    },
+    {
+      "pair": 124,
+      "label": "no",
+      "notes": "release bundling by temporal-cicd"
+    },
+    {
+      "pair": 125,
+      "label": "no",
+      "notes": "missing test comments, not a defect"
+    }
+  ],
+  "flips_applied": [
+    "H6 (idx5): yes\u2192no (machine catch, haiku correct)",
+    "H15 (idx14): no\u2192yes (escape, haiku correct \u2014 link styling broken for users)",
+    "H21 (idx20): yes\u2192no (machine catch, haiku correct \u2014 broken import)",
+    "H33 (idx32): yes\u2192no (machine catch, haiku correct \u2014 build/type error)",
+    "H40 (idx39): yes\u2192no (machine catch, haiku correct \u2014 E2E test caught it)",
+    "H43 (idx42): yes\u2192no (machine catch, haiku correct \u2014 integration test)",
+    "H71 (idx70): no\u2192yes (escape, haiku correct \u2014 wrong checkpoints)",
+    "H85 (idx84): yes\u2192no (machine catch, haiku correct \u2014 compilation error)",
+    "H92 (idx91): yes\u2192no (machine catch \u2014 build error same day)",
+    "H96 (idx95): yes\u2192no (machine catch \u2014 CI permissions)",
+    "H113 (idx112): yes\u2192no (not escape, haiku correct \u2014 borked git history)"
+  ],
+  "summary": {
+    "total": 126,
+    "escape": 66,
+    "not_escape": 60,
+    "raw_precision": 0.524
+  }
+}

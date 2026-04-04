@@ -1,0 +1,62 @@
+======================================================================
+SZZ ANALYSIS SUMMARY
+======================================================================
+
+Total PRs analyzed: 1,535
+PRs identified as bug-introducing: 436 (28.4%)
+Total SZZ links (fix -> bug): 2,283
+
+Bug-introducing rate by repo:
+--------------------------------------------------
+  promptfoo/promptfoo                       436/ 1535 (28.4%)
+
+Bug-introducing rate by AI classification:
+--------------------------------------------------
+  escape                  10/    14 (71.4%)
+  human_save             149/   562 (26.5%)
+  machine_catch           24/   202 (11.9%)
+  pending                  3/    53 (5.7%)
+  ungated                 12/    48 (25.0%)
+
+Bug-introducing rate by tier:
+--------------------------------------------------
+  AI                     436/ 1,535 (28.4%)
+
+Top 10 most bug-introducing PRs (by number of subsequent fixes):
+----------------------------------------------------------------------
+  promptfoo/promptfoo            #7044   fixes=30  chore(deps): update safe minor/patch dependencies
+  promptfoo/promptfoo            #6761   fixes=23  chore(biome): run linter
+  promptfoo/promptfoo            #6823   fixes=22  feat: Introduce promptfoo design system, new nav, ...
+  promptfoo/promptfoo            #6417   fixes=20  test: migrate tests to Vitest
+  promptfoo/promptfoo            #5594   fixes=15  feat: migrate to ESM (ECMAScript Modules)
+  promptfoo/promptfoo            #6838   fixes=14  feat(webui): Port redteam setup flow to new design...
+  promptfoo/promptfoo            #6868   fixes=12  feat(webui): remove MUI dependencies, complete mig...
+  promptfoo/promptfoo            #6413   fixes=12  test: migrate provider tests to Vitest
+  promptfoo/promptfoo            #6905   fixes=11  chore(app): use Tailwind size shorthand and simpli...
+  promptfoo/promptfoo            #7241   fixes= 9  chore(deps): update vitest to ^4.0.18
+
+
+======================================================================
+CORRELATION ANALYSIS: Spec Quality vs Bug Introduction
+======================================================================
+
+PRs with spec quality scores: 1,443
+
+Bug-introducing rate by spec quality tier:
+--------------------------------------------------
+  low         176/  489 (36.0%)
+  medium      125/  499 (25.1%)
+  high        115/  455 (25.3%)
+
+Fisher's exact test (low vs high quality):
+  Odds ratio: 1.662
+  p-value:    0.0004
+  Interpretation: Significant at alpha=0.05
+
+  CAVEAT: This is a pooled analysis. PRs within the same repo
+  are not independent. Real N is ~43 repos, not ~23,967 PRs.
+  A mixed-effects logistic regression would be more appropriate.
+  Treat this p-value as a rough indicator, not a definitive result.
+
+Bug-introducing rate: Human vs Augmented PRs:
+--------------------------------------------------

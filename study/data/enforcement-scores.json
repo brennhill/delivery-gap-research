@@ -1,0 +1,2996 @@
+[
+  {
+    "repo": "PostHog/posthog",
+    "hooks": {
+      "pre_commit": false,
+      "husky": true,
+      "ci_workflow_count": 73
+    },
+    "enforcement_sources": [
+      "husky"
+    ],
+    "enforcement": {
+      "tier0": [
+        "linter"
+      ],
+      "tier1": [],
+      "tier2": [
+        "test"
+      ],
+      "tier3": []
+    },
+    "ci": {
+      "tier0": [
+        "type_checker"
+      ],
+      "tier1": [],
+      "tier2": [
+        "coverage",
+        "test"
+      ],
+      "tier3": [
+        "secret_detection"
+      ]
+    },
+    "enforcement_depth": 4,
+    "enforcement_tier_count": 2,
+    "ci_depth": 11,
+    "ci_tier_count": 3,
+    "total_depth": 15,
+    "total_tier_count": 3
+  },
+  {
+    "repo": "anthropics/anthropic-cookbook",
+    "hooks": {
+      "pre_commit": true,
+      "husky": false,
+      "ci_workflow_count": 9
+    },
+    "enforcement_sources": [
+      "pre-commit"
+    ],
+    "enforcement": {
+      "tier0": [
+        "linter"
+      ],
+      "tier1": [],
+      "tier2": [
+        "test"
+      ],
+      "tier3": []
+    },
+    "ci": {
+      "tier0": [
+        "linter"
+      ],
+      "tier1": [
+        "schema_validation"
+      ],
+      "tier2": [
+        "test"
+      ],
+      "tier3": [
+        "secret_detection"
+      ]
+    },
+    "enforcement_depth": 4,
+    "enforcement_tier_count": 2,
+    "ci_depth": 10,
+    "ci_tier_count": 4,
+    "total_depth": 14,
+    "total_tier_count": 4
+  },
+  {
+    "repo": "antiwork/gumroad",
+    "hooks": {
+      "pre_commit": false,
+      "husky": false,
+      "ci_workflow_count": 13
+    },
+    "enforcement_sources": [],
+    "enforcement": {
+      "tier0": [],
+      "tier1": [],
+      "tier2": [
+        "test"
+      ],
+      "tier3": [
+        "secret_detection"
+      ]
+    },
+    "ci": {
+      "tier0": [
+        "formatter",
+        "linter",
+        "type_checker"
+      ],
+      "tier1": [],
+      "tier2": [
+        "test"
+      ],
+      "tier3": [
+        "secret_detection"
+      ]
+    },
+    "enforcement_depth": 7,
+    "enforcement_tier_count": 2,
+    "ci_depth": 10,
+    "ci_tier_count": 3,
+    "total_depth": 17,
+    "total_tier_count": 3
+  },
+  {
+    "repo": "apache/airflow",
+    "hooks": {
+      "pre_commit": true,
+      "husky": false,
+      "ci_workflow_count": 35
+    },
+    "enforcement_sources": [
+      "pre-commit"
+    ],
+    "enforcement": {
+      "tier0": [
+        "formatter",
+        "linter",
+        "type_checker"
+      ],
+      "tier1": [
+        "api_contract",
+        "schema_validation"
+      ],
+      "tier2": [
+        "coverage",
+        "test"
+      ],
+      "tier3": [
+        "compliance",
+        "secret_detection",
+        "security_scan"
+      ]
+    },
+    "ci": {
+      "tier0": [
+        "linter",
+        "type_checker"
+      ],
+      "tier1": [
+        "api_contract"
+      ],
+      "tier2": [
+        "coverage",
+        "test"
+      ],
+      "tier3": [
+        "compliance",
+        "secret_detection"
+      ]
+    },
+    "enforcement_depth": 25,
+    "enforcement_tier_count": 4,
+    "ci_depth": 18,
+    "ci_tier_count": 4,
+    "total_depth": 43,
+    "total_tier_count": 4
+  },
+  {
+    "repo": "apache/arrow",
+    "hooks": {
+      "pre_commit": true,
+      "husky": false,
+      "ci_workflow_count": 28
+    },
+    "enforcement_sources": [
+      "pre-commit"
+    ],
+    "enforcement": {
+      "tier0": [
+        "formatter",
+        "linter",
+        "type_checker"
+      ],
+      "tier1": [
+        "api_contract"
+      ],
+      "tier2": [
+        "test"
+      ],
+      "tier3": [
+        "compliance",
+        "security_scan"
+      ]
+    },
+    "ci": {
+      "tier0": [
+        "linter",
+        "type_checker"
+      ],
+      "tier1": [
+        "api_contract"
+      ],
+      "tier2": [
+        "test"
+      ],
+      "tier3": [
+        "compliance",
+        "dependency_audit",
+        "secret_detection"
+      ]
+    },
+    "enforcement_depth": 16,
+    "enforcement_tier_count": 4,
+    "ci_depth": 19,
+    "ci_tier_count": 4,
+    "total_depth": 35,
+    "total_tier_count": 4
+  },
+  {
+    "repo": "apache/kafka",
+    "hooks": {
+      "pre_commit": false,
+      "husky": false,
+      "ci_workflow_count": 19
+    },
+    "enforcement_sources": [],
+    "enforcement": {
+      "tier0": [],
+      "tier1": [],
+      "tier2": [],
+      "tier3": []
+    },
+    "ci": {
+      "tier0": [
+        "linter",
+        "type_checker"
+      ],
+      "tier1": [
+        "api_contract"
+      ],
+      "tier2": [
+        "test"
+      ],
+      "tier3": [
+        "compliance",
+        "secret_detection",
+        "security_scan"
+      ]
+    },
+    "enforcement_depth": 0,
+    "enforcement_tier_count": 0,
+    "ci_depth": 19,
+    "ci_tier_count": 4,
+    "total_depth": 19,
+    "total_tier_count": 4
+  },
+  {
+    "repo": "astral-sh/ruff",
+    "hooks": {
+      "pre_commit": true,
+      "husky": false,
+      "ci_workflow_count": 19
+    },
+    "enforcement_sources": [
+      "pre-commit"
+    ],
+    "enforcement": {
+      "tier0": [
+        "formatter",
+        "linter"
+      ],
+      "tier1": [
+        "schema_validation"
+      ],
+      "tier2": [
+        "test"
+      ],
+      "tier3": [
+        "dependency_audit"
+      ]
+    },
+    "ci": {
+      "tier0": [
+        "formatter",
+        "linter",
+        "type_checker"
+      ],
+      "tier1": [],
+      "tier2": [
+        "coverage",
+        "test"
+      ],
+      "tier3": [
+        "compliance",
+        "secret_detection"
+      ]
+    },
+    "enforcement_depth": 11,
+    "enforcement_tier_count": 4,
+    "ci_depth": 17,
+    "ci_tier_count": 3,
+    "total_depth": 28,
+    "total_tier_count": 4
+  },
+  {
+    "repo": "biomejs/biome",
+    "hooks": {
+      "pre_commit": false,
+      "husky": false,
+      "ci_workflow_count": 32
+    },
+    "enforcement_sources": [],
+    "enforcement": {
+      "tier0": [
+        "formatter",
+        "linter",
+        "type_checker"
+      ],
+      "tier1": [
+        "schema_validation"
+      ],
+      "tier2": [
+        "coverage",
+        "test"
+      ],
+      "tier3": []
+    },
+    "ci": {
+      "tier0": [
+        "formatter",
+        "linter"
+      ],
+      "tier1": [],
+      "tier2": [
+        "coverage",
+        "test"
+      ],
+      "tier3": [
+        "secret_detection"
+      ]
+    },
+    "enforcement_depth": 11,
+    "enforcement_tier_count": 3,
+    "ci_depth": 12,
+    "ci_tier_count": 3,
+    "total_depth": 23,
+    "total_tier_count": 4
+  },
+  {
+    "repo": "calcom/cal.com",
+    "hooks": {
+      "pre_commit": false,
+      "husky": true,
+      "ci_workflow_count": 59
+    },
+    "enforcement_sources": [
+      "husky"
+    ],
+    "enforcement": {
+      "tier0": [
+        "linter"
+      ],
+      "tier1": [],
+      "tier2": [],
+      "tier3": []
+    },
+    "ci": {
+      "tier0": [
+        "formatter",
+        "linter",
+        "type_checker"
+      ],
+      "tier1": [
+        "api_contract"
+      ],
+      "tier2": [
+        "test"
+      ],
+      "tier3": [
+        "compliance",
+        "secret_detection"
+      ]
+    },
+    "enforcement_depth": 1,
+    "enforcement_tier_count": 1,
+    "ci_depth": 16,
+    "ci_tier_count": 4,
+    "total_depth": 17,
+    "total_tier_count": 4
+  },
+  {
+    "repo": "celery/celery",
+    "hooks": {
+      "pre_commit": true,
+      "husky": false,
+      "ci_workflow_count": 7
+    },
+    "enforcement_sources": [
+      "pre-commit"
+    ],
+    "enforcement": {
+      "tier0": [
+        "formatter",
+        "linter",
+        "type_checker"
+      ],
+      "tier1": [],
+      "tier2": [
+        "coverage",
+        "test"
+      ],
+      "tier3": []
+    },
+    "ci": {
+      "tier0": [
+        "formatter",
+        "linter"
+      ],
+      "tier1": [],
+      "tier2": [
+        "coverage",
+        "test"
+      ],
+      "tier3": [
+        "secret_detection",
+        "security_scan"
+      ]
+    },
+    "enforcement_depth": 9,
+    "enforcement_tier_count": 2,
+    "ci_depth": 16,
+    "ci_tier_count": 3,
+    "total_depth": 25,
+    "total_tier_count": 3
+  },
+  {
+    "repo": "chroma-core/chroma",
+    "hooks": {
+      "pre_commit": true,
+      "husky": false,
+      "ci_workflow_count": 21
+    },
+    "enforcement_sources": [
+      "pre-commit"
+    ],
+    "enforcement": {
+      "tier0": [
+        "formatter",
+        "linter",
+        "type_checker"
+      ],
+      "tier1": [
+        "api_contract"
+      ],
+      "tier2": [
+        "test"
+      ],
+      "tier3": []
+    },
+    "ci": {
+      "tier0": [
+        "formatter",
+        "linter"
+      ],
+      "tier1": [],
+      "tier2": [
+        "test"
+      ],
+      "tier3": [
+        "secret_detection",
+        "security_scan"
+      ]
+    },
+    "enforcement_depth": 8,
+    "enforcement_tier_count": 3,
+    "ci_depth": 13,
+    "ci_tier_count": 3,
+    "total_depth": 21,
+    "total_tier_count": 4
+  },
+  {
+    "repo": "clerkinc/javascript",
+    "hooks": {
+      "pre_commit": false,
+      "husky": true,
+      "ci_workflow_count": 11
+    },
+    "enforcement_sources": [
+      "husky"
+    ],
+    "enforcement": {
+      "tier0": [
+        "linter"
+      ],
+      "tier1": [],
+      "tier2": [
+        "test"
+      ],
+      "tier3": []
+    },
+    "ci": {
+      "tier0": [
+        "formatter",
+        "linter"
+      ],
+      "tier1": [
+        "api_contract",
+        "contract_test"
+      ],
+      "tier2": [
+        "test"
+      ],
+      "tier3": [
+        "dependency_audit",
+        "secret_detection",
+        "security_scan"
+      ]
+    },
+    "enforcement_depth": 4,
+    "enforcement_tier_count": 2,
+    "ci_depth": 21,
+    "ci_tier_count": 4,
+    "total_depth": 25,
+    "total_tier_count": 4
+  },
+  {
+    "repo": "cli/cli",
+    "hooks": {
+      "pre_commit": false,
+      "husky": false,
+      "ci_workflow_count": 13
+    },
+    "enforcement_sources": [],
+    "enforcement": {
+      "tier0": [],
+      "tier1": [],
+      "tier2": [
+        "test"
+      ],
+      "tier3": [
+        "compliance"
+      ]
+    },
+    "ci": {
+      "tier0": [
+        "linter"
+      ],
+      "tier1": [],
+      "tier2": [
+        "coverage",
+        "test"
+      ],
+      "tier3": [
+        "compliance",
+        "secret_detection",
+        "security_scan"
+      ]
+    },
+    "enforcement_depth": 7,
+    "enforcement_tier_count": 2,
+    "ci_depth": 19,
+    "ci_tier_count": 3,
+    "total_depth": 26,
+    "total_tier_count": 3
+  },
+  {
+    "repo": "clickhouse/clickhouse",
+    "hooks": {
+      "pre_commit": false,
+      "husky": false,
+      "ci_workflow_count": 20
+    },
+    "enforcement_sources": [],
+    "enforcement": {
+      "tier0": [],
+      "tier1": [],
+      "tier2": [],
+      "tier3": []
+    },
+    "ci": {
+      "tier0": [
+        "linter"
+      ],
+      "tier1": [
+        "api_contract"
+      ],
+      "tier2": [
+        "coverage",
+        "test"
+      ],
+      "tier3": [
+        "compliance",
+        "secret_detection"
+      ]
+    },
+    "enforcement_depth": 0,
+    "enforcement_tier_count": 0,
+    "ci_depth": 17,
+    "ci_tier_count": 4,
+    "total_depth": 17,
+    "total_tier_count": 4
+  },
+  {
+    "repo": "cockroachdb/cockroach",
+    "hooks": {
+      "pre_commit": false,
+      "husky": false,
+      "ci_workflow_count": 22
+    },
+    "enforcement_sources": [],
+    "enforcement": {
+      "tier0": [],
+      "tier1": [],
+      "tier2": [],
+      "tier3": []
+    },
+    "ci": {
+      "tier0": [],
+      "tier1": [
+        "api_contract"
+      ],
+      "tier2": [
+        "coverage",
+        "test"
+      ],
+      "tier3": [
+        "secret_detection"
+      ]
+    },
+    "enforcement_depth": 0,
+    "enforcement_tier_count": 0,
+    "ci_depth": 12,
+    "ci_tier_count": 3,
+    "total_depth": 12,
+    "total_tier_count": 3
+  },
+  {
+    "repo": "continuedev/continue",
+    "hooks": {
+      "pre_commit": false,
+      "husky": true,
+      "ci_workflow_count": 32
+    },
+    "enforcement_sources": [
+      "husky"
+    ],
+    "enforcement": {
+      "tier0": [
+        "linter"
+      ],
+      "tier1": [],
+      "tier2": [],
+      "tier3": []
+    },
+    "ci": {
+      "tier0": [
+        "linter"
+      ],
+      "tier1": [
+        "contract_test"
+      ],
+      "tier2": [
+        "coverage",
+        "test"
+      ],
+      "tier3": [
+        "dependency_audit",
+        "secret_detection",
+        "security_scan"
+      ]
+    },
+    "enforcement_depth": 1,
+    "enforcement_tier_count": 1,
+    "ci_depth": 21,
+    "ci_tier_count": 4,
+    "total_depth": 22,
+    "total_tier_count": 4
+  },
+  {
+    "repo": "dagster-io/dagster",
+    "hooks": {
+      "pre_commit": true,
+      "husky": false,
+      "ci_workflow_count": 5
+    },
+    "enforcement_sources": [
+      "pre-commit"
+    ],
+    "enforcement": {
+      "tier0": [
+        "formatter",
+        "linter",
+        "type_checker"
+      ],
+      "tier1": [],
+      "tier2": [
+        "test"
+      ],
+      "tier3": []
+    },
+    "ci": {
+      "tier0": [
+        "linter"
+      ],
+      "tier1": [],
+      "tier2": [
+        "test"
+      ],
+      "tier3": [
+        "secret_detection",
+        "security_scan"
+      ]
+    },
+    "enforcement_depth": 6,
+    "enforcement_tier_count": 2,
+    "ci_depth": 12,
+    "ci_tier_count": 3,
+    "total_depth": 18,
+    "total_tier_count": 3
+  },
+  {
+    "repo": "dbt-labs/dbt-core",
+    "hooks": {
+      "pre_commit": true,
+      "husky": false,
+      "ci_workflow_count": 20
+    },
+    "enforcement_sources": [
+      "pre-commit"
+    ],
+    "enforcement": {
+      "tier0": [
+        "formatter",
+        "linter",
+        "type_checker"
+      ],
+      "tier1": [
+        "schema_validation"
+      ],
+      "tier2": [
+        "test"
+      ],
+      "tier3": []
+    },
+    "ci": {
+      "tier0": [
+        "linter"
+      ],
+      "tier1": [
+        "schema_validation"
+      ],
+      "tier2": [
+        "coverage",
+        "test"
+      ],
+      "tier3": [
+        "dependency_audit",
+        "secret_detection"
+      ]
+    },
+    "enforcement_depth": 8,
+    "enforcement_tier_count": 3,
+    "ci_depth": 17,
+    "ci_tier_count": 4,
+    "total_depth": 25,
+    "total_tier_count": 4
+  },
+  {
+    "repo": "denoland/deno",
+    "hooks": {
+      "pre_commit": false,
+      "husky": false,
+      "ci_workflow_count": 11
+    },
+    "enforcement_sources": [],
+    "enforcement": {
+      "tier0": [],
+      "tier1": [],
+      "tier2": [],
+      "tier3": []
+    },
+    "ci": {
+      "tier0": [
+        "formatter",
+        "linter",
+        "type_checker"
+      ],
+      "tier1": [],
+      "tier2": [
+        "test"
+      ],
+      "tier3": [
+        "compliance",
+        "secret_detection"
+      ]
+    },
+    "enforcement_depth": 0,
+    "enforcement_tier_count": 0,
+    "ci_depth": 14,
+    "ci_tier_count": 3,
+    "total_depth": 14,
+    "total_tier_count": 3
+  },
+  {
+    "repo": "django/django",
+    "hooks": {
+      "pre_commit": true,
+      "husky": false,
+      "ci_workflow_count": 17
+    },
+    "enforcement_sources": [
+      "pre-commit"
+    ],
+    "enforcement": {
+      "tier0": [
+        "formatter",
+        "linter"
+      ],
+      "tier1": [],
+      "tier2": [],
+      "tier3": []
+    },
+    "ci": {
+      "tier0": [
+        "formatter",
+        "linter"
+      ],
+      "tier1": [],
+      "tier2": [
+        "coverage",
+        "test"
+      ],
+      "tier3": [
+        "secret_detection"
+      ]
+    },
+    "enforcement_depth": 2,
+    "enforcement_tier_count": 1,
+    "ci_depth": 12,
+    "ci_tier_count": 3,
+    "total_depth": 14,
+    "total_tier_count": 3
+  },
+  {
+    "repo": "dotnet/aspire",
+    "hooks": {
+      "pre_commit": false,
+      "husky": false,
+      "ci_workflow_count": 43
+    },
+    "enforcement_sources": [],
+    "enforcement": {
+      "tier0": [],
+      "tier1": [],
+      "tier2": [],
+      "tier3": []
+    },
+    "ci": {
+      "tier0": [],
+      "tier1": [
+        "api_contract",
+        "contract_test"
+      ],
+      "tier2": [
+        "test"
+      ],
+      "tier3": [
+        "secret_detection",
+        "security_scan"
+      ]
+    },
+    "enforcement_depth": 0,
+    "enforcement_tier_count": 0,
+    "ci_depth": 15,
+    "ci_tier_count": 3,
+    "total_depth": 15,
+    "total_tier_count": 3
+  },
+  {
+    "repo": "elastic/elasticsearch",
+    "hooks": {
+      "pre_commit": false,
+      "husky": false,
+      "ci_workflow_count": 4
+    },
+    "enforcement_sources": [],
+    "enforcement": {
+      "tier0": [],
+      "tier1": [],
+      "tier2": [],
+      "tier3": []
+    },
+    "ci": {
+      "tier0": [
+        "linter"
+      ],
+      "tier1": [],
+      "tier2": [
+        "test"
+      ],
+      "tier3": [
+        "secret_detection"
+      ]
+    },
+    "enforcement_depth": 0,
+    "enforcement_tier_count": 0,
+    "ci_depth": 8,
+    "ci_tier_count": 3,
+    "total_depth": 8,
+    "total_tier_count": 3
+  },
+  {
+    "repo": "envoyproxy/envoy",
+    "hooks": {
+      "pre_commit": false,
+      "husky": false,
+      "ci_workflow_count": 60
+    },
+    "enforcement_sources": [],
+    "enforcement": {
+      "tier0": [],
+      "tier1": [],
+      "tier2": [],
+      "tier3": []
+    },
+    "ci": {
+      "tier0": [],
+      "tier1": [],
+      "tier2": [
+        "coverage",
+        "test"
+      ],
+      "tier3": [
+        "secret_detection"
+      ]
+    },
+    "enforcement_depth": 0,
+    "enforcement_tier_count": 0,
+    "ci_depth": 10,
+    "ci_tier_count": 2,
+    "total_depth": 10,
+    "total_tier_count": 2
+  },
+  {
+    "repo": "etcd-io/etcd",
+    "hooks": {
+      "pre_commit": false,
+      "husky": false,
+      "ci_workflow_count": 11
+    },
+    "enforcement_sources": [],
+    "enforcement": {
+      "tier0": [
+        "linter"
+      ],
+      "tier1": [
+        "api_contract"
+      ],
+      "tier2": [
+        "coverage",
+        "test"
+      ],
+      "tier3": []
+    },
+    "ci": {
+      "tier0": [],
+      "tier1": [],
+      "tier2": [
+        "coverage",
+        "test"
+      ],
+      "tier3": [
+        "secret_detection",
+        "security_scan"
+      ]
+    },
+    "enforcement_depth": 9,
+    "enforcement_tier_count": 3,
+    "ci_depth": 14,
+    "ci_tier_count": 2,
+    "total_depth": 23,
+    "total_tier_count": 4
+  },
+  {
+    "repo": "facebook/react",
+    "hooks": {
+      "pre_commit": false,
+      "husky": false,
+      "ci_workflow_count": 24
+    },
+    "enforcement_sources": [],
+    "enforcement": {
+      "tier0": [],
+      "tier1": [],
+      "tier2": [],
+      "tier3": []
+    },
+    "ci": {
+      "tier0": [
+        "formatter",
+        "linter",
+        "type_checker"
+      ],
+      "tier1": [],
+      "tier2": [
+        "test"
+      ],
+      "tier3": [
+        "compliance",
+        "secret_detection"
+      ]
+    },
+    "enforcement_depth": 0,
+    "enforcement_tier_count": 0,
+    "ci_depth": 14,
+    "ci_tier_count": 3,
+    "total_depth": 14,
+    "total_tier_count": 3
+  },
+  {
+    "repo": "fastapi/fastapi",
+    "hooks": {
+      "pre_commit": true,
+      "husky": false,
+      "ci_workflow_count": 19
+    },
+    "enforcement_sources": [
+      "pre-commit"
+    ],
+    "enforcement": {
+      "tier0": [
+        "linter",
+        "type_checker"
+      ],
+      "tier1": [],
+      "tier2": [
+        "test"
+      ],
+      "tier3": []
+    },
+    "ci": {
+      "tier0": [],
+      "tier1": [],
+      "tier2": [
+        "test"
+      ],
+      "tier3": [
+        "secret_detection"
+      ]
+    },
+    "enforcement_depth": 5,
+    "enforcement_tier_count": 2,
+    "ci_depth": 7,
+    "ci_tier_count": 2,
+    "total_depth": 12,
+    "total_tier_count": 3
+  },
+  {
+    "repo": "flutter/flutter",
+    "hooks": {
+      "pre_commit": false,
+      "husky": false,
+      "ci_workflow_count": 14
+    },
+    "enforcement_sources": [],
+    "enforcement": {
+      "tier0": [],
+      "tier1": [],
+      "tier2": [],
+      "tier3": []
+    },
+    "ci": {
+      "tier0": [
+        "type_checker"
+      ],
+      "tier1": [],
+      "tier2": [
+        "coverage",
+        "test"
+      ],
+      "tier3": [
+        "compliance",
+        "secret_detection"
+      ]
+    },
+    "enforcement_depth": 0,
+    "enforcement_tier_count": 0,
+    "ci_depth": 15,
+    "ci_tier_count": 3,
+    "total_depth": 15,
+    "total_tier_count": 3
+  },
+  {
+    "repo": "grafana/grafana",
+    "hooks": {
+      "pre_commit": false,
+      "husky": true,
+      "ci_workflow_count": 89
+    },
+    "enforcement_sources": [
+      "husky"
+    ],
+    "enforcement": {
+      "tier0": [
+        "formatter",
+        "linter",
+        "type_checker"
+      ],
+      "tier1": [
+        "api_contract"
+      ],
+      "tier2": [
+        "test"
+      ],
+      "tier3": [
+        "compliance",
+        "secret_detection"
+      ]
+    },
+    "ci": {
+      "tier0": [
+        "linter"
+      ],
+      "tier1": [
+        "api_contract"
+      ],
+      "tier2": [
+        "coverage",
+        "test"
+      ],
+      "tier3": [
+        "compliance",
+        "secret_detection",
+        "security_scan"
+      ]
+    },
+    "enforcement_depth": 16,
+    "enforcement_tier_count": 4,
+    "ci_depth": 21,
+    "ci_tier_count": 4,
+    "total_depth": 37,
+    "total_tier_count": 4
+  },
+  {
+    "repo": "hashicorp/terraform",
+    "hooks": {
+      "pre_commit": false,
+      "husky": false,
+      "ci_workflow_count": 10
+    },
+    "enforcement_sources": [],
+    "enforcement": {
+      "tier0": [
+        "formatter",
+        "type_checker"
+      ],
+      "tier1": [
+        "api_contract"
+      ],
+      "tier2": [
+        "test"
+      ],
+      "tier3": []
+    },
+    "ci": {
+      "tier0": [
+        "linter",
+        "type_checker"
+      ],
+      "tier1": [
+        "api_contract"
+      ],
+      "tier2": [
+        "coverage",
+        "test"
+      ],
+      "tier3": [
+        "compliance",
+        "dependency_audit",
+        "secret_detection"
+      ]
+    },
+    "enforcement_depth": 7,
+    "enforcement_tier_count": 3,
+    "ci_depth": 22,
+    "ci_tier_count": 4,
+    "total_depth": 29,
+    "total_tier_count": 4
+  },
+  {
+    "repo": "hashicorp/vault",
+    "hooks": {
+      "pre_commit": false,
+      "husky": false,
+      "ci_workflow_count": 33
+    },
+    "enforcement_sources": [],
+    "enforcement": {
+      "tier0": [
+        "formatter",
+        "linter"
+      ],
+      "tier1": [
+        "api_contract"
+      ],
+      "tier2": [
+        "coverage",
+        "test"
+      ],
+      "tier3": [
+        "compliance",
+        "security_scan"
+      ]
+    },
+    "ci": {
+      "tier0": [
+        "linter"
+      ],
+      "tier1": [
+        "api_contract"
+      ],
+      "tier2": [
+        "coverage",
+        "test"
+      ],
+      "tier3": [
+        "secret_detection",
+        "security_scan"
+      ]
+    },
+    "enforcement_depth": 18,
+    "enforcement_tier_count": 4,
+    "ci_depth": 17,
+    "ci_tier_count": 4,
+    "total_depth": 35,
+    "total_tier_count": 4
+  },
+  {
+    "repo": "huggingface/transformers",
+    "hooks": {
+      "pre_commit": false,
+      "husky": false,
+      "ci_workflow_count": 53
+    },
+    "enforcement_sources": [],
+    "enforcement": {
+      "tier0": [
+        "formatter",
+        "linter"
+      ],
+      "tier1": [],
+      "tier2": [
+        "test"
+      ],
+      "tier3": []
+    },
+    "ci": {
+      "tier0": [],
+      "tier1": [],
+      "tier2": [
+        "test"
+      ],
+      "tier3": [
+        "secret_detection"
+      ]
+    },
+    "enforcement_depth": 5,
+    "enforcement_tier_count": 2,
+    "ci_depth": 7,
+    "ci_tier_count": 2,
+    "total_depth": 12,
+    "total_tier_count": 3
+  },
+  {
+    "repo": "kubernetes/kubernetes",
+    "hooks": {
+      "pre_commit": false,
+      "husky": false,
+      "ci_workflow_count": 0
+    },
+    "enforcement_sources": [],
+    "enforcement": {
+      "tier0": [
+        "formatter",
+        "linter",
+        "type_checker"
+      ],
+      "tier1": [],
+      "tier2": [
+        "coverage",
+        "test"
+      ],
+      "tier3": [
+        "compliance"
+      ]
+    },
+    "ci": {
+      "tier0": [],
+      "tier1": [],
+      "tier2": [],
+      "tier3": []
+    },
+    "enforcement_depth": 13,
+    "enforcement_tier_count": 3,
+    "ci_depth": 0,
+    "ci_tier_count": 0,
+    "total_depth": 13,
+    "total_tier_count": 3
+  },
+  {
+    "repo": "langchain-ai/langchain",
+    "hooks": {
+      "pre_commit": true,
+      "husky": false,
+      "ci_workflow_count": 19
+    },
+    "enforcement_sources": [
+      "pre-commit"
+    ],
+    "enforcement": {
+      "tier0": [
+        "linter"
+      ],
+      "tier1": [],
+      "tier2": [
+        "test"
+      ],
+      "tier3": []
+    },
+    "ci": {
+      "tier0": [
+        "linter"
+      ],
+      "tier1": [],
+      "tier2": [
+        "coverage",
+        "test"
+      ],
+      "tier3": [
+        "secret_detection"
+      ]
+    },
+    "enforcement_depth": 4,
+    "enforcement_tier_count": 2,
+    "ci_depth": 11,
+    "ci_tier_count": 3,
+    "total_depth": 15,
+    "total_tier_count": 3
+  },
+  {
+    "repo": "langflow-ai/langflow",
+    "hooks": {
+      "pre_commit": true,
+      "husky": false,
+      "ci_workflow_count": 37
+    },
+    "enforcement_sources": [
+      "pre-commit"
+    ],
+    "enforcement": {
+      "tier0": [
+        "formatter",
+        "linter",
+        "type_checker"
+      ],
+      "tier1": [],
+      "tier2": [
+        "coverage",
+        "test"
+      ],
+      "tier3": [
+        "secret_detection"
+      ]
+    },
+    "ci": {
+      "tier0": [
+        "linter",
+        "type_checker"
+      ],
+      "tier1": [
+        "api_contract"
+      ],
+      "tier2": [
+        "coverage",
+        "test"
+      ],
+      "tier3": [
+        "secret_detection",
+        "security_scan"
+      ]
+    },
+    "enforcement_depth": 13,
+    "enforcement_tier_count": 3,
+    "ci_depth": 18,
+    "ci_tier_count": 4,
+    "total_depth": 31,
+    "total_tier_count": 4
+  },
+  {
+    "repo": "liam-hq/liam",
+    "hooks": {
+      "pre_commit": false,
+      "husky": false,
+      "ci_workflow_count": 21
+    },
+    "enforcement_sources": [],
+    "enforcement": {
+      "tier0": [],
+      "tier1": [],
+      "tier2": [],
+      "tier3": []
+    },
+    "ci": {
+      "tier0": [
+        "linter"
+      ],
+      "tier1": [],
+      "tier2": [
+        "coverage",
+        "test"
+      ],
+      "tier3": [
+        "secret_detection",
+        "security_scan"
+      ]
+    },
+    "enforcement_depth": 0,
+    "enforcement_tier_count": 0,
+    "ci_depth": 15,
+    "ci_tier_count": 3,
+    "total_depth": 15,
+    "total_tier_count": 3
+  },
+  {
+    "repo": "lobehub/lobe-chat",
+    "hooks": {
+      "pre_commit": false,
+      "husky": true,
+      "ci_workflow_count": 32
+    },
+    "enforcement_sources": [
+      "husky"
+    ],
+    "enforcement": {
+      "tier0": [
+        "linter",
+        "type_checker"
+      ],
+      "tier1": [],
+      "tier2": [
+        "test"
+      ],
+      "tier3": []
+    },
+    "ci": {
+      "tier0": [
+        "linter"
+      ],
+      "tier1": [],
+      "tier2": [
+        "coverage",
+        "test"
+      ],
+      "tier3": [
+        "secret_detection"
+      ]
+    },
+    "enforcement_depth": 5,
+    "enforcement_tier_count": 2,
+    "ci_depth": 11,
+    "ci_tier_count": 3,
+    "total_depth": 16,
+    "total_tier_count": 3
+  },
+  {
+    "repo": "mendableai/firecrawl",
+    "hooks": {
+      "pre_commit": false,
+      "husky": false,
+      "ci_workflow_count": 18
+    },
+    "enforcement_sources": [],
+    "enforcement": {
+      "tier0": [],
+      "tier1": [],
+      "tier2": [],
+      "tier3": []
+    },
+    "ci": {
+      "tier0": [
+        "formatter"
+      ],
+      "tier1": [],
+      "tier2": [
+        "test"
+      ],
+      "tier3": [
+        "secret_detection",
+        "security_scan"
+      ]
+    },
+    "enforcement_depth": 0,
+    "enforcement_tier_count": 0,
+    "ci_depth": 12,
+    "ci_tier_count": 3,
+    "total_depth": 12,
+    "total_tier_count": 3
+  },
+  {
+    "repo": "microsoft/vscode",
+    "hooks": {
+      "pre_commit": false,
+      "husky": false,
+      "ci_workflow_count": 14
+    },
+    "enforcement_sources": [],
+    "enforcement": {
+      "tier0": [],
+      "tier1": [],
+      "tier2": [],
+      "tier3": []
+    },
+    "ci": {
+      "tier0": [
+        "linter",
+        "type_checker"
+      ],
+      "tier1": [],
+      "tier2": [
+        "coverage",
+        "test"
+      ],
+      "tier3": [
+        "dependency_audit",
+        "secret_detection"
+      ]
+    },
+    "enforcement_depth": 0,
+    "enforcement_tier_count": 0,
+    "ci_depth": 16,
+    "ci_tier_count": 3,
+    "total_depth": 16,
+    "total_tier_count": 3
+  },
+  {
+    "repo": "minio/minio",
+    "hooks": {
+      "pre_commit": false,
+      "husky": false,
+      "ci_workflow_count": 22
+    },
+    "enforcement_sources": [],
+    "enforcement": {
+      "tier0": [
+        "linter"
+      ],
+      "tier1": [],
+      "tier2": [
+        "test"
+      ],
+      "tier3": []
+    },
+    "ci": {
+      "tier0": [
+        "linter"
+      ],
+      "tier1": [],
+      "tier2": [
+        "test"
+      ],
+      "tier3": [
+        "secret_detection"
+      ]
+    },
+    "enforcement_depth": 4,
+    "enforcement_tier_count": 2,
+    "ci_depth": 8,
+    "ci_tier_count": 3,
+    "total_depth": 12,
+    "total_tier_count": 3
+  },
+  {
+    "repo": "mlflow/mlflow",
+    "hooks": {
+      "pre_commit": true,
+      "husky": false,
+      "ci_workflow_count": 81
+    },
+    "enforcement_sources": [
+      "pre-commit"
+    ],
+    "enforcement": {
+      "tier0": [
+        "formatter",
+        "linter",
+        "type_checker"
+      ],
+      "tier1": [
+        "api_contract"
+      ],
+      "tier2": [
+        "coverage",
+        "test"
+      ],
+      "tier3": []
+    },
+    "ci": {
+      "tier0": [
+        "formatter",
+        "linter"
+      ],
+      "tier1": [],
+      "tier2": [
+        "coverage",
+        "test"
+      ],
+      "tier3": [
+        "secret_detection"
+      ]
+    },
+    "enforcement_depth": 11,
+    "enforcement_tier_count": 3,
+    "ci_depth": 12,
+    "ci_tier_count": 3,
+    "total_depth": 23,
+    "total_tier_count": 4
+  },
+  {
+    "repo": "n8n-io/n8n",
+    "hooks": {
+      "pre_commit": false,
+      "husky": false,
+      "ci_workflow_count": 67
+    },
+    "enforcement_sources": [],
+    "enforcement": {
+      "tier0": [],
+      "tier1": [],
+      "tier2": [],
+      "tier3": []
+    },
+    "ci": {
+      "tier0": [
+        "formatter",
+        "linter",
+        "type_checker"
+      ],
+      "tier1": [],
+      "tier2": [
+        "coverage",
+        "test"
+      ],
+      "tier3": [
+        "compliance",
+        "secret_detection"
+      ]
+    },
+    "enforcement_depth": 0,
+    "enforcement_tier_count": 0,
+    "ci_depth": 17,
+    "ci_tier_count": 3,
+    "total_depth": 17,
+    "total_tier_count": 3
+  },
+  {
+    "repo": "nats-io/nats-server",
+    "hooks": {
+      "pre_commit": false,
+      "husky": false,
+      "ci_workflow_count": 9
+    },
+    "enforcement_sources": [],
+    "enforcement": {
+      "tier0": [],
+      "tier1": [],
+      "tier2": [],
+      "tier3": []
+    },
+    "ci": {
+      "tier0": [
+        "linter",
+        "type_checker"
+      ],
+      "tier1": [],
+      "tier2": [
+        "coverage",
+        "test"
+      ],
+      "tier3": [
+        "compliance",
+        "secret_detection",
+        "security_scan"
+      ]
+    },
+    "enforcement_depth": 0,
+    "enforcement_tier_count": 0,
+    "ci_depth": 20,
+    "ci_tier_count": 3,
+    "total_depth": 20,
+    "total_tier_count": 3
+  },
+  {
+    "repo": "nestjs/nest",
+    "hooks": {
+      "pre_commit": false,
+      "husky": true,
+      "ci_workflow_count": 1
+    },
+    "enforcement_sources": [
+      "husky"
+    ],
+    "enforcement": {
+      "tier0": [
+        "linter"
+      ],
+      "tier1": [],
+      "tier2": [],
+      "tier3": []
+    },
+    "ci": {
+      "tier0": [],
+      "tier1": [],
+      "tier2": [
+        "test"
+      ],
+      "tier3": [
+        "security_scan"
+      ]
+    },
+    "enforcement_depth": 1,
+    "enforcement_tier_count": 1,
+    "ci_depth": 7,
+    "ci_tier_count": 2,
+    "total_depth": 8,
+    "total_tier_count": 3
+  },
+  {
+    "repo": "nocodb/nocodb",
+    "hooks": {
+      "pre_commit": false,
+      "husky": true,
+      "ci_workflow_count": 9
+    },
+    "enforcement_sources": [
+      "husky"
+    ],
+    "enforcement": {
+      "tier0": [
+        "linter"
+      ],
+      "tier1": [],
+      "tier2": [],
+      "tier3": []
+    },
+    "ci": {
+      "tier0": [],
+      "tier1": [
+        "api_contract"
+      ],
+      "tier2": [
+        "test"
+      ],
+      "tier3": [
+        "secret_detection"
+      ]
+    },
+    "enforcement_depth": 1,
+    "enforcement_tier_count": 1,
+    "ci_depth": 9,
+    "ci_tier_count": 3,
+    "total_depth": 10,
+    "total_tier_count": 4
+  },
+  {
+    "repo": "novuhq/novu",
+    "hooks": {
+      "pre_commit": false,
+      "husky": true,
+      "ci_workflow_count": 33
+    },
+    "enforcement_sources": [
+      "husky"
+    ],
+    "enforcement": {
+      "tier0": [
+        "linter"
+      ],
+      "tier1": [],
+      "tier2": [],
+      "tier3": []
+    },
+    "ci": {
+      "tier0": [
+        "formatter",
+        "linter",
+        "type_checker"
+      ],
+      "tier1": [
+        "contract_test"
+      ],
+      "tier2": [
+        "coverage",
+        "test"
+      ],
+      "tier3": [
+        "secret_detection",
+        "security_scan"
+      ]
+    },
+    "enforcement_depth": 1,
+    "enforcement_tier_count": 1,
+    "ci_depth": 19,
+    "ci_tier_count": 4,
+    "total_depth": 20,
+    "total_tier_count": 4
+  },
+  {
+    "repo": "ollama/ollama",
+    "hooks": {
+      "pre_commit": false,
+      "husky": false,
+      "ci_workflow_count": 4
+    },
+    "enforcement_sources": [],
+    "enforcement": {
+      "tier0": [],
+      "tier1": [],
+      "tier2": [],
+      "tier3": []
+    },
+    "ci": {
+      "tier0": [
+        "linter",
+        "type_checker"
+      ],
+      "tier1": [
+        "contract_test"
+      ],
+      "tier2": [
+        "test"
+      ],
+      "tier3": [
+        "secret_detection"
+      ]
+    },
+    "enforcement_depth": 0,
+    "enforcement_tier_count": 0,
+    "ci_depth": 11,
+    "ci_tier_count": 4,
+    "total_depth": 11,
+    "total_tier_count": 4
+  },
+  {
+    "repo": "open-webui/open-webui",
+    "hooks": {
+      "pre_commit": true,
+      "husky": false,
+      "ci_workflow_count": 9
+    },
+    "enforcement_sources": [
+      "pre-commit"
+    ],
+    "enforcement": {
+      "tier0": [
+        "linter"
+      ],
+      "tier1": [],
+      "tier2": [],
+      "tier3": []
+    },
+    "ci": {
+      "tier0": [
+        "linter"
+      ],
+      "tier1": [],
+      "tier2": [
+        "test"
+      ],
+      "tier3": [
+        "compliance",
+        "secret_detection",
+        "security_scan"
+      ]
+    },
+    "enforcement_depth": 1,
+    "enforcement_tier_count": 1,
+    "ci_depth": 16,
+    "ci_tier_count": 3,
+    "total_depth": 17,
+    "total_tier_count": 3
+  },
+  {
+    "repo": "oven-sh/bun",
+    "hooks": {
+      "pre_commit": false,
+      "husky": false,
+      "ci_workflow_count": 28
+    },
+    "enforcement_sources": [],
+    "enforcement": {
+      "tier0": [],
+      "tier1": [],
+      "tier2": [],
+      "tier3": []
+    },
+    "ci": {
+      "tier0": [
+        "formatter",
+        "linter"
+      ],
+      "tier1": [
+        "api_contract"
+      ],
+      "tier2": [
+        "test"
+      ],
+      "tier3": [
+        "secret_detection"
+      ]
+    },
+    "enforcement_depth": 0,
+    "enforcement_tier_count": 0,
+    "ci_depth": 11,
+    "ci_tier_count": 4,
+    "total_depth": 11,
+    "total_tier_count": 4
+  },
+  {
+    "repo": "pallets/flask",
+    "hooks": {
+      "pre_commit": true,
+      "husky": false,
+      "ci_workflow_count": 5
+    },
+    "enforcement_sources": [
+      "pre-commit"
+    ],
+    "enforcement": {
+      "tier0": [
+        "linter"
+      ],
+      "tier1": [],
+      "tier2": [
+        "coverage",
+        "test"
+      ],
+      "tier3": []
+    },
+    "ci": {
+      "tier0": [
+        "type_checker"
+      ],
+      "tier1": [],
+      "tier2": [
+        "coverage",
+        "test"
+      ],
+      "tier3": []
+    },
+    "enforcement_depth": 7,
+    "enforcement_tier_count": 2,
+    "ci_depth": 7,
+    "ci_tier_count": 2,
+    "total_depth": 14,
+    "total_tier_count": 2
+  },
+  {
+    "repo": "pingcap/tidb",
+    "hooks": {
+      "pre_commit": true,
+      "husky": false,
+      "ci_workflow_count": 5
+    },
+    "enforcement_sources": [
+      "pre-commit"
+    ],
+    "enforcement": {
+      "tier0": [
+        "formatter",
+        "linter",
+        "type_checker"
+      ],
+      "tier1": [],
+      "tier2": [
+        "coverage",
+        "test"
+      ],
+      "tier3": [
+        "compliance"
+      ]
+    },
+    "ci": {
+      "tier0": [
+        "linter"
+      ],
+      "tier1": [],
+      "tier2": [
+        "test"
+      ],
+      "tier3": [
+        "compliance",
+        "secret_detection"
+      ]
+    },
+    "enforcement_depth": 13,
+    "enforcement_tier_count": 3,
+    "ci_depth": 12,
+    "ci_tier_count": 3,
+    "total_depth": 25,
+    "total_tier_count": 3
+  },
+  {
+    "repo": "pnpm/pnpm",
+    "hooks": {
+      "pre_commit": false,
+      "husky": true,
+      "ci_workflow_count": 8
+    },
+    "enforcement_sources": [
+      "husky"
+    ],
+    "enforcement": {
+      "tier0": [
+        "linter"
+      ],
+      "tier1": [],
+      "tier2": [],
+      "tier3": []
+    },
+    "ci": {
+      "tier0": [
+        "linter",
+        "type_checker"
+      ],
+      "tier1": [],
+      "tier2": [
+        "coverage",
+        "test"
+      ],
+      "tier3": [
+        "secret_detection",
+        "security_scan"
+      ]
+    },
+    "enforcement_depth": 1,
+    "enforcement_tier_count": 1,
+    "ci_depth": 16,
+    "ci_tier_count": 3,
+    "total_depth": 17,
+    "total_tier_count": 3
+  },
+  {
+    "repo": "prefecthq/prefect",
+    "hooks": {
+      "pre_commit": true,
+      "husky": false,
+      "ci_workflow_count": 42
+    },
+    "enforcement_sources": [
+      "pre-commit"
+    ],
+    "enforcement": {
+      "tier0": [
+        "linter",
+        "type_checker"
+      ],
+      "tier1": [
+        "api_contract",
+        "schema_validation"
+      ],
+      "tier2": [
+        "test"
+      ],
+      "tier3": []
+    },
+    "ci": {
+      "tier0": [],
+      "tier1": [
+        "api_contract",
+        "schema_validation"
+      ],
+      "tier2": [
+        "test"
+      ],
+      "tier3": [
+        "secret_detection",
+        "security_scan"
+      ]
+    },
+    "enforcement_depth": 9,
+    "enforcement_tier_count": 3,
+    "ci_depth": 15,
+    "ci_tier_count": 3,
+    "total_depth": 24,
+    "total_tier_count": 4
+  },
+  {
+    "repo": "prometheus/prometheus",
+    "hooks": {
+      "pre_commit": false,
+      "husky": false,
+      "ci_workflow_count": 13
+    },
+    "enforcement_sources": [],
+    "enforcement": {
+      "tier0": [
+        "formatter",
+        "linter",
+        "type_checker"
+      ],
+      "tier1": [],
+      "tier2": [
+        "test"
+      ],
+      "tier3": [
+        "compliance"
+      ]
+    },
+    "ci": {
+      "tier0": [
+        "linter"
+      ],
+      "tier1": [
+        "api_contract"
+      ],
+      "tier2": [
+        "coverage",
+        "test"
+      ],
+      "tier3": [
+        "dependency_audit",
+        "secret_detection",
+        "security_scan"
+      ]
+    },
+    "enforcement_depth": 10,
+    "enforcement_tier_count": 3,
+    "ci_depth": 21,
+    "ci_tier_count": 4,
+    "total_depth": 31,
+    "total_tier_count": 4
+  },
+  {
+    "repo": "promptfoo/promptfoo",
+    "hooks": {
+      "pre_commit": false,
+      "husky": true,
+      "ci_workflow_count": 10
+    },
+    "enforcement_sources": [
+      "husky"
+    ],
+    "enforcement": {
+      "tier0": [
+        "formatter",
+        "linter"
+      ],
+      "tier1": [],
+      "tier2": [
+        "test"
+      ],
+      "tier3": [
+        "secret_detection"
+      ]
+    },
+    "ci": {
+      "tier0": [
+        "formatter",
+        "linter",
+        "type_checker"
+      ],
+      "tier1": [
+        "schema_validation"
+      ],
+      "tier2": [
+        "coverage",
+        "test"
+      ],
+      "tier3": [
+        "dependency_audit",
+        "secret_detection"
+      ]
+    },
+    "enforcement_depth": 9,
+    "enforcement_tier_count": 3,
+    "ci_depth": 19,
+    "ci_tier_count": 4,
+    "total_depth": 28,
+    "total_tier_count": 4
+  },
+  {
+    "repo": "pydantic/pydantic",
+    "hooks": {
+      "pre_commit": true,
+      "husky": false,
+      "ci_workflow_count": 10
+    },
+    "enforcement_sources": [
+      "pre-commit"
+    ],
+    "enforcement": {
+      "tier0": [
+        "linter",
+        "type_checker"
+      ],
+      "tier1": [],
+      "tier2": [
+        "coverage",
+        "test"
+      ],
+      "tier3": []
+    },
+    "ci": {
+      "tier0": [
+        "linter",
+        "type_checker"
+      ],
+      "tier1": [
+        "api_contract"
+      ],
+      "tier2": [
+        "coverage",
+        "test"
+      ],
+      "tier3": [
+        "secret_detection"
+      ]
+    },
+    "enforcement_depth": 8,
+    "enforcement_tier_count": 2,
+    "ci_depth": 14,
+    "ci_tier_count": 4,
+    "total_depth": 22,
+    "total_tier_count": 4
+  },
+  {
+    "repo": "pytest-dev/pytest",
+    "hooks": {
+      "pre_commit": true,
+      "husky": false,
+      "ci_workflow_count": 6
+    },
+    "enforcement_sources": [
+      "pre-commit"
+    ],
+    "enforcement": {
+      "tier0": [
+        "formatter",
+        "linter",
+        "type_checker"
+      ],
+      "tier1": [],
+      "tier2": [
+        "coverage",
+        "test"
+      ],
+      "tier3": []
+    },
+    "ci": {
+      "tier0": [],
+      "tier1": [],
+      "tier2": [
+        "coverage",
+        "test"
+      ],
+      "tier3": [
+        "secret_detection"
+      ]
+    },
+    "enforcement_depth": 9,
+    "enforcement_tier_count": 2,
+    "ci_depth": 10,
+    "ci_tier_count": 2,
+    "total_depth": 19,
+    "total_tier_count": 3
+  },
+  {
+    "repo": "python/cpython",
+    "hooks": {
+      "pre_commit": true,
+      "husky": false,
+      "ci_workflow_count": 25
+    },
+    "enforcement_sources": [
+      "pre-commit"
+    ],
+    "enforcement": {
+      "tier0": [
+        "formatter",
+        "linter"
+      ],
+      "tier1": [
+        "schema_validation"
+      ],
+      "tier2": [
+        "coverage",
+        "test"
+      ],
+      "tier3": [
+        "dependency_audit"
+      ]
+    },
+    "ci": {
+      "tier0": [
+        "linter",
+        "type_checker"
+      ],
+      "tier1": [],
+      "tier2": [
+        "test"
+      ],
+      "tier3": [
+        "compliance",
+        "secret_detection",
+        "security_scan"
+      ]
+    },
+    "enforcement_depth": 14,
+    "enforcement_tier_count": 4,
+    "ci_depth": 17,
+    "ci_tier_count": 3,
+    "total_depth": 31,
+    "total_tier_count": 4
+  },
+  {
+    "repo": "rails/rails",
+    "hooks": {
+      "pre_commit": false,
+      "husky": false,
+      "ci_workflow_count": 10
+    },
+    "enforcement_sources": [],
+    "enforcement": {
+      "tier0": [],
+      "tier1": [],
+      "tier2": [],
+      "tier3": []
+    },
+    "ci": {
+      "tier0": [
+        "linter"
+      ],
+      "tier1": [],
+      "tier2": [
+        "test"
+      ],
+      "tier3": [
+        "secret_detection"
+      ]
+    },
+    "enforcement_depth": 0,
+    "enforcement_tier_count": 0,
+    "ci_depth": 8,
+    "ci_tier_count": 3,
+    "total_depth": 8,
+    "total_tier_count": 3
+  },
+  {
+    "repo": "ray-project/ray",
+    "hooks": {
+      "pre_commit": true,
+      "husky": false,
+      "ci_workflow_count": 4
+    },
+    "enforcement_sources": [
+      "pre-commit"
+    ],
+    "enforcement": {
+      "tier0": [
+        "formatter",
+        "linter",
+        "type_checker"
+      ],
+      "tier1": [
+        "contract_test",
+        "schema_validation"
+      ],
+      "tier2": [
+        "test"
+      ],
+      "tier3": [
+        "security_scan"
+      ]
+    },
+    "ci": {
+      "tier0": [],
+      "tier1": [],
+      "tier2": [
+        "test"
+      ],
+      "tier3": [
+        "secret_detection"
+      ]
+    },
+    "enforcement_depth": 14,
+    "enforcement_tier_count": 4,
+    "ci_depth": 7,
+    "ci_tier_count": 2,
+    "total_depth": 21,
+    "total_tier_count": 4
+  },
+  {
+    "repo": "redis/redis",
+    "hooks": {
+      "pre_commit": false,
+      "husky": false,
+      "ci_workflow_count": 10
+    },
+    "enforcement_sources": [],
+    "enforcement": {
+      "tier0": [],
+      "tier1": [],
+      "tier2": [],
+      "tier3": []
+    },
+    "ci": {
+      "tier0": [
+        "linter"
+      ],
+      "tier1": [],
+      "tier2": [
+        "coverage",
+        "test"
+      ],
+      "tier3": [
+        "secret_detection",
+        "security_scan"
+      ]
+    },
+    "enforcement_depth": 0,
+    "enforcement_tier_count": 0,
+    "ci_depth": 15,
+    "ci_tier_count": 3,
+    "total_depth": 15,
+    "total_tier_count": 3
+  },
+  {
+    "repo": "rust-lang/rust",
+    "hooks": {
+      "pre_commit": false,
+      "husky": false,
+      "ci_workflow_count": 4
+    },
+    "enforcement_sources": [],
+    "enforcement": {
+      "tier0": [],
+      "tier1": [],
+      "tier2": [],
+      "tier3": []
+    },
+    "ci": {
+      "tier0": [],
+      "tier1": [],
+      "tier2": [
+        "test"
+      ],
+      "tier3": [
+        "secret_detection"
+      ]
+    },
+    "enforcement_depth": 0,
+    "enforcement_tier_count": 0,
+    "ci_depth": 7,
+    "ci_tier_count": 2,
+    "total_depth": 7,
+    "total_tier_count": 2
+  },
+  {
+    "repo": "sqlalchemy/sqlalchemy",
+    "hooks": {
+      "pre_commit": true,
+      "husky": false,
+      "ci_workflow_count": 3
+    },
+    "enforcement_sources": [
+      "pre-commit"
+    ],
+    "enforcement": {
+      "tier0": [
+        "formatter",
+        "linter"
+      ],
+      "tier1": [],
+      "tier2": [],
+      "tier3": []
+    },
+    "ci": {
+      "tier0": [
+        "type_checker"
+      ],
+      "tier1": [],
+      "tier2": [
+        "test"
+      ],
+      "tier3": [
+        "secret_detection"
+      ]
+    },
+    "enforcement_depth": 2,
+    "enforcement_tier_count": 1,
+    "ci_depth": 8,
+    "ci_tier_count": 3,
+    "total_depth": 10,
+    "total_tier_count": 3
+  },
+  {
+    "repo": "strapi/strapi",
+    "hooks": {
+      "pre_commit": false,
+      "husky": true,
+      "ci_workflow_count": 23
+    },
+    "enforcement_sources": [
+      "husky"
+    ],
+    "enforcement": {
+      "tier0": [
+        "linter"
+      ],
+      "tier1": [],
+      "tier2": [],
+      "tier3": []
+    },
+    "ci": {
+      "tier0": [
+        "linter"
+      ],
+      "tier1": [],
+      "tier2": [
+        "test"
+      ],
+      "tier3": [
+        "secret_detection"
+      ]
+    },
+    "enforcement_depth": 1,
+    "enforcement_tier_count": 1,
+    "ci_depth": 8,
+    "ci_tier_count": 3,
+    "total_depth": 9,
+    "total_tier_count": 3
+  },
+  {
+    "repo": "supabase/supabase",
+    "hooks": {
+      "pre_commit": false,
+      "husky": false,
+      "ci_workflow_count": 44
+    },
+    "enforcement_sources": [],
+    "enforcement": {
+      "tier0": [],
+      "tier1": [],
+      "tier2": [],
+      "tier3": []
+    },
+    "ci": {
+      "tier0": [
+        "formatter",
+        "linter",
+        "type_checker"
+      ],
+      "tier1": [],
+      "tier2": [
+        "coverage",
+        "test"
+      ],
+      "tier3": [
+        "secret_detection"
+      ]
+    },
+    "enforcement_depth": 0,
+    "enforcement_tier_count": 0,
+    "ci_depth": 13,
+    "ci_tier_count": 3,
+    "total_depth": 13,
+    "total_tier_count": 3
+  },
+  {
+    "repo": "sveltejs/svelte",
+    "hooks": {
+      "pre_commit": false,
+      "husky": false,
+      "ci_workflow_count": 5
+    },
+    "enforcement_sources": [],
+    "enforcement": {
+      "tier0": [],
+      "tier1": [],
+      "tier2": [],
+      "tier3": []
+    },
+    "ci": {
+      "tier0": [
+        "formatter",
+        "linter",
+        "type_checker"
+      ],
+      "tier1": [
+        "contract_test"
+      ],
+      "tier2": [
+        "test"
+      ],
+      "tier3": [
+        "secret_detection"
+      ]
+    },
+    "enforcement_depth": 0,
+    "enforcement_tier_count": 0,
+    "ci_depth": 12,
+    "ci_tier_count": 4,
+    "total_depth": 12,
+    "total_tier_count": 4
+  },
+  {
+    "repo": "tailwindlabs/tailwindcss",
+    "hooks": {
+      "pre_commit": false,
+      "husky": false,
+      "ci_workflow_count": 5
+    },
+    "enforcement_sources": [],
+    "enforcement": {
+      "tier0": [],
+      "tier1": [],
+      "tier2": [],
+      "tier3": []
+    },
+    "ci": {
+      "tier0": [
+        "linter"
+      ],
+      "tier1": [],
+      "tier2": [
+        "test"
+      ],
+      "tier3": [
+        "secret_detection"
+      ]
+    },
+    "enforcement_depth": 0,
+    "enforcement_tier_count": 0,
+    "ci_depth": 8,
+    "ci_tier_count": 3,
+    "total_depth": 8,
+    "total_tier_count": 3
+  },
+  {
+    "repo": "temporalio/temporal",
+    "hooks": {
+      "pre_commit": false,
+      "husky": false,
+      "ci_workflow_count": 18
+    },
+    "enforcement_sources": [],
+    "enforcement": {
+      "tier0": [
+        "linter"
+      ],
+      "tier1": [
+        "api_contract"
+      ],
+      "tier2": [
+        "coverage",
+        "test"
+      ],
+      "tier3": []
+    },
+    "ci": {
+      "tier0": [
+        "linter",
+        "type_checker"
+      ],
+      "tier1": [
+        "api_contract"
+      ],
+      "tier2": [
+        "test"
+      ],
+      "tier3": [
+        "secret_detection"
+      ]
+    },
+    "enforcement_depth": 9,
+    "enforcement_tier_count": 3,
+    "ci_depth": 11,
+    "ci_tier_count": 4,
+    "total_depth": 20,
+    "total_tier_count": 4
+  },
+  {
+    "repo": "tikv/tikv",
+    "hooks": {
+      "pre_commit": false,
+      "husky": false,
+      "ci_workflow_count": 1
+    },
+    "enforcement_sources": [],
+    "enforcement": {
+      "tier0": [
+        "formatter",
+        "linter"
+      ],
+      "tier1": [],
+      "tier2": [
+        "test"
+      ],
+      "tier3": [
+        "compliance",
+        "security_scan"
+      ]
+    },
+    "ci": {
+      "tier0": [
+        "formatter",
+        "linter"
+      ],
+      "tier1": [],
+      "tier2": [
+        "test"
+      ],
+      "tier3": []
+    },
+    "enforcement_depth": 13,
+    "enforcement_tier_count": 3,
+    "ci_depth": 5,
+    "ci_tier_count": 2,
+    "total_depth": 18,
+    "total_tier_count": 3
+  },
+  {
+    "repo": "traefik/traefik",
+    "hooks": {
+      "pre_commit": false,
+      "husky": false,
+      "ci_workflow_count": 13
+    },
+    "enforcement_sources": [],
+    "enforcement": {
+      "tier0": [
+        "formatter",
+        "linter"
+      ],
+      "tier1": [],
+      "tier2": [
+        "test"
+      ],
+      "tier3": []
+    },
+    "ci": {
+      "tier0": [
+        "linter",
+        "type_checker"
+      ],
+      "tier1": [],
+      "tier2": [
+        "coverage",
+        "test"
+      ],
+      "tier3": [
+        "secret_detection",
+        "security_scan"
+      ]
+    },
+    "enforcement_depth": 5,
+    "enforcement_tier_count": 2,
+    "ci_depth": 16,
+    "ci_tier_count": 3,
+    "total_depth": 21,
+    "total_tier_count": 3
+  },
+  {
+    "repo": "vercel/next.js",
+    "hooks": {
+      "pre_commit": false,
+      "husky": true,
+      "ci_workflow_count": 33
+    },
+    "enforcement_sources": [
+      "husky"
+    ],
+    "enforcement": {
+      "tier0": [
+        "linter"
+      ],
+      "tier1": [],
+      "tier2": [
+        "test"
+      ],
+      "tier3": []
+    },
+    "ci": {
+      "tier0": [
+        "linter",
+        "type_checker"
+      ],
+      "tier1": [],
+      "tier2": [
+        "coverage",
+        "test"
+      ],
+      "tier3": [
+        "secret_detection"
+      ]
+    },
+    "enforcement_depth": 4,
+    "enforcement_tier_count": 2,
+    "ci_depth": 12,
+    "ci_tier_count": 3,
+    "total_depth": 16,
+    "total_tier_count": 3
+  },
+  {
+    "repo": "vitejs/vite",
+    "hooks": {
+      "pre_commit": false,
+      "husky": false,
+      "ci_workflow_count": 12
+    },
+    "enforcement_sources": [],
+    "enforcement": {
+      "tier0": [],
+      "tier1": [],
+      "tier2": [],
+      "tier3": []
+    },
+    "ci": {
+      "tier0": [
+        "formatter",
+        "linter",
+        "type_checker"
+      ],
+      "tier1": [],
+      "tier2": [
+        "test"
+      ],
+      "tier3": [
+        "secret_detection",
+        "security_scan"
+      ]
+    },
+    "enforcement_depth": 0,
+    "enforcement_tier_count": 0,
+    "ci_depth": 14,
+    "ci_tier_count": 3,
+    "total_depth": 14,
+    "total_tier_count": 3
+  },
+  {
+    "repo": "vitessio/vitess",
+    "hooks": {
+      "pre_commit": false,
+      "husky": false,
+      "ci_workflow_count": 51
+    },
+    "enforcement_sources": [],
+    "enforcement": {
+      "tier0": [
+        "linter",
+        "type_checker"
+      ],
+      "tier1": [
+        "api_contract"
+      ],
+      "tier2": [
+        "coverage",
+        "test"
+      ],
+      "tier3": [
+        "compliance"
+      ]
+    },
+    "ci": {
+      "tier0": [],
+      "tier1": [],
+      "tier2": [
+        "coverage",
+        "test"
+      ],
+      "tier3": [
+        "secret_detection",
+        "security_scan"
+      ]
+    },
+    "enforcement_depth": 14,
+    "enforcement_tier_count": 4,
+    "ci_depth": 14,
+    "ci_tier_count": 2,
+    "total_depth": 28,
+    "total_tier_count": 4
+  },
+  {
+    "repo": "vllm-project/vllm",
+    "hooks": {
+      "pre_commit": true,
+      "husky": false,
+      "ci_workflow_count": 8
+    },
+    "enforcement_sources": [
+      "pre-commit"
+    ],
+    "enforcement": {
+      "tier0": [
+        "formatter",
+        "linter",
+        "type_checker"
+      ],
+      "tier1": [],
+      "tier2": [
+        "test"
+      ],
+      "tier3": []
+    },
+    "ci": {
+      "tier0": [
+        "linter",
+        "type_checker"
+      ],
+      "tier1": [],
+      "tier2": [
+        "test"
+      ],
+      "tier3": [
+        "secret_detection"
+      ]
+    },
+    "enforcement_depth": 6,
+    "enforcement_tier_count": 2,
+    "ci_depth": 9,
+    "ci_tier_count": 3,
+    "total_depth": 15,
+    "total_tier_count": 3
+  },
+  {
+    "repo": "weaviate/weaviate",
+    "hooks": {
+      "pre_commit": true,
+      "husky": false,
+      "ci_workflow_count": 8
+    },
+    "enforcement_sources": [
+      "pre-commit"
+    ],
+    "enforcement": {
+      "tier0": [
+        "formatter",
+        "linter"
+      ],
+      "tier1": [
+        "api_contract"
+      ],
+      "tier2": [
+        "test"
+      ],
+      "tier3": [
+        "compliance"
+      ]
+    },
+    "ci": {
+      "tier0": [
+        "formatter",
+        "linter",
+        "type_checker"
+      ],
+      "tier1": [
+        "api_contract",
+        "contract_test"
+      ],
+      "tier2": [
+        "coverage",
+        "test"
+      ],
+      "tier3": [
+        "compliance",
+        "dependency_audit",
+        "secret_detection",
+        "security_scan"
+      ]
+    },
+    "enforcement_depth": 11,
+    "enforcement_tier_count": 4,
+    "ci_depth": 29,
+    "ci_tier_count": 4,
+    "total_depth": 40,
+    "total_tier_count": 4
+  }
+]

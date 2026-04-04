@@ -1,0 +1,44 @@
+======================================================================
+SZZ ANALYSIS SUMMARY
+======================================================================
+
+Total PRs analyzed: 4,333
+PRs identified as bug-introducing: 1,049 (24.2%)
+Total SZZ links (fix -> bug): 4,273
+
+Bug-introducing rate by repo:
+--------------------------------------------------
+  oxc-project/oxc                          1049/ 4333 (24.2%)
+
+Bug-introducing rate by AI classification:
+--------------------------------------------------
+  escape                  45/    58 (77.6%)
+  human_save             490/ 1,825 (26.8%)
+  machine_catch          478/ 1,883 (25.4%)
+  pending                 20/   210 (9.5%)
+  ungated                  0/     2 (0.0%)
+
+Bug-introducing rate by tier:
+--------------------------------------------------
+  ?                     1049/ 4,333 (24.2%)
+
+Top 10 most bug-introducing PRs (by number of subsequent fixes):
+----------------------------------------------------------------------
+  oxc-project/oxc                #16091  fixes=33  style(all): apply oxfmt default options
+  oxc-project/oxc                #16036  fixes=27  refactor(formatter): make `Format::fmt` non-failab...
+  oxc-project/oxc                #17479  fixes=24  refactor(linter): Update from_configuration to ret...
+  oxc-project/oxc                #15012  fixes=22  chore(submodules): update submodule SHAs to latest...
+  oxc-project/oxc                #16650  fixes=21  test(linter/plugins): add conformance tests
+  oxc-project/oxc                #16698  fixes=18  test(linter/plugins): conformance tester include t...
+  oxc-project/oxc                #16724  fixes=14  test(linter/plugins): exclude rules using CFG from...
+  oxc-project/oxc                #16990  fixes=13  feat(formatter): add TailwindCSS support for JS/TS...
+  oxc-project/oxc                #14820  fixes=13  feat(oxfmt): add embedded language formatting with...
+  oxc-project/oxc                #15925  fixes=11  refactor(all)!: remove binding pattern wierdness
+
+
+======================================================================
+CORRELATION ANALYSIS: Spec Quality vs Bug Introduction
+======================================================================
+
+PRs with spec quality scores: 0
+Too few scored PRs for meaningful analysis
