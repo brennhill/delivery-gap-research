@@ -1541,6 +1541,7 @@ def compute_jit_for_repo(
     repo_slug: str,
     repo_dir: Path,
     pr_json: list[dict],
+    checkpoint: dict | None = None,
 ) -> list[dict]:
     """
     Compute JIT features for ALL PRs in a single repository.
@@ -1550,8 +1551,20 @@ def compute_jit_for_repo(
     bugs BEFORE they happen. The fix/non-fix status is one feature, not
     a filter.
 
+    Checkpoints every 100 PRs so partial progress survives crashes.
+
     Returns a list of dicts with repo, pr_number, and the 14 JIT features.
     """
+    # Check for partial progress from a previous run.
+    done_prs = set()
+    if checkpoint is not None:
+        done_prs = {
+            r["pr_number"] for r in checkpoint.get("all_jit_results", [])
+            if r.get("repo") == repo_slug
+        }
+        if done_prs:
+            log.info(f"  Resuming JIT: {len(done_prs)} PRs already computed")
+
     # Build the author commit cache once for this repo.
     author_cache = _build_author_cache(repo_dir)
 
@@ -1560,6 +1573,10 @@ def compute_jit_for_repo(
     incomplete_count = 0
 
     for i, pr in enumerate(pr_json, 1):
+        # Skip PRs already computed in a previous partial run.
+        if pr["pr_number"] in done_prs:
+            continue
+
         if i % 100 == 0 or i == 1:
             log.info(f"    Computing JIT features: {i}/{total} PRs")
 
@@ -1611,7 +1628,26 @@ def compute_jit_for_repo(
         row.update(features)
         results.append(row)
 
-    log.info(f"  JIT features computed for {len(results)}/{total} PRs")
+        # Checkpoint every 100 PRs so partial progress survives crashes.
+        if checkpoint is not None and len(results) % 100 == 0:
+            checkpoint["all_jit_results"].extend(results)
+            results = []  # Reset batch — already saved to checkpoint
+            save_checkpoint(checkpoint)
+            log.info(f"    JIT checkpoint saved ({i}/{total} PRs processed)")
+
+    # Flush remaining results to checkpoint.
+    if checkpoint is not None and results:
+        checkpoint["all_jit_results"].extend(results)
+        save_checkpoint(checkpoint)
+
+    total_computed = len(results) + len(done_prs)
+    if checkpoint is not None:
+        total_computed = len([
+            r for r in checkpoint.get("all_jit_results", [])
+            if r.get("repo") == repo_slug
+        ])
+
+    log.info(f"  JIT features computed for {total_computed}/{total} PRs")
     if incomplete_count > 0:
         log.info(f"  {incomplete_count} PRs had incomplete feature computation "
                  f"(missing merge SHA, files, or date)")
@@ -1878,12 +1914,12 @@ def main():
                 continue
 
             # Compute JIT features for ALL PRs in this repo.
-            jit_results = compute_jit_for_repo(repo_slug, repo_dir, pr_json)
+            # Checkpoint is passed in so partial progress is saved every 100 PRs.
+            jit_results = compute_jit_for_repo(repo_slug, repo_dir, pr_json, checkpoint=checkpoint)
 
-            # Save results and checkpoint.
-            all_jit_results.extend(jit_results)
+            # Mark repo as fully complete and save.
+            all_jit_results = checkpoint["all_jit_results"]  # May have been extended in-place
             checkpoint["jit_completed_repos"].append(repo_slug)
-            checkpoint["all_jit_results"] = all_jit_results
             save_checkpoint(checkpoint)
 
             log.info(f"  JIT checkpoint saved. {len(checkpoint['jit_completed_repos'])} repos complete.")
