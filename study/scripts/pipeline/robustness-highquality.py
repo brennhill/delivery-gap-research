@@ -173,11 +173,7 @@ print(f"\n  High-quality specs → SZZ bugs (within-author):")
 r1_bug = within_author_lpm(szz_df, "high_quality", "szz_buggy", label="hq-bugs")
 
 print(f"\n  High-quality specs → rework (within-author):")
-r1_rw = within_author_lpm(df, "high_quality" if "high_quality" in df.columns else "specd",
-                           "reworked", label="hq-rework")
-# Need to add high_quality to full df too
 df["high_quality"] = (df["q_overall"].fillna(0) >= Q_P75).astype(int)
-print(f"  (re-running on full dataset)")
 r1_rw = within_author_lpm(df, "high_quality", "reworked", label="hq-rework")
 
 
@@ -252,8 +248,11 @@ n_ai_hq = ai_szz["high_quality"].sum()
 n_ai_specd = ai_szz["specd"].sum()
 
 print(f"\n  AI-tagged PRs in SZZ repos: {n_ai:,}")
-print(f"  AI + any spec: {n_ai_specd:,} ({n_ai_specd/n_ai*100:.1f}%)")
-print(f"  AI + high-quality spec: {n_ai_hq:,} ({n_ai_hq/n_ai*100:.1f}%)")
+if n_ai > 0:
+    print(f"  AI + any spec: {n_ai_specd:,} ({n_ai_specd/n_ai*100:.1f}%)")
+    print(f"  AI + high-quality spec: {n_ai_hq:,} ({n_ai_hq/n_ai*100:.1f}%)")
+else:
+    print(f"  No AI-tagged PRs in SZZ repos — skipping AI subsample analysis")
 
 if n_ai_specd > 10:
     ai_szz["specd_int"] = ai_szz["specd"].astype(int)

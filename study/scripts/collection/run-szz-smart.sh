@@ -7,6 +7,9 @@ set -e
 #   bash run-szz-smart.sh              # run everything needed
 #   bash run-szz-smart.sh --dry-run    # show plan without executing
 
+# Bump file descriptor limit — PyDriller/git blame leaks FDs on large repos
+ulimit -n 65536 2>/dev/null || ulimit -n 10240 2>/dev/null || true
+
 STUDY_DIR="$(cd "$(dirname "$0")/../.." && pwd)"
 REPOS_DIR="/tmp/szz-repos"
 SCRIPT="$STUDY_DIR/scripts/collection/szz-score.py"

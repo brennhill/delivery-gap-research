@@ -107,7 +107,11 @@ if repo_results:
     weighted_delta = np.average(deltas, weights=weights)
 
     t_stat, t_p = stats.ttest_1samp(deltas, 0)
-    _, wilcox_p = stats.wilcoxon(deltas) if len(deltas) >= 10 else (None, None)
+    try:
+        _, wilcox_p = stats.wilcoxon(deltas) if len(deltas) >= 10 else (None, None)
+    except ValueError:
+        # wilcoxon fails if all deltas are zero (no variance)
+        wilcox_p = None
 
     print(f"\n  Summary ({len(repo_results)} repos with ≥5 AI and ≥5 human buggy PRs):")
     print(f"  AI rework|buggy higher in {n_higher}/{len(repo_results)} repos")

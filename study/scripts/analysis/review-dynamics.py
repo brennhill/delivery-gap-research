@@ -280,8 +280,14 @@ print("6. SPEC ADOPTION AND DEFECT TRAJECTORY (repo-level)")
 print("=" * 70)
 
 # For each repo with enough data, compare bug rate before and after spec adoption
+# CAVEAT: Right-censoring affects this analysis. Recent "post" PRs have artificially
+# lower SZZ bug rates because their bugs haven't been fixed yet (and thus can't be
+# traced by SZZ). We mitigate by excluding PRs from the most recent 3 months.
 szz_df = df[df["repo"].isin(szz_repos)].copy()
+right_censor_cutoff = szz_df["merged_at"].max() - pd.Timedelta(days=90)
+szz_df = szz_df[szz_df["merged_at"] <= right_censor_cutoff].copy()
 
+print(f"\n  (Excluding PRs after {right_censor_cutoff.date()} to mitigate SZZ right-censoring)")
 print("\n  Per-repo before/after spec adoption comparison:")
 print(f"  {'Repo':>40s}  {'Pre-spec bug%':>14s}  {'Post-spec bug%':>15s}  {'Δ':>8s}")
 print(f"  {'─'*40}  {'─'*14}  {'─'*15}  {'─'*8}")

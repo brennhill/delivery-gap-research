@@ -181,8 +181,9 @@ def run_battery(subset, label):
 
     print(f"  PRs: {n:,} | Spec'd: {n_specd:,} ({n_specd/n*100:.1f}%) | "
           f"In SZZ: {n_szz:,}")
-    print(f"  Bug rate: {n_buggy/n_szz*100:.1f}% | "
-          f"Rework rate: {n_reworked/n*100:.1f}%")
+    print(f"  Bug rate: {n_buggy/n_szz*100:.1f}% | " if n_szz > 0 else f"  Bug rate: N/A (no SZZ repos) | ",
+          end="")
+    print(f"Rework rate: {n_reworked/n*100:.1f}%" if n > 0 else "Rework rate: N/A")
 
     # Specs → SZZ bugs (SZZ repos only)
     szz_sub = subset[subset["in_szz"]].copy()

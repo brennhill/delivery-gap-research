@@ -56,12 +56,12 @@ def build_rows():
             for tag in workflow.get("pr_tags", []):
                 wf_by_num[tag["pr_number"]] = tag
 
-        # Index quality scores by (repo, pr_number)
-        q_by_key = {}
+        # Index quality scores by pr_number (within same repo file, repo is implicit)
+        q_by_num = {}
         if quality_data:
             for r in quality_data:
                 if "error" not in r:
-                    q_by_key[(r.get("repo", ""), r["pr_number"])] = r
+                    q_by_num[r["pr_number"]] = r
 
         # Rework signals: which target PRs were reworked + type
         reworked_targets = set()
@@ -80,7 +80,10 @@ def build_rows():
                 total = len(set(sf) | set(tf))
                 if total > 0:
                     ratio = len(overlap) / total
-                    rework_type[target] = "implementation" if ratio >= 0.5 else "alignment"
+                    new_type = "implementation" if ratio >= 0.5 else "alignment"
+                    # Keep the highest-overlap classification if multiple signals
+                    if target not in rework_type or new_type == "implementation":
+                        rework_type[target] = new_type
 
         # Build rows
         repo_name = prs[0].get("repo", slug.replace("-", "/", 1)) if prs else slug
@@ -93,7 +96,7 @@ def build_rows():
             cov = cov_by_num.get(num, {})
             cr = cr_by_num.get(num, {})
             wf = wf_by_num.get(num, {})
-            q = q_by_key.get((pr.get("repo", slug), num), {})
+            q = q_by_num.get(num, {})
 
             row = {
                 # Identity

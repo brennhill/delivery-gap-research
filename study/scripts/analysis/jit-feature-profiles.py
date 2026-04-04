@@ -56,12 +56,19 @@ df = df[~df["is_bot"]].copy()
 szz_repo_set = set(szz["repo"].unique())
 df = df[df["repo"].isin(szz_repo_set)].copy()
 
+jit_feats = ["ns", "nd", "nf", "entropy", "la", "ld", "lt", "fix",
+             "ndev", "age", "nuc", "exp", "rexp", "sexp"]
+
+# Restrict to PRs with complete JIT data to avoid differential missingness
+# (AI vs human groups may have different JIT coverage rates)
+jit_available = [f for f in jit_feats if f in df.columns]
+n_before = len(df)
+df = df.dropna(subset=jit_available).copy()
+print(f"Restricted to complete JIT data: {n_before:,} → {len(df):,} PRs ({len(df)/n_before*100:.1f}%)")
+
 # Recent 3 months
 cutoff = pd.Timestamp("2026-01-01", tz="UTC")
 recent = df[df["merged_at"] >= cutoff].copy()
-
-jit_feats = ["ns", "nd", "nf", "entropy", "la", "ld", "lt", "fix",
-             "ndev", "age", "nuc", "exp", "rexp", "sexp"]
 
 # Feature labels for readability
 feat_labels = {

@@ -267,6 +267,9 @@ def clone_repo(repo_slug: str, repos_dir: Path) -> Path:
         clone_cmd = ["git", "clone", "--single-branch"]
         shallow_since = os.environ.get("SZZ_SHALLOW_SINCE")
         if shallow_since:
+            log.warning(f"  SZZ_SHALLOW_SINCE={shallow_since} — shallow clone will truncate "
+                        f"git blame history. SZZ results may be incomplete or wrong. "
+                        f"Use --jit-only with shallow clones, or unset SZZ_SHALLOW_SINCE.")
             clone_cmd.extend(["--shallow-since", shallow_since])
         clone_cmd.extend([clone_url, str(repo_dir)])
         subprocess.run(
@@ -377,7 +380,7 @@ def find_fix_prs(repo_slug: str, pr_json: list[dict]) -> list[dict]:
 # ===========================================================================
 
 def run_szz_for_fix(
-    repo_dir: Path,
+    git: "Git",
     merge_commit_sha: str,
     pr_number: int,
 ) -> list[dict]:
@@ -412,7 +415,7 @@ def run_szz_for_fix(
           a limitation.
 
     Args:
-        repo_dir: Path to the cloned repository
+        git: PyDriller Git instance (reused across fix PRs to avoid FD leaks)
         merge_commit_sha: The merge commit SHA of the fix PR
         pr_number: For logging purposes
 
@@ -424,9 +427,6 @@ def run_szz_for_fix(
     candidates = []
 
     try:
-        # Initialize PyDriller's Git wrapper for this repo.
-        git = Git(str(repo_dir))
-
         # PyDriller's key SZZ method. It:
         #   1. Checks out the diff of merge_commit_sha
         #   2. For each modified file, identifies deleted/changed lines
@@ -434,9 +434,8 @@ def run_szz_for_fix(
         #   4. Returns {filepath: {set of commit SHAs that last touched those lines}}
         #
         # This IS the SZZ algorithm -- the rest is filtering and mapping.
-        buggy_commits = git.get_commits_last_modified_lines(
-            git.get_commit(merge_commit_sha)
-        )
+        fix_commit = git.get_commit(merge_commit_sha)
+        buggy_commits = git.get_commits_last_modified_lines(fix_commit)
         # buggy_commits looks like:
         # {
         #     "src/main.py": {"abc123", "def456"},
@@ -444,7 +443,6 @@ def run_szz_for_fix(
         # }
 
         # Get the fix commit's date for the age filter.
-        fix_commit = git.get_commit(merge_commit_sha)
         fix_date = fix_commit.committer_date
 
         for filepath, commit_shas in buggy_commits.items():
@@ -492,6 +490,9 @@ def run_szz_for_repo(
     """
     Run SZZ on all fix PRs in a single repository.
 
+    Creates a single PyDriller Git instance for the repo and reuses it
+    across all fix PRs to avoid leaking file descriptors.
+
     Returns a list of dicts with keys: repo, fix_pr_number, fix_merge_sha,
     bug_commit_sha, file. Each entry means: "fix PR #X traced back to
     commit Y via file Z."
@@ -499,24 +500,35 @@ def run_szz_for_repo(
     results = []
     total = len(fix_prs)
 
-    for i, fix_pr in enumerate(fix_prs, 1):
-        if i % 50 == 0 or i == 1:
-            log.info(f"    SZZ tracing: {i}/{total} fix PRs processed")
+    # Create ONE Git instance per repo — reuse across fix PRs to avoid FD leaks.
+    git = Git(str(repo_dir))
 
-        candidates = run_szz_for_fix(
-            repo_dir,
-            fix_pr["merge_commit_sha"],
-            fix_pr["pr_number"],
-        )
+    try:
+        for i, fix_pr in enumerate(fix_prs, 1):
+            if i % 50 == 0 or i == 1:
+                log.info(f"    SZZ tracing: {i}/{total} fix PRs processed")
 
-        for c in candidates:
-            results.append({
-                "repo": repo_slug,
-                "fix_pr_number": fix_pr["pr_number"],
-                "fix_merge_sha": fix_pr["merge_commit_sha"],
-                "bug_commit_sha": c["bug_commit_sha"],
-                "file": c["file"],
-            })
+            candidates = run_szz_for_fix(
+                git,
+                fix_pr["merge_commit_sha"],
+                fix_pr["pr_number"],
+            )
+
+            for c in candidates:
+                results.append({
+                    "repo": repo_slug,
+                    "fix_pr_number": fix_pr["pr_number"],
+                    "fix_merge_sha": fix_pr["merge_commit_sha"],
+                    "bug_commit_sha": c["bug_commit_sha"],
+                    "file": c["file"],
+                })
+    finally:
+        # Explicitly close PyDriller's Git instance to release file descriptors.
+        # GitPython's Repo object holds open FDs for pack files.
+        try:
+            git.repo.close()
+        except Exception:
+            pass
 
     log.info(f"  SZZ complete: {len(results)} bug-introducing links from {total} fix PRs")
     return results
@@ -1426,7 +1438,7 @@ def compute_jit_features(
         # otherwise we include the PR itself and all later commits.
         devs_output = _git_cmd(
             repo_dir,
-            ["log", f"--format=%ae", f"{merge_commit_sha}~1", "--", f],
+            ["log", "--no-merges", f"--format=%ae", f"{merge_commit_sha}~1", "--", f],
             timeout=30,
         )
         if devs_output:
@@ -1437,7 +1449,7 @@ def compute_jit_features(
         # Bounded to merge_commit_sha~1 so we don't count the PR itself.
         last_change_output = _git_cmd(
             repo_dir,
-            ["log", "-1", "--format=%ct", f"{merge_commit_sha}~1", "--", f],
+            ["log", "--no-merges", "-1", "--format=%ct", f"{merge_commit_sha}~1", "--", f],
             timeout=15,
         )
         if last_change_output and last_change_output.strip():
@@ -1453,7 +1465,7 @@ def compute_jit_features(
         # Bounded to merge_commit_sha~1, not HEAD.
         nuc_output = _git_cmd(
             repo_dir,
-            ["rev-list", "--count", f"{merge_commit_sha}~1", "--", f],
+            ["rev-list", "--no-merges", "--count", f"{merge_commit_sha}~1", "--", f],
             timeout=15,
         )
         if nuc_output and nuc_output.strip():
@@ -1591,16 +1603,24 @@ def compute_jit_for_repo(
             incomplete_count += 1
             continue
 
-        # Get author email. The PR JSON has "author" (GitHub login), not email.
-        # We try to get the real email from the merge commit in git.
-        # If git fails, we fall back to the login — but this won't match
-        # the author cache (which stores emails), so EXP/REXP/SEXP will be 0.
+        # Get author email. For merge commits, %ae returns the merger (often
+        # a bot or maintainer), not the PR author. Try the second parent first
+        # (feature branch tip = PR author), then fall back to the merge commit,
+        # then to GitHub login.
         author_email = ""
+        # Try second parent (feature branch author) for true merge commits
         email_output = _git_cmd(
             repo_dir,
-            ["log", "-1", "--format=%ae", merge_sha],
+            ["log", "-1", "--format=%ae", f"{merge_sha}^2"],
             timeout=10,
         )
+        if not (email_output and email_output.strip()):
+            # Squash merge or single-parent: use the commit itself
+            email_output = _git_cmd(
+                repo_dir,
+                ["log", "-1", "--format=%ae", merge_sha],
+                timeout=10,
+            )
         if email_output and email_output.strip():
             author_email = email_output.strip()
         else:
