@@ -118,7 +118,7 @@ The LLM scoring is **unvalidated against human judgment**. A 99-PR stratified sa
 
 ## SZZ Coverage
 
-103 of 119 repositories have SZZ defect tracing. The remaining 16 failed due to git clone timeouts on very large repositories (ClickHouse, cockroach, godot, rust-lang/rust, etc.). `scripts/collection/run-szz-b11.sh` retries with small repos first.
+103 of 119 repositories have SZZ defect tracing. The remaining 16 produced zero traceable blame links: their merge commit SHAs (from GitHub's API) are unreachable in single-branch clones, typically because the repository uses squash-merge workflows where GitHub's synthetic merge commits are garbage-collected. This is a limitation of the SZZ method on squash-merge repos, not a data collection failure.
 
 ## Exploratory Analysis
 
