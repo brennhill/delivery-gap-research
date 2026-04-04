@@ -228,12 +228,15 @@ def within_author_lpm(data, treatment_col, outcome_col, controls=None,
 
     coef = model.params[treatment_col]
     pval = model.pvalues[treatment_col]
+    ci = model.conf_int().loc[treatment_col]
+    ci_lo, ci_hi = ci[0], ci[1]
     direction = "INCREASES" if coef > 0 else "DECREASES" if coef < 0 else "NO EFFECT"
     sig = "SIGNIFICANT" if pval < 0.05 else "not significant"
 
     print(f"  Within-author LPM: N={len(multi):,}, "
           f"authors={n_authors:,} ({n_with_variation:,} with treatment variation)")
     print(f"  {treatment_col}: coef={coef:.4f}, p={pval:.6f}")
+    print(f"  95% CI: [{ci_lo:+.4f}, {ci_hi:+.4f}]")
     if binary_outcome:
         print(f"  Interpretation: {coef:+.4f} pp change in P({outcome_col})")
     else:
@@ -242,7 +245,8 @@ def within_author_lpm(data, treatment_col, outcome_col, controls=None,
               f"(coef on log scale)")
     print(f"  -> {direction} ({sig})")
 
-    return {"coef": coef, "p": pval, "n": len(multi),
+    return {"coef": coef, "p": pval, "ci_lo": ci_lo, "ci_hi": ci_hi,
+            "n": len(multi),
             "n_authors": n_authors, "n_with_variation": n_with_variation,
             "direction": direction, "sig": sig}
 

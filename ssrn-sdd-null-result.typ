@@ -113,7 +113,7 @@
 
 #par(first-line-indent: 0pt)[
   #text(size: 10.5pt)[
-Spec-driven development (SDD) tools --- GitHub's Spec Kit, Amazon's Kiro, and others --- claim that writing specifications before implementation reduces defects, prevents rework, and improves code quality. These claims lack empirical evidence. We provide the first large-scale test: 88,052 pull requests (after bot exclusion) across 119 open-source repositories, using SZZ defect tracing and within-author fixed-effects estimation. We test specification _artifacts_ in open-source pull requests --- the closest available proxy for SDD workflows, scored on the same quality dimensions SDD tools prescribe --- not the tools' integrated workflows directly. Five hypotheses derived from vendor claims are tested. None are supported. The naive association between specifications and defects is _reversed_ (specifications accompany more bugs, not fewer); after within-author controls, the most likely interpretation is confounding by indication: harder tasks receive specifications and independently produce more defects. Specification quality has no meaningful effect on rework (_p_ = 0.827). Specifications do not constrain AI-generated code scope (_p_ = 0.997). Ten robustness checks confirm the null. Specification artifacts proxy for task complexity, not quality improvement.
+Spec-driven development (SDD) tools --- GitHub's Spec Kit, Amazon's Kiro, and others --- claim that writing specifications before implementation reduces defects, prevents rework, and improves code quality. These claims lack empirical evidence. We provide the first large-scale test: 88,052 pull requests (after bot exclusion) across 119 open-source repositories (103 with SZZ defect tracing coverage), using within-author fixed-effects estimation. We test specification _artifacts_ in open-source pull requests --- the closest available proxy for SDD workflows, scored on the same quality dimensions SDD tools prescribe --- not the tools' integrated workflows directly. Five hypotheses derived from vendor claims are tested. None are supported at a level that would justify the vendor claims. The naive association between specifications and defects is _reversed_ (specifications accompany more bugs, not fewer); after within-author controls, the most likely interpretation is confounding by indication: harder tasks receive specifications and independently produce more defects. Specification quality has no meaningful effect on rework (_p_ = 0.827). Specifications do not constrain AI-generated code scope (_p_ = 0.997). One hypothesis (specification quality reduces defects) shows a small signal (_p_ = 0.016) that does not survive robustness checks, and even at face value predicts only 8 fewer bugs per 1,000 pull requests --- unlikely to justify the specification effort required. Ten robustness checks confirm the overall null. Specification artifacts proxy for task complexity, not quality improvement.
   ]
 ]
 
@@ -250,7 +250,7 @@ Furthermore, many effective AI instructions are inherently underspecified by our
 
 === Defect Introduction (`szz_buggy`)
 
-We applied the SZZ algorithm #cite(<szz2005>) to 103 of 119 repositories, tracing 64,805 blame links from fix commits to bug-introducing commits. The remaining 16 repositories produced zero traceable blame links: their merge commit SHAs (recorded by the GitHub API) are not reachable in single-branch clones, typically because the repository uses squash-merge workflows where GitHub's synthetic merge commits are garbage-collected after merging. The SZZ algorithm traces defect-fixing commits back to the commits that introduced the defect using `git blame`. We use the basic SZZ variant, which da Costa et al. #cite(<dacosta2017>) found misattributes 46--71% of bug-introducing changes depending on the project. This noise is substantial, but it is non-differential with respect to specification presence: there is no reason to expect SZZ to systematically misattribute more for spec'd PRs than unspec'd PRs. Non-differential measurement error attenuates associations toward the null, which works against finding a protective effect but does not create spurious reversed associations. We acknowledge the implications for statistical power in Section~6. Each bug-introducing commit was mapped to its originating pull request. A PR is marked `szz_buggy = True` if any of its commits were identified as introducing a defect that was later fixed. 9,754 PRs (12.6% of those in SZZ-covered repos) are marked as bug-introducing.
+We applied the SZZ algorithm #cite(<szz2005>) to 103 of 119 repositories, tracing 64,805 blame links from fix commits to bug-introducing commits. The remaining 16 repositories produced zero traceable blame links: their merge commit SHAs (recorded by the GitHub API) are not reachable in single-branch clones, typically because the repository uses squash-merge workflows where GitHub's synthetic merge commits are garbage-collected after merging. The SZZ algorithm traces defect-fixing commits back to the commits that introduced the defect using `git blame`. We use the basic SZZ variant, which da Costa et al. #cite(<dacosta2017>) found misattributes 46--71% of bug-introducing changes depending on the project. This noise is substantial, but it is non-differential with respect to specification presence: there is no reason to expect SZZ to systematically misattribute more for spec'd PRs than unspec'd PRs. Non-differential measurement error attenuates associations toward the null, which works against finding a protective effect but does not create spurious reversed associations. We acknowledge the implications for statistical power in Section~7. Each bug-introducing commit was mapped to its originating pull request. A PR is marked `szz_buggy = True` if any of its commits were identified as introducing a defect that was later fixed. 9,754 PRs (12.6% of those in SZZ-covered repos) are marked as bug-introducing.
 
 === Rework (`reworked`)
 
@@ -282,7 +282,7 @@ For each hypothesis, we report three levels of analysis:
 
 The within-author estimate is the most credible. Observational studies of developer practices face severe confounding: developers who write specifications may differ systematically from those who do not in skill, experience, task selection, and organizational context. The within-author design addresses this by comparing the same developer's specified PRs to their own unspecified PRs, eliminating all time-invariant author-level confounding. The treatment effect is identified only from authors who have _both_ specified and unspecified PRs in the dataset.
 
-We restrict within-author analysis to authors with ≥2 PRs and report the number of authors with treatment variation (those who have both spec'd and unspec'd PRs), as these are the observations that identify the effect.
+We restrict within-author analysis to authors with ≥2 PRs and report the number of authors with treatment variation (those who have both spec'd and unspec'd PRs), as these are the observations that identify the effect. For within-author estimates, we report 95% confidence intervals based on clustered standard errors to allow readers to assess what effect sizes are compatible with the data.
 
 We do not apply multiple-comparison corrections across the five hypotheses. At α = 0.05, approximately 0.25 false positives are expected by chance. We interpret all results with this in mind.
 
@@ -291,7 +291,7 @@ We do not apply multiple-comparison corrections across the five hypotheses. At �
 == H1: Specifications Reduce Defects
 
 #par(first-line-indent: 0pt)[
-  Analysis restricted to 77,502 PRs in the 103 repositories with SZZ coverage.
+  Analysis restricted to 77,814 PRs in the 103 repositories with SZZ coverage.
 ]
 
 #align(center)[
@@ -300,11 +300,11 @@ We do not apply multiple-comparison corrections across the five hypotheses. At �
     table.header[Method][Coefficient][_p_-value][Interpretation],
     [Pooled (Fisher's exact)], [OR = 1.202], [< 0.001], [Spec'd PRs have _higher_ bug rate],
     [Controlled (logit, no repo FE#super[†])], [0.067], [0.006], [Effect persists with size controls],
-    [Within-author (LPM)], [+0.014], [0.003], [+1.4pp _increase_ in bug rate],
+    [Within-author (LPM)], [+0.014 \[+0.005, +0.024\]], [0.003], [+1.4pp _increase_ in bug rate],
   )
 ]
 
-#text(size: 9pt)[#super[†] Repository fixed effects caused a singular matrix; controlled estimate uses size controls only.]
+#text(size: 9pt)[#super[†] Repository fixed effects caused a singular matrix; controlled estimate uses size controls only. Within-author 95% CI in brackets.]
 
 Identified from 2,181 authors with treatment variation (out of 4,328 authors with ≥2 PRs).
 
@@ -328,7 +328,7 @@ A plausible alternative explanation is detection bias: if spec'd PRs have better
     table.header[Method][Coefficient][_p_-value][Interpretation],
     [Pooled (Fisher's exact)], [OR = 1.179], [< 0.001], [Spec'd PRs have higher rework],
     [Controlled (logit + repo FE)], [0.178], [< 0.001], [Effect persists],
-    [Within-author (LPM)], [+0.012], [0.001], [+1.2pp _increase_ in rework rate],
+    [Within-author (LPM)], [+0.012 \[+0.005, +0.019\]], [0.001], [+1.2pp _increase_ in rework rate],
   )
 ]
 
@@ -339,10 +339,10 @@ Identified from 2,524 authors with treatment variation (out of 4,892 with ≥2 P
 == H3: Specification Quality Reduces Defects
 
 #par(first-line-indent: 0pt)[
-  H1 and H2 tested specification _presence_ --- whether having any specification artifact matters. H3 and H4 test specification _quality_ --- whether, among PRs that already have specifications, better-written specifications predict better outcomes. This is the stronger version of the SDD claim: not just "write a spec" but "write a _good_ spec."
+  H1 and H2 tested specification _presence_ --- whether having any specification artifact matters. H3 and H4 test specification _quality_ --- whether, among PRs that already have specifications, better-written specifications predict better outcomes. This is the stronger version of the SDD claim: not just "write a spec" but "write a _good_ spec." We consider H3 and H4 _exploratory_ rather than confirmatory: the quality measure has limited construct validity (human--LLM agreement _ρ_ = 0.37 on _N_ = 30) and is tested on a non-random 5.9% subsample.
 ]
 
-Quality is the mean of seven rubric dimensions (described in Section~4.2), each scored 0--100. The overall quality score is the mean across dimensions. These dimensions were chosen to align with the quality criteria that SDD tools themselves prescribe (Section~4.2). The scoring is automated and has not been validated against human expert judgment --- a limitation we acknowledge (Section~7). The quality score measures _formal_ specification completeness (are error states described? are acceptance criteria present?) rather than _functional_ correctness (are the right error states described? are the acceptance criteria valid for this domain?). A specification can score highly on every dimension and still specify the wrong behavior.
+Quality is the mean of seven rubric dimensions (described in Section~4.2), each scored 0--100. The overall quality score is the mean across dimensions. These dimensions were chosen to align with the quality criteria that SDD tools themselves prescribe (Section~4.2). The scoring is automated with limited human validation (_ρ_ = 0.37 on 30 PRs; Section~4.2) --- a limitation we acknowledge (Section~7). The quality score measures _formal_ specification completeness (are error states described? are acceptance criteria present?) rather than _functional_ correctness (are the right error states described? are the acceptance criteria valid for this domain?). A specification can score highly on every dimension and still specify the wrong behavior.
 
 #par(first-line-indent: 0pt)[
   Analysis restricted to 5,192 PRs with LLM-scored specification quality (6.7% of SZZ-covered PRs). Selection bias caveat: only specified PRs with substantial descriptions were scored.
@@ -353,13 +353,13 @@ Quality is the mean of seven rubric dimensions (described in Section~4.2), each 
     columns: 4,
     table.header[Method][Coefficient][_p_-value][Interpretation],
     [Controlled (logit + repo FE)], [−0.005], [0.042], [Quality predicts fewer bugs],
-    [Within-author (LPM)], [−0.001], [0.018], [−0.08pp per quality point],
+    [Within-author (LPM)], [−0.001 \[−0.001, −0.000\]], [0.016], [−0.08pp per quality point],
   )
 ]
 
 Identified from 357 authors with treatment variation.
 
-*H3 is weakly supported on a biased subsample.* The within-author coefficient is statistically significant (_p_ = 0.018) but substantively small: a 10-point improvement in specification quality (on the 0--100 scale) predicts a 0.8 percentage-point reduction in defect rate. This is the one result in the SDD-predicted direction. However, three caveats limit its interpretation. First, it is identified from 357 authors on 5.9% of the data, in a subsample non-randomly selected for having substantial specification content. Second, when restricted to the three quality dimensions with validated human--LLM agreement (Section~5.6), the effect weakens (_p_ = 0.072) while the unvalidated dimensions strengthen --- suggesting the signal may reflect description length or task complexity rather than specification quality (Section~5.6). Third, the effect size is small enough that even if causal, it would not justify the specification effort required to achieve it.
+*H3 is weakly supported on a biased subsample.* The within-author coefficient is statistically significant (_p_ = 0.016) but substantively small: a 10-point improvement in specification quality (on the 0--100 scale) predicts a 0.8 percentage-point reduction in defect rate. This is the one result in the SDD-predicted direction. However, three caveats limit its interpretation. First, it is identified from 357 authors on 5.9% of the data, in a subsample non-randomly selected for having substantial specification content. Second, when restricted to the three quality dimensions with validated human--LLM agreement (Section~5.6), the effect weakens (_p_ = 0.072) while the unvalidated dimensions strengthen --- suggesting the signal may reflect description length or task complexity rather than specification quality (Section~5.6). Third, the effect size is small enough that even if causal, it would not justify the specification effort required to achieve it.
 
 == H4: Specification Quality Reduces Rework
 
@@ -368,7 +368,7 @@ Identified from 357 authors with treatment variation.
     columns: 4,
     table.header[Method][Coefficient][_p_-value][Interpretation],
     [Controlled (logit + repo FE)], [0.003], [0.195], [Quality does not predict rework],
-    [Within-author (LPM)], [−0.000], [0.827], [Effectively zero],
+    [Within-author (LPM)], [−0.000 \[−0.001, +0.001\]], [0.827], [Effectively zero],
   )
 ]
 
@@ -388,7 +388,7 @@ Identified from 357 authors with treatment variation.
     table.header[Group][Within-author coef][_p_-value][Interpretation],
     [AI-tagged PRs], [+0.120], [0.030], [Spec'd AI PRs are _larger_],
     [Human PRs], [+0.140], [< 0.001], [Spec'd human PRs are _larger_],
-    [Interaction (spec × AI)], [+0.000], [0.997], [No differential scope constraint],
+    [Interaction (spec × AI)], [+0.000 \[−0.101, +0.102\]], [0.997], [No differential scope constraint],
   )
 ]
 
@@ -408,14 +408,14 @@ In addition to SZZ-traced defects and rework, we test specification effects on t
   #table(
     columns: 4,
     table.header[Outcome][Within-author coef][_p_-value][N],
-    [SZZ bugs], [+0.019], [0.011], [73,276],
-    [Rework], [+0.050], [< 0.001], [83,188],
-    [Escaped], [−0.002], [0.169], [83,188],
-    [Strict escaped], [−0.000], [0.870], [83,188],
+    [SZZ bugs], [+0.014], [0.003], [72,046],
+    [Rework], [+0.012], [0.001], [81,647],
+    [Escaped], [+0.001], [0.333], [81,647],
+    [Strict escaped], [+0.001], [0.108], [81,647],
   )
 ]
 
-N reflects within-author estimation restricted to authors with ≥2 PRs; the smaller samples compared to H1 (77,502) and H2 (88,052) reflect this filtering. The SZZ bugs and rework rows reproduce the H1 and H2 findings (included here for comparison). Both show significant _positive_ associations --- specs accompany more bugs and more rework, not less --- which we attribute to confounding by indication (Section~5.2): harder tasks receive specifications and independently produce more defects and rework. The escaped and strict escaped measures, which capture a different class of defect (CI-passing code that subsequently required a fix), are directionally protective but not significant. No outcome measure shows specifications reducing defects at _p_ < 0.05.
+N reflects within-author estimation restricted to authors with ≥2 PRs; the smaller samples compared to H1 (77,502) and H2 (88,052) reflect this filtering. The SZZ bugs and rework rows reproduce the H1 and H2 findings (included here for comparison). Both show significant positive associations --- specs accompany more bugs and more rework, not less --- which we attribute to confounding by indication. The escaped and strict escaped measures, which capture a different class of defect (CI-passing code that subsequently required a fix), are also directionally positive but not significant. No outcome measure shows specifications reducing defects at _p_ < 0.05.
 
 === Incremental Validity Beyond JIT Features
 
@@ -425,37 +425,37 @@ The JIT defect prediction framework #cite(<kamei2013>) uses 14 code-change featu
   #table(
     columns: 4,
     table.header[Model][Pseudo~_R_#super[2]][AIC][Spec variable _p_],
-    [JIT features only], [0.075], [45,850], [---],
-    [JIT + spec presence], [0.075], [45,851], [0.250],
-    [JIT + spec quality#super[†]], [0.094], [---], [0.044],
+    [JIT features only], [0.078], [44,793], [---],
+    [JIT + spec presence], [0.078], [44,786], [0.003],
+    [JIT + spec quality#super[†]], [0.096], [---], [0.059],
   )
 ]
 
 #text(size: 9pt)[#super[†] Scored subset only (5,192 PRs). JIT-only Pseudo~_R_#super[2] on same subset = 0.093.]
 
-Spec presence adds nothing to the JIT model: Δ Pseudo~_R_#super[2] = 0.00003, _p_ = 0.250, and AIC increases (worse fit). Spec quality adds a marginally significant but substantively negligible increment (Δ~_R_#super[2] = 0.001, _p_ = 0.044) on a biased subsample. JIT features alone account for all the predictive power that specifications claim to provide.
+Spec presence is statistically significant when added to the JIT model (_p_ = 0.003) but the increment is substantively negligible: Δ Pseudo~_R_#super[2] = 0.0002, and AIC improves by only 7 points. Spec quality adds a marginally significant increment (_p_ = 0.059) on a biased subsample. In both cases, the incremental predictive power is too small to matter in practice --- JIT features account for nearly all the predictive power.
 
 === Individual Quality Dimensions
 
-We test each of the seven specification quality dimensions independently against SZZ bugs and rework (within-author LPM, 4,955 PRs):
+We test each of the seven specification quality dimensions independently against SZZ bugs and rework (within-author LPM, 4,901 PRs):
 
 #align(center)[
   #table(
     columns: 5,
     table.header[Dimension][→ bugs coef][_p_][→ rework coef][_p_],
-    [Outcome clarity], [−0.001], [0.140], [−0.000], [0.495],
-    [Error states], [−0.000], [0.074], [+0.000], [0.437],
-    [Scope boundaries], [−0.001], [0.033], [−0.000], [0.214],
-    [Acceptance criteria], [−0.001], [0.079], [−0.000], [0.879],
-    [Data contracts], [−0.001], [0.031], [+0.000], [0.602],
-    [Dependency context], [−0.000], [0.512], [+0.000], [0.461],
-    [Behavioral specificity], [−0.001], [0.023], [−0.000], [0.693],
+    [Outcome clarity], [−0.001], [0.119], [−0.000], [0.812],
+    [Error states], [−0.000], [0.100], [+0.000], [0.308],
+    [Scope boundaries], [−0.001], [0.027], [−0.000], [0.239],
+    [Acceptance criteria], [−0.001], [0.063], [−0.000], [0.469],
+    [Data contracts], [−0.001], [0.037], [+0.000], [0.927],
+    [Dependency context], [−0.000], [0.536], [+0.000], [0.411],
+    [Behavioral specificity], [−0.001], [0.020], [−0.000], [0.676],
   )
 ]
 
 All coefficients in the bugs column are negative (directionally protective) but extremely small. To put the magnitudes in plain language: the largest coefficient is −0.001 (scope boundaries). This means that scoring the maximum possible improvement on scope boundaries --- moving from 0 to 100 on the rubric --- would predict 0.1 fewer percentage points of bugs. In a codebase with a 12% base bug rate, that is a reduction from 12.0% to 11.9%. No individual quality dimension produces a practically meaningful reduction in defects. The rework column is even starker: every coefficient rounds to zero.
 
-Three dimensions show marginal statistical significance for bugs (scope boundaries _p_ = 0.033, data contracts _p_ = 0.031, behavioral specificity _p_ = 0.023), but none survive Bonferroni correction#footnote[Bonferroni correction adjusts the significance threshold for multiple comparisons. When testing 7 dimensions simultaneously, the probability of at least one false positive at α = 0.05 is approximately 30%. Dividing the threshold by the number of tests (0.05 / 7 = 0.007) controls the family-wise error rate.] (threshold: _p_ < 0.007 for 7 tests). Statistical significance at these magnitudes reflects the large sample size, not a meaningful effect. Even if these tiny coefficients reflected real causal relationships, they would be too small to justify the specification effort required to achieve them.
+Three dimensions show marginal statistical significance for bugs (scope boundaries _p_ = 0.027, data contracts _p_ = 0.037, behavioral specificity _p_ = 0.020), but none survive Bonferroni correction#footnote[Bonferroni correction adjusts the significance threshold for multiple comparisons. When testing 7 dimensions simultaneously, the probability of at least one false positive at α = 0.05 is approximately 30%. Dividing the threshold by the number of tests (0.05 / 7 = 0.007) controls the family-wise error rate.] (threshold: _p_ < 0.007 for 7 tests). Statistical significance at these magnitudes reflects the large sample size, not a meaningful effect. Even if these tiny coefficients reflected real causal relationships, they would be too small to justify the specification effort required to achieve them.
 
 === Validated Quality Dimensions Only
 
@@ -499,9 +499,9 @@ SDD tools are marketed primarily for AI-assisted workflows. We test whether the 
     [All non-bot PRs (88,052)], [+0.014], [0.003], [+0.012], [0.001],
     [Human-only, no AI (82,063)], [+0.015], [0.003], [+0.011], [0.004],
     [AI-tagged, non-bot (5,989)], [+0.011], [0.424], [+0.010], [0.399],
-    [Zero-AI repos (48,117)], [−0.016], [0.377], [−0.033], [0.014],
-    [Low-AI repos (18,772)], [+0.019], [0.001], [+0.009], [0.061],
-    [High-AI repos (21,163)], [+0.010], [0.185], [+0.018], [0.003],
+    [Zero-AI repos (3,562)], [−0.016], [0.377], [−0.033], [0.014],
+    [Low-AI repos (51,877)], [+0.019], [0.001], [+0.009], [0.061],
+    [High-AI repos (32,613)], [+0.010], [0.185], [+0.018], [0.003],
   )
 ]
 
@@ -568,15 +568,15 @@ We restrict the within-author analysis to the most recent three months of the ob
   #table(
     columns: 5,
     table.header[Test][Recent 3 months coef][_p_][Full dataset coef][_p_],
-    [Specs → SZZ bugs], [+0.017], [0.036], [+0.019], [0.011],
-    [Specs → rework], [+0.042], [< 0.001], [+0.050], [< 0.001],
-    [AI + specs → bugs], [+0.009], [0.646], [---], [---],
-    [AI + specs → rework], [−0.010], [0.588], [---], [---],
-    [Spec × AI interaction (H5)], [---], [---], [+0.000], [0.997],
+    [Specs → SZZ bugs], [+0.004], [0.435], [+0.014], [0.003],
+    [Specs → rework], [+0.016], [0.001], [+0.012], [0.001],
+    [AI + specs → bugs], [+0.003], [0.822], [---], [---],
+    [AI + specs → rework], [+0.016], [0.212], [---], [---],
+    [Spec × AI interaction (H5)], [+0.011], [0.861], [+0.000], [0.997],
   )
 ]
 
-The pattern is identical. In the period of highest SDD adoption, specification artifacts are still associated with _more_ bugs and _more_ rework, not less. For AI-tagged PRs specifically, specs have no effect in either direction. The H5 scope-constraint interaction is null in both the full dataset (_p_ = 0.997) and the recent window. The null result is not a historical artifact --- it persists in the data most representative of the SDD era.
+The pattern is consistent. In the period of highest SDD adoption, specifications are associated with more rework (+1.6pp, _p_ = 0.001) and directionally more bugs (+0.4pp, _p_ = 0.435, not significant). For AI-tagged PRs, specs have no effect in either direction. The H5 scope-constraint interaction is null in both the full dataset and the recent window. The null result is not a historical artifact --- it persists in the data most representative of the SDD era.
 
 A caveat on the temporal data: SZZ-traced bug rates for the most recent months are likely underestimates, because defects introduced recently may not yet have been fixed (and therefore cannot be traced back to their introducing commits). This right-censoring affects absolute bug rates but not the _relative_ comparison between spec'd and unspec'd PRs within the same time window, which is the quantity of interest.
 
@@ -592,11 +592,11 @@ JIT risk feature profiles confirm this directly. Spec'd PRs have significantly h
 
 This confounding cuts both ways. The within-author null is consistent with both "specifications have zero effect" and "specifications have a small positive effect masked by residual task selection." We cannot distinguish these interpretations with observational data. However, the within-author estimates are not merely insignificant but _directionally reversed_ across most tests, and propensity score matching eliminates both the defect and rework associations entirely. If a protective effect exists, it is smaller than our study can detect.
 
-Spec'd PRs receive more review (56% longer to merge, more review cycles), but this additional review does not translate into fewer defects --- the same confounding pattern. AI-tagged PRs receive _less_ review scrutiny despite a higher base defect rate (14.8% vs. 9.3%), a finding concerning independent of the specification question.
+Spec'd PRs receive more review (56% longer to merge, more review cycles), but this additional review does not translate into fewer defects --- the same confounding pattern. AI-tagged PRs receive _less_ review scrutiny despite a higher base defect rate (16.7% vs. 12.2%), a finding concerning independent of the specification question.
 
-== Why Specifications Cannot Prevent Defects
+== Why Specifications May Not Prevent Defects
 
-Consider what would be required for a specification to prevent defects. The spec would need to be accurate in every assertion. It would need no substantial omissions --- every error case, edge condition, and integration constraint enumerated. The AI would need to interpret the spec exactly as intended. The AI would need to make zero implementation mistakes. And the spec itself would need to describe the correct solution. Each condition is individually difficult; together they describe a logically implausible standard. Defects arise precisely where human understanding is incomplete --- and specifications are written by the same humans whose incomplete understanding produces the defects.
+One explanation for the null is the chain of conditions required for a specification to prevent defects. The spec must be accurate in every assertion. It must have no substantial omissions. The AI must interpret it exactly as intended. The AI must make no implementation mistakes. And the spec itself must describe the correct solution. Each condition is individually difficult; together they represent a high bar. Defects arise precisely where human understanding is incomplete --- and specifications are written by the same humans whose incomplete understanding produces the defects. This does not prove specifications _cannot_ work, but it suggests why the marginal benefit may be smaller than vendors assume.
 
 SDD vendors conflate _directing_ the AI (telling it what to build) with _ensuring quality_ (fewer bugs, less rework). Specifications may be effective at direction --- a structured task description is better than a vague prompt. But direction is not quality. An agent faithfully executing a spec will reproduce every gap, ambiguity, and wrong assumption in that spec. The specification tells the AI _what_ to build. It does not tell the AI _what it forgot to specify_.
 
@@ -656,7 +656,7 @@ Three gaps separate what we measure from what SDD vendors claim.
 
 Spec-driven development tools make five specific, testable claims: specifications reduce defects (H1), prevent rework (H2), improve outcomes through higher-quality requirements (H3, H4), and constrain AI-generated code scope (H5). Production-scale data from purpose-built SDD tools is not yet publicly available. We test the claims using the best available proxy: 88,052 pull requests across 119 open-source repositories, where specification artifacts are scored on the same quality dimensions that SDD tools prescribe, using within-author fixed-effects estimation.
 
-None of the five hypotheses are supported. The naive association between specifications and defects is reversed (specifications accompany _more_ defects); after within-author controls, the most parsimonious interpretation is confounding by indication. Specification quality has no meaningful effect on rework (_p_ = 0.827). Specifications do not constrain AI-generated code scope (_p_ = 0.997). Ten robustness checks confirm the null. Specification presence proxies for task complexity, not for quality improvement.
+None of the five hypotheses are supported at a level that would justify the vendor claims. The naive association between specifications and defects is reversed (specifications accompany _more_ defects); after within-author controls, the most parsimonious interpretation is confounding by indication. Specification quality has no meaningful effect on rework (_p_ = 0.827). Specifications do not constrain AI-generated code scope (_p_ = 0.997). Ten robustness checks confirm the null. Specification presence proxies for task complexity, not for quality improvement.
 
 Three important caveats bound these findings. First, we test organic specification artifacts, not SDD tool-generated specifications --- the construct gap is real (Section~7). Second, SZZ defect tracing has substantial measurement noise (46--71% misattribution), which attenuates true effects. Third, our open-source convenience sample may not generalize to commercial teams. Whether purpose-built SDD tooling would produce different results on commercial codebases remains an open question. The best available proxy evidence offers no support for the quality claims being made.
 
