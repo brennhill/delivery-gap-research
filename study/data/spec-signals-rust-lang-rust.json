@@ -1,11 +1,11 @@
 {
   "repo": "rust-lang/rust",
-  "lookback_days": 90,
-  "rework_window_days": 14,
+  "lookback_days": 365,
+  "rework_window_days": 30,
   "coverage": {
-    "coverage_pct": 18,
-    "total_prs": 496,
-    "specd_prs": 87,
+    "coverage_pct": 17,
+    "total_prs": 573,
+    "specd_prs": 100,
     "prs": [
       {
         "number": 154390,
@@ -3974,6 +3974,622 @@
         "specd": true,
         "spec_source": "https://github.com/rust-lang/libs-team/issues/354",
         "merged_at": "2026-03-24T01:37:20+00:00"
+      },
+      {
+        "number": 153369,
+        "sha": null,
+        "title": "library/test: always enable unstable features for miri",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-05T12:16:14+00:00"
+      },
+      {
+        "number": 154700,
+        "sha": null,
+        "title": "Revert \"Fix: On wasm targets, call panic_in_cleanup if panic occurs in cleanup #151771\"",
+        "specd": true,
+        "spec_source": "https://github.com/rust-lang/rust/issues/153948#issuecomment-4137655589",
+        "merged_at": "2026-04-02T10:47:27+00:00"
+      },
+      {
+        "number": 154511,
+        "sha": null,
+        "title": "[perf] Revert FastISel patch",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T05:23:57+00:00"
+      },
+      {
+        "number": 154459,
+        "sha": null,
+        "title": "core: Destabilize beta-stable `RangeInclusiveIter::remainder`",
+        "specd": true,
+        "spec_source": "https://github.com/rust-lang/rust/issues/125687",
+        "merged_at": "2026-03-29T19:36:27+00:00"
+      },
+      {
+        "number": 154074,
+        "sha": null,
+        "title": "don't drop arguments' temporaries in `dbg!`",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T02:02:32+00:00"
+      },
+      {
+        "number": 153336,
+        "sha": null,
+        "title": "stdarch subtree update",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-03T15:19:14+00:00"
+      },
+      {
+        "number": 154307,
+        "sha": null,
+        "title": "[beta] Revert #151380 in beta",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T23:57:00+00:00"
+      },
+      {
+        "number": 147400,
+        "sha": null,
+        "title": "TryFrom<integer> for bool",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-02T07:49:54+00:00"
+      },
+      {
+        "number": 147022,
+        "sha": null,
+        "title": "Remove current code for embedding command-line args in PDB",
+        "specd": true,
+        "spec_source": "https://github.com/rust-lang/rust/issues/128842",
+        "merged_at": "2025-10-22T03:31:41+00:00"
+      },
+      {
+        "number": 154614,
+        "sha": null,
+        "title": "Streamline `CachingSourceMapView`",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T06:26:12+00:00"
+      },
+      {
+        "number": 154270,
+        "sha": null,
+        "title": "Create `Ty` type alias in `rustc_type_ir`",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T20:15:36+00:00"
+      },
+      {
+        "number": 154308,
+        "sha": null,
+        "title": "Revert #151380 and #153869",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T03:18:17+00:00"
+      },
+      {
+        "number": 154668,
+        "sha": null,
+        "title": "Rollup of 4 pull requests",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T12:11:18+00:00"
+      },
+      {
+        "number": 154292,
+        "sha": null,
+        "title": "Don't use disk-cache for query `def_kind`",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T20:23:08+00:00"
+      },
+      {
+        "number": 150752,
+        "sha": null,
+        "title": "Update libc to v0.2.183",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T23:24:32+00:00"
+      },
+      {
+        "number": 151995,
+        "sha": null,
+        "title": "stabilize ptr_as_ref_unchecked",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-03T07:57:04+00:00"
+      },
+      {
+        "number": 148590,
+        "sha": null,
+        "title": "Stabilize `atomic_try_update`and deprecate `fetch_update` starting 1.99.0",
+        "specd": true,
+        "spec_source": "https://github.com/rust-lang/rust/issues/135894#issuecomment-3685449783",
+        "merged_at": "2026-02-07T15:19:59+00:00"
+      },
+      {
+        "number": 152253,
+        "sha": null,
+        "title": "Stabilize const ControlFlow predicates",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-07T06:50:14+00:00"
+      },
+      {
+        "number": 154356,
+        "sha": null,
+        "title": "    Add integer truncation and extension methods",
+        "specd": true,
+        "spec_source": "https://github.com/rust-lang/rust/issues/154330",
+        "merged_at": "2026-04-01T12:11:18+00:00"
+      },
+      {
+        "number": 154606,
+        "sha": null,
+        "title": "misc test cleanups",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T20:15:35+00:00"
+      },
+      {
+        "number": 154655,
+        "sha": null,
+        "title": "Fix associated type bound suggestion span issue",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T12:11:18+00:00"
+      },
+      {
+        "number": 154647,
+        "sha": null,
+        "title": "change `c_double` to `f32` on `avr` targets",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T12:11:18+00:00"
+      },
+      {
+        "number": 154641,
+        "sha": null,
+        "title": "build_helper: fix yarn locking, add check, and bump lockfile",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T12:11:18+00:00"
+      },
+      {
+        "number": 153295,
+        "sha": null,
+        "title": "update panicking() docs for panic=abort",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-04T04:19:04+00:00"
+      },
+      {
+        "number": 154659,
+        "sha": null,
+        "title": "Rollup of 5 pull requests",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T08:58:13+00:00"
+      },
+      {
+        "number": 154592,
+        "sha": null,
+        "title": "Fix `mismatched_lifetime_syntaxes` suggestions for hidden path lifetimes",
+        "specd": true,
+        "spec_source": "https://github.com/rust-lang/rust/issues/154493",
+        "merged_at": "2026-04-01T08:58:13+00:00"
+      },
+      {
+        "number": 154648,
+        "sha": null,
+        "title": "Clarify `ty::List`",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T08:58:13+00:00"
+      },
+      {
+        "number": 154249,
+        "sha": null,
+        "title": "Mention on which items the `missing_doc_code_examples` is not emitted",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T02:37:47+00:00"
+      },
+      {
+        "number": 153207,
+        "sha": null,
+        "title": "std::net: clamp linger timeout value to prevent silent truncation.",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T08:58:13+00:00"
+      },
+      {
+        "number": 154643,
+        "sha": null,
+        "title": "fix pin docs",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T08:58:13+00:00"
+      },
+      {
+        "number": 152935,
+        "sha": null,
+        "title": "c-variadic: error when we can't guarantee that the backend does the right thing",
+        "specd": true,
+        "spec_source": "https://github.com/rust-lang/rust/issues/44930",
+        "merged_at": "2026-04-01T08:58:13+00:00"
+      },
+      {
+        "number": 154456,
+        "sha": null,
+        "title": "Label overwritten for never read assignments",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T05:47:22+00:00"
+      },
+      {
+        "number": 154649,
+        "sha": null,
+        "title": "Rollup of 2 pull requests",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T02:37:47+00:00"
+      },
+      {
+        "number": 154576,
+        "sha": null,
+        "title": "Simplify the `cache_on_disk_if` modifier to just `cache_on_disk`",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T16:43:44+00:00"
+      },
+      {
+        "number": 154266,
+        "sha": null,
+        "title": "UdpSocket: document `recv/recv_from` differences",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T02:37:47+00:00"
+      },
+      {
+        "number": 154634,
+        "sha": null,
+        "title": "Use `Hcx`/`hcx` consistently for `StableHashingContext`.",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T23:24:32+00:00"
+      },
+      {
+        "number": 154638,
+        "sha": null,
+        "title": "Rollup of 4 pull requests",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T23:24:32+00:00"
+      },
+      {
+        "number": 154617,
+        "sha": null,
+        "title": "Update flate2 users to use zlib-rs",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T20:15:35+00:00"
+      },
+      {
+        "number": 154635,
+        "sha": null,
+        "title": "./x run miri: default to edition 2021",
+        "specd": true,
+        "spec_source": "https://github.com/rust-lang/rust/issues/154630",
+        "merged_at": "2026-03-31T23:24:32+00:00"
+      },
+      {
+        "number": 152432,
+        "sha": null,
+        "title": "add rustc option -Zpacked-stack",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T23:24:32+00:00"
+      },
+      {
+        "number": 154637,
+        "sha": null,
+        "title": "Rollup of 12 pull requests",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T20:15:35+00:00"
+      },
+      {
+        "number": 153980,
+        "sha": null,
+        "title": "refactor: move doc(rust_logo) check to parser",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T20:15:36+00:00"
+      },
+      {
+        "number": 151932,
+        "sha": null,
+        "title": "refactor: remove `Adjust::ReborrowPin`",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T20:15:36+00:00"
+      },
+      {
+        "number": 154620,
+        "sha": null,
+        "title": "stabilize new Range type and iterator",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T20:15:36+00:00"
+      },
+      {
+        "number": 154618,
+        "sha": null,
+        "title": "Fix AtomicPtr::update's cfg gate",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T20:15:35+00:00"
+      },
+      {
+        "number": 154612,
+        "sha": null,
+        "title": "Add a test for a now fixed ICE with `offset_of!()`",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T20:15:35+00:00"
+      },
+      {
+        "number": 154580,
+        "sha": null,
+        "title": "Split AttributeParserError Diagnostic implementation into subfunctions",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T20:15:35+00:00"
+      },
+      {
+        "number": 154569,
+        "sha": null,
+        "title": "Fix  type alias where clause suggestion spacing issue",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T20:15:36+00:00"
+      },
+      {
+        "number": 154419,
+        "sha": null,
+        "title": "Take first task group for further execution",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T20:15:36+00:00"
+      },
+      {
+        "number": 154134,
+        "sha": null,
+        "title": "fix: guard paren-sugar pretty-printing on short trait args",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T20:15:36+00:00"
+      },
+      {
+        "number": 154633,
+        "sha": null,
+        "title": "Rollup of 9 pull requests",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T13:13:01+00:00"
+      },
+      {
+        "number": 154518,
+        "sha": null,
+        "title": "Panic in Hermit clock_gettime",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T02:02:32+00:00"
+      },
+      {
+        "number": 154322,
+        "sha": null,
+        "title": "feat: reimplement `hash_map!` macro",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T02:02:32+00:00"
+      },
+      {
+        "number": 153648,
+        "sha": null,
+        "title": "Fix EII function aliases eliminated by LTO",
+        "specd": true,
+        "spec_source": "https://github.com/rust-lang/rust/issues/125418",
+        "merged_at": "2026-03-31T13:13:02+00:00"
+      },
+      {
+        "number": 154574,
+        "sha": null,
+        "title": "delete several `ui/consts` tests",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T13:13:01+00:00"
+      },
+      {
+        "number": 154579,
+        "sha": null,
+        "title": "remove debug requirement from hooks",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T13:13:17+00:00"
+      },
+      {
+        "number": 142659,
+        "sha": null,
+        "title": "compiler-builtins: Clean up features",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T13:13:02+00:00"
+      },
+      {
+        "number": 154551,
+        "sha": null,
+        "title": "Skip suggestions pointing to macro def for assert_eq",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T13:13:08+00:00"
+      },
+      {
+        "number": 154577,
+        "sha": null,
+        "title": "Update `mir-opt` 64-bit panic-abort tests for `Alignment` rename",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T13:13:02+00:00"
+      },
+      {
+        "number": 154582,
+        "sha": null,
+        "title": "miri subtree update",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T13:13:01+00:00"
+      },
+      {
+        "number": 153574,
+        "sha": null,
+        "title": "Avoid ICE when param-env normalization leaves unresolved inference variables",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T13:13:02+00:00"
+      },
+      {
+        "number": 153790,
+        "sha": null,
+        "title": "Fix regression when dealing with generics/values with unresolved inference",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T13:13:02+00:00"
+      },
+      {
+        "number": 153821,
+        "sha": null,
+        "title": "constify `Step` trait and all of its `impl`ementations",
+        "specd": true,
+        "spec_source": "https://github.com/rust-lang/rust/issues/42168)",
+        "merged_at": "2026-03-28T13:53:56+00:00"
+      },
+      {
+        "number": 154573,
+        "sha": null,
+        "title": "Rollup of 4 pull requests",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T14:09:38+00:00"
+      },
+      {
+        "number": 154053,
+        "sha": null,
+        "title": "Properly generalize unevaluated consts",
+        "specd": true,
+        "spec_source": "https://github.com/rust-lang/rust/issues/153831",
+        "merged_at": "2026-03-31T08:58:13+00:00"
+      },
+      {
+        "number": 154304,
+        "sha": null,
+        "title": "Make typeck a tcx method which calls typeck_root query",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-29T22:49:07+00:00"
+      },
+      {
+        "number": 154221,
+        "sha": null,
+        "title": "`vec::as_mut_slice()`: use lowercase \"isize\" in safety comment",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-28T10:43:17+00:00"
+      },
+      {
+        "number": 144987,
+        "sha": null,
+        "title": "Enable f16 and f128 on targets that were fixed in LLVM21",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-08-09T00:03:32+00:00"
+      },
+      {
+        "number": 145412,
+        "sha": null,
+        "title": "Windows: Replace `GetThreadId`+`GetCurrentThread` with `GetCurrentThreadId`",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-08-15T18:51:08+00:00"
+      },
+      {
+        "number": 150635,
+        "sha": null,
+        "title": "triagebot: Add a mention for `dec2flt`, `flt2dec`, and `fmt/num.rs`",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-01-03T13:59:49+00:00"
+      },
+      {
+        "number": 140418,
+        "sha": null,
+        "title": "Reexport types from `c_size_t` in `std`",
+        "specd": true,
+        "spec_source": "https://github.com/rust-lang/rust/issues/88345",
+        "merged_at": "2025-06-07T03:20:00+00:00"
+      },
+      {
+        "number": 134063,
+        "sha": null,
+        "title": "dec2flt: Clean up float parsing modules",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-03-05T18:29:43+00:00"
+      },
+      {
+        "number": 149917,
+        "sha": null,
+        "title": "If there are too many suggestions for malformed attribute, do not suggest them",
+        "specd": true,
+        "spec_source": "https://github.com/rust-lang/rust/issues/149865.",
+        "merged_at": "2025-12-12T21:34:27+00:00"
+      },
+      {
+        "number": 154566,
+        "sha": null,
+        "title": "loongarch: use \"_mcount\" as the default mcount symbol",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T14:09:38+00:00"
+      },
+      {
+        "number": 154486,
+        "sha": null,
+        "title": "std_detect on AArch64 Darwin: Detect FEAT_SVE_B16B16",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T02:02:32+00:00"
+      },
+      {
+        "number": 154564,
+        "sha": null,
+        "title": "Tweak wording of E0275 WF errors",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T14:09:38+00:00"
+      },
+      {
+        "number": 154563,
+        "sha": null,
+        "title": "Point at binop lhs and rhs when expression is multiline",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T14:09:38+00:00"
       }
     ]
   },
@@ -3981,8 +4597,8 @@
     "mode": "heuristic",
     "average_score": 45,
     "verdicts": {
-      "REVIEW": 86,
-      "REWRITE": 1
+      "REVIEW": 98,
+      "REWRITE": 2
     },
     "specs": [
       {
@@ -7517,15 +8133,514 @@
           "No error contract \u2014 AI will invent error shapes per function",
           "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
         ]
+      },
+      {
+        "pr_number": 154700,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 72,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 37,
+        "verdict": "REWRITE",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 1,
+            "type": "ambiguity",
+            "term": "Clean",
+            "suggestion": "Replace 'Clean' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 154459,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 147022,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "The compiler currently has code that will obtain a list of quoted command-line a",
+            "suggestion": "Goal without test: 'The compiler currently has code that will obtain a list of q...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 148590,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 154356,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 154592,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 152935,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 154635,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 153648,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "This PR will get automatically assigned to a reviewer. In case you would like",
+            "suggestion": "Goal without test: 'This PR will get automatically assigned to a reviewer. In ca...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 153821,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 154053,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "fixes https://github.com/rust-lang/rust/issues/153831",
+            "suggestion": "Goal without test: 'fixes https://github.com/rust-lang/rust/issues/153831' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "fixes a // FIXME(ogca) (I am unaware of an issue for this) added in https://gith",
+            "suggestion": "Goal without test: 'fixes a // FIXME(ogca) (I am unaware of an issue for this) a...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 140418,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 149917,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
       }
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.023,
-    "unspecd_rework_rate": 0.0733,
-    "delta": -0.0504,
-    "specd_sample_size": 87,
-    "unspecd_sample_size": 409,
+    "specd_rework_rate": 0.03,
+    "unspecd_rework_rate": 0.0867,
+    "delta": -0.0567,
+    "specd_sample_size": 100,
+    "unspecd_sample_size": 473,
     "significance": "significant",
     "signals": [
       {
@@ -7579,6 +8694,24 @@
       },
       {
         "type": "bug-fix",
+        "source": "153371",
+        "target": "152639",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/ci/docker/host-x86_64/dist-arm-linux-musl/Dockerfile"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "153025",
+        "target": "152965",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "library/core/src/bstr/mod.rs"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "152800",
         "target": "153605",
         "classification": "heuristic",
@@ -7589,18 +8722,20 @@
       {
         "type": "bug-fix",
         "source": "153398",
-        "target": "153576",
+        "target": "152701",
         "classification": "heuristic",
         "overlapping_files": [
-          "compiler/rustc_const_eval/src/interpret/call.rs"
+          "compiler/rustc_const_eval/src/interpret/call.rs",
+          "compiler/rustc_const_eval/src/interpret/stack.rs"
         ]
       },
       {
         "type": "bug-fix",
         "source": "153608",
-        "target": "153377",
+        "target": "152701",
         "classification": "heuristic",
         "overlapping_files": [
+          "compiler/rustc_ast_passes/src/ast_validation.rs",
           "compiler/rustc_ast_passes/src/errors.rs"
         ]
       },
@@ -7633,6 +8768,15 @@
           "tests/ui/env-macro/env-cargo-var-typo-issue-148439.rs",
           "tests/ui/env-macro/env-cargo-var-typo-issue-148439.stderr",
           "tests/ui/env-macro/env-not-defined-default.stderr"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "153660",
+        "target": "152758",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "compiler/rustc_middle/src/mir/statement.rs"
         ]
       },
       {
@@ -7896,10 +9040,12 @@
       {
         "type": "bug-fix",
         "source": "154118",
-        "target": "150935",
+        "target": "152965",
         "classification": "heuristic",
         "overlapping_files": [
-          "compiler/rustc_attr_parsing/src/attributes/diagnostic/mod.rs"
+          "compiler/rustc_hir_typeck/src/method/suggest.rs",
+          "compiler/rustc_trait_selection/src/error_reporting/traits/on_unimplemented.rs",
+          "compiler/rustc_trait_selection/src/error_reporting/traits/suggestions.rs"
         ]
       },
       {
@@ -8002,13 +9148,14 @@
       {
         "type": "bug-fix",
         "source": "154142",
-        "target": "153489",
+        "target": "151864",
         "classification": "heuristic",
         "overlapping_files": [
           "compiler/rustc_ast_lowering/src/delegation.rs",
           "compiler/rustc_ast_lowering/src/delegation/generics.rs",
           "compiler/rustc_ast_lowering/src/lib.rs",
-          "compiler/rustc_hir/src/hir.rs"
+          "compiler/rustc_hir/src/hir.rs",
+          "compiler/rustc_hir_analysis/src/hir_ty_lowering/mod.rs"
         ]
       },
       {
@@ -8050,11 +9197,12 @@
       {
         "type": "bug-fix",
         "source": "154364",
-        "target": "154384",
+        "target": "151864",
         "classification": "heuristic",
         "overlapping_files": [
           "compiler/rustc_ast_lowering/src/delegation/generics.rs",
-          "compiler/rustc_hir_analysis/src/delegation.rs"
+          "compiler/rustc_hir_analysis/src/delegation.rs",
+          "tests/ui/delegation/generics/mapping/free-to-free-pass.rs"
         ]
       },
       {
@@ -8065,26 +9213,198 @@
         "overlapping_files": [
           "compiler/rustc_resolve/src/lib.rs"
         ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "154566",
+        "target": "153857",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "compiler/rustc_target/src/spec/targets/loongarch32_unknown_none.rs",
+          "compiler/rustc_target/src/spec/targets/loongarch32_unknown_none_softfloat.rs",
+          "compiler/rustc_target/src/spec/targets/loongarch64_unknown_linux_gnu.rs",
+          "compiler/rustc_target/src/spec/targets/loongarch64_unknown_linux_musl.rs",
+          "compiler/rustc_target/src/spec/targets/loongarch64_unknown_linux_ohos.rs",
+          "compiler/rustc_target/src/spec/targets/loongarch64_unknown_none.rs",
+          "compiler/rustc_target/src/spec/targets/loongarch64_unknown_none_softfloat.rs"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "153648",
+        "target": "154633",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "compiler/rustc_codegen_ssa/src/back/symbol_export.rs"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "153790",
+        "target": "154633",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "compiler/rustc_trait_selection/src/error_reporting/traits/fulfillment_errors.rs",
+          "tests/ui/transmutability/generic-transmute-from-regression.rs",
+          "tests/ui/transmutability/generic-transmute-from-regression.stderr"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "154551",
+        "target": "154633",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "compiler/rustc_trait_selection/src/error_reporting/traits/suggestions.rs",
+          "tests/ui/macros/assert-ne-no-invalid-help-issue-146204.rs",
+          "tests/ui/macros/assert-ne-no-invalid-help-issue-146204.stderr"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "154606",
+        "target": "154013",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/tools/tidy/src/issues.txt",
+          "tests/ui/README.md"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "154618",
+        "target": "153544",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "library/core/src/sync/atomic.rs"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "154569",
+        "target": "154637",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "compiler/rustc_ast_passes/src/ast_validation.rs",
+          "tests/ui/where-clauses/alias-type-where-suggest-issue-153567.fixed",
+          "tests/ui/where-clauses/alias-type-where-suggest-issue-153567.rs",
+          "tests/ui/where-clauses/alias-type-where-suggest-issue-153567.stderr",
+          "tests/ui/where-clauses/where-clause-placement-assoc-type-in-impl.fixed",
+          "tests/ui/where-clauses/where-clause-placement-assoc-type-in-impl.stderr",
+          "tests/ui/where-clauses/where-clause-placement-assoc-type-in-trait.fixed",
+          "tests/ui/where-clauses/where-clause-placement-assoc-type-in-trait.stderr"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "154134",
+        "target": "154637",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "compiler/rustc_middle/src/ty/print/pretty.rs",
+          "tests/ui/unboxed-closures/paren-sugar-non-fn-trait-issue-153855.rs",
+          "tests/ui/unboxed-closures/paren-sugar-non-fn-trait-issue-153855.stderr",
+          "tests/ui/unboxed-closures/paren-sugar-non-fn-trait-ufcs-issue-153855.rs",
+          "tests/ui/unboxed-closures/paren-sugar-non-fn-trait-ufcs-issue-153855.stderr"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "154635",
+        "target": "152954",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/bootstrap/src/core/build_steps/run.rs"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "154592",
+        "target": "154339",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "compiler/rustc_lint/src/lints.rs"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "154643",
+        "target": "149218",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "library/core/src/pin.rs"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "154655",
+        "target": "153984",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "compiler/rustc_trait_selection/src/error_reporting/infer/note_and_explain.rs"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "154308",
+        "target": "154307",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "Cargo.lock",
+          "compiler/rustc_data_structures/Cargo.toml",
+          "compiler/rustc_hir_typeck/src/fallback.rs",
+          "compiler/rustc_infer/src/infer/mod.rs",
+          "compiler/rustc_infer/src/infer/type_variable.rs",
+          "compiler/rustc_type_ir/Cargo.toml",
+          "tests/incremental/const-generics/issue-64087.rs",
+          "tests/ui/associated-inherent-types/inference-fail.stderr",
+          "tests/ui/coherence/warn-when-cycle-is-error-in-coherence.rs",
+          "tests/ui/coherence/warn-when-cycle-is-error-in-coherence.stderr",
+          "tests/ui/const-generics/generic_const_exprs/dyn-compatibility-ok-infer-err.rs",
+          "tests/ui/const-generics/generic_const_exprs/dyn-compatibility-ok-infer-err.stderr",
+          "tests/ui/const-generics/infer/issue-77092.rs",
+          "tests/ui/const-generics/infer/issue-77092.stderr",
+          "tests/ui/const-generics/try-from-with-const-genericsrs-98299.rs",
+          "tests/ui/const-generics/try-from-with-const-genericsrs-98299.stderr",
+          "tests/ui/error-emitter/multiline-removal-suggestion.svg",
+          "tests/ui/indexing/indexing-requires-a-uint.stderr",
+          "tests/ui/indexing/point-at-index-for-obligation-failure.rs",
+          "tests/ui/indexing/point-at-index-for-obligation-failure.stderr",
+          "tests/ui/parser/issue-12187-1.stderr",
+          "tests/ui/parser/issue-12187-2.stderr",
+          "tests/ui/repeat-expr/copy-inference-side-effects-are-lazy.stderr",
+          "tests/ui/suggestions/suggest-dereferencing-index.stderr",
+          "tests/ui/unboxed-closures/unboxed-closures-failed-recursive-fn-2.stderr"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "154700",
+        "target": "154137",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "compiler/rustc_codegen_ssa/src/mir/mod.rs"
+        ]
       }
     ],
     "by_complexity": {
       "small": {
-        "specd_rework_rate": 0.0,
-        "unspecd_rework_rate": 0.0224,
-        "specd_count": 51,
-        "unspecd_count": 223
+        "specd_rework_rate": 0.0179,
+        "unspecd_rework_rate": 0.0192,
+        "specd_count": 56,
+        "unspecd_count": 261
       },
       "medium": {
         "specd_rework_rate": 0.0,
         "unspecd_rework_rate": 0.0714,
-        "specd_count": 22,
-        "unspecd_count": 112
+        "specd_count": 29,
+        "unspecd_count": 126
       },
       "large": {
-        "specd_rework_rate": 0.1429,
-        "unspecd_rework_rate": 0.2308,
-        "specd_count": 14,
-        "unspecd_count": 78
+        "specd_rework_rate": 0.1333,
+        "unspecd_rework_rate": 0.3077,
+        "specd_count": 15,
+        "unspecd_count": 91
       }
     }
   }

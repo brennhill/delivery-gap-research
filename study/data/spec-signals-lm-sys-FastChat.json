@@ -1,0 +1,807 @@
+{
+  "repo": "lm-sys/FastChat",
+  "lookback_days": 365,
+  "rework_window_days": 30,
+  "coverage": {
+    "coverage_pct": 87,
+    "total_prs": 15,
+    "specd_prs": 13,
+    "prs": [
+      {
+        "number": 3733,
+        "sha": null,
+        "title": "Update constants.py",
+        "specd": true,
+        "spec_source": "#1234",
+        "merged_at": "2025-06-02T15:22:03+00:00"
+      },
+      {
+        "number": 3639,
+        "sha": null,
+        "title": "Vision Categories!",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-03-24T20:44:57+00:00"
+      },
+      {
+        "number": 3691,
+        "sha": null,
+        "title": "Revert \"Add edit leaderboard + citation\"",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-03-01T06:43:01+00:00"
+      },
+      {
+        "number": 3661,
+        "sha": null,
+        "title": "Add edit leaderboard + citation",
+        "specd": true,
+        "spec_source": "#1234",
+        "merged_at": "2025-02-28T00:28:05+00:00"
+      },
+      {
+        "number": 3663,
+        "sha": null,
+        "title": "Add Price Explorer Tab",
+        "specd": true,
+        "spec_source": "#1234",
+        "merged_at": "2025-02-06T07:11:44+00:00"
+      },
+      {
+        "number": 3666,
+        "sha": null,
+        "title": "P2L Extra body for cost param",
+        "specd": true,
+        "spec_source": "#1234",
+        "merged_at": "2025-01-23T05:01:13+00:00"
+      },
+      {
+        "number": 3632,
+        "sha": null,
+        "title": "Add Data Explorer Tab",
+        "specd": true,
+        "spec_source": "#1234",
+        "merged_at": "2025-01-14T23:55:24+00:00"
+      },
+      {
+        "number": 3660,
+        "sha": null,
+        "title": "p2l stuff",
+        "specd": true,
+        "spec_source": "#1234",
+        "merged_at": "2025-01-11T20:46:34+00:00"
+      },
+      {
+        "number": 3645,
+        "sha": null,
+        "title": "Remove loading of Copilot Arena tab when env variable is not set",
+        "specd": true,
+        "spec_source": "#1234",
+        "merged_at": "2024-12-20T21:24:14+00:00"
+      },
+      {
+        "number": 3618,
+        "sha": null,
+        "title": "Add Copilot Arena leaderboard",
+        "specd": true,
+        "spec_source": "#1234",
+        "merged_at": "2024-12-19T18:59:21+00:00"
+      },
+      {
+        "number": 3628,
+        "sha": null,
+        "title": "Update load test, use threads instead of asyncio",
+        "specd": true,
+        "spec_source": "#1234",
+        "merged_at": "2024-11-20T23:10:04+00:00"
+      },
+      {
+        "number": 3627,
+        "sha": null,
+        "title": "Update monitor.py",
+        "specd": true,
+        "spec_source": "#1234",
+        "merged_at": "2024-11-20T21:18:58+00:00"
+      },
+      {
+        "number": 3619,
+        "sha": null,
+        "title": "fix doc to make command consistent",
+        "specd": true,
+        "spec_source": "#1234",
+        "merged_at": "2024-11-14T23:32:38+00:00"
+      },
+      {
+        "number": 3615,
+        "sha": null,
+        "title": "Add Chatbot Arena Web Server Documentation and Fix Latex Display",
+        "specd": true,
+        "spec_source": "#1234",
+        "merged_at": "2024-11-14T23:17:18+00:00"
+      },
+      {
+        "number": 3611,
+        "sha": null,
+        "title": "Clean Upvote and Downvote data",
+        "specd": true,
+        "spec_source": "#1234",
+        "merged_at": "2024-11-13T01:48:27+00:00"
+      }
+    ]
+  },
+  "quality": {
+    "mode": "heuristic",
+    "average_score": 42,
+    "verdicts": {
+      "REVIEW": 13
+    },
+    "specs": [
+      {
+        "pr_number": 3733,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 91,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 42,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 9,
+            "type": "ambiguity",
+            "term": "if applicable",
+            "suggestion": "Replace 'if applicable' with a specific, measurable term"
+          },
+          {
+            "line": 17,
+            "type": "ambiguity",
+            "term": "if applicable",
+            "suggestion": "Replace 'if applicable' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "<!-- Please add a reviewer to the assignee section when you create a PR. If you ",
+            "suggestion": "Goal without test: '<!-- Please add a reviewer to the assignee section when you ...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 3661,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 93,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 43,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 11,
+            "type": "ambiguity",
+            "term": "if applicable",
+            "suggestion": "Replace 'if applicable' with a specific, measurable term"
+          },
+          {
+            "line": 19,
+            "type": "ambiguity",
+            "term": "if applicable",
+            "suggestion": "Replace 'if applicable' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "<!-- Please add a reviewer to the assignee section when you create a PR. If you ",
+            "suggestion": "Goal without test: '<!-- Please add a reviewer to the assignee section when you ...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 3663,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 92,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 43,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 9,
+            "type": "ambiguity",
+            "term": "if applicable",
+            "suggestion": "Replace 'if applicable' with a specific, measurable term"
+          },
+          {
+            "line": 17,
+            "type": "ambiguity",
+            "term": "if applicable",
+            "suggestion": "Replace 'if applicable' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "<!-- Please add a reviewer to the assignee section when you create a PR. If you ",
+            "suggestion": "Goal without test: '<!-- Please add a reviewer to the assignee section when you ...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 3666,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 91,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 42,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 9,
+            "type": "ambiguity",
+            "term": "if applicable",
+            "suggestion": "Replace 'if applicable' with a specific, measurable term"
+          },
+          {
+            "line": 17,
+            "type": "ambiguity",
+            "term": "if applicable",
+            "suggestion": "Replace 'if applicable' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "<!-- Please add a reviewer to the assignee section when you create a PR. If you ",
+            "suggestion": "Goal without test: '<!-- Please add a reviewer to the assignee section when you ...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 3632,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 94,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 43,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 13,
+            "type": "ambiguity",
+            "term": "if applicable",
+            "suggestion": "Replace 'if applicable' with a specific, measurable term"
+          },
+          {
+            "line": 21,
+            "type": "ambiguity",
+            "term": "if applicable",
+            "suggestion": "Replace 'if applicable' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "<!-- Please add a reviewer to the assignee section when you create a PR. If you ",
+            "suggestion": "Goal without test: '<!-- Please add a reviewer to the assignee section when you ...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 3660,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 91,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 42,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 9,
+            "type": "ambiguity",
+            "term": "if applicable",
+            "suggestion": "Replace 'if applicable' with a specific, measurable term"
+          },
+          {
+            "line": 17,
+            "type": "ambiguity",
+            "term": "if applicable",
+            "suggestion": "Replace 'if applicable' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "<!-- Please add a reviewer to the assignee section when you create a PR. If you ",
+            "suggestion": "Goal without test: '<!-- Please add a reviewer to the assignee section when you ...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 3645,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 92,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 43,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 11,
+            "type": "ambiguity",
+            "term": "if applicable",
+            "suggestion": "Replace 'if applicable' with a specific, measurable term"
+          },
+          {
+            "line": 19,
+            "type": "ambiguity",
+            "term": "if applicable",
+            "suggestion": "Replace 'if applicable' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "<!-- Please add a reviewer to the assignee section when you create a PR. If you ",
+            "suggestion": "Goal without test: '<!-- Please add a reviewer to the assignee section when you ...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 3618,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 92,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 43,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 12,
+            "type": "ambiguity",
+            "term": "if applicable",
+            "suggestion": "Replace 'if applicable' with a specific, measurable term"
+          },
+          {
+            "line": 20,
+            "type": "ambiguity",
+            "term": "if applicable",
+            "suggestion": "Replace 'if applicable' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "<!-- Please add a reviewer to the assignee section when you create a PR. If you ",
+            "suggestion": "Goal without test: '<!-- Please add a reviewer to the assignee section when you ...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 3628,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 91,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 42,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 9,
+            "type": "ambiguity",
+            "term": "if applicable",
+            "suggestion": "Replace 'if applicable' with a specific, measurable term"
+          },
+          {
+            "line": 17,
+            "type": "ambiguity",
+            "term": "if applicable",
+            "suggestion": "Replace 'if applicable' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "<!-- Please add a reviewer to the assignee section when you create a PR. If you ",
+            "suggestion": "Goal without test: '<!-- Please add a reviewer to the assignee section when you ...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 3627,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 91,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 42,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 9,
+            "type": "ambiguity",
+            "term": "if applicable",
+            "suggestion": "Replace 'if applicable' with a specific, measurable term"
+          },
+          {
+            "line": 17,
+            "type": "ambiguity",
+            "term": "if applicable",
+            "suggestion": "Replace 'if applicable' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "<!-- Please add a reviewer to the assignee section when you create a PR. If you ",
+            "suggestion": "Goal without test: '<!-- Please add a reviewer to the assignee section when you ...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 3619,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 91,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 42,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 9,
+            "type": "ambiguity",
+            "term": "if applicable",
+            "suggestion": "Replace 'if applicable' with a specific, measurable term"
+          },
+          {
+            "line": 17,
+            "type": "ambiguity",
+            "term": "if applicable",
+            "suggestion": "Replace 'if applicable' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "<!-- Please add a reviewer to the assignee section when you create a PR. If you ",
+            "suggestion": "Goal without test: '<!-- Please add a reviewer to the assignee section when you ...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 3615,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 91,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 42,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 9,
+            "type": "ambiguity",
+            "term": "if applicable",
+            "suggestion": "Replace 'if applicable' with a specific, measurable term"
+          },
+          {
+            "line": 17,
+            "type": "ambiguity",
+            "term": "if applicable",
+            "suggestion": "Replace 'if applicable' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "<!-- Please add a reviewer to the assignee section when you create a PR. If you ",
+            "suggestion": "Goal without test: '<!-- Please add a reviewer to the assignee section when you ...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 3611,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 91,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 42,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 9,
+            "type": "ambiguity",
+            "term": "if applicable",
+            "suggestion": "Replace 'if applicable' with a specific, measurable term"
+          },
+          {
+            "line": 17,
+            "type": "ambiguity",
+            "term": "if applicable",
+            "suggestion": "Replace 'if applicable' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "<!-- Please add a reviewer to the assignee section when you create a PR. If you ",
+            "suggestion": "Goal without test: '<!-- Please add a reviewer to the assignee section when you ...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      }
+    ]
+  },
+  "effectiveness": {
+    "specd_rework_rate": 0.1538,
+    "unspecd_rework_rate": 0.0,
+    "delta": 0.1538,
+    "specd_sample_size": 13,
+    "unspecd_sample_size": 2,
+    "significance": "insufficient",
+    "signals": [
+      {
+        "type": "bug-fix",
+        "source": "3619",
+        "target": "3615",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "README.md"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "3691",
+        "target": "3661",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "fastchat/serve/monitor/copilot_arena.py"
+        ]
+      }
+    ],
+    "by_complexity": {}
+  }
+}

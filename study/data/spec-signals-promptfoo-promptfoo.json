@@ -1,10 +1,10 @@
 {
   "repo": "promptfoo/promptfoo",
-  "lookback_days": 90,
-  "rework_window_days": 14,
+  "lookback_days": 365,
+  "rework_window_days": 30,
   "coverage": {
     "coverage_pct": 25,
-    "total_prs": 879,
+    "total_prs": 880,
     "specd_prs": 221,
     "prs": [
       {
@@ -7038,6 +7038,14 @@
         "specd": false,
         "spec_source": null,
         "merged_at": "2026-03-25T22:46:47+00:00"
+      },
+      {
+        "number": 2876,
+        "sha": null,
+        "title": "feat(voice): Add voice-tau task for simulated voice conversations",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-01-29T01:34:46+00:00"
       }
     ]
   },
@@ -29882,11 +29890,11 @@
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.1991,
-    "unspecd_rework_rate": 0.2097,
-    "delta": -0.0106,
+    "specd_rework_rate": 0.2398,
+    "unspecd_rework_rate": 0.2367,
+    "delta": 0.0031,
     "specd_sample_size": 221,
-    "unspecd_sample_size": 658,
+    "unspecd_sample_size": 659,
     "significance": "significant",
     "signals": [
       {
@@ -30672,6 +30680,15 @@
       },
       {
         "type": "bug-fix",
+        "source": "6722",
+        "target": "6428",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/types/codeScan.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "6734",
         "target": "6741",
         "classification": "heuristic",
@@ -30706,6 +30723,25 @@
         "classification": "heuristic",
         "overlapping_files": [
           "code-scan-action/src/github.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "6766",
+        "target": "6483",
+        "classification": "heuristic",
+        "overlapping_files": [
+          ".github/workflows/tusk-test-runner-app-vitest-unit-tests.yml"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "6794",
+        "target": "6417",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "test/providers/azure/assistant.test.ts",
+          "test/providers/azure/responses.test.ts"
         ]
       },
       {
@@ -30825,6 +30861,16 @@
       },
       {
         "type": "bug-fix",
+        "source": "6829",
+        "target": "6500",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/python/pythonUtils.ts",
+          "test/python/pythonUtils.test.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "6837",
         "target": "6823",
         "classification": "heuristic",
@@ -30835,10 +30881,11 @@
       {
         "type": "bug-fix",
         "source": "6657",
-        "target": "6596",
+        "target": "6503",
         "classification": "heuristic",
         "overlapping_files": [
-          "src/util/config/load.ts"
+          "src/providers/index.ts",
+          "test/providers/index.test.ts"
         ]
       },
       {
@@ -30878,6 +30925,15 @@
         "classification": "heuristic",
         "overlapping_files": [
           "src/app/src/pages/eval/components/ResultsTable.css"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "6852",
+        "target": "6625",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "test/providers/google/live.test.ts"
         ]
       },
       {
@@ -31009,6 +31065,15 @@
       },
       {
         "type": "bug-fix",
+        "source": "6894",
+        "target": "6693",
+        "classification": "heuristic",
+        "overlapping_files": [
+          ".github/CODEOWNERS"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "6868",
         "target": "6648",
         "classification": "heuristic",
@@ -31103,9 +31168,10 @@
       {
         "type": "bug-fix",
         "source": "6904",
-        "target": "6869",
+        "target": "6580",
         "classification": "heuristic",
         "overlapping_files": [
+          "src/providers/google/util.ts",
           "test/providers/google/util.test.ts"
         ]
       },
@@ -31176,6 +31242,16 @@
       },
       {
         "type": "bug-fix",
+        "source": "6930",
+        "target": "6607",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/providers/bedrock/converse.ts",
+          "test/providers/bedrock/converse.test.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "6945",
         "target": "6905",
         "classification": "heuristic",
@@ -31231,10 +31307,12 @@
       {
         "type": "bug-fix",
         "source": "6944",
-        "target": "6709",
+        "target": "6679",
         "classification": "heuristic",
         "overlapping_files": [
-          "src/types/providers.ts"
+          "src/providers/anthropic/messages.ts",
+          "src/providers/bedrock/index.ts",
+          "test/providers/bedrock/index.test.ts"
         ]
       },
       {
@@ -31249,11 +31327,13 @@
       {
         "type": "bug-fix",
         "source": "6923",
-        "target": "6926",
+        "target": "6708",
         "classification": "heuristic",
         "overlapping_files": [
           "src/blobs/extractor.ts",
-          "src/evaluator.ts"
+          "src/evaluator.ts",
+          "src/server/routes/blobs.ts",
+          "src/types/index.ts"
         ]
       },
       {
@@ -31306,6 +31386,15 @@
         "overlapping_files": [
           "src/app/src/pages/eval/components/ResultsView.test.tsx",
           "src/app/src/pages/eval/components/ResultsView.tsx"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "6985",
+        "target": "6773",
+        "classification": "heuristic",
+        "overlapping_files": [
+          ".github/workflows/release-please.yml"
         ]
       },
       {
@@ -31386,12 +31475,30 @@
       },
       {
         "type": "bug-fix",
+        "source": "7001",
+        "target": "6805",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/commands/mcp/server.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "7003",
         "target": "7001",
         "classification": "heuristic",
         "overlapping_files": [
           "src/commands/mcp/server.ts",
           "test/smoke/mcp.test.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7008",
+        "target": "6622",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "test/integration/envPath.test.ts"
         ]
       },
       {
@@ -31458,10 +31565,11 @@
       {
         "type": "bug-fix",
         "source": "7021",
-        "target": "7013",
+        "target": "6828",
         "classification": "heuristic",
         "overlapping_files": [
-          "src/models/eval.ts"
+          "src/models/eval.ts",
+          "test/models/eval.test.ts"
         ]
       },
       {
@@ -31603,10 +31711,23 @@
       {
         "type": "bug-fix",
         "source": "6659",
-        "target": "7044",
+        "target": "6926",
         "classification": "heuristic",
         "overlapping_files": [
-          "src/server/routes/eval.ts"
+          "src/server/routes/eval.ts",
+          "src/server/utils/evalTableUtils.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7027",
+        "target": "6810",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/commands/eval/filterTestsUtil.ts",
+          "src/util/comparison.ts",
+          "test/commands/eval/filterTestsUtil.test.ts",
+          "test/util/comparison.test.ts"
         ]
       },
       {
@@ -31638,6 +31759,15 @@
       },
       {
         "type": "bug-fix",
+        "source": "7192",
+        "target": "6952",
+        "classification": "heuristic",
+        "overlapping_files": [
+          ".github/prompts/claude-code-review.md"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "7191",
         "target": "7100",
         "classification": "heuristic",
@@ -31649,10 +31779,11 @@
       {
         "type": "bug-fix",
         "source": "7076",
-        "target": "7023",
+        "target": "6698",
         "classification": "heuristic",
         "overlapping_files": [
-          "SECURITY.md"
+          "src/app/src/utils/media.test.ts",
+          "src/app/src/utils/media.ts"
         ]
       },
       {
@@ -31707,6 +31838,16 @@
       },
       {
         "type": "bug-fix",
+        "source": "7250",
+        "target": "6907",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/app/src/pages/redteam/report/components/Report.test.tsx",
+          "src/app/src/pages/redteam/report/components/Report.tsx"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "7270",
         "target": "7255",
         "classification": "heuristic",
@@ -31725,6 +31866,15 @@
       },
       {
         "type": "bug-fix",
+        "source": "7280",
+        "target": "6926",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/python/worker.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "7282",
         "target": "7091",
         "classification": "heuristic",
@@ -31735,21 +31885,23 @@
       {
         "type": "bug-fix",
         "source": "7205",
-        "target": "7090",
+        "target": "6880",
         "classification": "heuristic",
         "overlapping_files": [
-          "src/providers/openai/chat.ts"
+          "src/providers/openai/chat.ts",
+          "src/providers/openai/responses.ts"
         ]
       },
       {
         "type": "bug-fix",
         "source": "7281",
-        "target": "7164",
+        "target": "6926",
         "classification": "heuristic",
         "overlapping_files": [
           "src/evaluator.ts",
           "src/models/evalResult.ts",
-          "test/models/evalResult.test.ts"
+          "src/providers/pythonCompletion.ts",
+          "src/providers/rubyCompletion.ts"
         ]
       },
       {
@@ -31815,12 +31967,39 @@
       },
       {
         "type": "bug-fix",
+        "source": "7328",
+        "target": "6999",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "test/providers/index.test.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "7347",
         "target": "7074",
         "classification": "heuristic",
         "overlapping_files": [
           "src/app/src/components/ui/combobox.test.tsx",
           "src/app/src/components/ui/combobox.tsx"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7351",
+        "target": "6757",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/util/sanitizer.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7335",
+        "target": "6906",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/share.ts"
         ]
       },
       {
@@ -31845,10 +32024,11 @@
       {
         "type": "bug-fix",
         "source": "7358",
-        "target": "7091",
+        "target": "6709",
         "classification": "heuristic",
         "overlapping_files": [
-          "src/app/src/pages/redteam/setup/types.ts"
+          "src/app/src/pages/redteam/setup/types.ts",
+          "src/redteam/types.ts"
         ]
       },
       {
@@ -31863,10 +32043,11 @@
       {
         "type": "bug-fix",
         "source": "7189",
-        "target": "7091",
+        "target": "7045",
         "classification": "heuristic",
         "overlapping_files": [
-          "src/app/src/pages/redteam/setup/components/Review.tsx"
+          "src/app/src/pages/eval-creator/components/RunTestSuiteButton.test.tsx",
+          "src/app/src/pages/eval-creator/components/RunTestSuiteButton.tsx"
         ]
       },
       {
@@ -31876,6 +32057,15 @@
         "classification": "heuristic",
         "overlapping_files": [
           ".github/workflows/main.yml"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7377",
+        "target": "6906",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/onboarding.ts"
         ]
       },
       {
@@ -31900,12 +32090,30 @@
       },
       {
         "type": "bug-fix",
+        "source": "7390",
+        "target": "6621",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/main.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "7402",
         "target": "7320",
         "classification": "heuristic",
         "overlapping_files": [
           "code-scan-action/package-lock.json",
           "code-scan-action/package.json"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7404",
+        "target": "6926",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/cacheMigration.ts"
         ]
       },
       {
@@ -31943,11 +32151,12 @@
       {
         "type": "bug-fix",
         "source": "7422",
-        "target": "7415",
+        "target": "7037",
         "classification": "heuristic",
         "overlapping_files": [
           "code-scan-action/package-lock.json",
-          "code-scan-action/package.json"
+          "code-scan-action/package.json",
+          "renovate.json"
         ]
       },
       {
@@ -31963,11 +32172,12 @@
       {
         "type": "bug-fix",
         "source": "7431",
-        "target": "7422",
+        "target": "7044",
         "classification": "heuristic",
         "overlapping_files": [
-          "code-scan-action/package-lock.json",
-          "code-scan-action/package.json"
+          "code-scan-action/package.json",
+          "site/package.json",
+          "src/app/package.json"
         ]
       },
       {
@@ -32008,20 +32218,42 @@
       },
       {
         "type": "bug-fix",
-        "source": "7440",
-        "target": "6973",
+        "source": "7461",
+        "target": "6926",
         "classification": "heuristic",
         "overlapping_files": [
-          "src/util/convertEvalResultsToTable.ts"
+          "src/integrations/langfuse.ts",
+          "test/integrations/langfuse.test.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7440",
+        "target": "7087",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/util/convertEvalResultsToTable.ts",
+          "src/util/exportToFile/index.ts",
+          "test/util/convertEvalResultsToTable.test.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7436",
+        "target": "7044",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/server/server.ts"
         ]
       },
       {
         "type": "bug-fix",
         "source": "7460",
-        "target": "7420",
+        "target": "6880",
         "classification": "heuristic",
         "overlapping_files": [
-          "src/providers/anthropic/messages.ts"
+          "src/providers/anthropic/messages.ts",
+          "test/providers/anthropic/messages.test.ts"
         ]
       },
       {
@@ -32075,6 +32307,16 @@
       },
       {
         "type": "bug-fix",
+        "source": "7484",
+        "target": "6923",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/blobs/extractor.ts",
+          "test/blobs/extractor.test.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "7496",
         "target": "6973",
         "classification": "heuristic",
@@ -32086,10 +32328,23 @@
       {
         "type": "bug-fix",
         "source": "7509",
-        "target": "7281",
+        "target": "7065",
         "classification": "heuristic",
         "overlapping_files": [
-          "src/providers/pythonCompletion.ts"
+          "src/providers/pythonCompletion.ts",
+          "test/providers/pythonCompletion.test.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7071",
+        "target": "7027",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/commands/eval/filterTestsUtil.ts",
+          "src/util/comparison.ts",
+          "test/commands/eval/filterTestsUtil.test.ts",
+          "test/util/comparison.test.ts"
         ]
       },
       {
@@ -32123,10 +32378,11 @@
       {
         "type": "bug-fix",
         "source": "7524",
-        "target": "6973",
+        "target": "6982",
         "classification": "heuristic",
         "overlapping_files": [
-          "src/redteam/plugins/base.ts"
+          "src/redteam/plugins/base.ts",
+          "test/redteam/plugins/base.test.ts"
         ]
       },
       {
@@ -32185,6 +32441,15 @@
       },
       {
         "type": "bug-fix",
+        "source": "7557",
+        "target": "7084",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/app/src/pages/redteam/setup/components/PluginsTab.tsx"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "7592",
         "target": "7355",
         "classification": "heuristic",
@@ -32206,20 +32471,22 @@
       {
         "type": "bug-fix",
         "source": "7593",
-        "target": "6973",
+        "target": "7000",
         "classification": "heuristic",
         "overlapping_files": [
           "site/static/config-schema.json",
           "src/evaluator.ts",
-          "src/redteam/plugins/base.ts"
+          "src/redteam/types.ts",
+          "src/validators/redteam.ts"
         ]
       },
       {
         "type": "bug-fix",
         "source": "7608",
-        "target": "7440",
+        "target": "7087",
         "classification": "heuristic",
         "overlapping_files": [
+          "src/models/eval.ts",
           "src/util/convertEvalResultsToTable.ts",
           "src/util/exportToFile/index.ts",
           "test/util/convertEvalResultsToTable.test.ts"
@@ -32233,6 +32500,15 @@
         "overlapping_files": [
           "site/docs/providers/anthropic.md",
           "test/providers/anthropic/util.test.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7617",
+        "target": "7275",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/providers/openai/codex-sdk.ts"
         ]
       },
       {
@@ -32265,10 +32541,11 @@
       {
         "type": "bug-fix",
         "source": "7720",
-        "target": "7684",
+        "target": "7093",
         "classification": "heuristic",
         "overlapping_files": [
-          "src/util/config/load.ts"
+          "src/util/config/load.ts",
+          "test/util/config/load.test.ts"
         ]
       },
       {
@@ -32293,10 +32570,13 @@
       {
         "type": "bug-fix",
         "source": "7671",
-        "target": "7496",
+        "target": "6973",
         "classification": "heuristic",
         "overlapping_files": [
-          "src/redteam/providers/indirectWebPwn.ts"
+          "src/redteam/providers/hydra/index.ts",
+          "src/redteam/providers/indirectWebPwn.ts",
+          "src/redteam/providers/iterativeMeta.ts",
+          "src/redteam/providers/iterativeTree.ts"
         ]
       },
       {
@@ -32306,6 +32586,16 @@
         "classification": "heuristic",
         "overlapping_files": [
           "src/util/fetch/index.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7752",
+        "target": "7351",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/util/sanitizer.ts",
+          "test/util/sanitizer.test.ts"
         ]
       },
       {
@@ -32333,6 +32623,15 @@
         "classification": "heuristic",
         "overlapping_files": [
           "src/app/src/index.css"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7791",
+        "target": "7374",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/assertions/index.ts"
         ]
       },
       {
@@ -32378,6 +32677,15 @@
       },
       {
         "type": "bug-fix",
+        "source": "7833",
+        "target": "7475",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/app/src/components/data-table/data-table.tsx"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "7841",
         "target": "7827",
         "classification": "heuristic",
@@ -32398,21 +32706,35 @@
       },
       {
         "type": "bug-fix",
-        "source": "7877",
-        "target": "7779",
+        "source": "7865",
+        "target": "7189",
         "classification": "heuristic",
         "overlapping_files": [
-          "site/docs/providers/google.md",
+          "src/app/src/pages/redteam/setup/components/Review.tsx"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7877",
+        "target": "7491",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/providers/google/ai.studio.ts",
+          "src/providers/google/provider.ts",
+          "src/providers/google/types.ts",
+          "src/providers/google/util.ts",
+          "test/providers/google/ai.studio.test.ts",
           "test/providers/google/util.test.ts"
         ]
       },
       {
         "type": "bug-fix",
         "source": "7903",
-        "target": "7758",
+        "target": "7590",
         "classification": "heuristic",
         "overlapping_files": [
-          "src/util/fetch/index.ts"
+          "src/util/fetch/index.ts",
+          "test/fetch.test.ts"
         ]
       },
       {
@@ -32436,10 +32758,21 @@
       {
         "type": "bug-fix",
         "source": "7870",
-        "target": "7850",
+        "target": "7591",
         "classification": "heuristic",
         "overlapping_files": [
-          "src/commands/eval.ts"
+          "src/models/eval.ts",
+          "src/redteam/shared.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7432",
+        "target": "7711",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "code-scan-action/package-lock.json",
+          "code-scan-action/package.json"
         ]
       },
       {
@@ -32455,10 +32788,30 @@
       {
         "type": "bug-fix",
         "source": "7929",
-        "target": "7885",
+        "target": "7557",
         "classification": "heuristic",
         "overlapping_files": [
+          "src/app/src/pages/redteam/setup/components/PluginsTab.test.tsx",
           "src/app/src/pages/redteam/setup/components/PluginsTab.tsx"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7952",
+        "target": "7691",
+        "classification": "heuristic",
+        "overlapping_files": [
+          ".github/workflows/main.yml"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7839",
+        "target": "7661",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/util/cloud.ts",
+          "test/util/cloud.test.ts"
         ]
       },
       {
@@ -32526,10 +32879,11 @@
       {
         "type": "bug-fix",
         "source": "7970",
-        "target": "7870",
+        "target": "7544",
         "classification": "heuristic",
         "overlapping_files": [
-          "src/evaluator.ts"
+          "src/evaluator.ts",
+          "test/evaluator.test.ts"
         ]
       },
       {
@@ -32557,10 +32911,21 @@
       },
       {
         "type": "bug-fix",
-        "source": "7989",
-        "target": "7941",
+        "source": "7974",
+        "target": "7752",
         "classification": "heuristic",
         "overlapping_files": [
+          "src/util/sanitizer.ts",
+          "test/util/sanitizer.test.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7989",
+        "target": "7457",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/app/src/pages/redteam/setup/page.test.tsx",
           "src/app/src/pages/redteam/setup/page.tsx"
         ]
       },
@@ -32573,6 +32938,15 @@
           "site/docs/providers/google.md",
           "src/providers/google/gemini-image.ts",
           "src/providers/google/types.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "8000",
+        "target": "7722",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/app/src/pages/eval-creator/components/AddProviderDialog.tsx"
         ]
       },
       {
@@ -32617,20 +32991,22 @@
       {
         "type": "bug-fix",
         "source": "8020",
-        "target": "8005",
+        "target": "7671",
         "classification": "heuristic",
         "overlapping_files": [
           "src/redteam/providers/hydra/index.ts",
           "src/redteam/providers/iterativeMeta.ts",
+          "test/redteam/providers/hydra/index.test.ts",
           "test/redteam/providers/iterativeMeta.test.ts"
         ]
       },
       {
         "type": "bug-fix",
         "source": "8013",
-        "target": "8005",
+        "target": "7462",
         "classification": "heuristic",
         "overlapping_files": [
+          "src/app/src/pages/redteam/setup/components/Strategies.test.tsx",
           "src/app/src/pages/redteam/setup/components/Strategies.tsx"
         ]
       },
@@ -32675,12 +33051,42 @@
       },
       {
         "type": "bug-fix",
-        "source": "8058",
-        "target": "7925",
+        "source": "8060",
+        "target": "7518",
         "classification": "heuristic",
         "overlapping_files": [
+          "site/docs/providers/opencode-sdk.md",
+          "src/providers/opencode-sdk.ts",
+          "test/providers/opencode-sdk.test.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "8058",
+        "target": "7562",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "site/docs/providers/openclaw.md",
           "site/static/config-schema.json",
-          "src/types/env.ts"
+          "src/envars.ts",
+          "src/providers/openclaw/agent.ts",
+          "src/providers/openclaw/chat.ts",
+          "src/providers/openclaw/index.ts",
+          "src/providers/openclaw/shared.ts",
+          "src/providers/openclaw/tools.ts",
+          "src/providers/openclaw/types.ts",
+          "src/types/env.ts",
+          "test/providers/openclaw.test.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "8065",
+        "target": "7558",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "site/blog/authors.yml",
+          "site/blog/indirect-prompt-injection-web-agents.md"
         ]
       },
       {
@@ -32722,11 +33128,40 @@
       },
       {
         "type": "bug-fix",
+        "source": "8070",
+        "target": "7466",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/cache.ts",
+          "test/cache.test.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "8085",
+        "target": "7783",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/app/src/pages/redteam/report/components/RiskCategoryDrawer.tsx"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "8083",
         "target": "8055",
         "classification": "heuristic",
         "overlapping_files": [
           "src/app/package.json"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "8087",
+        "target": "7613",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/app/src/pages/eval/components/ResultsView.test.tsx",
+          "src/app/src/pages/eval/components/ResultsView.tsx"
         ]
       },
       {
@@ -32750,9 +33185,10 @@
       {
         "type": "bug-fix",
         "source": "8122",
-        "target": "8015",
+        "target": "7838",
         "classification": "heuristic",
         "overlapping_files": [
+          "src/app/src/components/data-table/data-table-filter.tsx",
           "src/app/src/components/data-table/data-table.stories.tsx",
           "src/app/src/components/data-table/data-table.test.tsx",
           "src/app/src/components/data-table/data-table.tsx",
@@ -32825,6 +33261,15 @@
           "src/assertions/trajectoryUtils.ts",
           "test/assertions/trajectory.test.ts",
           "test/assertions/trajectoryGoalSuccess.test.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "8163",
+        "target": "7816",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "test/providers/anthropic/messages.test.ts"
         ]
       },
       {
@@ -32923,10 +33368,13 @@
       {
         "type": "bug-fix",
         "source": "8248",
-        "target": "8189",
+        "target": "8009",
         "classification": "heuristic",
         "overlapping_files": [
-          "examples/openai-agents-basic/package.json"
+          "examples/openai-agents-basic/package.json",
+          "examples/redteam-indirect-web-pwn/package.json",
+          "examples/redteam-mcp-agent/package.json",
+          "examples/redteam-medical-agent/package.json"
         ]
       },
       {
@@ -32961,12 +33409,58 @@
       },
       {
         "type": "bug-fix",
+        "source": "8296",
+        "target": "7942",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/redteam/providers/voiceCrescendo/index.ts",
+          "test/redteam/providers/voiceCrescendo/index.test.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "8287",
+        "target": "7937",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/providers/ai21.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "8303",
+        "target": "7870",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/commands/eval/summary.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "8304",
         "target": "8282",
         "classification": "heuristic",
         "overlapping_files": [
           "src/providers/http.ts",
           "test/providers/http.test.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "8309",
+        "target": "7782",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/app/src/hooks/useSearchParamState.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "8306",
+        "target": "7932",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/app/src/pages/eval-creator/components/YamlEditor.tsx"
         ]
       },
       {
@@ -32986,26 +33480,47 @@
         "overlapping_files": [
           "test/providers/http.test.ts"
         ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "8252",
+        "target": "8020",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/redteam/providers/hydra/index.ts",
+          "src/redteam/providers/iterativeMeta.ts",
+          "test/redteam/providers/hydra/index.test.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "8320",
+        "target": "7829",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/redteam/plugins/policy/index.ts",
+          "test/redteam/plugins/policy.test.ts"
+        ]
       }
     ],
     "by_complexity": {
       "small": {
-        "specd_rework_rate": 0.0909,
-        "unspecd_rework_rate": 0.066,
+        "specd_rework_rate": 0.1136,
+        "unspecd_rework_rate": 0.0731,
         "specd_count": 88,
         "unspecd_count": 848
       },
       "medium": {
-        "specd_rework_rate": 0.2927,
-        "unspecd_rework_rate": 0.1911,
+        "specd_rework_rate": 0.3415,
+        "unspecd_rework_rate": 0.2184,
         "specd_count": 82,
         "unspecd_count": 293
       },
       "large": {
-        "specd_rework_rate": 0.2353,
-        "unspecd_rework_rate": 0.3699,
+        "specd_rework_rate": 0.2941,
+        "unspecd_rework_rate": 0.4023,
         "specd_count": 51,
-        "unspecd_count": 173
+        "unspecd_count": 174
       }
     }
   }

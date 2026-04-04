@@ -1,11 +1,11 @@
 {
   "repo": "calcom/cal.com",
-  "lookback_days": 90,
-  "rework_window_days": 14,
+  "lookback_days": 365,
+  "rework_window_days": 30,
   "coverage": {
     "coverage_pct": 22,
-    "total_prs": 1357,
-    "specd_prs": 296,
+    "total_prs": 1372,
+    "specd_prs": 302,
     "prs": [
       {
         "number": 28576,
@@ -10862,6 +10862,126 @@
         "specd": true,
         "spec_source": "#24290",
         "merged_at": "2025-10-28T08:46:07+00:00"
+      },
+      {
+        "number": 28704,
+        "sha": null,
+        "title": "fix: skip lingo.dev i18n automation when API key is not set",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T21:37:16+00:00"
+      },
+      {
+        "number": 28701,
+        "sha": null,
+        "title": "fix: unify webhook ID resolution across handlers",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T19:29:55+00:00"
+      },
+      {
+        "number": 28700,
+        "sha": null,
+        "title": "fix: escape special characters in Salesforce SOQL queries",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T19:29:14+00:00"
+      },
+      {
+        "number": 28703,
+        "sha": null,
+        "title": "refactor: remove Devin GitHub Action integrations and DEVIN_API_KEY references",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T16:21:03+00:00"
+      },
+      {
+        "number": 15318,
+        "sha": null,
+        "title": "feat: outlook 365 connect atom",
+        "specd": true,
+        "spec_source": "https://github.com/calcom/docs/issues/new)",
+        "merged_at": "2024-06-06T15:24:24+00:00"
+      },
+      {
+        "number": 28682,
+        "sha": null,
+        "title": "fix: resolve flaky 'Book on column layout' E2E test",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T14:34:15+00:00"
+      },
+      {
+        "number": 25857,
+        "sha": null,
+        "title": "feat: add Famulor app integration to app store",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T09:54:10+00:00"
+      },
+      {
+        "number": 28679,
+        "sha": null,
+        "title": "docs: Add DeepWiki badge to README",
+        "specd": true,
+        "spec_source": "README-ONLY",
+        "merged_at": "2026-03-31T07:49:57+00:00"
+      },
+      {
+        "number": 28333,
+        "sha": null,
+        "title": "fix(api-v2): correctly parse ISO timezone offsets when rescheduling bookings",
+        "specd": true,
+        "spec_source": "#28310",
+        "merged_at": "2026-03-30T11:35:03+00:00"
+      },
+      {
+        "number": 28479,
+        "sha": null,
+        "title": "fix: use i18n for apps count with proper pluralization",
+        "specd": true,
+        "spec_source": "#28407",
+        "merged_at": "2026-03-30T11:31:12+00:00"
+      },
+      {
+        "number": 28672,
+        "sha": null,
+        "title": "fix: add deterministic ordering to attendee queries in booking-seats e2e tests",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T10:53:50+00:00"
+      },
+      {
+        "number": 28647,
+        "sha": null,
+        "title": "docs: update Docker self-hosting documentation",
+        "specd": true,
+        "spec_source": "#24833",
+        "merged_at": "2026-03-29T08:50:37+00:00"
+      },
+      {
+        "number": 28631,
+        "sha": null,
+        "title": "fix: stabilize flaky E2E booking sheet tests by waiting for button visibility",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-28T14:37:55+00:00"
+      },
+      {
+        "number": 28630,
+        "sha": null,
+        "title": "fix: mock @calcom/lib/i18n in EventManager.test.ts to prevent vitest worker shutdown flake",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-28T14:37:18+00:00"
+      },
+      {
+        "number": 28622,
+        "sha": null,
+        "title": "fix: block localhost and loopback addresses in SSRF protection",
+        "specd": true,
+        "spec_source": "#28616",
+        "merged_at": "2026-03-28T13:21:59+00:00"
       }
     ]
   },
@@ -10869,7 +10989,7 @@
     "mode": "heuristic",
     "average_score": 45,
     "verdicts": {
-      "REVIEW": 296
+      "REVIEW": 302
     },
     "specs": [
       {
@@ -35019,15 +35139,425 @@
           "No state transitions \u2014 AI may allow invalid transitions",
           "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
         ]
+      },
+      {
+        "pr_number": 15318,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 98,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 44,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 15,
+            "type": "ambiguity",
+            "term": "properly",
+            "suggestion": "Replace 'properly' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Adds the frontend for the office 365 connect atom",
+            "suggestion": "Goal without test: 'Adds the frontend for the office 365 connect atom' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] I have self-reviewed the code (A decent size PR without self-review might be",
+            "suggestion": "Goal without test: '[x] I have self-reviewed the code (A decent size PR without ...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] I have added a Docs issue [here](https://github.com/calcom/docs/issues/new) ",
+            "suggestion": "Goal without test: '[x] I have added a Docs issue [here](https://github.com/calc...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] I have added or modified automated tests that prove my fix is effective or t",
+            "suggestion": "Goal without test: '[x] I have added or modified automated tests that prove my f...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "In the .env.appStore you need to set credentials for MSGRAPHCLIENTID and MSGRAPH",
+            "suggestion": "Goal without test: 'In the .env.appStore you need to set credentials for MSGRAPH...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 28679,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 92,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 43,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 22,
+            "type": "ambiguity",
+            "term": "correctly",
+            "suggestion": "Replace 'correctly' with a specific, measurable term"
+          },
+          {
+            "line": 24,
+            "type": "ambiguity",
+            "term": "correctly",
+            "suggestion": "Replace 'correctly' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "No functional changes",
+            "suggestion": "Goal without test: 'No functional changes' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "README-only update",
+            "suggestion": "Goal without test: 'README-only update' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] I have self-reviewed the code",
+            "suggestion": "Goal without test: '[x] I have self-reviewed the code' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] I have read the contributing guide",
+            "suggestion": "Goal without test: '[x] I have read the contributing guide' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] My code follows the style guidelines of this project",
+            "suggestion": "Goal without test: '[x] My code follows the style guidelines of this project' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] No new warnings introduced",
+            "suggestion": "Goal without test: '[x] No new warnings introduced' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] PR is small and focused",
+            "suggestion": "Goal without test: '[x] PR is small and focused' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 28333,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] I have self-reviewed the code (A decent size PR without self-review might be",
+            "suggestion": "Goal without test: '[x] I have self-reviewed the code (A decent size PR without ...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] I have updated the developer docs in /docs if this PR makes changes that wou",
+            "suggestion": "Goal without test: '[x] I have updated the developer docs in /docs if this PR ma...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] I confirm automated tests are in place that prove my fix is effective or tha",
+            "suggestion": "Goal without test: '[x] I confirm automated tests are in place that prove my fix...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 28479,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 96,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 44,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 13,
+            "type": "ambiguity",
+            "term": "correctly",
+            "suggestion": "Replace 'correctly' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Replaces hardcoded \"${installedAppsNumber} apps\" string with t(\"number_apps\", { ",
+            "suggestion": "Goal without test: 'Replaces hardcoded \"${installedAppsNumber} apps\" string with...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Removes the TODO comment that flagged this issue",
+            "suggestion": "Goal without test: 'Removes the TODO comment that flagged this issue' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Uses existing numberappsone / numberappsother i18n keys already present in all l",
+            "suggestion": "Goal without test: 'Uses existing numberappsone / numberappsother i18n keys alre...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[ ] Navigate to /event-types and check the Apps tab info text",
+            "suggestion": "Goal without test: '[ ] Navigate to /event-types and check the Apps tab info tex...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[ ] Verify pluralization works: \"1 app\" vs \"2 apps\"",
+            "suggestion": "Goal without test: '[ ] Verify pluralization works: \"1 app\" vs \"2 apps\"' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[ ] Switch locale to non-English and verify translation appears correctly",
+            "suggestion": "Goal without test: '[ ] Switch locale to non-English and verify translation appe...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[ ] Verify both desktop and mobile layouts show the translated text",
+            "suggestion": "Goal without test: '[ ] Verify both desktop and mobile layouts show the translat...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 28647,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 94,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 43,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 7,
+            "type": "ambiguity",
+            "term": "correctly",
+            "suggestion": "Replace 'correctly' with a specific, measurable term"
+          },
+          {
+            "line": 9,
+            "type": "ambiguity",
+            "term": "secure",
+            "suggestion": "Replace 'secure' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Fix outdated repo reference: The \"Advanced users\" section incorrectly referenced",
+            "suggestion": "Goal without test: 'Fix outdated repo reference: The \"Advanced users\" section in...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Add secret key generation instructions: Added explicit openssl commands for gene",
+            "suggestion": "Goal without test: 'Add secret key generation instructions: Added explicit opens...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Add Calendar integration skip guidance: Added a note for first-time users who ge",
+            "suggestion": "Goal without test: 'Add Calendar integration skip guidance: Added a note for fir...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 28622,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Adds 127.0.0.1, ::1, and 0.0.0.0 to the BLOCKED_HOSTNAMES list alongside localho",
+            "suggestion": "Goal without test: 'Adds 127.0.0.1, ::1, and 0.0.0.0 to the BLOCKED_HOSTNAMES li...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Previously these addresses were only caught by IP range checks; now they are als",
+            "suggestion": "Goal without test: 'Previously these addresses were only caught by IP range chec...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Adds corresponding test coverage for the new blocked hostnames",
+            "suggestion": "Goal without test: 'Adds corresponding test coverage for the new blocked hostnam...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] TZ=UTC yarn vitest run packages/lib/ssrfProtection.test.ts -- all 59 tests p",
+            "suggestion": "Goal without test: '[x] TZ=UTC yarn vitest run packages/lib/ssrfProtection.test....' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[ ] Verify no regressions in webhook URL validation",
+            "suggestion": "Goal without test: '[ ] Verify no regressions in webhook URL validation' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[ ] Verify self-hosted environments still allow private IPs for internal webhook",
+            "suggestion": "Goal without test: '[ ] Verify self-hosted environments still allow private IPs ...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
       }
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.2365,
-    "unspecd_rework_rate": 0.23,
-    "delta": 0.0065,
-    "specd_sample_size": 296,
-    "unspecd_sample_size": 1061,
+    "specd_rework_rate": 0.2748,
+    "unspecd_rework_rate": 0.2411,
+    "delta": 0.0337,
+    "specd_sample_size": 302,
+    "unspecd_sample_size": 1070,
     "significance": "significant",
     "signals": [
       {
@@ -35213,6 +35743,15 @@
       },
       {
         "type": "bug-fix",
+        "source": "23118",
+        "target": "24630",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "apps/web/playwright/event-types.e2e.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "25232",
         "target": "24871",
         "classification": "heuristic",
@@ -35231,6 +35770,25 @@
         "classification": "heuristic",
         "overlapping_files": [
           "packages/platform/atoms/booker/BookerPlatformWrapper.tsx"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "25318",
+        "target": "24661",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/features/bookings/repositories/BookingRepository.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "25103",
+        "target": "24414",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "apps/api/v2/src/ee/bookings/2024-08-13/services/input.service.ts",
+          "apps/api/v2/src/ee/bookings/2024-08-13/services/output.service.ts"
         ]
       },
       {
@@ -35347,11 +35905,47 @@
       },
       {
         "type": "bug-fix",
+        "source": "25744",
+        "target": "25204",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/features/components/phone-input/PhoneInput.tsx"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "25467",
         "target": "25547",
         "classification": "heuristic",
         "overlapping_files": [
           "packages/features/eventtypes/lib/types.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "25397",
+        "target": "24986",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/platform/atoms/booker/BookerWebWrapper.tsx"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "25782",
+        "target": "24598",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "apps/web/components/settings/platform/oauth-clients/oauth-client-form/index.tsx"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "25701",
+        "target": "24598",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "apps/web/modules/event-types/views/event-types-listing-view.tsx"
         ]
       },
       {
@@ -35379,6 +35973,15 @@
         "classification": "heuristic",
         "overlapping_files": [
           "packages/trpc/server/routers/viewer/slots/util.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "25883",
+        "target": "24944",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/platform/atoms/vite.config.ts"
         ]
       },
       {
@@ -35432,9 +36035,10 @@
       {
         "type": "bug-fix",
         "source": "25978",
-        "target": "25939",
+        "target": "25022",
         "classification": "heuristic",
         "overlapping_files": [
+          "companion/contexts/AuthContext.tsx",
           "companion/extension/entrypoints/background/index.ts",
           "companion/extension/entrypoints/content.ts",
           "companion/package.json",
@@ -35490,10 +36094,11 @@
       {
         "type": "bug-fix",
         "source": "25261",
-        "target": "25569",
+        "target": "24598",
         "classification": "heuristic",
         "overlapping_files": [
-          "packages/embeds/embed-core/src/embed-iframe.ts"
+          "apps/web/app/notFoundClient.tsx",
+          "apps/web/components/error/error-page.tsx"
         ]
       },
       {
@@ -35527,18 +36132,47 @@
       },
       {
         "type": "bug-fix",
+        "source": "25987",
+        "target": "24598",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "apps/web/app/(use-page-wrapper)/apps/routing-forms/[...pages]/RoutingLink.tsx"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "26022",
+        "target": "25284",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/app-store/delegationCredential.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "26024",
+        "target": "24598",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "apps/web/components/settings/CustomEmailTextField.tsx"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "26063",
-        "target": "25939",
+        "target": "25022",
         "classification": "heuristic",
         "overlapping_files": [
           "companion/.env.example",
-          "companion/app/(tabs)/(event-types)/index.tsx",
           "companion/app/(tabs)/availability.tsx",
+          "companion/app/(tabs)/bookings.tsx",
+          "companion/app/availability-detail.tsx",
           "companion/app/booking-detail.tsx",
+          "companion/app/event-type-detail.tsx",
+          "companion/components/Header.tsx",
           "companion/components/Tooltip.tsx",
           "companion/extension/entrypoints/background/index.ts",
           "companion/extension/entrypoints/content.ts",
-          "companion/extension/env.d.ts",
           "companion/package.json",
           "companion/services/oauthService.ts",
           "companion/wxt.config.ts"
@@ -35547,10 +36181,25 @@
       {
         "type": "bug-fix",
         "source": "26073",
-        "target": "25575",
+        "target": "24598",
         "classification": "heuristic",
         "overlapping_files": [
-          "apps/web/components/booking/actions/bookingActions.ts"
+          "apps/web/app/(use-page-wrapper)/apps/routing-forms/[...pages]/RouteBuilder.tsx",
+          "apps/web/app/(use-page-wrapper)/availability/troubleshoot/layout.tsx",
+          "apps/web/app/(use-page-wrapper)/settings/(settings-layout)/SettingsLayoutAppDirClient.tsx",
+          "apps/web/components/apps/btcpayserver/Setup.tsx",
+          "apps/web/components/booking/BookingListItem.tsx",
+          "apps/web/modules/auth/verify-view.tsx",
+          "apps/web/modules/getting-started/[[...step]]/onboarding-view.tsx"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "26035",
+        "target": "25326",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/trpc/server/routers/viewer/organizations/updateUser.handler.ts"
         ]
       },
       {
@@ -35623,10 +36272,11 @@
       {
         "type": "bug-fix",
         "source": "26017",
-        "target": "26027",
+        "target": "24598",
         "classification": "heuristic",
         "overlapping_files": [
-          "packages/features/booking-audit/lib/service/booking-audit.integration-test.ts"
+          "apps/web/app/(use-page-wrapper)/settings/(settings-layout)/organizations/roles/_components/AdvancedPermissionGroup.tsx",
+          "apps/web/app/(use-page-wrapper)/settings/(settings-layout)/organizations/roles/_components/RoleSheet.tsx"
         ]
       },
       {
@@ -35703,6 +36353,16 @@
       },
       {
         "type": "bug-fix",
+        "source": "25285",
+        "target": "24944",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/features/CalendarEventBuilder.test.ts",
+          "packages/features/CalendarEventBuilder.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "26062",
         "target": "26063",
         "classification": "heuristic",
@@ -35711,6 +36371,16 @@
           "companion/components/event-type-detail/tabs/AvailabilityTab.tsx",
           "companion/components/event-type-list-item/EventTypeListItem.ios.tsx",
           "companion/components/event-type-list-item/EventTypeListItem.tsx"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "24663",
+        "target": "24598",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "apps/web/components/apps/routing-forms/Header.tsx",
+          "apps/web/components/apps/routing-forms/SingleForm.tsx"
         ]
       },
       {
@@ -35753,6 +36423,15 @@
       },
       {
         "type": "bug-fix",
+        "source": "26166",
+        "target": "22367",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/features/bookings/lib/getBookingResponsesSchema.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "26205",
         "target": "26204",
         "classification": "heuristic",
@@ -35773,6 +36452,15 @@
         "classification": "heuristic",
         "overlapping_files": [
           "apps/web/modules/shell/components/WelcomeToCalcomModal.tsx"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "26235",
+        "target": "25525",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/platform/atoms/availability/AvailabilitySettings.tsx"
         ]
       },
       {
@@ -35875,6 +36563,15 @@
       },
       {
         "type": "bug-fix",
+        "source": "26283",
+        "target": "25627",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "apps/api/v2/src/modules/organizations/event-types/organizations-member-team-admin-event-types.e2e-spec.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "26251",
         "target": "26161",
         "classification": "heuristic",
@@ -35967,10 +36664,20 @@
       {
         "type": "bug-fix",
         "source": "26353",
-        "target": "26308",
+        "target": "25642",
         "classification": "heuristic",
         "overlapping_files": [
-          "apps/web/playwright/managed-event-types.e2e.ts"
+          "apps/web/playwright/booking-seats.e2e.ts",
+          "apps/web/playwright/bookings-list.e2e.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "25896",
+        "target": "25177",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "apps/api/v2/src/modules/teams/event-types/services/teams-event-types.service.ts"
         ]
       },
       {
@@ -36018,6 +36725,15 @@
         "classification": "heuristic",
         "overlapping_files": [
           "apps/web/app/(use-page-wrapper)/insights/UpgradeTipWrapper.tsx"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "26399",
+        "target": "25925",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/features/auth/lib/getServerSession.ts"
         ]
       },
       {
@@ -36115,10 +36831,11 @@
       {
         "type": "bug-fix",
         "source": "26482",
-        "target": "26405",
+        "target": "26005",
         "classification": "heuristic",
         "overlapping_files": [
-          "packages/features/auth/lib/next-auth-options.ts"
+          "packages/features/auth/lib/next-auth-options.ts",
+          "packages/features/auth/lib/samlAccountLinking.ts"
         ]
       },
       {
@@ -36150,6 +36867,24 @@
       },
       {
         "type": "bug-fix",
+        "source": "26465",
+        "target": "25744",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/features/components/phone-input/PhoneInput.tsx"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "26520",
+        "target": "26157",
+        "classification": "heuristic",
+        "overlapping_files": [
+          ".github/workflows/publish-report.yml"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "26286",
         "target": "26351",
         "classification": "heuristic",
@@ -36174,6 +36909,15 @@
         "classification": "heuristic",
         "overlapping_files": [
           "packages/app-store/_utils/payments/handlePaymentSuccess.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "26553",
+        "target": "24663",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/ui/components/form/switch/Switch.tsx"
         ]
       },
       {
@@ -36216,10 +36960,13 @@
       {
         "type": "bug-fix",
         "source": "26446",
-        "target": "26480",
+        "target": "25627",
         "classification": "heuristic",
         "overlapping_files": [
-          "apps/api/v1/test/lib/bookings/_post.test.ts"
+          "packages/features/bookings/lib/handleNewBooking/loadAndValidateUsers.ts",
+          "packages/features/eventtypes/repositories/eventTypeRepository.ts",
+          "packages/prisma/schema.prisma",
+          "packages/trpc/server/routers/viewer/slots/util.ts"
         ]
       },
       {
@@ -36241,6 +36988,15 @@
           "apps/web/public/static/locales/pt-BR/common.json",
           "apps/web/public/static/locales/pt/common.json",
           "apps/web/public/static/locales/sr/common.json"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "26589",
+        "target": "26059",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "apps/web/playwright/event-types.e2e.ts"
         ]
       },
       {
@@ -36301,10 +37057,12 @@
       {
         "type": "bug-fix",
         "source": "26598",
-        "target": "26217",
+        "target": "26005",
         "classification": "heuristic",
         "overlapping_files": [
-          "apps/web/public/static/locales/en/common.json"
+          "apps/web/app/(use-page-wrapper)/auth/error/page.tsx",
+          "apps/web/public/static/locales/en/common.json",
+          "packages/features/auth/lib/next-auth-options.ts"
         ]
       },
       {
@@ -36314,6 +37072,15 @@
         "classification": "heuristic",
         "overlapping_files": [
           ".github/workflows/pr.yml"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "26612",
+        "target": "26082",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "apps/web/components/apps/paypal/Setup.tsx"
         ]
       },
       {
@@ -36368,6 +37135,15 @@
         "classification": "heuristic",
         "overlapping_files": [
           ".github/actions/cache-checkout/action.yml"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "26701",
+        "target": "25925",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/features/bookingReference/repositories/BookingReferenceRepository.integration-test.ts"
         ]
       },
       {
@@ -36510,6 +37286,25 @@
       },
       {
         "type": "bug-fix",
+        "source": "26741",
+        "target": "26085",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "companion/extension/entrypoints/background/index.ts",
+          "companion/wxt.config.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "26743",
+        "target": "26126",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "apps/web/next.config.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "26744",
         "target": "26743",
         "classification": "heuristic",
@@ -36542,6 +37337,15 @@
         "classification": "heuristic",
         "overlapping_files": [
           "apps/api/v2/src/ee/bookings/2024-08-13/services/bookings.service.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "26736",
+        "target": "25696",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "apps/web/playwright/out-of-office.e2e.ts"
         ]
       },
       {
@@ -36628,31 +37432,35 @@
       {
         "type": "bug-fix",
         "source": "25814",
-        "target": "26351",
+        "target": "26172",
         "classification": "heuristic",
         "overlapping_files": [
           "packages/embeds/embed-core/package.json",
           "packages/embeds/embed-react/package.json",
           "packages/embeds/embed-snippet/package.json",
-          "packages/platform/libraries/package.json"
+          "packages/platform/libraries/package.json",
+          "packages/platform/types/package.json"
         ]
       },
       {
         "type": "bug-fix",
         "source": "26775",
-        "target": "26434",
+        "target": "26214",
         "classification": "heuristic",
         "overlapping_files": [
           "companion/app/(tabs)/(bookings)/index.ios.tsx",
           "companion/app/(tabs)/(bookings)/index.tsx",
-          "companion/app/(tabs)/(event-types)/event-type-detail.tsx",
-          "companion/app/(tabs)/(event-types)/index.ios.tsx",
           "companion/app/(tabs)/(event-types)/index.tsx",
-          "companion/app/profile-sheet.tsx",
           "companion/components/Header.tsx",
+          "companion/components/event-type-detail/tabs/AdvancedTab.tsx",
+          "companion/components/event-type-detail/tabs/BasicsTab.tsx",
+          "companion/components/event-type-detail/tabs/LimitsTab.tsx",
+          "companion/components/event-type-detail/tabs/RecurringTab.tsx",
           "companion/components/event-type-list-item/EventTypeListItem.ios.tsx",
           "companion/components/event-type-list-item/EventTypeListItem.tsx",
-          "companion/components/event-type-list-item/EventTypeListItemParts.tsx",
+          "companion/extension/entrypoints/background/index.ts",
+          "companion/extension/entrypoints/content.ts",
+          "companion/extension/lib/linkedin.ts",
           "companion/services/calcom.ts",
           "companion/services/types/event-types.types.ts"
         ]
@@ -36699,11 +37507,23 @@
       },
       {
         "type": "bug-fix",
-        "source": "26782",
-        "target": "26527",
+        "source": "26438",
+        "target": "26289",
         "classification": "heuristic",
         "overlapping_files": [
-          "packages/trpc/server/routers/viewer/bookings/requestReschedule.handler.ts"
+          "apps/web/modules/settings/outOfOffice/OutOfOfficeEntriesList.tsx"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "26782",
+        "target": "23861",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/features/webhooks/lib/dto/types.ts",
+          "packages/features/webhooks/lib/factory/base/BaseBookingPayloadBuilder.ts",
+          "packages/features/webhooks/lib/factory/versioned/v2021-10-20/BookingPayloadBuilder.ts",
+          "packages/features/webhooks/lib/sendPayload.ts"
         ]
       },
       {
@@ -36754,10 +37574,11 @@
       {
         "type": "bug-fix",
         "source": "26727",
-        "target": "26480",
+        "target": "26166",
         "classification": "heuristic",
         "overlapping_files": [
-          "packages/features/bookings/lib/getBookingResponsesSchema.test.ts"
+          "packages/features/bookings/lib/getBookingResponsesSchema.test.ts",
+          "packages/features/bookings/lib/getBookingResponsesSchema.ts"
         ]
       },
       {
@@ -36921,13 +37742,14 @@
       {
         "type": "bug-fix",
         "source": "26845",
-        "target": "26687",
+        "target": "26214",
         "classification": "heuristic",
         "overlapping_files": [
-          "companion/app/(tabs)/(event-types)/event-type-detail.tsx",
+          "companion/components/LoginScreen.tsx",
           "companion/components/event-type-detail/tabs/AdvancedTab.tsx",
           "companion/components/event-type-detail/tabs/AvailabilityTab.tsx",
-          "companion/components/event-type-detail/tabs/LimitsTab.tsx"
+          "companion/components/event-type-detail/tabs/LimitsTab.tsx",
+          "companion/components/event-type-detail/utils/buildPartialUpdatePayload.ts"
         ]
       },
       {
@@ -37027,11 +37849,12 @@
       {
         "type": "bug-fix",
         "source": "26884",
-        "target": "26775",
+        "target": "26206",
         "classification": "heuristic",
         "overlapping_files": [
           "companion/extension/entrypoints/background/index.ts",
-          "companion/services/calcom.ts"
+          "companion/services/calcom.ts",
+          "companion/services/types/users.types.ts"
         ]
       },
       {
@@ -37050,6 +37873,15 @@
         "classification": "heuristic",
         "overlapping_files": [
           ".github/workflows/stale-pr-devin-completion.yml"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "24275",
+        "target": "26275",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "apps/web/modules/shell/user-dropdown/UserDropdown.tsx"
         ]
       },
       {
@@ -37103,10 +37935,11 @@
       {
         "type": "bug-fix",
         "source": "26929",
-        "target": "25945",
+        "target": "26351",
         "classification": "heuristic",
         "overlapping_files": [
-          "packages/emails/email-manager.ts"
+          "packages/features/ee/round-robin/roundRobinManualReassignment.test.ts",
+          "packages/features/ee/round-robin/roundRobinReassignment.test.ts"
         ]
       },
       {
@@ -37139,10 +37972,11 @@
       {
         "type": "bug-fix",
         "source": "25434",
-        "target": "26851",
+        "target": "25765",
         "classification": "heuristic",
         "overlapping_files": [
-          "packages/trpc/server/routers/viewer/bookings/get.handler.ts"
+          "packages/features/pbac/infrastructure/repositories/PermissionRepository.ts",
+          "packages/features/pbac/infrastructure/repositories/__tests__/PermissionRepository.integration-test.ts"
         ]
       },
       {
@@ -37157,10 +37991,11 @@
       {
         "type": "bug-fix",
         "source": "26951",
-        "target": "26899",
+        "target": "25367",
         "classification": "heuristic",
         "overlapping_files": [
-          "docs/api-reference/v2/openapi.json"
+          "apps/api/v2/src/ee/bookings/2024-08-13/controllers/booking-location.controller.ts",
+          "packages/platform/types/bookings/2024-08-13/inputs/update-location.input.ts"
         ]
       },
       {
@@ -37231,12 +38066,23 @@
       },
       {
         "type": "bug-fix",
+        "source": "26989",
+        "target": "26329",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/coss-ui/src/components/breadcrumb.tsx"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "26981",
-        "target": "26802",
+        "target": "26240",
         "classification": "heuristic",
         "overlapping_files": [
           "companion/app/(tabs)/(more)/index.ios.tsx",
-          "companion/app/(tabs)/(more)/index.tsx"
+          "companion/app/(tabs)/(more)/index.tsx",
+          "companion/app/(tabs)/_layout.tsx",
+          "companion/services/oauthService.ts"
         ]
       },
       {
@@ -37346,6 +38192,15 @@
       },
       {
         "type": "bug-fix",
+        "source": "27046",
+        "target": "26391",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/features/ee/organizations/lib/orgDomains.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "27055",
         "target": "26759",
         "classification": "heuristic",
@@ -37361,6 +38216,15 @@
         "overlapping_files": [
           "apps/web/test/lib/handleChildrenEventTypes.test.ts",
           "packages/features/ee/managed-event-types/lib/handleChildrenEventTypes.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "27071",
+        "target": "26308",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "apps/web/playwright/payment-apps.e2e.ts"
         ]
       },
       {
@@ -37394,6 +38258,16 @@
       },
       {
         "type": "bug-fix",
+        "source": "27094",
+        "target": "26292",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/features/ee/workflows/lib/reminders/utils.ts",
+          "packages/features/ee/workflows/lib/test/replaceCloakedLinksInHtml.test.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "27091",
         "target": "26820",
         "classification": "heuristic",
@@ -37413,10 +38287,22 @@
       {
         "type": "bug-fix",
         "source": "26583",
-        "target": "26972",
+        "target": "26420",
         "classification": "heuristic",
         "overlapping_files": [
-          "apps/web/modules/bookings/components/Booker.tsx"
+          "apps/web/modules/bookings/components/AvailableTimeSlots.tsx",
+          "apps/web/modules/bookings/components/Booker.test.tsx",
+          "apps/web/modules/bookings/components/Booker.tsx",
+          "apps/web/modules/bookings/components/DatePicker.tsx"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "27097",
+        "target": "26536",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "apps/web/modules/event-types/components/EventTypeLayout.tsx"
         ]
       },
       {
@@ -37524,6 +38410,24 @@
       },
       {
         "type": "bug-fix",
+        "source": "23432",
+        "target": "26308",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "apps/web/playwright/fixtures/apps.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "27217",
+        "target": "26480",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/emails/lib/generateIcsString.test.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "27231",
         "target": "26529",
         "classification": "heuristic",
@@ -37543,9 +38447,11 @@
       {
         "type": "bug-fix",
         "source": "27224",
-        "target": "27227",
+        "target": "26420",
         "classification": "heuristic",
         "overlapping_files": [
+          "apps/web/modules/apps/components/AppList.tsx",
+          "apps/web/modules/bookings/components/Booker.tsx",
           "apps/web/modules/bookings/components/EventMeta.tsx"
         ]
       },
@@ -37610,6 +38516,16 @@
       },
       {
         "type": "bug-fix",
+        "source": "26616",
+        "target": "26643",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "apps/web/app/(use-page-wrapper)/apps/routing-forms/[...pages]/FormEdit.tsx",
+          "packages/app-store/routing-forms/playwright/tests/basic.e2e.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "27293",
         "target": "27248",
         "classification": "heuristic",
@@ -37630,9 +38546,10 @@
       {
         "type": "bug-fix",
         "source": "27152",
-        "target": "27246",
+        "target": "26643",
         "classification": "heuristic",
         "overlapping_files": [
+          "apps/web/playwright/insights.e2e.ts",
           "apps/web/public/static/locales/en/common.json"
         ]
       },
@@ -37830,6 +38747,15 @@
       },
       {
         "type": "bug-fix",
+        "source": "27426",
+        "target": "26736",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "apps/web/modules/settings/outOfOffice/CreateOrEditOutOfOfficeModal.tsx"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "27393",
         "target": "27330",
         "classification": "heuristic",
@@ -37840,10 +38766,11 @@
       {
         "type": "bug-fix",
         "source": "27433",
-        "target": "27183",
+        "target": "26301",
         "classification": "heuristic",
         "overlapping_files": [
-          "apps/web/app/(use-page-wrapper)/(main-nav)/bookings/[status]/page.tsx"
+          "apps/web/app/(use-page-wrapper)/(main-nav)/bookings/[status]/page.tsx",
+          "apps/web/modules/bookings/views/bookings-view.tsx"
         ]
       },
       {
@@ -37880,6 +38807,15 @@
         "classification": "heuristic",
         "overlapping_files": [
           "apps/web/modules/shell/user-dropdown/UserDropdown.tsx"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "27286",
+        "target": "26784",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "apps/web/public/static/locales/fr/common.json"
         ]
       },
       {
@@ -37986,6 +38922,24 @@
         "classification": "heuristic",
         "overlapping_files": [
           "apps/web/modules/onboarding/store/onboarding-store.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "27557",
+        "target": "26643",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "apps/web/modules/ee/workflows/views/WorkflowPage.tsx"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "27558",
+        "target": "26848",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "apps/web/modules/videos/views/videos-single-view.tsx"
         ]
       },
       {
@@ -38110,11 +39064,22 @@
       },
       {
         "type": "bug-fix",
-        "source": "27526",
-        "target": "27223",
+        "source": "27533",
+        "target": "26775",
         "classification": "heuristic",
         "overlapping_files": [
-          "apps/web/modules/signup-view.tsx"
+          "companion/extension/entrypoints/content.ts",
+          "companion/extension/lib/linkedin.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "27526",
+        "target": "26217",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "apps/web/modules/signup-view.tsx",
+          "apps/web/playwright/signup.e2e.ts"
         ]
       },
       {
@@ -38215,27 +39180,45 @@
       {
         "type": "bug-fix",
         "source": "26985",
-        "target": "27626",
+        "target": "26539",
         "classification": "heuristic",
         "overlapping_files": [
+          "packages/app-store/delegationCredential.ts",
+          "packages/app-store/googlecalendar/lib/CalendarService.ts",
+          "packages/app-store/office365calendar/lib/CalendarService.ts",
+          "packages/features/calendar-subscription/lib/cache/CalendarCacheWrapper.ts",
+          "packages/features/calendar-subscription/lib/telemetry/CalendarTelemetryWrapper.ts",
           "packages/types/Calendar.d.ts"
         ]
       },
       {
         "type": "bug-fix",
-        "source": "27645",
-        "target": "27603",
+        "source": "27641",
+        "target": "26930",
         "classification": "heuristic",
         "overlapping_files": [
-          "apps/api/v2/src/modules/organizations/delegation-credentials/organizations-delegation-credential.controller.e2e-spec.ts"
+          "apps/web/modules/data-table/components/segment/FilterSegmentSelect.tsx"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "27645",
+        "target": "26800",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "apps/api/v2/src/modules/organizations/delegation-credentials/organizations-delegation-credential.repository.ts",
+          "apps/api/v2/src/modules/organizations/delegation-credentials/services/organizations-delegation-credential.service.spec.ts",
+          "apps/api/v2/src/modules/organizations/delegation-credentials/services/organizations-delegation-credential.service.ts"
         ]
       },
       {
         "type": "bug-fix",
         "source": "27243",
-        "target": "27171",
+        "target": "25556",
         "classification": "heuristic",
         "overlapping_files": [
+          "apps/web/modules/settings/oauth/OAuthClientsList.tsx",
+          "apps/web/modules/settings/oauth/view/OAuthClientDetailsDialog.tsx",
           "apps/web/playwright/oauth/oauth-client-owner-crud.e2e.ts"
         ]
       },
@@ -38285,11 +39268,21 @@
       {
         "type": "bug-fix",
         "source": "26593",
-        "target": "27578",
+        "target": "26522",
         "classification": "heuristic",
         "overlapping_files": [
-          "packages/lib/package.json",
-          "yarn.lock"
+          "packages/lib/ssrfProtection.test.ts",
+          "packages/lib/ssrfProtection.ts",
+          "packages/lib/zod/ssrfSafeUrl.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "27473",
+        "target": "27018",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "apps/web/modules/shell/navigation/Navigation.tsx"
         ]
       },
       {
@@ -38303,10 +39296,20 @@
       },
       {
         "type": "bug-fix",
-        "source": "27675",
-        "target": "27020",
+        "source": "26534",
+        "target": "27038",
         "classification": "heuristic",
         "overlapping_files": [
+          "apps/web/modules/shell/navigation/NavigationItem.tsx"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "27675",
+        "target": "25890",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/app-store/zohocalendar/lib/CalendarService.ts",
           "packages/features/calendars/lib/CalendarManager.ts"
         ]
       },
@@ -38350,11 +39353,50 @@
       },
       {
         "type": "bug-fix",
-        "source": "27294",
-        "target": "27243",
+        "source": "27705",
+        "target": "26387",
         "classification": "heuristic",
         "overlapping_files": [
+          "packages/lib/constants.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "27636",
+        "target": "26643",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "apps/web/components/dialog/__tests__/EditLocationDialog.test.tsx",
+          "apps/web/playwright/event-types.e2e.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "27329",
+        "target": "26727",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/features/bookings/lib/getBookingResponsesSchema.test.ts",
+          "packages/features/bookings/lib/getBookingResponsesSchema.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "27294",
+        "target": "25556",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "apps/web/modules/settings/developer/oauth-clients-view.tsx",
           "apps/web/modules/settings/oauth/OAuthClientsList.tsx"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "27567",
+        "target": "23432",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "apps/web/lib/apps/installation/[[...step]]/getServerSideProps.ts"
         ]
       },
       {
@@ -38444,9 +39486,10 @@
       {
         "type": "bug-fix",
         "source": "25973",
-        "target": "27557",
+        "target": "26643",
         "classification": "heuristic",
         "overlapping_files": [
+          "apps/web/modules/ee/workflows/components/WorkflowStepContainer.tsx",
           "apps/web/modules/ee/workflows/views/WorkflowPage.tsx"
         ]
       },
@@ -38472,14 +39515,18 @@
       {
         "type": "bug-fix",
         "source": "26524",
-        "target": "27602",
+        "target": "26046",
         "classification": "heuristic",
         "overlapping_files": [
-          "packages/features/bookings/lib/handleConfirmation.ts",
-          "packages/trpc/server/routers/viewer/bookings/addGuests.handler.ts",
-          "packages/trpc/server/routers/viewer/bookings/confirm.handler.ts",
-          "packages/trpc/server/routers/viewer/bookings/editLocation.handler.ts",
-          "packages/trpc/server/routers/viewer/bookings/requestReschedule.handler.ts"
+          "apps/api/v2/src/lib/modules/recurring-booking.module.ts",
+          "apps/api/v2/src/lib/services/recurring-booking.service.ts",
+          "packages/features/booking-audit/lib/service/BookingAuditProducerService.interface.ts",
+          "packages/features/booking-audit/lib/service/BookingAuditTaskerProducerService.ts",
+          "packages/features/bookings/di/RecurringBookingService.module.ts",
+          "packages/features/bookings/lib/handleSeats/handleSeats.ts",
+          "packages/features/bookings/lib/onBookingEvents/BookingEventHandlerService.ts",
+          "packages/features/bookings/lib/service/RecurringBookingService.ts",
+          "packages/features/bookings/lib/service/RegularBookingService.ts"
         ]
       },
       {
@@ -38543,10 +39590,11 @@
       {
         "type": "bug-fix",
         "source": "27825",
-        "target": "27794",
+        "target": "27227",
         "classification": "heuristic",
         "overlapping_files": [
-          "apps/web/modules/shell/Shell.tsx"
+          "apps/web/modules/shell/Shell.tsx",
+          "packages/platform/atoms/availability/AvailabilitySettings.tsx"
         ]
       },
       {
@@ -38589,9 +39637,10 @@
       {
         "type": "bug-fix",
         "source": "27612",
-        "target": "27442",
+        "target": "26873",
         "classification": "heuristic",
         "overlapping_files": [
+          "apps/api/v2/src/modules/oauth-clients/controllers/oauth-client-webhooks/oauth-client-webhooks.controller.ts",
           "docs/api-reference/v2/openapi.json"
         ]
       },
@@ -38625,6 +39674,16 @@
       },
       {
         "type": "bug-fix",
+        "source": "27847",
+        "target": "26752",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "apps/api/v2/src/modules/slots/slots-2024-04-15/controllers/slots.controller.e2e-spec.ts",
+          "apps/api/v2/src/modules/slots/slots-2024-09-04/controllers/e2e/user-event-type-slots.controller.e2e-spec.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "27300",
         "target": "26524",
         "classification": "heuristic",
@@ -38644,6 +39703,15 @@
       },
       {
         "type": "bug-fix",
+        "source": "27855",
+        "target": "25890",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/app-store/zohocrm/lib/CrmService.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "27849",
         "target": "27847",
         "classification": "heuristic",
@@ -38655,14 +39723,17 @@
       {
         "type": "bug-fix",
         "source": "27162",
-        "target": "27405",
+        "target": "25839",
         "classification": "heuristic",
         "overlapping_files": [
+          "apps/web/components/booking/BookingListItem.tsx",
+          "apps/web/components/booking/actions/BookingActionsDropdown.tsx",
           "apps/web/components/dialog/WrongAssignmentDialog.tsx",
           "apps/web/public/static/locales/en/common.json",
           "packages/features/bookings/repositories/BookingRepository.ts",
           "packages/trpc/server/routers/viewer/bookings/reportWrongAssignment.handler.test.ts",
-          "packages/trpc/server/routers/viewer/bookings/reportWrongAssignment.handler.ts"
+          "packages/trpc/server/routers/viewer/bookings/reportWrongAssignment.handler.ts",
+          "packages/trpc/server/routers/viewer/bookings/reportWrongAssignment.schema.ts"
         ]
       },
       {
@@ -38690,6 +39761,15 @@
         "classification": "heuristic",
         "overlapping_files": [
           "apps/web/modules/feature-opt-in/components/FeedbackDialog.tsx"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "27898",
+        "target": "27092",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/features/availability/lib/getUserAvailability.ts"
         ]
       },
       {
@@ -38741,6 +39821,15 @@
       },
       {
         "type": "bug-fix",
+        "source": "27918",
+        "target": "27012",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "scripts/seed-app-store.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "27916",
         "target": "27849",
         "classification": "heuristic",
@@ -38770,6 +39859,15 @@
       },
       {
         "type": "bug-fix",
+        "source": "27924",
+        "target": "27152",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "apps/web/modules/insights/components/filters/Download/Download.tsx"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "27923",
         "target": "27912",
         "classification": "heuristic",
@@ -38795,6 +39893,15 @@
         "classification": "heuristic",
         "overlapping_files": [
           "apps/web/modules/bookings/components/BookingDetailsSheet.tsx"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "27931",
+        "target": "27380",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/app-store/hubspot/_metadata.ts"
         ]
       },
       {
@@ -38895,12 +40002,22 @@
       },
       {
         "type": "bug-fix",
+        "source": "27998",
+        "target": "27490",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "apps/web/app/(use-page-wrapper)/payment/[uid]/PaymentPage.tsx"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "27491",
-        "target": "27775",
+        "target": "27343",
         "classification": "heuristic",
         "overlapping_files": [
           "apps/web/modules/bookings/components/BookerWebWrapper.tsx",
-          "apps/web/modules/schedules/hooks/useEvent.ts"
+          "packages/platform/atoms/booker/BookerPlatformWrapper.tsx",
+          "packages/platform/atoms/calendar-view/EventTypeCalendarViewComponent.tsx"
         ]
       },
       {
@@ -38952,10 +40069,11 @@
       {
         "type": "bug-fix",
         "source": "28053",
-        "target": "27867",
+        "target": "27575",
         "classification": "heuristic",
         "overlapping_files": [
-          "apps/web/modules/settings/billing/billing-view.tsx"
+          "apps/web/app/(use-page-wrapper)/settings/(settings-layout)/billing/page.tsx",
+          "apps/web/app/(use-page-wrapper)/settings/(settings-layout)/organizations/(org-admin-only)/billing/page.tsx"
         ]
       },
       {
@@ -39083,6 +40201,15 @@
       },
       {
         "type": "bug-fix",
+        "source": "28239",
+        "target": "27468",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/platform/atoms/event-types/hooks/useEventTypeForm.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "28204",
         "target": "28227",
         "classification": "heuristic",
@@ -39102,11 +40229,39 @@
       },
       {
         "type": "bug-fix",
+        "source": "28203",
+        "target": "27728",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "apps/web/components/phone-input/PhoneInput.tsx"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "28252",
         "target": "27643",
         "classification": "heuristic",
         "overlapping_files": [
           "packages/features/bookings/repositories/BookingRepository.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "28288",
+        "target": "27612",
+        "classification": "heuristic",
+        "overlapping_files": [
+          ".github/oasdiff-err-ignore.txt",
+          "docs/api-reference/v2/openapi.json"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "28301",
+        "target": "27215",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/app-store-cli/src/build.ts"
         ]
       },
       {
@@ -39125,6 +40280,15 @@
         "classification": "heuristic",
         "overlapping_files": [
           "packages/prisma/docker-compose.yml"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "28314",
+        "target": "27439",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/dayjs/index.ts"
         ]
       },
       {
@@ -39195,10 +40359,13 @@
       {
         "type": "bug-fix",
         "source": "28305",
-        "target": "28336",
+        "target": "27612",
         "classification": "heuristic",
         "overlapping_files": [
           ".github/oasdiff-err-ignore.txt",
+          "apps/api/v2/src/modules/event-types/controllers/event-types-webhooks.controller.ts",
+          "apps/api/v2/src/modules/oauth-clients/controllers/oauth-client-webhooks/oauth-client-webhooks.controller.ts",
+          "apps/api/v2/src/modules/teams/event-types/controllers/teams-event-types-webhooks.controller.ts",
           "docs/api-reference/v2/openapi.json"
         ]
       },
@@ -39242,11 +40409,18 @@
       {
         "type": "bug-fix",
         "source": "28459",
-        "target": "26546",
+        "target": "27928",
         "classification": "heuristic",
         "overlapping_files": [
-          "apps/web/test/lib/confirm.handler.test.ts",
-          "packages/trpc/server/routers/viewer/bookings/reportBooking.handler.test.ts"
+          "packages/trpc/server/routers/viewer/apps/appById.handler.test.ts",
+          "packages/trpc/server/routers/viewer/availability/schedule/getAllSchedulesByUserId.handler.test.ts",
+          "packages/trpc/server/routers/viewer/bookings/reportBooking.handler.test.ts",
+          "packages/trpc/server/routers/viewer/delegationCredential/toggleEnabled.handler.test.ts",
+          "packages/trpc/server/routers/viewer/eventTypes/__tests__/util.test.ts",
+          "packages/trpc/server/routers/viewer/organizations/deleteWatchlistEntry.handler.test.ts",
+          "packages/trpc/server/routers/viewer/teams/removeMember/__tests__/PBACRemoveMemberService.test.ts",
+          "packages/trpc/server/routers/viewer/teams/removeMember/__tests__/RemoveMemberServiceFactory.test.ts",
+          "packages/trpc/server/routers/viewer/workflows/sendVerificationCode.handler.test.ts"
         ]
       },
       {
@@ -39275,26 +40449,71 @@
         "overlapping_files": [
           "packages/i18n/locales/en/common.json"
         ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "28527",
+        "target": "27832",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "scripts/seed.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "28575",
+        "target": "27650",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "apps/web/playwright/organization/team-management.e2e.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "28630",
+        "target": "28459",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/features/bookings/lib/EventManager.test.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "28631",
+        "target": "28576",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "apps/web/playwright/bookings-list.e2e.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "28479",
+        "target": "28486",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "apps/web/playwright/fixtures/apps.ts"
+        ]
       }
     ],
     "by_complexity": {
       "small": {
-        "specd_rework_rate": 0.1695,
-        "unspecd_rework_rate": 0.1673,
-        "specd_count": 177,
-        "unspecd_count": 568
+        "specd_rework_rate": 0.2143,
+        "unspecd_rework_rate": 0.16,
+        "specd_count": 182,
+        "unspecd_count": 575
       },
       "medium": {
-        "specd_rework_rate": 0.2969,
-        "unspecd_rework_rate": 0.2465,
-        "specd_count": 64,
-        "unspecd_count": 288
+        "specd_rework_rate": 0.3385,
+        "unspecd_rework_rate": 0.2734,
+        "specd_count": 65,
+        "unspecd_count": 289
       },
       "large": {
-        "specd_rework_rate": 0.3818,
-        "unspecd_rework_rate": 0.3821,
+        "specd_rework_rate": 0.4,
+        "unspecd_rework_rate": 0.4225,
         "specd_count": 55,
-        "unspecd_count": 212
+        "unspecd_count": 213
       }
     }
   }

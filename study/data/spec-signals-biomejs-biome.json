@@ -1,11 +1,11 @@
 {
   "repo": "biomejs/biome",
-  "lookback_days": 90,
-  "rework_window_days": 14,
+  "lookback_days": 365,
+  "rework_window_days": 30,
   "coverage": {
     "coverage_pct": 47,
-    "total_prs": 787,
-    "specd_prs": 372,
+    "total_prs": 829,
+    "specd_prs": 387,
     "prs": [
       {
         "number": 9614,
@@ -6302,6 +6302,342 @@
         "specd": true,
         "spec_source": "#7517",
         "merged_at": "2025-09-28T11:53:10+00:00"
+      },
+      {
+        "number": 9776,
+        "sha": null,
+        "title": "fix(markdown_parser): fix lazy continuation at nested list marker indent",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T20:26:09+00:00"
+      },
+      {
+        "number": 9774,
+        "sha": null,
+        "title": "fix(markdown_parser): emit MdIndentTokenList for headers inside list items",
+        "specd": true,
+        "spec_source": "#9771",
+        "merged_at": "2026-04-02T15:18:06+00:00"
+      },
+      {
+        "number": 9769,
+        "sha": null,
+        "title": "refactor(flags): make variables predictable",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T10:37:04+00:00"
+      },
+      {
+        "number": 9765,
+        "sha": null,
+        "title": "fix(markdown): remove debug scaffolding and parser cleanup",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T08:20:11+00:00"
+      },
+      {
+        "number": 9766,
+        "sha": null,
+        "title": "refactor(markdown): deduplicate shared helper functions",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T20:43:32+00:00"
+      },
+      {
+        "number": 9756,
+        "sha": null,
+        "title": "feat(css): add support for SCSS string interpolation",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T20:29:48+00:00"
+      },
+      {
+        "number": 9764,
+        "sha": null,
+        "title": "fix(markdown): fix false diagnostic on nested lists with double blank lines",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T14:17:06+00:00"
+      },
+      {
+        "number": 9718,
+        "sha": null,
+        "title": "feat(formatter): add delimiterSpacing option",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T08:26:31+00:00"
+      },
+      {
+        "number": 9746,
+        "sha": null,
+        "title": "refactor(markdown): replace skipped trivia with formatter-safe recovery",
+        "specd": true,
+        "spec_source": "#9742",
+        "merged_at": "2026-03-31T13:13:15+00:00"
+      },
+      {
+        "number": 9737,
+        "sha": null,
+        "title": "refactor(markdown): emit continuation indent as structural CST node",
+        "specd": true,
+        "spec_source": "#9725",
+        "merged_at": "2026-03-31T19:45:56+00:00"
+      },
+      {
+        "number": 9753,
+        "sha": null,
+        "title": "fix(markdown): replace panicking code with safe fallbacks in lexer",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T18:02:16+00:00"
+      },
+      {
+        "number": 9701,
+        "sha": null,
+        "title": "feat(lint/js): add `noUselessTypeConversion`",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T14:36:33+00:00"
+      },
+      {
+        "number": 9745,
+        "sha": null,
+        "title": "fix(lsp): regression codeAction/resolve",
+        "specd": true,
+        "spec_source": "https://github.com/biomejs/biome/issues/9741",
+        "merged_at": "2026-03-31T14:27:54+00:00"
+      },
+      {
+        "number": 9751,
+        "sha": null,
+        "title": "refactor(markdown): cleanup nits from #9746",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T13:59:57+00:00"
+      },
+      {
+        "number": 9735,
+        "sha": null,
+        "title": "fix(markdown): fix panic on multi-byte characters in emphasis context",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T06:29:21+00:00"
+      },
+      {
+        "number": 9740,
+        "sha": null,
+        "title": "fix(markdown): fix HTML block parsing inside list item continuations",
+        "specd": true,
+        "spec_source": "#9736",
+        "merged_at": "2026-03-30T23:22:05+00:00"
+      },
+      {
+        "number": 9716,
+        "sha": null,
+        "title": "feat(biome_html_analyze): port useHeadingContent a11y rule to HTML",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T21:32:27+00:00"
+      },
+      {
+        "number": 9730,
+        "sha": null,
+        "title": "fix(markdown): fix fenced code block closing inside list items",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T20:03:11+00:00"
+      },
+      {
+        "number": 9441,
+        "sha": null,
+        "title": "fix(lsp): prefer most specific project root",
+        "specd": true,
+        "spec_source": "https://github.com/biomejs/biome/issues/1630)",
+        "merged_at": "2026-03-30T20:02:14+00:00"
+      },
+      {
+        "number": 9732,
+        "sha": null,
+        "title": "test(markdown): add regression tests for mixed list markers across blank lines",
+        "specd": true,
+        "spec_source": "#9729",
+        "merged_at": "2026-03-30T19:47:26+00:00"
+      },
+      {
+        "number": 9728,
+        "sha": null,
+        "title": "fix(html): handle escaped regex literals in astro frontmatter",
+        "specd": true,
+        "spec_source": "#9696",
+        "merged_at": "2026-03-30T18:50:22+00:00"
+      },
+      {
+        "number": 9717,
+        "sha": null,
+        "title": "fix(markdown): preserve nested list indent tokens",
+        "specd": true,
+        "spec_source": "#9715",
+        "merged_at": "2026-03-30T17:21:56+00:00"
+      },
+      {
+        "number": 9713,
+        "sha": null,
+        "title": "feat(md/fmt): format more nodes",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T16:48:14+00:00"
+      },
+      {
+        "number": 9622,
+        "sha": null,
+        "title": "ci: release",
+        "specd": true,
+        "spec_source": "CSS-IN",
+        "merged_at": "2026-03-30T15:23:20+00:00"
+      },
+      {
+        "number": 9714,
+        "sha": null,
+        "title": "chore: update sponsors",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T11:46:34+00:00"
+      },
+      {
+        "number": 9503,
+        "sha": null,
+        "title": "feat: improve noUndeclaredClasses",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T08:05:25+00:00"
+      },
+      {
+        "number": 8987,
+        "sha": null,
+        "title": "feat(lint): port useValidAnchor to html",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-28T15:58:59+00:00"
+      },
+      {
+        "number": 9695,
+        "sha": null,
+        "title": "feat(lint/js): add `noUnsafePlusOperands`",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T00:32:30+00:00"
+      },
+      {
+        "number": 9692,
+        "sha": null,
+        "title": "fix(html): support nested svelte each destructuring",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-29T22:37:21+00:00"
+      },
+      {
+        "number": 9699,
+        "sha": null,
+        "title": "feat(md/fmt): links, codeblocks",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-29T21:14:36+00:00"
+      },
+      {
+        "number": 9320,
+        "sha": null,
+        "title": "fix(lint): handle namespace declaration merging in noUnusedVariables",
+        "specd": true,
+        "spec_source": "#7664",
+        "merged_at": "2026-03-29T20:50:34+00:00"
+      },
+      {
+        "number": 9619,
+        "sha": null,
+        "title": "feat: go-to definition",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-29T18:17:44+00:00"
+      },
+      {
+        "number": 9698,
+        "sha": null,
+        "title": "chore(Cargo.toml): clean up, compile insta in opt-level=3",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-29T18:15:17+00:00"
+      },
+      {
+        "number": 9657,
+        "sha": null,
+        "title": "test(markdown-parser): add criterion benchmarks and CI workflow",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-29T15:41:53+00:00"
+      },
+      {
+        "number": 9643,
+        "sha": null,
+        "title": "fix(useVueValidVBind): don't flag missing arguments",
+        "specd": true,
+        "spec_source": "#9347",
+        "merged_at": "2026-03-28T23:30:08+00:00"
+      },
+      {
+        "number": 9642,
+        "sha": null,
+        "title": "fix(markdown-parser): incorrect inline link R_PAREN token range",
+        "specd": true,
+        "spec_source": "#9640",
+        "merged_at": "2026-03-28T20:36:54+00:00"
+      },
+      {
+        "number": 9630,
+        "sha": null,
+        "title": "fix(lint): preserve ternary branch comments in noNegationElse",
+        "specd": true,
+        "spec_source": "#9629",
+        "merged_at": "2026-03-28T16:26:27+00:00"
+      },
+      {
+        "number": 9627,
+        "sha": null,
+        "title": "fix(cli): improve code actions filtering",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-28T16:20:59+00:00"
+      },
+      {
+        "number": 9631,
+        "sha": null,
+        "title": "fix: avoid unresolved embedded CSS tag ranges",
+        "specd": true,
+        "spec_source": "#9625",
+        "merged_at": "2026-03-27T20:52:02+00:00"
+      },
+      {
+        "number": 9617,
+        "sha": null,
+        "title": "feat(biome_html_analyze): port useAriaActivedescendantWithTabindex to HTML",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-27T21:57:03+00:00"
+      },
+      {
+        "number": 9633,
+        "sha": null,
+        "title": "chore: fix `next` failures",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-27T21:25:19+00:00"
+      },
+      {
+        "number": 5187,
+        "sha": null,
+        "title": "chore: merge next to main",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-02-24T08:18:23+00:00"
       }
     ]
   },
@@ -6309,7 +6645,7 @@
     "mode": "heuristic",
     "average_score": 44,
     "verdicts": {
-      "REVIEW": 370,
+      "REVIEW": 385,
       "REWRITE": 2
     },
     "specs": [
@@ -25698,15 +26034,870 @@
           "No state transitions \u2014 AI may allow invalid transitions",
           "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
         ]
+      },
+      {
+        "pr_number": 9774,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "just test-crate biomemarkdownparser \u2014 all passed",
+            "suggestion": "Goal without test: 'just test-crate biomemarkdownparser \u2014 all passed' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "just test-markdown-conformance \u2014 all passed",
+            "suggestion": "Goal without test: 'just test-markdown-conformance \u2014 all passed' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "just test-crate biomemarkdownformatter \u2014 all passed",
+            "suggestion": "Goal without test: 'just test-crate biomemarkdownformatter \u2014 all passed' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 9746,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 90,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 42,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 8,
+            "type": "ambiguity",
+            "term": "Normal",
+            "suggestion": "Replace 'Normal' with a specific, measurable term"
+          },
+          {
+            "line": 8,
+            "type": "ambiguity",
+            "term": "normal",
+            "suggestion": "Replace 'normal' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "just test-crate biomemarkdownparser \u2014 all passed",
+            "suggestion": "Goal without test: 'just test-crate biomemarkdownparser \u2014 all passed' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "just test-crate biomemarkdownformatter \u2014 all passed",
+            "suggestion": "Goal without test: 'just test-crate biomemarkdownformatter \u2014 all passed' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "just test-markdown-conformance \u2014 652/652",
+            "suggestion": "Goal without test: 'just test-markdown-conformance \u2014 652/652' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 9737,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Add MdContinuationIndent to grammar as an AnyMdLeafBlock",
+            "suggestion": "Goal without test: 'Add MdContinuationIndent to grammar as an AnyMdLeafBlock' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Replace skiplineindent with emitlineindent wrapped in MdContinuationIndent for l",
+            "suggestion": "Goal without test: 'Replace skiplineindent with emitlineindent wrapped in MdCont...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Skip MdContinuationIndent in HTML rendering and block iteration",
+            "suggestion": "Goal without test: 'Skip MdContinuationIndent in HTML rendering and block iterat...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Fix renderfencedcode_block indent computation now that continuation indent is st",
+            "suggestion": "Goal without test: 'Fix renderfencedcode_block indent computation now that conti...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "just test-crate biomemarkdownparser \u2014 all passed",
+            "suggestion": "Goal without test: 'just test-crate biomemarkdownparser \u2014 all passed' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "just test-crate biomemarkdownformatter \u2014 all passed",
+            "suggestion": "Goal without test: 'just test-crate biomemarkdownformatter \u2014 all passed' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "just test-markdown-conformance \u2014 652/652",
+            "suggestion": "Goal without test: 'just test-markdown-conformance \u2014 652/652' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 9745,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 98,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 44,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 24,
+            "type": "ambiguity",
+            "term": "good",
+            "suggestion": "Replace 'good' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Once created, your PR will be automatically labeled according to changed files.",
+            "suggestion": "Goal without test: 'Once created, your PR will be automatically labeled accordin...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 9740,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "just test-crate biomemarkdownparser",
+            "suggestion": "Goal without test: 'just test-crate biomemarkdownparser' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "just test-markdown-conformance \u2014 652/652",
+            "suggestion": "Goal without test: 'just test-markdown-conformance \u2014 652/652' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 9441,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Follow-up: a separate PR will add configuration search modes; this fix only addr",
+            "suggestion": "Goal without test: 'Follow-up: a separate PR will add configuration search modes...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 9732,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 95,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 44,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 8,
+            "type": "ambiguity",
+            "term": "correctly",
+            "suggestion": "Replace 'correctly' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "just test-crate biomemarkdownparser",
+            "suggestion": "Goal without test: 'just test-crate biomemarkdownparser' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "just test-markdown-conformance \u2014 652/652",
+            "suggestion": "Goal without test: 'just test-markdown-conformance \u2014 652/652' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 9728,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 95,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 44,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 6,
+            "type": "ambiguity",
+            "term": "correctly",
+            "suggestion": "Replace 'correctly' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "cargo test -p biomehtmlparser quotes_seen -- --nocapture",
+            "suggestion": "Goal without test: 'cargo test -p biomehtmlparser quotes_seen -- --nocapture' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 9717,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 95,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 44,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 10,
+            "type": "ambiguity",
+            "term": "correctly",
+            "suggestion": "Replace 'correctly' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "just test-crate biomemarkdownparser",
+            "suggestion": "Goal without test: 'just test-crate biomemarkdownparser' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "just test-markdown-conformance",
+            "suggestion": "Goal without test: 'just test-markdown-conformance' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 9622,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 99,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 53,
+            "type": "ambiguity",
+            "term": "correctly",
+            "suggestion": "Replace 'correctly' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "This PR was opened by the [Changesets release](https://github.com/changesets/act",
+            "suggestion": "Goal without test: 'This PR was opened by the [Changesets release](https://githu...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 9320,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 94,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 43,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 33,
+            "type": "ambiguity",
+            "term": "correctly",
+            "suggestion": "Replace 'correctly' with a specific, measurable term"
+          },
+          {
+            "line": 44,
+            "type": "ambiguity",
+            "term": "correctly",
+            "suggestion": "Replace 'correctly' with a specific, measurable term"
+          },
+          {
+            "line": 46,
+            "type": "ambiguity",
+            "term": "clean",
+            "suggestion": "Replace 'clean' with a specific, measurable term"
+          },
+          {
+            "line": 47,
+            "type": "ambiguity",
+            "term": "clean",
+            "suggestion": "Replace 'clean' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Added validNamespaceDeclarationMerging.ts \u2014 const + namespace + export default (",
+            "suggestion": "Goal without test: 'Added validNamespaceDeclarationMerging.ts \u2014 const + namespac...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Added validNamespaceDeclarationMerging2.ts \u2014 export function + namespace (no dia",
+            "suggestion": "Goal without test: 'Added validNamespaceDeclarationMerging2.ts \u2014 export function...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Added validNamespaceDeclarationMerging3.ts \u2014 function + namespace + export defau",
+            "suggestion": "Goal without test: 'Added validNamespaceDeclarationMerging3.ts \u2014 function + name...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Added invalidNamespaceUnused.ts \u2014 standalone namespace and both-unused const+nam",
+            "suggestion": "Goal without test: 'Added invalidNamespaceUnused.ts \u2014 standalone namespace and b...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "All 51 existing noUnusedVariables tests pass",
+            "suggestion": "Goal without test: 'All 51 existing noUnusedVariables tests pass' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "cargo clippy -p biomejsanalyze -- -D warnings passes clean",
+            "suggestion": "Goal without test: 'cargo clippy -p biomejsanalyze -- -D warnings passes clean' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "rustfmt --edition 2024 --check passes clean",
+            "suggestion": "Goal without test: 'rustfmt --edition 2024 --check passes clean' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 9643,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 96,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 44,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 17,
+            "type": "ambiguity",
+            "term": "simple",
+            "suggestion": "Replace 'simple' with a specific, measurable term"
+          },
+          {
+            "line": 23,
+            "type": "ambiguity",
+            "term": "good",
+            "suggestion": "Replace 'good' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Once created, your PR will be automatically labeled according to changed files.",
+            "suggestion": "Goal without test: 'Once created, your PR will be automatically labeled accordin...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Pretty simple fix. The v-bind without argument is valid because you can put an o",
+            "suggestion": "Goal without test: 'Pretty simple fix. The v-bind without argument is valid beca...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 9642,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 97,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 44,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 19,
+            "type": "ambiguity",
+            "term": "clean",
+            "suggestion": "Replace 'clean' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Root cause: skiplinkdefseparatortokens advanced the lexer without emitting tree-",
+            "suggestion": "Goal without test: 'Root cause: skiplinkdefseparatortokens advanced the lexer wi...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Fix: consume post-title separator whitespace into the title's MdInlineItemList v",
+            "suggestion": "Goal without test: 'Fix: consume post-title separator whitespace into the title'...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Removed the now-dead skiplinkdefseparatortokens helper.",
+            "suggestion": "Goal without test: 'Removed the now-dead skiplinkdefseparatortokens helper.' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Only the post-title path is changed; the no-title case ([link](/url   )) was alr",
+            "suggestion": "Goal without test: 'Only the post-title path is changed; the no-title case ([lin...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "cargo test -p biomemarkdownparser",
+            "suggestion": "Goal without test: 'cargo test -p biomemarkdownparser' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "just test-markdown-conformance",
+            "suggestion": "Goal without test: 'just test-markdown-conformance' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Snapshot updated: inlinelinkwhitespace.md.snap shows clean RPAREN@67..68 \")\" wit",
+            "suggestion": "Goal without test: 'Snapshot updated: inlinelinkwhitespace.md.snap shows clean R...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "No-title, multiline title, and link definition cases unchanged",
+            "suggestion": "Goal without test: 'No-title, multiline title, and link definition cases unchang...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 9630,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "preserve branch comments when style/noNegationElse inverts ternary expressions",
+            "suggestion": "Goal without test: 'preserve branch comments when style/noNegationElse inverts t...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "swap the ? / : trivia alongside the consequent and alternate expressions",
+            "suggestion": "Goal without test: 'swap the ? / : trivia alongside the consequent and alternate...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "update the existing spec snapshot to lock in the corrected fixer output",
+            "suggestion": "Goal without test: 'update the existing spec snapshot to lock in the corrected f...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "cargo test -p biomejsanalyze --test spectests nonegation_else",
+            "suggestion": "Goal without test: 'cargo test -p biomejsanalyze --test spectests nonegation_els...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 9631,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "cargo test -p biomeservice issue9625",
+            "suggestion": "Goal without test: 'cargo test -p biomeservice issue9625' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "cargo test -p biomeservice formatjswithembedded_css",
+            "suggestion": "Goal without test: 'cargo test -p biomeservice formatjswithembedded_css' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "cargo fmt --all --check",
+            "suggestion": "Goal without test: 'cargo fmt --all --check' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Reproduced the original CLI failure before the patch and verified it no longer t",
+            "suggestion": "Goal without test: 'Reproduced the original CLI failure before the patch and ver...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Added a changeset.",
+            "suggestion": "Goal without test: 'Added a changeset.' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
       }
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.2177,
-    "unspecd_rework_rate": 0.1711,
-    "delta": 0.0467,
-    "specd_sample_size": 372,
-    "unspecd_sample_size": 415,
+    "specd_rework_rate": 0.2377,
+    "unspecd_rework_rate": 0.181,
+    "delta": 0.0567,
+    "specd_sample_size": 387,
+    "unspecd_sample_size": 442,
     "significance": "significant",
     "signals": [
       {
@@ -25831,11 +27022,25 @@
       },
       {
         "type": "bug-fix",
-        "source": "7853",
-        "target": "7852",
+        "source": "7852",
+        "target": "7665",
         "classification": "heuristic",
         "overlapping_files": [
           "crates/biome_css_factory/src/generated/node_factory.rs",
+          "crates/biome_css_parser/src/lexer/mod.rs",
+          "crates/biome_css_syntax/src/generated/nodes.rs",
+          "crates/biome_css_syntax/src/generated/nodes_mut.rs",
+          "xtask/codegen/css.ungram"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7853",
+        "target": "7665",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "crates/biome_css_factory/src/generated/node_factory.rs",
+          "crates/biome_css_factory/src/generated/syntax_factory.rs",
           "crates/biome_css_syntax/src/generated/nodes.rs",
           "crates/biome_css_syntax/src/generated/nodes_mut.rs",
           "xtask/codegen/css.ungram"
@@ -25886,15 +27091,20 @@
       {
         "type": "bug-fix",
         "source": "7918",
-        "target": "7866",
+        "target": "7665",
         "classification": "heuristic",
         "overlapping_files": [
           "crates/biome_css_factory/src/generated/node_factory.rs",
           "crates/biome_css_factory/src/generated/syntax_factory.rs",
-          "crates/biome_css_parser/src/syntax/at_rule/tailwind.rs",
+          "crates/biome_css_formatter/src/generated.rs",
+          "crates/biome_css_parser/src/lexer/mod.rs",
+          "crates/biome_css_syntax/src/generated/kind.rs",
+          "crates/biome_css_syntax/src/generated/macros.rs",
           "crates/biome_css_syntax/src/generated/nodes.rs",
           "crates/biome_css_syntax/src/generated/nodes_mut.rs",
-          "xtask/codegen/css.ungram"
+          "crates/biome_grit_patterns/src/grit_target_language/css_target_language/generated_mappings.rs",
+          "xtask/codegen/css.ungram",
+          "xtask/codegen/src/css_kinds_src.rs"
         ]
       },
       {
@@ -25904,6 +27114,15 @@
         "classification": "heuristic",
         "overlapping_files": [
           "crates/biome_html_parser/src/lexer/mod.rs"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7959",
+        "target": "7702",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "crates/biome_lsp/src/handlers/formatting.rs"
         ]
       },
       {
@@ -25949,6 +27168,15 @@
       },
       {
         "type": "bug-fix",
+        "source": "7993",
+        "target": "7769",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "RELEASES.md"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "7989",
         "target": "7969",
         "classification": "heuristic",
@@ -25959,20 +27187,29 @@
       {
         "type": "bug-fix",
         "source": "7889",
-        "target": "8000",
+        "target": "7562",
         "classification": "heuristic",
         "overlapping_files": [
-          "Cargo.lock"
+          "Cargo.lock",
+          "crates/biome_console/Cargo.toml",
+          "crates/biome_diagnostics/Cargo.toml",
+          "crates/biome_service/Cargo.toml",
+          "crates/biome_wasm/Cargo.toml",
+          "xtask/coverage/Cargo.toml"
         ]
       },
       {
         "type": "bug-fix",
         "source": "8037",
-        "target": "7878",
+        "target": "7702",
         "classification": "heuristic",
         "overlapping_files": [
           "crates/biome_cli/tests/cases/handle_astro_files.rs",
-          "crates/biome_service/src/file_handlers/html.rs"
+          "crates/biome_js_syntax/src/file_source.rs",
+          "crates/biome_service/src/file_handlers/html.rs",
+          "crates/biome_service/src/file_handlers/mod.rs",
+          "packages/@biomejs/backend-jsonrpc/src/workspace.ts",
+          "xtask/rules_check/src/lib.rs"
         ]
       },
       {
@@ -26029,9 +27266,10 @@
       {
         "type": "bug-fix",
         "source": "8058",
-        "target": "7961",
+        "target": "7789",
         "classification": "heuristic",
         "overlapping_files": [
+          "crates/biome_lsp/src/server.rs",
           "crates/biome_lsp/src/session.rs"
         ]
       },
@@ -26053,6 +27291,19 @@
         "classification": "heuristic",
         "overlapping_files": [
           "crates/biome_js_analyze/src/lint/style/use_readonly_class_properties.rs"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "7287",
+        "target": "7756",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "crates/biome_cli/tests/snapshots/main_cases_linter_domains/does_enable_test_rules.snap",
+          "crates/biome_cli/tests/snapshots/main_cases_linter_domains/does_enable_test_rules_when_recommended_rules_are_disabled_but_domain_is_enabled.snap",
+          "crates/biome_cli/tests/snapshots/main_cases_rules_via_dependencies/enables_test_globals_via_dependencies.snap",
+          "crates/biome_js_analyze/src/lint/suspicious/no_duplicate_test_hooks.rs",
+          "crates/biome_js_analyze/tests/specs/suspicious/noDuplicateTestHooks/invalid.js.snap"
         ]
       },
       {
@@ -26103,10 +27354,12 @@
       {
         "type": "bug-fix",
         "source": "8102",
-        "target": "8044",
+        "target": "7758",
         "classification": "heuristic",
         "overlapping_files": [
-          "crates/biome_js_analyze/src/lint/style/use_react_function_components.rs"
+          "crates/biome_js_analyze/src/lint/style/use_react_function_components.rs",
+          "crates/biome_js_analyze/tests/specs/style/useReactFunctionComponents/valid.jsx",
+          "crates/biome_js_analyze/tests/specs/style/useReactFunctionComponents/valid.jsx.snap"
         ]
       },
       {
@@ -26225,6 +27478,15 @@
       },
       {
         "type": "bug-fix",
+        "source": "8175",
+        "target": "7968",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "crates/biome_css_formatter/src/utils/string_utils.rs"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "8178",
         "target": "8084",
         "classification": "heuristic",
@@ -26258,6 +27520,15 @@
           "crates/biome_js_analyze/tests/specs/correctness/noUnusedPrivateClassMembers/valid_aligned_with_semantic_class.js.snap",
           "crates/biome_js_analyze/tests/specs/correctness/noUnusedPrivateClassMembers/valid_dynamic_access.ts",
           "crates/biome_js_analyze/tests/specs/correctness/noUnusedPrivateClassMembers/valid_dynamic_access.ts.snap"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "6765",
+        "target": "7941",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "crates/biome_js_analyze/src/lint/nursery/no_import_cycles.rs"
         ]
       },
       {
@@ -26340,6 +27611,24 @@
       },
       {
         "type": "bug-fix",
+        "source": "8259",
+        "target": "7941",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "crates/biome_js_analyze/src/lint/style/no_parameter_assign.rs"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "8249",
+        "target": "7901",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "crates/biome_lsp/src/handlers/text_document.rs"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "8260",
         "target": "8249",
         "classification": "heuristic",
@@ -26358,6 +27647,16 @@
           "crates/biome_js_analyze/tests/specs/correctness/noUnusedImports/issue_7876_tsdoc_linkcode.ts.snap",
           "crates/biome_js_analyze/tests/specs/correctness/noUnusedImports/issue_7876_tsdoc_linkplain.ts",
           "crates/biome_js_analyze/tests/specs/correctness/noUnusedImports/issue_7876_tsdoc_linkplain.ts.snap"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "8302",
+        "target": "8037",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "crates/biome_cli/tests/cases/handle_astro_files.rs",
+          "crates/biome_js_syntax/src/file_source.rs"
         ]
       },
       {
@@ -26421,12 +27720,13 @@
       {
         "type": "bug-fix",
         "source": "8232",
-        "target": "8335",
+        "target": "8108",
         "classification": "heuristic",
         "overlapping_files": [
           "crates/biome_cli/src/execute/migrate/eslint_any_rule_to_biome.rs",
           "crates/biome_configuration/src/analyzer/linter/rules.rs",
           "crates/biome_diagnostics_categories/src/categories.rs",
+          "crates/biome_html_analyze/src/lint/nursery.rs",
           "crates/biome_js_analyze/src/lint/nursery.rs",
           "crates/biome_rule_options/src/lib.rs",
           "packages/@biomejs/backend-jsonrpc/src/workspace.ts",
@@ -26445,11 +27745,12 @@
       {
         "type": "bug-fix",
         "source": "8386",
-        "target": "8263",
+        "target": "8129",
         "classification": "heuristic",
         "overlapping_files": [
           "packages/@biomejs/backend-jsonrpc/package.json",
           "packages/@biomejs/js-api/package.json",
+          "packages/aria-data/package.json",
           "pnpm-lock.yaml"
         ]
       },
@@ -26478,6 +27779,19 @@
         "classification": "heuristic",
         "overlapping_files": [
           "crates/biome_css_analyze/tests/spec_tests.rs"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "8411",
+        "target": "8202",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "crates/biome_grit_patterns/src/grit_target_language/js_target_language/generated_mappings.rs",
+          "crates/biome_grit_patterns/tests/specs/tsx/jsx_attributes.grit",
+          "crates/biome_grit_patterns/tests/specs/tsx/jsx_attributes.snap",
+          "crates/biome_grit_patterns/tests/specs/tsx/jsx_attributes.tsx",
+          "xtask/codegen/src/generate_grit_mappings.rs"
         ]
       },
       {
@@ -26522,11 +27836,12 @@
       {
         "type": "bug-fix",
         "source": "8461",
-        "target": "8386",
+        "target": "8131",
         "classification": "heuristic",
         "overlapping_files": [
           "packages/@biomejs/backend-jsonrpc/package.json",
           "packages/@biomejs/js-api/package.json",
+          "packages/tailwindcss-config-analyzer/package.json",
           "pnpm-lock.yaml"
         ]
       },
@@ -26555,10 +27870,11 @@
       {
         "type": "bug-fix",
         "source": "8420",
-        "target": "8426",
+        "target": "8171",
         "classification": "heuristic",
         "overlapping_files": [
-          "crates/biome_cli/src/execute/migrate/eslint_any_rule_to_biome.rs"
+          "crates/biome_cli/src/execute/migrate/eslint_any_rule_to_biome.rs",
+          "crates/biome_js_analyze/src/lint/nursery/no_leaked_render.rs"
         ]
       },
       {
@@ -26583,6 +27899,18 @@
         "overlapping_files": [
           "crates/biome_html_analyze/src/lint/nursery/no_ambiguous_anchor_text.rs",
           "crates/biome_js_analyze/src/lint/nursery/no_ambiguous_anchor_text.rs"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "8496",
+        "target": "8326",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "crates/biome_json_analyze/Cargo.toml",
+          "crates/biome_json_analyze/src/lib.rs",
+          "crates/biome_json_analyze/src/lint/suspicious/no_biome_first_exception.rs",
+          "crates/biome_json_analyze/src/services/config_source.rs"
         ]
       },
       {
@@ -26622,11 +27950,12 @@
       {
         "type": "bug-fix",
         "source": "8531",
-        "target": "7973",
+        "target": "8255",
         "classification": "heuristic",
         "overlapping_files": [
           "crates/biome_css_factory/src/generated/node_factory.rs",
           "crates/biome_css_factory/src/generated/syntax_factory.rs",
+          "crates/biome_css_formatter/src/css/lists/mod.rs",
           "crates/biome_css_formatter/src/generated.rs",
           "crates/biome_css_syntax/src/generated/kind.rs",
           "crates/biome_css_syntax/src/generated/macros.rs",
@@ -26688,6 +28017,15 @@
       },
       {
         "type": "bug-fix",
+        "source": "8606",
+        "target": "8346",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "crates/biome_js_type_info/src/local_inference.rs"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "8615",
         "target": "8580",
         "classification": "heuristic",
@@ -26698,9 +28036,11 @@
       {
         "type": "bug-fix",
         "source": "8537",
-        "target": "8523",
+        "target": "8306",
         "classification": "heuristic",
         "overlapping_files": [
+          "crates/biome_js_analyze/src/lint/nursery/no_leaked_render.rs",
+          "crates/biome_js_analyze/tests/specs/nursery/noLeakedRender/invalid.jsx",
           "crates/biome_js_analyze/tests/specs/nursery/noLeakedRender/invalid.jsx.snap"
         ]
       },
@@ -26735,13 +28075,15 @@
       {
         "type": "bug-fix",
         "source": "8508",
-        "target": "8485",
+        "target": "8326",
         "classification": "heuristic",
         "overlapping_files": [
           "crates/biome_cli/src/commands/mod.rs",
-          "crates/biome_cli/src/execute/process_file.rs",
-          "crates/biome_cli/src/execute/std_in.rs",
-          "crates/biome_cli/src/execute/traverse.rs"
+          "crates/biome_formatter_test/src/spec.rs",
+          "crates/biome_lsp/src/session.rs",
+          "crates/biome_service/src/workspace.rs",
+          "crates/biome_service/src/workspace/server.rs",
+          "packages/@biomejs/backend-jsonrpc/src/workspace.ts"
         ]
       },
       {
@@ -26780,10 +28122,15 @@
       {
         "type": "bug-fix",
         "source": "8700",
-        "target": "8642",
+        "target": "8399",
         "classification": "heuristic",
         "overlapping_files": [
+          "crates/biome_cli/tests/cases/handle_astro_files.rs",
           "crates/biome_cli/tests/cases/handle_svelte_files.rs",
+          "crates/biome_cli/tests/cases/handle_vue_files.rs",
+          "crates/biome_cli/tests/snapshots/main_cases_handle_astro_files/full_support.snap",
+          "crates/biome_cli/tests/snapshots/main_cases_handle_svelte_files/full_support.snap",
+          "crates/biome_cli/tests/snapshots/main_cases_handle_vue_files/full_support.snap",
           "crates/biome_service/src/file_handlers/html.rs"
         ]
       },
@@ -26794,6 +28141,15 @@
         "classification": "heuristic",
         "overlapping_files": [
           "crates/biome_js_analyze/src/lint/correctness/no_unused_variables.rs"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "8725",
+        "target": "8399",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "crates/biome_css_parser/src/lexer/mod.rs"
         ]
       },
       {
@@ -26829,6 +28185,19 @@
       },
       {
         "type": "bug-fix",
+        "source": "8556",
+        "target": "8412",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "crates/biome_html_analyze/src/lint/a11y/no_svg_without_title.rs",
+          "crates/biome_html_analyze/tests/specs/a11y/noSvgWithoutTitle/invalid.html",
+          "crates/biome_html_analyze/tests/specs/a11y/noSvgWithoutTitle/invalid.html.snap",
+          "crates/biome_html_analyze/tests/specs/a11y/noSvgWithoutTitle/valid.html",
+          "crates/biome_html_analyze/tests/specs/a11y/noSvgWithoutTitle/valid.html.snap"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "8789",
         "target": "8703",
         "classification": "heuristic",
@@ -26839,9 +28208,12 @@
       {
         "type": "bug-fix",
         "source": "8798",
-        "target": "8794",
+        "target": "8542",
         "classification": "heuristic",
         "overlapping_files": [
+          "packages/@biomejs/backend-jsonrpc/package.json",
+          "packages/@biomejs/js-api/package.json",
+          "packages/tailwindcss-config-analyzer/package.json",
           "pnpm-lock.yaml"
         ]
       },
@@ -26859,20 +28231,31 @@
       {
         "type": "bug-fix",
         "source": "8856",
-        "target": "8817",
+        "target": "8719",
         "classification": "heuristic",
         "overlapping_files": [
-          "crates/biome_html_parser/src/syntax/vue.rs"
+          "crates/biome_html_parser/src/lexer/mod.rs",
+          "crates/biome_html_parser/src/token_source.rs"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "8850",
+        "target": "8725",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "crates/biome_css_parser/src/syntax/at_rule/tailwind.rs"
         ]
       },
       {
         "type": "bug-fix",
         "source": "8815",
-        "target": "8801",
+        "target": "8719",
         "classification": "heuristic",
         "overlapping_files": [
           "Cargo.lock",
-          "Cargo.toml"
+          "Cargo.toml",
+          "crates/biome_html_analyze/Cargo.toml"
         ]
       },
       {
@@ -26922,11 +28305,26 @@
       {
         "type": "bug-fix",
         "source": "8854",
-        "target": "8824",
+        "target": "8508",
         "classification": "heuristic",
         "overlapping_files": [
-          "crates/biome_cli/tests/cases/handle_astro_files.rs",
-          "crates/biome_service/src/workspace/server.rs"
+          "crates/biome_formatter_test/src/spec.rs",
+          "crates/biome_lsp/src/handlers/analysis.rs",
+          "crates/biome_lsp/src/handlers/formatting.rs",
+          "crates/biome_lsp/src/session.rs",
+          "crates/biome_service/src/projects.rs",
+          "crates/biome_service/src/workspace.rs",
+          "crates/biome_service/src/workspace/server.rs",
+          "packages/@biomejs/backend-jsonrpc/src/workspace.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "8900",
+        "target": "8767",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "crates/biome_js_analyze/src/lint/correctness/use_exhaustive_dependencies.rs"
         ]
       },
       {
@@ -26991,12 +28389,14 @@
       {
         "type": "bug-fix",
         "source": "8918",
-        "target": "8886",
+        "target": "8700",
         "classification": "heuristic",
         "overlapping_files": [
           "crates/biome_cli/tests/cases/handle_astro_files.rs",
           "crates/biome_cli/tests/cases/handle_svelte_files.rs",
-          "crates/biome_cli/tests/cases/handle_vue_files.rs"
+          "crates/biome_cli/tests/cases/handle_vue_files.rs",
+          "crates/biome_cli/tests/snapshots/main_cases_handle_vue_files/embedded_bindings_are_tracked_correctly.snap",
+          "crates/biome_service/src/file_handlers/html.rs"
         ]
       },
       {
@@ -27142,9 +28542,10 @@
       {
         "type": "bug-fix",
         "source": "9012",
-        "target": "8623",
+        "target": "8562",
         "classification": "heuristic",
         "overlapping_files": [
+          "crates/biome_analyze/src/analyzer_plugin.rs",
           "crates/biome_analyze/src/lib.rs"
         ]
       },
@@ -27171,11 +28572,16 @@
       {
         "type": "bug-fix",
         "source": "9054",
-        "target": "9051",
+        "target": "8854",
         "classification": "heuristic",
         "overlapping_files": [
-          "crates/biome_cli/tests/cases/handle_vue_files.rs",
-          "crates/biome_cli/tests/snapshots/main_cases_handle_vue_files/lint_vue_should_not_add_extra_newlines_in_embedded_snippet.snap"
+          "crates/biome_cli/tests/snapshots/main_cases_handle_astro_files/full_support.snap",
+          "crates/biome_cli/tests/snapshots/main_cases_handle_astro_files/issue_7912.snap",
+          "crates/biome_cli/tests/snapshots/main_cases_handle_svelte_files/full_support.snap",
+          "crates/biome_cli/tests/snapshots/main_cases_handle_svelte_files/full_support_ts.snap",
+          "crates/biome_cli/tests/snapshots/main_cases_handle_vue_files/full_support.snap",
+          "crates/biome_cli/tests/snapshots/main_cases_handle_vue_files/full_support_ts.snap",
+          "crates/biome_cli/tests/snapshots/main_cases_html/should_apply_fixes_to_embedded_languages.snap"
         ]
       },
       {
@@ -27208,10 +28614,12 @@
       {
         "type": "bug-fix",
         "source": "9049",
-        "target": "9060",
+        "target": "8854",
         "classification": "heuristic",
         "overlapping_files": [
-          "crates/biome_lsp/src/session.rs"
+          "crates/biome_lsp/src/session.rs",
+          "crates/biome_service/src/workspace.rs",
+          "crates/biome_service/src/workspace/server.rs"
         ]
       },
       {
@@ -27274,6 +28682,15 @@
         "classification": "heuristic",
         "overlapping_files": [
           "crates/biome_cli/src/runner/mod.rs"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "9100",
+        "target": "8814",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "crates/biome_css_analyze/src/lint/correctness/no_unknown_pseudo_element.rs"
         ]
       },
       {
@@ -27363,10 +28780,12 @@
       {
         "type": "bug-fix",
         "source": "9162",
-        "target": "9148",
+        "target": "8886",
         "classification": "heuristic",
         "overlapping_files": [
-          "crates/biome_html_parser/src/lexer/mod.rs"
+          "crates/biome_html_parser/src/lexer/mod.rs",
+          "crates/biome_html_parser/tests/html_specs/ok/vue/component_with_attributes.vue",
+          "crates/biome_html_parser/tests/html_specs/ok/vue/component_with_attributes.vue.snap"
         ]
       },
       {
@@ -27381,10 +28800,12 @@
       {
         "type": "bug-fix",
         "source": "9203",
-        "target": "9160",
+        "target": "8869",
         "classification": "heuristic",
         "overlapping_files": [
           "packages/@biomejs/backend-jsonrpc/package.json",
+          "packages/aria-data/package.json",
+          "packages/prettier-compare/package.json",
           "pnpm-lock.yaml"
         ]
       },
@@ -27401,21 +28822,29 @@
       {
         "type": "bug-fix",
         "source": "9221",
-        "target": "9191",
+        "target": "8621",
         "classification": "heuristic",
         "overlapping_files": [
-          "crates/biome_cli/tests/cases/mod.rs"
+          "crates/biome_cli/src/reporter/json.rs",
+          "crates/biome_cli/src/reporter/mod.rs",
+          "crates/biome_cli/tests/cases/mod.rs",
+          "crates/biome_cli/tests/snapshots/main_commands_format/print_json.snap",
+          "crates/biome_cli/tests/snapshots/main_commands_format/print_json_pretty.snap"
         ]
       },
       {
         "type": "bug-fix",
         "source": "9219",
-        "target": "9167",
+        "target": "8962",
         "classification": "heuristic",
         "overlapping_files": [
-          "crates/biome_markdown_parser/src/syntax/mod.rs",
-          "crates/biome_markdown_parser/src/syntax/quote.rs",
-          "crates/biome_markdown_parser/tests/md_test_suite/ok/list_continuation_edge_cases.md.snap"
+          "crates/biome_markdown_formatter/src/generated.rs",
+          "crates/biome_markdown_formatter/src/markdown/any/block.rs",
+          "crates/biome_markdown_formatter/src/markdown/any/inline.rs",
+          "crates/biome_markdown_formatter/src/markdown/auxiliary/mod.rs",
+          "crates/biome_markdown_parser/src/to_html.rs",
+          "crates/biome_markdown_syntax/src/generated/nodes.rs",
+          "xtask/codegen/markdown.ungram"
         ]
       },
       {
@@ -27439,10 +28868,12 @@
       {
         "type": "bug-fix",
         "source": "9243",
-        "target": "9033",
+        "target": "8900",
         "classification": "heuristic",
         "overlapping_files": [
-          "crates/biome_js_analyze/src/lint/correctness/use_exhaustive_dependencies.rs"
+          "crates/biome_js_analyze/src/lint/correctness/use_exhaustive_dependencies.rs",
+          "crates/biome_js_analyze/tests/specs/correctness/useExhaustiveDependencies/issue8802.ts.snap",
+          "crates/biome_js_analyze/tests/specs/correctness/useExhaustiveDependencies/issue8883.tsx.snap"
         ]
       },
       {
@@ -27568,6 +28999,16 @@
       },
       {
         "type": "bug-fix",
+        "source": "9323",
+        "target": "9049",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "crates/biome_lsp/src/handlers/text_document.rs",
+          "crates/biome_lsp/src/session.rs"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "9302",
         "target": "9173",
         "classification": "heuristic",
@@ -27672,6 +29113,15 @@
       },
       {
         "type": "bug-fix",
+        "source": "8658",
+        "target": "8361",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "crates/biome_service/src/file_handlers/mod.rs"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "9043",
         "target": "9421",
         "classification": "heuristic",
@@ -27752,10 +29202,11 @@
       {
         "type": "bug-fix",
         "source": "9473",
-        "target": "9443",
+        "target": "9053",
         "classification": "heuristic",
         "overlapping_files": [
-          "crates/biome_cli/tests/cases/handle_astro_files.rs"
+          "crates/biome_html_syntax/src/directive_ext.rs",
+          "crates/biome_service/src/file_handlers/html.rs"
         ]
       },
       {
@@ -27816,11 +29267,14 @@
       {
         "type": "bug-fix",
         "source": "9532",
-        "target": "9416",
+        "target": "8361",
         "classification": "heuristic",
         "overlapping_files": [
+          "crates/biome_service/src/file_handlers/css.rs",
           "crates/biome_service/src/file_handlers/html.rs",
-          "crates/biome_service/src/file_handlers/javascript.rs"
+          "crates/biome_service/src/file_handlers/javascript.rs",
+          "crates/biome_service/src/file_handlers/mod.rs",
+          "crates/biome_service/src/workspace/server.rs"
         ]
       },
       {
@@ -27876,6 +29330,15 @@
         "classification": "heuristic",
         "overlapping_files": [
           "crates/biome_service/src/file_handlers/mod.rs"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "9455",
+        "target": "9154",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "crates/biome_js_analyze/src/frameworks/playwright.rs"
         ]
       },
       {
@@ -27964,9 +29427,10 @@
       {
         "type": "bug-fix",
         "source": "9557",
-        "target": "9392",
+        "target": "9323",
         "classification": "heuristic",
         "overlapping_files": [
+          "crates/biome_lsp/src/server.rs",
           "crates/biome_lsp/src/server.tests.rs",
           "crates/biome_lsp/src/session.rs"
         ]
@@ -28009,26 +29473,240 @@
           "crates/biome_cli/tests/cases/linter_domains.rs",
           "crates/biome_service/src/file_handlers/mod.rs"
         ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "9631",
+        "target": "9416",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "crates/biome_js_formatter/src/js/auxiliary/template_chunk_element.rs",
+          "crates/biome_service/src/workspace/server.tests.rs"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "9627",
+        "target": "9152",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "Cargo.lock",
+          "crates/biome_analyze/src/signals.rs",
+          "crates/biome_cli/tests/snapshots/main_cases_css_parsing/check_css_parse_css_modules_false.snap",
+          "crates/biome_cli/tests/snapshots/main_cases_css_parsing/ci_css_parse_css_modules_false.snap",
+          "crates/biome_cli/tests/snapshots/main_cases_reporter_summary/reports_diagnostics_summary_check_command.snap",
+          "crates/biome_cli/tests/snapshots/main_cases_reporter_summary/reports_diagnostics_summary_check_verbose_command.snap",
+          "crates/biome_cli/tests/snapshots/main_cases_reporter_summary/reports_diagnostics_summary_check_verbose_command_destination.snap",
+          "crates/biome_cli/tests/snapshots/main_cases_reporter_summary/reports_diagnostics_summary_ci_command.snap",
+          "crates/biome_cli/tests/snapshots/main_cases_reporter_terminal/reports_diagnostics_check_command_verbose.snap",
+          "crates/biome_cli/tests/snapshots/main_cases_reporter_terminal/reports_diagnostics_check_write_command_file.snap",
+          "crates/biome_cli/tests/snapshots/main_cases_reporter_terminal/reports_diagnostics_check_write_command_verbose.snap",
+          "crates/biome_css_analyze/src/lib.rs",
+          "crates/biome_css_analyze/tests/spec_tests.rs"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "9630",
+        "target": "9351",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "crates/biome_js_analyze/src/lint/style/no_negation_else.rs",
+          "crates/biome_js_analyze/tests/specs/style/noNegationElse/invalid.js",
+          "crates/biome_js_analyze/tests/specs/style/noNegationElse/invalid.js.snap"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "9642",
+        "target": "9452",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "crates/biome_markdown_parser/src/syntax/inline/links.rs"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "9643",
+        "target": "9617",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/@biomejs/backend-jsonrpc/src/workspace.ts",
+          "packages/@biomejs/biome/configuration_schema.json"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "9320",
+        "target": "9397",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "crates/biome_js_analyze/src/lint/correctness/no_unused_variables.rs"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "9692",
+        "target": "9609",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "crates/biome_html_parser/src/syntax/svelte.rs"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "9717",
+        "target": "9427",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "crates/biome_markdown_parser/src/parser.rs",
+          "crates/biome_markdown_parser/src/syntax/list.rs",
+          "crates/biome_markdown_parser/src/syntax/mod.rs",
+          "crates/biome_markdown_parser/tests/md_test_suite/ok/list_continuation_edge_cases.md.snap",
+          "crates/biome_markdown_parser/tests/md_test_suite/ok/list_indentation.md.snap",
+          "crates/biome_markdown_parser/tests/md_test_suite/ok/list_tightness.md.snap",
+          "crates/biome_markdown_parser/tests/md_test_suite/ok/multiline_list.md.snap"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "9728",
+        "target": "9609",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "crates/biome_html_parser/src/lexer/mod.rs"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "9732",
+        "target": "9717",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "crates/biome_markdown_parser/tests/spec_test.rs"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "9441",
+        "target": "9619",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "crates/biome_lsp/src/handlers/text_document.rs",
+          "crates/biome_lsp/src/server.rs",
+          "crates/biome_lsp/src/server.tests.rs",
+          "crates/biome_lsp/src/session.rs"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "9730",
+        "target": "9321",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "crates/biome_markdown_parser/src/syntax/fenced_code_block.rs",
+          "crates/biome_markdown_parser/tests/spec_test.rs"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "9740",
+        "target": "9331",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "crates/biome_markdown_formatter/tests/specs/prettier/markdown/html/multiline-with-trailing-space.md.snap",
+          "crates/biome_markdown_formatter/tests/specs/prettier/markdown/html/multiline.md.snap"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "9735",
+        "target": "9717",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "crates/biome_markdown_parser/src/syntax/mod.rs",
+          "crates/biome_markdown_parser/tests/spec_test.rs"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "9745",
+        "target": "9441",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "crates/biome_lsp/src/server.tests.rs"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "9753",
+        "target": "9746",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "crates/biome_markdown_parser/src/lexer/mod.rs",
+          "crates/biome_markdown_parser/src/syntax/list.rs"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "9764",
+        "target": "9746",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "crates/biome_markdown_parser/src/syntax/list.rs",
+          "crates/biome_markdown_parser/tests/spec_test.rs"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "9765",
+        "target": "9766",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "crates/biome_markdown_parser/src/syntax/fenced_code_block.rs",
+          "crates/biome_markdown_parser/src/syntax/mod.rs"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "9774",
+        "target": "9766",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "crates/biome_markdown_parser/src/syntax/list.rs"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "9776",
+        "target": "9746",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "crates/biome_markdown_parser/src/syntax/list.rs",
+          "crates/biome_markdown_parser/tests/md_test_suite/ok/list_continuation_edge_cases.md.snap",
+          "crates/biome_markdown_parser/tests/md_test_suite/ok/list_indentation.md.snap",
+          "crates/biome_markdown_parser/tests/spec_test.rs"
+        ]
       }
     ],
     "by_complexity": {
       "small": {
-        "specd_rework_rate": 0.1098,
-        "unspecd_rework_rate": 0.0585,
-        "specd_count": 82,
-        "unspecd_count": 325
+        "specd_rework_rate": 0.0941,
+        "unspecd_rework_rate": 0.0588,
+        "specd_count": 85,
+        "unspecd_count": 340
       },
       "medium": {
-        "specd_rework_rate": 0.1902,
-        "unspecd_rework_rate": 0.1805,
-        "specd_count": 163,
-        "unspecd_count": 133
+        "specd_rework_rate": 0.2047,
+        "unspecd_rework_rate": 0.2113,
+        "specd_count": 171,
+        "unspecd_count": 142
       },
       "large": {
-        "specd_rework_rate": 0.3228,
-        "unspecd_rework_rate": 0.2685,
-        "specd_count": 127,
-        "unspecd_count": 149
+        "specd_rework_rate": 0.374,
+        "unspecd_rework_rate": 0.2716,
+        "specd_count": 131,
+        "unspecd_count": 162
       }
     }
   }

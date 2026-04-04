@@ -1,11 +1,11 @@
 {
   "repo": "tailwindlabs/tailwindcss",
-  "lookback_days": 90,
-  "rework_window_days": 14,
+  "lookback_days": 365,
+  "rework_window_days": 30,
   "coverage": {
-    "coverage_pct": 20,
-    "total_prs": 169,
-    "specd_prs": 34,
+    "coverage_pct": 21,
+    "total_prs": 173,
+    "specd_prs": 36,
     "prs": [
       {
         "number": 19851,
@@ -1358,6 +1358,38 @@
         "specd": true,
         "spec_source": "#18002",
         "merged_at": "2025-11-18T17:38:57+00:00"
+      },
+      {
+        "number": 4044,
+        "sha": null,
+        "title": "use href to get the full path of the file",
+        "specd": true,
+        "spec_source": "https://github.com/tailwindlabs/tailwindcss/issues/4043",
+        "merged_at": "2021-05-07T18:48:09+00:00"
+      },
+      {
+        "number": 4272,
+        "sha": null,
+        "title": "[JIT] Add support for \"raw\" purge content",
+        "specd": true,
+        "spec_source": "#4094",
+        "merged_at": "2021-05-07T12:58:58+00:00"
+      },
+      {
+        "number": 19862,
+        "sha": null,
+        "title": "Use `json` preprocessor for new-line delimited JSON files",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-26T22:42:03+00:00"
+      },
+      {
+        "number": 19858,
+        "sha": null,
+        "title": "Canonicalize negative arbitrary values",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-26T13:44:09+00:00"
       }
     ]
   },
@@ -1365,7 +1397,7 @@
     "mode": "heuristic",
     "average_score": 45,
     "verdicts": {
-      "REVIEW": 34
+      "REVIEW": 36
     },
     "specs": [
       {
@@ -2932,17 +2964,108 @@
           "No state transitions \u2014 AI may allow invalid transitions",
           "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
         ]
+      },
+      {
+        "pr_number": 4044,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 4272,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 95,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 44,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 14,
+            "type": "ambiguity",
+            "term": "appropriate",
+            "suggestion": "Replace 'appropriate' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
       }
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.1765,
-    "unspecd_rework_rate": 0.0963,
-    "delta": 0.0802,
-    "specd_sample_size": 34,
-    "unspecd_sample_size": 135,
+    "specd_rework_rate": 0.25,
+    "unspecd_rework_rate": 0.1314,
+    "delta": 0.1186,
+    "specd_sample_size": 36,
+    "unspecd_sample_size": 137,
     "significance": "significant",
     "signals": [
+      {
+        "type": "bug-fix",
+        "source": "4044",
+        "target": "4272",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/jit/lib/setupContext.js"
+        ]
+      },
       {
         "type": "bug-fix",
         "source": "19028",
@@ -3005,10 +3128,31 @@
       {
         "type": "bug-fix",
         "source": "19184",
-        "target": "19126",
+        "target": "19069",
         "classification": "heuristic",
         "overlapping_files": [
-          "packages/tailwindcss/src/ast.ts"
+          "integrations/cli/index.test.ts",
+          "packages/tailwindcss/src/ast.ts",
+          "packages/tailwindcss/src/compat/plugin-api.test.ts",
+          "packages/tailwindcss/src/source-maps/source-map.test.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "19263",
+        "target": "19171",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/tailwindcss/src/design-system.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "19274",
+        "target": "19184",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "integrations/cli/index.test.ts"
         ]
       },
       {
@@ -3027,6 +3171,15 @@
         "classification": "heuristic",
         "overlapping_files": [
           "integrations/upgrade/js-config.test.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "19373",
+        "target": "19282",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "integrations/cli/index.test.ts"
         ]
       },
       {
@@ -3051,11 +3204,29 @@
       },
       {
         "type": "bug-fix",
+        "source": "19391",
+        "target": "19179",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/@tailwindcss-standalone/scripts/build.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "19429",
         "target": "19399",
         "classification": "heuristic",
         "overlapping_files": [
           "package.json"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "19633",
+        "target": "19524",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/tailwindcss/src/index.test.ts"
         ]
       },
       {
@@ -3087,10 +3258,20 @@
       },
       {
         "type": "bug-fix",
-        "source": "19652",
-        "target": "19626",
+        "source": "19670",
+        "target": "19611",
         "classification": "heuristic",
         "overlapping_files": [
+          "packages/@tailwindcss-vite/src/index.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "19652",
+        "target": "19608",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/tailwindcss/src/css-functions.test.ts",
           "packages/tailwindcss/src/index.test.ts"
         ]
       },
@@ -3111,6 +3292,24 @@
         "overlapping_files": [
           "packages/tailwindcss/src/canonicalize-candidates.test.ts",
           "packages/tailwindcss/src/canonicalize-candidates.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "19745",
+        "target": "19679",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/@tailwindcss-vite/src/index.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "19797",
+        "target": "19714",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/@tailwindcss-upgrade/package.json"
         ]
       },
       {
@@ -3141,20 +3340,29 @@
           "packages/tailwindcss/src/canonicalize-candidates.test.ts",
           "packages/tailwindcss/src/canonicalize-candidates.ts"
         ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "19843",
+        "target": "19725",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/tailwindcss/src/utilities.ts"
+        ]
       }
     ],
     "by_complexity": {
       "small": {
-        "specd_rework_rate": 0.2,
-        "unspecd_rework_rate": 0.0727,
-        "specd_count": 20,
-        "unspecd_count": 110
+        "specd_rework_rate": 0.1905,
+        "unspecd_rework_rate": 0.1171,
+        "specd_count": 21,
+        "unspecd_count": 111
       },
       "medium": {
-        "specd_rework_rate": 0.1429,
-        "unspecd_rework_rate": 0.0263,
+        "specd_rework_rate": 0.2857,
+        "unspecd_rework_rate": 0.0513,
         "specd_count": 14,
-        "unspecd_count": 38
+        "unspecd_count": 39
       }
     }
   }

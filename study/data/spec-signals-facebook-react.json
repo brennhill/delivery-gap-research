@@ -1,10 +1,10 @@
 {
   "repo": "facebook/react",
-  "lookback_days": 90,
-  "rework_window_days": 14,
+  "lookback_days": 365,
+  "rework_window_days": 30,
   "coverage": {
     "coverage_pct": 12,
-    "total_prs": 490,
+    "total_prs": 502,
     "specd_prs": 60,
     "prs": [
       {
@@ -3926,6 +3926,102 @@
         "specd": true,
         "spec_source": "#29018",
         "merged_at": "2025-12-18T10:34:15+00:00"
+      },
+      {
+        "number": 36180,
+        "sha": null,
+        "title": "Add Flight SSR benchmark fixture",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T17:00:28+00:00"
+      },
+      {
+        "number": 35616,
+        "sha": null,
+        "title": "Fix typos: occured->occurred, teh->the, accomodate->accommodate",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T23:01:58+00:00"
+      },
+      {
+        "number": 36170,
+        "sha": null,
+        "title": "docs: fix typos and improve abbreviation usage in DESIGN_GOALS.md",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T23:25:51+00:00"
+      },
+      {
+        "number": 36159,
+        "sha": null,
+        "title": "[compiler][playground] parse compiler configs using json5",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T17:04:50+00:00"
+      },
+      {
+        "number": 36156,
+        "sha": null,
+        "title": "[Flight] Transport `AggregateErrors.errors`",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-29T01:18:21+00:00"
+      },
+      {
+        "number": 36160,
+        "sha": null,
+        "title": "[Fiber] Fix context propagation into Suspense fallbacks",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-27T22:04:54+00:00"
+      },
+      {
+        "number": 35701,
+        "sha": null,
+        "title": "Fix typos in comments",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-27T21:55:11+00:00"
+      },
+      {
+        "number": 35627,
+        "sha": null,
+        "title": "Fix typos in tests and comments",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-27T21:53:33+00:00"
+      },
+      {
+        "number": 35621,
+        "sha": null,
+        "title": "Fix typos: explicitlyu->explicitly, intialized->initialized",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-27T21:52:24+00:00"
+      },
+      {
+        "number": 35623,
+        "sha": null,
+        "title": "Fix typo: accomodate -> accommodate",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-27T21:51:39+00:00"
+      },
+      {
+        "number": 25060,
+        "sha": null,
+        "title": "Implement basic stylesheet Resources for react-dom",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2022-08-12T20:27:54+00:00"
+      },
+      {
+        "number": 2300,
+        "sha": null,
+        "title": "Renamed Descriptor -> Element",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2014-10-07T20:44:44+00:00"
       }
     ]
   },
@@ -6362,11 +6458,11 @@
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.0667,
-    "unspecd_rework_rate": 0.0953,
-    "delta": -0.0287,
+    "specd_rework_rate": 0.1167,
+    "unspecd_rework_rate": 0.1041,
+    "delta": 0.0126,
     "specd_sample_size": 60,
-    "unspecd_sample_size": 430,
+    "unspecd_sample_size": 442,
     "significance": "significant",
     "signals": [
       {
@@ -6487,6 +6583,15 @@
       },
       {
         "type": "bug-fix",
+        "source": "34879",
+        "target": "34655",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "CHANGELOG.md"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "34887",
         "target": "34865",
         "classification": "heuristic",
@@ -6537,6 +6642,16 @@
       },
       {
         "type": "bug-fix",
+        "source": "35041",
+        "target": "34820",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/eslint-plugin-react-hooks/__tests__/ESLintRulesOfHooks-test.js",
+          "packages/eslint-plugin-react-hooks/src/rules/RulesOfHooks.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "35074",
         "target": "35048",
         "classification": "heuristic",
@@ -6556,9 +6671,10 @@
       {
         "type": "bug-fix",
         "source": "35120",
-        "target": "35053",
+        "target": "34947",
         "classification": "heuristic",
         "overlapping_files": [
+          "packages/react-native-renderer/src/__tests__/ReactFabricAndNative-test.internal.js",
           "packages/shared/forks/ReactFeatureFlags.native-fb.js",
           "packages/shared/forks/ReactFeatureFlags.native-oss.js"
         ]
@@ -6566,10 +6682,11 @@
       {
         "type": "bug-fix",
         "source": "35109",
-        "target": "35099",
+        "target": "34580",
         "classification": "heuristic",
         "overlapping_files": [
-          "compiler/packages/babel-plugin-react-compiler/src/Entrypoint/Pipeline.ts"
+          "compiler/packages/babel-plugin-react-compiler/src/Entrypoint/Pipeline.ts",
+          "compiler/packages/babel-plugin-react-compiler/src/HIR/Environment.ts"
         ]
       },
       {
@@ -6581,6 +6698,15 @@
           "packages/react-client/src/ReactFlightClient.js",
           "packages/react-server-dom-webpack/src/__tests__/ReactFlightDOMEdge-test.js",
           "packages/react-server/src/ReactFlightServer.js"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "35140",
+        "target": "34900",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "compiler/packages/babel-plugin-react-compiler/src/Inference/InferMutationAliasingEffects.ts"
         ]
       },
       {
@@ -6612,6 +6738,27 @@
       },
       {
         "type": "bug-fix",
+        "source": "35234",
+        "target": "34908",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/react-devtools-shared/src/__tests__/storeComponentFilters-test.js"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "35277",
+        "target": "35048",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/react-server-dom-esm/src/server/ReactFlightDOMServerNode.js",
+          "packages/react-server-dom-parcel/src/server/ReactFlightDOMServerNode.js",
+          "packages/react-server-dom-turbopack/src/server/ReactFlightDOMServerNode.js",
+          "packages/react-server-dom-webpack/src/server/ReactFlightDOMServerNode.js"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "35306",
         "target": "35285",
         "classification": "heuristic",
@@ -6623,10 +6770,12 @@
       {
         "type": "bug-fix",
         "source": "35129",
-        "target": "35214",
+        "target": "35109",
         "classification": "heuristic",
         "overlapping_files": [
-          "compiler/packages/babel-plugin-react-compiler/src/HIR/HIR.ts"
+          "compiler/packages/babel-plugin-react-compiler/src/Validation/ValidateSourceLocations.ts",
+          "compiler/packages/babel-plugin-react-compiler/src/__tests__/fixtures/compiler/error.todo-missing-source-locations.expect.md",
+          "compiler/packages/babel-plugin-react-compiler/src/__tests__/fixtures/compiler/error.todo-missing-source-locations.js"
         ]
       },
       {
@@ -6812,6 +6961,15 @@
       },
       {
         "type": "bug-fix",
+        "source": "35672",
+        "target": "35458",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/react-devtools-shared/src/__tests__/profilerContext-test.js"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "35679",
         "target": "35649",
         "classification": "heuristic",
@@ -6878,6 +7036,15 @@
         "classification": "heuristic",
         "overlapping_files": [
           "packages/react-devtools-shared/src/backend/fiber/renderer.js"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "35839",
+        "target": "35675",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/react-reconciler/src/ReactFiberBeginWork.js"
         ]
       },
       {
@@ -6955,26 +7122,54 @@
         "overlapping_files": [
           "packages/react-reconciler/src/ReactFiberWorkLoop.js"
         ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "35621",
+        "target": "35623",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "compiler/packages/babel-plugin-react-compiler/src/Inference/InferMutationAliasingEffects.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "35701",
+        "target": "36134",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/react-reconciler/src/ReactFiberWorkLoop.js"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "35616",
+        "target": "35701",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/react-dom-bindings/src/client/ReactFiberConfigDOM.js",
+          "packages/react-reconciler/src/__tests__/ReactAsyncActions-test.js"
+        ]
       }
     ],
     "by_complexity": {
       "small": {
-        "specd_rework_rate": 0.0303,
-        "unspecd_rework_rate": 0.0709,
+        "specd_rework_rate": 0.0909,
+        "unspecd_rework_rate": 0.0805,
         "specd_count": 33,
-        "unspecd_count": 254
+        "unspecd_count": 261
       },
       "medium": {
-        "specd_rework_rate": 0.0476,
-        "unspecd_rework_rate": 0.084,
+        "specd_rework_rate": 0.0952,
+        "unspecd_rework_rate": 0.0827,
         "specd_count": 21,
-        "unspecd_count": 131
+        "unspecd_count": 133
       },
       "large": {
         "specd_rework_rate": 0.3333,
-        "unspecd_rework_rate": 0.2308,
+        "unspecd_rework_rate": 0.2545,
         "specd_count": 6,
-        "unspecd_count": 52
+        "unspecd_count": 55
       }
     }
   }

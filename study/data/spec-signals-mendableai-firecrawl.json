@@ -1,10 +1,10 @@
 {
   "repo": "mendableai/firecrawl",
-  "lookback_days": 90,
-  "rework_window_days": 14,
+  "lookback_days": 365,
+  "rework_window_days": 30,
   "coverage": {
-    "coverage_pct": 22,
-    "total_prs": 502,
+    "coverage_pct": 21,
+    "total_prs": 503,
     "specd_prs": 108,
     "prs": [
       {
@@ -4022,6 +4022,14 @@
         "specd": false,
         "spec_source": null,
         "merged_at": "2026-03-25T22:23:03+00:00"
+      },
+      {
+        "number": 1383,
+        "sha": null,
+        "title": "Add examples/deepseek-v3-crawler",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-03-28T12:55:06+00:00"
       }
     ]
   },
@@ -8664,11 +8672,11 @@
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.2778,
-    "unspecd_rework_rate": 0.2284,
-    "delta": 0.0494,
+    "specd_rework_rate": 0.25,
+    "unspecd_rework_rate": 0.2304,
+    "delta": 0.0196,
     "specd_sample_size": 108,
-    "unspecd_sample_size": 394,
+    "unspecd_sample_size": 395,
     "significance": "significant",
     "signals": [
       {
@@ -8726,9 +8734,10 @@
       {
         "type": "bug-fix",
         "source": "2283",
-        "target": "2276",
+        "target": "2224",
         "classification": "heuristic",
         "overlapping_files": [
+          "apps/api/src/controllers/v1/types.ts",
           "apps/api/src/controllers/v2/types.ts"
         ]
       },
@@ -8879,6 +8888,24 @@
       },
       {
         "type": "bug-fix",
+        "source": "2386",
+        "target": "2336",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "apps/api/audit-ci.jsonc"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "2391",
+        "target": "2339",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "apps/api/src/scraper/scrapeURL/transformers/diff.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "2244",
         "target": "2360",
         "classification": "heuristic",
@@ -8940,23 +8967,25 @@
       {
         "type": "bug-fix",
         "source": "2419",
-        "target": "2402",
+        "target": "2309",
         "classification": "heuristic",
         "overlapping_files": [
-          "apps/api/src/controllers/v1/scrape.ts",
-          "apps/api/src/controllers/v2/scrape.ts",
+          "apps/api/package.json",
+          "apps/api/pnpm-lock.yaml",
+          "apps/api/src/services/queue-jobs.ts",
           "apps/api/src/services/worker/scrape-worker.ts"
         ]
       },
       {
         "type": "bug-fix",
         "source": "2431",
-        "target": "2415",
+        "target": "2312",
         "classification": "heuristic",
         "overlapping_files": [
-          "apps/js-sdk/firecrawl/package-lock.json",
-          "apps/js-sdk/firecrawl/package.json",
-          "apps/js-sdk/firecrawl/pnpm-lock.yaml"
+          "apps/api/package.json",
+          "apps/api/pnpm-lock.yaml",
+          "apps/test-site/package.json",
+          "apps/test-site/pnpm-lock.yaml"
         ]
       },
       {
@@ -8980,6 +9009,15 @@
       },
       {
         "type": "bug-fix",
+        "source": "2439",
+        "target": "2333",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "apps/api/src/lib/map-utils.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "2430",
         "target": "2419",
         "classification": "heuristic",
@@ -8998,6 +9036,15 @@
       },
       {
         "type": "bug-fix",
+        "source": "2443",
+        "target": "2326",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "apps/api/src/scraper/scrapeURL/engines/fire-engine/index.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "2446",
         "target": "2430",
         "classification": "heuristic",
@@ -9008,11 +9055,21 @@
       {
         "type": "bug-fix",
         "source": "2429",
-        "target": "2414",
+        "target": "2360",
         "classification": "heuristic",
         "overlapping_files": [
           "apps/js-sdk/firecrawl/package.json",
-          "apps/js-sdk/firecrawl/src/v2/types.ts"
+          "apps/js-sdk/firecrawl/src/v2/types.ts",
+          "apps/python-sdk/firecrawl/v2/types.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "2447",
+        "target": "2321",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "apps/api/src/lib/crawl-redis.ts"
         ]
       },
       {
@@ -9159,11 +9216,29 @@
       },
       {
         "type": "bug-fix",
+        "source": "2504",
+        "target": "2419",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "apps/api/src/services/webhook/delivery.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "2505",
         "target": "2496",
         "classification": "heuristic",
         "overlapping_files": [
           "apps/api/src/config.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "2515",
+        "target": "2419",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "apps/api/native/src/html.rs"
         ]
       },
       {
@@ -9266,11 +9341,12 @@
       {
         "type": "bug-fix",
         "source": "2562",
-        "target": "2545",
+        "target": "2419",
         "classification": "heuristic",
         "overlapping_files": [
           "apps/api/src/scraper/WebScraper/crawler.ts",
-          "apps/api/src/scraper/scrapeURL/index.ts"
+          "apps/api/src/scraper/scrapeURL/index.ts",
+          "apps/api/src/services/worker/scrape-worker.ts"
         ]
       },
       {
@@ -9290,6 +9366,16 @@
         "overlapping_files": [
           "apps/api/package.json",
           "apps/api/pnpm-lock.yaml"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "2573",
+        "target": "2419",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "apps/go-html-to-md-service/go.mod",
+          "apps/go-html-to-md-service/go.sum"
         ]
       },
       {
@@ -9352,11 +9438,22 @@
       {
         "type": "bug-fix",
         "source": "2623",
-        "target": "2603",
+        "target": "2494",
         "classification": "heuristic",
         "overlapping_files": [
           "apps/api/package.json",
-          "apps/api/pnpm-lock.yaml"
+          "apps/api/pnpm-lock.yaml",
+          "apps/test-suite/package.json",
+          "apps/test-suite/pnpm-lock.yaml"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "2633",
+        "target": "2581",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "apps/api/src/services/worker/nuq.ts"
         ]
       },
       {
@@ -9374,10 +9471,12 @@
       {
         "type": "bug-fix",
         "source": "2635",
-        "target": "2602",
+        "target": "2496",
         "classification": "heuristic",
         "overlapping_files": [
-          "apps/api/src/services/billing/auto_charge.ts"
+          "apps/api/src/routes/shared.ts",
+          "apps/api/src/services/billing/auto_charge.ts",
+          "apps/api/src/services/billing/batch_billing.ts"
         ]
       },
       {
@@ -9390,6 +9489,15 @@
           "apps/api/src/services/billing/auto_charge.ts",
           "apps/api/src/services/billing/batch_billing.ts",
           "apps/api/src/services/billing/credit_billing.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "2637",
+        "target": "2571",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "apps/api/src/controllers/v2/batch-scrape.ts"
         ]
       },
       {
@@ -9458,10 +9566,11 @@
       {
         "type": "bug-fix",
         "source": "2682",
-        "target": "2664",
+        "target": "2623",
         "classification": "heuristic",
         "overlapping_files": [
-          "apps/api/audit-ci.jsonc"
+          "apps/api/package.json",
+          "apps/api/pnpm-lock.yaml"
         ]
       },
       {
@@ -9471,6 +9580,15 @@
         "classification": "heuristic",
         "overlapping_files": [
           "apps/api/audit-ci.jsonc"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "2694",
+        "target": "2621",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "apps/api/src/scraper/scrapeURL/transformers/index.ts"
         ]
       },
       {
@@ -9515,11 +9633,13 @@
       {
         "type": "bug-fix",
         "source": "2728",
-        "target": "2682",
+        "target": "2623",
         "classification": "heuristic",
         "overlapping_files": [
           "apps/api/package.json",
-          "apps/api/pnpm-lock.yaml"
+          "apps/api/pnpm-lock.yaml",
+          "apps/test-suite/package.json",
+          "apps/test-suite/pnpm-lock.yaml"
         ]
       },
       {
@@ -9543,10 +9663,11 @@
       {
         "type": "bug-fix",
         "source": "2757",
-        "target": "2688",
+        "target": "2657",
         "classification": "heuristic",
         "overlapping_files": [
-          "apps/api/audit-ci.jsonc"
+          "apps/api/audit-ci.jsonc",
+          "apps/test-suite/audit-ci.jsonc"
         ]
       },
       {
@@ -9571,10 +9692,20 @@
       },
       {
         "type": "bug-fix",
-        "source": "2783",
-        "target": "2749",
+        "source": "2776",
+        "target": "2677",
         "classification": "heuristic",
         "overlapping_files": [
+          "apps/api/src/scraper/scrapeURL/engines/index.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "2783",
+        "target": "2682",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "apps/api/audit-ci.jsonc",
           "apps/api/package.json",
           "apps/api/pnpm-lock.yaml"
         ]
@@ -9664,11 +9795,13 @@
       {
         "type": "bug-fix",
         "source": "2872",
-        "target": "2864",
+        "target": "2727",
         "classification": "heuristic",
         "overlapping_files": [
           "apps/python-sdk/firecrawl/__init__.py",
-          "apps/python-sdk/firecrawl/client.py"
+          "apps/python-sdk/firecrawl/client.py",
+          "apps/python-sdk/firecrawl/v2/client.py",
+          "apps/python-sdk/firecrawl/v2/client_async.py"
         ]
       },
       {
@@ -9706,11 +9839,12 @@
       {
         "type": "bug-fix",
         "source": "2902",
-        "target": "2834",
+        "target": "2759",
         "classification": "heuristic",
         "overlapping_files": [
+          "apps/js-sdk/firecrawl/package.json",
+          "apps/js-sdk/firecrawl/src/v2/types.ts",
           "apps/python-sdk/firecrawl/__init__.py",
-          "apps/python-sdk/firecrawl/v2/methods/crawl.py",
           "apps/python-sdk/firecrawl/v2/types.py"
         ]
       },
@@ -9778,12 +9912,23 @@
       },
       {
         "type": "bug-fix",
+        "source": "2926",
+        "target": "2759",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "apps/api/src/__tests__/snips/v1/lib.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "2930",
-        "target": "2918",
+        "target": "2783",
         "classification": "heuristic",
         "overlapping_files": [
           "apps/api/package.json",
-          "apps/api/pnpm-lock.yaml"
+          "apps/api/pnpm-lock.yaml",
+          "apps/api/src/config.ts",
+          "apps/api/src/lib/x402.ts"
         ]
       },
       {
@@ -9904,10 +10049,13 @@
       {
         "type": "bug-fix",
         "source": "2977",
-        "target": "2976",
+        "target": "2784",
         "classification": "heuristic",
         "overlapping_files": [
-          "apps/api/native/Cargo.toml"
+          "apps/api/sharedLibs/go-html-to-md/go.mod",
+          "apps/api/sharedLibs/go-html-to-md/go.sum",
+          "apps/go-html-to-md-service/go.mod",
+          "apps/go-html-to-md-service/go.sum"
         ]
       },
       {
@@ -9948,6 +10096,15 @@
         "overlapping_files": [
           "apps/test-site/package.json",
           "apps/test-site/pnpm-lock.yaml"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "2986",
+        "target": "2803",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "README.md"
         ]
       },
       {
@@ -10048,6 +10205,16 @@
       },
       {
         "type": "bug-fix",
+        "source": "3141",
+        "target": "2935",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "apps/ui/ingestion-ui/package.json",
+          "apps/ui/ingestion-ui/pnpm-lock.yaml"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "3143",
         "target": "2938",
         "classification": "heuristic",
@@ -10069,21 +10236,25 @@
       {
         "type": "bug-fix",
         "source": "3145",
-        "target": "3138",
+        "target": "2935",
         "classification": "heuristic",
         "overlapping_files": [
           "apps/api/package.json",
-          "apps/api/pnpm-lock.yaml"
+          "apps/api/pnpm-lock.yaml",
+          "apps/test-suite/package.json",
+          "apps/test-suite/pnpm-lock.yaml"
         ]
       },
       {
         "type": "bug-fix",
         "source": "3172",
-        "target": "3145",
+        "target": "2935",
         "classification": "heuristic",
         "overlapping_files": [
           "apps/api/package.json",
           "apps/api/pnpm-lock.yaml",
+          "apps/test-site/package.json",
+          "apps/test-site/pnpm-lock.yaml",
           "apps/test-suite/package.json",
           "apps/test-suite/pnpm-lock.yaml"
         ]
@@ -10110,7 +10281,7 @@
       {
         "type": "bug-fix",
         "source": "3187",
-        "target": "3172",
+        "target": "2935",
         "classification": "heuristic",
         "overlapping_files": [
           "apps/api/package.json",
@@ -10118,7 +10289,9 @@
           "apps/test-site/package.json",
           "apps/test-site/pnpm-lock.yaml",
           "apps/test-suite/package.json",
-          "apps/test-suite/pnpm-lock.yaml"
+          "apps/test-suite/pnpm-lock.yaml",
+          "apps/ui/ingestion-ui/package.json",
+          "apps/ui/ingestion-ui/pnpm-lock.yaml"
         ]
       },
       {
@@ -10182,20 +10355,20 @@
     ],
     "by_complexity": {
       "small": {
-        "specd_rework_rate": 0.2388,
-        "unspecd_rework_rate": 0.1735,
+        "specd_rework_rate": 0.194,
+        "unspecd_rework_rate": 0.1667,
         "specd_count": 67,
         "unspecd_count": 294
       },
       "medium": {
-        "specd_rework_rate": 0.2917,
-        "unspecd_rework_rate": 0.3099,
+        "specd_rework_rate": 0.25,
+        "unspecd_rework_rate": 0.3194,
         "specd_count": 24,
-        "unspecd_count": 71
+        "unspecd_count": 72
       },
       "large": {
-        "specd_rework_rate": 0.4118,
-        "unspecd_rework_rate": 0.4667,
+        "specd_rework_rate": 0.4706,
+        "unspecd_rework_rate": 0.5333,
         "specd_count": 17,
         "unspecd_count": 45
       }

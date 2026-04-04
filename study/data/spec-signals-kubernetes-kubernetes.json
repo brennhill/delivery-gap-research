@@ -1,11 +1,11 @@
 {
   "repo": "kubernetes/kubernetes",
-  "lookback_days": 90,
-  "rework_window_days": 14,
+  "lookback_days": 365,
+  "rework_window_days": 30,
   "coverage": {
     "coverage_pct": 68,
-    "total_prs": 1142,
-    "specd_prs": 775,
+    "total_prs": 1165,
+    "specd_prs": 790,
     "prs": [
       {
         "number": 138006,
@@ -6600,6 +6600,14 @@
         "merged_at": "2025-12-21T14:04:31+00:00"
       },
       {
+        "number": 135828,
+        "sha": null,
+        "title": "Kubelet: Add alpha-2 stage implementation for UserNamespacesHostNetworkSupport feature gate",
+        "specd": true,
+        "spec_source": "https://github.com/kubernetes/enhancements/issues/<kep-issue-number>",
+        "merged_at": "2026-03-26T09:38:18+00:00"
+      },
+      {
         "number": 135824,
         "sha": null,
         "title": "etcd: Remove unused legacy image build code",
@@ -9142,6 +9150,182 @@
         "specd": false,
         "spec_source": null,
         "merged_at": "2026-01-30T20:40:24+00:00"
+      },
+      {
+        "number": 138178,
+        "sha": null,
+        "title": "Make cleanup aware of uid differences",
+        "specd": true,
+        "spec_source": "https://github.com/kubernetes/kubernetes/issues/138114",
+        "merged_at": "2026-04-02T17:39:09+00:00"
+      },
+      {
+        "number": 137991,
+        "sha": null,
+        "title": "Update CNI plugins to v1.9.1",
+        "specd": true,
+        "spec_source": "GHSA-CGRX",
+        "merged_at": "2026-04-02T12:25:04+00:00"
+      },
+      {
+        "number": 138030,
+        "sha": null,
+        "title": "kubelet: do not destroy nodeAllocatableResourceClaimStatuses",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T01:42:13+00:00"
+      },
+      {
+        "number": 138035,
+        "sha": null,
+        "title": "kep-5304: bump cdi spec version to 0.5.0",
+        "specd": true,
+        "spec_source": "https://github.com/kubernetes/enhancements/issues/<kep-issue-number>",
+        "merged_at": "2026-03-31T22:38:13+00:00"
+      },
+      {
+        "number": 138131,
+        "sha": null,
+        "title": "Deflake TestPodSubresourceAuth by waiting for effective permissions before testing",
+        "specd": true,
+        "spec_source": "https://github.com/kubernetes/kubernetes/issues/138124",
+        "merged_at": "2026-03-31T16:32:19+00:00"
+      },
+      {
+        "number": 137978,
+        "sha": null,
+        "title": "Fix flakiness in integration test for TopologyAwareScheduling with Basic Policy",
+        "specd": true,
+        "spec_source": "https://github.com/kubernetes/enhancements/issues/<kep-issue-number>",
+        "merged_at": "2026-03-31T10:30:15+00:00"
+      },
+      {
+        "number": 138045,
+        "sha": null,
+        "title": "[InPlacePodLevelResourcesVerticalScaling] fix erroneously reporting a PLR resize in progress on pod creation",
+        "specd": true,
+        "spec_source": "https://github.com/kubernetes/kubernetes/issues/137858.",
+        "merged_at": "2026-03-30T02:06:14+00:00"
+      },
+      {
+        "number": 138087,
+        "sha": null,
+        "title": "e2e_node: wait for pod drain before asserting zero pods in Memory Manager Metrics",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T12:30:15+00:00"
+      },
+      {
+        "number": 138049,
+        "sha": null,
+        "title": "Pod events fix",
+        "specd": true,
+        "spec_source": "https://github.com/kubernetes/kubernetes/issues/137858.",
+        "merged_at": "2026-03-30T02:06:12+00:00"
+      },
+      {
+        "number": 137996,
+        "sha": null,
+        "title": "set InPlacePodLevelResourcesVerticalScaling to false if needed",
+        "specd": true,
+        "spec_source": "https://github.com/kubernetes/kubernetes/issues/137995",
+        "merged_at": "2026-03-28T03:12:12+00:00"
+      },
+      {
+        "number": 109781,
+        "sha": null,
+        "title": "Close events recording sink in integration tests",
+        "specd": true,
+        "spec_source": "https://github.com/kubernetes/kubernetes/issues/108483",
+        "merged_at": "2022-05-11T15:47:14+00:00"
+      },
+      {
+        "number": 106085,
+        "sha": null,
+        "title": "P&F: enable mutating work estimator",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2022-01-05T14:58:47+00:00"
+      },
+      {
+        "number": 106943,
+        "sha": null,
+        "title": "Graduate EfficientWatchResumption feature to GA",
+        "specd": true,
+        "spec_source": "https://github.com/kubernetes/enhancements/issues/1904",
+        "merged_at": "2022-01-12T14:06:36+00:00"
+      },
+      {
+        "number": 93597,
+        "sha": null,
+        "title": "Wait for both endpoints and endpointslices in e2e tests",
+        "specd": true,
+        "spec_source": "https://github.com/kubernetes/kubernetes/issues/91236",
+        "merged_at": "2020-08-02T03:22:05+00:00"
+      },
+      {
+        "number": 93670,
+        "sha": null,
+        "title": "Fix /readyz to contain informer-sync",
+        "specd": true,
+        "spec_source": "https://github.com/kubernetes/kubernetes/issues/93599",
+        "merged_at": "2020-08-05T02:48:30+00:00"
+      },
+      {
+        "number": 94002,
+        "sha": null,
+        "title": "Fix bug for inconsistent lists served from etcd",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2020-08-14T19:38:18+00:00"
+      },
+      {
+        "number": 96113,
+        "sha": null,
+        "title": "Automated cherry pick of #96052 upstream release 1.19 ",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2020-11-05T12:57:11+00:00"
+      },
+      {
+        "number": 96112,
+        "sha": null,
+        "title": "Remove variadic argument from storage interface",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2020-11-02T19:57:01+00:00"
+      },
+      {
+        "number": 94480,
+        "sha": null,
+        "title": "Remove FieldMatchingFlags",
+        "specd": true,
+        "spec_source": "https://github.com/kubernetes/kubernetes/issues/87006",
+        "merged_at": "2020-11-02T14:26:53+00:00"
+      },
+      {
+        "number": 96052,
+        "sha": null,
+        "title": "Disable watchcache for events",
+        "specd": true,
+        "spec_source": "https://github.com/kubernetes/kubernetes/issues/96049",
+        "merged_at": "2020-11-02T15:30:54+00:00"
+      },
+      {
+        "number": 94047,
+        "sha": null,
+        "title": "Automated cherry pick of #94002 upstream release 1.17 ",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2020-08-29T17:05:20+00:00"
+      },
+      {
+        "number": 94046,
+        "sha": null,
+        "title": "Automated cherry pick of #94002 upstream release 1.16 ",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2020-08-29T16:31:20+00:00"
       }
     ]
   },
@@ -9149,7 +9333,7 @@
     "mode": "heuristic",
     "average_score": 45,
     "verdicts": {
-      "REVIEW": 775
+      "REVIEW": 790
     },
     "specs": [
       {
@@ -37705,6 +37889,61 @@
         ]
       },
       {
+        "pr_number": 135828,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 99,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 20,
+            "type": "ambiguity",
+            "term": "if applicable",
+            "suggestion": "Replace 'if applicable' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[Usage]: <link>",
+            "suggestion": "Goal without test: '[Usage]: <link>' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[Other doc]: <link>",
+            "suggestion": "Goal without test: '[Other doc]: <link>' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[KEP]: https://github.com/kubernetes/enhancements/tree/master/keps/sig-node/5607",
+            "suggestion": "Goal without test: '[KEP]: https://github.com/kubernetes/enhancements/tree/maste...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
         "pr_number": 135824,
         "format": "freeform",
         "completeness": 0,
@@ -48918,17 +49157,636 @@
           "No state transitions \u2014 AI may allow invalid transitions",
           "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
         ]
+      },
+      {
+        "pr_number": 138178,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 137991,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 99,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 21,
+            "type": "ambiguity",
+            "term": "if applicable",
+            "suggestion": "Replace 'if applicable' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[Usage]: <link>",
+            "suggestion": "Goal without test: '[Usage]: <link>' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[Other doc]: <link>",
+            "suggestion": "Goal without test: '[Other doc]: <link>' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 138035,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 99,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 22,
+            "type": "ambiguity",
+            "term": "if applicable",
+            "suggestion": "Replace 'if applicable' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[Usage]: <link>",
+            "suggestion": "Goal without test: '[Usage]: <link>' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[Other doc]: <link>",
+            "suggestion": "Goal without test: '[Other doc]: <link>' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 138131,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 137978,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 99,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 23,
+            "type": "ambiguity",
+            "term": "if applicable",
+            "suggestion": "Replace 'if applicable' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[Usage]: <link>",
+            "suggestion": "Goal without test: '[Usage]: <link>' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[Other doc]: <link>",
+            "suggestion": "Goal without test: '[Other doc]: <link>' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 138045,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 99,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 11,
+            "type": "ambiguity",
+            "term": "if applicable",
+            "suggestion": "Replace 'if applicable' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 138049,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 99,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 22,
+            "type": "ambiguity",
+            "term": "if applicable",
+            "suggestion": "Replace 'if applicable' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 137996,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "I0323 23:49:20.533660   21360 feature_gate.go:477] \"Warning: setting GA feature ",
+            "suggestion": "Goal without test: 'I0323 23:49:20.533660   21360 feature_gate.go:477] \"Warning:...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "I0323 23:49:20.535831   21360 feature_gate.go:477] \"Warning: setting GA feature ",
+            "suggestion": "Goal without test: 'I0323 23:49:20.535831   21360 feature_gate.go:477] \"Warning:...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "I0323 23:49:20.535879   21360 feature_gate.go:477] \"Warning: setting deprecated ",
+            "suggestion": "Goal without test: 'I0323 23:49:20.535879   21360 feature_gate.go:477] \"Warning:...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "I0323 23:49:20.535893   21360 feature_gate.go:477] \"Warning: setting deprecated ",
+            "suggestion": "Goal without test: 'I0323 23:49:20.535893   21360 feature_gate.go:477] \"Warning:...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "I0323 23:49:20.535905   21360 feature_gate.go:477] \"Warning: setting GA feature ",
+            "suggestion": "Goal without test: 'I0323 23:49:20.535905   21360 feature_gate.go:477] \"Warning:...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 109781,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 106943,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 93597,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 93670,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 94480,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 96052,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
       }
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.0671,
-    "unspecd_rework_rate": 0.0708,
-    "delta": -0.0037,
-    "specd_sample_size": 775,
-    "unspecd_sample_size": 367,
+    "specd_rework_rate": 0.0785,
+    "unspecd_rework_rate": 0.096,
+    "delta": -0.0175,
+    "specd_sample_size": 790,
+    "unspecd_sample_size": 375,
     "significance": "significant",
     "signals": [
+      {
+        "type": "bug-fix",
+        "source": "94046",
+        "target": "94002",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "staging/src/k8s.io/apiserver/pkg/storage/etcd3/store.go",
+          "staging/src/k8s.io/apiserver/pkg/storage/etcd3/store_test.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "94047",
+        "target": "94046",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "staging/src/k8s.io/apiserver/pkg/storage/etcd3/store.go",
+          "staging/src/k8s.io/apiserver/pkg/storage/etcd3/store_test.go"
+        ]
+      },
       {
         "type": "bug-fix",
         "source": "134355",
@@ -48988,150 +49846,12 @@
       {
         "type": "bug-fix",
         "source": "135867",
-        "target": "135845",
+        "target": "135536",
         "classification": "heuristic",
         "overlapping_files": [
           "go.mod",
           "go.sum",
-          "staging/src/k8s.io/api/go.mod",
-          "staging/src/k8s.io/api/go.sum",
-          "staging/src/k8s.io/apiextensions-apiserver/go.mod",
-          "staging/src/k8s.io/apiextensions-apiserver/go.sum",
-          "staging/src/k8s.io/apimachinery/go.mod",
-          "staging/src/k8s.io/apimachinery/go.sum",
-          "staging/src/k8s.io/apiserver/go.mod",
-          "staging/src/k8s.io/apiserver/go.sum",
-          "staging/src/k8s.io/cli-runtime/go.mod",
-          "staging/src/k8s.io/cli-runtime/go.sum",
-          "staging/src/k8s.io/client-go/go.mod",
-          "staging/src/k8s.io/client-go/go.sum",
-          "staging/src/k8s.io/cloud-provider/go.mod",
-          "staging/src/k8s.io/cloud-provider/go.sum",
-          "staging/src/k8s.io/cluster-bootstrap/go.mod",
-          "staging/src/k8s.io/cluster-bootstrap/go.sum",
-          "staging/src/k8s.io/code-generator/examples/go.mod",
-          "staging/src/k8s.io/code-generator/examples/go.sum",
-          "staging/src/k8s.io/code-generator/go.mod",
-          "staging/src/k8s.io/code-generator/go.sum",
-          "staging/src/k8s.io/component-base/go.mod",
-          "staging/src/k8s.io/component-base/go.sum",
-          "staging/src/k8s.io/component-helpers/go.mod",
-          "staging/src/k8s.io/component-helpers/go.sum",
-          "staging/src/k8s.io/controller-manager/go.mod",
-          "staging/src/k8s.io/controller-manager/go.sum",
-          "staging/src/k8s.io/cri-client/go.mod",
-          "staging/src/k8s.io/cri-client/go.sum",
-          "staging/src/k8s.io/csi-translation-lib/go.mod",
-          "staging/src/k8s.io/csi-translation-lib/go.sum",
-          "staging/src/k8s.io/dynamic-resource-allocation/go.mod",
-          "staging/src/k8s.io/dynamic-resource-allocation/go.sum",
-          "staging/src/k8s.io/endpointslice/go.mod",
-          "staging/src/k8s.io/endpointslice/go.sum",
-          "staging/src/k8s.io/kube-aggregator/go.mod",
-          "staging/src/k8s.io/kube-aggregator/go.sum",
-          "staging/src/k8s.io/kube-controller-manager/go.sum",
-          "staging/src/k8s.io/kube-proxy/go.mod",
-          "staging/src/k8s.io/kube-proxy/go.sum",
-          "staging/src/k8s.io/kube-scheduler/go.mod",
-          "staging/src/k8s.io/kube-scheduler/go.sum",
-          "staging/src/k8s.io/kubectl/go.mod",
-          "staging/src/k8s.io/kubectl/go.sum",
-          "staging/src/k8s.io/kubelet/go.mod",
-          "staging/src/k8s.io/kubelet/go.sum",
-          "staging/src/k8s.io/metrics/go.mod",
-          "staging/src/k8s.io/metrics/go.sum",
-          "staging/src/k8s.io/mount-utils/go.mod",
-          "staging/src/k8s.io/mount-utils/go.sum",
-          "staging/src/k8s.io/pod-security-admission/go.mod",
-          "staging/src/k8s.io/pod-security-admission/go.sum",
-          "staging/src/k8s.io/sample-apiserver/go.mod",
-          "staging/src/k8s.io/sample-apiserver/go.sum",
-          "staging/src/k8s.io/sample-cli-plugin/go.mod",
-          "staging/src/k8s.io/sample-cli-plugin/go.sum",
-          "staging/src/k8s.io/sample-controller/go.mod",
-          "staging/src/k8s.io/sample-controller/go.sum"
-        ]
-      },
-      {
-        "type": "bug-fix",
-        "source": "135862",
-        "target": "135368",
-        "classification": "heuristic",
-        "overlapping_files": [
-          "pkg/scheduler/backend/queue/scheduling_queue.go"
-        ]
-      },
-      {
-        "type": "bug-fix",
-        "source": "135392",
-        "target": "135948",
-        "classification": "heuristic",
-        "overlapping_files": [
-          "pkg/scheduler/framework/plugins/noderesources/fit_test.go"
-        ]
-      },
-      {
-        "type": "bug-fix",
-        "source": "136073",
-        "target": "135959",
-        "classification": "heuristic",
-        "overlapping_files": [
-          "staging/src/k8s.io/apiserver/pkg/admission/plugin/policy/internal/generic/controller_test.go"
-        ]
-      },
-      {
-        "type": "bug-fix",
-        "source": "135725",
-        "target": "135392",
-        "classification": "heuristic",
-        "overlapping_files": [
-          "pkg/scheduler/framework/plugins/noderesources/fit_test.go"
-        ]
-      },
-      {
-        "type": "bug-fix",
-        "source": "136140",
-        "target": "135664",
-        "classification": "heuristic",
-        "overlapping_files": [
-          "test/e2e/framework/framework.go"
-        ]
-      },
-      {
-        "type": "bug-fix",
-        "source": "135485",
-        "target": "136136",
-        "classification": "heuristic",
-        "overlapping_files": [
-          "pkg/kubelet/cm/devicemanager/manager.go"
-        ]
-      },
-      {
-        "type": "bug-fix",
-        "source": "136199",
-        "target": "135369",
-        "classification": "heuristic",
-        "overlapping_files": [
-          "test/e2e_node/image_credential_pulls.go"
-        ]
-      },
-      {
-        "type": "bug-fix",
-        "source": "131317",
-        "target": "135992",
-        "classification": "heuristic",
-        "overlapping_files": [
-          "pkg/kubelet/kuberuntime/kuberuntime_manager.go"
-        ]
-      },
-      {
-        "type": "bug-fix",
-        "source": "136212",
-        "target": "136161",
-        "classification": "heuristic",
-        "overlapping_files": [
-          "go.mod",
-          "go.sum",
+          "go.work.sum",
           "staging/src/k8s.io/api/go.mod",
           "staging/src/k8s.io/api/go.sum",
           "staging/src/k8s.io/apiextensions-apiserver/go.mod",
@@ -49176,7 +49896,193 @@
           "staging/src/k8s.io/kms/internal/plugins/_mock/go.sum",
           "staging/src/k8s.io/kube-aggregator/go.mod",
           "staging/src/k8s.io/kube-aggregator/go.sum",
-          "staging/src/k8s.io/kube-controller-manager/go.mod",
+          "staging/src/k8s.io/kube-controller-manager/go.sum",
+          "staging/src/k8s.io/kube-proxy/go.mod",
+          "staging/src/k8s.io/kube-proxy/go.sum",
+          "staging/src/k8s.io/kube-scheduler/go.mod",
+          "staging/src/k8s.io/kube-scheduler/go.sum",
+          "staging/src/k8s.io/kubectl/go.mod",
+          "staging/src/k8s.io/kubectl/go.sum",
+          "staging/src/k8s.io/kubelet/go.mod",
+          "staging/src/k8s.io/kubelet/go.sum",
+          "staging/src/k8s.io/metrics/go.mod",
+          "staging/src/k8s.io/metrics/go.sum",
+          "staging/src/k8s.io/mount-utils/go.mod",
+          "staging/src/k8s.io/mount-utils/go.sum",
+          "staging/src/k8s.io/pod-security-admission/go.mod",
+          "staging/src/k8s.io/pod-security-admission/go.sum",
+          "staging/src/k8s.io/sample-apiserver/go.mod",
+          "staging/src/k8s.io/sample-apiserver/go.sum",
+          "staging/src/k8s.io/sample-cli-plugin/go.mod",
+          "staging/src/k8s.io/sample-cli-plugin/go.sum",
+          "staging/src/k8s.io/sample-controller/go.mod",
+          "staging/src/k8s.io/sample-controller/go.sum"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "135862",
+        "target": "135368",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "pkg/scheduler/backend/queue/scheduling_queue.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "135611",
+        "target": "135608",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "pkg/controller/devicetainteviction/device_taint_eviction_test.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "135392",
+        "target": "135394",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "pkg/scheduler/framework/plugins/interpodaffinity/plugin.go",
+          "pkg/scheduler/framework/plugins/interpodaffinity/plugin_test.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "136068",
+        "target": "135371",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "staging/src/k8s.io/client-go/tools/leaderelection/leaderelection.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "136073",
+        "target": "135959",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "staging/src/k8s.io/apiserver/pkg/admission/plugin/policy/internal/generic/controller_test.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "135377",
+        "target": "133964",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "test/e2e_node/dra_test.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "135725",
+        "target": "135392",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "pkg/scheduler/framework/plugins/noderesources/fit_test.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "136140",
+        "target": "135664",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "test/e2e/framework/framework.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "135485",
+        "target": "136136",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "pkg/kubelet/cm/devicemanager/manager.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "136199",
+        "target": "135369",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "test/e2e_node/image_credential_pulls.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "131317",
+        "target": "132807",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "pkg/kubelet/kubelet_pods.go",
+          "pkg/kubelet/kubelet_pods_test.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "135981",
+        "target": "135368",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "pkg/scheduler/backend/queue/scheduling_queue.go",
+          "pkg/scheduler/backend/queue/scheduling_queue_test.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "136212",
+        "target": "135867",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "go.mod",
+          "go.sum",
+          "hack/unwanted-dependencies.json",
+          "staging/src/k8s.io/api/go.mod",
+          "staging/src/k8s.io/api/go.sum",
+          "staging/src/k8s.io/apiextensions-apiserver/go.mod",
+          "staging/src/k8s.io/apiextensions-apiserver/go.sum",
+          "staging/src/k8s.io/apimachinery/go.mod",
+          "staging/src/k8s.io/apimachinery/go.sum",
+          "staging/src/k8s.io/apiserver/go.mod",
+          "staging/src/k8s.io/apiserver/go.sum",
+          "staging/src/k8s.io/cli-runtime/go.mod",
+          "staging/src/k8s.io/cli-runtime/go.sum",
+          "staging/src/k8s.io/client-go/go.mod",
+          "staging/src/k8s.io/client-go/go.sum",
+          "staging/src/k8s.io/cloud-provider/go.mod",
+          "staging/src/k8s.io/cloud-provider/go.sum",
+          "staging/src/k8s.io/cluster-bootstrap/go.mod",
+          "staging/src/k8s.io/cluster-bootstrap/go.sum",
+          "staging/src/k8s.io/code-generator/examples/go.mod",
+          "staging/src/k8s.io/code-generator/examples/go.sum",
+          "staging/src/k8s.io/code-generator/go.mod",
+          "staging/src/k8s.io/code-generator/go.sum",
+          "staging/src/k8s.io/component-base/go.mod",
+          "staging/src/k8s.io/component-base/go.sum",
+          "staging/src/k8s.io/component-helpers/go.mod",
+          "staging/src/k8s.io/component-helpers/go.sum",
+          "staging/src/k8s.io/controller-manager/go.mod",
+          "staging/src/k8s.io/controller-manager/go.sum",
+          "staging/src/k8s.io/cri-api/go.mod",
+          "staging/src/k8s.io/cri-api/go.sum",
+          "staging/src/k8s.io/cri-client/go.mod",
+          "staging/src/k8s.io/cri-client/go.sum",
+          "staging/src/k8s.io/csi-translation-lib/go.mod",
+          "staging/src/k8s.io/csi-translation-lib/go.sum",
+          "staging/src/k8s.io/dynamic-resource-allocation/go.mod",
+          "staging/src/k8s.io/dynamic-resource-allocation/go.sum",
+          "staging/src/k8s.io/endpointslice/go.mod",
+          "staging/src/k8s.io/endpointslice/go.sum",
+          "staging/src/k8s.io/externaljwt/go.mod",
+          "staging/src/k8s.io/externaljwt/go.sum",
+          "staging/src/k8s.io/kms/go.mod",
+          "staging/src/k8s.io/kms/go.sum",
+          "staging/src/k8s.io/kms/internal/plugins/_mock/go.mod",
+          "staging/src/k8s.io/kms/internal/plugins/_mock/go.sum",
+          "staging/src/k8s.io/kube-aggregator/go.mod",
+          "staging/src/k8s.io/kube-aggregator/go.sum",
           "staging/src/k8s.io/kube-controller-manager/go.sum",
           "staging/src/k8s.io/kube-proxy/go.mod",
           "staging/src/k8s.io/kube-proxy/go.sum",
@@ -49195,7 +50101,16 @@
           "staging/src/k8s.io/sample-cli-plugin/go.mod",
           "staging/src/k8s.io/sample-cli-plugin/go.sum",
           "staging/src/k8s.io/sample-controller/go.mod",
-          "staging/src/k8s.io/sample-controller/go.sum"
+          "staging/src/k8s.io/sample-controller/go.sum",
+          "vendor/github.com/godbus/dbus/v5/.cirrus.yml",
+          "vendor/github.com/godbus/dbus/v5/.golangci.yml",
+          "vendor/github.com/godbus/dbus/v5/auth.go",
+          "vendor/github.com/godbus/dbus/v5/auth_default_other.go",
+          "vendor/github.com/godbus/dbus/v5/auth_sha1_windows.go",
+          "vendor/github.com/godbus/dbus/v5/conn.go",
+          "vendor/github.com/godbus/dbus/v5/conn_other.go",
+          "vendor/github.com/godbus/dbus/v5/conn_unix.go",
+          "vendor/github.com/godbus/dbus/v5/decoder.go"
         ]
       },
       {
@@ -49355,6 +50270,25 @@
       },
       {
         "type": "bug-fix",
+        "source": "136450",
+        "target": "135983",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "pkg/controller/resourceclaim/controller.go",
+          "pkg/controller/resourceclaim/controller_test.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "136558",
+        "target": "135369",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "pkg/kubelet/kuberuntime/kuberuntime_image.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "136574",
         "target": "129344",
         "classification": "heuristic",
@@ -49429,6 +50363,25 @@
       },
       {
         "type": "bug-fix",
+        "source": "136502",
+        "target": "136112",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "staging/src/k8s.io/endpointslice/reconciler_test.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "136040",
+        "target": "136103",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "pkg/controller/garbagecollector/graph_builder.go",
+          "pkg/controller/resourcequota/resource_quota_monitor.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "136590",
         "target": "136444",
         "classification": "heuristic",
@@ -49447,6 +50400,15 @@
       },
       {
         "type": "bug-fix",
+        "source": "136534",
+        "target": "135759",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "staging/src/k8s.io/kubectl/pkg/util/resource/resource.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "136050",
         "target": "135322",
         "classification": "heuristic",
@@ -49457,10 +50419,11 @@
       {
         "type": "bug-fix",
         "source": "136620",
-        "target": "136482",
+        "target": "136034",
         "classification": "heuristic",
         "overlapping_files": [
-          "pkg/api/testing/validation.go"
+          "pkg/api/testing/validation.go",
+          "pkg/api/testing/validation_test.go"
         ]
       },
       {
@@ -49510,11 +50473,38 @@
       },
       {
         "type": "bug-fix",
+        "source": "136706",
+        "target": "135977",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "hack/make-rules/test.sh"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "136621",
+        "target": "135759",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "staging/src/k8s.io/apiserver/pkg/admission/plugin/policy/validating/typechecking.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "136888",
         "target": "136366",
         "classification": "heuristic",
         "overlapping_files": [
           "cmd/kubeadm/app/util/etcd/etcd_test.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "135749",
+        "target": "136116",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "pkg/kubelet/server/server_test.go"
         ]
       },
       {
@@ -49548,10 +50538,11 @@
       {
         "type": "bug-fix",
         "source": "136905",
-        "target": "136480",
+        "target": "136156",
         "classification": "heuristic",
         "overlapping_files": [
-          "test/e2e/dra/dra.go"
+          "test/e2e/dra/dra.go",
+          "test/e2e/dra/utils/builder.go"
         ]
       },
       {
@@ -49587,9 +50578,25 @@
       {
         "type": "bug-fix",
         "source": "136953",
-        "target": "136284",
+        "target": "136081",
         "classification": "heuristic",
         "overlapping_files": [
+          "staging/src/k8s.io/code-generator/cmd/validation-gen/output_tests/native/basics/doc.go",
+          "staging/src/k8s.io/code-generator/cmd/validation-gen/output_tests/native/basics/doc_test.go",
+          "staging/src/k8s.io/code-generator/cmd/validation-gen/output_tests/native/basics/testdata/validate-false.json",
+          "staging/src/k8s.io/code-generator/cmd/validation-gen/output_tests/native/basics/zz_generated.deepcopy.go",
+          "staging/src/k8s.io/code-generator/cmd/validation-gen/output_tests/native/basics/zz_generated.validations.go",
+          "staging/src/k8s.io/code-generator/cmd/validation-gen/output_tests/native/unions/doc.go",
+          "staging/src/k8s.io/code-generator/cmd/validation-gen/output_tests/native/unions/doc_test.go",
+          "staging/src/k8s.io/code-generator/cmd/validation-gen/output_tests/native/unions/testdata/validate-false.json",
+          "staging/src/k8s.io/code-generator/cmd/validation-gen/output_tests/native/unions/zz_generated.deepcopy.go",
+          "staging/src/k8s.io/code-generator/cmd/validation-gen/output_tests/native/unions/zz_generated.validations.go",
+          "staging/src/k8s.io/code-generator/cmd/validation-gen/output_tests/native/zerooroneof/doc.go",
+          "staging/src/k8s.io/code-generator/cmd/validation-gen/output_tests/native/zerooroneof/doc_test.go",
+          "staging/src/k8s.io/code-generator/cmd/validation-gen/output_tests/native/zerooroneof/testdata/validate-false.json",
+          "staging/src/k8s.io/code-generator/cmd/validation-gen/output_tests/native/zerooroneof/zz_generated.deepcopy.go",
+          "staging/src/k8s.io/code-generator/cmd/validation-gen/output_tests/native/zerooroneof/zz_generated.validations.go",
+          "staging/src/k8s.io/code-generator/cmd/validation-gen/output_tests/tags/enum/options/zz_generated.validations.go",
           "staging/src/k8s.io/code-generator/cmd/validation-gen/validation.go",
           "staging/src/k8s.io/code-generator/cmd/validation-gen/validation_test.go",
           "staging/src/k8s.io/code-generator/cmd/validation-gen/validators/native.go",
@@ -49651,6 +50658,15 @@
       },
       {
         "type": "bug-fix",
+        "source": "137098",
+        "target": "136432",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "pkg/kubelet/stats/cri_stats_provider.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "137243",
         "target": "137210",
         "classification": "heuristic",
@@ -49660,11 +50676,68 @@
       },
       {
         "type": "bug-fix",
+        "source": "137147",
+        "target": "135503",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "pkg/registry/core/service/ipallocator/controller/repairip.go",
+          "pkg/registry/core/service/ipallocator/controller/repairip_test.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "137274",
+        "target": "136284",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "staging/src/k8s.io/code-generator/cmd/validation-gen/validators/limits.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "137253",
         "target": "137333",
         "classification": "heuristic",
         "overlapping_files": [
           "test/integration/dra/binding_conditions_test.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "137296",
+        "target": "135395",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "staging/src/k8s.io/client-go/tools/cache/shared_informer.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "137221",
+        "target": "137088",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "test/e2e/kubectl/logs.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "137473",
+        "target": "135395",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "staging/src/k8s.io/apiextensions-apiserver/examples/client-go/pkg/client/informers/externalversions/factory.go",
+          "staging/src/k8s.io/apiextensions-apiserver/pkg/client/informers/externalversions/factory.go",
+          "staging/src/k8s.io/client-go/informers/factory.go",
+          "staging/src/k8s.io/code-generator/cmd/informer-gen/generators/factory.go",
+          "staging/src/k8s.io/code-generator/examples/HyphenGroup/informers/externalversions/factory.go",
+          "staging/src/k8s.io/code-generator/examples/MixedCase/informers/externalversions/factory.go",
+          "staging/src/k8s.io/code-generator/examples/apiserver/informers/externalversions/factory.go",
+          "staging/src/k8s.io/code-generator/examples/crd/informers/externalversions/factory.go",
+          "staging/src/k8s.io/code-generator/examples/single/informers/externalversions/factory.go",
+          "staging/src/k8s.io/kube-aggregator/pkg/client/informers/externalversions/factory.go",
+          "staging/src/k8s.io/sample-apiserver/pkg/generated/informers/externalversions/factory.go",
+          "staging/src/k8s.io/sample-controller/pkg/generated/informers/externalversions/factory.go"
         ]
       },
       {
@@ -49795,22 +50868,33 @@
       {
         "type": "bug-fix",
         "source": "137662",
-        "target": "137201",
+        "target": "136254",
         "classification": "heuristic",
         "overlapping_files": [
           "pkg/scheduler/framework/interface.go",
+          "pkg/scheduler/framework/plugins/defaultpreemption/default_preemption_test.go",
+          "pkg/scheduler/framework/preemption/preemption.go",
           "staging/src/k8s.io/kube-scheduler/framework/interface.go"
         ]
       },
       {
         "type": "bug-fix",
         "source": "137501",
-        "target": "137605",
+        "target": "137169",
         "classification": "heuristic",
         "overlapping_files": [
           "go.mod",
           "go.sum",
-          "vendor/modules.txt"
+          "pkg/proxy/nftables/proxier.go",
+          "vendor/modules.txt",
+          "vendor/sigs.k8s.io/knftables/CHANGELOG.md",
+          "vendor/sigs.k8s.io/knftables/CONTRIBUTING.md",
+          "vendor/sigs.k8s.io/knftables/README.md",
+          "vendor/sigs.k8s.io/knftables/fake.go",
+          "vendor/sigs.k8s.io/knftables/nftables.go",
+          "vendor/sigs.k8s.io/knftables/objects.go",
+          "vendor/sigs.k8s.io/knftables/transaction.go",
+          "vendor/sigs.k8s.io/knftables/types.go"
         ]
       },
       {
@@ -49821,6 +50905,15 @@
         "overlapping_files": [
           "pkg/apis/core/validation/validation.go",
           "pkg/apis/core/validation/validation_test.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "137679",
+        "target": "137211",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "pkg/controlplane/instance_test.go"
         ]
       },
       {
@@ -49890,7 +50983,7 @@
       {
         "type": "bug-fix",
         "source": "137836",
-        "target": "136976",
+        "target": "135196",
         "classification": "heuristic",
         "overlapping_files": [
           "api/openapi-spec/v3/api__v1_openapi.json",
@@ -49900,7 +50993,11 @@
           "pkg/apis/core/validation/validation.go",
           "pkg/apis/core/validation/validation_test.go",
           "pkg/apis/core/zz_generated.deepcopy.go",
-          "pkg/generated/openapi/zz_generated.openapi.go"
+          "pkg/generated/openapi/zz_generated.openapi.go",
+          "staging/src/k8s.io/api/core/v1/generated.pb.go",
+          "staging/src/k8s.io/api/core/v1/types.go",
+          "staging/src/k8s.io/api/core/v1/zz_generated.deepcopy.go",
+          "staging/src/k8s.io/client-go/applyconfigurations/internal/internal.go"
         ]
       },
       {
@@ -50015,25 +51112,43 @@
           "test/compatibility_lifecycle/reference/feature_list.md",
           "test/compatibility_lifecycle/reference/versioned_feature_list.yaml"
         ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "137978",
+        "target": "137606",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "test/integration/scheduler/podgroup/topology_aware_scheduling/tas_test.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "138178",
+        "target": "137850",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "test/integration/apiserver/discovery/framework.go"
+        ]
       }
     ],
     "by_complexity": {
       "small": {
-        "specd_rework_rate": 0.0599,
-        "unspecd_rework_rate": 0.0391,
-        "specd_count": 434,
-        "unspecd_count": 230
+        "specd_rework_rate": 0.0652,
+        "unspecd_rework_rate": 0.0633,
+        "specd_count": 445,
+        "unspecd_count": 237
       },
       "medium": {
-        "specd_rework_rate": 0.039,
-        "unspecd_rework_rate": 0.0901,
-        "specd_count": 205,
-        "unspecd_count": 111
+        "specd_rework_rate": 0.0481,
+        "unspecd_rework_rate": 0.125,
+        "specd_count": 208,
+        "unspecd_count": 112
       },
       "large": {
-        "specd_rework_rate": 0.1324,
+        "specd_rework_rate": 0.1679,
         "unspecd_rework_rate": 0.1852,
-        "specd_count": 136,
+        "specd_count": 137,
         "unspecd_count": 54
       }
     }

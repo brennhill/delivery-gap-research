@@ -1,11 +1,11 @@
 {
   "repo": "envoyproxy/envoy",
-  "lookback_days": 90,
-  "rework_window_days": 14,
+  "lookback_days": 365,
+  "rework_window_days": 30,
   "coverage": {
     "coverage_pct": 15,
-    "total_prs": 497,
-    "specd_prs": 77,
+    "total_prs": 550,
+    "specd_prs": 85,
     "prs": [
       {
         "number": 44115,
@@ -3982,6 +3982,430 @@
         "specd": true,
         "spec_source": "https://github.com/envoyproxy/envoy/issues/40053",
         "merged_at": "2026-02-27T07:21:51+00:00"
+      },
+      {
+        "number": 44252,
+        "sha": null,
+        "title": "deps/bazel: Update stack",
+        "specd": true,
+        "spec_source": "#43367",
+        "merged_at": "2026-04-02T18:31:59+00:00"
+      },
+      {
+        "number": 43723,
+        "sha": null,
+        "title": "tls: expose issuer cert hash and serial from peer certificate chain",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T18:25:22+00:00"
+      },
+      {
+        "number": 44154,
+        "sha": null,
+        "title": "router: fix a bug where internal redirect will hang up request or unexpected redirect",
+        "specd": true,
+        "spec_source": "https://github.com/envoyproxy/envoy/issues/44114",
+        "merged_at": "2026-04-01T23:58:07+00:00"
+      },
+      {
+        "number": 44239,
+        "sha": null,
+        "title": "bazel/deps: Update stack",
+        "specd": true,
+        "spec_source": "#43380",
+        "merged_at": "2026-04-02T16:52:37+00:00"
+      },
+      {
+        "number": 44187,
+        "sha": null,
+        "title": "listener manager: pass listener manager config to createListenerManager() interface",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T14:58:44+00:00"
+      },
+      {
+        "number": 44137,
+        "sha": null,
+        "title": "contrib: add Kafka stats sink for direct metric production via librdkafka",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T05:29:08+00:00"
+      },
+      {
+        "number": 44071,
+        "sha": null,
+        "title": "router/scoped_rds: guard on-demand update for inline-config scopes",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T04:29:03+00:00"
+      },
+      {
+        "number": 43855,
+        "sha": null,
+        "title": "x-forwarded-client-cert: add an optional json format",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T00:04:26+00:00"
+      },
+      {
+        "number": 43967,
+        "sha": null,
+        "title": "common: add intrusive list",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T19:12:05+00:00"
+      },
+      {
+        "number": 44125,
+        "sha": null,
+        "title": "upstream: make the outlier detection's behavior more clear",
+        "specd": true,
+        "spec_source": "https://github.com/envoyproxy/envoy/issues/44118.",
+        "merged_at": "2026-04-01T23:57:30+00:00"
+      },
+      {
+        "number": 44192,
+        "sha": null,
+        "title": "cleanup: remove unreachable return statement",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T16:12:15+00:00"
+      },
+      {
+        "number": 44181,
+        "sha": null,
+        "title": "[bp/1.36] ci/release: Add test for distroless non-root and fix hash (#44097)",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T10:03:41+00:00"
+      },
+      {
+        "number": 44179,
+        "sha": null,
+        "title": "hickory_dns: add statistics",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T07:06:52+00:00"
+      },
+      {
+        "number": 43942,
+        "sha": null,
+        "title": "retry: make the retry stats more exact",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T04:59:30+00:00"
+      },
+      {
+        "number": 44194,
+        "sha": null,
+        "title": "Ext Proc: Fix unintended conversion from unit32 to int32 in ext_proc.h",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T20:29:39+00:00"
+      },
+      {
+        "number": 44145,
+        "sha": null,
+        "title": "Simplify StreamRateLimiter and make its stats more flexible",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T18:35:13+00:00"
+      },
+      {
+        "number": 44190,
+        "sha": null,
+        "title": "deps: Update stack",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T16:37:39+00:00"
+      },
+      {
+        "number": 44182,
+        "sha": null,
+        "title": "[bp/1.35] ci/release: Add test for distroless non-root and fix hash (#44097)",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T16:36:42+00:00"
+      },
+      {
+        "number": 44180,
+        "sha": null,
+        "title": "[bp/1.37] ci/release: Add test for distroless non-root and fix hash (#44097)",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T14:09:21+00:00"
+      },
+      {
+        "number": 44012,
+        "sha": null,
+        "title": "Add FairTokenBucket (prereq of BandwidthShare filter)",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T14:08:49+00:00"
+      },
+      {
+        "number": 44185,
+        "sha": null,
+        "title": "deps: Update stack",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T13:50:23+00:00"
+      },
+      {
+        "number": 44097,
+        "sha": null,
+        "title": "ci/release: Add test for distroless non-root and fix hash",
+        "specd": true,
+        "spec_source": "#44004",
+        "merged_at": "2026-03-31T12:47:16+00:00"
+      },
+      {
+        "number": 44175,
+        "sha": null,
+        "title": "hickory_dns: slightly optimize how we maintain shared states",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T10:03:07+00:00"
+      },
+      {
+        "number": 44176,
+        "sha": null,
+        "title": "docs: styling nits in the hickory_dns docs for consistency",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T08:54:38+00:00"
+      },
+      {
+        "number": 44177,
+        "sha": null,
+        "title": "benchmarking: added a suite for hickory dns benchmarks",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T07:49:04+00:00"
+      },
+      {
+        "number": 44030,
+        "sha": null,
+        "title": "Prevent out-of-bound writes",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T04:42:26+00:00"
+      },
+      {
+        "number": 43976,
+        "sha": null,
+        "title": "userspace socket: treat a closed peer handle as writable",
+        "specd": true,
+        "spec_source": "#38148",
+        "merged_at": "2026-03-31T04:40:25+00:00"
+      },
+      {
+        "number": 44169,
+        "sha": null,
+        "title": "release/docs: Update backport policy to be more explicit/correct",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T20:56:08+00:00"
+      },
+      {
+        "number": 44090,
+        "sha": null,
+        "title": "dns: add a new RUST-based DNS resolver extension",
+        "specd": true,
+        "spec_source": "RUST-BASED",
+        "merged_at": "2026-03-30T20:46:35+00:00"
+      },
+      {
+        "number": 43793,
+        "sha": null,
+        "title": "mobile: setup Python package distribution to PyPI",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T17:58:04+00:00"
+      },
+      {
+        "number": 44166,
+        "sha": null,
+        "title": "release: Update/fix dates/info",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T15:48:16+00:00"
+      },
+      {
+        "number": 44144,
+        "sha": null,
+        "title": "Pass FIN up when EnvoyQuicServerStream is read disabled",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T15:34:17+00:00"
+      },
+      {
+        "number": 44044,
+        "sha": null,
+        "title": "dynamic_modules: remote source: add nack_on_cache_miss",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T08:52:12+00:00"
+      },
+      {
+        "number": 44155,
+        "sha": null,
+        "title": "dym: enables ignored doc tests",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-28T20:23:04+00:00"
+      },
+      {
+        "number": 44078,
+        "sha": null,
+        "title": "http: prefer reference rather than shared pointer for route()",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-28T07:28:13+00:00"
+      },
+      {
+        "number": 44113,
+        "sha": null,
+        "title": "Adds comptime option to link jemalloc instead of tcmalloc",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-28T00:47:28+00:00"
+      },
+      {
+        "number": 44132,
+        "sha": null,
+        "title": "dynamic_modules: add Transport Socket ABI, SDK, and metrics support",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-27T19:54:02+00:00"
+      },
+      {
+        "number": 44024,
+        "sha": null,
+        "title": "dynamic_modules: add a new extension for tracing",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-27T15:04:14+00:00"
+      },
+      {
+        "number": 44143,
+        "sha": null,
+        "title": "docs: fix typo \"anda\" -> \"and a\" in threading model overview",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-27T13:49:43+00:00"
+      },
+      {
+        "number": 44127,
+        "sha": null,
+        "title": "config_dump: use new clusters iterator",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-27T14:39:37+00:00"
+      },
+      {
+        "number": 44142,
+        "sha": null,
+        "title": "change log: add change log for previous refactoring",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-27T11:38:03+00:00"
+      },
+      {
+        "number": 44065,
+        "sha": null,
+        "title": "reverse_tunnels: Fix some flakes in the reverse connection cluster integration test",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-27T07:36:47+00:00"
+      },
+      {
+        "number": 44138,
+        "sha": null,
+        "title": "Refactor cargo workspace in bazel for builtin Rust extensions",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-27T07:33:55+00:00"
+      },
+      {
+        "number": 43944,
+        "sha": null,
+        "title": "refactor: upstream host override struct",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-27T07:14:22+00:00"
+      },
+      {
+        "number": 44085,
+        "sha": null,
+        "title": "[bp/1.37] [stack] stats number limit and scope level stats matcher support",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-27T01:22:09+00:00"
+      },
+      {
+        "number": 44130,
+        "sha": null,
+        "title": "dym: make EnvoyBuffer easier to use in test",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-26T21:58:00+00:00"
+      },
+      {
+        "number": 44131,
+        "sha": null,
+        "title": "Ensure rusftfmt executed on all *.rs",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-26T21:57:54+00:00"
+      },
+      {
+        "number": 44026,
+        "sha": null,
+        "title": "xds: update trace log to only print non-nullptr exceptions",
+        "specd": true,
+        "spec_source": "DS-ERROR",
+        "merged_at": "2026-03-26T14:25:59+00:00"
+      },
+      {
+        "number": 43804,
+        "sha": null,
+        "title": "Add enriching metadata for HDS response ",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-26T13:42:19+00:00"
+      },
+      {
+        "number": 39059,
+        "sha": null,
+        "title": "oauth2 filter: encrypt tokens",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-07-05T03:00:19+00:00"
+      },
+      {
+        "number": 39466,
+        "sha": null,
+        "title": "Update QUICHE from 90eab2218 to c142f13df",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-05-14T18:13:02+00:00"
+      },
+      {
+        "number": 40848,
+        "sha": null,
+        "title": "Update QUICHE from 2013a0735 to 1c35d6308",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-08-27T05:39:10+00:00"
+      },
+      {
+        "number": 33376,
+        "sha": null,
+        "title": "ext_proc: Add the test for overlimit response from ext_proc server",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2024-04-10T14:45:49+00:00"
       }
     ]
   },
@@ -3989,7 +4413,7 @@
     "mode": "heuristic",
     "average_score": 45,
     "verdicts": {
-      "REVIEW": 77
+      "REVIEW": 85
     },
     "specs": [
       {
@@ -7894,15 +8318,395 @@
           "No state transitions \u2014 AI may allow invalid transitions",
           "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
         ]
+      },
+      {
+        "pr_number": 44252,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "rules_shell \u2192 0.7.1 (Fix #44096)",
+            "suggestion": "Goal without test: 'rules_shell \u2192 0.7.1 (Fix #44096)' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "rules_python \u2192 1.9.0 (Fix #43752)",
+            "suggestion": "Goal without test: 'rules_python \u2192 1.9.0 (Fix #43752)' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "qatlib \u2192 26.02.0 (Fix #43367)",
+            "suggestion": "Goal without test: 'qatlib \u2192 26.02.0 (Fix #43367)' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "awscauth_testdata \u2192 0.10.1 (Fix #43788)",
+            "suggestion": "Goal without test: 'awscauth_testdata \u2192 0.10.1 (Fix #43788)' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "opentelemetry_proto \u2192 1.10.0 (Fix #43864)",
+            "suggestion": "Goal without test: 'opentelemetry_proto \u2192 1.10.0 (Fix #43864)' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "comenvoyproxyprotocgenvalidate \u2192 1.3.3 (Fix #43548)",
+            "suggestion": "Goal without test: 'comenvoyproxyprotocgenvalidate \u2192 1.3.3 (Fix #43548)' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 44154,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 95,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 44,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 10,
+            "type": "ambiguity",
+            "term": "correctly",
+            "suggestion": "Replace 'correctly' with a specific, measurable term"
+          },
+          {
+            "line": 12,
+            "type": "ambiguity",
+            "term": "correctly",
+            "suggestion": "Replace 'correctly' with a specific, measurable term"
+          },
+          {
+            "line": 13,
+            "type": "ambiguity",
+            "term": "correctly",
+            "suggestion": "Replace 'correctly' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Commit Message: router: fix a bug where internal redirect will hang up request o",
+            "suggestion": "Goal without test: 'Commit Message: router: fix a bug where internal redirect wi...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "1. It's possible the size of first chunk of request is larger than the buffer li",
+            "suggestion": "Goal without test: '1. It's possible the size of first chunk of request is large...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "2. If version > 1.35, if only internal redirect is enabled, the request body wil",
+            "suggestion": "Goal without test: '2. If version > 1.35, if only internal redirect is enabled, ...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "3. If version > 1.35 and both internal redirect and retry policy are enabled, th",
+            "suggestion": "Goal without test: '3. If version > 1.35 and both internal redirect and retry po...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "If chunk X triggered overflow, then the retry state will be reset and buffering ",
+            "suggestion": "Goal without test: 'If chunk X triggered overflow, then the retry state will be ...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "After chunk X, if new chunks coming, because the retry state was reset, then the",
+            "suggestion": "Goal without test: 'After chunk X, if new chunks coming, because the retry state...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 44239,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 44125,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "To close https://github.com/envoyproxy/envoy/issues/44118. The API of outlier de",
+            "suggestion": "Goal without test: 'To close https://github.com/envoyproxy/envoy/issues/44118. T...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 44097,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 43976,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 44090,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 44026,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
       }
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.0909,
-    "unspecd_rework_rate": 0.0881,
-    "delta": 0.0028,
-    "specd_sample_size": 77,
-    "unspecd_sample_size": 420,
+    "specd_rework_rate": 0.1059,
+    "unspecd_rework_rate": 0.0968,
+    "delta": 0.0091,
+    "specd_sample_size": 85,
+    "unspecd_sample_size": 465,
     "significance": "significant",
     "signals": [
       {
@@ -7960,12 +8764,21 @@
       {
         "type": "bug-fix",
         "source": "43442",
-        "target": "43257",
+        "target": "42878",
         "classification": "heuristic",
         "overlapping_files": [
+          "source/extensions/filters/common/ext_authz/ext_authz.h",
+          "source/extensions/filters/common/ext_authz/ext_authz_grpc_impl.cc",
           "source/extensions/filters/common/ext_authz/ext_authz_http_impl.cc",
+          "source/extensions/filters/http/ext_authz/ext_authz.cc",
+          "source/extensions/filters/http/ext_authz/ext_authz.h",
+          "test/extensions/filters/common/ext_authz/ext_authz_grpc_impl_test.cc",
           "test/extensions/filters/common/ext_authz/ext_authz_http_impl_test.cc",
-          "test/extensions/filters/http/ext_authz/ext_authz_integration_test.cc"
+          "test/extensions/filters/common/ext_authz/test_common.cc",
+          "test/extensions/filters/common/ext_authz/test_common.h",
+          "test/extensions/filters/http/ext_authz/ext_authz_integration_test.cc",
+          "test/extensions/filters/http/ext_authz/ext_authz_test.cc",
+          "test/extensions/filters/network/ext_authz/ext_authz_test.cc"
         ]
       },
       {
@@ -8065,6 +8878,15 @@
       },
       {
         "type": "bug-fix",
+        "source": "43600",
+        "target": "43348",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "test/integration/protocol_integration_test.cc"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "43645",
         "target": "43481",
         "classification": "heuristic",
@@ -8075,10 +8897,11 @@
       {
         "type": "bug-fix",
         "source": "43465",
-        "target": "43600",
+        "target": "43348",
         "classification": "heuristic",
         "overlapping_files": [
-          "test/integration/protocol_integration_test.cc"
+          "test/integration/protocol_integration_test.cc",
+          "test/integration/utility.cc"
         ]
       },
       {
@@ -8118,6 +8941,15 @@
         "classification": "heuristic",
         "overlapping_files": [
           "source/extensions/clusters/eds/eds.cc"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "43636",
+        "target": "43479",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "contrib/hyperscan/matching/input_matchers/source/BUILD"
         ]
       },
       {
@@ -8185,6 +9017,15 @@
           "source/extensions/filters/http/dynamic_modules/factory.cc",
           "test/extensions/dynamic_modules/http/integration_test.cc",
           "test/extensions/dynamic_modules/test_data/go/http_integration_test/http_integration_test.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "43813",
+        "target": "43408",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "source/extensions/matching/input_matchers/dynamic_modules/config.cc"
         ]
       },
       {
@@ -8417,6 +9258,15 @@
       },
       {
         "type": "bug-fix",
+        "source": "43876",
+        "target": "43688",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "test/extensions/config_subscription/grpc/new_grpc_mux_impl_test.cc"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "43934",
         "target": "42914",
         "classification": "heuristic",
@@ -8429,9 +9279,10 @@
       {
         "type": "bug-fix",
         "source": "44081",
-        "target": "43843",
+        "target": "43705",
         "classification": "heuristic",
         "overlapping_files": [
+          "source/extensions/filters/http/dynamic_modules/filter.cc",
           "test/extensions/dynamic_modules/http/filter_test.cc"
         ]
       },
@@ -8472,32 +9323,121 @@
       },
       {
         "type": "bug-fix",
+        "source": "44076",
+        "target": "43881",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "source/common/runtime/runtime_features.cc"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "43277",
         "target": "44076",
         "classification": "heuristic",
         "overlapping_files": [
           "source/common/runtime/runtime_features.cc"
         ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "44085",
+        "target": "43899",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "envoy/stats/scope.h",
+          "envoy/stats/stats_matcher.h",
+          "envoy/stats/store.h",
+          "source/common/stats/isolated_store_impl.cc",
+          "source/common/stats/isolated_store_impl.h",
+          "source/common/stats/thread_local_store.cc",
+          "source/common/stats/thread_local_store.h",
+          "test/common/stats/BUILD",
+          "test/common/stats/isolated_store_impl_test.cc",
+          "test/common/stats/stat_test_utility.cc",
+          "test/common/stats/stat_test_utility.h",
+          "test/common/stats/thread_local_store_test.cc",
+          "test/integration/server.h",
+          "test/mocks/stats/mocks.cc",
+          "test/mocks/stats/mocks.h"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "44065",
+        "target": "43666",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "source/extensions/bootstrap/reverse_tunnel/common/BUILD",
+          "test/extensions/bootstrap/reverse_tunnel/common/BUILD"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "44143",
+        "target": "43129",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "docs/root/intro/arch_overview/intro/threading_model.rst"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "44097",
+        "target": "44113",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "ci/do_ci.sh"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "44194",
+        "target": "43824",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "source/extensions/filters/http/ext_proc/ext_proc.h"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "44154",
+        "target": "43942",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "source/common/router/router.cc",
+          "test/common/router/router_test.cc"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "44239",
+        "target": "44113",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "bazel/deps.yaml",
+          "bazel/repository_locations.bzl"
+        ]
       }
     ],
     "by_complexity": {
       "small": {
-        "specd_rework_rate": 0.0833,
-        "unspecd_rework_rate": 0.0593,
-        "specd_count": 36,
-        "unspecd_count": 236
+        "specd_rework_rate": 0.0732,
+        "unspecd_rework_rate": 0.0586,
+        "specd_count": 41,
+        "unspecd_count": 256
       },
       "medium": {
-        "specd_rework_rate": 0.0952,
-        "unspecd_rework_rate": 0.09,
-        "specd_count": 21,
-        "unspecd_count": 100
+        "specd_rework_rate": 0.087,
+        "unspecd_rework_rate": 0.1081,
+        "specd_count": 23,
+        "unspecd_count": 111
       },
       "large": {
-        "specd_rework_rate": 0.1,
-        "unspecd_rework_rate": 0.1609,
-        "specd_count": 20,
-        "unspecd_count": 87
+        "specd_rework_rate": 0.1905,
+        "unspecd_rework_rate": 0.1765,
+        "specd_count": 21,
+        "unspecd_count": 102
       }
     }
   }

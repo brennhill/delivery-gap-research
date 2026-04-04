@@ -1,11 +1,11 @@
 {
   "repo": "oven-sh/bun",
-  "lookback_days": 90,
-  "rework_window_days": 14,
+  "lookback_days": 365,
+  "rework_window_days": 30,
   "coverage": {
     "coverage_pct": 37,
-    "total_prs": 506,
-    "specd_prs": 186,
+    "total_prs": 535,
+    "specd_prs": 200,
     "prs": [
       {
         "number": 28543,
@@ -4054,6 +4054,238 @@
         "specd": true,
         "spec_source": "#27553",
         "merged_at": "2026-03-18T05:01:50+00:00"
+      },
+      {
+        "number": 28614,
+        "sha": null,
+        "title": "fetch: observe runtime process.env proxy var changes",
+        "specd": true,
+        "spec_source": "JS-SIDE",
+        "merged_at": "2026-04-02T21:08:11+00:00"
+      },
+      {
+        "number": 28790,
+        "sha": null,
+        "title": "docs: fix repeated phrases in shell and css docs",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T21:55:17+00:00"
+      },
+      {
+        "number": 28788,
+        "sha": null,
+        "title": "docs: improve voice",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T21:28:40+00:00"
+      },
+      {
+        "number": 28767,
+        "sha": null,
+        "title": "Faster stripANSI",
+        "specd": true,
+        "spec_source": "BEL-TERMINATED",
+        "merged_at": "2026-04-02T05:03:06+00:00"
+      },
+      {
+        "number": 28758,
+        "sha": null,
+        "title": "build: bump zig to oven-sh/zig@365343a",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T23:08:30+00:00"
+      },
+      {
+        "number": 28733,
+        "sha": null,
+        "title": "Fix .todoIf() on test.skip chain in webview.test.ts",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T22:12:12+00:00"
+      },
+      {
+        "number": 28728,
+        "sha": null,
+        "title": "lint: remove no-undef-init from oxlint.json",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T20:42:52+00:00"
+      },
+      {
+        "number": 28611,
+        "sha": null,
+        "title": "http: keep-alive for HTTPS proxy CONNECT tunnels",
+        "specd": true,
+        "spec_source": "HTTPS-THROUGH",
+        "merged_at": "2026-03-31T19:07:47+00:00"
+      },
+      {
+        "number": 28725,
+        "sha": null,
+        "title": "crypto: update root certificates to NSS 3.121",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T19:07:08+00:00"
+      },
+      {
+        "number": 28652,
+        "sha": null,
+        "title": "Attach async stack frames to errors rejected from native callbacks",
+        "specd": true,
+        "spec_source": "https://github.com/oven-sh/bun/issues/3972",
+        "merged_at": "2026-03-30T09:22:29+00:00"
+      },
+      {
+        "number": 28651,
+        "sha": null,
+        "title": "Include async frames in Error.captureStackTrace",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T09:23:54+00:00"
+      },
+      {
+        "number": 28633,
+        "sha": null,
+        "title": "Fix per-query memory leaks in MySQL adapter",
+        "specd": true,
+        "spec_source": "#28632",
+        "merged_at": "2026-03-30T07:49:05+00:00"
+      },
+      {
+        "number": 28635,
+        "sha": null,
+        "title": "Flush FileSink in process.stdout._final before end() callback fires",
+        "specd": true,
+        "spec_source": "#25432",
+        "merged_at": "2026-03-30T07:45:09+00:00"
+      },
+      {
+        "number": 28640,
+        "sha": null,
+        "title": "delete cmake",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T03:29:40+00:00"
+      },
+      {
+        "number": 28617,
+        "sha": null,
+        "title": "Enable TCP_DEFER_ACCEPT for HTTP listeners on Linux",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-29T01:02:20+00:00"
+      },
+      {
+        "number": 28615,
+        "sha": null,
+        "title": "Add second cork buffer to uWebSockets for nested async handlers",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-28T07:25:48+00:00"
+      },
+      {
+        "number": 28613,
+        "sha": null,
+        "title": "fix(serve): leak when Promise<Response> never settles after abort",
+        "specd": true,
+        "spec_source": "GC-MANAGED",
+        "merged_at": "2026-03-28T07:06:39+00:00"
+      },
+      {
+        "number": 26999,
+        "sha": null,
+        "title": "feat(cron): add Bun.cron API for OS-level cron jobs and expression parsing",
+        "specd": true,
+        "spec_source": "OS-LEVEL",
+        "merged_at": "2026-03-17T02:23:48+00:00"
+      },
+      {
+        "number": 23706,
+        "sha": null,
+        "title": "Fix: Receive data in security scanner via an ipc pipe to avoid hitting max arg",
+        "specd": true,
+        "spec_source": "#23607",
+        "merged_at": "2026-03-15T04:57:10+00:00"
+      },
+      {
+        "number": 27952,
+        "sha": null,
+        "title": "fix(sql): send Parse+Bind+Execute atomically for unnamed prepared statements",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-14T17:33:22+00:00"
+      },
+      {
+        "number": 25604,
+        "sha": null,
+        "title": "experiment: see if ci passes if we update react(s)",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-14T07:20:41+00:00"
+      },
+      {
+        "number": 28065,
+        "sha": null,
+        "title": "fix(node:fs): refactor StatWatcher to use JSRef instead of indirect Strong ref",
+        "specd": true,
+        "spec_source": "#28027",
+        "merged_at": "2026-03-13T21:00:13+00:00"
+      },
+      {
+        "number": 28072,
+        "sha": null,
+        "title": "fix(crypto): segfault in Hash update/digest",
+        "specd": true,
+        "spec_source": "#28024",
+        "merged_at": "2026-03-13T22:29:49+00:00"
+      },
+      {
+        "number": 13294,
+        "sha": null,
+        "title": "fix(bindings): add missing null checks for invalid `this`",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2024-08-15T02:00:31+00:00"
+      },
+      {
+        "number": 28006,
+        "sha": null,
+        "title": "fix(http): 304 Not Modified through proxy tunnel hangs indefinitely",
+        "specd": true,
+        "spec_source": "#17793",
+        "merged_at": "2026-03-13T05:22:59+00:00"
+      },
+      {
+        "number": 28032,
+        "sha": null,
+        "title": "fix(websocket): send empty frame for ping()/pong() without arguments",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-13T02:42:29+00:00"
+      },
+      {
+        "number": 27973,
+        "sha": null,
+        "title": "build: replace CMake with TypeScript",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-13T02:39:38+00:00"
+      },
+      {
+        "number": 28045,
+        "sha": null,
+        "title": "fix(bundler): apply import attribute loader to dynamic import() records",
+        "specd": true,
+        "spec_source": "#28042",
+        "merged_at": "2026-03-13T02:33:00+00:00"
+      },
+      {
+        "number": 28058,
+        "sha": null,
+        "title": "docs: fix dynamic import `.default` access in yaml.mdx and json5.mdx",
+        "specd": true,
+        "spec_source": "#28057",
+        "merged_at": "2026-03-13T00:00:32+00:00"
       }
     ]
   },
@@ -4061,7 +4293,7 @@
     "mode": "heuristic",
     "average_score": 45,
     "verdicts": {
-      "REVIEW": 185,
+      "REVIEW": 199,
       "REWRITE": 1
     },
     "specs": [
@@ -16217,15 +16449,1070 @@
           "No state transitions \u2014 AI may allow invalid transitions",
           "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
         ]
+      },
+      {
+        "pr_number": 28614,
+        "format": "freeform",
+        "completeness": 50,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 60,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Bun__setEnvValue (src/bun.js/api/BunObject.zig) \u2014 writes through to Loader.map",
+            "suggestion": "Goal without test: 'Bun__setEnvValue (src/bun.js/api/BunObject.zig) \u2014 writes thr...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Custom getter/setter (JSEnvironmentVariableMap.cpp) \u2014 jsGetterProxyEnvironmentVa",
+            "suggestion": "Goal without test: 'Custom getter/setter (JSEnvironmentVariableMap.cpp) \u2014 jsGett...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Registered for all 6 variants getHttpProxyFor() reads",
+            "suggestion": "Goal without test: 'Registered for all 6 variants getHttpProxyFor() reads' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Worker spawn calls cloneFrom() to bump refcounts \u2014 workers share the parent's st",
+            "suggestion": "Goal without test: 'Worker spawn calls cloneFrom() to bump refcounts \u2014 workers s...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "A worker only allocates its own value if it writes to that var (copy-on-write)",
+            "suggestion": "Goal without test: 'A worker only allocates its own value if it writes to that v...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Parent overwriting derefs but doesn't free while a worker holds a ref",
+            "suggestion": "Goal without test: 'Parent overwriting derefs but doesn't free while a worker ho...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] Set NO_PROXY at runtime \u2192 fetch bypasses proxy",
+            "suggestion": "Goal without test: '[x] Set NO_PROXY at runtime \u2192 fetch bypasses proxy' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] Clear via = \"\" \u2192 fetch uses proxy again",
+            "suggestion": "Goal without test: '[x] Clear via = \"\" \u2192 fetch uses proxy again' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] Test fails on system bun (validates regression coverage)",
+            "suggestion": "Goal without test: '[x] Test fails on system bun (validates regression coverage)' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] No regressions in full proxy suite (pre-existing #12007 failures confirmed o",
+            "suggestion": "Goal without test: '[x] No regressions in full proxy suite (pre-existing #12007 ...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 28767,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 98,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 44,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 7,
+            "type": "ambiguity",
+            "term": "efficient",
+            "suggestion": "Replace 'efficient' with a specific, measurable term"
+          },
+          {
+            "line": 21,
+            "type": "ambiguity",
+            "term": "Better",
+            "suggestion": "Replace 'Better' with a specific, measurable term"
+          },
+          {
+            "line": 40,
+            "type": "ambiguity",
+            "term": "fast",
+            "suggestion": "Replace 'fast' with a specific, measurable term"
+          },
+          {
+            "line": 60,
+            "type": "ambiguity",
+            "term": "fast",
+            "suggestion": "Replace 'fast' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "test/js/bun/util/stripANSI.test.ts",
+            "suggestion": "Goal without test: 'test/js/bun/util/stripANSI.test.ts' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "test/js/bun/util/sliceAnsi.test.ts",
+            "suggestion": "Goal without test: 'test/js/bun/util/sliceAnsi.test.ts' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "test/js/bun/util/sliceAnsi-fuzz.test.ts",
+            "suggestion": "Goal without test: 'test/js/bun/util/sliceAnsi-fuzz.test.ts' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "test/js/bun/util/wrapAnsi.test.ts",
+            "suggestion": "Goal without test: 'test/js/bun/util/wrapAnsi.test.ts' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "test/js/bun/util/wrapAnsi.npm.test.ts",
+            "suggestion": "Goal without test: 'test/js/bun/util/wrapAnsi.npm.test.ts' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "test/js/bun/util/stringWidth.test.ts",
+            "suggestion": "Goal without test: 'test/js/bun/util/stringWidth.test.ts' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "test/js/node/readline/getStringWidth.test.ts",
+            "suggestion": "Goal without test: 'test/js/node/readline/getStringWidth.test.ts' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 28611,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] 3 sequential requests \u2192 1 CONNECT",
+            "suggestion": "Goal without test: '[x] 3 sequential requests \u2192 1 CONNECT' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] different targets \u2192 separate tunnels",
+            "suggestion": "Goal without test: '[x] different targets \u2192 separate tunnels' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] different credentials \u2192 separate tunnels",
+            "suggestion": "Goal without test: '[x] different credentials \u2192 separate tunnels' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[ ] redirect through tunnel (pre-existing #12007 non-TLS redirect tests fail on ",
+            "suggestion": "Goal without test: '[ ] redirect through tunnel (pre-existing #12007 non-TLS red...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[ ] stale pooled tunnel retry path",
+            "suggestion": "Goal without test: '[ ] stale pooled tunnel retry path' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 28652,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "JSValue.attachAsyncStackFromPromise(global, promise) \u2014 the primitive",
+            "suggestion": "Goal without test: 'JSValue.attachAsyncStackFromPromise(global, promise) \u2014 the p...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "JSPromise.rejectWithAsyncStack / Strong.rejectWithAsyncStack / AnyPromise.reject",
+            "suggestion": "Goal without test: 'JSPromise.rejectWithAsyncStack / Strong.rejectWithAsyncStack...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "SystemError.toErrorInstanceWithAsyncStack / sys.Error.toJSWithAsyncStack / S3Err",
+            "suggestion": "Goal without test: 'SystemError.toErrorInstanceWithAsyncStack / sys.Error.toJSWi...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] bun bd test test/js/node/fs/promises.test.js \u2014 14 pass including 4 new tests",
+            "suggestion": "Goal without test: '[x] bun bd test test/js/node/fs/promises.test.js \u2014 14 pass i...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] bun bd test test/js/bun/util/bun-file.test.ts \u2014 5 pass including 3 new tests",
+            "suggestion": "Goal without test: '[x] bun bd test test/js/bun/util/bun-file.test.ts \u2014 5 pass i...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] bun run zig:check-all \u2014 all platforms compile",
+            "suggestion": "Goal without test: '[x] bun run zig:check-all \u2014 all platforms compile' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] All new tests fail on system Bun (USESYSTEMBUN=1)",
+            "suggestion": "Goal without test: '[x] All new tests fail on system Bun (USESYSTEMBUN=1)' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] Manual verification: Bun.password.verify and dns.promises.lookup` show async",
+            "suggestion": "Goal without test: '[x] Manual verification: Bun.password.verify and dns.promise...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 28633,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Add this.nameorindex.deinit() to ColumnDefinition41.deinit()",
+            "suggestion": "Goal without test: 'Add this.nameorindex.deinit() to ColumnDefinition41.deinit()' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Add this.nameorindex.deinit() before reassignment in decodeInternal()",
+            "suggestion": "Goal without test: 'Add this.nameorindex.deinit() before reassignment in decodeI...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Add bun.default_allocator.free(this.params) to Execute.deinit()",
+            "suggestion": "Goal without test: 'Add bun.default_allocator.free(this.params) to Execute.deini...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Add field.nameorindex.deinit() before .duplicate assignment in checkForDuplicate",
+            "suggestion": "Goal without test: 'Add field.nameorindex.deinit() before .duplicate assignment ...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 28635,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 97,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 44,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 20,
+            "type": "ambiguity",
+            "term": "fast",
+            "suggestion": "Replace 'fast' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 28613,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 94,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 43,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 10,
+            "type": "ambiguity",
+            "term": "normal",
+            "suggestion": "Replace 'normal' with a specific, measurable term"
+          },
+          {
+            "line": 21,
+            "type": "ambiguity",
+            "term": "normal",
+            "suggestion": "Replace 'normal' with a specific, measurable term"
+          },
+          {
+            "line": 27,
+            "type": "ambiguity",
+            "term": "clean",
+            "suggestion": "Replace 'clean' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "JSC::JSCell + CellType + custom IsoHeapCellType for destructor support",
+            "suggestion": "Goal without test: 'JSC::JSCell + CellType + custom IsoHeapCellType for destruct...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "CompactPointerTuple<Pointee*, Tag> packs pointer + tag in 8 bytes (cell = JSCell",
+            "suggestion": "Goal without test: 'CompactPointerTuple<Pointee*, Tag> packs pointer + tag in 8 ...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Tag enum class with one entry per concrete type (4 RequestContext variants), kep",
+            "suggestion": "Goal without test: 'Tag enum class with one entry per concrete type (4 RequestCo...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "take() transfers ownership for deterministic cleanup in the normal path",
+            "suggestion": "Goal without test: 'take() transfers ownership for deterministic cleanup in the ...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Destructor calls one extern C function that Zig implements with a tag switch \u2014 n",
+            "suggestion": "Goal without test: 'Destructor calls one extern C function that Zig implements w...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] New test: test/js/bun/http/serve-pending-promise-abort-leak.test.ts \u2014 4 test",
+            "suggestion": "Goal without test: '[x] New test: test/js/bun/http/serve-pending-promise-abort-l...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] Test fails on system Bun: LEAK: 100 RequestContexts were never freed",
+            "suggestion": "Goal without test: '[x] Test fails on system Bun: LEAK: 100 RequestContexts were...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] Test passes with fix: pendingRequests: 0",
+            "suggestion": "Goal without test: '[x] Test passes with fix: pendingRequests: 0' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] heapStats().objectTypeCounts.NativePromiseContext shows 50 for 50 concurrent",
+            "suggestion": "Goal without test: '[x] heapStats().objectTypeCounts.NativePromiseContext shows ...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] serve.test.ts: 189 pass",
+            "suggestion": "Goal without test: '[x] serve.test.ts: 189 pass' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] bun-serve-routes.test.ts + bun-serve-headers.test.ts: 41 pass",
+            "suggestion": "Goal without test: '[x] bun-serve-routes.test.ts + bun-serve-headers.test.ts: 41...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] BUNJSCvalidateExceptionChecks=1: clean",
+            "suggestion": "Goal without test: '[x] BUNJSCvalidateExceptionChecks=1: clean' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 26999,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 99,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 69,
+            "type": "ambiguity",
+            "term": "fast",
+            "suggestion": "Replace 'fast' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Standard 5-field format: minute hour day-of-month month day-of-week",
+            "suggestion": "Goal without test: 'Standard 5-field format: minute hour day-of-month month day-...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Named days: SUN\u2013SAT, Sunday\u2013Saturday (case-insensitive)",
+            "suggestion": "Goal without test: 'Named days: SUN\u2013SAT, Sunday\u2013Saturday (case-insensitive)' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Named months: JAN\u2013DEC, January\u2013December (case-insensitive)",
+            "suggestion": "Goal without test: 'Named months: JAN\u2013DEC, January\u2013December (case-insensitive)' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Sunday as 7: weekday field accepts 7 as alias for 0",
+            "suggestion": "Goal without test: 'Sunday as 7: weekday field accepts 7 as alias for 0' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Nicknames: @yearly, @annually, @monthly, @weekly, @daily, @midnight, @hourly",
+            "suggestion": "Goal without test: 'Nicknames: @yearly, @annually, @monthly, @weekly, @daily, @m...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "POSIX OR logic: when both day-of-month and day-of-week are specified (neither is",
+            "suggestion": "Goal without test: 'POSIX OR logic: when both day-of-month and day-of-week are s...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "All operators: *, , (list), - (range), / (step)",
+            "suggestion": "Goal without test: 'All operators: *, , (list), - (range), / (step)' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Named values and nicknames are normalized to numeric form before registration",
+            "suggestion": "Goal without test: 'Named values and nicknames are normalized to numeric form be...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Parser (cron_parser.zig): Bitset representation \u2014 u64 for minutes, u32 for hours",
+            "suggestion": "Goal without test: 'Parser (cron_parser.zig): Bitset representation \u2014 u64 for mi...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Next-occurrence algorithm: Advances by largest non-matching unit (month \u2192 day \u2192 ",
+            "suggestion": "Goal without test: 'Next-occurrence algorithm: Advances by largest non-matching ...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "C++ bindings: Added BungregorianDateTimeToMSUTC and BunmsToGregorianDateTimeUTC ",
+            "suggestion": "Goal without test: 'C++ bindings: Added BungregorianDateTimeToMSUTC and BunmsToG...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Schedule normalization: Named values (Monday, @daily) are converted to numeric f",
+            "suggestion": "Goal without test: 'Schedule normalization: Named values (Monday, @daily) are co...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Path resolution: Uses vm.transpiler.resolver.resolve() relative to the caller's ",
+            "suggestion": "Goal without test: 'Path resolution: Uses vm.transpiler.resolver.resolve() relat...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "macOS cronToCalendarInterval: Now expands comma-separated values into cartesian-",
+            "suggestion": "Goal without test: 'macOS cronToCalendarInterval: Now expands comma-separated va...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Windows cronToSchtasks: Now passes /st HH:MM start time and /d DAY for DAILY/WEE",
+            "suggestion": "Goal without test: 'Windows cronToSchtasks: Now passes /st HH:MM start time and ...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "cron-title/--cron-period validation: Must be provided together (fails fast at st",
+            "suggestion": "Goal without test: 'cron-title/--cron-period validation: Must be provided togeth...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "bun.sys.getcwd: Uses bun's syscall wrapper instead of std.posix.getcwd.",
+            "suggestion": "Goal without test: 'bun.sys.getcwd: Uses bun's syscall wrapper instead of std.po...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "bun.env_var: Uses type-safe cached env var accessors (HOME, PATH) instead of bun",
+            "suggestion": "Goal without test: 'bun.env_var: Uses type-safe cached env var accessors (HOME, ...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "filterCrontab substring matching: Fixed pre-existing bug where removing job \"tes",
+            "suggestion": "Goal without test: 'filterCrontab substring matching: Fixed pre-existing bug whe...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] 61 tests, 161 assertions pass (bun bd test test/js/bun/cron/cron.test.ts)",
+            "suggestion": "Goal without test: '[x] 61 tests, 161 assertions pass (bun bd test test/js/bun/c...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] Cross-platform compilation: 61/61 targets (bun run zig:check-all)",
+            "suggestion": "Goal without test: '[x] Cross-platform compilation: 61/61 targets (bun run zig:c...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] Tests fail with system bun (verifying they test new functionality)",
+            "suggestion": "Goal without test: '[x] Tests fail with system bun (verifying they test new func...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] Registration/removal tests gated with describe.skipIf(!isLinux) and save/res",
+            "suggestion": "Goal without test: '[x] Registration/removal tests gated with describe.skipIf(!i...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] Sequential parse() calls verify patterns produce correct sequences (not just",
+            "suggestion": "Goal without test: '[x] Sequential parse() calls verify patterns produce correct...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] OR logic explicitly tested: 0 0 15 * FRI produces both 15th-of-month and Fri",
+            "suggestion": "Goal without test: '[x] OR logic explicitly tested: 0 0 15 * FRI produces both 1...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] All 7 day names and 12 month names verified via getUTCDay()/getUTCMonth()",
+            "suggestion": "Goal without test: '[x] All 7 day names and 12 month names verified via getUTCDa...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] MON-FRI/2` verified to produce Mon, Wed, Fri sequence",
+            "suggestion": "Goal without test: '[x] MON-FRI/2` verified to produce Mon, Wed, Fri sequence' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] Nicknames verified against equivalent 5-field expressions over multiple resu",
+            "suggestion": "Goal without test: '[x] Nicknames verified against equivalent 5-field expression...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] Edge cases: leap year Feb 29, day-31 month skipping, impossible dates return",
+            "suggestion": "Goal without test: '[x] Edge cases: leap year Feb 29, day-31 month skipping, imp...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 23706,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 28065,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "bun run zig:check passes",
+            "suggestion": "Goal without test: 'bun run zig:check passes' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Added the regression test from #28029 (50 watchers, w._handle = null without clo",
+            "suggestion": "Goal without test: 'Added the regression test from #28029 (50 watchers, w._handl...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 28072,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 96,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 44,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 10,
+            "type": "ambiguity",
+            "term": "fast",
+            "suggestion": "Replace 'fast' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Missing this validation: jsDynamicCast<JSHash*> result was dereferenced uncondit",
+            "suggestion": "Goal without test: 'Missing this validation: jsDynamicCast<JSHash*> result was d...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "GC hazard on input string: In the string branch of update(), the JSString* could",
+            "suggestion": "Goal without test: 'GC hazard on input string: In the string branch of update(),...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Detached buffer read: view->vector() was called without checking isDetached(). N",
+            "suggestion": "Goal without test: 'Detached buffer read: view->vector() was called without chec...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Constructor now checks md == nullptr before parsing options (fail fast, no behav",
+            "suggestion": "Goal without test: 'Constructor now checks md == nullptr before parsing options ...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] bun bd test test/regression/issue/28024.test.ts \u2014 new regression tests pass",
+            "suggestion": "Goal without test: '[x] bun bd test test/regression/issue/28024.test.ts \u2014 new re...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] Tests assert ERRINVALIDTHIS and ERRINVALIDSTATE codes instead of crashing",
+            "suggestion": "Goal without test: '[x] Tests assert ERRINVALIDTHIS and ERRINVALIDSTATE codes in...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 28006,
+        "format": "freeform",
+        "completeness": 50,
+        "ambiguity": 96,
+        "testability": 75,
+        "consistency": 100,
+        "overall": 78,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 23,
+            "type": "ambiguity",
+            "term": "transparent",
+            "suggestion": "Replace 'transparent' with a specific, measurable term"
+          },
+          {
+            "line": 31,
+            "type": "ambiguity",
+            "term": "correctly",
+            "suggestion": "Replace 'correctly' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Mock CONNECT proxy",
+            "suggestion": "Goal without test: 'Mock CONNECT proxy' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 28045,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Fix dynamic import() with import attributes (e.g. { with: { type: 'text' } }) no",
+            "suggestion": "Goal without test: 'Fix dynamic import() with import attributes (e.g. { with: { ...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] Regression test test/regression/issue/28042.test.ts \u2014 tests both --compile a",
+            "suggestion": "Goal without test: '[x] Regression test test/regression/issue/28042.test.ts \u2014 te...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] Test fails with system bun (USESYSTEMBUN=1`), passes with debug build",
+            "suggestion": "Goal without test: '[x] Test fails with system bun (USESYSTEMBUN=1`), passes wit...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 28058,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 95,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 44,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 4,
+            "type": "ambiguity",
+            "term": "correctly",
+            "suggestion": "Replace 'correctly' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Fix dynamic import examples in docs/runtime/yaml.mdx and docs/runtime/json5.mdx ",
+            "suggestion": "Goal without test: 'Fix dynamic import examples in docs/runtime/yaml.mdx and doc...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Docs-only change \u2014 no runtime behavior affected",
+            "suggestion": "Goal without test: 'Docs-only change \u2014 no runtime behavior affected' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Verified examples are consistent with docs/runtime/file-types.mdx which already ",
+            "suggestion": "Goal without test: 'Verified examples are consistent with docs/runtime/file-type...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
       }
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.1935,
-    "unspecd_rework_rate": 0.1969,
-    "delta": -0.0033,
-    "specd_sample_size": 186,
-    "unspecd_sample_size": 320,
+    "specd_rework_rate": 0.23,
+    "unspecd_rework_rate": 0.2448,
+    "delta": -0.0148,
+    "specd_sample_size": 200,
+    "unspecd_sample_size": 335,
     "significance": "significant",
     "signals": [
       {
@@ -16397,9 +17684,10 @@
       {
         "type": "bug-fix",
         "source": "25363",
-        "target": "25090",
+        "target": "24949",
         "classification": "heuristic",
         "overlapping_files": [
+          "src/bun.js/webcore/Blob.zig",
           "src/bun.js/webcore/fetch.zig"
         ]
       },
@@ -16415,6 +17703,16 @@
       },
       {
         "type": "bug-fix",
+        "source": "25443",
+        "target": "24731",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/bun.js/api/YAMLObject.zig",
+          "test/js/bun/yaml/yaml.test.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "25532",
         "target": "25460",
         "classification": "heuristic",
@@ -16425,10 +17723,29 @@
       {
         "type": "bug-fix",
         "source": "25530",
-        "target": "25414",
+        "target": "25090",
         "classification": "heuristic",
         "overlapping_files": [
+          "src/http/AsyncHTTP.zig",
           "test/js/bun/http/proxy.test.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "25534",
+        "target": "24796",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/bun.js/node/node_fs.zig"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "25538",
+        "target": "24826",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "cmake/targets/BuildBun.cmake"
         ]
       },
       {
@@ -16438,6 +17755,15 @@
         "classification": "heuristic",
         "overlapping_files": [
           "test/js/bun/yaml/yaml.test.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "25596",
+        "target": "24811",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/deps/libuv.zig"
         ]
       },
       {
@@ -16452,11 +17778,33 @@
       {
         "type": "bug-fix",
         "source": "25594",
-        "target": "25534",
+        "target": "24949",
         "classification": "heuristic",
         "overlapping_files": [
-          "src/bun.js/node/node_fs.zig",
-          "src/bun.js/webcore/blob/copy_file.zig"
+          "src/bun.js/api/JSTranspiler.zig",
+          "src/bun.js/api/glob.zig",
+          "src/bun.js/webcore/Blob.zig"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "25710",
+        "target": "25462",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/ast/Expr.zig",
+          "src/ast/SideEffects.zig"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "25731",
+        "target": "25462",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/bun-types/bun.d.ts",
+          "src/bun.js/api/JSBundler.zig",
+          "src/bundler/bundle_v2.zig"
         ]
       },
       {
@@ -16480,6 +17828,15 @@
       },
       {
         "type": "bug-fix",
+        "source": "25884",
+        "target": "25617",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "test/js/bun/http/proxy.test.js"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "25889",
         "target": "25684",
         "classification": "heuristic",
@@ -16487,6 +17844,24 @@
           "src/bake/BakeGlobalObject.cpp",
           "src/bun.js/bindings/ModuleLoader.cpp",
           "src/bun.js/bindings/ZigGlobalObject.cpp"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "25938",
+        "target": "25684",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/bun.js/bindings/NodeHTTP.cpp"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "25949",
+        "target": "25592",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/http/HTTPThread.zig"
         ]
       },
       {
@@ -16528,6 +17903,24 @@
       },
       {
         "type": "bug-fix",
+        "source": "25991",
+        "target": "25597",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/sys.zig"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "26124",
+        "target": "25568",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/shell/IOWriter.zig"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "26145",
         "target": "25937",
         "classification": "heuristic",
@@ -16564,6 +17957,15 @@
       },
       {
         "type": "bug-fix",
+        "source": "26199",
+        "target": "25682",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "flake.nix"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "26221",
         "target": "25884",
         "classification": "heuristic",
@@ -16582,10 +17984,20 @@
       },
       {
         "type": "bug-fix",
-        "source": "26285",
-        "target": "26161",
+        "source": "26278",
+        "target": "25717",
         "classification": "heuristic",
         "overlapping_files": [
+          "src/bun.js/bindings/headers.h"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "26285",
+        "target": "25717",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/bun.js/bindings/JSValue.zig",
           "src/bun.js/bindings/bindings.cpp"
         ]
       },
@@ -16684,6 +18096,24 @@
       },
       {
         "type": "bug-fix",
+        "source": "26461",
+        "target": "25667",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/js/builtins/shell.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "26491",
+        "target": "25847",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/bun.js/api/bun/h2_frame_parser.zig"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "26511",
         "target": "26450",
         "classification": "heuristic",
@@ -16727,6 +18157,15 @@
         "classification": "heuristic",
         "overlapping_files": [
           "src/shell/interpreter.zig"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "26634",
+        "target": "25852",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/bun.js/node/types.zig"
         ]
       },
       {
@@ -16803,10 +18242,13 @@
       {
         "type": "bug-fix",
         "source": "26783",
-        "target": "26519",
+        "target": "26379",
         "classification": "heuristic",
         "overlapping_files": [
-          "cmake/targets/BuildMimalloc.cmake"
+          "cmake/targets/BuildMimalloc.cmake",
+          "src/allocators/MimallocArena.zig",
+          "src/allocators/mimalloc.zig",
+          "test/js/bun/perf/static-initializers.test.ts"
         ]
       },
       {
@@ -16817,6 +18259,24 @@
         "overlapping_files": [
           "src/bun.js/bindings/JSBuffer.cpp",
           "test/js/node/buffer.test.js"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "26883",
+        "target": "25991",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/sys.zig"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "26882",
+        "target": "26299",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/StandaloneModuleGraph.zig"
         ]
       },
       {
@@ -16835,6 +18295,24 @@
         "classification": "heuristic",
         "overlapping_files": [
           "src/shell/interpreter.zig"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "26942",
+        "target": "26149",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/s3/credentials.zig"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "26940",
+        "target": "26161",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/bun.js/bindings/BunPlugin.cpp"
         ]
       },
       {
@@ -16875,6 +18353,24 @@
       },
       {
         "type": "bug-fix",
+        "source": "27026",
+        "target": "26511",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/napi/napi.zig"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "27062",
+        "target": "26608",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/bun.js/webcore/fetch/FetchTasklet.zig"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "27039",
         "target": "27040",
         "classification": "heuristic",
@@ -16893,12 +18389,30 @@
       },
       {
         "type": "bug-fix",
+        "source": "27088",
+        "target": "26425",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/bun.js/bindings/bindings.cpp"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "27114",
         "target": "27056",
         "classification": "heuristic",
         "overlapping_files": [
           "src/bundler/linker_context/generateCompileResultForHtmlChunk.zig",
           "test/bundler/standalone.test.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "27115",
+        "target": "26634",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/bun.js/node/types.zig"
         ]
       },
       {
@@ -16935,6 +18449,25 @@
         "classification": "heuristic",
         "overlapping_files": [
           "src/bun.js/bindings/sqlite/JSSQLStatement.cpp"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "27176",
+        "target": "26440",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/js_printer.zig"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "27324",
+        "target": "26440",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/bun.js/api/BunObject.zig",
+          "src/bun.js/bindings/BunObject.cpp"
         ]
       },
       {
@@ -16977,12 +18510,30 @@
       },
       {
         "type": "bug-fix",
+        "source": "27434",
+        "target": "26620",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/bun.js.zig"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "27433",
         "target": "26995",
         "classification": "heuristic",
         "overlapping_files": [
           "src/http/websocket_client.zig",
           "src/http/websocket_client/WebSocketProxyTunnel.zig"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "27494",
+        "target": "26737",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/bun-uws/src/HttpParser.h"
         ]
       },
       {
@@ -17060,11 +18611,29 @@
       },
       {
         "type": "bug-fix",
+        "source": "27661",
+        "target": "26865",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/bun.js/node/path.zig"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "27695",
         "target": "27534",
         "classification": "heuristic",
         "overlapping_files": [
           "test/bundler/bundler_barrel.test.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "27705",
+        "target": "26859",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "test/js/node/watch/fs.watch.test.ts"
         ]
       },
       {
@@ -17124,6 +18693,15 @@
       },
       {
         "type": "bug-fix",
+        "source": "27975",
+        "target": "27124",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/deps/libuv.zig"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "27999",
         "target": "27492",
         "classification": "heuristic",
@@ -17160,11 +18738,84 @@
       },
       {
         "type": "bug-fix",
+        "source": "28045",
+        "target": "27968",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/ast/P.zig"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "28006",
+        "target": "27959",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/http.zig"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "28065",
+        "target": "27970",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/bun.js/node/node_fs_stat_watcher.zig"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "28085",
+        "target": "27973",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "scripts/build/flags.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "27952",
+        "target": "27866",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/sql/postgres/PostgresRequest.zig",
+          "src/sql/postgres/PostgresSQLQuery.zig"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "28173",
+        "target": "27695",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/bundler/barrel_imports.zig"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "28200",
         "target": "27840",
         "classification": "heuristic",
         "overlapping_files": [
           "test/integration/next-pages/test/dev-server-puppeteer.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "28196",
+        "target": "23706",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/install/PackageManager/security_scanner.zig"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "27554",
+        "target": "27658",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/string/immutable/unicode.zig"
         ]
       },
       {
@@ -17208,7 +18859,7 @@
       {
         "type": "bug-fix",
         "source": "28357",
-        "target": "28082",
+        "target": "26999",
         "classification": "heuristic",
         "overlapping_files": [
           "docs/runtime/cron.mdx"
@@ -17267,26 +18918,67 @@
         "overlapping_files": [
           "src/bun.js/api/bun/dns.zig"
         ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "28613",
+        "target": "28185",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/bun.js/api.zig",
+          "src/bun.js/bindings/ZigGlobalObject.cpp",
+          "src/bun.js/bindings/ZigGlobalObject.h",
+          "src/bun.js/bindings/webcore/DOMClientIsoSubspaces.h",
+          "src/bun.js/bindings/webcore/DOMIsoSubspaces.h"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "28633",
+        "target": "28005",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/sql/mysql/MySQLConnection.zig",
+          "src/sql/mysql/MySQLStatement.zig"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "28733",
+        "target": "28362",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "test/js/bun/webview/webview.test.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "28788",
+        "target": "28213",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "docs/runtime/sqlite.mdx"
+        ]
       }
     ],
     "by_complexity": {
       "small": {
-        "specd_rework_rate": 0.1607,
-        "unspecd_rework_rate": 0.1576,
-        "specd_count": 112,
-        "unspecd_count": 203
+        "specd_rework_rate": 0.188,
+        "unspecd_rework_rate": 0.201,
+        "specd_count": 117,
+        "unspecd_count": 209
       },
       "medium": {
-        "specd_rework_rate": 0.2222,
-        "unspecd_rework_rate": 0.2195,
-        "specd_count": 63,
-        "unspecd_count": 82
+        "specd_rework_rate": 0.2836,
+        "unspecd_rework_rate": 0.2644,
+        "specd_count": 67,
+        "unspecd_count": 87
       },
       "large": {
-        "specd_rework_rate": 0.3636,
-        "unspecd_rework_rate": 0.3421,
-        "specd_count": 11,
-        "unspecd_count": 38
+        "specd_rework_rate": 0.3125,
+        "unspecd_rework_rate": 0.4048,
+        "specd_count": 16,
+        "unspecd_count": 42
       }
     }
   }

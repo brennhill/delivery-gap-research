@@ -1,10 +1,10 @@
 {
   "repo": "microsoft/vscode",
-  "lookback_days": 90,
-  "rework_window_days": 14,
+  "lookback_days": 365,
+  "rework_window_days": 30,
   "coverage": {
     "coverage_pct": 39,
-    "total_prs": 1420,
+    "total_prs": 1421,
     "specd_prs": 551,
     "prs": [
       {
@@ -11366,6 +11366,14 @@
         "specd": true,
         "spec_source": "https://github.com/microsoft/vscode/issues/new?title=\u2728+Set+up+Copilot+instructions&body=Configure%20instructions%20for%20this%20repository%20as%20documented%20in%20%5BBest%20practices%20for%20Copilot%20coding%20agent%20in%20your%20repository%5D%28https://gh.io/copilot-coding-agent-tips%29%2E%0A%0A%3COnboard%20this%20repo%3E&assignees=copilot)",
         "merged_at": "2026-03-11T16:56:18+00:00"
+      },
+      {
+        "number": 242094,
+        "sha": null,
+        "title": "hover - fix beak regression",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-02-26T18:51:02+00:00"
       }
     ]
   },
@@ -37841,11 +37849,11 @@
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.2831,
-    "unspecd_rework_rate": 0.1887,
-    "delta": 0.0944,
+    "specd_rework_rate": 0.2849,
+    "unspecd_rework_rate": 0.1897,
+    "delta": 0.0953,
     "specd_sample_size": 551,
-    "unspecd_sample_size": 869,
+    "unspecd_sample_size": 870,
     "significance": "significant",
     "signals": [
       {
@@ -38121,6 +38129,15 @@
           "extensions/mermaid-chat-features/chat-webview-src/index.ts",
           "extensions/mermaid-chat-features/package.json",
           "extensions/mermaid-chat-features/src/extension.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "290772",
+        "target": "287246",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/vs/workbench/contrib/chat/browser/chatManagement/chatModelsWidget.ts"
         ]
       },
       {
@@ -39911,11 +39928,31 @@
       },
       {
         "type": "bug-fix",
-        "source": "299611",
-        "target": "299557",
+        "source": "299557",
+        "target": "293538",
         "classification": "heuristic",
         "overlapping_files": [
           "src/vs/workbench/contrib/chat/browser/widget/chatContentParts/chatQuestionCarouselPart.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "299611",
+        "target": "292990",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/vs/workbench/contrib/chat/browser/widget/chatContentParts/chatQuestionCarouselPart.ts",
+          "src/vs/workbench/contrib/chat/browser/widget/chatContentParts/media/chatQuestionCarousel.css",
+          "src/vs/workbench/contrib/chat/test/browser/widget/chatContentParts/chatQuestionCarouselPart.test.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "299884",
+        "target": "288919",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/vs/platform/update/electron-main/abstractUpdateService.ts"
         ]
       },
       {
@@ -39926,6 +39963,15 @@
         "overlapping_files": [
           "src/vs/workbench/contrib/terminalContrib/chatAgentTools/browser/runInTerminalToolTelemetry.ts",
           "src/vs/workbench/contrib/terminalContrib/chatAgentTools/browser/tools/commandLineAnalyzer/commandLineAutoApproveAnalyzer.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "300465",
+        "target": "296665",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/vs/workbench/contrib/browserView/electron-browser/browserEditor.ts"
         ]
       },
       {
@@ -41816,19 +41862,19 @@
     ],
     "by_complexity": {
       "small": {
-        "specd_rework_rate": 0.2334,
-        "unspecd_rework_rate": 0.1363,
+        "specd_rework_rate": 0.231,
+        "unspecd_rework_rate": 0.1361,
         "specd_count": 407,
-        "unspecd_count": 631
+        "unspecd_count": 632
       },
       "medium": {
-        "specd_rework_rate": 0.3913,
-        "unspecd_rework_rate": 0.3349,
+        "specd_rework_rate": 0.4,
+        "unspecd_rework_rate": 0.3397,
         "specd_count": 115,
         "unspecd_count": 209
       },
       "large": {
-        "specd_rework_rate": 0.5517,
+        "specd_rework_rate": 0.5862,
         "unspecd_rework_rate": 0.2208,
         "specd_count": 29,
         "unspecd_count": 77

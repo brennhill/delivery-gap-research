@@ -1,11 +1,11 @@
 {
   "repo": "astral-sh/ruff",
-  "lookback_days": 90,
-  "rework_window_days": 14,
+  "lookback_days": 365,
+  "rework_window_days": 30,
   "coverage": {
     "coverage_pct": 45,
-    "total_prs": 945,
-    "specd_prs": 429,
+    "total_prs": 1058,
+    "specd_prs": 478,
     "prs": [
       {
         "number": 24166,
@@ -3378,7 +3378,7 @@
       {
         "number": 24114,
         "sha": null,
-        "title": "Implement unnecessary-if (RUF050)",
+        "title": "[`ruff`] New rule `unnecessary-if` (`RUF050`)",
         "specd": true,
         "spec_source": "#13929",
         "merged_at": "2026-03-25T16:57:43+00:00"
@@ -3426,7 +3426,7 @@
       {
         "number": 24162,
         "sha": null,
-        "title": "Add RUF072: warn when using  operator on an f-string",
+        "title": "[`ruff`] New rule `RUF073`: warn when using `%` operator on an f-string",
         "specd": true,
         "spec_source": "#24159",
         "merged_at": "2026-03-25T13:09:31+00:00"
@@ -3434,7 +3434,7 @@
       {
         "number": 24165,
         "sha": null,
-        "title": "Implement useless-finally (RUF-072)",
+        "title": "[`ruff`] New rule `useless-finally` (`RUF072`)",
         "specd": true,
         "spec_source": "#19158",
         "merged_at": "2026-03-25T12:06:54+00:00"
@@ -7566,6 +7566,910 @@
         "specd": false,
         "spec_source": null,
         "merged_at": "2026-01-13T23:37:09+00:00"
+      },
+      {
+        "number": 24379,
+        "sha": null,
+        "title": "add recent move of the `deferred` submodule to `.git-blame-ignore-revs`",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T22:00:35+00:00"
+      },
+      {
+        "number": 24367,
+        "sha": null,
+        "title": "[ty] Fix extra_items TypedDict tests",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T21:06:39+00:00"
+      },
+      {
+        "number": 24370,
+        "sha": null,
+        "title": "[ty] Use `infer_type_expression` for validating PEP-613 type aliases",
+        "specd": true,
+        "spec_source": "PEP-613",
+        "merged_at": "2026-04-02T20:53:11+00:00"
+      },
+      {
+        "number": 24371,
+        "sha": null,
+        "title": "[`flake8-simplify`] Make the fix for `collapsible-if` (`SIM102`) safe in `preview`",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T20:19:27+00:00"
+      },
+      {
+        "number": 24338,
+        "sha": null,
+        "title": "[ty] Validate TypedDict fields when subclassing",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T20:10:46+00:00"
+      },
+      {
+        "number": 24197,
+        "sha": null,
+        "title": "[ty] pass type context to sequence literals in binary operations",
+        "specd": true,
+        "spec_source": "https://github.com/astral-sh/ty/issues/3002.",
+        "merged_at": "2026-04-02T19:47:10+00:00"
+      },
+      {
+        "number": 24372,
+        "sha": null,
+        "title": "Add release environment to notify-dependents job",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T18:58:57+00:00"
+      },
+      {
+        "number": 24368,
+        "sha": null,
+        "title": "[ty] Move the `deferred` submodule inside `infer/builder`",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T17:56:23+00:00"
+      },
+      {
+        "number": 24362,
+        "sha": null,
+        "title": "[ty] Infer the `extra_items` keyword argument to class-based TypedDicts as an annotation expression",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T16:31:46+00:00"
+      },
+      {
+        "number": 24308,
+        "sha": null,
+        "title": "`RUF072`: skip formfeeds on dedent",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T12:49:38+00:00"
+      },
+      {
+        "number": 24360,
+        "sha": null,
+        "title": "[ty] Validate type qualifiers in functional TypedDict fields and the `extra_items` keyword to functional TypedDicts",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T16:26:25+00:00"
+      },
+      {
+        "number": 24251,
+        "sha": null,
+        "title": "[ty] Improve robustness of various type-qualifier-related checks",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T16:19:43+00:00"
+      },
+      {
+        "number": 24366,
+        "sha": null,
+        "title": "Only run the release-gate on workflow dispatch",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T16:15:35+00:00"
+      },
+      {
+        "number": 24353,
+        "sha": null,
+        "title": "[ty] Use `infer_type_expression` for parsing parameter annotations and return-type annotations",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T16:05:42+00:00"
+      },
+      {
+        "number": 24365,
+        "sha": null,
+        "title": "Add a \"release-gate\" step to the release workflow",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T15:01:32+00:00"
+      },
+      {
+        "number": 24280,
+        "sha": null,
+        "title": "Disallow starred expressions as values of starred expressions",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T14:57:28+00:00"
+      },
+      {
+        "number": 16058,
+        "sha": null,
+        "title": "[`pyupgrade`] Ignore strings with string-only escapes (`UP012`)",
+        "specd": true,
+        "spec_source": "#12753",
+        "merged_at": "2026-04-02T14:53:31+00:00"
+      },
+      {
+        "number": 24325,
+        "sha": null,
+        "title": "[ty] Improve consistency and quality of diagnostics relating to invalid type forms",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T14:16:30+00:00"
+      },
+      {
+        "number": 24322,
+        "sha": null,
+        "title": "[flake8-type-checking] Clarify import cycle wording for TC001/TC002/TC003",
+        "specd": true,
+        "spec_source": "https://github.com/astral-sh/ruff/issues/15552",
+        "merged_at": "2026-04-02T14:00:32+00:00"
+      },
+      {
+        "number": 24363,
+        "sha": null,
+        "title": "[`flake8-errmsg`] Avoid shadowing existing `msg` in fix for `EM101`",
+        "specd": true,
+        "spec_source": "#24335",
+        "merged_at": "2026-04-02T13:26:19+00:00"
+      },
+      {
+        "number": 24344,
+        "sha": null,
+        "title": "Replace unmaintained `unic-ucd-category` crate with `icu_properties`",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T12:29:23+00:00"
+      },
+      {
+        "number": 24361,
+        "sha": null,
+        "title": "[ty] Replace markdown hard line breaks in snapshot tests",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T12:02:58+00:00"
+      },
+      {
+        "number": 24359,
+        "sha": null,
+        "title": "[ty] Move snapshot for code action test with trailing whitespace to external file",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T09:56:12+00:00"
+      },
+      {
+        "number": 24352,
+        "sha": null,
+        "title": "[ty] Remove `TypeInferenceBuilder::inferring_vararg_annotation`",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T20:36:39+00:00"
+      },
+      {
+        "number": 24252,
+        "sha": null,
+        "title": "[ty] Make `Divergent` a top-level type variant",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T19:17:19+00:00"
+      },
+      {
+        "number": 24329,
+        "sha": null,
+        "title": "[ty] Tighten up validation of subscripts and attributes in type expressions",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T19:01:20+00:00"
+      },
+      {
+        "number": 24079,
+        "sha": null,
+        "title": "[ty] Handle most \"deep\" mutual typevar constraints",
+        "specd": true,
+        "spec_source": "https://github.com/astral-sh/ty/issues/2045.",
+        "merged_at": "2026-04-01T17:45:21+00:00"
+      },
+      {
+        "number": 24347,
+        "sha": null,
+        "title": "[ty] Simplify `SpecialFormType::in_type_expression`",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T17:28:24+00:00"
+      },
+      {
+        "number": 24336,
+        "sha": null,
+        "title": "[ty] Mark loop header assignments as used",
+        "specd": true,
+        "spec_source": "https://github.com/astral-sh/ty/issues/3187.",
+        "merged_at": "2026-04-01T16:27:00+00:00"
+      },
+      {
+        "number": 24343,
+        "sha": null,
+        "title": "Avoid rendering fix lines with trailing whitespace after `|`",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T16:01:31+00:00"
+      },
+      {
+        "number": 24326,
+        "sha": null,
+        "title": "[ty] Avoid emitting cascading diagnostics when parsing invalid type expressions",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T11:09:10+00:00"
+      },
+      {
+        "number": 24345,
+        "sha": null,
+        "title": "[ty] Various cleanups to functional `TypedDict` parsing logic",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T14:00:01+00:00"
+      },
+      {
+        "number": 24346,
+        "sha": null,
+        "title": "[ty] Minor cleanups to `infer/builder/subscript.rs`",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T13:22:19+00:00"
+      },
+      {
+        "number": 24316,
+        "sha": null,
+        "title": "Avoid re-using symbol in RUF024 fix",
+        "specd": true,
+        "spec_source": "https://github.com/astral-sh/ruff/issues/24304",
+        "merged_at": "2026-03-30T20:30:40+00:00"
+      },
+      {
+        "number": 24257,
+        "sha": null,
+        "title": "[ty] Show constructor signature on hover",
+        "specd": true,
+        "spec_source": "https://github.com/astral-sh/ty/issues/1351",
+        "merged_at": "2026-04-01T09:13:19+00:00"
+      },
+      {
+        "number": 24340,
+        "sha": null,
+        "title": "[ty] Sync vendored typeshed stubs",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T07:17:53+00:00"
+      },
+      {
+        "number": 24334,
+        "sha": null,
+        "title": "[ty] Add missing test case for inline functional TypedDict with an invalid type passed to the `name` parameter",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T17:28:07+00:00"
+      },
+      {
+        "number": 24333,
+        "sha": null,
+        "title": "[ty] Use `_cls` as argument name for `collections.namedtuple`",
+        "specd": true,
+        "spec_source": "https://github.com/astral-sh/ty/issues/3184.",
+        "merged_at": "2026-03-31T17:12:41+00:00"
+      },
+      {
+        "number": 24331,
+        "sha": null,
+        "title": "[ty] Emit diagnostic for functional TypedDict with non-literal name",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T17:09:52+00:00"
+      },
+      {
+        "number": 24312,
+        "sha": null,
+        "title": "Add `nested-string-quote-style` formatting option",
+        "specd": true,
+        "spec_source": "https://github.com/astral-sh/ruff/issues/14118",
+        "merged_at": "2026-03-31T16:48:25+00:00"
+      },
+      {
+        "number": 24270,
+        "sha": null,
+        "title": "`RUF010`: Mark fix as unsafe when it deletes a comment",
+        "specd": true,
+        "spec_source": "#19745",
+        "merged_at": "2026-03-31T14:55:38+00:00"
+      },
+      {
+        "number": 24065,
+        "sha": null,
+        "title": "[ty] Fix semantic token classification for properties accessed on instances",
+        "specd": true,
+        "spec_source": "https://github.com/astral-sh/ty/issues/3066",
+        "merged_at": "2026-03-31T14:48:16+00:00"
+      },
+      {
+        "number": 24247,
+        "sha": null,
+        "title": "publish installers to `/installers/ruff/latest` on the mirror",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T11:06:49+00:00"
+      },
+      {
+        "number": 24307,
+        "sha": null,
+        "title": "Store definition indexes as u32",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T21:54:36+00:00"
+      },
+      {
+        "number": 24255,
+        "sha": null,
+        "title": "[ty] Add materialization to `Divergent` type",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T19:54:14+00:00"
+      },
+      {
+        "number": 24295,
+        "sha": null,
+        "title": "[ty] Reject functional TypedDict with mismatched name",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T07:22:02+00:00"
+      },
+      {
+        "number": 24279,
+        "sha": null,
+        "title": "[ty] Fix nested global and nonlocal lookups through forwarding scopes",
+        "specd": true,
+        "spec_source": "https://github.com/astral-sh/ty/issues/3157.",
+        "merged_at": "2026-03-30T19:06:00+00:00"
+      },
+      {
+        "number": 24258,
+        "sha": null,
+        "title": "Fetch the cargo-dist binary directly instead of using the installer",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T18:07:25+00:00"
+      },
+      {
+        "number": 24303,
+        "sha": null,
+        "title": "[ty] Fix panic on `list[Annotated[()]]`",
+        "specd": true,
+        "spec_source": "https://github.com/astral-sh/ty/issues/3179",
+        "merged_at": "2026-03-30T17:14:04+00:00"
+      },
+      {
+        "number": 24301,
+        "sha": null,
+        "title": "Don't measure the AST deallocation time in parser benchmarks",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T13:46:49+00:00"
+      },
+      {
+        "number": 24298,
+        "sha": null,
+        "title": "Enable CodSpeed's memory benchmarks for simulation benchmarks",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T13:32:45+00:00"
+      },
+      {
+        "number": 24299,
+        "sha": null,
+        "title": "Upgrade imara-diff to 0.2.0",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T10:33:50+00:00"
+      },
+      {
+        "number": 24248,
+        "sha": null,
+        "title": "[ty] Represent `InitVar` as a special form internally, not a class",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T10:20:49+00:00"
+      },
+      {
+        "number": 24089,
+        "sha": null,
+        "title": "`RUF067`: Allow dunder-named assignments in non-strict mode",
+        "specd": true,
+        "spec_source": "#22822",
+        "merged_at": "2026-03-30T10:05:19+00:00"
+      },
+      {
+        "number": 24093,
+        "sha": null,
+        "title": "[`pyupgrade`] UP018 should detect more unnecessarily wrapped literals (UP018)",
+        "specd": true,
+        "spec_source": "#19864",
+        "merged_at": "2026-03-30T09:08:06+00:00"
+      },
+      {
+        "number": 24300,
+        "sha": null,
+        "title": "[ty] Remove unused `system.glob` method",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T08:58:34+00:00"
+      },
+      {
+        "number": 24297,
+        "sha": null,
+        "title": "[ty] Remove unused `@Todo(Functional TypedDicts)`",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T01:38:15+00:00"
+      },
+      {
+        "number": 24229,
+        "sha": null,
+        "title": "[ty] Add bidirectional type context for TypedDict `pop()` defaults",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T00:50:13+00:00"
+      },
+      {
+        "number": 24231,
+        "sha": null,
+        "title": "[ty] Add bidirectional type context for TypedDict `get()` defaults",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T00:27:27+00:00"
+      },
+      {
+        "number": 24174,
+        "sha": null,
+        "title": "[ty] Add support for functional TypedDict",
+        "specd": true,
+        "spec_source": "https://github.com/astral-sh/ty/issues/3095.",
+        "merged_at": "2026-03-30T00:21:49+00:00"
+      },
+      {
+        "number": 24268,
+        "sha": null,
+        "title": "Fix all `cargo shear` warnings",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-29T12:57:30+00:00"
+      },
+      {
+        "number": 24274,
+        "sha": null,
+        "title": "Fix UP008 callable scope handling to support lambdas",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-29T01:19:02+00:00"
+      },
+      {
+        "number": 24273,
+        "sha": null,
+        "title": "Fix UP008 nested class matching",
+        "specd": true,
+        "spec_source": "https://github.com/astral-sh/ruff/issues/24001.",
+        "merged_at": "2026-03-28T18:53:09+00:00"
+      },
+      {
+        "number": 24264,
+        "sha": null,
+        "title": "Add additional test coverage to UP008 for pyupgrade parity",
+        "specd": true,
+        "spec_source": "https://github.com/astral-sh/ruff/issues/24001#issuecomment-4073668107.",
+        "merged_at": "2026-03-28T18:31:29+00:00"
+      },
+      {
+        "number": 20010,
+        "sha": null,
+        "title": "[`flake8-pyi`] Avoid syntax error from conflict with `PIE790` (`PYI021`)",
+        "specd": true,
+        "spec_source": "#19982",
+        "merged_at": "2025-09-24T21:27:00+00:00"
+      },
+      {
+        "number": 24263,
+        "sha": null,
+        "title": "[ty] resolve union-likes in emitting union attribute errors",
+        "specd": true,
+        "spec_source": "https://github.com/astral-sh/ty/issues/3161",
+        "merged_at": "2026-03-28T01:48:17+00:00"
+      },
+      {
+        "number": 23888,
+        "sha": null,
+        "title": "[ty] Improve support for `Callable` type context",
+        "specd": true,
+        "spec_source": "https://github.com/astral-sh/ty/issues/3016.",
+        "merged_at": "2026-03-27T21:40:03+00:00"
+      },
+      {
+        "number": 24226,
+        "sha": null,
+        "title": "[ty] Preserve qualifiers in functional TypedDicts",
+        "specd": true,
+        "spec_source": "https://github.com/astral-sh/ty/issues/3095.",
+        "merged_at": "2026-03-27T20:49:31+00:00"
+      },
+      {
+        "number": 24256,
+        "sha": null,
+        "title": "[ty] Propagate type context through `await` expressions",
+        "specd": true,
+        "spec_source": "https://github.com/astral-sh/ty/issues/3158.",
+        "merged_at": "2026-03-27T20:57:30+00:00"
+      },
+      {
+        "number": 24227,
+        "sha": null,
+        "title": "[ty] Support inheriting from functional TypedDict",
+        "specd": true,
+        "spec_source": "https://github.com/astral-sh/ty/issues/3095.",
+        "merged_at": "2026-03-27T20:48:19+00:00"
+      },
+      {
+        "number": 24150,
+        "sha": null,
+        "title": "[formatter] Warn when markdown files are skipped due to preview being disabled",
+        "specd": true,
+        "spec_source": "#23859",
+        "merged_at": "2026-03-26T09:13:11+00:00"
+      },
+      {
+        "number": 24149,
+        "sha": null,
+        "title": "[flake8-bugbear] Clarify RUF071 fix safety for non-path string comparisons",
+        "specd": true,
+        "spec_source": "#24028",
+        "merged_at": "2026-03-27T15:21:16+00:00"
+      },
+      {
+        "number": 24244,
+        "sha": null,
+        "title": "[`pyflakes`] Flag annotated variable redeclarations as `F811` in preview mode",
+        "specd": true,
+        "spec_source": "#23802",
+        "merged_at": "2026-03-27T19:06:55+00:00"
+      },
+      {
+        "number": 24245,
+        "sha": null,
+        "title": "[ty] Preserve `Divergent` when materializing recursive aliases",
+        "specd": true,
+        "spec_source": "https://github.com/astral-sh/ty/issues/3134.",
+        "merged_at": "2026-03-27T17:38:16+00:00"
+      },
+      {
+        "number": 24236,
+        "sha": null,
+        "title": "Fix W391 fixes for consecutive empty notebook cells",
+        "specd": true,
+        "spec_source": "https://github.com/astral-sh/ruff/issues/22797.",
+        "merged_at": "2026-03-27T15:25:23+00:00"
+      },
+      {
+        "number": 24242,
+        "sha": null,
+        "title": "[ty] Ban type qualifiers in PEP-695 type aliases",
+        "specd": true,
+        "spec_source": "#24224",
+        "merged_at": "2026-03-27T14:42:32+00:00"
+      },
+      {
+        "number": 24232,
+        "sha": null,
+        "title": "[ty] Include keyword-prefixed symbols in completions for attributes",
+        "specd": true,
+        "spec_source": "https://github.com/astral-sh/ty/issues/3142.",
+        "merged_at": "2026-03-27T14:30:54+00:00"
+      },
+      {
+        "number": 24230,
+        "sha": null,
+        "title": "[ty] Add tests for TypedDict method overloads on unions",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-27T13:54:46+00:00"
+      },
+      {
+        "number": 24215,
+        "sha": null,
+        "title": "Extend F507 to flag %-format strings with zero placeholders",
+        "specd": true,
+        "spec_source": "#24164",
+        "merged_at": "2026-03-27T07:23:46+00:00"
+      },
+      {
+        "number": 23305,
+        "sha": null,
+        "title": "[ty] report unused bindings as unnecessary hint diagnostics",
+        "specd": true,
+        "spec_source": "https://github.com/astral-sh/ty/issues/2607",
+        "merged_at": "2026-03-27T10:06:07+00:00"
+      },
+      {
+        "number": 24238,
+        "sha": null,
+        "title": "Remove unused `non_root` variable",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-27T09:58:12+00:00"
+      },
+      {
+        "number": 24167,
+        "sha": null,
+        "title": "[ty] Autocomplete arguments if in arguments node",
+        "specd": true,
+        "spec_source": "https://github.com/astral-sh/ty/issues/3087#issuecomment-4096258545).",
+        "merged_at": "2026-03-26T17:35:30+00:00"
+      },
+      {
+        "number": 23869,
+        "sha": null,
+        "title": "[`flake8-simplify`] Suppress `SIM105` for `except*` before Python 3.12",
+        "specd": true,
+        "spec_source": "https://github.com/astral-sh/ruff/issues/23798)",
+        "merged_at": "2026-03-27T03:08:10+00:00"
+      },
+      {
+        "number": 24235,
+        "sha": null,
+        "title": "Ignore pre-initialization references in SIM113",
+        "specd": true,
+        "spec_source": "https://github.com/astral-sh/ruff/issues/24206.",
+        "merged_at": "2026-03-27T02:38:03+00:00"
+      },
+      {
+        "number": 24234,
+        "sha": null,
+        "title": "Parenthesize expression in RUF050 fix",
+        "specd": true,
+        "spec_source": "https://github.com/astral-sh/ruff/issues/24220.",
+        "merged_at": "2026-03-27T02:26:29+00:00"
+      },
+      {
+        "number": 24225,
+        "sha": null,
+        "title": "[ty] Add bidirectional type context for TypedDict `get()` defaults",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-27T01:04:54+00:00"
+      },
+      {
+        "number": 24228,
+        "sha": null,
+        "title": "[ty] Add tests for TypedDict method overloads on unions",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-27T01:04:53+00:00"
+      },
+      {
+        "number": 24176,
+        "sha": null,
+        "title": "[ty] Preserve qualifiers in functional TypedDicts",
+        "specd": true,
+        "spec_source": "https://github.com/astral-sh/ty/issues/3095.",
+        "merged_at": "2026-03-27T00:49:17+00:00"
+      },
+      {
+        "number": 24175,
+        "sha": null,
+        "title": "[ty] Support inheriting from functional TypedDict",
+        "specd": true,
+        "spec_source": "https://github.com/astral-sh/ty/issues/3095.",
+        "merged_at": "2026-03-27T00:49:16+00:00"
+      },
+      {
+        "number": 24223,
+        "sha": null,
+        "title": "Publish playgrounds using the `release-playground` environment",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-27T00:09:43+00:00"
+      },
+      {
+        "number": 24213,
+        "sha": null,
+        "title": "[ty] Fix instance-attribute lookup in methods of protocol classes",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-26T22:32:24+00:00"
+      },
+      {
+        "number": 24219,
+        "sha": null,
+        "title": "[ty] Used shared expression cache during generic call inference",
+        "specd": true,
+        "spec_source": "https://github.com/astral-sh/ty/issues/3123.",
+        "merged_at": "2026-03-26T22:31:36+00:00"
+      },
+      {
+        "number": 24039,
+        "sha": null,
+        "title": "[ty] make `Type::BoundMethod` include instances of same-named methods bound to a subclass",
+        "specd": true,
+        "spec_source": "https://github.com/astral-sh/ty/issues/2428.",
+        "merged_at": "2026-03-26T22:17:38+00:00"
+      },
+      {
+        "number": 24218,
+        "sha": null,
+        "title": "Use the `release` environment in `publish-versions` and `publish-wasm`",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-26T19:26:26+00:00"
+      },
+      {
+        "number": 22633,
+        "sha": null,
+        "title": "[ty] Infer lambda expressions with `Callable` type context",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-26T18:14:40+00:00"
+      },
+      {
+        "number": 24217,
+        "sha": null,
+        "title": "Release 0.15.8",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-26T18:20:09+00:00"
+      },
+      {
+        "number": 24214,
+        "sha": null,
+        "title": "Use the `release` environment in `publish-docs`",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-26T17:05:28+00:00"
+      },
+      {
+        "number": 24194,
+        "sha": null,
+        "title": "[ty] Show `Final` source in final assignment diagnostic",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-26T16:55:59+00:00"
+      },
+      {
+        "number": 23880,
+        "sha": null,
+        "title": "[ty] Enforce Final attribute assignment rules for annotated and augmented writes",
+        "specd": true,
+        "spec_source": "https://github.com/astral-sh/ty/issues/1888.",
+        "merged_at": "2026-03-26T16:24:07+00:00"
+      },
+      {
+        "number": 23245,
+        "sha": null,
+        "title": "[ty] Track non-terminal-call constraints in global scope",
+        "specd": true,
+        "spec_source": "https://github.com/astral-sh/ty/issues/2480",
+        "merged_at": "2026-03-26T13:52:51+00:00"
+      },
+      {
+        "number": 24211,
+        "sha": null,
+        "title": "[ty] Fix typo in comment",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-26T14:41:42+00:00"
+      },
+      {
+        "number": 24209,
+        "sha": null,
+        "title": "[ty] Minor simplifications to some benchmark code",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-26T13:53:52+00:00"
+      },
+      {
+        "number": 24208,
+        "sha": null,
+        "title": "[ty] Remove unnecessary intermediate collection in `StaticClassLiteral::fields`",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-26T13:30:27+00:00"
+      },
+      {
+        "number": 24207,
+        "sha": null,
+        "title": "[ty] Prepare test files for reachability changes",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-26T13:14:43+00:00"
+      },
+      {
+        "number": 24203,
+        "sha": null,
+        "title": "[ty] Adapt `many_enum_members` benchmark",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-26T13:04:12+00:00"
+      },
+      {
+        "number": 24103,
+        "sha": null,
+        "title": "[ty] Improve call inference for keyword-only `dict()`",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-26T10:03:27+00:00"
+      },
+      {
+        "number": 24200,
+        "sha": null,
+        "title": "[`refurb`] Parenthesize generator arguments in FURB142 fixer (#21098)",
+        "specd": true,
+        "spec_source": "#21098",
+        "merged_at": "2026-03-26T09:19:32+00:00"
+      },
+      {
+        "number": 24185,
+        "sha": null,
+        "title": "[ty] Restore `IsNonTerminalCall` shortcut optimization (again)",
+        "specd": true,
+        "spec_source": "https://github.com/astral-sh/ty/issues/3120",
+        "merged_at": "2026-03-26T08:45:53+00:00"
+      },
+      {
+        "number": 24198,
+        "sha": null,
+        "title": "Mention AI policy in PR template",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-26T07:48:01+00:00"
+      },
+      {
+        "number": 24192,
+        "sha": null,
+        "title": "[`eradicate`] ignore `ty: ignore` comments in `ERA001`",
+        "specd": true,
+        "spec_source": "#24186",
+        "merged_at": "2026-03-26T07:36:10+00:00"
+      },
+      {
+        "number": 19599,
+        "sha": null,
+        "title": "Add license classifier back to pyproject.toml",
+        "specd": true,
+        "spec_source": "https://github.com/python/typing_extensions/issues/576",
+        "merged_at": "2025-07-28T19:58:16+00:00"
+      },
+      {
+        "number": 17529,
+        "sha": null,
+        "title": "Default to latest supported Python version for version-related syntax errors",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-05-06T14:19:13+00:00"
+      },
+      {
+        "number": 8500,
+        "sha": null,
+        "title": "Add notes on fix safety to a few rules",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2023-11-06T00:48:58+00:00"
       }
     ]
   },
@@ -7573,7 +8477,7 @@
     "mode": "heuristic",
     "average_score": 45,
     "verdicts": {
-      "REVIEW": 422,
+      "REVIEW": 471,
       "REWRITE": 7
     },
     "specs": [
@@ -26347,15 +27251,2199 @@
           "No state transitions \u2014 AI may allow invalid transitions",
           "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
         ]
+      },
+      {
+        "pr_number": 24370,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 95,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 44,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 3,
+            "type": "ambiguity",
+            "term": "better",
+            "suggestion": "Replace 'better' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 24197,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "This is a quick fix for this special case. A more general solution will be passi",
+            "suggestion": "Goal without test: 'This is a quick fix for this special case. A more general so...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 16058,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "After this change, UP012 will no longer report strings containing any of the fol",
+            "suggestion": "Goal without test: 'After this change, UP012 will no longer report strings conta...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 24322,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 24363,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 24079,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 92,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 43,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 16,
+            "type": "ambiguity",
+            "term": "correctly",
+            "suggestion": "Replace 'correctly' with a specific, measurable term"
+          },
+          {
+            "line": 18,
+            "type": "ambiguity",
+            "term": "correctly",
+            "suggestion": "Replace 'correctly' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "This is the first step in supporting https://github.com/astral-sh/ty/issues/2045",
+            "suggestion": "Goal without test: 'This is the first step in supporting https://github.com/astr...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 24336,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 24316,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 24257,
+        "format": "freeform",
+        "completeness": 50,
+        "ambiguity": 99,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 60,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 88,
+            "type": "ambiguity",
+            "term": "normal",
+            "suggestion": "Replace 'normal' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Does this pull request include a summary of the change? (See below.)",
+            "suggestion": "Goal without test: 'Does this pull request include a summary of the change? (See...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Does this pull request include a descriptive title? (Please prefix with [ty] for",
+            "suggestion": "Goal without test: 'Does this pull request include a descriptive title? (Please ...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Does this pull request include references to any relevant issues?",
+            "suggestion": "Goal without test: 'Does this pull request include references to any relevant is...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Does this PR follow our AI policy (https://github.com/astral-sh/.github/blob/mai",
+            "suggestion": "Goal without test: 'Does this PR follow our AI policy (https://github.com/astral...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 24333,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 24312,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 24270,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 24065,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 97,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 44,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 32,
+            "type": "ambiguity",
+            "term": "clean",
+            "suggestion": "Replace 'clean' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Added propertywithreturn_annotation test that verifies both instance-level and c",
+            "suggestion": "Goal without test: 'Added propertywithreturn_annotation test that verifies both ...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Updated existing snapshot assertions where properties on instances were previous",
+            "suggestion": "Goal without test: 'Updated existing snapshot assertions where properties on ins...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "All 74 semantic token tests pass",
+            "suggestion": "Goal without test: 'All 74 semantic token tests pass' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "cargo clippy and cargo fmt` clean",
+            "suggestion": "Goal without test: 'cargo clippy and cargo fmt` clean' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 24279,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 24303,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 24089,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 95,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 44,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 5,
+            "type": "ambiguity",
+            "term": "simple",
+            "suggestion": "Replace 'simple' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 24093,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Support redundant keyword arguments (object for str, real for complex).",
+            "suggestion": "Goal without test: 'Support redundant keyword arguments (object for str, real fo...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Remove the check that skipped implicitly concatenated strings.",
+            "suggestion": "Goal without test: 'Remove the check that skipped implicitly concatenated string...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Wrap implicitly concatenated strings/bytes in parentheses if they span multiple ",
+            "suggestion": "Goal without test: 'Wrap implicitly concatenated strings/bytes in parentheses if...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Wrap zero-value int in parentheses when followed by an attribute access (e.g., (",
+            "suggestion": "Goal without test: 'Wrap zero-value int in parentheses when followed by an attri...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Added new test cases to crates/ruff_linter/resources/test/fixtures/pyupgrade/UP0",
+            "suggestion": "Goal without test: 'Added new test cases to crates/ruff_linter/resources/test/fi...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Verified existing and new tests pass with cargo test -p ruff_linter pyupgrade::t",
+            "suggestion": "Goal without test: 'Verified existing and new tests pass with cargo test -p ruff...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Manually verified with a reproduction script.",
+            "suggestion": "Goal without test: 'Manually verified with a reproduction script.' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Verified with cargo clippy.",
+            "suggestion": "Goal without test: 'Verified with cargo clippy.' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 24174,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "https://github.com/astral-sh/ruff/pull/24226",
+            "suggestion": "Goal without test: 'https://github.com/astral-sh/ruff/pull/24226' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "https://github.com/astral-sh/ruff/pull/24227",
+            "suggestion": "Goal without test: 'https://github.com/astral-sh/ruff/pull/24227' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 24273,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 24264,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 20010,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Does this pull request include a summary of the change? (See below.)",
+            "suggestion": "Goal without test: 'Does this pull request include a summary of the change? (See...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Does this pull request include a descriptive title? (Please prefix with [ty] for",
+            "suggestion": "Goal without test: 'Does this pull request include a descriptive title? (Please ...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Does this pull request include references to any relevant issues?",
+            "suggestion": "Goal without test: 'Does this pull request include references to any relevant is...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 24263,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 23888,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 24226,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 24256,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 24227,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 24150,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 96,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 44,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 11,
+            "type": "ambiguity",
+            "term": "simple",
+            "suggestion": "Replace 'simple' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Partitions format errors into MarkdownExperimental warnings vs other errors",
+            "suggestion": "Goal without test: 'Partitions format errors into MarkdownExperimental warnings ...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Renders markdown skip warnings as diagnostics in non-preview check mode",
+            "suggestion": "Goal without test: 'Renders markdown skip warnings as diagnostics in non-preview...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Other errors continue to use existing diagnostic or simple-message fallback",
+            "suggestion": "Goal without test: 'Other errors continue to use existing diagnostic or simple-m...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Run ruff format on a markdown file without --preview -> warning diagnostic emitt",
+            "suggestion": "Goal without test: 'Run ruff format on a markdown file without --preview -> warn...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Run ruff format --preview on a markdown file -> formats normally, no warning",
+            "suggestion": "Goal without test: 'Run ruff format --preview on a markdown file -> formats norm...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Added CLI test covering the warning output",
+            "suggestion": "Goal without test: 'Added CLI test covering the warning output' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 24149,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 24244,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 97,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 44,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 3,
+            "type": "ambiguity",
+            "term": "normal",
+            "suggestion": "Replace 'normal' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "In preview mode, F811 now detects annotated variable redeclarations like bar: in",
+            "suggestion": "Goal without test: 'In preview mode, F811 now detects annotated variable redecla...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Plain reassignments (x = 1; x = 2) remain unflagged, as this is normal Python",
+            "suggestion": "Goal without test: 'Plain reassignments (x = 1; x = 2) remain unflagged, as this...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Only triggers when both the original and the shadowing binding are annotated ass",
+            "suggestion": "Goal without test: 'Only triggers when both the original and the shadowing bindi...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "bar: int = 1; bar: int = 2 \u2014 flagged",
+            "suggestion": "Goal without test: 'bar: int = 1; bar: int = 2 \u2014 flagged' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "bar = 1; bar = 2 \u2014 not flagged (plain reassignment)",
+            "suggestion": "Goal without test: 'bar = 1; bar = 2 \u2014 not flagged (plain reassignment)' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "bar = 1; bar: int = 2 \u2014 not flagged (mixed)",
+            "suggestion": "Goal without test: 'bar = 1; bar: int = 2 \u2014 not flagged (mixed)' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "bar: int = 1; bar = 2 \u2014 not flagged (mixed)",
+            "suggestion": "Goal without test: 'bar: int = 1; bar = 2 \u2014 not flagged (mixed)' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "bar: int = 1; print(bar); bar: int = 2 \u2014 not flagged (first is used)",
+            "suggestion": "Goal without test: 'bar: int = 1; print(bar); bar: int = 2 \u2014 not flagged (first ...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Added F811_34.py test fixture covering all combinations (annotated/plain, used/u",
+            "suggestion": "Goal without test: 'Added F811_34.py test fixture covering all combinations (ann...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "All 35 existing F811 tests pass with no regressions",
+            "suggestion": "Goal without test: 'All 35 existing F811 tests pass with no regressions' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Full pyflakes suite passes (463 tests)",
+            "suggestion": "Goal without test: 'Full pyflakes suite passes (463 tests)' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 24245,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 24236,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 24242,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 24232,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 24215,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 97,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 44,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 14,
+            "type": "ambiguity",
+            "term": "correctly",
+            "suggestion": "Replace 'correctly' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Extends the F507 rule to detect \"hello\" % x where the format string has no place",
+            "suggestion": "Goal without test: 'Extends the F507 rule to detect \"hello\" % x where the format...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Catches all RHS types (variables, calls, attribute accesses) in the zero-placeho",
+            "suggestion": "Goal without test: 'Catches all RHS types (variables, calls, attribute accesses)...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "'hello' % banana \u2014 flagged",
+            "suggestion": "Goal without test: ''hello' % banana \u2014 flagged' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "'' % banana \u2014 flagged",
+            "suggestion": "Goal without test: ''' % banana \u2014 flagged' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "'hello' % unknown_var \u2014 flagged (unknown variables now caught too)",
+            "suggestion": "Goal without test: ''hello' % unknown_var \u2014 flagged (unknown variables now caugh...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "'hello' % get_value() \u2014 flagged (function calls now caught too)",
+            "suggestion": "Goal without test: ''hello' % get_value() \u2014 flagged (function calls now caught t...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "'hello' % obj.attr \u2014 flagged (attribute access now caught too)",
+            "suggestion": "Goal without test: ''hello' % obj.attr \u2014 flagged (attribute access now caught to...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "'hello' % () \u2014 not flagged (empty tuple is the only valid case)",
+            "suggestion": "Goal without test: ''hello' % () \u2014 not flagged (empty tuple is the only valid ca...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Added test cases for zero-placeholder format strings with literal, variable, unk",
+            "suggestion": "Goal without test: 'Added test cases for zero-placeholder format strings with li...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Verified 'hello' % () (empty tuple) is correctly not flagged",
+            "suggestion": "Goal without test: 'Verified 'hello' % () (empty tuple) is correctly not flagged' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "All existing pyflakes tests pass (462/462)",
+            "suggestion": "Goal without test: 'All existing pyflakes tests pass (462/462)' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 23305,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "The unused-binding detection now lives in typythonsemantic and is consumed by ty",
+            "suggestion": "Goal without test: 'The unused-binding detection now lives in typythonsemantic a...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 24167,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Does this pull request include a summary of the change? (See below.)",
+            "suggestion": "Goal without test: 'Does this pull request include a summary of the change? (See...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Does this pull request include a descriptive title? (Please prefix with [ty] for",
+            "suggestion": "Goal without test: 'Does this pull request include a descriptive title? (Please ...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Does this pull request include references to any relevant issues?",
+            "suggestion": "Goal without test: 'Does this pull request include references to any relevant is...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 23869,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 95,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 44,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 5,
+            "type": "ambiguity",
+            "term": "simple",
+            "suggestion": "Replace 'simple' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 24235,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 24234,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 24176,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 24175,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 24219,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 24039,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 23880,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 23245,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 24200,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "cargo test -p rufflinter ruleforloopsetmutationspathnewfurb142py_expects",
+            "suggestion": "Goal without test: 'cargo test -p rufflinter ruleforloopsetmutationspathnewfurb1...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "cargo test -p ruff_linter refurb::tests::rules -- FURB142",
+            "suggestion": "Goal without test: 'cargo test -p ruff_linter refurb::tests::rules -- FURB142' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "cargo fmt --all --check",
+            "suggestion": "Goal without test: 'cargo fmt --all --check' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "cargo clippy -p ruff_linter --all-targets --all-features -- -D warnings",
+            "suggestion": "Goal without test: 'cargo clippy -p ruff_linter --all-targets --all-features -- ...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 24185,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 24192,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 19599,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
       }
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.0769,
-    "unspecd_rework_rate": 0.0291,
-    "delta": 0.0479,
-    "specd_sample_size": 429,
-    "unspecd_sample_size": 516,
+    "specd_rework_rate": 0.0837,
+    "unspecd_rework_rate": 0.0328,
+    "delta": 0.0509,
+    "specd_sample_size": 478,
+    "unspecd_sample_size": 580,
     "significance": "significant",
     "signals": [
       {
@@ -26672,20 +29760,22 @@
       {
         "type": "bug-fix",
         "source": "23251",
-        "target": "20585",
+        "target": "22613",
         "classification": "heuristic",
         "overlapping_files": [
-          "crates/ruff_linter/src/rules/ruff/mod.rs"
+          "crates/ruff_linter/resources/test/fixtures/ruff/suppressions.py",
+          "crates/ruff_linter/src/rules/ruff/snapshots/ruff_linter__rules__ruff__tests__range_suppressions.snap"
         ]
       },
       {
         "type": "bug-fix",
         "source": "23242",
-        "target": "23251",
+        "target": "22613",
         "classification": "heuristic",
         "overlapping_files": [
           "crates/ruff_linter/resources/test/fixtures/ruff/suppressions.py",
-          "crates/ruff_linter/src/rules/ruff/snapshots/ruff_linter__rules__ruff__tests__range_suppressions.snap"
+          "crates/ruff_linter/src/rules/ruff/snapshots/ruff_linter__rules__ruff__tests__range_suppressions.snap",
+          "crates/ruff_linter/src/suppression.rs"
         ]
       },
       {
@@ -26786,10 +29876,22 @@
       },
       {
         "type": "bug-fix",
-        "source": "23620",
-        "target": "23619",
+        "source": "23553",
+        "target": "23227",
         "classification": "heuristic",
         "overlapping_files": [
+          "crates/ruff_linter/resources/test/fixtures/fastapi/FAST003.py",
+          "crates/ruff_linter/src/rules/fastapi/rules/fastapi_unused_path_parameter.rs",
+          "crates/ruff_linter/src/rules/fastapi/snapshots/ruff_linter__rules__fastapi__tests__fast-api-unused-path-parameter_FAST003.py.snap"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "23620",
+        "target": "22961",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "crates/ty_python_semantic/resources/mdtest/annotations/new_types.md",
           "crates/ty_python_semantic/src/types/infer/builder.rs"
         ]
       },
@@ -26815,19 +29917,31 @@
       {
         "type": "bug-fix",
         "source": "23704",
-        "target": "23274",
+        "target": "23121",
         "classification": "heuristic",
         "overlapping_files": [
-          "crates/ty_server/src/session.rs"
+          "crates/ty_server/src/server/api/notifications/did_open.rs",
+          "crates/ty_server/src/session.rs",
+          "crates/ty_server/tests/e2e/publish_diagnostics.rs"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "23838",
+        "target": "23372",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "playground/ty/src/Editor/Editor.tsx"
         ]
       },
       {
         "type": "bug-fix",
         "source": "23834",
-        "target": "23285",
+        "target": "23329",
         "classification": "heuristic",
         "overlapping_files": [
-          "crates/ty_python_semantic/resources/mdtest/type_properties/is_subtype_of.md"
+          "crates/ty_python_semantic/resources/mdtest/type_properties/is_subtype_of.md",
+          "crates/ty_python_semantic/src/types/relation.rs"
         ]
       },
       {
@@ -26843,9 +29957,10 @@
       {
         "type": "bug-fix",
         "source": "23728",
-        "target": "23750",
+        "target": "23326",
         "classification": "heuristic",
         "overlapping_files": [
+          "crates/ty_python_semantic/resources/mdtest/generics/legacy/functions.md",
           "crates/ty_python_semantic/src/types/generics.rs"
         ]
       },
@@ -26933,26 +30048,138 @@
           "crates/ty_python_semantic/resources/mdtest/literal/collections/dictionary.md",
           "crates/ty_python_semantic/src/semantic_index/builder.rs"
         ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "24152",
+        "target": "23755",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "crates/ruff_python_parser/src/lexer.rs"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "24039",
+        "target": "24161",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "crates/ty_python_semantic/src/types.rs",
+          "crates/ty_python_semantic/src/types/relation.rs"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "23305",
+        "target": "24179",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "crates/ty_python_semantic/src/semantic_index/builder.rs",
+          "crates/ty_python_semantic/src/semantic_index/use_def.rs"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "24242",
+        "target": "23625",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "crates/ty_python_semantic/src/types.rs",
+          "crates/ty_python_semantic/src/types/infer.rs",
+          "crates/ty_python_semantic/src/types/infer/builder.rs",
+          "crates/ty_python_semantic/src/types/infer/builder/type_expression.rs"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "24236",
+        "target": "24071",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "crates/ruff_linter/src/rules/pycodestyle/mod.rs"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "24273",
+        "target": "22677",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "crates/ruff_linter/resources/test/fixtures/pyupgrade/UP008.py",
+          "crates/ruff_linter/src/rules/pyupgrade/rules/super_call_with_parameters.rs",
+          "crates/ruff_linter/src/rules/pyupgrade/snapshots/ruff_linter__rules__pyupgrade__tests__UP008.py.snap"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "24274",
+        "target": "24273",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "crates/ruff_linter/resources/test/fixtures/pyupgrade/UP008.py",
+          "crates/ruff_linter/src/rules/pyupgrade/rules/super_call_with_parameters.rs",
+          "crates/ruff_linter/src/rules/pyupgrade/snapshots/ruff_linter__rules__pyupgrade__tests__UP008.py.snap"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "24268",
+        "target": "23690",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "Cargo.toml",
+          "crates/ruff_graph/Cargo.toml",
+          "crates/ty_site_packages/Cargo.toml"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "24303",
+        "target": "23689",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "crates/ty_python_semantic/resources/mdtest/snapshots/liskov.md_-_The_Liskov_Substitut\u2026_-_Method_parameters_(d98059266bcc1e13).snap",
+          "crates/ty_python_semantic/src/types/infer/builder/subscript.rs",
+          "crates/ty_python_semantic/src/types/infer/builder/type_expression.rs"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "24197",
+        "target": "24079",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "crates/ty_python_semantic/resources/mdtest/bidirectional.md"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "24371",
+        "target": "24244",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "crates/ruff_linter/src/preview.rs"
+        ]
       }
     ],
     "by_complexity": {
       "small": {
-        "specd_rework_rate": 0.0324,
-        "unspecd_rework_rate": 0.0134,
-        "specd_count": 185,
-        "unspecd_count": 522
+        "specd_rework_rate": 0.0394,
+        "unspecd_rework_rate": 0.0158,
+        "specd_count": 203,
+        "unspecd_count": 571
       },
       "medium": {
-        "specd_rework_rate": 0.0919,
-        "unspecd_rework_rate": 0.0552,
-        "specd_count": 185,
-        "unspecd_count": 145
+        "specd_rework_rate": 0.1005,
+        "unspecd_rework_rate": 0.0539,
+        "specd_count": 209,
+        "unspecd_count": 167
       },
       "large": {
-        "specd_rework_rate": 0.1695,
-        "unspecd_rework_rate": 0.0656,
-        "specd_count": 59,
-        "unspecd_count": 61
+        "specd_rework_rate": 0.1667,
+        "unspecd_rework_rate": 0.0746,
+        "specd_count": 66,
+        "unspecd_count": 67
       }
     }
   }

@@ -1,0 +1,389 @@
+{
+  "repo": "apache/spark",
+  "lookback_days": 365,
+  "rework_window_days": 30,
+  "coverage": {
+    "coverage_pct": 67,
+    "total_prs": 9,
+    "specd_prs": 6,
+    "prs": [
+      {
+        "number": 52460,
+        "sha": null,
+        "title": "[SPARK-53720][SQL] Simplify extracting Table from DataSourceV2Relation",
+        "specd": true,
+        "spec_source": "SPARK-53720",
+        "merged_at": "2025-10-13T23:19:45+00:00"
+      },
+      {
+        "number": 50400,
+        "sha": null,
+        "title": "[Core]Convert shuffleWriteTime from Nanoseconds to Milliseconds for Consistency with Other Metrics",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-03-26T13:05:43+00:00"
+      },
+      {
+        "number": 47309,
+        "sha": null,
+        "title": "[MINOR][TESTS] Remove unused test jar (udf_noA.jar)",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2024-07-12T04:18:02+00:00"
+      },
+      {
+        "number": 43188,
+        "sha": null,
+        "title": "[SPARK-45386][SQL]: Fix correctness issue with persist using StorageLevel.NONE on Dataset",
+        "specd": true,
+        "spec_source": "SPARK-45386",
+        "merged_at": "2023-10-02T09:36:53+00:00"
+      },
+      {
+        "number": 30327,
+        "sha": null,
+        "title": "[WIP] Test",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2020-11-12T02:20:34+00:00"
+      },
+      {
+        "number": 28307,
+        "sha": null,
+        "title": "[SPARK-18886][CORE][FOLLOWUP] fix legacyResetOnTaskLaunch version and method docs",
+        "specd": true,
+        "spec_source": "SPARK-18886",
+        "merged_at": "2020-04-23T19:38:15+00:00"
+      },
+      {
+        "number": 1379,
+        "sha": null,
+        "title": "[SPARK-2309][MLlib] Generalize the binary logistic regression into multinomial logistic regression",
+        "specd": true,
+        "spec_source": "SPARK-2309",
+        "merged_at": "2014-08-03T05:21:58+00:00"
+      },
+      {
+        "number": 323,
+        "sha": null,
+        "title": "[SPARK-1337] Garbage collect the oldest stages in the ui instead of the newest",
+        "specd": true,
+        "spec_source": "SPARK-1337",
+        "merged_at": "2014-04-04T18:41:01+00:00"
+      },
+      {
+        "number": 1542,
+        "sha": null,
+        "title": "SPARK-2638 MapOutputTracker concurrency improvement",
+        "specd": true,
+        "spec_source": "SPARK-2638",
+        "merged_at": "2014-07-28T05:56:12+00:00"
+      }
+    ]
+  },
+  "quality": {
+    "mode": "heuristic",
+    "average_score": 44,
+    "verdicts": {
+      "REVIEW": 6
+    },
+    "specs": [
+      {
+        "pr_number": 52460,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 98,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 44,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 4,
+            "type": "ambiguity",
+            "term": "appropriate",
+            "suggestion": "Replace 'appropriate' with a specific, measurable term"
+          },
+          {
+            "line": 18,
+            "type": "ambiguity",
+            "term": "better",
+            "suggestion": "Replace 'better' with a specific, measurable term"
+          },
+          {
+            "line": 34,
+            "type": "ambiguity",
+            "term": "good",
+            "suggestion": "Replace 'good' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "1. If you refactor some codes with changing classes, showing the class hierarchy",
+            "suggestion": "Goal without test: '1. If you refactor some codes with changing classes, showing...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 43188,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 97,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 44,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 4,
+            "type": "ambiguity",
+            "term": "appropriate",
+            "suggestion": "Replace 'appropriate' with a specific, measurable term"
+          },
+          {
+            "line": 21,
+            "type": "ambiguity",
+            "term": "correctly",
+            "suggestion": "Replace 'correctly' with a specific, measurable term"
+          },
+          {
+            "line": 27,
+            "type": "ambiguity",
+            "term": "normal",
+            "suggestion": "Replace 'normal' with a specific, measurable term"
+          },
+          {
+            "line": 31,
+            "type": "ambiguity",
+            "term": "better",
+            "suggestion": "Replace 'better' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "never use the iterator and when we have StorageLevel.NONE` the persisting will a",
+            "suggestion": "Goal without test: 'never use the iterator and when we have StorageLevel.NONE` t...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "1. If you refactor some codes with changing classes, showing the class hierarchy",
+            "suggestion": "Goal without test: '1. If you refactor some codes with changing classes, showing...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 28307,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 95,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 44,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 16,
+            "type": "ambiguity",
+            "term": "good",
+            "suggestion": "Replace 'good' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 1379,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "The following formula will be implemented.",
+            "suggestion": "Goal without test: 'The following formula will be implemented.' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Note: When multi-classes mode, there will be multiple intercepts, so we don't us",
+            "suggestion": "Goal without test: 'Note: When multi-classes mode, there will be multiple interc...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 323,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 1542,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      }
+    ]
+  },
+  "effectiveness": {
+    "specd_rework_rate": 0.0,
+    "unspecd_rework_rate": 0.0,
+    "delta": 0.0,
+    "specd_sample_size": 6,
+    "unspecd_sample_size": 3,
+    "significance": "insufficient",
+    "signals": [],
+    "by_complexity": {}
+  }
+}

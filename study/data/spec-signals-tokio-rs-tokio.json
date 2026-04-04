@@ -1,0 +1,864 @@
+{
+  "repo": "tokio-rs/tokio",
+  "lookback_days": 365,
+  "rework_window_days": 30,
+  "coverage": {
+    "coverage_pct": 23,
+    "total_prs": 47,
+    "specd_prs": 11,
+    "prs": [
+      {
+        "number": 7962,
+        "sha": null,
+        "title": "examples: add graceful shutdown example",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T09:05:53+00:00"
+      },
+      {
+        "number": 7987,
+        "sha": null,
+        "title": "remove Rust 1.94.0 workarounds",
+        "specd": true,
+        "spec_source": "https://github.com/rust-lang/cargo/issues/16357",
+        "merged_at": "2026-03-30T08:44:48+00:00"
+      },
+      {
+        "number": 7989,
+        "sha": null,
+        "title": "net: use null get_peer_cred on Hurd",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-27T08:38:55+00:00"
+      },
+      {
+        "number": 7968,
+        "sha": null,
+        "title": "ci: workaround for OpenOptionsExt in 1.94.0",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-13T10:53:13+00:00"
+      },
+      {
+        "number": 7978,
+        "sha": null,
+        "title": "docs(runtime): document FD table pre-warming workaround",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-26T15:17:27+00:00"
+      },
+      {
+        "number": 7984,
+        "sha": null,
+        "title": "benches: use `is_multiple_of` instead of manual modulo check in `remote_spawn`",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-22T13:00:12+00:00"
+      },
+      {
+        "number": 7977,
+        "sha": null,
+        "title": "chore: Do not show \"Available on non-loom only.\" doc label",
+        "specd": true,
+        "spec_source": "#7976",
+        "merged_at": "2026-03-18T13:14:02+00:00"
+      },
+      {
+        "number": 7967,
+        "sha": null,
+        "title": "ci: patch workspace members to disambiguate `--package`",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-18T06:27:46+00:00"
+      },
+      {
+        "number": 7966,
+        "sha": null,
+        "title": "impl `FromStream` for `std::collections::*`",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-16T15:00:49+00:00"
+      },
+      {
+        "number": 7921,
+        "sha": null,
+        "title": "runtime: add `worker_index()` getter",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-15T05:44:41+00:00"
+      },
+      {
+        "number": 7944,
+        "sha": null,
+        "title": "bench: add remote_spawn benchmark for inject queue contention",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-11T09:13:39+00:00"
+      },
+      {
+        "number": 7954,
+        "sha": null,
+        "title": "stream: impl FromStream for BTreeSet",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-09T10:20:21+00:00"
+      },
+      {
+        "number": 7961,
+        "sha": null,
+        "title": "ci: freeze rustc on 1.93.1",
+        "specd": true,
+        "spec_source": "https://github.com/rust-lang/rust/issues/153486>",
+        "merged_at": "2026-03-09T06:43:48+00:00"
+      },
+      {
+        "number": 7953,
+        "sha": null,
+        "title": "chore: link to tokioconf.com",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-06T20:00:43+00:00"
+      },
+      {
+        "number": 7902,
+        "sha": null,
+        "title": "loom: remove `StaticAtomicU64`",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-04T15:16:50+00:00"
+      },
+      {
+        "number": 7934,
+        "sha": null,
+        "title": "chore: prepare Tokio v1.50.0",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-03T09:39:42+00:00"
+      },
+      {
+        "number": 7943,
+        "sha": null,
+        "title": "chore: prepare tokio-macros v2.6.1",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-02T18:17:41+00:00"
+      },
+      {
+        "number": 7768,
+        "sha": null,
+        "title": "util: add `write_all_vectored` to `tokio-util`",
+        "specd": true,
+        "spec_source": "#3679",
+        "merged_at": "2026-02-27T10:16:43+00:00"
+      },
+      {
+        "number": 7935,
+        "sha": null,
+        "title": "ci: fix patch during clippy step",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-27T07:40:05+00:00"
+      },
+      {
+        "number": 7920,
+        "sha": null,
+        "title": "sync: fix mpsc Disconnection docs to clarify recv returns None only when channel is empty",
+        "specd": true,
+        "spec_source": "#6053",
+        "merged_at": "2026-02-20T08:34:12+00:00"
+      },
+      {
+        "number": 7932,
+        "sha": null,
+        "title": "Fix `event_interval` doc",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-24T15:30:54+00:00"
+      },
+      {
+        "number": 7882,
+        "sha": null,
+        "title": "io: fix race in `Mock::poll_write`",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-24T04:49:37+00:00"
+      },
+      {
+        "number": 7922,
+        "sha": null,
+        "title": "runtime: fix race condition during the blocking pool shutdown",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-23T21:50:28+00:00"
+      },
+      {
+        "number": 7929,
+        "sha": null,
+        "title": "Remove (most) local `use` declarations in `tokio::select!`",
+        "specd": true,
+        "spec_source": "https://github.com/tokio-rs/tokio/issues/7928",
+        "merged_at": "2026-02-23T09:46:18+00:00"
+      },
+      {
+        "number": 7754,
+        "sha": null,
+        "title": "stream: work around the rustc bug in `StreamExt::collect`",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-12-05T02:24:30+00:00"
+      },
+      {
+        "number": 7925,
+        "sha": null,
+        "title": "rt: fix missing quotation in docs",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-20T21:41:13+00:00"
+      },
+      {
+        "number": 7926,
+        "sha": null,
+        "title": "util: fix typos in docs",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-20T21:36:27+00:00"
+      },
+      {
+        "number": 7923,
+        "sha": null,
+        "title": "task: clarify when to use spawn_blocking vs dedicated threads",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-20T14:19:27+00:00"
+      },
+      {
+        "number": 7918,
+        "sha": null,
+        "title": "runtime: fix TOCTOU issue when decreasing `num_idle_threads`",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-18T05:50:26+00:00"
+      },
+      {
+        "number": 7919,
+        "sha": null,
+        "title": "sync: clarify RwLock fairness documentation",
+        "specd": true,
+        "spec_source": "#6901",
+        "merged_at": "2026-02-19T14:57:42+00:00"
+      },
+      {
+        "number": 7895,
+        "sha": null,
+        "title": "replace some futures with `poll_fn`",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-09T12:30:32+00:00"
+      },
+      {
+        "number": 7910,
+        "sha": null,
+        "title": "runtime: fix double-increment of num_idle_threads on blocking pool shutdown",
+        "specd": true,
+        "spec_source": "#6439",
+        "merged_at": "2026-02-17T07:19:51+00:00"
+      },
+      {
+        "number": 7903,
+        "sha": null,
+        "title": "tests: skip issue_7144 if strace is missing",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-12T11:26:20+00:00"
+      },
+      {
+        "number": 7912,
+        "sha": null,
+        "title": "tokio-util: fix is_readable should be buffer empty or not",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-16T16:33:36+00:00"
+      },
+      {
+        "number": 7913,
+        "sha": null,
+        "title": "task: fix two typos",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-16T10:51:10+00:00"
+      },
+      {
+        "number": 7908,
+        "sha": null,
+        "title": "io: clarify the behavior of `AsyncWriteExt::shutdown()`",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-14T19:42:25+00:00"
+      },
+      {
+        "number": 7891,
+        "sha": null,
+        "title": "task: fix task module feature flags",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-12T11:27:25+00:00"
+      },
+      {
+        "number": 7904,
+        "sha": null,
+        "title": "io: Explain how to flush stdout/stderr",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-12T14:06:49+00:00"
+      },
+      {
+        "number": 7933,
+        "sha": null,
+        "title": "add wasm32-wasip2 networking support",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T09:53:17+00:00"
+      },
+      {
+        "number": 7997,
+        "sha": null,
+        "title": "macros: improve overall macro hygiene",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T09:46:58+00:00"
+      },
+      {
+        "number": 7924,
+        "sha": null,
+        "title": "rt: introduce runtime name",
+        "specd": true,
+        "spec_source": "#5545",
+        "merged_at": "2026-04-01T09:46:28+00:00"
+      },
+      {
+        "number": 7996,
+        "sha": null,
+        "title": "sync: fix `notify_waiters` priority in `Notify`",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T11:52:02+00:00"
+      },
+      {
+        "number": 7557,
+        "sha": null,
+        "title": "tokio: Stabilize LocalRuntime",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T13:13:25+00:00"
+      },
+      {
+        "number": 7991,
+        "sha": null,
+        "title": "sync: fix panic in `Chan::recv_many` when called with non-empty vector on closed channel",
+        "specd": true,
+        "spec_source": "#7990",
+        "merged_at": "2026-04-02T11:35:26+00:00"
+      },
+      {
+        "number": 8003,
+        "sha": null,
+        "title": "Merge 1.47.4",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T12:38:00+00:00"
+      },
+      {
+        "number": 8002,
+        "sha": null,
+        "title": "chore: prepare Tokio v1.47.4",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T12:12:06+00:00"
+      },
+      {
+        "number": 7123,
+        "sha": null,
+        "title": "ci: test AArch64/Armv7hf Linux on ubuntu-22.04-arm runner",
+        "specd": true,
+        "spec_source": "https://github.com/rust-lang/rust/issues/135867",
+        "merged_at": "2025-01-25T10:17:37+00:00"
+      }
+    ]
+  },
+  "quality": {
+    "mode": "heuristic",
+    "average_score": 45,
+    "verdicts": {
+      "REVIEW": 11
+    },
+    "specs": [
+      {
+        "pr_number": 7987,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 7977,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 7961,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 7768,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 7920,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 7929,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 7919,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 97,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 44,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 21,
+            "type": "ambiguity",
+            "term": "reasonable",
+            "suggestion": "Replace 'reasonable' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "> if a task that wishes to acquire the write lock is at the head of the queue, r",
+            "suggestion": "Goal without test: '> if a task that wishes to acquire the write lock is at the ...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "This implies that readers are only blocked when the writer is at position #1 in ",
+            "suggestion": "Goal without test: 'This implies that readers are only blocked when the writer i...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "> a read lock will not be given out until all write lock requests that were queu",
+            "suggestion": "Goal without test: '> a read lock will not be given out until all write lock req...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 7910,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 97,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 44,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 5,
+            "type": "ambiguity",
+            "term": "normal",
+            "suggestion": "Replace 'normal' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 7924,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 7991,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 7123,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      }
+    ]
+  },
+  "effectiveness": {
+    "specd_rework_rate": 0.0,
+    "unspecd_rework_rate": 0.0278,
+    "delta": -0.0278,
+    "specd_sample_size": 11,
+    "unspecd_sample_size": 36,
+    "significance": "limited",
+    "signals": [
+      {
+        "type": "bug-fix",
+        "source": "7984",
+        "target": "7944",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "benches/remote_spawn.rs"
+        ]
+      }
+    ],
+    "by_complexity": {
+      "small": {
+        "specd_rework_rate": 0.0,
+        "unspecd_rework_rate": 0.0,
+        "specd_count": 9,
+        "unspecd_count": 29
+      }
+    }
+  }
+}

@@ -1,11 +1,11 @@
 {
   "repo": "continuedev/continue",
-  "lookback_days": 90,
-  "rework_window_days": 14,
+  "lookback_days": 365,
+  "rework_window_days": 30,
   "coverage": {
     "coverage_pct": 38,
-    "total_prs": 627,
-    "specd_prs": 237,
+    "total_prs": 634,
+    "specd_prs": 238,
     "prs": [
       {
         "number": 11798,
@@ -5022,6 +5022,62 @@
         "specd": false,
         "spec_source": null,
         "merged_at": "2025-10-17T16:37:54+00:00"
+      },
+      {
+        "number": 847,
+        "sha": null,
+        "title": "Adds support for StarChat for autocomplete",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2024-02-12T20:02:29+00:00"
+      },
+      {
+        "number": 11991,
+        "sha": null,
+        "title": "feat(openrouter): send HTTP-Referer and X-Title headers in core/llm OpenRouter class",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T03:03:03+00:00"
+      },
+      {
+        "number": 11939,
+        "sha": null,
+        "title": "chore: vs code 1.3.39, jetbrains 1.0.68",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-27T22:01:20+00:00"
+      },
+      {
+        "number": 11938,
+        "sha": null,
+        "title": "fix: remove automated version bump from prerelease workflow",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-27T22:00:59+00:00"
+      },
+      {
+        "number": 11914,
+        "sha": null,
+        "title": "fix: redirect Winston logger to stderr to prevent IPC stream corruption + fix binary tests",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-27T21:03:06+00:00"
+      },
+      {
+        "number": 11935,
+        "sha": null,
+        "title": "feat: add .continue/configs support",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-27T21:02:49+00:00"
+      },
+      {
+        "number": 11813,
+        "sha": null,
+        "title": "feat: filter session history by workspace directory",
+        "specd": true,
+        "spec_source": "#9936",
+        "merged_at": "2026-03-27T20:41:29+00:00"
       }
     ]
   },
@@ -5029,7 +5085,7 @@
     "mode": "heuristic",
     "average_score": 45,
     "verdicts": {
-      "REVIEW": 237
+      "REVIEW": 238
     },
     "specs": [
       {
@@ -17556,15 +17612,52 @@
           "No error contract \u2014 AI will invent error shapes per function",
           "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
         ]
+      },
+      {
+        "pr_number": 11813,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "<sup>Written for commit d919e1da4d23f135904e2f7132b51f80f08338b2. Summary will u",
+            "suggestion": "Goal without test: '<sup>Written for commit d919e1da4d23f135904e2f7132b51f80f083...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
       }
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.1814,
-    "unspecd_rework_rate": 0.159,
-    "delta": 0.0225,
-    "specd_sample_size": 237,
-    "unspecd_sample_size": 390,
+    "specd_rework_rate": 0.2227,
+    "unspecd_rework_rate": 0.1944,
+    "delta": 0.0282,
+    "specd_sample_size": 238,
+    "unspecd_sample_size": 396,
     "significance": "significant",
     "signals": [
       {
@@ -17607,6 +17700,15 @@
       },
       {
         "type": "bug-fix",
+        "source": "8227",
+        "target": "7999",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "extensions/cli/src/index.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "8230",
         "target": "8224",
         "classification": "heuristic",
@@ -17645,9 +17747,10 @@
       {
         "type": "bug-fix",
         "source": "8267",
-        "target": "8229",
+        "target": "8052",
         "classification": "heuristic",
         "overlapping_files": [
+          "extensions/intellij/gradle.properties",
           "extensions/vscode/package.json"
         ]
       },
@@ -17676,6 +17779,16 @@
         "classification": "heuristic",
         "overlapping_files": [
           "extensions/cli/src/commands/chat.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "8313",
+        "target": "8053",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "extensions/vscode/config_schema.json",
+          "gui/src/pages/AddNewModel/configs/models.ts"
         ]
       },
       {
@@ -17787,11 +17900,31 @@
       },
       {
         "type": "bug-fix",
+        "source": "8391",
+        "target": "8056",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "extensions/vscode/src/extension/VsCodeExtension.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "8303",
         "target": "8324",
         "classification": "heuristic",
         "overlapping_files": [
           "core/llm/autodetect.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "8416",
+        "target": "8045",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "extensions/cli/src/e2e/headless-permission-error.test.ts",
+          "extensions/cli/src/stream/streamChatResponse.helpers.test.ts",
+          "extensions/cli/src/stream/streamChatResponse.helpers.ts"
         ]
       },
       {
@@ -17807,18 +17940,20 @@
       {
         "type": "bug-fix",
         "source": "8178",
-        "target": "8224",
+        "target": "8053",
         "classification": "heuristic",
         "overlapping_files": [
-          "core/config/markdown/loadMarkdownRules.ts"
+          "core/config/markdown/loadMarkdownRules.ts",
+          "core/promptFiles/getPromptFiles.ts"
         ]
       },
       {
         "type": "bug-fix",
         "source": "8488",
-        "target": "8376",
+        "target": "8224",
         "classification": "heuristic",
         "overlapping_files": [
+          "extensions/cli/src/services/ToolPermissionService.test.ts",
           "extensions/cli/src/services/ToolPermissionService.ts"
         ]
       },
@@ -17829,6 +17964,15 @@
         "classification": "heuristic",
         "overlapping_files": [
           "actions/general-review/action.yml"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "8494",
+        "target": "8229",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "gui/src/pages/config/sections/ConfigsSection.tsx"
         ]
       },
       {
@@ -17905,6 +18049,24 @@
       },
       {
         "type": "bug-fix",
+        "source": "8584",
+        "target": "8221",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "core/llm/streamChat.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "8633",
+        "target": "8361",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "extensions/cli/src/configLoader.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "8624",
         "target": "8531",
         "classification": "heuristic",
@@ -17924,10 +18086,21 @@
       {
         "type": "bug-fix",
         "source": "8655",
-        "target": "8633",
+        "target": "8376",
         "classification": "heuristic",
         "overlapping_files": [
-          "extensions/cli/src/configLoader.ts"
+          "extensions/cli/src/services/MCPService.ts",
+          "extensions/cli/src/services/index.ts",
+          "packages/config-yaml/src/load/unroll.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "8535",
+        "target": "8416",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "extensions/cli/src/stream/streamChatResponse.ts"
         ]
       },
       {
@@ -17952,10 +18125,21 @@
       {
         "type": "bug-fix",
         "source": "8567",
-        "target": "8754",
+        "target": "8432",
         "classification": "heuristic",
         "overlapping_files": [
-          "extensions/cli/src/tools/index.tsx"
+          "extensions/cli/src/tools/index.tsx",
+          "extensions/cli/src/tools/searchCode.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "8404",
+        "target": "8417",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "gui/src/pages/AddNewModel/configs/models.ts",
+          "gui/src/pages/AddNewModel/configs/providers.ts"
         ]
       },
       {
@@ -17979,11 +18163,30 @@
       },
       {
         "type": "bug-fix",
+        "source": "8795",
+        "target": "8492",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "extensions/cli/src/systemMessage.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "8779",
         "target": "8684",
         "classification": "heuristic",
         "overlapping_files": [
           "packages/openai-adapters/src/util.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "8799",
+        "target": "8473",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "extensions/intellij/src/main/kotlin/com/github/continuedev/continueintellijextension/constants/MessageTypes.kt",
+          "extensions/intellij/src/main/kotlin/com/github/continuedev/continueintellijextension/types.kt"
         ]
       },
       {
@@ -18017,6 +18220,15 @@
       },
       {
         "type": "bug-fix",
+        "source": "8383",
+        "target": "8511",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/openai-adapters/src/apis/Anthropic.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "8808",
         "target": "8708",
         "classification": "heuristic",
@@ -18036,10 +18248,20 @@
       {
         "type": "bug-fix",
         "source": "8778",
-        "target": "8799",
+        "target": "8524",
         "classification": "heuristic",
         "overlapping_files": [
-          "extensions/intellij/src/main/kotlin/com/github/continuedev/continueintellijextension/continue/IntelliJIde.kt"
+          "extensions/intellij/src/main/kotlin/com/github/continuedev/continueintellijextension/browser/ContinueBrowser.kt",
+          "extensions/intellij/src/main/kotlin/com/github/continuedev/continueintellijextension/continue/CoreMessenger.kt"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "8869",
+        "target": "8571",
+        "classification": "heuristic",
+        "overlapping_files": [
+          ".github/workflows/cla.yaml"
         ]
       },
       {
@@ -18174,12 +18396,22 @@
       {
         "type": "bug-fix",
         "source": "8961",
-        "target": "8817",
+        "target": "8708",
         "classification": "heuristic",
         "overlapping_files": [
-          "docs/customize/model-providers/more/asksage.mdx",
-          "docs/customize/model-providers/more/deepseek.mdx",
-          "docs/customize/model-providers/top-level/gemini.mdx"
+          "docs/customize/deep-dives/autocomplete.mdx",
+          "docs/guides/atlassian-mcp-continue-cookbook.mdx",
+          "docs/guides/github-mcp-continue-cookbook.mdx",
+          "docs/reference.mdx"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "8925",
+        "target": "8694",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "extensions/cli/src/telemetry/posthogService.ts"
         ]
       },
       {
@@ -18211,6 +18443,25 @@
       },
       {
         "type": "bug-fix",
+        "source": "9012",
+        "target": "8383",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "core/llm/llms/Anthropic.ts",
+          "packages/openai-adapters/src/apis/Anthropic.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "9061",
+        "target": "8778",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "extensions/intellij/src/main/kotlin/com/github/continuedev/continueintellijextension/activities/ContinuePluginStartupActivity.kt"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "9069",
         "target": "9068",
         "classification": "heuristic",
@@ -18238,6 +18489,15 @@
       },
       {
         "type": "bug-fix",
+        "source": "9104",
+        "target": "8829",
+        "classification": "heuristic",
+        "overlapping_files": [
+          ".github/workflows/preview.yaml"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "9100",
         "target": "9033",
         "classification": "heuristic",
@@ -18260,9 +18520,14 @@
       {
         "type": "bug-fix",
         "source": "9162",
-        "target": "9104",
+        "target": "8829",
         "classification": "heuristic",
         "overlapping_files": [
+          ".github/workflows/jetbrains-release.yaml",
+          ".github/workflows/main-build.yaml",
+          ".github/workflows/main.yaml",
+          ".github/workflows/pr-build-upload-vsix.yaml",
+          ".github/workflows/pr-checks.yaml",
           ".github/workflows/preview.yaml"
         ]
       },
@@ -18289,20 +18554,40 @@
       {
         "type": "bug-fix",
         "source": "9138",
-        "target": "9162",
+        "target": "8829",
         "classification": "heuristic",
         "overlapping_files": [
+          ".github/workflows/cli-pr-checks.yml",
           ".github/workflows/jetbrains-release.yaml",
           ".github/workflows/pr-checks.yaml"
         ]
       },
       {
         "type": "bug-fix",
-        "source": "9285",
-        "target": "9275",
+        "source": "9085",
+        "target": "8778",
         "classification": "heuristic",
         "overlapping_files": [
+          "extensions/intellij/src/main/kotlin/com/github/continuedev/continueintellijextension/continue/IntelliJIde.kt"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "9285",
+        "target": "8838",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "extensions/cli/src/commands/serve.ts",
           "extensions/cli/src/util/exit.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "9332",
+        "target": "9073",
+        "classification": "heuristic",
+        "overlapping_files": [
+          ".github/workflows/runloop-blueprint-template.json"
         ]
       },
       {
@@ -18316,11 +18601,21 @@
       },
       {
         "type": "bug-fix",
-        "source": "9183",
-        "target": "9114",
+        "source": "9114",
+        "target": "9111",
         "classification": "heuristic",
         "overlapping_files": [
           "extensions/vscode/package-lock.json"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "9183",
+        "target": "9111",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "extensions/vscode/package-lock.json",
+          "extensions/vscode/package.json"
         ]
       },
       {
@@ -18331,6 +18626,16 @@
         "overlapping_files": [
           "extensions/cli/src/services/AgentFileService.test.ts",
           "extensions/cli/src/services/AgentFileService.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "9423",
+        "target": "9089",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "extensions/cli/src/ui/IntroMessage.test.tsx",
+          "extensions/cli/src/ui/ServiceDebugger.tsx"
         ]
       },
       {
@@ -18349,6 +18654,15 @@
         "classification": "heuristic",
         "overlapping_files": [
           ".github/workflows/continue-agents.yml"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "9440",
+        "target": "9080",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "gui/package-lock.json"
         ]
       },
       {
@@ -18372,12 +18686,13 @@
       {
         "type": "bug-fix",
         "source": "9506",
-        "target": "9443",
+        "target": "8962",
         "classification": "heuristic",
         "overlapping_files": [
           "docs/agents/intro.mdx",
           "docs/agents/overview.mdx",
-          "docs/guides/sanity-mcp-continue-cookbook.mdx"
+          "docs/docs.json",
+          "docs/guides/posthog-github-continuous-ai.mdx"
         ]
       },
       {
@@ -18495,6 +18810,15 @@
       },
       {
         "type": "bug-fix",
+        "source": "9781",
+        "target": "9451",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "package-lock.json"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "9802",
         "target": "9774",
         "classification": "heuristic",
@@ -18568,6 +18892,15 @@
       },
       {
         "type": "bug-fix",
+        "source": "9739",
+        "target": "9128",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "core/config/yaml/loadYaml.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "9934",
         "target": "10049",
         "classification": "heuristic",
@@ -18607,6 +18940,15 @@
       },
       {
         "type": "bug-fix",
+        "source": "9688",
+        "target": "9268",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "gui/src/hooks/ParallelListeners.tsx"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "9551",
         "target": "10049",
         "classification": "heuristic",
@@ -18621,6 +18963,15 @@
         "classification": "heuristic",
         "overlapping_files": [
           "core/llm/index.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "10127",
+        "target": "9496",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/config-yaml/src/load/unroll.ts"
         ]
       },
       {
@@ -18643,11 +18994,29 @@
       },
       {
         "type": "bug-fix",
+        "source": "10149",
+        "target": "9190",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "gui/src/components/mainInput/TipTapEditor/utils/editorConfig.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "10201",
         "target": "10145",
         "classification": "heuristic",
         "overlapping_files": [
           "core/package-lock.json"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "10391",
+        "target": "9679",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "core/tools/implementations/runTerminalCommand.ts"
         ]
       },
       {
@@ -18780,6 +19149,16 @@
       },
       {
         "type": "bug-fix",
+        "source": "10776",
+        "target": "10565",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "extensions/intellij/README.md",
+          "extensions/vscode/README.md"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "10517",
         "target": "10720",
         "classification": "heuristic",
@@ -18794,6 +19173,16 @@
         "classification": "heuristic",
         "overlapping_files": [
           "gui/package-lock.json"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "10661",
+        "target": "10489",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "docs/agents/overview.mdx",
+          "docs/overview.mdx"
         ]
       },
       {
@@ -18836,6 +19225,15 @@
       },
       {
         "type": "bug-fix",
+        "source": "10485",
+        "target": "10543",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "core/index.d.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "11429",
         "target": "11369",
         "classification": "heuristic",
@@ -18860,6 +19258,15 @@
         "classification": "heuristic",
         "overlapping_files": [
           ".github/workflows/jetbrains-release.yaml"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "11638",
+        "target": "10784",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "package-lock.json"
         ]
       },
       {
@@ -18891,6 +19298,15 @@
       },
       {
         "type": "bug-fix",
+        "source": "10408",
+        "target": "10937",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "extensions/cli/src/systemMessage.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "11668",
         "target": "11643",
         "classification": "heuristic",
@@ -18918,12 +19334,33 @@
       },
       {
         "type": "bug-fix",
+        "source": "11092",
+        "target": "11101",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "core/tools/systemMessageTools/buildToolsSystemMessage.ts",
+          "core/tools/systemMessageTools/toolCodeblocks/buildSystemMessage.vitest.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "11672",
         "target": "10737",
         "classification": "heuristic",
         "overlapping_files": [
           "core/config/ConfigHandler.ts",
           "gui/src/hooks/ParallelListeners.tsx"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "11110",
+        "target": "10451",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "core/config/profile/LocalProfileLoader.ts",
+          "core/config/profile/LocalProfileLoader.vitest.ts",
+          "core/config/profile/doLoadConfig.ts"
         ]
       },
       {
@@ -19054,6 +19491,15 @@
       },
       {
         "type": "bug-fix",
+        "source": "11839",
+        "target": "10955",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/hub/package-lock.json"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "11840",
         "target": "11839",
         "classification": "heuristic",
@@ -19072,12 +19518,30 @@
       },
       {
         "type": "bug-fix",
+        "source": "11846",
+        "target": "10841",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/fetch/package-lock.json"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "11847",
         "target": "11785",
         "classification": "heuristic",
         "overlapping_files": [
           "packages/openai-adapters/src/test/vercelStreamConverter.test.ts",
           "packages/openai-adapters/src/vercelStreamConverter.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "11844",
+        "target": "10927",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/config-yaml/package-lock.json"
         ]
       },
       {
@@ -19106,26 +19570,80 @@
         "overlapping_files": [
           "packages/continue-sdk/package-lock.json"
         ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "11913",
+        "target": "11844",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/config-yaml/package-lock.json"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "11931",
+        "target": "11506",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "core/package-lock.json"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "11930",
+        "target": "11506",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "binary/package-lock.json"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "11936",
+        "target": "11846",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/fetch/package-lock.json"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "11937",
+        "target": "11859",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/continue-sdk/package-lock.json"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "11938",
+        "target": "10887",
+        "classification": "heuristic",
+        "overlapping_files": [
+          ".github/workflows/preview.yaml"
+        ]
       }
     ],
     "by_complexity": {
       "small": {
-        "specd_rework_rate": 0.1187,
-        "unspecd_rework_rate": 0.1709,
-        "specd_count": 160,
-        "unspecd_count": 351
+        "specd_rework_rate": 0.1677,
+        "unspecd_rework_rate": 0.1972,
+        "specd_count": 161,
+        "unspecd_count": 360
       },
       "medium": {
-        "specd_rework_rate": 0.2353,
-        "unspecd_rework_rate": 0.2366,
+        "specd_rework_rate": 0.2549,
+        "unspecd_rework_rate": 0.2872,
         "specd_count": 51,
-        "unspecd_count": 93
+        "unspecd_count": 94
       },
       "large": {
-        "specd_rework_rate": 0.4615,
-        "unspecd_rework_rate": 0.3265,
+        "specd_rework_rate": 0.5,
+        "unspecd_rework_rate": 0.42,
         "specd_count": 26,
-        "unspecd_count": 49
+        "unspecd_count": 50
       }
     }
   }

@@ -1,11 +1,11 @@
 {
   "repo": "PostHog/posthog",
-  "lookback_days": 90,
-  "rework_window_days": 14,
+  "lookback_days": 365,
+  "rework_window_days": 30,
   "coverage": {
     "coverage_pct": 6,
-    "total_prs": 834,
-    "specd_prs": 47,
+    "total_prs": 1005,
+    "specd_prs": 60,
     "prs": [
       {
         "number": 52221,
@@ -6678,6 +6678,1374 @@
         "specd": false,
         "spec_source": null,
         "merged_at": "2026-03-21T10:51:41+00:00"
+      },
+      {
+        "number": 53240,
+        "sha": null,
+        "title": "perf: paginate range discovery to start child workflows sooner",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T22:15:54+00:00"
+      },
+      {
+        "number": 52966,
+        "sha": null,
+        "title": "feat: Add internal flag to the Task.create_and_run function",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T22:01:21+00:00"
+      },
+      {
+        "number": 53234,
+        "sha": null,
+        "title": "feat(messaging): combine HogVM filter bytecodes into single execution per person",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T21:42:22+00:00"
+      },
+      {
+        "number": 53135,
+        "sha": null,
+        "title": "chore(personhog): metrics w/ client label",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T21:33:21+00:00"
+      },
+      {
+        "number": 53254,
+        "sha": null,
+        "title": "fix(insights): preserve variable overrides with tile filters",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T21:07:39+00:00"
+      },
+      {
+        "number": 53239,
+        "sha": null,
+        "title": "fix(replay): fix collection creation UX \u2014 skeleton, save-on-blur, and naming",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T20:35:58+00:00"
+      },
+      {
+        "number": 51778,
+        "sha": null,
+        "title": "feat(phai): added llm gateway support to phai",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T20:34:08+00:00"
+      },
+      {
+        "number": 53248,
+        "sha": null,
+        "title": "test(storybook): fix LemonTable overflow snapshot drift on master",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T20:09:55+00:00"
+      },
+      {
+        "number": 53089,
+        "sha": null,
+        "title": "chore(error-tracking): delete test output tables",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T20:05:53+00:00"
+      },
+      {
+        "number": 53133,
+        "sha": null,
+        "title": "fix: use random boundary in email template",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T19:59:14+00:00"
+      },
+      {
+        "number": 53224,
+        "sha": null,
+        "title": "chore(workflows): increase variable space limit to 5kb",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T19:16:53+00:00"
+      },
+      {
+        "number": 53195,
+        "sha": null,
+        "title": "fix(workflows): Create HogFlowBatchJob for scheduler-triggered runs",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T19:10:50+00:00"
+      },
+      {
+        "number": 53145,
+        "sha": null,
+        "title": "fix: protect admin api routes w/ secondary oauth",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T18:47:00+00:00"
+      },
+      {
+        "number": 52995,
+        "sha": null,
+        "title": "refactor(funnels): replace filters with queries in trend funnel tests",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T18:41:37+00:00"
+      },
+      {
+        "number": 50564,
+        "sha": null,
+        "title": "feat(llm-gateway): add support for aws bedrock",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T18:20:16+00:00"
+      },
+      {
+        "number": 53197,
+        "sha": null,
+        "title": "fix(dashboards): preserve null dashboard variable overrides",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T18:11:00+00:00"
+      },
+      {
+        "number": 53146,
+        "sha": null,
+        "title": "feat(deduplicator): address memory spike prior to S3 transfer",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T18:07:10+00:00"
+      },
+      {
+        "number": 52973,
+        "sha": null,
+        "title": "feat(actions): add references endpoint and delete warning",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T18:00:41+00:00"
+      },
+      {
+        "number": 53106,
+        "sha": null,
+        "title": "feat(error-tracking): style nested exceptions with \"Caused by\" chain indicator",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T17:59:32+00:00"
+      },
+      {
+        "number": 53071,
+        "sha": null,
+        "title": "refactor(funnels): replace filters with queries in funnel time-to-convert tests",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T17:53:40+00:00"
+      },
+      {
+        "number": 53216,
+        "sha": null,
+        "title": "fix(llma): allow API key and OAuth access to clustering endpoints",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T17:36:50+00:00"
+      },
+      {
+        "number": 53229,
+        "sha": null,
+        "title": "feat: Open up batch export API test methods",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T17:29:02+00:00"
+      },
+      {
+        "number": 53055,
+        "sha": null,
+        "title": "feat(sql-editor): update formatting immediately",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T17:09:22+00:00"
+      },
+      {
+        "number": 53225,
+        "sha": null,
+        "title": "chore(endpoints): add debug mode to playground for staff",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T17:00:10+00:00"
+      },
+      {
+        "number": 53228,
+        "sha": null,
+        "title": "fix(rust): Fix stale field names",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T16:58:30+00:00"
+      },
+      {
+        "number": 53186,
+        "sha": null,
+        "title": "feat(bi): e2e test for direct queries",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T16:48:55+00:00"
+      },
+      {
+        "number": 53212,
+        "sha": null,
+        "title": "fix(llma): update reviews naming, docs link, and tracking",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T16:32:21+00:00"
+      },
+      {
+        "number": 53122,
+        "sha": null,
+        "title": "feat(replay): create v2 group from v1 triggers",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T16:27:12+00:00"
+      },
+      {
+        "number": 53175,
+        "sha": null,
+        "title": "docs(llma): update Convex onboarding to use runtime-agnostic OTEL setup",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T16:25:50+00:00"
+      },
+      {
+        "number": 53173,
+        "sha": null,
+        "title": "chore(llma): Update LLM costs",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T16:20:44+00:00"
+      },
+      {
+        "number": 53028,
+        "sha": null,
+        "title": "feat(logs-alerts): add Prometheus metrics interceptor for logs alerting temporal worker",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T16:17:38+00:00"
+      },
+      {
+        "number": 53171,
+        "sha": null,
+        "title": "feat(signals): publish report_completed message to Kafka after report generation",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T16:07:08+00:00"
+      },
+      {
+        "number": 53144,
+        "sha": null,
+        "title": "fix(modeling): add logs to ui for data modeling sync jobs",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T16:02:52+00:00"
+      },
+      {
+        "number": 52796,
+        "sha": null,
+        "title": "fix(insights): allow table scrolling in embedded contexts (like thread)",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T15:58:27+00:00"
+      },
+      {
+        "number": 53142,
+        "sha": null,
+        "title": "fix(modeling): failing metric hangs v2 modeling activity",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T15:58:13+00:00"
+      },
+      {
+        "number": 53136,
+        "sha": null,
+        "title": "chore(nodejs): set client header for personhog requests",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T15:36:37+00:00"
+      },
+      {
+        "number": 52029,
+        "sha": null,
+        "title": "feat(capture): v1 analytics endpoint and processing pipeline (part one)",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T15:26:34+00:00"
+      },
+      {
+        "number": 53143,
+        "sha": null,
+        "title": "fix: remove arm64 platform pin from duckgres dev service",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T15:25:49+00:00"
+      },
+      {
+        "number": 53208,
+        "sha": null,
+        "title": "feat(dashboards): open manage alerts from dashboard insight menu",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T15:24:57+00:00"
+      },
+      {
+        "number": 53201,
+        "sha": null,
+        "title": "chore: drop NodeType.COORDINATOR",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T15:14:41+00:00"
+      },
+      {
+        "number": 53207,
+        "sha": null,
+        "title": "feat(sql-editor): close objects",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T15:11:48+00:00"
+      },
+      {
+        "number": 53199,
+        "sha": null,
+        "title": "feat(search): add alerts shortcut to quick search",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T15:05:30+00:00"
+      },
+      {
+        "number": 53018,
+        "sha": null,
+        "title": "feat(sql-editor): view folders",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T14:53:41+00:00"
+      },
+      {
+        "number": 53179,
+        "sha": null,
+        "title": "fix(replay): only show recording not found for 404 errors, not all failures",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T14:43:08+00:00"
+      },
+      {
+        "number": 53203,
+        "sha": null,
+        "title": "fix: Bump inkeep agent version for a fix",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T14:30:33+00:00"
+      },
+      {
+        "number": 53196,
+        "sha": null,
+        "title": "fix(test): add quick_filters mock to PropertyFilters test",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T14:05:58+00:00"
+      },
+      {
+        "number": 51790,
+        "sha": null,
+        "title": "chore(phai): remove oauth provider kind",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T13:34:56+00:00"
+      },
+      {
+        "number": 53194,
+        "sha": null,
+        "title": "fix(ci): fix agent skills release race condition",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T13:32:51+00:00"
+      },
+      {
+        "number": 53085,
+        "sha": null,
+        "title": "feat(kafka-assigner): integrate K8s awareness for smarter rebalancing",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T13:29:19+00:00"
+      },
+      {
+        "number": 53127,
+        "sha": null,
+        "title": "feat(messaging): optimize backfill performance with single JSONExtract and concurrent filters",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T13:28:36+00:00"
+      },
+      {
+        "number": 51531,
+        "sha": null,
+        "title": "feat(phai): added ability to dismiss agent forms",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T13:10:02+00:00"
+      },
+      {
+        "number": 53184,
+        "sha": null,
+        "title": "fix(insights): use multivariate match for simple editor experiment flag",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T13:03:37+00:00"
+      },
+      {
+        "number": 53190,
+        "sha": null,
+        "title": "fix(llma): allow OAuth-authenticated users to manage prompts",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T13:02:25+00:00"
+      },
+      {
+        "number": 53003,
+        "sha": null,
+        "title": "feat(signals): add pause/unpause support to grouping v2 workflow",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T13:01:32+00:00"
+      },
+      {
+        "number": 53066,
+        "sha": null,
+        "title": "chore(insights): remove unused compare_hogql_insights command",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T12:58:47+00:00"
+      },
+      {
+        "number": 53117,
+        "sha": null,
+        "title": "fix: invalid 'blocked' status for managed proxy",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T12:55:23+00:00"
+      },
+      {
+        "number": 52987,
+        "sha": null,
+        "title": "feat(insights): implement pinnable tooltip for line graphs",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T12:49:41+00:00"
+      },
+      {
+        "number": 53095,
+        "sha": null,
+        "title": "feat(llma): explore traces skill",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T12:47:26+00:00"
+      },
+      {
+        "number": 53107,
+        "sha": null,
+        "title": "feat(llma): enable clustering read tools and add exploring-llm-clusters skill",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T12:42:51+00:00"
+      },
+      {
+        "number": 53111,
+        "sha": null,
+        "title": "feat(linkedin_ads): add cost_in_local_currency to LinkedIn Ads connector",
+        "specd": true,
+        "spec_source": "#52911",
+        "merged_at": "2026-04-02T12:41:26+00:00"
+      },
+      {
+        "number": 52861,
+        "sha": null,
+        "title": "fix(marketing-analytics): divide Reddit Ads conversion values by 100",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T12:40:14+00:00"
+      },
+      {
+        "number": 53189,
+        "sha": null,
+        "title": "feat(llma): expose evaluation test_hog endpoint as MCP tool",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T12:25:43+00:00"
+      },
+      {
+        "number": 53064,
+        "sha": null,
+        "title": "refactor(funnels): replace filters with queries in funnel strict tests",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T12:29:19+00:00"
+      },
+      {
+        "number": 53157,
+        "sha": null,
+        "title": "feat(signals): Make agentic report generate on every signal + Remove legacy flow",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T12:19:49+00:00"
+      },
+      {
+        "number": 53172,
+        "sha": null,
+        "title": "feat(ai): support box plot, stickiness, and lifecycle in explain this insight",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T12:19:36+00:00"
+      },
+      {
+        "number": 53110,
+        "sha": null,
+        "title": "fix(workflows): Use CDP_PRODUCER for hogflow scheduler Kafka producer",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T12:16:58+00:00"
+      },
+      {
+        "number": 52929,
+        "sha": null,
+        "title": "fix(revenue-analytics): Persons materialized view joins",
+        "specd": true,
+        "spec_source": "https://github.com/PostHog/posthog/issues/52270",
+        "merged_at": "2026-04-02T12:06:46+00:00"
+      },
+      {
+        "number": 52981,
+        "sha": null,
+        "title": "fix(notebooks): plain paragraph on block split and trailing click",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T12:01:28+00:00"
+      },
+      {
+        "number": 53137,
+        "sha": null,
+        "title": "feat: Release Stripe app v1.0.0 with updated dependencies and configuration",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T11:42:35+00:00"
+      },
+      {
+        "number": 52889,
+        "sha": null,
+        "title": "feat: split verified and unverified auth domains",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T11:38:35+00:00"
+      },
+      {
+        "number": 52857,
+        "sha": null,
+        "title": "feat: spark line drag selector",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T11:31:34+00:00"
+      },
+      {
+        "number": 53178,
+        "sha": null,
+        "title": "docs(cloud-runs): update setup guide with ngrok and modal credentials",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T11:29:32+00:00"
+      },
+      {
+        "number": 53074,
+        "sha": null,
+        "title": "chore(cloud-agent): better slack coding agent workflow logging",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T11:20:39+00:00"
+      },
+      {
+        "number": 53044,
+        "sha": null,
+        "title": "fix(notebooks): broken table bubble menu",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T11:14:13+00:00"
+      },
+      {
+        "number": 53163,
+        "sha": null,
+        "title": "feat(cloud-agent): added sandbox_environment_id ext callers",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T10:50:57+00:00"
+      },
+      {
+        "number": 52563,
+        "sha": null,
+        "title": "feat(insights): add My insights tab to product analytics page",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T10:46:32+00:00"
+      },
+      {
+        "number": 53164,
+        "sha": null,
+        "title": "feat(llma): add query-llm-trace MCP tool",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T10:42:39+00:00"
+      },
+      {
+        "number": 53167,
+        "sha": null,
+        "title": "fix(ci): filter virtual properties from property definition verification test",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T10:16:05+00:00"
+      },
+      {
+        "number": 53168,
+        "sha": null,
+        "title": "fix(experiments): preserve shared metric state across tab switches",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T10:13:54+00:00"
+      },
+      {
+        "number": 53006,
+        "sha": null,
+        "title": "fix(replay): prevent group filter from being removed on session recordings",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T10:13:17+00:00"
+      },
+      {
+        "number": 53009,
+        "sha": null,
+        "title": "feat(data-warehouse): add cancel sync button for schema syncs",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T10:04:13+00:00"
+      },
+      {
+        "number": 53165,
+        "sha": null,
+        "title": "feat(insights): capture save_type property on insight saved event",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T10:01:49+00:00"
+      },
+      {
+        "number": 53024,
+        "sha": null,
+        "title": "fix(tooltips): show breakdown value when a single series is highlighted",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T09:43:12+00:00"
+      },
+      {
+        "number": 52727,
+        "sha": null,
+        "title": "fix(billing): Turn usage signals for SFDC into an incremental pipeline",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T09:42:29+00:00"
+      },
+      {
+        "number": 53034,
+        "sha": null,
+        "title": "feat(hogql): support table column aliases across all dialects",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T08:55:39+00:00"
+      },
+      {
+        "number": 52772,
+        "sha": null,
+        "title": "feat(sql): copy as markdown",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T08:46:24+00:00"
+      },
+      {
+        "number": 53020,
+        "sha": null,
+        "title": "chore: Make transient error logs warning level",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T08:43:58+00:00"
+      },
+      {
+        "number": 53115,
+        "sha": null,
+        "title": "feat(llma): add ID-based summarization and enable MCP tool",
+        "specd": true,
+        "spec_source": "ID-BASED",
+        "merged_at": "2026-04-02T08:27:48+00:00"
+      },
+      {
+        "number": 53160,
+        "sha": null,
+        "title": "feat: add LLM traces list query example and improve trace discovery docs",
+        "specd": true,
+        "spec_source": "AND-ED",
+        "merged_at": "2026-04-02T08:18:28+00:00"
+      },
+      {
+        "number": 53158,
+        "sha": null,
+        "title": "feat(mcp): allow listing tools by name",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T08:12:38+00:00"
+      },
+      {
+        "number": 53113,
+        "sha": null,
+        "title": "feat(llma): enable sentiment analysis MCP tool",
+        "specd": true,
+        "spec_source": "YAML-ONLY",
+        "merged_at": "2026-04-02T08:00:06+00:00"
+      },
+      {
+        "number": 53046,
+        "sha": null,
+        "title": "fix(insights): truncate long event and math names in editor panel",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T07:54:44+00:00"
+      },
+      {
+        "number": 53014,
+        "sha": null,
+        "title": "fix(sql-editor): back/forward with insights",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T07:51:57+00:00"
+      },
+      {
+        "number": 53148,
+        "sha": null,
+        "title": "refactor(notifications): remove polling, move FF gate to view logic",
+        "specd": true,
+        "spec_source": "FF-DISABLED",
+        "merged_at": "2026-04-02T07:35:15+00:00"
+      },
+      {
+        "number": 53128,
+        "sha": null,
+        "title": "test(storybook): update PropertyDefinitions snapshots",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T06:59:30+00:00"
+      },
+      {
+        "number": 52864,
+        "sha": null,
+        "title": "fix(phai): fix vertical alignment in side panel",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T06:18:16+00:00"
+      },
+      {
+        "number": 53070,
+        "sha": null,
+        "title": "chore(llma): improve MCP traces list tool prompt, schema, and taxonomy",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T06:17:52+00:00"
+      },
+      {
+        "number": 53112,
+        "sha": null,
+        "title": "feat(replay): easy-- make url exclusion list its own top-level section",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T02:40:32+00:00"
+      },
+      {
+        "number": 53092,
+        "sha": null,
+        "title": "chore(replay): move trigger files to different directory",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T21:51:48+00:00"
+      },
+      {
+        "number": 52473,
+        "sha": null,
+        "title": "feat(mcp): scaffold internal mcp analytics groundwork",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T04:04:28+00:00"
+      },
+      {
+        "number": 53088,
+        "sha": null,
+        "title": "chore(modeling): fix possible race for failed row counts",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T02:42:59+00:00"
+      },
+      {
+        "number": 52782,
+        "sha": null,
+        "title": "feat(flags): paired schedule presets and edit UI for scheduled changes",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T00:03:47+00:00"
+      },
+      {
+        "number": 52651,
+        "sha": null,
+        "title": "feat(ingestion): add event filter evaluation step to ingestion pipeline",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T23:50:38+00:00"
+      },
+      {
+        "number": 53045,
+        "sha": null,
+        "title": "fix(phai): add query type reference to read_taxonomy and wrap validation errors",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T23:12:01+00:00"
+      },
+      {
+        "number": 53082,
+        "sha": null,
+        "title": "fix(phai): prevent LLM from hallucinating `element` as top-level filter type",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T22:48:10+00:00"
+      },
+      {
+        "number": 52206,
+        "sha": null,
+        "title": "feat(web-analytics): wrap bot preview functions as virtual event properties",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T22:46:32+00:00"
+      },
+      {
+        "number": 53116,
+        "sha": null,
+        "title": "fix(insights): fix tooltip positioning on bold number previous period link",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T22:27:12+00:00"
+      },
+      {
+        "number": 53121,
+        "sha": null,
+        "title": "chore: add .claude/scheduled_tasks.lock to .gitignore",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T22:24:45+00:00"
+      },
+      {
+        "number": 53118,
+        "sha": null,
+        "title": "feat(common): expose consumer configs WarpStream tuning requires",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T22:02:57+00:00"
+      },
+      {
+        "number": 53021,
+        "sha": null,
+        "title": "fix(test): mock scrollIntoView in VariableCalendar test",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T22:16:15+00:00"
+      },
+      {
+        "number": 52943,
+        "sha": null,
+        "title": "feat(revenue-analytics): Join persons on distinct id",
+        "specd": true,
+        "spec_source": "https://github.com/PostHog/posthog/issues/52270",
+        "merged_at": "2026-04-01T22:06:19+00:00"
+      },
+      {
+        "number": 53100,
+        "sha": null,
+        "title": "fix(replay): route summarize-session child workflow to SESSION_REPLAY_TASK_QUEUE",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T21:44:09+00:00"
+      },
+      {
+        "number": 52476,
+        "sha": null,
+        "title": "feat(data-management): add verified filter to event and property defi\u2026",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T21:43:37+00:00"
+      },
+      {
+        "number": 52990,
+        "sha": null,
+        "title": "chore(insights): remove unused filter_str_to_query",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T21:42:15+00:00"
+      },
+      {
+        "number": 52324,
+        "sha": null,
+        "title": "feat: Add OAuth Client ID Metadata Document (CIMD) support",
+        "specd": true,
+        "spec_source": "SEP-991",
+        "merged_at": "2026-04-01T21:40:12+00:00"
+      },
+      {
+        "number": 52792,
+        "sha": null,
+        "title": "chore(capture): set up error tracking rollout",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T21:38:08+00:00"
+      },
+      {
+        "number": 51078,
+        "sha": null,
+        "title": "chore(endpoints): better serializers",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T21:21:36+00:00"
+      },
+      {
+        "number": 53081,
+        "sha": null,
+        "title": "fix: set remote config flags to 100% rollout by default",
+        "specd": true,
+        "spec_source": "#53073",
+        "merged_at": "2026-04-01T21:09:58+00:00"
+      },
+      {
+        "number": 53069,
+        "sha": null,
+        "title": "fix(dashboard): reduce empty dashboard intro vertical spacing",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T20:49:43+00:00"
+      },
+      {
+        "number": 53019,
+        "sha": null,
+        "title": "fix(hogql): add range() and generate_series() table functions",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T20:49:19+00:00"
+      },
+      {
+        "number": 52627,
+        "sha": null,
+        "title": "feat(workflows): allow mapping templates to hide event filter UX",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T20:27:31+00:00"
+      },
+      {
+        "number": 53099,
+        "sha": null,
+        "title": "chore(llma): Update LLM costs",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T20:24:07+00:00"
+      },
+      {
+        "number": 52790,
+        "sha": null,
+        "title": "chore(replay): move session_summary to session_replay temporal module",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T20:00:15+00:00"
+      },
+      {
+        "number": 53031,
+        "sha": null,
+        "title": "fix(llma): add LangChain message format support to normalizeMessage",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T19:57:49+00:00"
+      },
+      {
+        "number": 53056,
+        "sha": null,
+        "title": "fix(endpoints): usage tab ux",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T19:46:36+00:00"
+      },
+      {
+        "number": 53015,
+        "sha": null,
+        "title": "fix(notifications): add Redis cache for unread_count endpoint",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T19:40:14+00:00"
+      },
+      {
+        "number": 53083,
+        "sha": null,
+        "title": "fix(dagster): route DROP PART to leader replica in part breaker",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T19:39:30+00:00"
+      },
+      {
+        "number": 52487,
+        "sha": null,
+        "title": "chore(flags): refactor mock setup",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T19:39:16+00:00"
+      },
+      {
+        "number": 53060,
+        "sha": null,
+        "title": "fix: remove 400 character limit from ScheduledChange.failure_reason field",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T19:32:20+00:00"
+      },
+      {
+        "number": 51432,
+        "sha": null,
+        "title": "feat(llma): add strip-heavy-properties to AI event ingestion splitting",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T19:09:36+00:00"
+      },
+      {
+        "number": 52615,
+        "sha": null,
+        "title": "fix(revenue-analytics): Re-sync materialized views after Stripe source sync",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T18:43:40+00:00"
+      },
+      {
+        "number": 53076,
+        "sha": null,
+        "title": "fix(scene header): Use flex wrap on actions for smaller screens",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T18:29:42+00:00"
+      },
+      {
+        "number": 52556,
+        "sha": null,
+        "title": "chore: move member joined notification to user settings pt 1",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T18:29:15+00:00"
+      },
+      {
+        "number": 52939,
+        "sha": null,
+        "title": "chore(phai): analytics for successful/failed conversation turns",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T18:27:55+00:00"
+      },
+      {
+        "number": 53067,
+        "sha": null,
+        "title": "feat(mcp): mcp version feature flag",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T18:27:41+00:00"
+      },
+      {
+        "number": 52980,
+        "sha": null,
+        "title": "fix(replay): use blocklist for negative property filters in session recordings",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T18:26:00+00:00"
+      },
+      {
+        "number": 52597,
+        "sha": null,
+        "title": "fix(notebooks): theme-aware horizontal rule stroke color",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T18:17:46+00:00"
+      },
+      {
+        "number": 52641,
+        "sha": null,
+        "title": "chore(web-analytics): Add live events table to the Web Analytics Live Overview",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T18:10:09+00:00"
+      },
+      {
+        "number": 53061,
+        "sha": null,
+        "title": "fix(experiments): Tweak font sizes and margins in experiment views",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T18:07:44+00:00"
+      },
+      {
+        "number": 53075,
+        "sha": null,
+        "title": "fix(notifications): stop SSE infinite retry loop on connection failure",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T17:57:51+00:00"
+      },
+      {
+        "number": 53033,
+        "sha": null,
+        "title": "fix(insights): add tooltip and fix compare filter on bold number previous period",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T17:46:44+00:00"
+      },
+      {
+        "number": 52977,
+        "sha": null,
+        "title": "fix(feature-flags): hide behavioral cohorts in new flags UI without realtime flag",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T17:26:41+00:00"
+      },
+      {
+        "number": 53065,
+        "sha": null,
+        "title": "fix(auth): revert preserve session during social auth reauth",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T17:24:53+00:00"
+      },
+      {
+        "number": 53023,
+        "sha": null,
+        "title": "feat(insights): add tracking for insight query-building actions",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T17:14:13+00:00"
+      },
+      {
+        "number": 52744,
+        "sha": null,
+        "title": "feat: Simplify the export workflow and also expose the export type",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T17:08:41+00:00"
+      },
+      {
+        "number": 52950,
+        "sha": null,
+        "title": "feat(dashboard): add AI-generated dashboard title and description",
+        "specd": true,
+        "spec_source": "AI-GENERATED",
+        "merged_at": "2026-04-01T17:08:25+00:00"
+      },
+      {
+        "number": 51556,
+        "sha": null,
+        "title": "feat: support batch-aware pipelines",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T16:59:41+00:00"
+      },
+      {
+        "number": 53062,
+        "sha": null,
+        "title": "test(storybook): update ProjectHomepage snapshot",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T16:41:27+00:00"
+      },
+      {
+        "number": 52979,
+        "sha": null,
+        "title": "feat: make sandbox not clobber worktrees (and a few other improvements)",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T16:48:18+00:00"
+      },
+      {
+        "number": 52847,
+        "sha": null,
+        "title": "feat: support distinct broker config per topic",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T16:46:16+00:00"
+      },
+      {
+        "number": 53050,
+        "sha": null,
+        "title": "feat(cloud-agent): agentsh and end turn improvements",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T16:28:57+00:00"
+      },
+      {
+        "number": 53058,
+        "sha": null,
+        "title": "fix(sandbox): couldn't sed with non utf-8",
+        "specd": true,
+        "spec_source": "OS-SPECIFIC",
+        "merged_at": "2026-04-01T16:09:04+00:00"
+      },
+      {
+        "number": 53051,
+        "sha": null,
+        "title": "fix: rounting emails attachment",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T16:18:32+00:00"
+      },
+      {
+        "number": 52837,
+        "sha": null,
+        "title": "feat(personhog): add graceful drain protocol for pod shutdown",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T16:18:03+00:00"
+      },
+      {
+        "number": 52830,
+        "sha": null,
+        "title": "fix(auth): preserve session during social auth re-authentication",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T10:10:06+00:00"
+      },
+      {
+        "number": 52921,
+        "sha": null,
+        "title": "feat(actions): preview matching events for unsaved actions",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T16:08:47+00:00"
+      },
+      {
+        "number": 53053,
+        "sha": null,
+        "title": "fix(cdp): reduce memory pressure in cyclotron worker kafka job queue",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T15:58:06+00:00"
+      },
+      {
+        "number": 53059,
+        "sha": null,
+        "title": "chore(modeling): fix misleading modeling error message",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T15:57:51+00:00"
+      },
+      {
+        "number": 53043,
+        "sha": null,
+        "title": "chore(endpoints): another team_id backfill migraiton",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T15:19:36+00:00"
+      },
+      {
+        "number": 53041,
+        "sha": null,
+        "title": "fix(tracing): remove uuid from order by",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T14:45:09+00:00"
+      },
+      {
+        "number": 52998,
+        "sha": null,
+        "title": "feat(data-warehouse): add source schema debug logging to SQL sources",
+        "specd": true,
+        "spec_source": "SQL-BASED",
+        "merged_at": "2026-04-01T14:44:14+00:00"
+      },
+      {
+        "number": 53016,
+        "sha": null,
+        "title": "chore: build livestream images on PRs",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T14:26:59+00:00"
+      },
+      {
+        "number": 53027,
+        "sha": null,
+        "title": "fix(replay): add server-side cache-control to config endpoints",
+        "specd": true,
+        "spec_source": "CNAME-BASED",
+        "merged_at": "2026-04-01T14:24:52+00:00"
+      },
+      {
+        "number": 53037,
+        "sha": null,
+        "title": "fix: collapsed nav tree items moved on hover",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T14:19:35+00:00"
+      },
+      {
+        "number": 52965,
+        "sha": null,
+        "title": "fix(experiments): metrics using action nodes correcly display the action name.",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T14:06:53+00:00"
+      },
+      {
+        "number": 16269,
+        "sha": null,
+        "title": "feat: Backfill backend refactoring for Exports",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2023-06-28T16:13:26+00:00"
+      },
+      {
+        "number": 53025,
+        "sha": null,
+        "title": "fix(search): guard against non-string person properties in search res\u2026",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T13:51:21+00:00"
+      },
+      {
+        "number": 53026,
+        "sha": null,
+        "title": "feat(tasks): Task UI improvements",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T13:50:43+00:00"
+      },
+      {
+        "number": 53013,
+        "sha": null,
+        "title": "feat(sig): backfill errors on create signal source config",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T13:47:23+00:00"
+      },
+      {
+        "number": 53030,
+        "sha": null,
+        "title": "fix(llm-gateway): regenerate uv.lock after exclude-newer addition",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T13:40:39+00:00"
+      },
+      {
+        "number": 52115,
+        "sha": null,
+        "title": "refactor(logs): decouple data fetching and analytics from scene-level URL sync",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T13:25:56+00:00"
       }
     ]
   },
@@ -6685,7 +8053,7 @@
     "mode": "heuristic",
     "average_score": 45,
     "verdicts": {
-      "REVIEW": 47
+      "REVIEW": 60
     },
     "specs": [
       {
@@ -9943,15 +11311,780 @@
           "No state transitions \u2014 AI may allow invalid transitions",
           "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
         ]
+      },
+      {
+        "pr_number": 53111,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Add costInLocalCurrency to FLOAT_FIELDS in schemas.py so API values are converte",
+            "suggestion": "Goal without test: 'Add costInLocalCurrency to FLOAT_FIELDS in schemas.py so API...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Add costInLocalCurrency to field_names for both CampaignStats and CampaignGroupS",
+            "suggestion": "Goal without test: 'Add costInLocalCurrency to field_names for both CampaignStat...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Parametrize testflattenfloat_fields to cover all three float fields (costInUsd, ",
+            "suggestion": "Goal without test: 'Parametrize testflattenfloat_fields to cover all three float...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Add costinlocal_currency column to the marketing analytics test CSV and column s",
+            "suggestion": "Goal without test: 'Add costinlocal_currency column to the marketing analytics t...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "LinkedIn Ads unit tests cover the new parametrized float field conversion",
+            "suggestion": "Goal without test: 'LinkedIn Ads unit tests cover the new parametrized float fie...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Existing test_adapters.py column schema updated to include the new field",
+            "suggestion": "Goal without test: 'Existing test_adapters.py column schema updated to include t...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 52929,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 98,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 44,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 25,
+            "type": "ambiguity",
+            "term": "should work",
+            "suggestion": "Replace 'should work' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Extracted code to helper functions (will reuse them when refactoring groups join",
+            "suggestion": "Goal without test: 'Extracted code to helper functions (will reuse them when ref...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 53115,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Extend SummarizeRequestSerializer with optional traceid, generationid, datefrom,",
+            "suggestion": "Goal without test: 'Extend SummarizeRequestSerializer with optional traceid, gen...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Add cross-field validation: provide either data or one of the IDs, not both",
+            "suggestion": "Goal without test: 'Add cross-field validation: provide either data or one of th...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "summarize_type is now optional \u2014 inferred from which ID field is provided",
+            "suggestion": "Goal without test: 'summarize_type is now optional \u2014 inferred from which ID fiel...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Add fetchtracedata() \u2014 uses TraceQueryRunner to fetch trace, then llmtracetoform",
+            "suggestion": "Goal without test: 'Add fetchtracedata() \u2014 uses TraceQueryRunner to fetch trace,...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Add fetchgenerationdata() \u2014 HogQL query to fetch a single $aigeneration event by",
+            "suggestion": "Goal without test: 'Add fetchgenerationdata() \u2014 HogQL query to fetch a single $a...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Update create() to use fetch methods when IDs are provided, falling back to exis",
+            "suggestion": "Goal without test: 'Update create() to use fetch methods when IDs are provided, ...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Enable llm-analytics-summarization-create with description focused on the ID-bas",
+            "suggestion": "Goal without test: 'Enable llm-analytics-summarization-create with description f...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[ ] trace_id path: fetches trace and returns summary",
+            "suggestion": "Goal without test: '[ ] trace_id path: fetches trace and returns summary' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[ ] generation_id path: fetches generation and returns summary",
+            "suggestion": "Goal without test: '[ ] generation_id path: fetches generation and returns summa...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[ ] Validation: rejects when both data and trace_id provided",
+            "suggestion": "Goal without test: '[ ] Validation: rejects when both data and trace_id provided' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[ ] Validation: rejects when neither data nor ID provided",
+            "suggestion": "Goal without test: '[ ] Validation: rejects when neither data nor ID provided' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[ ] 404 when trace/generation not found in date range",
+            "suggestion": "Goal without test: '[ ] 404 when trace/generation not found in date range' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 53160,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Added example-llm-traces-list.md: New reference document with a two-phase SQL qu",
+            "suggestion": "Goal without test: 'Added example-llm-traces-list.md: New reference document wit...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Converted example-llm-trace.md to template: Migrated the single trace query to a",
+            "suggestion": "Goal without test: 'Converted example-llm-trace.md to template: Migrated the sin...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Enhanced exploring-llm-traces/SKILL.md:",
+            "suggestion": "Goal without test: 'Enhanced exploring-llm-traces/SKILL.md:' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Added critical guidance on schema discovery before constructing filters (call po",
+            "suggestion": "Goal without test: 'Added critical guidance on schema discovery before construct...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Expanded \"Finding traces\" section with step-by-step schema discovery workflow",
+            "suggestion": "Goal without test: 'Expanded \"Finding traces\" section with step-by-step schema d...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Added examples of multiple AND-ed filters and person property filtering",
+            "suggestion": "Goal without test: 'Added examples of multiple AND-ed filters and person propert...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Clarified the distinction between $ai_* properties (which should not be confirme",
+            "suggestion": "Goal without test: 'Clarified the distinction between $ai_* properties (which sh...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Added references to the new query examples in the documentation",
+            "suggestion": "Goal without test: 'Added references to the new query examples in the documentat...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Improved formatting and clarity of filter examples",
+            "suggestion": "Goal without test: 'Improved formatting and clarity of filter examples' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Updated query-examples/SKILL.md: Minor formatting adjustment to description stri",
+            "suggestion": "Goal without test: 'Updated query-examples/SKILL.md: Minor formatting adjustment...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 53113,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 53148,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Remove all polling infrastructure from the frontend (fallbackToPoll, pollTimer, ",
+            "suggestion": "Goal without test: 'Remove all polling infrastructure from the frontend (fallbac...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Remove PostHogFeatureFlagPermission from the viewset \u2014 list returns empty result",
+            "suggestion": "Goal without test: 'Remove PostHogFeatureFlagPermission from the viewset \u2014 list ...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Guard SSE connection with FF check in startSSE \u2014 if the flag is off, no API call",
+            "suggestion": "Goal without test: 'Guard SSE connection with FF check in startSSE \u2014 if the flag...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "SSE uses a 3-strike abort strategy on error instead of falling back to polling",
+            "suggestion": "Goal without test: 'SSE uses a 3-strike abort strategy on error instead of falli...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Add TestNotificationsAPIFeatureFlagDisabled test class for FF-off behavior (2 te",
+            "suggestion": "Goal without test: 'Add TestNotificationsAPIFeatureFlagDisabled test class for F...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "21 backend tests passing (13 existing + 6 cache + 2 new FF-disabled)",
+            "suggestion": "Goal without test: '21 backend tests passing (13 existing + 6 cache + 2 new FF-d...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 52943,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "<!-- If publishing, you must provide changelog details in the #changelog Slack c",
+            "suggestion": "Goal without test: '<!-- If publishing, you must provide changelog details in th...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "<!-- If not, write \"no\" or \"do not publish to changelog\" to explicitly opt-out o",
+            "suggestion": "Goal without test: '<!-- If not, write \"no\" or \"do not publish to changelog\" to ...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 52324,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 98,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 44,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 26,
+            "type": "ambiguity",
+            "term": "comprehensive",
+            "suggestion": "Replace 'comprehensive' with a specific, measurable term"
+          },
+          {
+            "line": 32,
+            "type": "ambiguity",
+            "term": "properly",
+            "suggestion": "Replace 'properly' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "This adds support for a draft OAuth specification that will primarily be used by",
+            "suggestion": "Goal without test: 'This adds support for a draft OAuth specification that will ...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 53081,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 96,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 44,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 10,
+            "type": "ambiguity",
+            "term": "comprehensive",
+            "suggestion": "Replace 'comprehensive' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Update FeatureFlagSerializer.create() to set remote config flags to 100% rollout",
+            "suggestion": "Goal without test: 'Update FeatureFlagSerializer.create() to set remote config f...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Add comprehensive tests for both scenarios:",
+            "suggestion": "Goal without test: 'Add comprehensive tests for both scenarios:' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Remote config flags created without filters",
+            "suggestion": "Goal without test: 'Remote config flags created without filters' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Remote config flags created with explicit 0% rollout",
+            "suggestion": "Goal without test: 'Remote config flags created with explicit 0% rollout' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "testcreateremoteconfigflagdefaultsto100percent_rollout: Tests flags created with",
+            "suggestion": "Goal without test: 'testcreateremoteconfigflagdefaultsto100percent_rollout: Test...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "testcreateremoteconfigflagwithzerorolloutgetsupdatedto_100: Tests flags created ",
+            "suggestion": "Goal without test: 'testcreateremoteconfigflagwithzerorolloutgetsupdatedto_100: ...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 52950,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 96,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 44,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 16,
+            "type": "ambiguity",
+            "term": "better",
+            "suggestion": "Replace 'better' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 53058,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "<!-- If publishing, you must provide changelog details in the #changelog Slack c",
+            "suggestion": "Goal without test: '<!-- If publishing, you must provide changelog details in th...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "<!-- If not, write \"no\" or \"do not publish to changelog\" to explicitly opt-out o",
+            "suggestion": "Goal without test: '<!-- If not, write \"no\" or \"do not publish to changelog\" to ...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 52998,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 53027,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Add addconfigcache_headers() helper that sets Cache-Control: public, max-age=300",
+            "suggestion": "Goal without test: 'Add addconfigcache_headers() helper that sets Cache-Control:...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Apply it to RemoteConfigAPIView (JSON config) and RemoteConfigJSAPIView (JS conf",
+            "suggestion": "Goal without test: 'Apply it to RemoteConfigAPIView (JSON config) and RemoteConf...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "RemoteConfigArrayJSAPIView (array.js) already has its own cache headers via addc",
+            "suggestion": "Goal without test: 'RemoteConfigArrayJSAPIView (array.js) already has its own ca...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Added testconfigincludescachecontrol and testconfigjsincludescache_control tests",
+            "suggestion": "Goal without test: 'Added testconfigincludescachecontrol and testconfigjsinclude...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "All tests pass: pytest posthog/api/test/testremoteconfig.py (3 passed)",
+            "suggestion": "Goal without test: 'All tests pass: pytest posthog/api/test/testremoteconfig.py ...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
       }
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.1702,
-    "unspecd_rework_rate": 0.1588,
-    "delta": 0.0114,
-    "specd_sample_size": 47,
-    "unspecd_sample_size": 787,
+    "specd_rework_rate": 0.1833,
+    "unspecd_rework_rate": 0.182,
+    "delta": 0.0013,
+    "specd_sample_size": 60,
+    "unspecd_sample_size": 945,
     "significance": "significant",
     "signals": [
       {
@@ -10159,9 +12292,10 @@
       {
         "type": "bug-fix",
         "source": "47525",
-        "target": "46072",
+        "target": "45945",
         "classification": "heuristic",
         "overlapping_files": [
+          "rust/kafka-deduplicator/src/config.rs",
           "rust/kafka-deduplicator/src/processor_rebalance_handler.rs"
         ]
       },
@@ -10200,6 +12334,15 @@
         "overlapping_files": [
           "products/llm_analytics/frontend/tabs/llmAnalyticsGenerationsLogic.ts",
           "products/llm_analytics/frontend/tabs/llmAnalyticsTracesTabLogic.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "47932",
+        "target": "45865",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "frontend/src/layout/navigation-3000/sidepanel/SidePanelContentContainer.tsx"
         ]
       },
       {
@@ -10257,10 +12400,11 @@
       {
         "type": "bug-fix",
         "source": "48326",
-        "target": "47989",
+        "target": "45865",
         "classification": "heuristic",
         "overlapping_files": [
-          "frontend/src/layout/GlobalShortcuts.tsx"
+          "frontend/src/layout/GlobalShortcuts.tsx",
+          "frontend/src/lib/components/HelpMenu/HelpMenu.tsx"
         ]
       },
       {
@@ -10310,6 +12454,16 @@
         "classification": "heuristic",
         "overlapping_files": [
           "frontend/src/loadPostHogJS.tsx"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "48639",
+        "target": "46549",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "products/logs/backend/logs_query_runner.py",
+          "products/logs/backend/test/test_logs_query_runner.py"
         ]
       },
       {
@@ -10388,6 +12542,26 @@
       },
       {
         "type": "bug-fix",
+        "source": "49124",
+        "target": "47394",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "posthog/temporal/llm_analytics/trace_clustering/coordinator.py",
+          "posthog/temporal/llm_analytics/trace_summarization/coordinator.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "49128",
+        "target": "46883",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "rust/feature-flags/tests/test_flag_definitions.rs",
+          "rust/feature-flags/tests/test_personal_api_key_scopes.rs"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "49133",
         "target": "48958",
         "classification": "heuristic",
@@ -10416,6 +12590,15 @@
       },
       {
         "type": "bug-fix",
+        "source": "49398",
+        "target": "47235",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "frontend/src/toolbar/stats/HeatmapToolbarMenu.tsx"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "49404",
         "target": "48837",
         "classification": "heuristic",
@@ -10430,6 +12613,16 @@
         "classification": "heuristic",
         "overlapping_files": [
           "products/error_tracking/frontend/scenes/ErrorTrackingIssueScene/ErrorTrackingIssueScene.tsx"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "49462",
+        "target": "47524",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "frontend/src/lib/utils.test.ts",
+          "frontend/src/lib/utils.tsx"
         ]
       },
       {
@@ -10489,10 +12682,12 @@
       {
         "type": "bug-fix",
         "source": "49704",
-        "target": "49716",
+        "target": "47917",
         "classification": "heuristic",
         "overlapping_files": [
-          "frontend/__snapshots__/scenes-app-insights-user-paths--user-paths--dark.png"
+          "frontend/__snapshots__/scenes-app-llm-analytics-trace--full-specific-event--dark.png",
+          "frontend/__snapshots__/scenes-app-llm-analytics-trace--full-specific-event--light.png",
+          "products/llm_analytics/frontend/LLMAnalyticsTraceScene.tsx"
         ]
       },
       {
@@ -10516,6 +12711,17 @@
       },
       {
         "type": "bug-fix",
+        "source": "50082",
+        "target": "47054",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "posthog/models/feature_flag/flags_cache.py",
+          "posthog/models/feature_flag/local_evaluation.py",
+          "posthog/models/feature_flag/test/test_flags_cache.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "50286",
         "target": "49703",
         "classification": "heuristic",
@@ -10525,11 +12731,47 @@
       },
       {
         "type": "bug-fix",
+        "source": "50410",
+        "target": "48532",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "frontend/src/scenes/session-recordings/filters/RecordingsUniversalFiltersEmbed.tsx"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "50743",
         "target": "50054",
         "classification": "heuristic",
         "overlapping_files": [
           "frontend/src/layout/navigation/navigationLogic.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "50751",
+        "target": "48819",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "frontend/src/products.tsx"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "50891",
+        "target": "48243",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "devenv/intent-map.yaml"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "50999",
+        "target": "48972",
+        "classification": "heuristic",
+        "overlapping_files": [
+          ".github/CODEOWNERS-soft"
         ]
       },
       {
@@ -10596,6 +12838,24 @@
       },
       {
         "type": "bug-fix",
+        "source": "51222",
+        "target": "49116",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "nodejs/src/config/config.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "51362",
+        "target": "48504",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "posthog/session_recordings/session_recording_api.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "51535",
         "target": "51536",
         "classification": "heuristic",
@@ -10624,11 +12884,47 @@
       },
       {
         "type": "bug-fix",
+        "source": "51710",
+        "target": "48498",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "posthog/hogql_queries/experiments/experiment_query_builder.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "51797",
+        "target": "49458",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "posthog/dags/common/resources.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "51844",
+        "target": "48532",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "frontend/src/lib/components/TaxonomicFilter/taxonomicFilterLogic.tsx"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "51857",
         "target": "51838",
         "classification": "heuristic",
         "overlapping_files": [
           "bin/start-rust-service"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "51859",
+        "target": "50054",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "frontend/src/layout/panel-layout/ai-first/NavLink.tsx"
         ]
       },
       {
@@ -10679,6 +12975,15 @@
         "classification": "heuristic",
         "overlapping_files": [
           "posthog/apps.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "51908",
+        "target": "49901",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "rust/common/limiters/tests/global_rate_limiter_integration_tests.rs"
         ]
       },
       {
@@ -10737,6 +13042,15 @@
         "classification": "heuristic",
         "overlapping_files": [
           "posthog/middleware.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "51952",
+        "target": "49551",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "frontend/src/scenes/insights/insightLogic.tsx"
         ]
       },
       {
@@ -10843,6 +13157,16 @@
         "classification": "heuristic",
         "overlapping_files": [
           "posthog/api/test/__snapshots__/test_insight.ambr"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "52033",
+        "target": "49462",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "frontend/src/lib/utils.test.ts",
+          "frontend/src/lib/utils.tsx"
         ]
       },
       {
@@ -10971,10 +13295,12 @@
       {
         "type": "bug-fix",
         "source": "50913",
-        "target": "51926",
+        "target": "49725",
         "classification": "heuristic",
         "overlapping_files": [
-          "frontend/src/scenes/onboarding/sdks/product-analytics/ProductAnalyticsSDKInstructions.tsx"
+          "docs/onboarding/product-analytics/index.ts",
+          "frontend/src/scenes/onboarding/sdks/product-analytics/ProductAnalyticsSDKInstructions.tsx",
+          "frontend/src/scenes/settings/environment/SDKSetupInstructions.tsx"
         ]
       },
       {
@@ -10985,6 +13311,15 @@
         "overlapping_files": [
           ".github/workflows/build-hogql-parser-npm.yml",
           ".github/workflows/build-hogql-parser.yml"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "52116",
+        "target": "50091",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "docs/published/handbook/engineering/developing-locally.md"
         ]
       },
       {
@@ -11030,6 +13365,15 @@
         "classification": "heuristic",
         "overlapping_files": [
           "posthog/models/integration.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "52110",
+        "target": "50054",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "frontend/src/scenes/scenes.ts"
         ]
       },
       {
@@ -11385,6 +13729,15 @@
       },
       {
         "type": "bug-fix",
+        "source": "51193",
+        "target": "49273",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "products/llm_analytics/frontend/llmAnalyticsColumnRenderers.tsx"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "52063",
         "target": "51793",
         "classification": "heuristic",
@@ -11521,26 +13874,468 @@
         "overlapping_files": [
           "posthog/hogql_queries/experiments/utils.py"
         ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "52830",
+        "target": "51931",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "ee/api/test/test_authentication.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "53030",
+        "target": "52093",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "services/llm-gateway/uv.lock"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "52965",
+        "target": "52186",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "ee/clickhouse/views/experiments.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "53027",
+        "target": "53013",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "mypy-baseline.txt"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "53041",
+        "target": "52061",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "products/tracing/backend/logic.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "53051",
+        "target": "52150",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "products/conversations/backend/api/tests/test_email_endpoints.py",
+          "products/conversations/backend/services/region_routing.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "53062",
+        "target": "51204",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "frontend/__snapshots__/scenes-app-project-homepage--project-homepage--dark.png",
+          "frontend/__snapshots__/scenes-app-project-homepage--project-homepage--light.png"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "53065",
+        "target": "52921",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "posthog/schema.py",
+          "services/mcp/src/api/generated.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "52977",
+        "target": "52005",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "frontend/src/scenes/feature-flags/FeatureFlagReleaseConditionsCollapsible.tsx"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "53075",
+        "target": "49313",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "frontend/src/layout/navigation-3000/sidepanel/panels/activity/sidePanelNotificationsLogic.tsx"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "53061",
+        "target": "52099",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "frontend/src/scenes/experiments/ExperimentMetricForm.tsx"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "53076",
+        "target": "50054",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "frontend/__snapshots__/scenes-app-project-homepage--project-homepage--dark.png",
+          "frontend/__snapshots__/scenes-app-project-homepage--project-homepage--light.png",
+          "frontend/src/layout/scenes/components/SceneTitleSection.tsx"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "52615",
+        "target": "53065",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "posthog/schema.py",
+          "services/mcp/src/api/generated.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "53060",
+        "target": "52186",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "posthog/migrations/max_migration.txt"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "53015",
+        "target": "49312",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "products/notifications/backend/logic.py",
+          "products/notifications/backend/presentation/views.py",
+          "products/notifications/backend/tests/test_api.py",
+          "products/notifications/backend/tests/test_logic.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "53056",
+        "target": "51786",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "posthog/clickhouse/query_tagging.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "53019",
+        "target": "51941",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "posthog/hogql/database/database.py",
+          "posthog/hogql/printer/postgres.py",
+          "posthog/hogql/printer/test/test_printer.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "53069",
+        "target": "53076",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "frontend/__snapshots__/scenes-app-project-homepage--project-homepage--dark.png",
+          "frontend/__snapshots__/scenes-app-project-homepage--project-homepage--light.png"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "53081",
+        "target": "52186",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "posthog/api/feature_flag.py",
+          "posthog/api/test/test_feature_flag.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "53100",
+        "target": "51072",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "bin/mprocs.yaml",
+          "nodejs/src/session-replay/recording-rasterizer/config.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "53116",
+        "target": "53033",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "frontend/src/scenes/insights/views/BoldNumber/BoldNumber.tsx"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "52864",
+        "target": "51949",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "frontend/__snapshots__/scenes-app-batchexports--logs--dark.png",
+          "frontend/__snapshots__/scenes-app-batchexports--logs--light.png",
+          "frontend/snapshots.yml"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "53128",
+        "target": "52864",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "frontend/snapshots.yml"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "53014",
+        "target": "50034",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "frontend/src/scenes/data-warehouse/editor/sqlEditorLogic.tsx"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "53046",
+        "target": "52165",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "frontend/src/scenes/insights/filters/ActionFilter/ActionFilterRow/ActionFilterRow.tsx",
+          "frontend/src/scenes/insights/filters/ActionFilter/ActionFilterRow/MathSelector.tsx",
+          "frontend/src/scenes/insights/filters/ActionFilter/ActionFilterRow/types.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "53024",
+        "target": "51523",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "frontend/src/scenes/insights/views/LineGraph/LineGraph.tsx"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "53006",
+        "target": "51925",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "frontend/src/scenes/session-recordings/player/player-meta/playerMetaLogic.tsx"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "53167",
+        "target": "52206",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "ee/api/test/test_property_definition.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "53044",
+        "target": "52597",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "frontend/src/scenes/notebooks/Notebook/Notebook.scss"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "52981",
+        "target": "52889",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "frontend/snapshots.yml"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "52929",
+        "target": "51983",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "posthog/hogql/database/schema/test/__snapshots__/test_persons_revenue_analytics.ambr"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "53117",
+        "target": "50723",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "posthog/temporal/proxy_service/create.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "53190",
+        "target": "51800",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "posthog/api/llm_prompt.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "53184",
+        "target": "52007",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "frontend/src/queries/nodes/InsightViz/TrendsSeries.tsx",
+          "frontend/src/scenes/insights/EditorFilters/FunnelsQuerySteps.tsx"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "53194",
+        "target": "52077",
+        "classification": "heuristic",
+        "overlapping_files": [
+          ".github/workflows/ci-agent-skills.yml"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "53179",
+        "target": "51048",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "frontend/src/scenes/session-recordings/player/sessionRecordingDataCoordinatorLogic.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "53143",
+        "target": "49907",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "docker-compose.dev.yml"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "53142",
+        "target": "50047",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "posthog/temporal/data_modeling/workflows/materialize_view.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "52796",
+        "target": "52864",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "frontend/src/lib/components/ScrollableShadows/ScrollableShadows.tsx"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "53144",
+        "target": "53088",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "posthog/temporal/data_modeling/run_workflow.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "53228",
+        "target": "52029",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "rust/capture/src/v1/quota_limiter_shim.rs"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "53216",
+        "target": "51078",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "posthog/api/test/__snapshots__/test_api_docs.ambr"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "53197",
+        "target": "52950",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "frontend/src/scenes/dashboard/dashboardLogic.tsx"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "53195",
+        "target": "53110",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "nodejs/src/cdp/services/hogflow-schedule/hogflow-schedule.service.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "53248",
+        "target": "52973",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "frontend/snapshots.yml"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "53239",
+        "target": "53076",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "frontend/src/layout/scenes/components/SceneTitleSection.tsx"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "53254",
+        "target": "52086",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "posthog/api/test/test_insight.py"
+        ]
       }
     ],
     "by_complexity": {
       "small": {
-        "specd_rework_rate": 0.12,
-        "unspecd_rework_rate": 0.1192,
-        "specd_count": 25,
-        "unspecd_count": 520
+        "specd_rework_rate": 0.1333,
+        "unspecd_rework_rate": 0.1362,
+        "specd_count": 30,
+        "unspecd_count": 602
       },
       "medium": {
-        "specd_rework_rate": 0.2941,
-        "unspecd_rework_rate": 0.2121,
-        "specd_count": 17,
-        "unspecd_count": 198
+        "specd_rework_rate": 0.2273,
+        "unspecd_rework_rate": 0.2398,
+        "specd_count": 22,
+        "unspecd_count": 246
       },
       "large": {
-        "specd_rework_rate": 0.0,
-        "unspecd_rework_rate": 0.2911,
-        "specd_count": 5,
-        "unspecd_count": 79
+        "specd_rework_rate": 0.25,
+        "unspecd_rework_rate": 0.3028,
+        "specd_count": 8,
+        "unspecd_count": 109
       }
     }
   }

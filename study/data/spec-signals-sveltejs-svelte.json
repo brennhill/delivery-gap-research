@@ -1,11 +1,11 @@
 {
   "repo": "sveltejs/svelte",
-  "lookback_days": 90,
-  "rework_window_days": 14,
+  "lookback_days": 365,
+  "rework_window_days": 30,
   "coverage": {
     "coverage_pct": 35,
-    "total_prs": 497,
-    "specd_prs": 172,
+    "total_prs": 515,
+    "specd_prs": 178,
     "prs": [
       {
         "number": 17999,
@@ -3982,6 +3982,150 @@
         "specd": false,
         "spec_source": null,
         "merged_at": "2025-09-28T21:38:18+00:00"
+      },
+      {
+        "number": 18050,
+        "sha": null,
+        "title": "chore: add labels to more internal deriveds",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T20:07:23+00:00"
+      },
+      {
+        "number": 18047,
+        "sha": null,
+        "title": "chore: agent hints for perf investigations",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T17:49:23+00:00"
+      },
+      {
+        "number": 18037,
+        "sha": null,
+        "title": "fix: never set derived.v inside fork",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T12:42:41+00:00"
+      },
+      {
+        "number": 18049,
+        "sha": null,
+        "title": "chore: keep previous benchmark runs around",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T00:10:16+00:00"
+      },
+      {
+        "number": 18045,
+        "sha": null,
+        "title": "chore: write `pnpm bench:compare` report to disk",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T16:19:20+00:00"
+      },
+      {
+        "number": 18043,
+        "sha": null,
+        "title": "chore: generate CPU profiles when running benchmarks",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T15:58:18+00:00"
+      },
+      {
+        "number": 18041,
+        "sha": null,
+        "title": "fix: invalidate `@const` tags based on visible references in legacy mode",
+        "specd": true,
+        "spec_source": "#17992",
+        "merged_at": "2026-04-01T08:36:26+00:00"
+      },
+      {
+        "number": 18038,
+        "sha": null,
+        "title": "fix: disallow `--` in `idPrefix`",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T08:34:58+00:00"
+      },
+      {
+        "number": 18027,
+        "sha": null,
+        "title": "docs: update references to `vite-plugin-svelte`",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T17:05:53+00:00"
+      },
+      {
+        "number": 18025,
+        "sha": null,
+        "title": "fix: pin 9 actions to commit SHA",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T17:04:10+00:00"
+      },
+      {
+        "number": 18034,
+        "sha": null,
+        "title": "fix: don't override `$destroy/set/on` instance methods in dev mode",
+        "specd": true,
+        "spec_source": "#17988",
+        "merged_at": "2026-03-31T16:47:54+00:00"
+      },
+      {
+        "number": 18033,
+        "sha": null,
+        "title": "chore: fix editorconfig",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T10:54:00+00:00"
+      },
+      {
+        "number": 18006,
+        "sha": null,
+        "title": "Version Packages",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-29T20:57:21+00:00"
+      },
+      {
+        "number": 18016,
+        "sha": null,
+        "title": "fix: improve duplicate module import error message",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-29T20:04:19+00:00"
+      },
+      {
+        "number": 18009,
+        "sha": null,
+        "title": "fix: correctly handle bindings on the server",
+        "specd": true,
+        "spec_source": "#17981",
+        "merged_at": "2026-03-29T19:56:27+00:00"
+      },
+      {
+        "number": 18015,
+        "sha": null,
+        "title": "fix: cleanup `superTypeParameters` in `ClassDeclarations`/`ClassExpression`",
+        "specd": true,
+        "spec_source": "#18012",
+        "merged_at": "2026-03-28T16:30:49+00:00"
+      },
+      {
+        "number": 18021,
+        "sha": null,
+        "title": "fix: reschedule new effects in prior batches",
+        "specd": true,
+        "spec_source": "#17099",
+        "merged_at": "2026-03-27T23:02:04+00:00"
+      },
+      {
+        "number": 9664,
+        "sha": null,
+        "title": "fix: take event attributes into account when checking a11y",
+        "specd": true,
+        "spec_source": "#9654",
+        "merged_at": "2023-11-27T13:36:48+00:00"
       }
     ]
   },
@@ -3989,7 +4133,7 @@
     "mode": "heuristic",
     "average_score": 45,
     "verdicts": {
-      "REVIEW": 172
+      "REVIEW": 178
     },
     "specs": [
       {
@@ -14676,15 +14820,303 @@
           "No state transitions \u2014 AI may allow invalid transitions",
           "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
         ]
+      },
+      {
+        "pr_number": 18041,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] It's really useful if your PR references an issue where it is discussed ahea",
+            "suggestion": "Goal without test: '[x] It's really useful if your PR references an issue where ...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] Prefix your PR title with feat:, fix:, chore:, or docs:.",
+            "suggestion": "Goal without test: '[x] Prefix your PR title with feat:, fix:, chore:, or docs:.' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] This message body should clearly illustrate what problems it solves.",
+            "suggestion": "Goal without test: '[x] This message body should clearly illustrate what problem...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] Ideally, include a test that fails without this PR but passes with it.",
+            "suggestion": "Goal without test: '[x] Ideally, include a test that fails without this PR but p...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] If this PR changes code within packages/svelte/src, add a changeset (npx cha",
+            "suggestion": "Goal without test: '[x] If this PR changes code within packages/svelte/src, add ...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] Run the tests with pnpm test and lint the project with pnpm lint",
+            "suggestion": "Goal without test: '[x] Run the tests with pnpm test and lint the project with p...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 18034,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 18009,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 18015,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 97,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 44,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 3,
+            "type": "ambiguity",
+            "term": "correctly",
+            "suggestion": "Replace 'correctly' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 18021,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 9664,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] It's really useful if your PR references an issue where it is discussed ahea",
+            "suggestion": "Goal without test: '[x] It's really useful if your PR references an issue where ...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] Prefix your PR title with feat:, fix:, chore:, or docs:.",
+            "suggestion": "Goal without test: '[x] Prefix your PR title with feat:, fix:, chore:, or docs:.' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] This message body should clearly illustrate what problems it solves.",
+            "suggestion": "Goal without test: '[x] This message body should clearly illustrate what problem...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] Ideally, include a test that fails without this PR but passes with it.",
+            "suggestion": "Goal without test: '[x] Ideally, include a test that fails without this PR but p...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] Run the tests with pnpm test and lint the project with pnpm lint",
+            "suggestion": "Goal without test: '[x] Run the tests with pnpm test and lint the project with p...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
       }
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.3547,
-    "unspecd_rework_rate": 0.1846,
-    "delta": 0.17,
-    "specd_sample_size": 172,
-    "unspecd_sample_size": 325,
+    "specd_rework_rate": 0.3652,
+    "unspecd_rework_rate": 0.1958,
+    "delta": 0.1693,
+    "specd_sample_size": 178,
+    "unspecd_sample_size": 337,
     "significance": "significant",
     "signals": [
       {
@@ -14762,9 +15194,10 @@
       {
         "type": "bug-fix",
         "source": "16945",
-        "target": "16935",
+        "target": "16866",
         "classification": "heuristic",
         "overlapping_files": [
+          "packages/svelte/src/internal/client/reactivity/batch.js",
           "packages/svelte/src/internal/client/reactivity/deriveds.js"
         ]
       },
@@ -15015,6 +15448,15 @@
       },
       {
         "type": "bug-fix",
+        "source": "17077",
+        "target": "16908",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/svelte/src/compiler/phases/3-transform/client/visitors/shared/fragment.js"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "17061",
         "target": "17038",
         "classification": "heuristic",
@@ -15105,10 +15547,12 @@
       {
         "type": "bug-fix",
         "source": "17158",
-        "target": "17132",
+        "target": "17061",
         "classification": "heuristic",
         "overlapping_files": [
-          "packages/svelte/src/internal/client/reactivity/batch.js"
+          "packages/svelte/src/compiler/phases/3-transform/client/visitors/TitleElement.js",
+          "packages/svelte/src/internal/client/reactivity/batch.js",
+          "packages/svelte/src/internal/client/reactivity/effects.js"
         ]
       },
       {
@@ -15145,11 +15589,17 @@
       {
         "type": "bug-fix",
         "source": "17165",
-        "target": "17153",
+        "target": "17038",
         "classification": "heuristic",
         "overlapping_files": [
+          "packages/svelte/src/compiler/phases/2-analyze/visitors/AwaitExpression.js",
+          "packages/svelte/src/compiler/phases/3-transform/client/types.d.ts",
+          "packages/svelte/src/compiler/phases/3-transform/server/visitors/EachBlock.js",
+          "packages/svelte/src/compiler/phases/3-transform/server/visitors/IfBlock.js",
           "packages/svelte/src/compiler/phases/3-transform/server/visitors/shared/component.js",
-          "packages/svelte/src/compiler/types/template.d.ts"
+          "packages/svelte/src/compiler/types/template.d.ts",
+          "packages/svelte/tests/snapshot/samples/async-in-derived/_expected/client/index.svelte.js",
+          "packages/svelte/tests/snapshot/samples/async-in-derived/_expected/server/index.svelte.js"
         ]
       },
       {
@@ -15164,10 +15614,13 @@
       {
         "type": "bug-fix",
         "source": "17137",
-        "target": "17120",
+        "target": "17038",
         "classification": "heuristic",
         "overlapping_files": [
-          "packages/svelte/src/compiler/phases/nodes.js"
+          "packages/svelte/src/compiler/phases/2-analyze/index.js",
+          "packages/svelte/src/compiler/phases/nodes.js",
+          "packages/svelte/src/compiler/phases/scope.js",
+          "packages/svelte/src/compiler/utils/builders.js"
         ]
       },
       {
@@ -15186,6 +15639,15 @@
         "classification": "heuristic",
         "overlapping_files": [
           "packages/svelte/src/internal/client/reactivity/batch.js"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "17186",
+        "target": "17004",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/svelte/src/internal/client/dom/blocks/branches.js"
         ]
       },
       {
@@ -15211,9 +15673,10 @@
       {
         "type": "bug-fix",
         "source": "17198",
-        "target": "17120",
+        "target": "17038",
         "classification": "heuristic",
         "overlapping_files": [
+          "packages/svelte/src/compiler/phases/2-analyze/index.js",
           "packages/svelte/src/compiler/phases/2-analyze/visitors/BindDirective.js",
           "packages/svelte/src/compiler/phases/3-transform/client/visitors/shared/component.js",
           "packages/svelte/src/compiler/phases/3-transform/server/visitors/shared/component.js",
@@ -15224,11 +15687,13 @@
       {
         "type": "bug-fix",
         "source": "17208",
-        "target": "17183",
+        "target": "17105",
         "classification": "heuristic",
         "overlapping_files": [
-          "packages/svelte/src/internal/client/reactivity/batch.js",
-          "packages/svelte/src/internal/client/reactivity/sources.js"
+          "packages/svelte/src/internal/client/constants.js",
+          "packages/svelte/src/internal/client/reactivity/effects.js",
+          "packages/svelte/src/internal/client/reactivity/sources.js",
+          "packages/svelte/src/internal/client/runtime.js"
         ]
       },
       {
@@ -15269,6 +15734,15 @@
         "classification": "heuristic",
         "overlapping_files": [
           "packages/svelte/src/internal/client/dom/blocks/each.js"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "17237",
+        "target": "17066",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/svelte/src/compiler/phases/3-transform/shared/transform-async.js"
         ]
       },
       {
@@ -15526,11 +16000,55 @@
       },
       {
         "type": "bug-fix",
+        "source": "17350",
+        "target": "17154",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/svelte/src/internal/server/render-context.js"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "17380",
+        "target": "16188",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "playgrounds/sandbox/run.js"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "17389",
+        "target": "17269",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/svelte/src/compiler/phases/3-transform/client/visitors/RegularElement.js",
+          "packages/svelte/src/compiler/phases/3-transform/client/visitors/shared/utils.js"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "17424",
         "target": "17425",
         "classification": "heuristic",
         "overlapping_files": [
           "packages/svelte/src/internal/client/reactivity/async.js"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "17428",
+        "target": "17125",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/svelte/tests/parser-modern/samples/comment-before-function-binding/output.json",
+          "packages/svelte/tests/parser-modern/samples/comment-before-script/output.json",
+          "packages/svelte/tests/parser-modern/samples/generic-snippets/output.json",
+          "packages/svelte/tests/parser-modern/samples/loose-valid-each-as/output.json",
+          "packages/svelte/tests/parser-modern/samples/options/output.json",
+          "packages/svelte/tests/parser-modern/samples/script-style-no-markup/output.json",
+          "packages/svelte/tests/parser-modern/samples/snippets/output.json",
+          "packages/svelte/tests/parser-modern/samples/typescript-in-event-handler/output.json"
         ]
       },
       {
@@ -15593,6 +16111,24 @@
       },
       {
         "type": "bug-fix",
+        "source": "17477",
+        "target": "17389",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/svelte/src/compiler/phases/3-transform/client/visitors/RegularElement.js"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "17485",
+        "target": "17397",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "playgrounds/sandbox/svelte.config.js"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "17486",
         "target": "17429",
         "classification": "heuristic",
@@ -15643,19 +16179,30 @@
       {
         "type": "bug-fix",
         "source": "17461",
-        "target": "17518",
+        "target": "17424",
         "classification": "heuristic",
         "overlapping_files": [
-          "packages/svelte/src/compiler/phases/3-transform/client/visitors/ConstTag.js"
+          "packages/svelte/src/internal/client/dom/blocks/async.js",
+          "packages/svelte/src/internal/client/reactivity/async.js"
         ]
       },
       {
         "type": "bug-fix",
         "source": "17511",
-        "target": "17521",
+        "target": "17441",
         "classification": "heuristic",
         "overlapping_files": [
+          "packages/svelte/src/internal/client/dom/blocks/boundary.js",
           "packages/svelte/src/internal/client/reactivity/batch.js"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "17524",
+        "target": "17407",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/svelte/src/compiler/phases/3-transform/shared/transform-async.js"
         ]
       },
       {
@@ -15679,10 +16226,11 @@
       {
         "type": "bug-fix",
         "source": "17536",
-        "target": "17459",
+        "target": "17441",
         "classification": "heuristic",
         "overlapping_files": [
           "packages/svelte/src/internal/client/reactivity/batch.js",
+          "packages/svelte/src/internal/client/reactivity/deriveds.js",
           "packages/svelte/src/internal/client/reactivity/sources.js",
           "packages/svelte/src/internal/client/runtime.js"
         ]
@@ -15861,11 +16409,13 @@
       {
         "type": "bug-fix",
         "source": "17641",
-        "target": "17639",
+        "target": "17516",
         "classification": "heuristic",
         "overlapping_files": [
+          "packages/svelte/src/compiler/phases/3-transform/client/transform-client.js",
+          "packages/svelte/src/compiler/phases/3-transform/client/types.d.ts",
           "packages/svelte/src/compiler/phases/3-transform/client/visitors/Fragment.js",
-          "packages/svelte/src/compiler/phases/3-transform/server/visitors/shared/component.js"
+          "packages/svelte/src/compiler/phases/3-transform/client/visitors/shared/component.js"
         ]
       },
       {
@@ -15927,10 +16477,11 @@
       {
         "type": "bug-fix",
         "source": "17645",
-        "target": "17648",
+        "target": "17574",
         "classification": "heuristic",
         "overlapping_files": [
-          "packages/svelte/src/compiler/phases/3-transform/client/visitors/RegularElement.js"
+          "packages/svelte/src/compiler/phases/3-transform/client/visitors/AssignmentExpression.js",
+          "packages/svelte/src/compiler/phases/scope.js"
         ]
       },
       {
@@ -15946,11 +16497,12 @@
       {
         "type": "bug-fix",
         "source": "17682",
-        "target": "17683",
+        "target": "17536",
         "classification": "heuristic",
         "overlapping_files": [
-          "packages/svelte/src/internal/client/dom/operations.js",
-          "packages/svelte/src/internal/client/dom/template.js"
+          "packages/svelte/src/internal/client/reactivity/batch.js",
+          "packages/svelte/src/internal/client/reactivity/deriveds.js",
+          "packages/svelte/src/internal/client/runtime.js"
         ]
       },
       {
@@ -15992,6 +16544,15 @@
       },
       {
         "type": "bug-fix",
+        "source": "17699",
+        "target": "17319",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/svelte/src/compiler/print/index.js"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "17703",
         "target": "17689",
         "classification": "heuristic",
@@ -16029,10 +16590,20 @@
       {
         "type": "bug-fix",
         "source": "17719",
-        "target": "17682",
+        "target": "17511",
         "classification": "heuristic",
         "overlapping_files": [
+          "packages/svelte/src/internal/client/dom/blocks/boundary.js",
           "packages/svelte/src/internal/client/reactivity/batch.js"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "17712",
+        "target": "17429",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/svelte/src/compiler/phases/2-analyze/css/css-prune.js"
         ]
       },
       {
@@ -16108,6 +16679,15 @@
         "classification": "heuristic",
         "overlapping_files": [
           "packages/svelte/src/internal/server/index.js"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "17763",
+        "target": "17623",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/svelte/src/internal/server/crypto.js"
         ]
       },
       {
@@ -16204,6 +16784,15 @@
       },
       {
         "type": "bug-fix",
+        "source": "17824",
+        "target": "17664",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/svelte/src/compiler/phases/3-transform/server/visitors/RegularElement.js"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "17822",
         "target": "17767",
         "classification": "heuristic",
@@ -16223,11 +16812,14 @@
       {
         "type": "bug-fix",
         "source": "17830",
-        "target": "17674",
+        "target": "17662",
         "classification": "heuristic",
         "overlapping_files": [
-          "packages/svelte/tests/snapshot/samples/async-if-chain/_expected/server/index.svelte.js",
-          "packages/svelte/tests/snapshot/samples/async-in-derived/_expected/server/index.svelte.js"
+          "packages/svelte/src/compiler/phases/3-transform/client/visitors/IfBlock.js",
+          "packages/svelte/src/compiler/phases/3-transform/server/visitors/IfBlock.js",
+          "packages/svelte/src/internal/client/dom/blocks/if.js",
+          "packages/svelte/tests/snapshot/samples/async-if-chain/_expected/client/index.svelte.js",
+          "packages/svelte/tests/snapshot/samples/async-if-chain/_expected/server/index.svelte.js"
         ]
       },
       {
@@ -16237,6 +16829,15 @@
         "classification": "heuristic",
         "overlapping_files": [
           "packages/svelte/src/internal/client/dom/blocks/each.js"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "17852",
+        "target": "17738",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/svelte/src/internal/client/reactivity/deriveds.js"
         ]
       },
       {
@@ -16258,6 +16859,15 @@
           "packages/svelte/src/internal/client/reactivity/deriveds.js",
           "packages/svelte/tests/runtime-runes/samples/if-block-const-inert-derived/_config.js",
           "packages/svelte/tests/runtime-runes/samples/if-block-const-inert-derived/main.svelte"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "17853",
+        "target": "17701",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/svelte/src/internal/client/dom/blocks/html.js"
         ]
       },
       {
@@ -16292,11 +16902,12 @@
       {
         "type": "bug-fix",
         "source": "17885",
-        "target": "17805",
+        "target": "17682",
         "classification": "heuristic",
         "overlapping_files": [
-          "packages/svelte/src/internal/client/reactivity/effects.js",
-          "packages/svelte/src/internal/client/reactivity/props.js"
+          "packages/svelte/src/internal/client/constants.js",
+          "packages/svelte/src/internal/client/context.js",
+          "packages/svelte/src/internal/client/reactivity/effects.js"
         ]
       },
       {
@@ -16315,6 +16926,15 @@
         "classification": "heuristic",
         "overlapping_files": [
           "packages/svelte/src/internal/client/reactivity/batch.js"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "17906",
+        "target": "17645",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/svelte/src/compiler/phases/3-transform/client/visitors/AssignmentExpression.js"
         ]
       },
       {
@@ -16486,24 +17106,95 @@
         "overlapping_files": [
           "packages/svelte/src/internal/client/dev/hmr.js"
         ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "17999",
+        "target": "17853",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/svelte/src/compiler/phases/3-transform/client/visitors/shared/fragment.js"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "18021",
+        "target": "17997",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/svelte/tests/runtime-runes/samples/async-state-new-branch-1/_config.js",
+          "packages/svelte/tests/runtime-runes/samples/async-state-new-branch-2/_config.js",
+          "packages/svelte/tests/runtime-runes/samples/async-state-new-branch-3/_config.js",
+          "packages/svelte/tests/runtime-runes/samples/async-state-new-branch-3/main.svelte",
+          "packages/svelte/tests/runtime-runes/samples/async-state-new-branch-fork-2/_config.js",
+          "packages/svelte/tests/runtime-runes/samples/async-state-new-branch-fork-5/_config.js"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "18015",
+        "target": "17916",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/svelte/package.json",
+          "pnpm-lock.yaml"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "18034",
+        "target": "17951",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/svelte/src/compiler/phases/3-transform/client/transform-client.js"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "18025",
+        "target": "17923",
+        "classification": "heuristic",
+        "overlapping_files": [
+          ".github/workflows/autofix.yml"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "18038",
+        "target": "18009",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/svelte/src/internal/server/renderer.js"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "18037",
+        "target": "17917",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "packages/svelte/src/internal/client/reactivity/batch.js",
+          "packages/svelte/src/internal/client/reactivity/deriveds.js",
+          "packages/svelte/src/internal/client/reactivity/sources.js"
+        ]
       }
     ],
     "by_complexity": {
       "small": {
-        "specd_rework_rate": 0.2683,
-        "unspecd_rework_rate": 0.1392,
-        "specd_count": 123,
-        "unspecd_count": 273
+        "specd_rework_rate": 0.2868,
+        "unspecd_rework_rate": 0.1514,
+        "specd_count": 129,
+        "unspecd_count": 284
       },
       "medium": {
         "specd_rework_rate": 0.5238,
-        "unspecd_rework_rate": 0.3415,
+        "unspecd_rework_rate": 0.3571,
         "specd_count": 42,
-        "unspecd_count": 41
+        "unspecd_count": 42
       },
       "large": {
         "specd_rework_rate": 0.8571,
-        "unspecd_rework_rate": 0.5556,
+        "unspecd_rework_rate": 0.6111,
         "specd_count": 7,
         "unspecd_count": 18
       }

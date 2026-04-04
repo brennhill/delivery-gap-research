@@ -1,11 +1,11 @@
 {
   "repo": "langchain-ai/langchain",
-  "lookback_days": 90,
-  "rework_window_days": 14,
+  "lookback_days": 365,
+  "rework_window_days": 30,
   "coverage": {
     "coverage_pct": 15,
-    "total_prs": 745,
-    "specd_prs": 110,
+    "total_prs": 788,
+    "specd_prs": 120,
     "prs": [
       {
         "number": 36204,
@@ -5966,14 +5966,358 @@
         "specd": false,
         "spec_source": null,
         "merged_at": "2026-01-15T03:31:05+00:00"
+      },
+      {
+        "number": 36471,
+        "sha": null,
+        "title": "fix(core): harden check for txt files in deprecated prompt loading functions",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T20:42:48+00:00"
+      },
+      {
+        "number": 36459,
+        "sha": null,
+        "title": "fix(core): fixed typos in the documentation",
+        "specd": true,
+        "spec_source": "#36458",
+        "merged_at": "2026-04-02T15:32:13+00:00"
+      },
+      {
+        "number": 36455,
+        "sha": null,
+        "title": "chore(model-profiles): refresh model profile data",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T15:29:01+00:00"
+      },
+      {
+        "number": 36434,
+        "sha": null,
+        "title": "release(core): 1.2.24",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T19:57:16+00:00"
+      },
+      {
+        "number": 36433,
+        "sha": null,
+        "title": "feat(core): impute placeholder filenames for OpenAI file inputs",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T18:41:54+00:00"
+      },
+      {
+        "number": 36423,
+        "sha": null,
+        "title": "chore(model-profiles): refresh model profile data",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T13:53:56+00:00"
+      },
+      {
+        "number": 36407,
+        "sha": null,
+        "title": "ci: minimize stale enforcement comments on pr reopen",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T19:14:38+00:00"
+      },
+      {
+        "number": 36405,
+        "sha": null,
+        "title": "ci: remove secrets from codspeed env",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T17:46:29+00:00"
+      },
+      {
+        "number": 36404,
+        "sha": null,
+        "title": "ci: tighten top-level release permissions to `contents: read`",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T17:31:17+00:00"
+      },
+      {
+        "number": 36390,
+        "sha": null,
+        "title": "chore(model-profiles): refresh model profile data",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T15:18:11+00:00"
+      },
+      {
+        "number": 36396,
+        "sha": null,
+        "title": "release(langchain): 1.2.14",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T13:47:35+00:00"
+      },
+      {
+        "number": 36385,
+        "sha": null,
+        "title": "chore: pygments>=2.20.0 across all packages (CVE-2026-4539)",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T03:26:59+00:00"
+      },
+      {
+        "number": 36384,
+        "sha": null,
+        "title": "ci: auto-reopen PRs on issue assignment",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T00:50:59+00:00"
+      },
+      {
+        "number": 36377,
+        "sha": null,
+        "title": "ci: auto-close issues that bypass template checkboxes",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T16:54:55+00:00"
+      },
+      {
+        "number": 36376,
+        "sha": null,
+        "title": "test(langchain): cover runtime recursion limit override in create_agent",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T16:47:03+00:00"
+      },
+      {
+        "number": 36375,
+        "sha": null,
+        "title": "perf(langchain): reduce init speed by 15%",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T14:15:32+00:00"
+      },
+      {
+        "number": 36368,
+        "sha": null,
+        "title": "chore(model-profiles): refresh model profile data",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T14:00:17+00:00"
+      },
+      {
+        "number": 36348,
+        "sha": null,
+        "title": "release(openrouter): 0.2.1",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T00:50:15+00:00"
+      },
+      {
+        "number": 36352,
+        "sha": null,
+        "title": "fix(openai): update computer call test",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-29T16:59:31+00:00"
+      },
+      {
+        "number": 36261,
+        "sha": null,
+        "title": "fix(core): add \"computer\" to _WellKnownOpenAITools",
+        "specd": true,
+        "spec_source": "#36209",
+        "merged_at": "2026-03-29T12:54:43+00:00"
+      },
+      {
+        "number": 36198,
+        "sha": null,
+        "title": "feat(text-splitters): support spacy tests with Python 3.14",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-29T01:04:08+00:00"
+      },
+      {
+        "number": 35523,
+        "sha": null,
+        "title": "fix(openai): let user-provided User-Agent override the Azure default",
+        "specd": true,
+        "spec_source": "#35521",
+        "merged_at": "2026-03-29T01:41:20+00:00"
+      },
+      {
+        "number": 36351,
+        "sha": null,
+        "title": "fix(langchain): update recursion limit for create_agent",
+        "specd": true,
+        "spec_source": "https://github.com/langchain-ai/langgraph/issues/7313",
+        "merged_at": "2026-03-29T01:37:45+00:00"
+      },
+      {
+        "number": 35079,
+        "sha": null,
+        "title": "fix(text-splitters): prevent silent data loss for empty dict values in RecursiveJsonSplitter",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-29T01:27:53+00:00"
+      },
+      {
+        "number": 35633,
+        "sha": null,
+        "title": "fix(huggingface): avoid hf api calls when using local HuggingFaceEndpoint",
+        "specd": true,
+        "spec_source": "#30333",
+        "merged_at": "2026-03-29T01:14:36+00:00"
+      },
+      {
+        "number": 36293,
+        "sha": null,
+        "title": "feat(anthropic): support adaptive thinking mode",
+        "specd": true,
+        "spec_source": "#36288",
+        "merged_at": "2026-03-29T00:53:55+00:00"
+      },
+      {
+        "number": 36347,
+        "sha": null,
+        "title": "fix(openrouter): pass attribution headers via httpx `default_headers`",
+        "specd": true,
+        "spec_source": "#36339",
+        "merged_at": "2026-03-28T21:48:56+00:00"
+      },
+      {
+        "number": 36334,
+        "sha": null,
+        "title": "chore(model-profiles): refresh model profile data",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-28T08:29:27+00:00"
+      },
+      {
+        "number": 36199,
+        "sha": null,
+        "title": "fix(chroma): fix Python 3.14 support in langchain-chroma",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-27T19:40:42+00:00"
+      },
+      {
+        "number": 36333,
+        "sha": null,
+        "title": "fix(infra): correct lint_diff relative paths in package makefiles",
+        "specd": true,
+        "spec_source": "#36332",
+        "merged_at": "2026-03-28T06:32:02+00:00"
+      },
+      {
+        "number": 36323,
+        "sha": null,
+        "title": "release(core): 1.2.23",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-27T23:25:22+00:00"
+      },
+      {
+        "number": 36322,
+        "sha": null,
+        "title": "revert: Revert \"fix(core): trace invocation params in metadata\"",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-27T23:14:03+00:00"
+      },
+      {
+        "number": 36320,
+        "sha": null,
+        "title": "fix(langchain): recognize ChatAnthropicVertex in _get_approximate_token_counter",
+        "specd": true,
+        "spec_source": "#36318",
+        "merged_at": "2026-03-27T22:19:03+00:00"
+      },
+      {
+        "number": 36315,
+        "sha": null,
+        "title": "chore(langchain): remove unnecessary description for toods list as a group",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-27T21:15:56+00:00"
+      },
+      {
+        "number": 36313,
+        "sha": null,
+        "title": "chore(langchain): add async implementation to todolist and test",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-27T19:38:38+00:00"
+      },
+      {
+        "number": 36314,
+        "sha": null,
+        "title": "chore: harden language in ci",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-27T19:24:11+00:00"
+      },
+      {
+        "number": 36311,
+        "sha": null,
+        "title": "chore(langchain): speed up todo list middleware init",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-27T19:12:05+00:00"
+      },
+      {
+        "number": 36225,
+        "sha": null,
+        "title": "docs: fix grammatical error in development guidelines",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-27T16:30:44+00:00"
+      },
+      {
+        "number": 36278,
+        "sha": null,
+        "title": "release(exa): 1.1.0",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-26T16:58:05+00:00"
+      },
+      {
+        "number": 36267,
+        "sha": null,
+        "title": "chore(model-profiles): refresh model profile data",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-26T15:07:11+00:00"
+      },
+      {
+        "number": 36125,
+        "sha": null,
+        "title": "feat(exa): update default search type from neural to auto",
+        "specd": true,
+        "spec_source": "#36083",
+        "merged_at": "2026-03-26T14:45:21+00:00"
+      },
+      {
+        "number": 29434,
+        "sha": null,
+        "title": "community: Fixed the procedure of initializing pad_token_id",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-01-27T19:54:54+00:00"
+      },
+      {
+        "number": 1,
+        "sha": null,
+        "title": "add initial prompt stuff",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2022-10-17T03:24:05+00:00"
       }
     ]
   },
   "quality": {
     "mode": "heuristic",
-    "average_score": 44,
+    "average_score": 45,
     "verdicts": {
-      "REVIEW": 107,
+      "REVIEW": 117,
       "REWRITE": 2
     },
     "specs": [
@@ -12010,15 +12354,460 @@
           "No state transitions \u2014 AI may allow invalid transitions",
           "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
         ]
+      },
+      {
+        "pr_number": 36459,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 36261,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Added \"computer\" to WellKnownOpenAITools in libs/core/langchaincore/utils/functi",
+            "suggestion": "Goal without test: 'Added \"computer\" to WellKnownOpenAITools in libs/core/langch...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Added a regression test verifying that a {\"type\": \"computer\", ...} dict passes t",
+            "suggestion": "Goal without test: 'Added a regression test verifying that a {\"type\": \"computer\"...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 35523,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Swapped dict unpacking order so the hardcoded User-Agent acts as a fallback inst",
+            "suggestion": "Goal without test: 'Swapped dict unpacking order so the hardcoded User-Agent act...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Applied to all three Azure classes: AzureChatOpenAI, AzureOpenAI, and AzureOpenA",
+            "suggestion": "Goal without test: 'Applied to all three Azure classes: AzureChatOpenAI, AzureOp...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[ ] AzureChatOpenAI(default_headers={\"User-Agent\": \"custom\"}) \u2014 verify custom is",
+            "suggestion": "Goal without test: '[ ] AzureChatOpenAI(default_headers={\"User-Agent\": \"custom\"}...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[ ] AzureChatOpenAI() \u2014 verify default langchain-partner-python-azure-openai` is",
+            "suggestion": "Goal without test: '[ ] AzureChatOpenAI() \u2014 verify default langchain-partner-pyt...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 36351,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 35633,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 36293,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Added unit tests for adaptive thinking (invoke, streaming, structured output)",
+            "suggestion": "Goal without test: 'Added unit tests for adaptive thinking (invoke, streaming, s...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "All existing tests continue to pass",
+            "suggestion": "Goal without test: 'All existing tests continue to pass' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 36347,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Pass HTTP-Referer, X-Title, and X-OpenRouter-Categories as httpx client default ",
+            "suggestion": "Goal without test: 'Pass HTTP-Referer, X-Title, and X-OpenRouter-Categories as h...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Move buildclient() inside the try/except ImportError in validate_environment so ",
+            "suggestion": "Goal without test: 'Move buildclient() inside the try/except ImportError in vali...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Add warnings.warn in wrapmessagesforsdk for two previously silent fallbacks: fai",
+            "suggestion": "Goal without test: 'Add warnings.warn in wrapmessagesforsdk for two previously s...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Clarify maxretries docstring to explain the ~150s-per-unit backoff mapping; drop",
+            "suggestion": "Goal without test: 'Clarify maxretries docstring to explain the ~150s-per-unit b...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 36333,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "make -n -C libs/langchainv1 lintdiff",
+            "suggestion": "Goal without test: 'make -n -C libs/langchainv1 lintdiff' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "make -n -C libs/text-splitters lint_diff",
+            "suggestion": "Goal without test: 'make -n -C libs/text-splitters lint_diff' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "make -n -C libs/partners/mistralai lint_diff",
+            "suggestion": "Goal without test: 'make -n -C libs/partners/mistralai lint_diff' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Confirmed only the three Makefiles are changed, with no uv.lock or pyproject.tom",
+            "suggestion": "Goal without test: 'Confirmed only the three Makefiles are changed, with no uv.l...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 36320,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 36125,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
       }
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.2273,
-    "unspecd_rework_rate": 0.2157,
-    "delta": 0.0115,
-    "specd_sample_size": 110,
-    "unspecd_sample_size": 635,
+    "specd_rework_rate": 0.2417,
+    "unspecd_rework_rate": 0.232,
+    "delta": 0.0096,
+    "specd_sample_size": 120,
+    "unspecd_sample_size": 668,
     "significance": "significant",
     "signals": [
       {
@@ -12041,6 +12830,15 @@
           "libs/langchain/langchain_classic/chains/combine_documents/reduce.py",
           "libs/langchain/langchain_classic/chains/conversational_retrieval/base.py",
           "libs/langchain/langchain_classic/chains/history_aware_retriever.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "33817",
+        "target": "33520",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "libs/langchain_v1/langchain/agents/factory.py"
         ]
       },
       {
@@ -12300,10 +13098,11 @@
       {
         "type": "bug-fix",
         "source": "34079",
-        "target": "34044",
+        "target": "33854",
         "classification": "heuristic",
         "overlapping_files": [
-          "libs/core/langchain_core/language_models/chat_models.py"
+          "libs/core/langchain_core/language_models/chat_models.py",
+          "libs/core/langchain_core/messages/utils.py"
         ]
       },
       {
@@ -12365,20 +13164,32 @@
       {
         "type": "bug-fix",
         "source": "34173",
-        "target": "34171",
+        "target": "33934",
         "classification": "heuristic",
         "overlapping_files": [
-          "libs/standard-tests/langchain_tests/integration_tests/chat_models.py"
+          "libs/standard-tests/langchain_tests/integration_tests/chat_models.py",
+          "libs/standard-tests/langchain_tests/unit_tests/chat_models.py"
         ]
       },
       {
         "type": "bug-fix",
         "source": "34175",
-        "target": "34173",
+        "target": "33813",
         "classification": "heuristic",
         "overlapping_files": [
           "libs/standard-tests/langchain_tests/integration_tests/chat_models.py",
+          "libs/standard-tests/langchain_tests/integration_tests/tools.py",
           "libs/standard-tests/langchain_tests/unit_tests/chat_models.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "34185",
+        "target": "33999",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "libs/core/langchain_core/tools/base.py",
+          "libs/core/tests/unit_tests/test_tools.py"
         ]
       },
       {
@@ -12440,6 +13251,16 @@
       },
       {
         "type": "bug-fix",
+        "source": "34072",
+        "target": "34038",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "libs/core/langchain_core/prompts/string.py",
+          "libs/core/tests/unit_tests/prompts/test_chat.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "34286",
         "target": "34284",
         "classification": "heuristic",
@@ -12459,10 +13280,20 @@
       {
         "type": "bug-fix",
         "source": "34298",
-        "target": "34149",
+        "target": "34012",
         "classification": "heuristic",
         "overlapping_files": [
-          "libs/partners/openai/langchain_openai/chat_models/base.py"
+          "libs/partners/openai/langchain_openai/chat_models/base.py",
+          "libs/partners/openai/tests/unit_tests/chat_models/test_base.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "34304",
+        "target": "34044",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "libs/core/langchain_core/utils/function_calling.py"
         ]
       },
       {
@@ -12514,9 +13345,10 @@
       {
         "type": "bug-fix",
         "source": "33968",
-        "target": "34170",
+        "target": "33934",
         "classification": "heuristic",
         "overlapping_files": [
+          "libs/standard-tests/langchain_tests/conftest.py",
           "libs/standard-tests/langchain_tests/integration_tests/chat_models.py",
           "libs/standard-tests/langchain_tests/unit_tests/chat_models.py"
         ]
@@ -12524,19 +13356,21 @@
       {
         "type": "bug-fix",
         "source": "33943",
-        "target": "34259",
+        "target": "34087",
         "classification": "heuristic",
         "overlapping_files": [
-          "libs/partners/huggingface/langchain_huggingface/chat_models/huggingface.py"
+          "libs/partners/huggingface/pyproject.toml",
+          "libs/partners/huggingface/uv.lock"
         ]
       },
       {
         "type": "bug-fix",
         "source": "34268",
-        "target": "34276",
+        "target": "34024",
         "classification": "heuristic",
         "overlapping_files": [
-          "libs/partners/mistralai/langchain_mistralai/chat_models.py"
+          "libs/partners/mistralai/langchain_mistralai/chat_models.py",
+          "libs/partners/mistralai/tests/unit_tests/test_chat_models.py"
         ]
       },
       {
@@ -12570,9 +13404,10 @@
       {
         "type": "bug-fix",
         "source": "34333",
-        "target": "34255",
+        "target": "33979",
         "classification": "heuristic",
         "overlapping_files": [
+          "libs/langchain_v1/langchain/agents/middleware/shell_tool.py",
           "libs/langchain_v1/uv.lock"
         ]
       },
@@ -12780,11 +13615,12 @@
       {
         "type": "bug-fix",
         "source": "34476",
-        "target": "34425",
+        "target": "34172",
         "classification": "heuristic",
         "overlapping_files": [
-          "libs/core/langchain_core/tools/base.py",
-          "libs/core/langchain_core/utils/function_calling.py"
+          "libs/core/langchain_core/callbacks/manager.py",
+          "libs/core/langchain_core/tracers/event_stream.py",
+          "libs/core/pyproject.toml"
         ]
       },
       {
@@ -12829,6 +13665,15 @@
         "overlapping_files": [
           "libs/partners/fireworks/langchain_fireworks/chat_models.py",
           "libs/partners/fireworks/tests/integration_tests/test_chat_models.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "34034",
+        "target": "33968",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "libs/langchain_v1/tests/unit_tests/conftest.py"
         ]
       },
       {
@@ -12905,6 +13750,24 @@
       },
       {
         "type": "bug-fix",
+        "source": "34579",
+        "target": "34025",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "libs/partners/anthropic/langchain_anthropic/chat_models.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "34563",
+        "target": "34337",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "libs/partners/anthropic/pyproject.toml"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "34606",
         "target": "34605",
         "classification": "heuristic",
@@ -12916,20 +13779,31 @@
       {
         "type": "bug-fix",
         "source": "34607",
-        "target": "34204",
+        "target": "34225",
         "classification": "heuristic",
         "overlapping_files": [
-          "libs/core/langchain_core/messages/base.py",
-          "libs/core/langchain_core/messages/utils.py"
+          "libs/core/langchain_core/messages/utils.py",
+          "libs/langchain_v1/langchain/agents/middleware/summarization.py",
+          "libs/langchain_v1/uv.lock"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "34296",
+        "target": "34396",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "libs/partners/openai/langchain_openai/chat_models/base.py"
         ]
       },
       {
         "type": "bug-fix",
         "source": "34619",
-        "target": "34296",
+        "target": "34192",
         "classification": "heuristic",
         "overlapping_files": [
-          "libs/partners/openai/langchain_openai/chat_models/base.py"
+          "libs/partners/openai/langchain_openai/chat_models/base.py",
+          "libs/partners/openai/tests/unit_tests/chat_models/test_base.py"
         ]
       },
       {
@@ -12948,6 +13822,33 @@
         "classification": "heuristic",
         "overlapping_files": [
           "libs/langchain_v1/tests/unit_tests/agents/middleware/implementations/test_todo.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "34644",
+        "target": "34373",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "libs/langchain_v1/langchain/__init__.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "34655",
+        "target": "34226",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "libs/langchain_v1/langchain/embeddings/base.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "34657",
+        "target": "34226",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "libs/langchain_v1/tests/unit_tests/chat_models/test_chat_models.py"
         ]
       },
       {
@@ -12973,9 +13874,10 @@
       {
         "type": "bug-fix",
         "source": "34672",
-        "target": "34657",
+        "target": "34226",
         "classification": "heuristic",
         "overlapping_files": [
+          "libs/langchain_v1/langchain/chat_models/base.py",
           "libs/langchain_v1/tests/unit_tests/chat_models/test_chat_models.py"
         ]
       },
@@ -12991,9 +13893,10 @@
       {
         "type": "bug-fix",
         "source": "34679",
-        "target": "34672",
+        "target": "34226",
         "classification": "heuristic",
         "overlapping_files": [
+          "libs/langchain/langchain_classic/chat_models/base.py",
           "libs/langchain_v1/langchain/chat_models/base.py"
         ]
       },
@@ -13022,9 +13925,10 @@
       {
         "type": "bug-fix",
         "source": "34687",
-        "target": "34686",
+        "target": "34416",
         "classification": "heuristic",
         "overlapping_files": [
+          "libs/core/langchain_core/runnables/base.py",
           "libs/core/langchain_core/tracers/langchain.py",
           "libs/core/tests/unit_tests/tracers/test_langchain.py"
         ]
@@ -13079,6 +13983,15 @@
         "overlapping_files": [
           "libs/langchain_v1/langchain/agents/middleware/summarization.py",
           "libs/langchain_v1/tests/unit_tests/agents/middleware/implementations/test_summarization.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "34723",
+        "target": "34519",
+        "classification": "heuristic",
+        "overlapping_files": [
+          ".pre-commit-config.yaml"
         ]
       },
       {
@@ -13157,6 +14070,16 @@
       },
       {
         "type": "bug-fix",
+        "source": "34934",
+        "target": "34675",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "libs/core/langchain_core/messages/block_translators/google_genai.py",
+          "libs/core/langchain_core/messages/block_translators/openai.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "34861",
         "target": "34862",
         "classification": "heuristic",
@@ -13167,19 +14090,26 @@
       {
         "type": "bug-fix",
         "source": "34940",
-        "target": "34777",
+        "target": "34691",
         "classification": "heuristic",
         "overlapping_files": [
-          "libs/langchain_v1/pyproject.toml",
-          "libs/langchain_v1/uv.lock"
+          "libs/langchain/pyproject.toml",
+          "libs/langchain/uv.lock",
+          "libs/partners/anthropic/pyproject.toml",
+          "libs/partners/chroma/pyproject.toml",
+          "libs/partners/ollama/uv.lock",
+          "libs/partners/openai/pyproject.toml",
+          "libs/partners/openai/uv.lock",
+          "libs/partners/prompty/uv.lock"
         ]
       },
       {
         "type": "bug-fix",
         "source": "34932",
-        "target": "34861",
+        "target": "34670",
         "classification": "heuristic",
         "overlapping_files": [
+          "libs/core/langchain_core/tools/base.py",
           "libs/core/tests/unit_tests/test_tools.py"
         ]
       },
@@ -13213,10 +14143,11 @@
       {
         "type": "bug-fix",
         "source": "34080",
-        "target": "34865",
+        "target": "34665",
         "classification": "heuristic",
         "overlapping_files": [
-          "libs/text-splitters/langchain_text_splitters/html.py"
+          "libs/text-splitters/langchain_text_splitters/html.py",
+          "libs/text-splitters/tests/unit_tests/test_text_splitters.py"
         ]
       },
       {
@@ -13235,6 +14166,15 @@
         "classification": "heuristic",
         "overlapping_files": [
           "libs/partners/chroma/pyproject.toml"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "35001",
+        "target": "34754",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "libs/langchain_v1/langchain/agents/middleware/summarization.py"
         ]
       },
       {
@@ -13348,10 +14288,11 @@
       {
         "type": "bug-fix",
         "source": "35101",
-        "target": "35026",
+        "target": "34693",
         "classification": "heuristic",
         "overlapping_files": [
-          "libs/langchain_v1/langchain/agents/middleware/summarization.py"
+          "libs/langchain_v1/langchain/agents/middleware/summarization.py",
+          "libs/langchain_v1/tests/unit_tests/agents/middleware/implementations/test_summarization.py"
         ]
       },
       {
@@ -13383,6 +14324,15 @@
           "libs/core/pyproject.toml",
           "libs/langchain/pyproject.toml",
           "libs/langchain_v1/pyproject.toml"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "35138",
+        "target": "34862",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "libs/core/langchain_core/tracers/core.py"
         ]
       },
       {
@@ -13497,6 +14447,15 @@
       },
       {
         "type": "bug-fix",
+        "source": "35191",
+        "target": "34862",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "libs/core/langchain_core/outputs/chat_generation.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "35196",
         "target": "35162",
         "classification": "heuristic",
@@ -13543,11 +14502,22 @@
       },
       {
         "type": "bug-fix",
-        "source": "35254",
-        "target": "35177",
+        "source": "35183",
+        "target": "34872",
         "classification": "heuristic",
         "overlapping_files": [
-          "libs/partners/openai/pyproject.toml"
+          "libs/core/langchain_core/prompts/string.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "35254",
+        "target": "34980",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "libs/partners/nomic/pyproject.toml",
+          "libs/partners/openai/pyproject.toml",
+          "libs/partners/perplexity/pyproject.toml"
         ]
       },
       {
@@ -13562,12 +14532,31 @@
       },
       {
         "type": "bug-fix",
+        "source": "35283",
+        "target": "34862",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "libs/core/README.md",
+          "libs/core/langchain_core/tracers/log_stream.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "35260",
         "target": "35042",
         "classification": "heuristic",
         "overlapping_files": [
           "libs/core/langchain_core/tools/base.py",
           "libs/core/tests/unit_tests/test_tools.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "35316",
+        "target": "34080",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "libs/text-splitters/tests/unit_tests/test_text_splitters.py"
         ]
       },
       {
@@ -13626,10 +14615,11 @@
       {
         "type": "bug-fix",
         "source": "34464",
-        "target": "35019",
+        "target": "34871",
         "classification": "heuristic",
         "overlapping_files": [
-          "libs/langchain_v1/langchain/agents/factory.py"
+          "libs/langchain_v1/langchain/agents/factory.py",
+          "libs/langchain_v1/tests/unit_tests/agents/test_response_format.py"
         ]
       },
       {
@@ -13746,6 +14736,24 @@
       },
       {
         "type": "bug-fix",
+        "source": "35324",
+        "target": "34862",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "libs/core/langchain_core/callbacks/base.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "34376",
+        "target": "34861",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "libs/core/langchain_core/utils/function_calling.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "35417",
         "target": "35341",
         "classification": "heuristic",
@@ -13849,9 +14857,10 @@
       {
         "type": "bug-fix",
         "source": "35522",
-        "target": "35447",
+        "target": "35182",
         "classification": "heuristic",
         "overlapping_files": [
+          "libs/partners/huggingface/pyproject.toml",
           "libs/partners/huggingface/uv.lock"
         ]
       },
@@ -13886,10 +14895,11 @@
       {
         "type": "bug-fix",
         "source": "35543",
-        "target": "35559",
+        "target": "35307",
         "classification": "heuristic",
         "overlapping_files": [
-          "libs/partners/openai/langchain_openai/chat_models/base.py"
+          "libs/partners/openai/langchain_openai/chat_models/base.py",
+          "libs/partners/openai/tests/unit_tests/chat_models/test_base.py"
         ]
       },
       {
@@ -13903,12 +14913,24 @@
       },
       {
         "type": "bug-fix",
+        "source": "35598",
+        "target": "35129",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "libs/langchain/langchain_classic/agents/mrkl/output_parser.py",
+          "libs/langchain/langchain_classic/agents/output_parsers/react_single_input.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "35603",
-        "target": "35601",
+        "target": "35042",
         "classification": "heuristic",
         "overlapping_files": [
           "libs/langchain/pyproject.toml",
-          "libs/langchain/uv.lock"
+          "libs/langchain/uv.lock",
+          "libs/langchain_v1/pyproject.toml",
+          "libs/langchain_v1/uv.lock"
         ]
       },
       {
@@ -13964,6 +14986,15 @@
         "overlapping_files": [
           "libs/partners/anthropic/langchain_anthropic/chat_models.py",
           "libs/partners/anthropic/tests/unit_tests/test_chat_models.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "35550",
+        "target": "35260",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "libs/core/tests/unit_tests/test_tools.py"
         ]
       },
       {
@@ -14096,6 +15127,15 @@
         "classification": "heuristic",
         "overlapping_files": [
           "libs/model-profiles/uv.lock"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "35865",
+        "target": "35294",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "libs/partners/perplexity/uv.lock"
         ]
       },
       {
@@ -14263,10 +15303,11 @@
       {
         "type": "bug-fix",
         "source": "36080",
-        "target": "35810",
+        "target": "35302",
         "classification": "heuristic",
         "overlapping_files": [
-          "libs/core/langchain_core/language_models/chat_models.py"
+          "libs/core/langchain_core/language_models/chat_models.py",
+          "libs/core/tests/unit_tests/language_models/chat_models/test_base.py"
         ]
       },
       {
@@ -14290,10 +15331,12 @@
       {
         "type": "bug-fix",
         "source": "36161",
-        "target": "36108",
+        "target": "35582",
         "classification": "heuristic",
         "overlapping_files": [
-          "libs/partners/openai/langchain_openai/chat_models/base.py"
+          "libs/partners/openai/langchain_openai/chat_models/base.py",
+          "libs/partners/openai/tests/integration_tests/chat_models/test_responses_api.py",
+          "libs/partners/openai/uv.lock"
         ]
       },
       {
@@ -14346,26 +15389,232 @@
           "libs/langchain_v1/uv.lock",
           "libs/text-splitters/uv.lock"
         ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "36237",
+        "target": "36183",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "libs/text-splitters/uv.lock"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "36252",
+        "target": "36129",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "libs/partners/huggingface/uv.lock"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "36250",
+        "target": "36031",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "libs/partners/nomic/uv.lock"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "36246",
+        "target": "36129",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "libs/partners/perplexity/uv.lock"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "36254",
+        "target": "36129",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "libs/partners/fireworks/uv.lock"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "36238",
+        "target": "36237",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "libs/text-splitters/uv.lock"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "36241",
+        "target": "36183",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "libs/langchain_v1/uv.lock"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "36242",
+        "target": "36030",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "libs/langchain/uv.lock"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "36199",
+        "target": "36257",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "libs/partners/chroma/uv.lock"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "36322",
+        "target": "36129",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "libs/core/langchain_core/language_models/chat_models.py",
+          "libs/core/tests/unit_tests/language_models/chat_models/test_base.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "36325",
+        "target": "36242",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "libs/langchain/uv.lock"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "36324",
+        "target": "36241",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "libs/langchain_v1/uv.lock"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "36333",
+        "target": "36092",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "libs/langchain_v1/Makefile",
+          "libs/partners/mistralai/Makefile",
+          "libs/text-splitters/Makefile"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "36347",
+        "target": "36204",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "libs/partners/openrouter/langchain_openrouter/chat_models.py",
+          "libs/partners/openrouter/tests/unit_tests/test_chat_models.py",
+          "libs/partners/openrouter/uv.lock"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "36293",
+        "target": "35967",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "libs/partners/anthropic/langchain_anthropic/chat_models.py",
+          "libs/partners/anthropic/tests/unit_tests/test_chat_models.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "36351",
+        "target": "35810",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "libs/langchain_v1/langchain/agents/factory.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "35523",
+        "target": "36129",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "libs/partners/openai/langchain_openai/chat_models/azure.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "36261",
+        "target": "35850",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "libs/core/langchain_core/utils/function_calling.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "36352",
+        "target": "36161",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "libs/partners/openai/tests/integration_tests/chat_models/test_responses_api.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "36407",
+        "target": "36384",
+        "classification": "heuristic",
+        "overlapping_files": [
+          ".github/workflows/reopen_on_assignment.yml",
+          ".github/workflows/require_issue_link.yml"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "36459",
+        "target": "36352",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "libs/partners/openai/tests/integration_tests/chat_models/test_responses_api.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "36471",
+        "target": "36200",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "libs/core/langchain_core/prompts/loading.py",
+          "libs/core/tests/unit_tests/prompts/test_loading.py"
+        ]
       }
     ],
     "by_complexity": {
       "small": {
-        "specd_rework_rate": 0.175,
-        "unspecd_rework_rate": 0.1792,
-        "specd_count": 80,
-        "unspecd_count": 519
+        "specd_rework_rate": 0.1798,
+        "unspecd_rework_rate": 0.1904,
+        "specd_count": 89,
+        "unspecd_count": 562
       },
       "medium": {
-        "specd_rework_rate": 0.3478,
-        "unspecd_rework_rate": 0.2812,
-        "specd_count": 23,
-        "unspecd_count": 160
+        "specd_rework_rate": 0.375,
+        "unspecd_rework_rate": 0.2809,
+        "specd_count": 24,
+        "unspecd_count": 178
       },
       "large": {
-        "specd_rework_rate": 0.4286,
-        "unspecd_rework_rate": 0.4364,
+        "specd_rework_rate": 0.5714,
+        "unspecd_rework_rate": 0.4821,
         "specd_count": 7,
-        "unspecd_count": 55
+        "unspecd_count": 56
       }
     }
   }

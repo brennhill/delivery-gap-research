@@ -1,11 +1,11 @@
 {
   "repo": "elastic/elasticsearch",
-  "lookback_days": 90,
-  "rework_window_days": 14,
+  "lookback_days": 365,
+  "rework_window_days": 30,
   "coverage": {
-    "coverage_pct": 41,
-    "total_prs": 99,
-    "specd_prs": 41,
+    "coverage_pct": 42,
+    "total_prs": 124,
+    "specd_prs": 52,
     "prs": [
       {
         "number": 144911,
@@ -798,6 +798,206 @@
         "specd": false,
         "spec_source": null,
         "merged_at": "2026-03-23T06:16:07+00:00"
+      },
+      {
+        "number": 143978,
+        "sha": null,
+        "title": "Add multi-tenant KNN benchmark support to KnnIndexTester",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T22:52:50+00:00"
+      },
+      {
+        "number": 145646,
+        "sha": null,
+        "title": "Unmute test - it failed in 8.18 which is not with us anymore",
+        "specd": true,
+        "spec_source": "https://github.com/elastic/elasticsearch/issues/120950",
+        "merged_at": "2026-04-02T22:51:29+00:00"
+      },
+      {
+        "number": 144443,
+        "sha": null,
+        "title": "Consolidate persistent task toggleable lifecycle logic",
+        "specd": true,
+        "spec_source": "ES-14293",
+        "merged_at": "2026-04-02T21:53:11+00:00"
+      },
+      {
+        "number": 145270,
+        "sha": null,
+        "title": "Replaced IntegratedCount with SeparateCount for binary doc value fields",
+        "specd": true,
+        "spec_source": "https://github.com/elastic/logs-program/issues/55.",
+        "merged_at": "2026-04-02T21:47:54+00:00"
+      },
+      {
+        "number": 145238,
+        "sha": null,
+        "title": "Reduce noise from codeowners for core/infra team",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T21:36:13+00:00"
+      },
+      {
+        "number": 145622,
+        "sha": null,
+        "title": "[8.19] Update timeout on yaml rest tests because they often exceed 1h (#142715)",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T21:25:27+00:00"
+      },
+      {
+        "number": 145446,
+        "sha": null,
+        "title": "Copy bfloat16 vector bytes across directly during merges",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T21:17:26+00:00"
+      },
+      {
+        "number": 145579,
+        "sha": null,
+        "title": "[ESQL] Propagate per-split statistics through FileSplit",
+        "specd": true,
+        "spec_source": "AI-ASSISTED",
+        "merged_at": "2026-04-02T21:05:29+00:00"
+      },
+      {
+        "number": 145619,
+        "sha": null,
+        "title": "Unmute EsqlNodeSubclassTests - fixed by #145597",
+        "specd": true,
+        "spec_source": "#145616",
+        "merged_at": "2026-04-02T21:05:06+00:00"
+      },
+      {
+        "number": 145531,
+        "sha": null,
+        "title": "PromQL: validate that metric fields are not dimensions in postAnalysisVerification",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T20:51:54+00:00"
+      },
+      {
+        "number": 145326,
+        "sha": null,
+        "title": "Add Grafana container with pre-provisioned ES Prometheus data source",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T20:35:34+00:00"
+      },
+      {
+        "number": 145645,
+        "sha": null,
+        "title": "[DOCS] Remove invalid 9.3.3 section from release notes",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T20:30:09+00:00"
+      },
+      {
+        "number": 144845,
+        "sha": null,
+        "title": "Add Linux-based cross-compilation pipeline for libvec native binaries",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T20:13:52+00:00"
+      },
+      {
+        "number": 145621,
+        "sha": null,
+        "title": "[9.2] Update timeout on yaml rest tests because they often exceed 1h (#142715)",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T20:10:32+00:00"
+      },
+      {
+        "number": 145501,
+        "sha": null,
+        "title": "Normalize float vectors and use dot product when cosine is used for KnnIndexTester",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T19:58:15+00:00"
+      },
+      {
+        "number": 145602,
+        "sha": null,
+        "title": "[ESQL] Enable cross-node text file splitting",
+        "specd": true,
+        "spec_source": "AI-ASSISTED",
+        "merged_at": "2026-04-02T19:15:39+00:00"
+      },
+      {
+        "number": 145608,
+        "sha": null,
+        "title": "[ESQL] Implement RangeAwareFormatReader for ORC",
+        "specd": true,
+        "spec_source": "AI-ASSISTED",
+        "merged_at": "2026-04-02T19:14:33+00:00"
+      },
+      {
+        "number": 145134,
+        "sha": null,
+        "title": "Disallow TaskType.ANY in ModelConfigurations",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T19:00:02+00:00"
+      },
+      {
+        "number": 145630,
+        "sha": null,
+        "title": "[9.2]\u00a0Prevent invalid polygons from being used in the test (#145129)",
+        "specd": true,
+        "spec_source": "https://github.com/elastic/elasticsearch/issues/144620",
+        "merged_at": "2026-04-02T17:38:35+00:00"
+      },
+      {
+        "number": 141201,
+        "sha": null,
+        "title": "[9.3]\u00a0Quantize ST_X, ST_Y and related functions (#140963)",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-01-24T17:05:38+00:00"
+      },
+      {
+        "number": 140963,
+        "sha": null,
+        "title": "Quantize ST_X, ST_Y and related functions",
+        "specd": true,
+        "spec_source": "#139943",
+        "merged_at": "2026-01-23T16:46:32+00:00"
+      },
+      {
+        "number": 139895,
+        "sha": null,
+        "title": "[9.3] Bring back support for generating inline_cast.json for kibana (#139807)",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-12-22T16:11:05+00:00"
+      },
+      {
+        "number": 114892,
+        "sha": null,
+        "title": "Fixes flaky ST_CENTROID_AGG tests",
+        "specd": true,
+        "spec_source": "#112461",
+        "merged_at": "2024-10-16T12:34:54+00:00"
+      },
+      {
+        "number": 137089,
+        "sha": null,
+        "title": "Unmute flaky csv-spec tests with more logging on warnings context",
+        "specd": true,
+        "spec_source": "#133334",
+        "merged_at": "2025-10-24T12:48:11+00:00"
+      },
+      {
+        "number": 134298,
+        "sha": null,
+        "title": "Fix ES|QL docs railroad diagrams comma positions for optional parameters",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-09-09T10:13:29+00:00"
       }
     ]
   },
@@ -805,7 +1005,7 @@
     "mode": "heuristic",
     "average_score": 45,
     "verdicts": {
-      "REVIEW": 39,
+      "REVIEW": 50,
       "REWRITE": 1
     },
     "specs": [
@@ -2439,15 +2639,456 @@
           "No state transitions \u2014 AI may allow invalid transitions",
           "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
         ]
+      },
+      {
+        "pr_number": 145646,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 144443,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "It precedes removing the automaticReassignmentOnShutdown flag -> which will be d",
+            "suggestion": "Goal without test: 'It precedes removing the automaticReassignmentOnShutdown fla...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 145270,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 97,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 44,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 3,
+            "type": "ambiguity",
+            "term": "efficient",
+            "suggestion": "Replace 'efficient' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 145579,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 145619,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 145602,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "targetsplitsize: override split size (e.g. \"64mb\")",
+            "suggestion": "Goal without test: 'targetsplitsize: override split size (e.g. \"64mb\")' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "schemasamplesize: override CSV inference sample (e.g. 500)",
+            "suggestion": "Goal without test: 'schemasamplesize: override CSV inference sample (e.g. 500)' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 145608,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 145630,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 89,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 42,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 3,
+            "type": "ambiguity",
+            "term": "sufficient",
+            "suggestion": "Replace 'sufficient' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 140963,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "ES|QL typically returns fields from doc-values, for performance reasons. However",
+            "suggestion": "Goal without test: 'ES|QL typically returns fields from doc-values, for performa...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Users can still get the original values with full prevision simply by not droppi",
+            "suggestion": "Goal without test: 'Users can still get the original values with full prevision ...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 114892,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 137089,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "These tests do not reproduce, even with reported random seeds. We are unmuting t",
+            "suggestion": "Goal without test: 'These tests do not reproduce, even with reported random seed...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
       }
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.122,
-    "unspecd_rework_rate": 0.069,
-    "delta": 0.053,
-    "specd_sample_size": 41,
-    "unspecd_sample_size": 58,
+    "specd_rework_rate": 0.1154,
+    "unspecd_rework_rate": 0.0556,
+    "delta": 0.0598,
+    "specd_sample_size": 52,
+    "unspecd_sample_size": 72,
     "significance": "significant",
     "signals": [
       {
@@ -2542,20 +3183,35 @@
         "overlapping_files": [
           "x-pack/plugin/esql/src/test/java/org/elasticsearch/xpack/esql/analysis/AnalyzerUnmappedTests.java"
         ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "145646",
+        "target": "145619",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "muted-tests.yml"
+        ]
       }
     ],
     "by_complexity": {
       "small": {
-        "specd_rework_rate": 0.1304,
-        "unspecd_rework_rate": 0.0513,
-        "specd_count": 23,
-        "unspecd_count": 39
+        "specd_rework_rate": 0.1429,
+        "unspecd_rework_rate": 0.0435,
+        "specd_count": 28,
+        "unspecd_count": 46
       },
       "medium": {
-        "specd_rework_rate": 0.1818,
-        "unspecd_rework_rate": 0.1176,
+        "specd_rework_rate": 0.1538,
+        "unspecd_rework_rate": 0.0952,
+        "specd_count": 13,
+        "unspecd_count": 21
+      },
+      "large": {
+        "specd_rework_rate": 0.0,
+        "unspecd_rework_rate": 0.0,
         "specd_count": 11,
-        "unspecd_count": 17
+        "unspecd_count": 6
       }
     }
   }

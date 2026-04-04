@@ -1,11 +1,11 @@
 {
   "repo": "django/django",
-  "lookback_days": 90,
-  "rework_window_days": 14,
+  "lookback_days": 365,
+  "rework_window_days": 30,
   "coverage": {
-    "coverage_pct": 26,
-    "total_prs": 418,
-    "specd_prs": 110,
+    "coverage_pct": 27,
+    "total_prs": 435,
+    "specd_prs": 117,
     "prs": [
       {
         "number": 20985,
@@ -3350,6 +3350,142 @@
         "specd": false,
         "spec_source": null,
         "merged_at": "2025-10-16T18:52:23+00:00"
+      },
+      {
+        "number": 20889,
+        "sha": null,
+        "title": "Fixed #36973 -- Made fields.E348 detect accessor and manager name clashes for relationships across different models.",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T19:54:23+00:00"
+      },
+      {
+        "number": 21047,
+        "sha": null,
+        "title": "Refs #36862 -- Reiterated security note on both variants of RemoteUserMiddleware.",
+        "specd": true,
+        "spec_source": "#36862",
+        "merged_at": "2026-04-02T15:25:22+00:00"
+      },
+      {
+        "number": 20027,
+        "sha": null,
+        "title": "Fixed #20024 -- Fixed handling of __in lookups with None in exclude().",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T15:24:26+00:00"
+      },
+      {
+        "number": 21035,
+        "sha": null,
+        "title": "Fixed #36949 -- Improved RelatedFieldWidgetWrapper <labels>.",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T15:09:37+00:00"
+      },
+      {
+        "number": 21033,
+        "sha": null,
+        "title": "Added section for respecting maintainer time to the security policy.",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T14:36:26+00:00"
+      },
+      {
+        "number": 21043,
+        "sha": null,
+        "title": "Fixed #36862 -- Doc'd the need for a proxy when deploying RemoteUserMiddleware under ASGI.",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T13:19:07+00:00"
+      },
+      {
+        "number": 21045,
+        "sha": null,
+        "title": "Fixed #37017 -- Fixed setting or clearing of request.user after alogin()/alogout().",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T13:00:55+00:00"
+      },
+      {
+        "number": 21036,
+        "sha": null,
+        "title": "Fixed #37004 -- Used QuerySet.totally_ordered in BaseModelFormSet.get_queryset() for stable ordering.",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T17:51:37+00:00"
+      },
+      {
+        "number": 20938,
+        "sha": null,
+        "title": "Fixed #36799 -- Added guidance for testing pre-releases.",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T02:15:01+00:00"
+      },
+      {
+        "number": 21029,
+        "sha": null,
+        "title": "Refs #36770 -- Guarded against an endless wait in LiveServerThread.terminate().",
+        "specd": true,
+        "spec_source": "#36770",
+        "merged_at": "2026-03-30T19:56:52+00:00"
+      },
+      {
+        "number": 21032,
+        "sha": null,
+        "title": "[5.2.x] Bumped black to 26.3.1.",
+        "specd": true,
+        "spec_source": "GHSA-V53H",
+        "merged_at": "2026-03-30T19:55:07+00:00"
+      },
+      {
+        "number": 21030,
+        "sha": null,
+        "title": "Refs #36926 -- Added release note for boolean icons for related fields in list_display.",
+        "specd": true,
+        "spec_source": "#36926",
+        "merged_at": "2026-03-30T16:55:55+00:00"
+      },
+      {
+        "number": 20310,
+        "sha": null,
+        "title": "Fixed #29762 -- Document how database routers are used for related-object access.",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-28T17:40:09+00:00"
+      },
+      {
+        "number": 20946,
+        "sha": null,
+        "title": "Refs #36526 -- Fixed bulk_update() batching example in docs.",
+        "specd": true,
+        "spec_source": "#36526",
+        "merged_at": "2026-03-28T13:24:05+00:00"
+      },
+      {
+        "number": 21002,
+        "sha": null,
+        "title": "Updated old gunicorn documentation link in the docs",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-27T19:26:03+00:00"
+      },
+      {
+        "number": 20998,
+        "sha": null,
+        "title": "Refs #36913 -- Maintained error message determinism in MultipleChoiceField.validate().",
+        "specd": true,
+        "spec_source": "#36913",
+        "merged_at": "2026-03-26T19:21:00+00:00"
+      },
+      {
+        "number": 17428,
+        "sha": null,
+        "title": "Refs #15578 -- Made cosmetic edits to fixtures docs.",
+        "specd": true,
+        "spec_source": "#15578",
+        "merged_at": "2023-10-30T13:32:42+00:00"
       }
     ]
   },
@@ -3357,7 +3493,7 @@
     "mode": "heuristic",
     "average_score": 44,
     "verdicts": {
-      "REVIEW": 109
+      "REVIEW": 115
     },
     "specs": [
       {
@@ -8053,15 +8189,318 @@
           "No error contract \u2014 AI will invent error shapes per function",
           "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
         ]
+      },
+      {
+        "pr_number": 21047,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 21029,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 99,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 28,
+            "type": "ambiguity",
+            "term": "if applicable",
+            "suggestion": "Replace 'if applicable' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "we address the other flaking test, testdatabasesharinginthreads(), unless it tur",
+            "suggestion": "Goal without test: 'we address the other flaking test, testdatabasesharinginthre...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] This PR targets the main branch. <!-- Backports will be evaluated and done b",
+            "suggestion": "Goal without test: '[x] This PR targets the main branch. <!-- Backports will be ...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] I have not requested, and will not request, an automated AI review for this ",
+            "suggestion": "Goal without test: '[x] I have not requested, and will not request, an automated...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 21032,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "black fixed a security issue in their Github Action in 26.3.0, affecting a featu",
+            "suggestion": "Goal without test: 'black fixed a security issue in their Github Action in 26.3....' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Django 4.2 is only in extended support for another week",
+            "suggestion": "Goal without test: 'Django 4.2 is only in extended support for another week' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Django 5.2 has two years to run",
+            "suggestion": "Goal without test: 'Django 5.2 has two years to run' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Proposal: bump black to a patched version on Django 5.2",
+            "suggestion": "Goal without test: 'Proposal: bump black to a patched version on Django 5.2' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Proposal: ignore 4.2",
+            "suggestion": "Goal without test: 'Proposal: ignore 4.2' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Proposal: ignore 6.0 & main, continue to leave them unpinned, revisit when adopt",
+            "suggestion": "Goal without test: 'Proposal: ignore 6.0 & main, continue to leave them unpinned...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 21030,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 20946,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 95,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 44,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 5,
+            "type": "ambiguity",
+            "term": "efficient",
+            "suggestion": "Replace 'efficient' with a specific, measurable term"
+          },
+          {
+            "line": 19,
+            "type": "ambiguity",
+            "term": "if applicable",
+            "suggestion": "Replace 'if applicable' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[X] This PR targets the main branch. <!-- Backports will be evaluated and done b",
+            "suggestion": "Goal without test: '[X] This PR targets the main branch. <!-- Backports will be ...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[X] I have not requested, and will not request, an automated AI review for this ",
+            "suggestion": "Goal without test: '[X] I have not requested, and will not request, an automated...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 20998,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 98,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 44,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 26,
+            "type": "ambiguity",
+            "term": "if applicable",
+            "suggestion": "Replace 'if applicable' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] This PR targets the main branch. <!-- Backports will be evaluated and done b",
+            "suggestion": "Goal without test: '[x] This PR targets the main branch. <!-- Backports will be ...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] I have not requested, and will not request, an automated AI review for this ",
+            "suggestion": "Goal without test: '[x] I have not requested, and will not request, an automated...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
       }
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.0455,
-    "unspecd_rework_rate": 0.0325,
-    "delta": 0.013,
-    "specd_sample_size": 110,
-    "unspecd_sample_size": 308,
+    "specd_rework_rate": 0.0598,
+    "unspecd_rework_rate": 0.0472,
+    "delta": 0.0127,
+    "specd_sample_size": 117,
+    "unspecd_sample_size": 318,
     "significance": "significant",
     "signals": [
       {
@@ -8071,6 +8510,34 @@
         "classification": "heuristic",
         "overlapping_files": [
           "tests/admin_scripts/tests.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "20044",
+        "target": "19976",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "tests/gis_tests/relatedapp/tests.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "20060",
+        "target": "19978",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "tests/utils_tests/test_html.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "20090",
+        "target": "19794",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "django/contrib/postgres/fields/array.py",
+          "tests/postgres_tests/test_array.py"
         ]
       },
       {
@@ -8187,10 +8654,11 @@
       {
         "type": "bug-fix",
         "source": "20538",
-        "target": "18934",
+        "target": "20184",
         "classification": "heuristic",
         "overlapping_files": [
-          "django/contrib/admin/options.py"
+          "django/contrib/admin/options.py",
+          "tests/admin_changelist/tests.py"
         ]
       },
       {
@@ -8219,19 +8687,46 @@
         "overlapping_files": [
           "tests/model_fields/test_jsonfield.py"
         ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "21032",
+        "target": "20527",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "tests/test_utils/tests.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "21036",
+        "target": "20946",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "AUTHORS"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "21035",
+        "target": "21045",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "docs/releases/6.0.4.txt"
+        ]
       }
     ],
     "by_complexity": {
       "small": {
-        "specd_rework_rate": 0.0408,
-        "unspecd_rework_rate": 0.0308,
-        "specd_count": 98,
-        "unspecd_count": 260
+        "specd_rework_rate": 0.0583,
+        "unspecd_rework_rate": 0.0444,
+        "specd_count": 103,
+        "unspecd_count": 270
       },
       "medium": {
-        "specd_rework_rate": 0.0833,
-        "unspecd_rework_rate": 0.0244,
-        "specd_count": 12,
+        "specd_rework_rate": 0.0769,
+        "unspecd_rework_rate": 0.0488,
+        "specd_count": 13,
         "unspecd_count": 41
       }
     }

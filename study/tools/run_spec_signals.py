@@ -32,7 +32,7 @@ from tools.spec_signals.effectiveness import (
 from tools.spec_signals.quality import score_classifications
 
 
-def run(prs_path: str, output_path: str | None = None, lookback_days: int = 365, rework_window: int = 14) -> dict:
+def run(prs_path: str, output_path: str | None = None, lookback_days: int = 365, rework_window: int = 30) -> dict:
     """Run the full spec-signals pipeline on a prs-*.json file."""
     # Load and convert
     changes = fetch_changes(prs_path)

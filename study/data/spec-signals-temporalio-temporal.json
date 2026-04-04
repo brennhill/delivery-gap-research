@@ -1,11 +1,11 @@
 {
   "repo": "temporalio/temporal",
-  "lookback_days": 90,
-  "rework_window_days": 14,
+  "lookback_days": 365,
+  "rework_window_days": 30,
   "coverage": {
-    "coverage_pct": 3,
-    "total_prs": 497,
-    "specd_prs": 13,
+    "coverage_pct": 2,
+    "total_prs": 564,
+    "specd_prs": 14,
     "prs": [
       {
         "number": 9637,
@@ -3982,6 +3982,542 @@
         "specd": false,
         "spec_source": null,
         "merged_at": "2026-01-12T20:37:55+00:00"
+      },
+      {
+        "number": 9779,
+        "sha": null,
+        "title": "Serverless Feature Integration",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-03T00:00:06+00:00"
+      },
+      {
+        "number": 9724,
+        "sha": null,
+        "title": "Standalone Activity: preserve server-generated request IDs across restarts",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T23:40:28+00:00"
+      },
+      {
+        "number": 9689,
+        "sha": null,
+        "title": "Document CHASM",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T22:04:43+00:00"
+      },
+      {
+        "number": 9717,
+        "sha": null,
+        "title": "Replicate workflow deleteion",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T21:49:10+00:00"
+      },
+      {
+        "number": 9493,
+        "sha": null,
+        "title": "Updating io.Closer usage to simplify logic and ensure closure",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T18:33:54+00:00"
+      },
+      {
+        "number": 9794,
+        "sha": null,
+        "title": "WorkerVersion field in WorkflowTaskStarted events should never be set\u2026",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T20:40:59+00:00"
+      },
+      {
+        "number": 9792,
+        "sha": null,
+        "title": "Fix test compilation: use Worker() instead of SdkWorker() on release branch",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T19:25:10+00:00"
+      },
+      {
+        "number": 9472,
+        "sha": null,
+        "title": "Mark worker deployment APIs as replication inducing",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T18:38:57+00:00"
+      },
+      {
+        "number": 9791,
+        "sha": null,
+        "title": "Patch v1.31.0-152.3",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T18:32:01+00:00"
+      },
+      {
+        "number": 9789,
+        "sha": null,
+        "title": "Replace deprecated tctl comment with temporal cli",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T18:17:42+00:00"
+      },
+      {
+        "number": 9783,
+        "sha": null,
+        "title": "WorkerVersion field in WorkflowTaskStarted events should never be set in WV3",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T16:55:33+00:00"
+      },
+      {
+        "number": 9776,
+        "sha": null,
+        "title": "Fix TestWorkflowStartConflict flaky test",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T16:48:05+00:00"
+      },
+      {
+        "number": 9785,
+        "sha": null,
+        "title": "1.31.0: Prepare release branch",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T11:40:13+00:00"
+      },
+      {
+        "number": 9759,
+        "sha": null,
+        "title": "Implement Validate API and call Update/Delete on WCI",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T22:46:48+00:00"
+      },
+      {
+        "number": 9774,
+        "sha": null,
+        "title": "Use original context for non-blocking path in DescribeActivityExecution",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T00:18:35+00:00"
+      },
+      {
+        "number": 9654,
+        "sha": null,
+        "title": "Nexus Standalone: Delete",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T00:01:35+00:00"
+      },
+      {
+        "number": 9775,
+        "sha": null,
+        "title": "Fix expired task handing in fairTaskReader",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T22:50:13+00:00"
+      },
+      {
+        "number": 9695,
+        "sha": null,
+        "title": "Adding ReplicationState to initial ns replication",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T22:02:16+00:00"
+      },
+      {
+        "number": 9771,
+        "sha": null,
+        "title": "Patch v1.31.0-151.7",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T20:15:34+00:00"
+      },
+      {
+        "number": 9770,
+        "sha": null,
+        "title": "fix: validate namespace ID in MigrateScheduleToChasm",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T19:47:28+00:00"
+      },
+      {
+        "number": 9766,
+        "sha": null,
+        "title": "Fix data race in workerdeployment unit tests",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T19:30:55+00:00"
+      },
+      {
+        "number": 9091,
+        "sha": null,
+        "title": "Remove nil search attributes from history events / mutable state / ch\u2026",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T19:21:16+00:00"
+      },
+      {
+        "number": 9767,
+        "sha": null,
+        "title": "Check namespaces in batch workflow",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T19:02:20+00:00"
+      },
+      {
+        "number": 9624,
+        "sha": null,
+        "title": "Nexus Standalone: Terminate + Cancel",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T16:04:54+00:00"
+      },
+      {
+        "number": 9755,
+        "sha": null,
+        "title": "Migrate testEnv suites to use parallelsuites",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T16:02:48+00:00"
+      },
+      {
+        "number": 9758,
+        "sha": null,
+        "title": "Migrate activity_api_reset_test.go to parallelsuite",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T15:31:22+00:00"
+      },
+      {
+        "number": 9763,
+        "sha": null,
+        "title": "1.31.0: Prepare release branch",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T11:42:39+00:00"
+      },
+      {
+        "number": 9746,
+        "sha": null,
+        "title": "Implement UpdateWorkerDeploymentVersionComputeConfig",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T20:24:24+00:00"
+      },
+      {
+        "number": 9750,
+        "sha": null,
+        "title": "Update test shard salt",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T22:05:51+00:00"
+      },
+      {
+        "number": 9754,
+        "sha": null,
+        "title": "Migrate links_test.go to parallelsuite",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T18:41:53+00:00"
+      },
+      {
+        "number": 8144,
+        "sha": null,
+        "title": "improvement: remove waits before fetching activities",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-08-13T22:10:06+00:00"
+      },
+      {
+        "number": 9745,
+        "sha": null,
+        "title": "Lazy SdkClient and SdkWorker",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T16:02:22+00:00"
+      },
+      {
+        "number": 9751,
+        "sha": null,
+        "title": "1.31.0: Prepare release branch",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T11:42:05+00:00"
+      },
+      {
+        "number": 9663,
+        "sha": null,
+        "title": "buf format",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T22:30:51+00:00"
+      },
+      {
+        "number": 9669,
+        "sha": null,
+        "title": "Update agent code review guidelines flaky test findings",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T19:52:13+00:00"
+      },
+      {
+        "number": 9536,
+        "sha": null,
+        "title": "parallelsuite",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T18:39:50+00:00"
+      },
+      {
+        "number": 9744,
+        "sha": null,
+        "title": "Exclude polling cases from get apis",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T18:37:57+00:00"
+      },
+      {
+        "number": 9582,
+        "sha": null,
+        "title": "Propagate principal into workflow history",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T18:30:15+00:00"
+      },
+      {
+        "number": 9743,
+        "sha": null,
+        "title": "Address deprecation warnings and always generate summary reports",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T18:27:40+00:00"
+      },
+      {
+        "number": 9697,
+        "sha": null,
+        "title": "Define layout engine in d2 file",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T17:08:46+00:00"
+      },
+      {
+        "number": 9377,
+        "sha": null,
+        "title": "Add archetype metric tag and logical task processing metrics",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T16:20:53+00:00"
+      },
+      {
+        "number": 9692,
+        "sha": null,
+        "title": "Write test results reports in between runs to preserve on crash",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T16:04:49+00:00"
+      },
+      {
+        "number": 9741,
+        "sha": null,
+        "title": "1.31.0: Prepare release branch",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T11:44:07+00:00"
+      },
+      {
+        "number": 9679,
+        "sha": null,
+        "title": "[Nexus-Chasm] Migrate timeout and backoff operation task handlers",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T05:26:34+00:00"
+      },
+      {
+        "number": 9737,
+        "sha": null,
+        "title": "1.31.0: Prepare release branch",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-29T11:33:56+00:00"
+      },
+      {
+        "number": 9602,
+        "sha": null,
+        "title": "Fix data race on nexusEndpointsOwnershipLostCh ",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-27T22:20:59+00:00"
+      },
+      {
+        "number": 9735,
+        "sha": null,
+        "title": "1.31.0: Prepare release branch",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-28T11:34:04+00:00"
+      },
+      {
+        "number": 9708,
+        "sha": null,
+        "title": "Filter internal Nexus headers from being forwarded to user handlers",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-27T22:21:10+00:00"
+      },
+      {
+        "number": 9726,
+        "sha": null,
+        "title": "1.31.0: Prepare release branch",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-27T18:11:15+00:00"
+      },
+      {
+        "number": 9723,
+        "sha": null,
+        "title": "Rename new Deployment Name and Build ID labels to be shorter",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-27T17:19:16+00:00"
+      },
+      {
+        "number": 9715,
+        "sha": null,
+        "title": "Fix fairness migration flaky test",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-27T17:11:27+00:00"
+      },
+      {
+        "number": 9412,
+        "sha": null,
+        "title": "Enable WCI <> Matching integration",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-27T16:02:52+00:00"
+      },
+      {
+        "number": 9719,
+        "sha": null,
+        "title": "1.31.0: Prepare release branch",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-27T11:38:26+00:00"
+      },
+      {
+        "number": 9705,
+        "sha": null,
+        "title": "Add deployment name and build ID labels to backlog metrics",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-27T05:20:27+00:00"
+      },
+      {
+        "number": 9696,
+        "sha": null,
+        "title": "Add IS NULL / IS NOT NULL support to ListWorkers query engine",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-27T01:45:34+00:00"
+      },
+      {
+        "number": 9382,
+        "sha": null,
+        "title": "Ensure WD Version properly revives if recreated after deletion",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-26T23:01:17+00:00"
+      },
+      {
+        "number": 9651,
+        "sha": null,
+        "title": "Add CreateWorkerDeploymentVersion API with compute config and CREATED status",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-26T20:52:56+00:00"
+      },
+      {
+        "number": 9685,
+        "sha": null,
+        "title": "fix: handle deleted CHASM schedule lifecycle and V1 fallback routing",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-26T20:33:10+00:00"
+      },
+      {
+        "number": 9676,
+        "sha": null,
+        "title": "Migrate activity_api_batch_reset_test to testcore.NewEnv",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-26T20:02:59+00:00"
+      },
+      {
+        "number": 9694,
+        "sha": null,
+        "title": "1.31.0: Prepare release branch",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-26T19:53:46+00:00"
+      },
+      {
+        "number": 9675,
+        "sha": null,
+        "title": "refactor: migrate tests/admin_test.go to testcore.NewEnv pattern",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-26T19:38:20+00:00"
+      },
+      {
+        "number": 9691,
+        "sha": null,
+        "title": "1.31.0: Prepare release branch",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-26T18:51:40+00:00"
+      },
+      {
+        "number": 9597,
+        "sha": null,
+        "title": "[Nexus] Migrate event definition tests from HSM to CHASM",
+        "specd": true,
+        "spec_source": "CHASM-BASED",
+        "merged_at": "2026-03-26T16:59:21+00:00"
+      },
+      {
+        "number": 9688,
+        "sha": null,
+        "title": "1.31.0: Prepare release branch",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-26T16:56:17+00:00"
+      },
+      {
+        "number": 9660,
+        "sha": null,
+        "title": "Fix two flaky/broken functional tests",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-26T15:18:40+00:00"
+      },
+      {
+        "number": 9684,
+        "sha": null,
+        "title": "1.31.0: Prepare release branch",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-26T11:41:51+00:00"
+      },
+      {
+        "number": 7092,
+        "sha": null,
+        "title": "Update Registry size limit warning",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-01-17T00:44:10+00:00"
       }
     ]
   },
@@ -3989,7 +4525,7 @@
     "mode": "heuristic",
     "average_score": 45,
     "verdicts": {
-      "REVIEW": 13
+      "REVIEW": 14
     },
     "specs": [
       {
@@ -4772,15 +5308,51 @@
           "No state transitions \u2014 AI may allow invalid transitions",
           "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
         ]
+      },
+      {
+        "pr_number": 9597,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboard?tab=bugbot) for c",
+            "suggestion": "Goal without test: '> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboa...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
       }
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.0769,
-    "unspecd_rework_rate": 0.1612,
-    "delta": -0.0842,
-    "specd_sample_size": 13,
-    "unspecd_sample_size": 484,
+    "specd_rework_rate": 0.1429,
+    "unspecd_rework_rate": 0.1655,
+    "delta": -0.0226,
+    "specd_sample_size": 14,
+    "unspecd_sample_size": 550,
     "significance": "limited",
     "signals": [
       {
@@ -4863,6 +5435,15 @@
           "service/worker/workerdeployment/testdata/memo_with_last_current_time.json",
           "service/worker/workerdeployment/testdata/memo_without_last_current_time.json",
           "service/worker/workerdeployment/util_test.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "9006",
+        "target": "8897",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "tests/task_queue_stats_test.go"
         ]
       },
       {
@@ -5117,6 +5698,15 @@
       },
       {
         "type": "bug-fix",
+        "source": "9182",
+        "target": "9063",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "components/nexusoperations/frontend/handler.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "9155",
         "target": "8565",
         "classification": "heuristic",
@@ -5167,11 +5757,12 @@
       {
         "type": "bug-fix",
         "source": "9229",
-        "target": "9177",
+        "target": "9047",
         "classification": "heuristic",
         "overlapping_files": [
-          "service/frontend/workflow_handler.go",
-          "service/history/visibility_queue_task_executor.go"
+          "chasm/lib/activity/frontend.go",
+          "chasm/lib/activity/library.go",
+          "tests/standalone_activity_test.go"
         ]
       },
       {
@@ -5186,23 +5777,26 @@
       {
         "type": "bug-fix",
         "source": "9214",
-        "target": "9213",
+        "target": "8925",
         "classification": "heuristic",
         "overlapping_files": [
-          "service/matching/matching_engine.go"
+          "service/matching/matching_engine.go",
+          "service/matching/pri_forwarder.go"
         ]
       },
       {
         "type": "bug-fix",
         "source": "9238",
-        "target": "9164",
+        "target": "8925",
         "classification": "heuristic",
         "overlapping_files": [
-          "service/matching/fair_task_reader.go",
+          "service/matching/matcher_data.go",
           "service/matching/physical_task_queue_manager.go",
           "service/matching/physical_task_queue_manager_interface.go",
           "service/matching/physical_task_queue_manager_mock.go",
-          "service/matching/pri_task_reader.go"
+          "service/matching/pri_matcher.go",
+          "service/matching/task.go",
+          "service/matching/task_queue_partition_manager.go"
         ]
       },
       {
@@ -5217,11 +5811,12 @@
       {
         "type": "bug-fix",
         "source": "8697",
-        "target": "9207",
+        "target": "9102",
         "classification": "heuristic",
         "overlapping_files": [
           "chasm/lib/activity/handler.go",
-          "service/history/chasm_engine.go"
+          "service/history/chasm_engine.go",
+          "service/history/chasm_engine_test.go"
         ]
       },
       {
@@ -5273,11 +5868,12 @@
       {
         "type": "bug-fix",
         "source": "9240",
-        "target": "9109",
+        "target": "8988",
         "classification": "heuristic",
         "overlapping_files": [
-          "service/history/api/respondworkflowtaskcompleted/api.go",
-          "service/history/api/respondworkflowtaskcompleted/api_test.go"
+          "common/contextutil/metadata.go",
+          "common/contextutil/metadata_test.go",
+          "service/history/workflow/mutable_state_impl.go"
         ]
       },
       {
@@ -5303,10 +5899,11 @@
       {
         "type": "bug-fix",
         "source": "9237",
-        "target": "9271",
+        "target": "8925",
         "classification": "heuristic",
         "overlapping_files": [
           "service/matching/matcher_data.go",
+          "service/matching/matcher_data_test.go",
           "service/matching/pri_matcher.go"
         ]
       },
@@ -5326,20 +5923,35 @@
       {
         "type": "bug-fix",
         "source": "9276",
-        "target": "9164",
+        "target": "8925",
         "classification": "heuristic",
         "overlapping_files": [
-          "service/matching/backlog_manager.go",
-          "service/matching/db.go",
+          "api/matchingservice/v1/request_response.pb.go",
+          "api/taskqueue/v1/message.go-helpers.pb.go",
+          "api/taskqueue/v1/message.pb.go",
+          "common/backoff/jitter.go",
+          "common/dynamicconfig/constants.go",
+          "proto/internal/temporal/server/api/matchingservice/v1/request_response.proto",
+          "proto/internal/temporal/server/api/taskqueue/v1/message.proto",
+          "service/matching/config.go",
           "service/matching/fair_backlog_manager.go",
-          "service/matching/fair_task_reader.go",
-          "service/matching/matching_engine_test.go",
+          "service/matching/matcher.go",
+          "service/matching/matcher_data.go",
+          "service/matching/matcher_data_test.go",
+          "service/matching/matching_engine.go",
+          "service/matching/physical_task_queue_key.go",
           "service/matching/physical_task_queue_manager.go",
           "service/matching/physical_task_queue_manager_interface.go",
           "service/matching/physical_task_queue_manager_mock.go",
           "service/matching/physical_task_queue_manager_test.go",
           "service/matching/pri_backlog_manager.go",
-          "service/matching/pri_task_reader.go",
+          "service/matching/pri_forwarder.go",
+          "service/matching/pri_matcher.go",
+          "service/matching/task.go",
+          "service/matching/task_queue_partition_manager.go",
+          "service/matching/task_queue_partition_manager_test.go",
+          "service/matching/user_data_manager.go",
+          "service/matching/user_data_manager_test.go",
           "tests/priority_fairness_test.go"
         ]
       },
@@ -5502,6 +6114,15 @@
       },
       {
         "type": "bug-fix",
+        "source": "9407",
+        "target": "9290",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "service/frontend/nexus_http_handler.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "9415",
         "target": "9407",
         "classification": "heuristic",
@@ -5556,10 +6177,11 @@
       {
         "type": "bug-fix",
         "source": "9329",
-        "target": "8158",
+        "target": "9337",
         "classification": "heuristic",
         "overlapping_files": [
-          "Makefile"
+          "Makefile",
+          "common/archiver/gcloud/visibility_archiver_test.go"
         ]
       },
       {
@@ -5589,19 +6211,51 @@
       {
         "type": "bug-fix",
         "source": "9442",
-        "target": "9190",
+        "target": "9276",
         "classification": "heuristic",
         "overlapping_files": [
-          "tests/worker_deployment_test.go",
-          "tests/worker_deployment_version_test.go"
+          "go.mod",
+          "go.sum",
+          "service/matching/physical_task_queue_manager_test.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "9411",
+        "target": "9328",
+        "classification": "heuristic",
+        "overlapping_files": [
+          ".github/actions/build-docker-images/action.yml",
+          ".github/workflows/docker-build-manual.yml"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "9389",
+        "target": "9325",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "service/history/api/get_history_util.go",
+          "service/history/api/get_history_util_test.go",
+          "service/history/api/getworkflowexecutionhistory/api.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "9467",
+        "target": "9375",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "service/matching/fair_task_reader.go"
         ]
       },
       {
         "type": "bug-fix",
         "source": "9473",
-        "target": "9467",
+        "target": "9375",
         "classification": "heuristic",
         "overlapping_files": [
+          "common/headers/version_checker.go",
           "service/matching/fair_task_reader.go"
         ]
       },
@@ -5618,13 +6272,14 @@
       {
         "type": "bug-fix",
         "source": "9478",
-        "target": "9399",
+        "target": "9379",
         "classification": "heuristic",
         "overlapping_files": [
           "tools/flakereport/flakereport.go",
           "tools/flakereport/parser.go",
           "tools/flakereport/report.go",
-          "tools/flakereport/types.go"
+          "tools/flakereport/types.go",
+          "tools/flakereport/writer.go"
         ]
       },
       {
@@ -5647,6 +6302,22 @@
           ".github/actions/build-docker-images/scripts/main_test.go",
           ".github/workflows/docker-build-manual.yml",
           ".github/workflows/features-integration.yml"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "9488",
+        "target": "9337",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "common/persistence/cassandra/history_store.go",
+          "common/persistence/cassandra/matching_task_store_user_data.go",
+          "common/persistence/cassandra/matching_task_store_v1.go",
+          "common/persistence/cassandra/matching_task_store_v2.go",
+          "common/persistence/cassandra/metadata_store.go",
+          "common/persistence/cassandra/mutable_state_task_store.go",
+          "common/persistence/cassandra/nexus_endpoint_store.go",
+          "common/persistence/cassandra/queue_store.go"
         ]
       },
       {
@@ -5844,14 +6515,147 @@
         "overlapping_files": [
           "service/matching/fair_task_reader.go"
         ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "9450",
+        "target": "9418",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "api/matchingservice/v1/request_response.pb.go",
+          "proto/internal/temporal/server/api/matchingservice/v1/request_response.proto"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "9660",
+        "target": "9465",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "tests/task_queue_stats_test.go",
+          "tests/xdc/history_replication_signals_and_updates_test.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "9685",
+        "target": "9594",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "chasm/lib/scheduler/scheduler.go",
+          "service/frontend/workflow_handler.go",
+          "tests/schedule_test.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "9715",
+        "target": "9595",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "tests/priority_fairness_test.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "9602",
+        "target": "9545",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "service/matching/matching_engine.go",
+          "service/matching/matching_engine_test.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "9669",
+        "target": "9662",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "tests/activity_test.go",
+          "tests/client_misc_test.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "9766",
+        "target": "9746",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "service/worker/workerdeployment/version_workflow_test.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "9770",
+        "target": "9648",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "service/worker/scheduler/activities.go",
+          "service/worker/scheduler/activities_test.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "9771",
+        "target": "9767",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "service/worker/batcher/activities.go",
+          "service/worker/batcher/activities_namespace_test.go",
+          "service/worker/batcher/activities_test.go",
+          "tests/activity_api_batch_unpause_test.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "9775",
+        "target": "9468",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "service/matching/fair_task_reader.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "9776",
+        "target": "9536",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "tests/update_workflow_test.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "9791",
+        "target": "9783",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "common/worker_versioning/worker_versioning.go",
+          "service/history/api/recordactivitytaskstarted/api.go",
+          "service/history/api/recordworkflowtaskstarted/api.go",
+          "service/history/api/respondworkflowtaskfailed/api.go",
+          "service/history/workflow/workflow_task_state_machine.go",
+          "tests/versioning_3_test.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "9792",
+        "target": "9791",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "service/worker/scheduler/activities_test.go",
+          "tests/activity_api_batch_unpause_test.go"
+        ]
       }
     ],
     "by_complexity": {
       "small": {
         "specd_rework_rate": 0.1429,
-        "unspecd_rework_rate": 0.1152,
+        "unspecd_rework_rate": 0.1145,
         "specd_count": 7,
-        "unspecd_count": 269
+        "unspecd_count": 297
       }
     }
   }

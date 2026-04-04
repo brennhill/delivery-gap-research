@@ -1,11 +1,11 @@
 {
   "repo": "cli/cli",
-  "lookback_days": 90,
-  "rework_window_days": 14,
+  "lookback_days": 365,
+  "rework_window_days": 30,
   "coverage": {
-    "coverage_pct": 56,
-    "total_prs": 122,
-    "specd_prs": 68,
+    "coverage_pct": 55,
+    "total_prs": 129,
+    "specd_prs": 71,
     "prs": [
       {
         "number": 13024,
@@ -982,6 +982,62 @@
         "specd": true,
         "spec_source": "#6034",
         "merged_at": "2025-10-23T19:13:08+00:00"
+      },
+      {
+        "number": 13082,
+        "sha": null,
+        "title": "Add `discussion` command group scaffolding",
+        "specd": true,
+        "spec_source": "https://github.com/cli/cli/issues/12810",
+        "merged_at": "2026-04-02T17:14:08+00:00"
+      },
+      {
+        "number": 13048,
+        "sha": null,
+        "title": "replace github.com/golang/snappy with klauspost/compress/snappy",
+        "specd": true,
+        "spec_source": "https://github.com/cli/cli/issues/11468#issuecomment-3163486037",
+        "merged_at": "2026-03-31T10:25:47+00:00"
+      },
+      {
+        "number": 11435,
+        "sha": null,
+        "title": "Update spam detection to comment on and close issue",
+        "specd": true,
+        "spec_source": "#11408",
+        "merged_at": "2025-08-04T12:40:42+00:00"
+      },
+      {
+        "number": 13046,
+        "sha": null,
+        "title": "Ensure `api` and `auth` commands record agentic invocations",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-27T17:25:00+00:00"
+      },
+      {
+        "number": 12859,
+        "sha": null,
+        "title": "Add experimental huh-only prompter gated by GH_EXPERIMENTAL_PROMPTER",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-26T13:38:20+00:00"
+      },
+      {
+        "number": 13037,
+        "sha": null,
+        "title": "Fix acceptance test failures: git identity, headRepository JSON, obsolete traversal test",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-26T12:32:29+00:00"
+      },
+      {
+        "number": 3,
+        "sha": null,
+        "title": "Add branch name to `gh pr list`",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2019-10-09T20:12:25+00:00"
       }
     ]
   },
@@ -989,7 +1045,7 @@
     "mode": "heuristic",
     "average_score": 45,
     "verdicts": {
-      "REVIEW": 67,
+      "REVIEW": 70,
       "REWRITE": 1
     },
     "specs": [
@@ -4593,17 +4649,146 @@
           "No error contract \u2014 AI will invent error shapes per function",
           "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
         ]
+      },
+      {
+        "pr_number": 13082,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Scaffolding for the gh discussion command group \u2014 the first PR in a series that ",
+            "suggestion": "Goal without test: 'Scaffolding for the gh discussion command group \u2014 the first ...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 13048,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "relates to https://github.com/cli/cli/issues/11468#issuecomment-3163486037",
+            "suggestion": "Goal without test: 'relates to https://github.com/cli/cli/issues/11468#issuecomm...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "relates to https://github.com/docker/buildx/pull/3686",
+            "suggestion": "Goal without test: 'relates to https://github.com/docker/buildx/pull/3686' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 11435,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
       }
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.1471,
-    "unspecd_rework_rate": 0.0556,
-    "delta": 0.0915,
-    "specd_sample_size": 68,
-    "unspecd_sample_size": 54,
+    "specd_rework_rate": 0.2113,
+    "unspecd_rework_rate": 0.1379,
+    "delta": 0.0733,
+    "specd_sample_size": 71,
+    "unspecd_sample_size": 58,
     "significance": "significant",
     "signals": [
+      {
+        "type": "bug-fix",
+        "source": "11987",
+        "target": "11835",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "pkg/cmd/pr/edit/edit.go",
+          "pkg/cmd/pr/edit/edit_test.go",
+          "pkg/cmd/pr/shared/editable.go"
+        ]
+      },
       {
         "type": "bug-fix",
         "source": "11509",
@@ -4611,6 +4796,15 @@
         "classification": "heuristic",
         "overlapping_files": [
           ".github/workflows/deployment.yml"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "8826",
+        "target": "11835",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "api/queries_pr.go"
         ]
       },
       {
@@ -4635,6 +4829,16 @@
       },
       {
         "type": "bug-fix",
+        "source": "12068",
+        "target": "11879",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "pkg/cmd/agent-task/create/create.go",
+          "pkg/cmd/agent-task/create/create_test.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "12095",
         "target": "11974",
         "classification": "heuristic",
@@ -4650,6 +4854,17 @@
         "classification": "heuristic",
         "overlapping_files": [
           ".golangci.yml"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "12165",
+        "target": "12123",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "third-party-licenses.darwin.md",
+          "third-party-licenses.linux.md",
+          "third-party-licenses.windows.md"
         ]
       },
       {
@@ -4732,6 +4947,15 @@
       },
       {
         "type": "bug-fix",
+        "source": "12291",
+        "target": "12191",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "docs/install_linux.md"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "12281",
         "target": "12274",
         "classification": "heuristic",
@@ -4806,6 +5030,15 @@
       },
       {
         "type": "bug-fix",
+        "source": "12318",
+        "target": "12178",
+        "classification": "heuristic",
+        "overlapping_files": [
+          ".github/workflows/deployment.yml"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "12428",
         "target": "12425",
         "classification": "heuristic",
@@ -4846,6 +5079,15 @@
       },
       {
         "type": "bug-fix",
+        "source": "12314",
+        "target": "12429",
+        "classification": "heuristic",
+        "overlapping_files": [
+          ".github/workflows/deployment.yml"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "12315",
         "target": "12314",
         "classification": "heuristic",
@@ -4878,14 +5120,15 @@
       {
         "type": "bug-fix",
         "source": "12524",
-        "target": "12573",
+        "target": "12289",
         "classification": "heuristic",
         "overlapping_files": [
           "go.mod",
           "go.sum",
           "third-party-licenses.darwin.md",
           "third-party-licenses.linux.md",
-          "third-party-licenses.windows.md"
+          "third-party-licenses.windows.md",
+          "third-party/github.com/go-openapi/jsonreference/NOTICE"
         ]
       },
       {
@@ -4899,6 +5142,16 @@
           "third-party-licenses.darwin.md",
           "third-party-licenses.linux.md",
           "third-party-licenses.windows.md"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "12659",
+        "target": "12629",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "go.mod",
+          "go.sum"
         ]
       },
       {
@@ -4951,6 +5204,16 @@
       },
       {
         "type": "bug-fix",
+        "source": "12596",
+        "target": "12680",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "api/client.go",
+          "api/client_test.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
         "source": "12787",
         "target": "12757",
         "classification": "heuristic",
@@ -4969,6 +5232,15 @@
           "internal/licenses/licenses.go",
           "internal/licenses/licenses_test.go",
           "script/licenses"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "12623",
+        "target": "12701",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "pkg/cmd/issue/list/http.go"
         ]
       },
       {
@@ -5024,11 +5296,37 @@
       },
       {
         "type": "bug-fix",
-        "source": "13009",
-        "target": "13021",
+        "source": "12956",
+        "target": "12807",
         "classification": "heuristic",
         "overlapping_files": [
-          "pkg/cmd/pr/edit/edit.go"
+          "pkg/cmd/agent-task/capi/sessions.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "12963",
+        "target": "12886",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "go.mod",
+          "go.sum"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "13009",
+        "target": "12627",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "api/queries_pr.go",
+          "pkg/cmd/issue/create/create.go",
+          "pkg/cmd/pr/create/create.go",
+          "pkg/cmd/pr/create/create_test.go",
+          "pkg/cmd/pr/shared/editable.go",
+          "pkg/cmd/pr/shared/params.go",
+          "pkg/cmd/pr/shared/survey.go",
+          "pkg/cmd/pr/shared/survey_test.go"
         ]
       },
       {
@@ -5061,26 +5359,54 @@
           "go.mod",
           "go.sum"
         ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "13037",
+        "target": "12657",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "api/query_builder.go"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "13005",
+        "target": "12911",
+        "classification": "heuristic",
+        "overlapping_files": [
+          ".github/workflows/deployment.yml"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "13071",
+        "target": "13048",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "go.mod",
+          "go.sum"
+        ]
       }
     ],
     "by_complexity": {
       "small": {
-        "specd_rework_rate": 0.1053,
-        "unspecd_rework_rate": 0.26,
-        "specd_count": 38,
-        "unspecd_count": 100
+        "specd_rework_rate": 0.15,
+        "unspecd_rework_rate": 0.3143,
+        "specd_count": 40,
+        "unspecd_count": 105
       },
       "medium": {
-        "specd_rework_rate": 0.0909,
-        "unspecd_rework_rate": 0.1765,
+        "specd_rework_rate": 0.1818,
+        "unspecd_rework_rate": 0.1579,
         "specd_count": 22,
-        "unspecd_count": 17
+        "unspecd_count": 19
       },
       "large": {
-        "specd_rework_rate": 0.5,
-        "unspecd_rework_rate": 0.3333,
-        "specd_count": 8,
-        "unspecd_count": 6
+        "specd_rework_rate": 0.5556,
+        "unspecd_rework_rate": 0.4286,
+        "specd_count": 9,
+        "unspecd_count": 7
       }
     }
   }
