@@ -1,4 +1,4 @@
-Analysis run: 2026-04-04T10:38:09.287249+00:00
+Analysis run: 2026-04-04T18:40:46.814028+00:00
 Script: /Users/brenn/dev/ai-augmented-dev/research/study/scripts/pipeline/propensity-score-matching.py
 
 PURPOSE: Match spec'd and unspec'd PRs on JIT risk profile,
@@ -9,134 +9,134 @@ explain the observed spec–defect association.
 Dataset: 100,247 PRs, 119 repos
 SZZ:     64,805 blame links, 103 repos
 JIT:     88,847 feature rows, 119 repos
-Bot exclusion: 10,648 bot PRs removed, 89,599 remaining
+Bot exclusion: 12,195 bot PRs removed, 88,052 remaining
 
 Propensity score features: ['log_add', 'log_del', 'log_files', 'ns', 'nd', 'nf', 'entropy', 'la', 'ld', 'lt', 'fix', 'ndev', 'age', 'nuc', 'exp', 'rexp']
   sexp excluded (zero or missing variance)
 
-SZZ subset: 79,049 PRs in 103 repos
+SZZ subset: 77,814 PRs in 103 repos
 
 ======================================================================
 PSM: specs → SZZ bugs
 ======================================================================
 
-  Sample: 62,106 total  |  7,220 treated  |  54,886 control
-  Outcome: szz_buggy  (base rate: 0.137)
+  Sample: 61,192 total  |  7,161 treated  |  54,031 control
+  Outcome: szz_buggy  (base rate: 0.135)
 
-  Propensity score: mean=0.116  sd=0.065
-  Logit(PS): sd=0.730  caliper=0.0365 (0.05 SD)
+  Propensity score: mean=0.117  sd=0.064
+  Logit(PS): sd=0.710  caliper=0.0355 (0.05 SD)
 
-  Matched: 7,217 pairs  |  Unmatched treated: 3 (0.0% excluded)
+  Matched: 7,159 pairs  |  Unmatched treated: 2 (0.0% excluded)
 
   --- Covariate balance ---
 
   Feature                SMD before    SMD after  Balanced?
   -------------------- ------------ ------------ ----------
-  log_add                    +0.259       -0.013        yes
-  log_del                    +0.051       -0.010        yes
-  log_files                  +0.188       +0.002        yes
-  ns                         +0.076       +0.024        yes
-  nd                         +0.073       -0.003        yes
-  nf                         +0.078       -0.005        yes
-  entropy                    +0.227       +0.001        yes
-  la                         +0.039       +0.010        yes
-  ld                         +0.024       +0.006        yes
-  lt                         +0.091       +0.018        yes
-  fix                        +0.320       +0.025        yes
-  ndev                       -0.010       +0.011        yes
-  age                        +0.108       +0.003        yes
-  nuc                        -0.087       +0.005        yes
-  exp                        -0.217       +0.037        yes
-  rexp                       -0.343       +0.049        yes
+  log_add                    +0.268       +0.019        yes
+  log_del                    +0.047       +0.005        yes
+  log_files                  +0.193       +0.006        yes
+  ns                         +0.073       +0.013        yes
+  nd                         +0.074       -0.000        yes
+  nf                         +0.081       +0.001        yes
+  entropy                    +0.234       +0.006        yes
+  la                         +0.039       +0.014        yes
+  ld                         +0.024       +0.020        yes
+  lt                         +0.081       +0.020        yes
+  fix                        +0.312       -0.008        yes
+  ndev                       -0.016       -0.003        yes
+  age                        +0.112       +0.009        yes
+  nuc                        -0.089       +0.013        yes
+  exp                        -0.214       +0.019        yes
+  rexp                       -0.322       +0.031        yes
 
   All features well-balanced after matching (SMD < 0.1).
 
   --- Treatment effect in matched sample ---
-  Spec'd rate:   0.1616  (1166 / 7217 pairs)
-  Unspec'd rate: 0.1661  (1199 / 7217 pairs)
-  Difference:    -0.0046 pp
-  McNemar test:  chi2=0.530  p=0.4665
+  Spec'd rate:   0.1580  (1131 / 7159 pairs)
+  Unspec'd rate: 0.1643  (1176 / 7159 pairs)
+  Difference:    -0.0063 pp
+  McNemar test:  chi2=1.025  p=0.3114
   -> not significant
 
   Raw (unmatched) rates for reference:
-  Spec'd: 0.1616  Unspec'd: 0.1334  Diff: +0.0282
-  Attenuation after matching: -116.2%
+  Spec'd: 0.1582  Unspec'd: 0.1324  Diff: +0.0258
+  Attenuation after matching: -124.4%
   *** Large attenuation: matching substantially reduces the effect.
   *** JIT risk profile explains much of the raw association.
 
-Full dataset: 89,599 PRs in 119 repos
+Full dataset: 88,052 PRs in 119 repos
 
 ======================================================================
 PSM: specs → rework
 ======================================================================
 
-  Sample: 70,409 total  |  7,535 treated  |  62,874 control
+  Sample: 69,237 total  |  7,448 treated  |  61,789 control
   Outcome: reworked  (base rate: 0.047)
 
-  Propensity score: mean=0.107  sd=0.059
-  Logit(PS): sd=0.700  caliper=0.0350 (0.05 SD)
+  Propensity score: mean=0.108  sd=0.058
+  Logit(PS): sd=0.686  caliper=0.0343 (0.05 SD)
 
-  Matched: 7,529 pairs  |  Unmatched treated: 6 (0.1% excluded)
+  Matched: 7,445 pairs  |  Unmatched treated: 3 (0.0% excluded)
 
   --- Covariate balance ---
 
   Feature                SMD before    SMD after  Balanced?
   -------------------- ------------ ------------ ----------
-  log_add                    +0.277       +0.010        yes
-  log_del                    +0.065       -0.001        yes
-  log_files                  +0.194       -0.011        yes
-  ns                         +0.068       +0.004        yes
-  nd                         +0.070       -0.002        yes
-  nf                         +0.079       -0.005        yes
-  entropy                    +0.223       -0.012        yes
-  la                         +0.039       +0.005        yes
-  ld                         +0.023       +0.004        yes
-  lt                         +0.095       +0.012        yes
-  fix                        +0.300       +0.004        yes
-  ndev                       +0.013       -0.010        yes
-  age                        +0.062       -0.010        yes
-  nuc                        -0.082       +0.000        yes
-  exp                        -0.249       -0.007        yes
-  rexp                       -0.331       +0.016        yes
+  log_add                    +0.284       +0.009        yes
+  log_del                    +0.062       +0.001        yes
+  log_files                  +0.198       +0.012        yes
+  ns                         +0.066       +0.022        yes
+  nd                         +0.072       +0.014        yes
+  nf                         +0.083       +0.006        yes
+  entropy                    +0.231       +0.006        yes
+  la                         +0.039       +0.010        yes
+  ld                         +0.023       +0.019        yes
+  lt                         +0.085       +0.003        yes
+  fix                        +0.292       +0.003        yes
+  ndev                       +0.008       +0.007        yes
+  age                        +0.064       -0.002        yes
+  nuc                        -0.083       +0.000        yes
+  exp                        -0.249       +0.007        yes
+  rexp                       -0.314       +0.021        yes
 
   All features well-balanced after matching (SMD < 0.1).
 
   --- Treatment effect in matched sample ---
-  Spec'd rate:   0.1502  (1131 / 7529 pairs)
-  Unspec'd rate: 0.0473  (356 / 7529 pairs)
-  Difference:    +0.1029 pp
-  McNemar test:  chi2=438.241  p=0.0000
+  Spec'd rate:   0.1487  (1107 / 7445 pairs)
+  Unspec'd rate: 0.0438  (326 / 7445 pairs)
+  Difference:    +0.1049 pp
+  McNemar test:  chi2=454.369  p=0.0000
   -> SIGNIFICANT (p<0.05)
 
   Raw (unmatched) rates for reference:
-  Spec'd: 0.1501  Unspec'd: 0.0346  Diff: +0.1155
-  Attenuation after matching: -10.9%
+  Spec'd: 0.1488  Unspec'd: 0.0349  Diff: +0.1139
+  Attenuation after matching: -7.9%
   Effect is stable after matching. JIT features are not major confounders.
 
 Matched pairs saved to: /Users/brenn/dev/ai-augmented-dev/research/study/results/psm-matched-pairs.csv
-  14,746 total pairs across 2 analyses
+  14,604 total pairs across 2 analyses
 
 ======================================================================
 SUMMARY: PROPENSITY SCORE MATCHING RESULTS
 ======================================================================
 
 specs → SZZ bugs:
-  Matched pairs: 7,217  (unmatched treated: 3)
-  Spec'd defect rate:    0.1616
-  Matched control rate:  0.1661
-  ATT estimate:          -0.0046 pp
-  McNemar p:             0.4665  [not significant]
-  Raw (unmatched) diff:  +0.0282 pp
-  Attenuation:           -116.2%
+  Matched pairs: 7,159  (unmatched treated: 2)
+  Spec'd defect rate:    0.1580
+  Matched control rate:  0.1643
+  ATT estimate:          -0.0063 pp
+  McNemar p:             0.3114  [not significant]
+  Raw (unmatched) diff:  +0.0258 pp
+  Attenuation:           -124.4%
 
 specs → rework:
-  Matched pairs: 7,529  (unmatched treated: 6)
-  Spec'd defect rate:    0.1502
-  Matched control rate:  0.0473
-  ATT estimate:          +0.1029 pp
+  Matched pairs: 7,445  (unmatched treated: 3)
+  Spec'd defect rate:    0.1487
+  Matched control rate:  0.0438
+  ATT estimate:          +0.1049 pp
   McNemar p:             0.0000  [SIGNIFICANT (p<0.05)]
-  Raw (unmatched) diff:  +0.1155 pp
-  Attenuation:           -10.9%
+  Raw (unmatched) diff:  +0.1139 pp
+  Attenuation:           -7.9%
 
 Interpretation:
   ATT = Average Treatment effect on the Treated (within matched pairs).

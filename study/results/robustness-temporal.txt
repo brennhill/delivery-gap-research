@@ -1,4 +1,4 @@
-Temporal robustness run: 2026-04-04T18:07:48.864870+00:00
+Temporal robustness run: 2026-04-04T18:40:29.110861+00:00
 Script: /Users/brenn/dev/ai-augmented-dev/research/study/scripts/pipeline/robustness-temporal.py
 
 ======================================================================
@@ -15,7 +15,7 @@ MONTHLY SPECIFICATION AND AI ADOPTION RATES
      2025-09    4,382    1.1%    5.5%
      2025-10    6,349    8.8%    6.1%
      2025-11    6,148    8.8%    4.9%
-     2025-12    7,903   10.3%    5.6%
+     2025-12    7,903   10.3%    5.7%
      2026-01   10,832   12.7%    7.6%
      2026-02   12,396   13.0%    8.1%
      2026-03   19,856   14.5%    9.8%
@@ -58,38 +58,38 @@ H4: Spec quality → rework (recent, within-author)
 
 ──────────────────────────────────────────────────
 H5: Specs constrain AI scope (recent, within-author)
-  AI-tagged PRs (recent, nonzero churn): 3,785
-  [recent-H5-AI] N=3,400, authors=321 (127 with variation)
-  coef=-0.0026, p=0.9747 
-  Human PRs (recent, nonzero churn): 39,357
-  [recent-H5-human] N=35,971, authors=3,116 (735 with variation)
-  coef=+0.0866, p=0.0073 **
-  [recent-H5-interaction] N=39,669, authors=3,247 (176 with variation)
-  coef=-0.1188, p=0.1216 
+  AI-tagged PRs (recent, nonzero churn): 3,790
+  [recent-H5-AI] N=3,405, authors=322 (127 with variation)
+  coef=-0.0044, p=0.9574 
+  Human PRs (recent, nonzero churn): 39,352
+  [recent-H5-human] N=35,966, authors=3,115 (735 with variation)
+  coef=+0.0868, p=0.0072 **
+  [recent-H5-interaction] N=39,669, authors=3,247 (177 with variation)
+  coef=-0.1183, p=0.1234 
 
 
 ======================================================================
 SUBGROUP ANALYSIS (RECENT WINDOW)
 ======================================================================
 
-Human-only PRs (recent): 39,419
+Human-only PRs (recent): 39,414
   Specs → bugs (human-only, recent):
-  [recent-human-bugs] N=32,523, authors=2,752 (663 with variation)
-  coef=+0.0154, p=0.0730 
+  [recent-human-bugs] N=32,518, authors=2,751 (663 with variation)
+  coef=+0.0153, p=0.0739 
   Specs → rework (human-only, recent):
-  [recent-human-rework] N=36,030, authors=3,120 (735 with variation)
+  [recent-human-rework] N=36,025, authors=3,119 (735 with variation)
   coef=+0.0441, p=0.0000 ***
 
-AI-tagged PRs (recent): 3,789
+AI-tagged PRs (recent): 3,794
   AI spec rate: 18.8%
   AI bug rate: 14.0%
   AI rework rate: 11.0%
   Specs → bugs (AI-only, recent):
-  [recent-ai-bugs] N=3,283, authors=307 (124 with variation)
-  coef=+0.0137, p=0.4424 
+  [recent-ai-bugs] N=3,288, authors=308 (124 with variation)
+  coef=+0.0139, p=0.4354 
   Specs → rework (AI-only, recent):
-  [recent-ai-rework] N=3,404, authors=321 (127 with variation)
-  coef=+0.0139, p=0.5217 
+  [recent-ai-rework] N=3,409, authors=322 (127 with variation)
+  coef=+0.0140, p=0.5180 
 
 
 ======================================================================
@@ -138,8 +138,8 @@ FULL DATASET (for comparison)
   coef=+0.0488, p=0.0000 ***
 
 --- H5: AI scope interaction (full, within-author) ---
-  [full-H5-interaction] N=81,516, authors=4,887 (212 with variation)
-  coef=-0.1892, p=0.0007 ***
+  [full-H5-interaction] N=81,516, authors=4,887 (213 with variation)
+  coef=-0.1893, p=0.0007 ***
 
 
 ======================================================================
@@ -152,17 +152,17 @@ are improving outcomes, the effect should appear in the most recent data.
 
                                       Test   Recent coef         p     Full coef         p
   ────────────────────────────────────────  ────────────  ────────  ────────────  ────────
-  [summary-ai-bugs] N=3,283, authors=307 (124 with variation)
-  coef=+0.0137, p=0.4424 
-  [summary-ai-rework] N=3,404, authors=321 (127 with variation)
-  coef=+0.0139, p=0.5217 
+  [summary-ai-bugs] N=3,288, authors=308 (124 with variation)
+  coef=+0.0139, p=0.4354 
+  [summary-ai-rework] N=3,409, authors=322 (127 with variation)
+  coef=+0.0140, p=0.5180 
                       H1: Specs → SZZ bugs       +0.0147    0.0567       +0.0171    0.0209
                         H2: Specs → rework       +0.0401    0.0000       +0.0488    0.0000
                    H3: Spec quality → bugs       -0.0006    0.0719           ---       ---
                  H4: Spec quality → rework       -0.0005    0.1548           ---       ---
-                H5: AI scope (interaction)       -0.1188    0.1216       -0.1892    0.0007
-                         AI + specs → bugs       +0.0137    0.4424           ---       ---
-                       AI + specs → rework       +0.0139    0.5217           ---       ---
+                H5: AI scope (interaction)       -0.1183    0.1234       -0.1893    0.0007
+                         AI + specs → bugs       +0.0139    0.4354           ---       ---
+                       AI + specs → rework       +0.0140    0.5180           ---       ---
 
 The pattern is identical across all five hypotheses. In the period of
 highest SDD adoption, specification artifacts are still associated with

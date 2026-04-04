@@ -1,4 +1,4 @@
-Analysis run: 2026-04-04T18:07:21.272123+00:00
+Analysis run: 2026-04-04T18:40:04.542112+00:00
 Script: /Users/brenn/dev/ai-augmented-dev/research/study/scripts/pipeline/full-szz-analysis.py
 
 Dataset: 100,247 PRs, 119 repos
@@ -7,7 +7,7 @@ JIT: 88,847 feature rows, 119 repos
 Bot exclusion: 12,195 bot PRs removed, 88,052 remaining
 PRs in SZZ repos: 77,814
 SZZ buggy PRs: 9,754
-AI-tagged PRs: 5,975
+AI-tagged PRs: 5,989
 Spec'd PRs: 7,837
 Spec quality scored PRs: 5,192
 
@@ -72,20 +72,18 @@ ANALYSIS 4: AI vs HUMAN BUG RATES (SZZ)
 ======================================================================
 
 Pooled rates:
-  AI-tagged: 0.167 (5,310 PRs)
-  Human:     0.122 (72,504 PRs)
-  Fisher's exact: OR=1.435, p=0.000000
+  AI-tagged: 0.167 (5,324 PRs)
+  Human:     0.122 (72,490 PRs)
+  Fisher's exact: OR=1.443, p=0.000000
 
 Controlled (logistic regression + repo FE):
-  [ai-szz] Logit failed: Singular matrix
-  [ai-szz] Retrying without repo FE...
-  ai_int: coef=0.2189, p=0.000000
-  (size controls only — repo FE caused singular matrix)
+  ai_int: coef=-0.0680, p=0.172305
+  (with 102 repo dummies + size controls)
 
 Within-author (LPM, clustered SEs):
-  Within-author LPM: N=72,046, authors=4,328 (640 with treatment variation)
-  ai_int: coef=0.0068, p=0.552739
-  Interpretation: +0.0068 pp change in P(szz_buggy)
+  Within-author LPM: N=72,046, authors=4,328 (642 with treatment variation)
+  ai_int: coef=0.0079, p=0.497193
+  Interpretation: +0.0079 pp change in P(szz_buggy)
   -> INCREASES (not significant)
 
 ======================================================================
@@ -93,32 +91,32 @@ ANALYSIS 5: DO SPECS CONSTRAIN AI SCOPE?
 ======================================================================
 
 Median total churn (additions+deletions), excluding zero-churn PRs:
-  AI + spec:         113 (903 PRs)
-  AI no spec:         86 (4,401 PRs)
-  Human + spec:       81 (6,607 PRs)
-  Human no spec:      52 (65,776 PRs)
+  AI + spec:         113 (906 PRs)
+  AI no spec:         86 (4,412 PRs)
+  Human + spec:       81 (6,604 PRs)
+  Human no spec:      52 (65,765 PRs)
 
   AI sprawl ratio (unspec/spec): 0.76x
   Human sprawl ratio: 0.64x
 
-  Mann-Whitney (AI unspec > spec): U=1815331, p=1.00e+00
-  Mann-Whitney (Human unspec > spec): U=193203394, p=1.00e+00
+  Mann-Whitney (AI unspec > spec): U=1827124, p=1.00e+00
+  Mann-Whitney (Human unspec > spec): U=193075488, p=1.00e+00
 
 Within-author (LPM) — AI PRs only, outcome=log_churn:
-  Within-author LPM: N=4,787, authors=421 (140 with treatment variation)
-  specd_int: coef=0.0476, p=0.513857
-  Interpretation: +4.9% change in log_churn (coef on log scale)
+  Within-author LPM: N=4,797, authors=422 (140 with treatment variation)
+  specd_int: coef=0.0423, p=0.560582
+  Interpretation: +4.3% change in log_churn (coef on log scale)
   -> INCREASES (not significant)
 
 Within-author (LPM) — Human PRs only, outcome=log_churn:
-  Within-author LPM: N=66,884, authors=4,172 (819 with treatment variation)
-  specd_int: coef=0.1272, p=0.000063
+  Within-author LPM: N=66,872, authors=4,171 (819 with treatment variation)
+  specd_int: coef=0.1275, p=0.000062
   Interpretation: +13.6% change in log_churn (coef on log scale)
   -> INCREASES (SIGNIFICANT)
 
 Interaction test (spec x AI on log_churn):
-  Within-author LPM: N=71,932, authors=4,324 (201 with treatment variation)
-  spec_x_ai: coef=-0.1975, p=0.000867
+  Within-author LPM: N=71,932, authors=4,324 (202 with treatment variation)
+  spec_x_ai: coef=-0.1976, p=0.000848
   Interpretation: -17.9% change in log_churn (coef on log scale)
   -> DECREASES (SIGNIFICANT)
 
@@ -348,8 +346,8 @@ Within-author results (the most credible estimates):
     coef=+0.0000 pp, p=0.2943 — INCREASES (not significant)
     Identified from 4320 authors with treatment variation
   4. AI-tagged -> SZZ bugs:
-    coef=+0.0068 pp, p=0.5527 — INCREASES (not significant)
-    Identified from 640 authors with treatment variation
+    coef=+0.0079 pp, p=0.4972 — INCREASES (not significant)
+    Identified from 642 authors with treatment variation
   6. Specs -> rework:
     coef=+0.0488 pp, p=0.0000 — INCREASES (SIGNIFICANT)
     Identified from 985 authors with treatment variation
@@ -358,9 +356,9 @@ Within-author results (the most credible estimates):
     Identified from 357 authors with treatment variation
 
   5. Scope constraint (AI PRs, spec -> log_churn):
-    AI: coef=+0.0476, p=0.5139 — INCREASES (not significant)
-    Human: coef=+0.1272, p=0.0001 — INCREASES (SIGNIFICANT)
-    Interaction (spec x AI): coef=-0.1975, p=0.0009 — SIGNIFICANT
+    AI: coef=+0.0423, p=0.5606 — INCREASES (not significant)
+    Human: coef=+0.1275, p=0.0001 — INCREASES (SIGNIFICANT)
+    Interaction (spec x AI): coef=-0.1976, p=0.0008 — SIGNIFICANT
 
   8. JIT features: see detailed results above.
 
