@@ -1,0 +1,3791 @@
+[
+  {
+    "id": "7962",
+    "source": "github_graphql",
+    "repo": "tokio-rs/tokio",
+    "title": "examples: add graceful shutdown example",
+    "body": "## Summary\n\n- Adds a `graceful-shutdown` example demonstrating `tokio::signal::ctrl_c()` for clean server shutdown\n- TCP echo server that notifies active connections via `broadcast` channel before exiting\n- Shows the `tokio::select!` pattern for combining accept loops with shutdown signals\n\n### Motivation\n\nGraceful shutdown is one of the most common patterns in production async applications, but none of the existing 20 examples cover `tokio::signal` or shutdown coordination. This fills that gap with a minimal, self-contained example.\n\n### Checklist\n\n- [x] `cargo build --example graceful-shutdown`\n- [x] `cargo run --example graceful-shutdown` \u2014 tested with `nc` + Ctrl+C\n- [x] `cargo clippy --example graceful-shutdown`\n- [x] `cargo fmt --check`",
+    "author": "Sim-hu",
+    "merged_at": "2026-03-30T09:05:53+00:00",
+    "created_at": "2026-03-08T04:59:43+00:00",
+    "files": [
+      "examples/Cargo.toml",
+      "examples/graceful-shutdown.rs"
+    ],
+    "additions": 124,
+    "deletions": 0,
+    "ticket_ids": [],
+    "merge_commit_sha": "6752f50154025a1aa2c231b643cdb78bb4c3892f",
+    "pr_number": 7962,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "martin-g",
+        "state": "commented",
+        "submitted_at": "2026-03-09T10:04:25+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "Darksonn",
+        "state": "commented",
+        "submitted_at": "2026-03-09T10:30:09+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "Darksonn",
+        "state": "commented",
+        "submitted_at": "2026-03-23T16:46:13+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "Sim-hu",
+        "state": "commented",
+        "submitted_at": "2026-03-24T06:21:48+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "Sim-hu",
+        "state": "commented",
+        "submitted_at": "2026-03-24T06:21:49+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "Darksonn",
+        "state": "commented",
+        "submitted_at": "2026-03-24T07:16:07+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "Sim-hu",
+        "state": "commented",
+        "submitted_at": "2026-03-24T09:23:11+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "Darksonn",
+        "state": "commented",
+        "submitted_at": "2026-03-24T11:57:27+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "Sim-hu",
+        "state": "commented",
+        "submitted_at": "2026-03-24T12:49:34+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "Darksonn",
+        "state": "commented",
+        "submitted_at": "2026-03-26T09:19:50+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "Sim-hu",
+        "state": "commented",
+        "submitted_at": "2026-03-28T13:00:44+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "martin-g",
+        "state": "approved",
+        "submitted_at": "2026-03-29T20:07:53+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "Darksonn",
+        "state": "approved",
+        "submitted_at": "2026-03-30T09:05:42+00:00",
+        "is_bot": false,
+        "body": "Thanks."
+      }
+    ],
+    "commits": [
+      {
+        "message": "examples: rework graceful shutdown to use CancellationToken + TaskTracker\n\nRewrite the example to follow the patterns described in the Graceful\nShutdown tutorial page. Uses CancellationToken to signal tasks and\nTaskTracker to wait for in-flight connections instead of a sleep.\n\nAlso handles accept() errors without crashing and properly checks\nwrite_all results.",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "fix: document accept error trade-off in graceful shutdown example\n\nAdd a comment explaining why `continue` is used for accept errors\nand noting that a production server should consider breaking or\nbacking off on fatal errors to avoid busy loops.",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "refactor: extract handle_connection and make write_all cancellable",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "refactor: split handle_connection into outer cancel + inner echo fn\n\nFlatten the nested select! blocks by extracting echo logic into a\nseparate async fn. The outer function handles cancellation via the\ntoken while the inner function does plain read/write.",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "refactor: add timeout to shutdown notification write\n\nA slow or unresponsive client could block the write_all during\nshutdown indefinitely. Wrap it in a 1-second timeout and add a\ncomment explaining the rationale.",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "style: apply rustfmt to graceful-shutdown example",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "refactor: extract notify_shutdown into its own function\n\nMove the shutdown notification logic into a dedicated async fn with a\ndoc-comment explaining when it is called. Also add a doc-comment to\necho for clarity.",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 7,
+    "last_edited_at": null,
+    "total_comments_count": 20
+  },
+  {
+    "id": "7987",
+    "source": "github_graphql",
+    "repo": "tokio-rs/tokio",
+    "title": "remove Rust 1.94.0 workarounds",
+    "body": "Revert https://github.com/tokio-rs/tokio/pull/7968\r\nRevert https://github.com/tokio-rs/tokio/pull/7961\r\n\r\nNow that [Rust 1.94.1](https://releases.rs/docs/1.94.1/) is available, remove the temporary workarounds introduced for https://github.com/rust-lang/cargo/issues/16357 and https://github.com/rust-lang/rust/issues/153486.\r\n\r\n",
+    "author": "xtqqczze",
+    "merged_at": "2026-03-30T08:44:48+00:00",
+    "created_at": "2026-03-26T16:29:32+00:00",
+    "files": [
+      ".cirrus.yml",
+      ".github/workflows/ci.yml",
+      "tokio/src/fs/open_options.rs",
+      "tokio/src/fs/open_options/mock_open_options.rs",
+      "tokio/src/fs/open_options/uring_open_options.rs"
+    ],
+    "additions": 23,
+    "deletions": 28,
+    "ticket_ids": [],
+    "merge_commit_sha": "6c72168a93f9598c1e25915f188cf6492d012cfc",
+    "pr_number": 7987,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "Darksonn",
+        "state": "commented",
+        "submitted_at": "2026-03-27T10:03:13+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "xtqqczze",
+        "state": "commented",
+        "submitted_at": "2026-03-27T13:41:09+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "Darksonn",
+        "state": "commented",
+        "submitted_at": "2026-03-27T13:42:56+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "xtqqczze",
+        "state": "commented",
+        "submitted_at": "2026-03-27T14:51:33+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "xtqqczze",
+        "state": "commented",
+        "submitted_at": "2026-03-27T15:01:54+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "martin-g",
+        "state": "approved",
+        "submitted_at": "2026-03-29T20:11:21+00:00",
+        "is_bot": false,
+        "body": "LGTM!\nAll tests pass (FreeBSD ones too)."
+      }
+    ],
+    "commits": [
+      {
+        "message": "Revert \"ci: workaround for OpenOptionsExt in 1.94.0 (#7968)\"\n\nThis reverts commit d3c7f56c10a43c220e6feb12c9796f36eaffda16.",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Revert \"ci: freeze rustc on 1.93.1 (#7961)\"\n\nThis reverts commit 961757f5483e394ec3c99a4c2ab5a6e705a0b740.",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 2,
+    "last_edited_at": "2026-03-27T19:41:59+00:00",
+    "total_comments_count": 7
+  },
+  {
+    "id": "7989",
+    "source": "github_graphql",
+    "repo": "tokio-rs/tokio",
+    "title": "net: use null get_peer_cred on Hurd",
+    "body": "## Motivation\r\n\r\nMake tokio more usable on GNU/Hurd. Currently, users of tokio may fail to build because `get_peer_cred()` is not implemented.\r\n\r\n## Solution\r\n\r\nDue to the lack of (non-portable) APIs for this task (which makes it not possible to use any of the existing implementations), for now use the the null/empty `get_peer_cred()` implementation.",
+    "author": "pinotree",
+    "merged_at": "2026-03-27T08:38:55+00:00",
+    "created_at": "2026-03-26T20:01:47+00:00",
+    "files": [
+      "tokio/src/net/unix/ucred.rs"
+    ],
+    "additions": 2,
+    "deletions": 2,
+    "ticket_ids": [],
+    "merge_commit_sha": "ee4de818065a97c0be0d6bfc18fb36725349aef8",
+    "pr_number": 7989,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "Darksonn",
+        "state": "approved",
+        "submitted_at": "2026-03-27T08:38:44+00:00",
+        "is_bot": false,
+        "body": "Thanks."
+      }
+    ],
+    "commits": [
+      {
+        "message": "net: use null get_peer_cred on Hurd\n\nNone of the other implementations/APIs is supported on the Hurd,\nso for now use the null/empty get_peer_cred implementation.",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 1
+  },
+  {
+    "id": "7968",
+    "source": "github_graphql",
+    "repo": "tokio-rs/tokio",
+    "title": "ci: workaround for OpenOptionsExt in 1.94.0",
+    "body": "## Motivation\r\n\r\nThere was an accidental breaking change in `std::os::windows::OpenOptionsExt` in rust 1.94 (see #7955). The fix seems like it might take awhile to land and be released so I made this PR to allow tokio's CI to keep working on stable in the meantime in case it's useful to the project.\r\n\r\n## Solution\r\n\r\nInstead of using extension traits for mock_open_options, implement the extension methods on OpenOptions itself. This should be robust against any future issues too (I did it for both Windows and Unix options).",
+    "author": "ChrisDenton",
+    "merged_at": "2026-03-13T10:53:13+00:00",
+    "created_at": "2026-03-12T09:07:19+00:00",
+    "files": [
+      ".github/workflows/ci.yml",
+      "tokio/src/fs/open_options.rs",
+      "tokio/src/fs/open_options/mock_open_options.rs",
+      "tokio/src/fs/open_options/uring_open_options.rs"
+    ],
+    "additions": 26,
+    "deletions": 21,
+    "ticket_ids": [
+      "#7955"
+    ],
+    "merge_commit_sha": "d3c7f56c10a43c220e6feb12c9796f36eaffda16",
+    "pr_number": 7968,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "martin-g",
+        "state": "approved",
+        "submitted_at": "2026-03-12T11:12:29+00:00",
+        "is_bot": false,
+        "body": ""
+      }
+    ],
+    "commits": [
+      {
+        "message": "fs: only use inherent methods for mock OpenOptions\n\nInstead of using extension traits for mock_open_options, implement the extension methods on OpenOptions itself.",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "ci: freeze rust on 1.93.1 for wasip1-threads",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Add comment with link to issue",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 3,
+    "last_edited_at": null,
+    "total_comments_count": 5
+  },
+  {
+    "id": "7978",
+    "source": "github_graphql",
+    "repo": "tokio-rs/tokio",
+    "title": "docs(runtime): document FD table pre-warming workaround",
+    "body": "Related:#2702, #7970\r\n\r\n## Motivation\r\n\r\nOn Linux, the kernel grows the per-process file descriptor table lazily. The growth operation uses RCU synchronization, which in a multi-threaded process can block the calling thread for tens of milliseconds while it waits for all RCU readers to quiesce. When this happens on a tokio worker thread (e.g. during a `socket()` syscall), the entire event loop stalls, not just the affected task.\r\n\r\nThis was first identified by @carllerche in #2702 (p100 dropped from ~29ms to ~291\u00b5s after pre-warming). Multiple teams have independently discovered the same `dup`/`close` workaround, but it isn't documented anywhere in tokio.\r\n\r\n## Solution\r\n\r\nAdds an example (`examples/prewarm-fd-table.rs`) demonstrating the workaround: use `fcntl(fd, F_DUPFD_CLOEXEC, target)` to force the kernel to expand the FD table before building the runtime. The kernel never shrinks the table, so the capacity persists after closing the duplicated FDs.\r\n\r\nAlso starts a `Performance tuning` section in the `runtime` docs, with a small note on fd prewarming.",
+    "author": "jlizen",
+    "merged_at": "2026-03-26T15:17:27+00:00",
+    "created_at": "2026-03-19T18:31:55+00:00",
+    "files": [
+      "examples/Cargo.toml",
+      "examples/prewarm-fd-table.rs",
+      "spellcheck.dic",
+      "tokio/src/runtime/mod.rs"
+    ],
+    "additions": 103,
+    "deletions": 1,
+    "ticket_ids": [
+      "#2702",
+      "#7970"
+    ],
+    "merge_commit_sha": "a8435c0fc8612bbdf38d3ad8b2ba96d5dbc848d9",
+    "pr_number": 7978,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "Darksonn",
+        "state": "commented",
+        "submitted_at": "2026-03-20T08:20:28+00:00",
+        "is_bot": false,
+        "body": "Thanks!"
+      },
+      {
+        "reviewer": "Mark-Simulacrum",
+        "state": "commented",
+        "submitted_at": "2026-03-20T16:57:08+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "jlizen",
+        "state": "commented",
+        "submitted_at": "2026-03-20T19:19:20+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "Darksonn",
+        "state": "commented",
+        "submitted_at": "2026-03-20T19:20:11+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "jlizen",
+        "state": "commented",
+        "submitted_at": "2026-03-20T19:21:53+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "jlizen",
+        "state": "commented",
+        "submitted_at": "2026-03-20T19:29:51+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "Darksonn",
+        "state": "commented",
+        "submitted_at": "2026-03-20T19:31:49+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "martin-g",
+        "state": "commented",
+        "submitted_at": "2026-03-20T21:02:50+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "Mark-Simulacrum",
+        "state": "commented",
+        "submitted_at": "2026-03-20T22:12:41+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "jlizen",
+        "state": "commented",
+        "submitted_at": "2026-03-20T22:52:48+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "jlizen",
+        "state": "commented",
+        "submitted_at": "2026-03-20T22:56:23+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "ADD-SP",
+        "state": "approved",
+        "submitted_at": "2026-03-22T17:26:07+00:00",
+        "is_bot": false,
+        "body": "Looks good to me.\n\nShall we use this commit message\uff1f\n```\nexamples: add FD table pre-warming example\n```"
+      },
+      {
+        "reviewer": "martin-g",
+        "state": "approved",
+        "submitted_at": "2026-03-23T10:36:22+00:00",
+        "is_bot": false,
+        "body": ""
+      }
+    ],
+    "commits": [
+      {
+        "message": "feat(examples): add FD table pre-warming example",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "docs(runtime): add Performance tuning section with FD table pre-warming note",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "ci: retry",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "ci: retry",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Apply suggestions from code review\n\nCo-authored-by: Martin Grigorov <martin-g@users.noreply.github.com>",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "fix(examples): use i32 for FD target, mention RLIMIT_NOFILE, fix non-Linux build",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "fix(examples): remove unused non-Linux stub for prewarm_fd_table",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "docs(examples): add safe stdlib alternative for FD table pre-warming",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Merge branch 'master' into docs/fd-table-prewarm",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 9,
+    "last_edited_at": "2026-03-20T19:52:58+00:00",
+    "total_comments_count": 26
+  },
+  {
+    "id": "7984",
+    "source": "github_graphql",
+    "repo": "tokio-rs/tokio",
+    "title": "benches: use `is_multiple_of` instead of manual modulo check in `remote_spawn`",
+    "body": "Fixes a clippy::manual_is_multiple_of warning in the remote_spawn benchmark.\n\n\\`TOTAL_TASKS % 64 == 0\\` can be written as \\`TOTAL_TASKS.is_multiple_of(64)\\` which is more readable.",
+    "author": "",
+    "merged_at": "2026-03-22T13:00:12+00:00",
+    "created_at": "2026-03-22T12:28:08+00:00",
+    "files": [
+      "benches/remote_spawn.rs"
+    ],
+    "additions": 4,
+    "deletions": 1,
+    "ticket_ids": [],
+    "merge_commit_sha": "467d614267ce422206d8acbccf957eb49a597467",
+    "pr_number": 7984,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "martin-g",
+        "state": "approved",
+        "submitted_at": "2026-03-22T12:56:16+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "mattiapitossi",
+        "state": "approved",
+        "submitted_at": "2026-03-22T12:57:39+00:00",
+        "is_bot": false,
+        "body": ""
+      }
+    ],
+    "commits": [
+      {
+        "message": "bench: use is_multiple_of instead of manual modulo check\n\nAddresses clippy::manual_is_multiple_of warning on latest stable.",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 1
+  },
+  {
+    "id": "7977",
+    "source": "github_graphql",
+    "repo": "tokio-rs/tokio",
+    "title": "chore: Do not show \"Available on non-loom only.\" doc label",
+    "body": "\r\n## Motivation\r\n\r\nDo not show \"Available on non-loom only.\" doc label\r\n\r\nCloses #7976\r\n\r\n## Solution\r\n\r\nUses the unstable #[doc(cfg()]. https://github.com/rust-lang/rust/issues/43781\r\n",
+    "author": "martin-g",
+    "merged_at": "2026-03-18T13:14:02+00:00",
+    "created_at": "2026-03-18T09:38:43+00:00",
+    "files": [
+      ".cirrus.yml",
+      "tokio/src/lib.rs"
+    ],
+    "additions": 4,
+    "deletions": 1,
+    "ticket_ids": [
+      "#7976"
+    ],
+    "merge_commit_sha": "66c786540ec0bc60f506945dafd7cc7cad6b01a0",
+    "pr_number": 7977,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "Darksonn",
+        "state": "commented",
+        "submitted_at": "2026-03-18T12:28:36+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "martin-g",
+        "state": "commented",
+        "submitted_at": "2026-03-18T12:30:27+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "Darksonn",
+        "state": "commented",
+        "submitted_at": "2026-03-18T12:31:12+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "Darksonn",
+        "state": "commented",
+        "submitted_at": "2026-03-18T12:31:53+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "martin-g",
+        "state": "commented",
+        "submitted_at": "2026-03-18T12:35:09+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "Darksonn",
+        "state": "approved",
+        "submitted_at": "2026-03-18T12:48:17+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "mattiapitossi",
+        "state": "approved",
+        "submitted_at": "2026-03-18T13:10:16+00:00",
+        "is_bot": false,
+        "body": ""
+      }
+    ],
+    "commits": [
+      {
+        "message": "chore: Do not show \"Available on non-loom only.\" doc label\n\nCloses #7976\n\nUses the unstable #[doc(cfg()]. https://github.com/rust-lang/rust/issues/43781",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Use build.rs to detect nightly builds",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Use `docsrs` instead of `nightly`. Drop build.rs",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Merge branch 'master' into 7976-suppress-loom-label-in-docs",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Use doc(auto_cfg(hide(config_name)))",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Use same nightly on CirrusCI (FreeBSD) as on Github Actions CI",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 6,
+    "last_edited_at": null,
+    "total_comments_count": 9
+  },
+  {
+    "id": "7967",
+    "source": "github_graphql",
+    "repo": "tokio-rs/tokio",
+    "title": "ci: patch workspace members to disambiguate `--package`",
+    "body": "<!--\r\nThank you for your Pull Request. Please provide a description above and review\r\nthe requirements below.\r\n\r\nBug fixes and new features should include tests.\r\n\r\nContributors guide: https://github.com/tokio-rs/tokio/blob/master/CONTRIBUTING.md\r\n\r\nThe contributors guide includes instructions for running rustfmt and building the\r\ndocumentation, which requires special commands beyond `cargo fmt` and `cargo doc`.\r\n-->\r\n\r\n## Motivation\r\n\r\n<!--\r\nExplain the context and why you're making that change. What is the problem\r\nyou're trying to solve? In some cases there is not a problem and this can be\r\nthought of as being the motivation for your change.\r\n-->\r\n\r\nBefore the change, testing workspace members fails with `specification is ambiguous`\r\n\r\n```console\r\n$ cargo test -p tokio-stream # cargo nextest run -p tokio-stream\r\nerror: specificationm `tokio-stream` is ambiguous\r\nhelp: re-run this command with one of the following specifications\r\n  path+file:///home/figsoda/tokio/tokio-stream#0.1.18\r\n  registry+https://github.com/rust-lang/crates.io-index#tokio-stream@0.1.18\r\n```\r\n\r\nThis can be fixed with `cargo test -p file://$PWD/tokio-stream`, but it seems unnecessarily complicated\r\n\r\n## Solution\r\n\r\nPatch the other workspace members, just like what we are doing with `tokio`",
+    "author": "figsoda",
+    "merged_at": "2026-03-18T06:27:46+00:00",
+    "created_at": "2026-03-11T18:33:06+00:00",
+    "files": [
+      ".github/workflows/ci.yml",
+      "Cargo.toml"
+    ],
+    "additions": 11,
+    "deletions": 4,
+    "ticket_ids": [],
+    "merge_commit_sha": "dd1196d36930bf23d5ba32402f5dadef861546fa",
+    "pr_number": 7967,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "mattiapitossi",
+        "state": "commented",
+        "submitted_at": "2026-03-11T19:08:21+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "figsoda",
+        "state": "commented",
+        "submitted_at": "2026-03-11T20:20:19+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "mattiapitossi",
+        "state": "commented",
+        "submitted_at": "2026-03-11T21:03:31+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "mattiapitossi",
+        "state": "approved",
+        "submitted_at": "2026-03-12T12:52:24+00:00",
+        "is_bot": false,
+        "body": "With the CI changes, it makes sense to me, though this still requires a formal approval from a maintainer "
+      },
+      {
+        "reviewer": "martin-g",
+        "state": "approved",
+        "submitted_at": "2026-03-13T10:34:20+00:00",
+        "is_bot": false,
+        "body": ""
+      }
+    ],
+    "commits": [
+      {
+        "message": "chore: patch workspace members to disambiguate `--package`",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "ci: fix crates-io patching",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 2,
+    "last_edited_at": "2026-03-11T19:54:24+00:00",
+    "total_comments_count": 5
+  },
+  {
+    "id": "7966",
+    "source": "github_graphql",
+    "repo": "tokio-rs/tokio",
+    "title": "impl `FromStream` for `std::collections::*`",
+    "body": "<!--\r\nThank you for your Pull Request. Please provide a description above and review\r\nthe requirements below.\r\n\r\nBug fixes and new features should include tests.\r\n\r\nContributors guide: https://github.com/tokio-rs/tokio/blob/master/CONTRIBUTING.md\r\n\r\nThe contributors guide includes instructions for running rustfmt and building the\r\ndocumentation, which requires special commands beyond `cargo fmt` and `cargo doc`.\r\n-->\r\n\r\n## Motivation\r\n\r\nMake `Stream::collect` closer to feature parity with `Iterator::collect`, follow up to #7954\r\n\r\n## Solution\r\n\r\nthe code should be trivial enough if you read commit by commit\r\n",
+    "author": "figsoda",
+    "merged_at": "2026-03-16T15:00:49+00:00",
+    "created_at": "2026-03-11T18:19:01+00:00",
+    "files": [
+      "tokio-stream/src/stream_ext/collect.rs",
+      "tokio-stream/tests/stream_collect.rs"
+    ],
+    "additions": 245,
+    "deletions": 2,
+    "ticket_ids": [
+      "#7954"
+    ],
+    "merge_commit_sha": "2db0070eb8ab1c543f5dc93b3392645d00ce43cc",
+    "pr_number": 7966,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "martin-g",
+        "state": "approved",
+        "submitted_at": "2026-03-12T06:40:02+00:00",
+        "is_bot": false,
+        "body": "LGTM!\n\nThe changes look simple! They could probably be made even simpler by using a macro to avoid all the duplication.\n\nOne note: The PR title says \"impl Stream ...\" but it is actually `FromStream`"
+      },
+      {
+        "reviewer": "Darksonn",
+        "state": "commented",
+        "submitted_at": "2026-03-12T08:54:29+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "figsoda",
+        "state": "commented",
+        "submitted_at": "2026-03-12T15:07:14+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "Darksonn",
+        "state": "approved",
+        "submitted_at": "2026-03-16T15:00:33+00:00",
+        "is_bot": false,
+        "body": "Looks ok to me."
+      }
+    ],
+    "commits": [
+      {
+        "message": "stream: impl `FromStream` for `BTreeMap`",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "stream: impl `FromStream` for `HashSet`",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "stream: impl `FromStream` for `HashMap`",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "stream: impl `FromStream` for `VecDeque`",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "stream: impl `FromStream` for `LinkedList`",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "stream: impl `FromStream` for `BinaryHeap`",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "fixup! stream: impl `FromStream` for `VecDeque`",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "fixup! stream: impl `FromStream` for `LinkedList`",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 8,
+    "last_edited_at": null,
+    "total_comments_count": 4
+  },
+  {
+    "id": "7921",
+    "source": "github_graphql",
+    "repo": "tokio-rs/tokio",
+    "title": "runtime: add `worker_index()` getter",
+    "body": "\r\n\r\n<!--\r\nThank you for your Pull Request. Please provide a description above and review\r\nthe requirements below.\r\n\r\nBug fixes and new features should include tests.\r\n\r\nContributors guide: https://github.com/tokio-rs/tokio/blob/master/CONTRIBUTING.md\r\n\r\nThe contributors guide includes instructions for running rustfmt and building the\r\ndocumentation, which requires special commands beyond `cargo fmt` and `cargo doc`.\r\n-->\r\n\r\n## Motivation\r\n\r\nI am working on some runtime tracing instrumentation and one of the current pain points is being able to figure out what worker is currently running so that it can be properly correlated with the runtime metrics. I am working around this currently by enumerating `RuntimeMetrics::worker_thread_id` but that's obviously not ideal.\r\n<!--\r\nExplain the context and why you're making that change. What is the problem\r\nyou're trying to solve? In some cases there is not a problem and this can be\r\nthought of as being the motivation for your change.\r\n-->\r\n\r\n## Solution\r\n\r\nAdd `tokio::runtime::worker_id()` which returns the 0-based index of the current runtime worker thread. The index matches the worker indices used by `RuntimeMetrics` (e.g. `worker_total_busy_duration`), making it possible to correlate per-worker metrics with specific tasks.\r\n\r\nReturns `None` from blocking threads, the `block_on` caller thread (on the multi-thread runtime), and non-Tokio threads. For the current-thread runtime, always returns `Some(0)`.\r\n\r\n<!--\r\nSummarize the solution and provide any necessary context needed to understand\r\nthe code change.\r\n-->\r\n",
+    "author": "rcoh",
+    "merged_at": "2026-03-15T05:44:41+00:00",
+    "created_at": "2026-02-19T20:35:19+00:00",
+    "files": [
+      "tokio/src/runtime/context.rs",
+      "tokio/src/runtime/mod.rs",
+      "tokio/src/runtime/scheduler/mod.rs",
+      "tokio/src/runtime/scheduler/multi_thread/worker.rs",
+      "tokio/tests/rt_worker_index.rs"
+    ],
+    "additions": 139,
+    "deletions": 0,
+    "ticket_ids": [],
+    "merge_commit_sha": "26de3187e759e06c25432413643ea57d8a79503c",
+    "pr_number": 7921,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "ADD-SP",
+        "state": "commented",
+        "submitted_at": "2026-02-20T07:10:56+00:00",
+        "is_bot": false,
+        "body": "Shall we use `worker_index()` instead of `worker_id()`? It looks like methods like `worker_local_schedule_count` are using the term \"worker index\".\r\n<img  src=\"https://github.com/user-attachments/assets/ee3be0e6-3598-4a1d-95af-3758fdb42834\" />\r\n\r\n"
+      },
+      {
+        "reviewer": "ADD-SP",
+        "state": "commented",
+        "submitted_at": "2026-02-24T04:48:59+00:00",
+        "is_bot": false,
+        "body": "Overall looks good to me, just one question. \n\nBy the way, please sync the changes from the base branch as we have recently fixed a bug which may causes CI failure."
+      },
+      {
+        "reviewer": "rcoh",
+        "state": "commented",
+        "submitted_at": "2026-02-25T14:37:16+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "martin-g",
+        "state": "commented",
+        "submitted_at": "2026-03-03T13:26:53+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "martin-g",
+        "state": "approved",
+        "submitted_at": "2026-03-05T06:14:51+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "ADD-SP",
+        "state": "approved",
+        "submitted_at": "2026-03-15T04:13:00+00:00",
+        "is_bot": false,
+        "body": "Looks good to me. Synced with the base branch via the GitHub web UI\u2014let\u2019s see if CI is green."
+      }
+    ],
+    "commits": [
+      {
+        "message": "runtime: add `worker_id()` getter\n\nAdd `tokio::runtime::worker_id()` which returns the 0-based index of\nthe current runtime worker thread. The index matches the worker indices\nused by `RuntimeMetrics` (e.g. `worker_total_busy_duration`), making\nit possible to correlate per-worker metrics with specific tasks.\n\nReturns `None` from blocking threads, the `block_on` caller thread\n(on the multi-thread runtime), and non-Tokio threads. For the\ncurrent-thread runtime, always returns `Some(0)`.",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Rename worker_id to worker_index",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Format code",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "add tests of LocalRuntime",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Merge branch 'master' into master",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 5,
+    "last_edited_at": null,
+    "total_comments_count": 11
+  },
+  {
+    "id": "7944",
+    "source": "github_graphql",
+    "repo": "tokio-rs/tokio",
+    "title": "bench: add remote_spawn benchmark for inject queue contention",
+    "body": "Add a benchmark that measures contention on the scheduler's inject queue mutex (push_remote_task) when multiple external threads spawn tasks into the runtime simultaneously. Every rt.spawn() from a non-worker thread unconditionally goes through push_remote_task, so this directly measures the scalability of the inject queue.\r\n\r\nResults on an M1 Max MacBook Pro (10 cores), spawning 12,800 total tasks:\r\n\r\n  threads/1:  3.39 ms  (265 ns/task, 1.00x)\r\n  threads/2:  4.74 ms  (370 ns/task, 1.40x)\r\n  threads/4:  5.89 ms  (460 ns/task, 1.74x)\r\n  threads/8:  8.10 ms  (633 ns/task, 2.39x)\r\n\r\nWall-clock time increases with more threads despite constant total work, confirming the single mutex serializes producers.\r\n\r\n<!--\r\nThank you for your Pull Request. Please provide a description above and review\r\nthe requirements below.\r\n\r\nBug fixes and new features should include tests.\r\n\r\nContributors guide: https://github.com/tokio-rs/tokio/blob/master/CONTRIBUTING.md\r\n\r\nThe contributors guide includes instructions for running rustfmt and building the\r\ndocumentation, which requires special commands beyond `cargo fmt` and `cargo doc`.\r\n-->\r\n\r\n## Motivation\r\n\r\n<!--\r\nExplain the context and why you're making that change. What is the problem\r\nyou're trying to solve? In some cases there is not a problem and this can be\r\nthought of as being the motivation for your change.\r\n-->\r\n\r\n## Solution\r\n\r\n<!--\r\nSummarize the solution and provide any necessary context needed to understand\r\nthe code change.\r\n-->\r\n",
+    "author": "alex",
+    "merged_at": "2026-03-11T09:13:39+00:00",
+    "created_at": "2026-02-28T18:02:00+00:00",
+    "files": [
+      "benches/Cargo.toml",
+      "benches/remote_spawn.rs"
+    ],
+    "additions": 105,
+    "deletions": 0,
+    "ticket_ids": [],
+    "merge_commit_sha": "ee04abe7970b769439e2fecd4b1dd8790e4234e1",
+    "pr_number": 7944,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "martin-g",
+        "state": "commented",
+        "submitted_at": "2026-03-03T13:02:36+00:00",
+        "is_bot": false,
+        "body": "By using `.iter_custom()` you could measure only the time spent in spawning and ignore the time awaiting handles and cleaning up.\n\n```diff\ndiff --git i/benches/remote_spawn.rs w/benches/remote_spawn.rs\nindex 16cfa0b9..d0aa4741 100644\n--- i/benches/remote_spawn.rs\n+++ w/benches/remote_spawn.rs\n@@ -32,38 +32,46 @@ fn remote_spawn_contention(c: &mut Criterion) {\n             |b, &num_threads| {\n                 let rt = rt();\n                 let tasks_per_thread = TOTAL_TASKS / num_threads;\n+                let barrier = Barrier::new(num_threads);\n\n-                b.iter(|| {\n-                    let barrier = Barrier::new(num_threads);\n-\n-                    std::thread::scope(|s| {\n-                        let handles: Vec<_> = (0..num_threads)\n-                            .map(|_| {\n-                                let barrier = &barrier;\n-                                let rt = &rt;\n-                                s.spawn(move || {\n-                                    let mut join_handles = Vec::with_capacity(tasks_per_thread);\n-                                    barrier.wait();\n-\n-                                    for _ in 0..tasks_per_thread {\n-                                        join_handles.push(rt.spawn(async {}));\n-                                    }\n-                                    join_handles\n+                b.iter_custom(|iters| {\n+                    let mut total_duration = std::time::Duration::ZERO;\n+                    for _ in 0..iters {\n+\n+                        let start = std::time::Instant::now();\n+\n+                        let all_handles = std::thread::scope(|s| {\n+                            let handles: Vec<_> = (0..num_threads)\n+                                .map(|_| {\n+                                    let barrier = &barrier;\n+                                    let rt = &rt;\n+                                    s.spawn(move || {\n+                                        let mut join_handles = Vec::with_capacity(tasks_"
+      },
+      {
+        "reviewer": "martin-g",
+        "state": "approved",
+        "submitted_at": "2026-03-07T12:06:27+00:00",
+        "is_bot": false,
+        "body": ""
+      }
+    ],
+    "commits": [
+      {
+        "message": "bench: add remote_spawn benchmark for inject queue contention\n\nAdd a benchmark that measures contention on the scheduler's inject queue\nmutex (push_remote_task) when multiple external threads spawn tasks into\nthe runtime simultaneously. Every rt.spawn() from a non-worker thread\nunconditionally goes through push_remote_task, so this directly measures\nthe scalability of the inject queue.\n\nResults on an M1 Max MacBook Pro (10 cores), spawning 12,800 total tasks:\n\n  threads/1:  3.39 ms  (265 ns/task, 1.00x)\n  threads/2:  4.74 ms  (370 ns/task, 1.40x)\n  threads/4:  5.89 ms  (460 ns/task, 1.74x)\n  threads/8:  8.10 ms  (633 ns/task, 2.39x)\n\nWall-clock time increases with more threads despite constant total work,\nconfirming the single mutex serializes producers.\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "bench: use iter_custom to measure only spawn time, drop enable_all\n\nUse iter_custom to time only the spawn phase (push_remote_task\ncontention), excluding the await/cleanup of join handles. Also remove\nenable_all() since the benchmark doesn't need IO or timers.\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 2,
+    "last_edited_at": null,
+    "total_comments_count": 10
+  },
+  {
+    "id": "7954",
+    "source": "github_graphql",
+    "repo": "tokio-rs/tokio",
+    "title": "stream: impl FromStream for BTreeSet",
+    "body": "<!--\r\nThank you for your Pull Request. Please provide a description above and review\r\nthe requirements below.\r\n\r\nBug fixes and new features should include tests.\r\n\r\nContributors guide: https://github.com/tokio-rs/tokio/blob/master/CONTRIBUTING.md\r\n\r\nThe contributors guide includes instructions for running rustfmt and building the\r\ndocumentation, which requires special commands beyond `cargo fmt` and `cargo doc`.\r\n-->\r\n\r\n## Motivation\r\n\r\nThis allows streams to be `collect`ed into `BTreeSet`s. If this looks good, I can also work on other collections supported by `FromIterator`\r\n\r\n## Solution\r\n\r\nthe code should be trivial enough",
+    "author": "figsoda",
+    "merged_at": "2026-03-09T10:20:21+00:00",
+    "created_at": "2026-03-06T06:01:10+00:00",
+    "files": [
+      "tokio-stream/src/stream_ext/collect.rs",
+      "tokio-stream/tests/stream_collect.rs"
+    ],
+    "additions": 43,
+    "deletions": 0,
+    "ticket_ids": [],
+    "merge_commit_sha": "aa1e7e2b9d24a0b5ececc07d57f2d9668938ea28",
+    "pr_number": 7954,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "Darksonn",
+        "state": "approved",
+        "submitted_at": "2026-03-09T10:02:23+00:00",
+        "is_bot": false,
+        "body": "Thanks."
+      }
+    ],
+    "commits": [
+      {
+        "message": "stream: impl FromStream for BTreeSet",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Merge branch 'master' into stream-btreeset",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Merge branch 'master' into stream-btreeset",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 3,
+    "last_edited_at": null,
+    "total_comments_count": 2
+  },
+  {
+    "id": "7961",
+    "source": "github_graphql",
+    "repo": "tokio-rs/tokio",
+    "title": "ci: freeze rustc on 1.93.1",
+    "body": "This is to unblock the daily PR review/merge works.\r\n\r\nSee <https://github.com/rust-lang/rust/issues/153486> for more context.",
+    "author": "ADD-SP",
+    "merged_at": "2026-03-09T06:43:48+00:00",
+    "created_at": "2026-03-08T04:00:18+00:00",
+    "files": [
+      ".cirrus.yml",
+      ".github/workflows/ci.yml"
+    ],
+    "additions": 4,
+    "deletions": 4,
+    "ticket_ids": [],
+    "merge_commit_sha": "961757f5483e394ec3c99a4c2ab5a6e705a0b740",
+    "pr_number": 7961,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "martin-g",
+        "state": "approved",
+        "submitted_at": "2026-03-09T05:54:57+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "taiki-e",
+        "state": "approved",
+        "submitted_at": "2026-03-09T06:27:56+00:00",
+        "is_bot": false,
+        "body": ""
+      }
+    ],
+    "commits": [
+      {
+        "message": "ci: freeze rustc on 1.93.1",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "re-trigger CI",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "pkg install ca_root_nss",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "fixup! pkg install ca_root_nss",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 4,
+    "last_edited_at": null,
+    "total_comments_count": 1
+  },
+  {
+    "id": "7953",
+    "source": "github_graphql",
+    "repo": "tokio-rs/tokio",
+    "title": "chore: link to tokioconf.com",
+    "body": "This updates both readme to add a link",
+    "author": "carllerche",
+    "merged_at": "2026-03-06T20:00:43+00:00",
+    "created_at": "2026-03-05T19:10:48+00:00",
+    "files": [
+      "README.md",
+      "tokio/README.md"
+    ],
+    "additions": 8,
+    "deletions": 0,
+    "ticket_ids": [],
+    "merge_commit_sha": "e67cd87f71304e6b4cc94ce0c1656797466e56f3",
+    "pr_number": 7953,
+    "ci_status": "failed",
+    "reviews": [
+      {
+        "reviewer": "martin-g",
+        "state": "approved",
+        "submitted_at": "2026-03-05T21:54:26+00:00",
+        "is_bot": false,
+        "body": "The CI failures are not related."
+      }
+    ],
+    "commits": [
+      {
+        "message": "chore: link to tokioconf.com",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 1
+  },
+  {
+    "id": "7902",
+    "source": "github_graphql",
+    "repo": "tokio-rs/tokio",
+    "title": "loom: remove `StaticAtomicU64`",
+    "body": "This PR addresses the TODO in tokio/src/loom/mocked.rs:65: <https://github.com/tokio-rs/tokio/blob/9dacb1c53e341b1183a89800d46ee33c6eabf7ad/tokio/src/loom/mocked.rs#L65-L66>\r\n\r\n## Motivation\r\n\r\nWhen running under `cfg(loom)`, `StaticAtomicU64` previously fell back to `std::sync::atomic::AtomicU64`. Because this bypasses loom's concurrency model, static atomic operations were not fully exercised by loom, which reduced coverage for code paths such as thread and task ID allocation.\r\n\r\n## Solution\r\n\r\nThis PR replaces the std fallback with a loom-compatible implementation of `StaticAtomicU64`, allowing loom to explore all relevant interleavings while preserving the existing API and usage patterns.\r\n\r\nThe reason this wasn't replaced with [loom::sync::atomic::AtomicU64](https://docs.rs/loom/latest/loom/sync/atomic/struct.AtomicU64.html) is because it doesn't have const initialization.\r\n\r\nImplementation notes:\r\n- Accept `Ordering` arguments to match the API, though actual ordering semantics are not modeled, but operations are serialized via a Mutex.\r\n- `compare_exchange_weak` behaves like `compare_exchange` (no spurious failures), which should be sufficient for loom testing.\r\n- Back the static storage with `OnceLock<Mutex<u64>>` (under `cfg(loom)`) to support safe const initialization and deterministic simulation.\r\n- Implement the full set of required atomic operations: `load`, `store`, `fetch_add`, `compare_exchange`, and `compare_exchange_weak`.\r\n- Match the behavior and public API of the existing non-loom `StaticAtomicU64` variants to avoid changes at call sites.\r\n- Note that while this implementation uses std::sync::OnceLock internally, this is compatible with loom testing as loom itself [wraps std::sync::Mutex](https://docs.rs/loom/latest/src/loom/sync/mutex.rs.html#8-11). The only limitation would be if StaticAtomicU64 needed to hold non-std types where loom doesn't provide equivalents.\r\n\r\nTests:\r\n- Add loom tests in `sync::tests::loom_atomic_static_u64` covering basic atomic semantics, concurrent access patterns, const initialization, and compare-exchange behavior.\r\n- All existing loom tests continue to pass.\r\n",
+    "author": "walker84837",
+    "merged_at": "2026-03-04T15:16:50+00:00",
+    "created_at": "2026-02-11T12:49:16+00:00",
+    "files": [
+      "tokio/src/loom/mocked.rs",
+      "tokio/src/loom/std/atomic_u64.rs",
+      "tokio/src/loom/std/mod.rs",
+      "tokio/src/runtime/task/id.rs",
+      "tokio/src/runtime/thread_id.rs"
+    ],
+    "additions": 13,
+    "deletions": 15,
+    "ticket_ids": [],
+    "merge_commit_sha": "a502d1b5c8f0fe0de49c4a5da5fc4faaa31aba7d",
+    "pr_number": 7902,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "Darksonn",
+        "state": "commented",
+        "submitted_at": "2026-02-13T07:47:06+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "walker84837",
+        "state": "commented",
+        "submitted_at": "2026-02-13T18:43:36+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "Darksonn",
+        "state": "commented",
+        "submitted_at": "2026-02-16T10:07:25+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "walker84837",
+        "state": "commented",
+        "submitted_at": "2026-02-16T13:02:13+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "Darksonn",
+        "state": "commented",
+        "submitted_at": "2026-02-16T13:02:46+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "walker84837",
+        "state": "commented",
+        "submitted_at": "2026-02-16T18:50:37+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "Darksonn",
+        "state": "commented",
+        "submitted_at": "2026-02-16T18:53:28+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "walker84837",
+        "state": "commented",
+        "submitted_at": "2026-02-16T19:10:56+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "martin-g",
+        "state": "commented",
+        "submitted_at": "2026-02-17T09:49:18+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "walker84837",
+        "state": "commented",
+        "submitted_at": "2026-02-17T11:37:20+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "walker84837",
+        "state": "commented",
+        "submitted_at": "2026-02-17T11:40:00+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "walker84837",
+        "state": "commented",
+        "submitted_at": "2026-02-17T11:41:55+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "walker84837",
+        "state": "commented",
+        "submitted_at": "2026-02-17T11:46:05+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "walker84837",
+        "state": "commented",
+        "submitted_at": "2026-02-17T12:09:36+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "Darksonn",
+        "state": "commented",
+        "submitted_at": "2026-02-18T09:42:09+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "walker84837",
+        "state": "commented",
+        "submitted_at": "2026-02-28T17:52:14+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "Darksonn",
+        "state": "commented",
+        "submitted_at": "2026-03-01T14:16:42+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "Darksonn",
+        "state": "commented",
+        "submitted_at": "2026-03-02T07:37:15+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "walker84837",
+        "state": "commented",
+        "submitted_at": "2026-03-02T09:51:42+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "Darksonn",
+        "state": "commented",
+        "submitted_at": "2026-03-03T13:03:51+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "Darksonn",
+        "state": "approved",
+        "submitted_at": "2026-03-04T15:15:48+00:00",
+        "is_bot": false,
+        "body": "Thanks."
+      }
+    ],
+    "commits": [
+      {
+        "message": "loom: implement loom-compatible StaticAtomicU64\n\nReplace the std::sync::atomic::AtomicU64 fallback used during loom\ntesting with a loom-aware implementation so loom can exercise static\natomic interleavings. Adds unit tests covering basic atomic operations.",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "loom: add docs, Debug and Default impls\n\nDocument all atomic operations in loom's StaticAtomicU64 to clarify\nthat the Ordering parameter is ignored, since all operations are\nimplemented using a Mutex internally.\n\nThis commit also adds Debug and Default impls to improve usability and\ntestability.",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "sync: correct expected value in concurrent test\n\nThis commit fixes the final assertion in\nstatic_atomic_u64_concurrent_access to accurately reflect the\ncontributions from both threads: thread1 adds 10, thread2 adds\n5*2 = 10, resulting in a total of 20.",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "loom: fix markdown formatting in StaticAtomicU64 docs\n\nAdd backticks around `compare_*` functions in the documentation comment\nto clarify that it refers to the function, not plain text.\n\nThis is a minor doc change to satisfy spellcheck and improve\nreadability.",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "runtime: fix ThreadId::next panic under loom tests\n\nStaticAtomicU64::new is technically const, but under loom its runtime\ntracking requires lazy initialization. Use lazy_static! for loom test\nbuilds to avoid panics, while retaining normal static initialization\nfor non-loom builds.",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "runtime: remove leftover loom static init comment\n\nThe comment explaining the use of `lazy_static!` for `NEXT_ID` under\nloom testing was a leftover from local experimentation and does not add\nvalue to the actual code. Removing it cleans up the source from\nunnecessary noise.",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "runtime: use loom's AtomicU64 in thread_id.rs\n\nThis commit changes NEXT_ID's type from `StaticAtomicU64` to `AtomicU64`\nwhen both `test` and `loom` cfg flags are enabled.\n\nSince `lazy_static!` is used under these flags, const-safe\ninitialization isn't required, making AtomicU64 simpler.",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "runtime: remove unused StaticAtomicU64 import in tests\n\nStaticAtomicU64 is no longer used under cfg(all(test, loom)). This\ncommit moves its import to the non-loom path to satisfy `-D warnings`.",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Merge branch 'master' into feature/loom-static-atomic-u64",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Merge branch 'master' into feature/loom-static-atomic-u64",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "loom: clarify docs for StaticAtomicU64 compare_exchange_weak\n\nUpdate the docstring to accurately state that compare_exchange_weak\ndoes not fail spuriously. Because StaticAtomicU64 synchronizes via a\nMutex<u64> the compare-and-exchange operation is deterministic with\nrespect to success or failure.",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Merge branch 'master' into feature/loom-static-atomic-u64",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Merge branch 'master' into feature/loom-static-atomic-u64",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Merge branch 'master' into feature/loom-static-atomic-u64",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "loom: remove StaticAtomicU64, use std & loom AtomicU64 accordingly\n\nRemove the StaticAtomicU64 abstraction layer. In production builds, use\nstd::sync::atomic::AtomicU64 directly (which supports const\ninitialization). In loom tests, use loom::sync::atomic::AtomicU64 with\nlazy_static! since loom's AtomicU64 does not support const\ninitialization.\n\nThis simplifies the codebase by removing an unnecessary abstraction\nlayer that was only needed because loom's AtomicU64 lacked const\nsupport.",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "runtime: use crate::loom::sync::atomic::Ordering\n\nUse the loom abstraction layer for Ordering to be consistent with the\nrest of the codebase. This ensures the code works correctly in both\nproduction and loom test builds.",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "runtime: use crate::loom for AtomicU64 outside of cfg(loom, test)\n\nThe crate::loom abstraction layer handles both 64-bit platforms (direct\nAtomicU64) and 32-bit platforms (Mutex fallback). This fixes the build\non 32-bit targets like i686-unknown-linux-gnu.",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Merge branch 'master' into feature/loom-static-atomic-u64",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "runtime: consolidate loom atomic imports in id.rs\n\nCombine multiple imports from crate::loom::sync::atomic into a single\nimport statement for simplicity.",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Merge branch 'master' into feature/loom-static-atomic-u64",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "runtime: consolidate loom atomic imports in thread_id.rs\n\nCombine multiple imports from crate::loom::sync::atomic into a single\nimport statement for simplicity.",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 21,
+    "last_edited_at": "2026-02-11T15:36:00+00:00",
+    "total_comments_count": 27
+  },
+  {
+    "id": "7934",
+    "source": "github_graphql",
+    "repo": "tokio-rs/tokio",
+    "title": "chore: prepare Tokio v1.50.0",
+    "body": "# 1.50.0 (Mar 3rd, 2026)\r\n\r\n### Added\r\n\r\n- net: add `TcpStream::set_zero_linger` ([#7837])\r\n- rt: add `is_rt_shutdown_err` ([#7771])\r\n\r\n### Changed\r\n\r\n- io: add optimizer hint that `memchr` returns in-bounds pointer ([#7792])\r\n- io: implement vectored writes for `write_buf` ([#7871])\r\n- runtime: panic when `event_interval` is set to 0 ([#7838])\r\n- runtime: shorten default thread name to fit in Linux limit ([#7880])\r\n- signal: remember the result of `SetConsoleCtrlHandler` ([#7833])\r\n- signal: specialize windows `Registry` ([#7885])\r\n\r\n### Fixed\r\n\r\n- io: always cleanup `AsyncFd` registration list on deregister ([#7773])\r\n- macros: remove (most) local `use` declarations in `tokio::select!` ([#7929])\r\n- net: fix `GET_BUF_SIZE` constant for `target_os = \"android\"` ([#7889])\r\n- runtime: avoid redundant unpark in current_thread scheduler ([#7834])\r\n- runtime: don't park in `current_thread` if `before_park` defers waker ([#7835])\r\n- io: fix write readiness on ESP32 on short writes ([#7872])\r\n- runtime: wake deferred tasks before entering `block_in_place` ([#7879])\r\n- sync: drop rx waker when oneshot receiver is dropped ([#7886])\r\n- runtime: fix double increment of `num_idle_threads` on shutdown ([#7910], [#7918], [#7922])\r\n\r\n### Unstable\r\n\r\n- fs: check for io-uring opcode support ([#7815])\r\n- runtime: avoid lock acquisition after uring init ([#7850])\r\n\r\n### Documented\r\n\r\n- docs: update outdated unstable features section ([#7839])\r\n- io: clarify the behavior of `AsyncWriteExt::shutdown()` ([#7908])\r\n- io: explain how to flush stdout/stderr ([#7904])\r\n- io: fix incorrect and confusing `AsyncWrite` documentation ([#7875])\r\n- rt: clarify the documentation of `Runtime::spawn` ([#7803])\r\n- rt: fix missing quotation in docs ([#7925])\r\n- runtime: correct the default thread name in docs ([#7896])\r\n- runtime: fix `event_interval` doc ([#7932])\r\n- sync: clarify RwLock fairness documentation ([#7919])\r\n- sync: clarify that `recv` returns `None` once closed and no more messages ([#7920])\r\n- task: clarify when to use `spawn_blocking` vs dedicated threads ([#7923])\r\n- task: doc that task drops before `JoinHandle` completion ([#7825])\r\n- signal: guarantee that listeners never return `None` ([#7869])\r\n- task: fix task module feature flags in docs ([#7891])\r\n- task: fix two typos ([#7913])\r\n- task: improve the docs of `Builder::spawn_local` ([#7828])\r\n- time: add docs about auto-advance and when to use sleep ([#7858])\r\n- util: fix typo in docs ([#7926])\r\n\r\n[#7771]: https://github.com/tokio-rs/tokio/pull/7771\r\n[#7773]: https://github.com/tokio-rs/tokio/pull/7773\r\n[#7792]: https://github.com/tokio-rs/tokio/pull/7792\r\n[#7803]: https://github.com/tokio-rs/tokio/pull/7803\r\n[#7815]: https://github.com/tokio-rs/tokio/pull/7815\r\n[#7825]: https://github.com/tokio-rs/tokio/pull/7825\r\n[#7828]: https://github.com/tokio-rs/tokio/pull/7828\r\n[#7833]: https://github.com/tokio-rs/tokio/pull/7833\r\n[#7834]: https://github.com/tokio-rs/tokio/pull/7834\r\n[#7835]: https://github.com/tokio-rs/tokio/pull/7835\r\n[#7837]: https://github.com/tokio-rs/tokio/pull/7837\r\n[#7838]: https://github.com/tokio-rs/tokio/pull/7838\r\n[#7839]: https://github.com/tokio-rs/tokio/pull/7839\r\n[#7850]: https://github.com/tokio-rs/tokio/pull/7850\r\n[#7858]: https://github.com/tokio-rs/tokio/pull/7858\r\n[#7869]: https://github.com/tokio-rs/tokio/pull/7869\r\n[#7871]: https://github.com/tokio-rs/tokio/pull/7871\r\n[#7872]: https://github.com/tokio-rs/tokio/pull/7872\r\n[#7875]: https://github.com/tokio-rs/tokio/pull/7875\r\n[#7879]: https://github.com/tokio-rs/tokio/pull/7879\r\n[#7880]: https://github.com/tokio-rs/tokio/pull/7880\r\n[#7885]: https://github.com/tokio-rs/tokio/pull/7885\r\n[#7886]: https://github.com/tokio-rs/tokio/pull/7886\r\n[#7889]: https://github.com/tokio-rs/tokio/pull/7889\r\n[#7891]: https://github.com/tokio-rs/tokio/pull/7891\r\n[#7896]: https://github.com/tokio-rs/tokio/pull/7896\r\n[#7904]: https://github.com/tokio-rs/tokio/pull/7904\r\n[#7908]: https://github.com/tokio-rs/tokio/pull/7908\r\n[#7910]: https://github.com/tokio-rs/tokio/pull/7910\r\n[#7913]: https://github.com/tokio-rs/tokio/pull/7913\r\n[#7918]: https://github.com/tokio-rs/tokio/pull/7918\r\n[#7919]: https://github.com/tokio-rs/tokio/pull/7919\r\n[#7920]: https://github.com/tokio-rs/tokio/pull/7920\r\n[#7922]: https://github.com/tokio-rs/tokio/pull/7922\r\n[#7923]: https://github.com/tokio-rs/tokio/pull/7923\r\n[#7925]: https://github.com/tokio-rs/tokio/pull/7925\r\n[#7926]: https://github.com/tokio-rs/tokio/pull/7926\r\n[#7929]: https://github.com/tokio-rs/tokio/pull/7929\r\n[#7932]: https://github.com/tokio-rs/tokio/pull/7932\r\n",
+    "author": "ADD-SP",
+    "merged_at": "2026-03-03T09:39:42+00:00",
+    "created_at": "2026-02-25T05:57:21+00:00",
+    "files": [
+      "README.md",
+      "tokio/CHANGELOG.md",
+      "tokio/Cargo.toml",
+      "tokio/README.md"
+    ],
+    "additions": 98,
+    "deletions": 4,
+    "ticket_ids": [
+      "#7771",
+      "#7773",
+      "#7792",
+      "#7803",
+      "#7815",
+      "#7825",
+      "#7828",
+      "#7833",
+      "#7834",
+      "#7835",
+      "#7837",
+      "#7838",
+      "#7839",
+      "#7850",
+      "#7858",
+      "#7869",
+      "#7871",
+      "#7872",
+      "#7875",
+      "#7879",
+      "#7880",
+      "#7885",
+      "#7886",
+      "#7889",
+      "#7891",
+      "#7896",
+      "#7904",
+      "#7908",
+      "#7910",
+      "#7913",
+      "#7918",
+      "#7919",
+      "#7920",
+      "#7922",
+      "#7923",
+      "#7925",
+      "#7926",
+      "#7929",
+      "#7932"
+    ],
+    "merge_commit_sha": "0273e45ead199dac7725faee1e3dc35a9c8753ab",
+    "pr_number": 7934,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "mattiapitossi",
+        "state": "commented",
+        "submitted_at": "2026-02-28T08:02:03+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "Darksonn",
+        "state": "commented",
+        "submitted_at": "2026-03-02T20:40:17+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "ADD-SP",
+        "state": "commented",
+        "submitted_at": "2026-03-02T20:42:47+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "ADD-SP",
+        "state": "commented",
+        "submitted_at": "2026-03-02T20:45:36+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "Darksonn",
+        "state": "commented",
+        "submitted_at": "2026-03-02T20:45:38+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "martin-g",
+        "state": "approved",
+        "submitted_at": "2026-03-03T07:27:05+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "Darksonn",
+        "state": "approved",
+        "submitted_at": "2026-03-03T09:20:11+00:00",
+        "is_bot": false,
+        "body": "Thanks."
+      }
+    ],
+    "commits": [
+      {
+        "message": "chore: prepare Tokio v1.50.0",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "apply review comments",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "reorder a entry",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Update CHANGELOG.md",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 4,
+    "last_edited_at": "2026-03-03T09:20:00+00:00",
+    "total_comments_count": 11
+  },
+  {
+    "id": "7943",
+    "source": "github_graphql",
+    "repo": "tokio-rs/tokio",
+    "title": "chore: prepare tokio-macros v2.6.1",
+    "body": "# 2.6.1 (Mar 1st, 2026)\r\n\r\n- macros: improve error message for return type mismatch in `#[tokio::main]` ([#7856])\r\n- macros: use `call_site` hygiene to avoid unused qualification ([#7866])\r\n\r\n[#7856]: https://github.com/tokio-rs/tokio/pull/7856\r\n[#7866]: https://github.com/tokio-rs/tokio/pull/7866",
+    "author": "ADD-SP",
+    "merged_at": "2026-03-02T18:17:41+00:00",
+    "created_at": "2026-02-28T05:11:38+00:00",
+    "files": [
+      "tokio-macros/CHANGELOG.md",
+      "tokio-macros/Cargo.toml"
+    ],
+    "additions": 9,
+    "deletions": 1,
+    "ticket_ids": [
+      "#7856",
+      "#7866"
+    ],
+    "merge_commit_sha": "e3ee4e58dc9bb7accf26dfd51b0a2146922b5269",
+    "pr_number": 7943,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "taiki-e",
+        "state": "approved",
+        "submitted_at": "2026-02-28T06:24:22+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "Darksonn",
+        "state": "commented",
+        "submitted_at": "2026-03-01T12:50:56+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "taiki-e",
+        "state": "commented",
+        "submitted_at": "2026-03-01T14:11:15+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "ADD-SP",
+        "state": "commented",
+        "submitted_at": "2026-03-01T17:25:01+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "ADD-SP",
+        "state": "commented",
+        "submitted_at": "2026-03-01T17:25:30+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "Darksonn",
+        "state": "approved",
+        "submitted_at": "2026-03-02T15:39:17+00:00",
+        "is_bot": false,
+        "body": "Thanks."
+      }
+    ],
+    "commits": [
+      {
+        "message": "chore: prepare tokio-macros v2.6.1",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "do not bump tokio-macros version in `tokio/Cargo.toml`",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "update the date",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Update the date again",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 4,
+    "last_edited_at": "2026-03-01T17:39:28+00:00",
+    "total_comments_count": 5
+  },
+  {
+    "id": "7768",
+    "source": "github_graphql",
+    "repo": "tokio-rs/tokio",
+    "title": "util: add `write_all_vectored` to `tokio-util`",
+    "body": "## Motivation\r\n\r\nCloses #3679 \r\n\r\nWas recently looking for `write_all_vectored` and found it missing, went to add it before realizing the MSRV is not there yet.\r\n\r\nI thought I'd submit this anyway, when the MSRV version moves ahead you can accept, or we could copy in the `IoSlice::advance_slices` fn until that happens?\r\n\r\n## Solution\r\n\r\n~~Tried to follow existing pattern for `write_x` methods~~\r\n\r\n`write_all_vectored` has been added to `tokio-util` now rather than tokio proper. `IoSlice::advance_slices` has been copied into the implementation with minor adjustments to meet tokio's MSRV",
+    "author": "leshow",
+    "merged_at": "2026-02-27T10:16:43+00:00",
+    "created_at": "2025-12-08T21:26:36+00:00",
+    "files": [
+      "tokio-util/src/io/mod.rs",
+      "tokio-util/src/io/write_all_vectored.rs",
+      "tokio-util/tests/io_write_all_vectored.rs"
+    ],
+    "additions": 309,
+    "deletions": 0,
+    "ticket_ids": [
+      "#3679"
+    ],
+    "merge_commit_sha": "8c980ea75a0f8dd2799403777db700c2e8f4cda4",
+    "pr_number": 7768,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "martin-g",
+        "state": "commented",
+        "submitted_at": "2025-12-10T09:13:45+00:00",
+        "is_bot": false,
+        "body": "If this PR will be finished then it also needs an IT test."
+      },
+      {
+        "reviewer": "leshow",
+        "state": "commented",
+        "submitted_at": "2025-12-12T06:36:00+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "leshow",
+        "state": "commented",
+        "submitted_at": "2025-12-12T06:38:07+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "martin-g",
+        "state": "commented",
+        "submitted_at": "2025-12-12T06:39:23+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "leshow",
+        "state": "commented",
+        "submitted_at": "2025-12-12T06:45:36+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "leshow",
+        "state": "commented",
+        "submitted_at": "2025-12-12T16:42:15+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "Darksonn",
+        "state": "commented",
+        "submitted_at": "2026-02-18T08:20:06+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "leshow",
+        "state": "commented",
+        "submitted_at": "2026-02-18T15:07:34+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "Darksonn",
+        "state": "commented",
+        "submitted_at": "2026-02-20T07:52:24+00:00",
+        "is_bot": false,
+        "body": "Thanks!"
+      },
+      {
+        "reviewer": "leshow",
+        "state": "commented",
+        "submitted_at": "2026-02-20T21:57:57+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "leshow",
+        "state": "commented",
+        "submitted_at": "2026-02-20T22:10:06+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "leshow",
+        "state": "commented",
+        "submitted_at": "2026-02-20T22:11:53+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "Darksonn",
+        "state": "approved",
+        "submitted_at": "2026-02-27T10:16:28+00:00",
+        "is_bot": false,
+        "body": "Thanks."
+      }
+    ],
+    "commits": [
+      {
+        "message": "io: add `write_all_vectored` to `AsyncWriteExt` (#3679)",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "util: move write_all_vectored to tokio-util",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Merge branch 'master' into write_all_vectored",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Update tokio-util/src/io/write_all_vectored.rs\n\nCo-authored-by: Alice Ryhl <aliceryhl@google.com>",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Update tokio-util/src/io/write_all_vectored.rs\n\nCo-authored-by: Alice Ryhl <aliceryhl@google.com>",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Merge branch 'master' into write_all_vectored",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Merge branch 'master' into write_all_vectored",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 7,
+    "last_edited_at": "2026-02-18T23:10:11+00:00",
+    "total_comments_count": 35
+  },
+  {
+    "id": "7935",
+    "source": "github_graphql",
+    "repo": "tokio-rs/tokio",
+    "title": "ci: fix patch during clippy step",
+    "body": "<!--\r\nThank you for your Pull Request. Please provide a description above and review\r\nthe requirements below.\r\n\r\nBug fixes and new features should include tests.\r\n\r\nContributors guide: https://github.com/tokio-rs/tokio/blob/master/CONTRIBUTING.md\r\n\r\nThe contributors guide includes instructions for running rustfmt and building the\r\ndocumentation, which requires special commands beyond `cargo fmt` and `cargo doc`.\r\n-->\r\n\r\n## Motivation\r\n\r\nWhen updating the tokio version, the clippy step does not apply the patch and throws an error that there are two different version of Tokio.\r\n\r\n<!--\r\nExplain the context and why you're making that change. What is the problem\r\nyou're trying to solve? In some cases there is not a problem and this can be\r\nthought of as being the motivation for your change.\r\n-->\r\n\r\n## Solution\r\n\r\nForce the regeneration of the Cargo.lock file.\r\n\r\nSee: https://github.com/tokio-rs/tokio/pull/7935/changes/3aa74b6c69cd48179855935b5924c366cd7975de for tested solution.\r\n\r\n<!--\r\nSummarize the solution and provide any necessary context needed to understand\r\nthe code change.\r\n-->\r\n",
+    "author": "mattiapitossi",
+    "merged_at": "2026-02-27T07:40:05+00:00",
+    "created_at": "2026-02-25T07:25:04+00:00",
+    "files": [
+      ".github/workflows/ci.yml"
+    ],
+    "additions": 2,
+    "deletions": 0,
+    "ticket_ids": [],
+    "merge_commit_sha": "e35fd6d6b7d9a8ba37ee621835ef91372c2565cb",
+    "pr_number": 7935,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "ADD-SP",
+        "state": "approved",
+        "submitted_at": "2026-02-26T16:12:50+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "martin-g",
+        "state": "approved",
+        "submitted_at": "2026-02-27T07:39:34+00:00",
+        "is_bot": false,
+        "body": ""
+      }
+    ],
+    "commits": [
+      {
+        "message": "fix the ci issue",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Merge branch 'tokio-rs:master' into master",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "fix readme",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "fix ci",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 4,
+    "last_edited_at": "2026-02-26T10:26:21+00:00",
+    "total_comments_count": 0
+  },
+  {
+    "id": "7920",
+    "source": "github_graphql",
+    "repo": "tokio-rs/tokio",
+    "title": "sync: fix mpsc Disconnection docs to clarify recv returns None only when channel is empty",
+    "body": "Fixes #6053\n\n## Problem\n\nThe `# Disconnection` section of the mpsc module docs stated:\n\n> As such, `Receiver::poll` returns `Ok(Ready(None))`.\n\nThis is incorrect in two ways:\n\n1. **Wrong condition**: When all `Sender` handles are dropped, `recv` does NOT immediately return `None`. Messages already buffered in the channel can still be received. `recv` only returns `None` once all senders are dropped **and** the channel has been fully drained.\n\n2. **Wrong method name**: `Receiver::poll` is not a public API method. The public methods are `Receiver::recv` and `Receiver::poll_recv`.\n\n## Fix\n\nUpdate the documentation to accurately state that `recv` returns `None` (and `poll_recv` returns `Poll::Ready(None)`) only once all senders have been dropped **and** all buffered values have been received.",
+    "author": "cluster2600",
+    "merged_at": "2026-02-20T08:34:12+00:00",
+    "created_at": "2026-02-19T14:32:35+00:00",
+    "files": [
+      "tokio/src/sync/mpsc/mod.rs"
+    ],
+    "additions": 3,
+    "deletions": 1,
+    "ticket_ids": [
+      "#6053"
+    ],
+    "merge_commit_sha": "09f92b5aedec6085863f570fe882915d0c2740f1",
+    "pr_number": 7920,
+    "ci_status": "failed",
+    "reviews": [
+      {
+        "reviewer": "Darksonn",
+        "state": "commented",
+        "submitted_at": "2026-02-19T14:56:01+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "Darksonn",
+        "state": "approved",
+        "submitted_at": "2026-02-20T07:54:00+00:00",
+        "is_bot": false,
+        "body": "Thanks."
+      }
+    ],
+    "commits": [
+      {
+        "message": "sync: fix mpsc Disconnection docs to clarify recv returns None only when channel is empty\n\nThe previous documentation stated:\n  'As such, Receiver::poll returns Ok(Ready(None))'\n\nThis was misleading: when all Sender handles are dropped, recv does NOT\nimmediately return None. Buffered messages already in the channel can\nstill be received. Only after all senders are dropped AND the channel\nhas been fully drained does recv return None.\n\nAlso update the method reference from the internal Receiver::poll to the\npublic API: Receiver::recv and Receiver::poll_recv.\n\nCloses #6053",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Merge branch 'master' into fix/mpsc-disconnection-docs-6053",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 2,
+    "last_edited_at": null,
+    "total_comments_count": 4
+  },
+  {
+    "id": "7932",
+    "source": "github_graphql",
+    "repo": "tokio-rs/tokio",
+    "title": "Fix `event_interval` doc",
+    "body": "## Motivation\r\n\r\nThe less frequently tasks yield and transfer control back to the runtime, the less chances the runtime has for dealing with I/O events, meaning users should probably lower this value if this were the case.\r\nThe current doc seemed to have a typo here.\r\n\r\n## Solution\r\n\r\nFix wording.\r\n",
+    "author": "LIParadise",
+    "merged_at": "2026-02-24T15:30:54+00:00",
+    "created_at": "2026-02-24T13:56:17+00:00",
+    "files": [
+      "tokio/src/runtime/builder.rs"
+    ],
+    "additions": 1,
+    "deletions": 1,
+    "ticket_ids": [],
+    "merge_commit_sha": "03fe44c10302fdb55c29dbe5b08d4f8769c80272",
+    "pr_number": 7932,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "Darksonn",
+        "state": "approved",
+        "submitted_at": "2026-02-24T14:12:47+00:00",
+        "is_bot": false,
+        "body": "Thanks."
+      }
+    ],
+    "commits": [
+      {
+        "message": "Fix `event_interval` doc",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "trigger CI",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 2,
+    "last_edited_at": null,
+    "total_comments_count": 1
+  },
+  {
+    "id": "7882",
+    "source": "github_graphql",
+    "repo": "tokio-rs/tokio",
+    "title": "io: fix race in `Mock::poll_write`",
+    "body": "It is hard to add a test for this bug, so I have tested it manually.\r\n\r\n_fix #7881_ ",
+    "author": "ADD-SP",
+    "merged_at": "2026-02-24T04:49:37+00:00",
+    "created_at": "2026-02-04T06:18:16+00:00",
+    "files": [
+      "tokio-test/src/io.rs"
+    ],
+    "additions": 24,
+    "deletions": 1,
+    "ticket_ids": [],
+    "merge_commit_sha": "d18e5dfbb0cdc28725bebb28cde80a6c11ee32bc",
+    "pr_number": 7882,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "Darksonn",
+        "state": "approved",
+        "submitted_at": "2026-02-04T10:26:24+00:00",
+        "is_bot": false,
+        "body": ""
+      }
+    ],
+    "commits": [
+      {
+        "message": "io: fix race in `Mock::poll_write`\n\nFix a race condition  where a `Wait` action might expire between `write()`\nand `remaining_wait()`, causing an unexpected panic.",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Merge branch 'master' into add_sp/io-dont-panic-on-writer-delay",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Merge branch 'master' into add_sp/io-dont-panic-on-writer-delay",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Merge branch 'master' into add_sp/io-dont-panic-on-writer-delay",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Merge branch 'master' into add_sp/io-dont-panic-on-writer-delay",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 5,
+    "last_edited_at": "2026-02-04T06:22:21+00:00",
+    "total_comments_count": 2
+  },
+  {
+    "id": "7922",
+    "source": "github_graphql",
+    "repo": "tokio-rs/tokio",
+    "title": "runtime: fix race condition during the blocking pool shutdown",
+    "body": "Follow-up of <https://github.com/tokio-rs/tokio/pull/7918#issuecomment-3928245159>.\r\n\r\nConsider this sequence:\r\n\r\n1. A blocking thread is sleeping at [`pool.rs:525`].\r\n2. Someone enqueues a task, then decreases the `num_idle_thread`, finally calls `condvar.notify_one` at [`pool.rs:449-451`].\r\n3. Another one shutdown the blocking pool, flips the `shared.shutdown` bit, finally unlock the `shared` at [`pool.rs:254-261`].\r\n4. That blocking thread wakes at [`pool.rs:525`], and exit the loop at [`pool.rs:535`]. At this time, the `num_idle_thread` has already been decreased at [`pool.rs:449`].\r\n5. That blocking thread tries to decrease the `num_idle_thread` again at [`pool.rs:574`], then panic.\r\n\r\n\r\n[`pool.rs:525`]:https://github.com/tokio-rs/tokio/blob/e65040f061008ca5a94d21721aa8b544c078c606/tokio/src/runtime/blocking/pool.rs#L525\r\n[`pool.rs:449-451`]: https://github.com/tokio-rs/tokio/blob/e65040f061008ca5a94d21721aa8b544c078c606/tokio/src/runtime/blocking/pool.rs#L449-L451\r\n[`pool.rs:254-261`]: https://github.com/tokio-rs/tokio/blob/e65040f061008ca5a94d21721aa8b544c078c606/tokio/src/runtime/blocking/pool.rs#L254-L261\r\n[`pool.rs:535`]: https://github.com/tokio-rs/tokio/blob/e65040f061008ca5a94d21721aa8b544c078c606/tokio/src/runtime/blocking/pool.rs#L535\r\n[`pool.rs:449`]: https://github.com/tokio-rs/tokio/blob/e65040f061008ca5a94d21721aa8b544c078c606/tokio/src/runtime/blocking/pool.rs#L449\r\n[`pool.rs:574`]: https://github.com/tokio-rs/tokio/blob/e65040f061008ca5a94d21721aa8b544c078c606/tokio/src/runtime/blocking/pool.rs#L574",
+    "author": "ADD-SP",
+    "merged_at": "2026-02-23T21:50:28+00:00",
+    "created_at": "2026-02-20T07:02:15+00:00",
+    "files": [
+      ".github/labeler.yml",
+      ".github/workflows/loom.yml",
+      "tokio/src/runtime/blocking/pool.rs",
+      "tokio/src/runtime/tests/loom_blocking.rs"
+    ],
+    "additions": 76,
+    "deletions": 9,
+    "ticket_ids": [],
+    "merge_commit_sha": "f21f2693f02aec9a876ac2bd21566c85e15b682e",
+    "pr_number": 7922,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "Darksonn",
+        "state": "commented",
+        "submitted_at": "2026-02-20T07:36:55+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "ADD-SP",
+        "state": "commented",
+        "submitted_at": "2026-02-20T07:49:30+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "Darksonn",
+        "state": "commented",
+        "submitted_at": "2026-02-20T07:52:46+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "martin-g",
+        "state": "approved",
+        "submitted_at": "2026-02-20T09:51:26+00:00",
+        "is_bot": false,
+        "body": "LGTM!\n\nCould this be tested reliably with loom ? "
+      }
+    ],
+    "commits": [
+      {
+        "message": "runtime: fix race condition during the blocking pool shutdown",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "add a test for this race condition",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "merge: sync changes from the base",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "update labeler",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "triger CI",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 5,
+    "last_edited_at": null,
+    "total_comments_count": 8
+  },
+  {
+    "id": "7929",
+    "source": "github_graphql",
+    "repo": "tokio-rs/tokio",
+    "title": "Remove (most) local `use` declarations in `tokio::select!`",
+    "body": "## Motivation\r\n\r\nSome of the `use` declarations in `tokio::select!` shadow common names. See https://github.com/tokio-rs/tokio/issues/7928 for a reproduction of the issue.\r\n\r\n## Solution\r\n\r\nUsing fully qualified paths avoids unnecessary imports. We unfortunately have to leave the `Pin` import untouched, however, as some downstream crates (likely unknowingly) depend on it being implicitly brought into scope.",
+    "author": "iriri",
+    "merged_at": "2026-02-23T09:46:18+00:00",
+    "created_at": "2026-02-23T08:20:29+00:00",
+    "files": [
+      "tokio/src/macros/select.rs"
+    ],
+    "additions": 6,
+    "deletions": 8,
+    "ticket_ids": [],
+    "merge_commit_sha": "d81e8f0acbdd7d866bce4f733b3545fd834c7840",
+    "pr_number": 7929,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "Darksonn",
+        "state": "approved",
+        "submitted_at": "2026-02-23T09:46:02+00:00",
+        "is_bot": false,
+        "body": "Looks okay to me. The `Pin` one is unfortunate, but ok let's keep it."
+      }
+    ],
+    "commits": [
+      {
+        "message": "Uglify local `use` declarations in `tokio::select!`",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Use fully qualified paths, but revert the change to `Pin`\n\nDownstream crates unfortunately (and likely unknowningly) depend on\n`std::pin::Pin` being implicitly brought into scope in `tokio::select!`.",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 2,
+    "last_edited_at": "2026-02-23T08:53:50+00:00",
+    "total_comments_count": 3
+  },
+  {
+    "id": "7754",
+    "source": "github_graphql",
+    "repo": "tokio-rs/tokio",
+    "title": "stream: work around the rustc bug in `StreamExt::collect`",
+    "body": "This is a fix for #7753.\r\n\r\nAs stated in that issue, there is a rustc bug, which can cause issues when interacting with types that have a manual `unsafe impl Send` and which contains a parameter set to `dyn Any`.\r\n\r\nThis PR solves the issue by removing the trait bounds on the struct itself, which makes `rustc` able to correctly infer that the combined struct is `Send`.",
+    "author": "TethysSvensson",
+    "merged_at": "2025-12-05T02:24:30+00:00",
+    "created_at": "2025-12-03T14:33:58+00:00",
+    "files": [
+      "tokio-stream/src/stream_ext.rs",
+      "tokio-stream/src/stream_ext/collect.rs"
+    ],
+    "additions": 9,
+    "deletions": 10,
+    "ticket_ids": [
+      "#7753"
+    ],
+    "merge_commit_sha": "c8116ecd7bba1dae71bfac25600420ec73fbc2b1",
+    "pr_number": 7754,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "ADD-SP",
+        "state": "commented",
+        "submitted_at": "2025-12-04T03:00:29+00:00",
+        "is_bot": false,
+        "body": "Overall look good to me, just a minor question."
+      },
+      {
+        "reviewer": "TethysSvensson",
+        "state": "commented",
+        "submitted_at": "2025-12-04T07:19:06+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "martin-g",
+        "state": "approved",
+        "submitted_at": "2025-12-04T07:41:12+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "ADD-SP",
+        "state": "commented",
+        "submitted_at": "2025-12-04T17:29:40+00:00",
+        "is_bot": false,
+        "body": "Please sync changes from the base branch to fix CI issues."
+      },
+      {
+        "reviewer": "ADD-SP",
+        "state": "approved",
+        "submitted_at": "2025-12-05T02:24:01+00:00",
+        "is_bot": false,
+        "body": "Thanks!"
+      }
+    ],
+    "commits": [
+      {
+        "message": "tokio-stream: Work around for a rustc where it will cause weird errors when trying to prove `Send`\n\nThis fixes #7753.",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Merge branch 'master' into tethys/collect-workaround",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 2,
+    "last_edited_at": null,
+    "total_comments_count": 6
+  },
+  {
+    "id": "7925",
+    "source": "github_graphql",
+    "repo": "tokio-rs/tokio",
+    "title": "rt: fix missing quotation in docs",
+    "body": "## Motivation\r\n\r\nDocumentation is missing ending quote in the bash command.\r\n",
+    "author": "PhongChuong",
+    "merged_at": "2026-02-20T21:41:13+00:00",
+    "created_at": "2026-02-20T20:46:31+00:00",
+    "files": [
+      "tokio/src/runtime/handle.rs"
+    ],
+    "additions": 1,
+    "deletions": 1,
+    "ticket_ids": [],
+    "merge_commit_sha": "25e7f2641ef2555d688c267059431a2802805f1d",
+    "pr_number": 7925,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "martin-g",
+        "state": "approved",
+        "submitted_at": "2026-02-20T21:41:03+00:00",
+        "is_bot": false,
+        "body": ""
+      }
+    ],
+    "commits": [
+      {
+        "message": "rt: fix missing quotation in docs",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 1
+  },
+  {
+    "id": "7926",
+    "source": "github_graphql",
+    "repo": "tokio-rs/tokio",
+    "title": "util: fix typos in docs",
+    "body": "## Motivation\r\n\r\nFix documentation typos.",
+    "author": "PhongChuong",
+    "merged_at": "2026-02-20T21:36:27+00:00",
+    "created_at": "2026-02-20T20:47:14+00:00",
+    "files": [
+      "tokio/src/util/memchr.rs"
+    ],
+    "additions": 3,
+    "deletions": 3,
+    "ticket_ids": [],
+    "merge_commit_sha": "e1a91ef114a301b542d810abab9956f2868861b9",
+    "pr_number": 7926,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "martin-g",
+        "state": "approved",
+        "submitted_at": "2026-02-20T20:59:20+00:00",
+        "is_bot": false,
+        "body": ""
+      }
+    ],
+    "commits": [
+      {
+        "message": "util: fix typo in docs",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 1
+  },
+  {
+    "id": "7923",
+    "source": "github_graphql",
+    "repo": "tokio-rs/tokio",
+    "title": "task: clarify when to use spawn_blocking vs dedicated threads",
+    "body": "## Motivation\r\n\r\nThe current spawn_blocking documentation states that the function is intended for operations that eventually finish and that thread::spawn should be used for ordinary threads.\r\nHowever, the practical distinction between bounded blocking work and long-lived or persistent workers is not explicit. This often leads to confusion about when long-running tasks should use spawn_blocking versus a dedicated thread.\r\nThis clarification was requested following discussion #7878 .\r\n\r\n## Solution\r\n\r\nAdd a short guidance section to the spawn_blocking documentation explaining:\r\n  - spawn_blocking is intended for short-lived, bounded blocking work\r\n  - Long-lived or persistent blocking tasks reduce the effective capacity of the blocking thread pool\r\n  - For such workloads, a dedicated thread via std::thread::spawn is preferred\r\nThe change is documentation-only and does not modify behavior.\r\n",
+    "author": "0rlych1kk4",
+    "merged_at": "2026-02-20T14:19:27+00:00",
+    "created_at": "2026-02-20T13:29:29+00:00",
+    "files": [
+      "tokio/src/task/blocking.rs"
+    ],
+    "additions": 15,
+    "deletions": 0,
+    "ticket_ids": [
+      "#7878"
+    ],
+    "merge_commit_sha": "1b11840f539ced93855df362eb51149ba08903a0",
+    "pr_number": 7923,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "Darksonn",
+        "state": "commented",
+        "submitted_at": "2026-02-20T13:34:13+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "0rlych1kk4",
+        "state": "commented",
+        "submitted_at": "2026-02-20T13:45:38+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "0rlych1kk4",
+        "state": "commented",
+        "submitted_at": "2026-02-20T13:50:52+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "Darksonn",
+        "state": "approved",
+        "submitted_at": "2026-02-20T14:02:23+00:00",
+        "is_bot": false,
+        "body": "Thanks."
+      }
+    ],
+    "commits": [
+      {
+        "message": "docs(task): clarify when to use spawn_blocking vs dedicated threads",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "docs(task): add guidance when to use spawn_blocking vs dedicated threads",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "docs(task): reorganize spawn_blocking docs per review",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 3,
+    "last_edited_at": null,
+    "total_comments_count": 6
+  },
+  {
+    "id": "7918",
+    "source": "github_graphql",
+    "repo": "tokio-rs/tokio",
+    "title": "runtime: fix TOCTOU issue when decreasing `num_idle_threads`",
+    "body": "Follow-up of <https://github.com/tokio-rs/tokio/pull/7910>.\r\n\r\nFIx a flaky test: <https://github.com/tokio-rs/tokio/actions/runs/22089452533/job/63831219292>\r\n\r\n<img src=\"https://github.com/user-attachments/assets/168aaee2-42fc-40f7-82fb-6605b184b11a\" />\r\n\r\n---\r\n\r\nThis bug was introduced in <https://github.com/tokio-rs/tokio/commit/d2ba276e7896d6fc6d6897fe6680a75602e01c7b>, which changed the metrics from a ordinary counter to atomic counter, so there is a [TOCTOU](https://en.wikipedia.org/wiki/Time-of-check_to_time-of-use) issue.\r\n\r\nApparently, we can catch the underflow/overflow issue via CAS loop. However, it will be a significant change, thus I prefer to delete this assertion to address the flaky test at first.\r\n\r\nBut I would highly suggest to check the underflow/overflow in the implementation of `MetricAtomicUsize` later, and also measure the performance impact. Correctness should over the performance. Or introducing something like `checked_sub` for caller to optimize the performance.",
+    "author": "ADD-SP",
+    "merged_at": "2026-02-18T05:50:26+00:00",
+    "created_at": "2026-02-17T08:46:38+00:00",
+    "files": [
+      "tokio/src/runtime/blocking/pool.rs"
+    ],
+    "additions": 4,
+    "deletions": 4,
+    "ticket_ids": [],
+    "merge_commit_sha": "c23735d43be36d31911dd2c832f36e5e6a6078a1",
+    "pr_number": 7918,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "Darksonn",
+        "state": "commented",
+        "submitted_at": "2026-02-17T08:54:49+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "ADD-SP",
+        "state": "commented",
+        "submitted_at": "2026-02-17T09:04:36+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "martin-g",
+        "state": "approved",
+        "submitted_at": "2026-02-17T09:54:32+00:00",
+        "is_bot": false,
+        "body": ""
+      }
+    ],
+    "commits": [
+      {
+        "message": "runtime: fix TOCTOU issue when decreasing `num_idle_threads`",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "add the assertion back and fix it",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "fix rustfmt reports",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 3,
+    "last_edited_at": "2026-02-17T08:47:37+00:00",
+    "total_comments_count": 4
+  },
+  {
+    "id": "7919",
+    "source": "github_graphql",
+    "repo": "tokio-rs/tokio",
+    "title": "sync: clarify RwLock fairness documentation",
+    "body": "Fixes #6901\n\n## Problem\n\nThe previous wording in the `RwLock` documentation was misleading:\n\n> if a task that wishes to acquire the write lock is **at the head of the queue**, read locks will not be given out until the write lock has been released\n\nThis implies that readers are only blocked when the writer is at position #1 in the queue. However, due to the FIFO ordering policy, any write request queued *before* a read request will block that reader \u2014 the writer's position (head or not) is irrelevant from the reader's perspective.\n\n**Example:** If R1 \u2192 W \u2192 R2 are queued in that order, R2 is blocked by W even though W is not at the head of the queue. Once R1 gets the lock (it was already queued before W), R2 cannot skip past W.\n\n## Fix\n\nReplace with a more accurate description:\n\n> a read lock will not be given out until all write lock requests that were queued before it have been acquired and released\n\nThis clearly communicates the FIFO semantics without the misleading \"head of the queue\" implication.\n\nThis rephrasing was suggested in the issue by @cip999 and acknowledged as reasonable by @Darksonn.",
+    "author": "cluster2600",
+    "merged_at": "2026-02-19T14:57:42+00:00",
+    "created_at": "2026-02-19T14:31:03+00:00",
+    "files": [
+      "tokio/src/sync/rwlock.rs"
+    ],
+    "additions": 4,
+    "deletions": 5,
+    "ticket_ids": [
+      "#1",
+      "#6901"
+    ],
+    "merge_commit_sha": "e65040f061008ca5a94d21721aa8b544c078c606",
+    "pr_number": 7919,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "Darksonn",
+        "state": "approved",
+        "submitted_at": "2026-02-19T14:57:22+00:00",
+        "is_bot": false,
+        "body": "This seems ok to me. Thanks!"
+      }
+    ],
+    "commits": [
+      {
+        "message": "sync: clarify RwLock fairness documentation\n\nThe previous wording 'if a task that wishes to acquire the write lock is\nat the head of the queue, read locks will not be given out' was\nmisleading: it implied that readers are only blocked when the writer is\nfirst in the queue. In reality, due to the FIFO ordering, any write\nrequest queued *before* a read request will block that reader.\n\nReplace with a more accurate description: 'a read lock will not be given\nout until all write lock requests that were queued before it have been\nacquired and released.'\n\nCloses #6901",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 1
+  },
+  {
+    "id": "7895",
+    "source": "github_graphql",
+    "repo": "tokio-rs/tokio",
+    "title": "replace some futures with `poll_fn`",
+    "body": "These were found by going through all matches from the \" Future for \" search query.",
+    "author": "vilgotf",
+    "merged_at": "2026-02-09T12:30:32+00:00",
+    "created_at": "2026-02-07T16:44:55+00:00",
+    "files": [
+      "tokio-util/src/io/read_buf.rs",
+      "tokio/src/lib.rs",
+      "tokio/src/task/yield_now.rs"
+    ],
+    "additions": 17,
+    "deletions": 58,
+    "ticket_ids": [],
+    "merge_commit_sha": "9dacb1c53e341b1183a89800d46ee33c6eabf7ad",
+    "pr_number": 7895,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "martin-g",
+        "state": "approved",
+        "submitted_at": "2026-02-09T06:42:23+00:00",
+        "is_bot": false,
+        "body": ""
+      }
+    ],
+    "commits": [
+      {
+        "message": "replace some futures with `poll_fn`",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 0
+  },
+  {
+    "id": "7910",
+    "source": "github_graphql",
+    "repo": "tokio-rs/tokio",
+    "title": "runtime: fix double-increment of num_idle_threads on blocking pool shutdown",
+    "body": "When a blocking pool worker thread hits the shutdown path, `num_idle_threads` gets incremented twice but only decremented once on thread exit, leaving the metric over-counted.\n\n**What happens:**\n\nThe worker loop increments `num_idle_threads` when entering IDLE state (before the condvar wait). During shutdown, `condvar.notify_all()` wakes all idle threads, but unlike a normal task spawn, it does *not* decrement `num_idle_threads` or increment `num_notify`. The woken thread sees `shared.shutdown == true`, exits the inner while loop, and enters the `if shared.shutdown` block which had a second `inc_num_idle_threads()` call. On thread exit, only one `dec_num_idle_threads()` happens, so the net effect is +1 per idle thread at shutdown time.\n\n**The fix:**\n\nRemove the extra `inc_num_idle_threads()` in the shutdown path. The thread is already counted as idle from the increment at the top of the IDLE section, so the balance is: +1 on entering IDLE, -1 on thread exit.\n\nCloses #6439",
+    "author": "veeceey",
+    "merged_at": "2026-02-17T07:19:51+00:00",
+    "created_at": "2026-02-15T10:13:42+00:00",
+    "files": [
+      "tokio/src/runtime/blocking/pool.rs",
+      "tokio/tests/rt_unstable_metrics.rs"
+    ],
+    "additions": 32,
+    "deletions": 6,
+    "ticket_ids": [
+      "#6439"
+    ],
+    "merge_commit_sha": "d83921bc5181010be72704d1fe8fb9b6f10cb7e8",
+    "pr_number": 7910,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "ADD-SP",
+        "state": "approved",
+        "submitted_at": "2026-02-17T07:14:23+00:00",
+        "is_bot": false,
+        "body": "Thanks!"
+      }
+    ],
+    "commits": [
+      {
+        "message": "runtime: fix double-increment of num_idle_threads during blocking pool shutdown\n\nWhen a blocking pool worker thread enters the shutdown path, it has\nalready incremented num_idle_threads upon entering the IDLE state at\nthe top of the main loop. The extra inc_num_idle_threads() call inside\nthe `if shared.shutdown` block incorrectly increments the counter a\nsecond time, since the shutdown notification (condvar.notify_all) does\nnot decrement num_idle like a normal task spawn does.\n\nThis causes num_idle_threads to be over-counted during shutdown: each\nidle worker thread that goes through the shutdown path adds an extra\n+1 that is never balanced out. The subsequent dec_num_idle_threads()\non thread exit only removes one of the two increments.\n\nRemove the spurious increment so the idle count stays consistent.\n\nCloses #6439",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "test: add regression test for num_idle_blocking_threads after shutdown\n\nVerify that the num_idle_blocking_threads metric returns 0 after runtime\nshutdown. Before the fix in the previous commit, the shutdown path would\nincrement num_idle_threads a second time for each idle worker thread,\nleaving the counter over-counted.\n\nRefs: #6439",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 2,
+    "last_edited_at": null,
+    "total_comments_count": 4
+  },
+  {
+    "id": "7903",
+    "source": "github_graphql",
+    "repo": "tokio-rs/tokio",
+    "title": "tests: skip issue_7144 if strace is missing",
+    "body": "## Motivation\r\n\r\nThe unit test `issue_7144` requires `strace` to run. On systems where it is not installed, the test fails, causing the test suite to fail unexpectedly, and currently triggers `unwrap()`: <https://github.com/tokio-rs/tokio/blob/9dacb1c53e341b1183a89800d46ee33c6eabf7ad/tokio/tests/process_issue_7144.rs#L21-L24>\r\n\r\nThis is an environment-dependent issue, not a problem with the library or unit test itself, and makes local testing less reliable.\r\n\r\nThis change aims to make the test suite pass consistently, regardless of whether `strace` is present.\r\n\r\n## Solution\r\n\r\nThe test now checks if `strace` is available before running. If `strace` is missing, the test is skipped gracefully with no failure.\r\n\r\nA check was added and it uses only `tokio::process::Command`. This change makes local testing more reliable without affecting the behavior of the test on systems where `strace` is present.",
+    "author": "walker84837",
+    "merged_at": "2026-02-12T11:26:20+00:00",
+    "created_at": "2026-02-11T16:16:26+00:00",
+    "files": [
+      "tokio/tests/process_issue_7144.rs"
+    ],
+    "additions": 8,
+    "deletions": 0,
+    "ticket_ids": [],
+    "merge_commit_sha": "2486d497786fa0b17fab03a79c154790c3bdeaed",
+    "pr_number": 7903,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "Darksonn",
+        "state": "approved",
+        "submitted_at": "2026-02-12T11:26:05+00:00",
+        "is_bot": false,
+        "body": "Thanks."
+      }
+    ],
+    "commits": [
+      {
+        "message": "tests: skip issue_7144 if strace is missing\n\nThe unit test `issue_7144` requires `strace` and will fail if it is not\ninstalled. This patch skips the test gracefully when `strace` is\nmissing, making the test suite pass on systems without it.\n\nRefs: #7144",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 1
+  },
+  {
+    "id": "7912",
+    "source": "github_graphql",
+    "repo": "tokio-rs/tokio",
+    "title": "tokio-util: fix is_readable should be buffer empty or not",
+    "body": "<!--\r\nThank you for your Pull Request. Please provide a description above and review\r\nthe requirements below.\r\n\r\nBug fixes and new features should include tests.\r\n\r\nContributors guide: https://github.com/tokio-rs/tokio/blob/master/CONTRIBUTING.md\r\n\r\nThe contributors guide includes instructions for running rustfmt and building the\r\ndocumentation, which requires special commands beyond `cargo fmt` and `cargo doc`.\r\n-->\r\n\r\n## Motivation\r\n\r\n<!--\r\nExplain the context and why you're making that change. What is the problem\r\nyou're trying to solve? In some cases there is not a problem and this can be\r\nthought of as being the motivation for your change.\r\n-->\r\n\r\n## Solution\r\n\r\n<!--\r\nSummarize the solution and provide any necessary context needed to understand\r\nthe code change.\r\n-->\r\n",
+    "author": "cuiweixie",
+    "merged_at": "2026-02-16T16:33:36+00:00",
+    "created_at": "2026-02-16T04:38:10+00:00",
+    "files": [
+      "tokio-util/src/codec/framed_impl.rs",
+      "tokio-util/tests/framed.rs"
+    ],
+    "additions": 55,
+    "deletions": 1,
+    "ticket_ids": [],
+    "merge_commit_sha": "96f64f4ee2afc0a6db76390134dd183d59ca5351",
+    "pr_number": 7912,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "martin-g",
+        "state": "approved",
+        "submitted_at": "2026-02-16T08:22:01+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "Darksonn",
+        "state": "commented",
+        "submitted_at": "2026-02-16T10:11:23+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "cuiweixie",
+        "state": "commented",
+        "submitted_at": "2026-02-16T12:30:34+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "Darksonn",
+        "state": "commented",
+        "submitted_at": "2026-02-16T12:32:24+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "cuiweixie",
+        "state": "commented",
+        "submitted_at": "2026-02-16T13:07:35+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "martin-g",
+        "state": "approved",
+        "submitted_at": "2026-02-16T16:32:25+00:00",
+        "is_bot": false,
+        "body": ""
+      }
+    ],
+    "commits": [
+      {
+        "message": "tokio-util: fix is_readable should be buffer empty or not",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "feat: add ut",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "feat: remote private field test add public api test",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "fix: rustfmt",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 4,
+    "last_edited_at": null,
+    "total_comments_count": 4
+  },
+  {
+    "id": "7913",
+    "source": "github_graphql",
+    "repo": "tokio-rs/tokio",
+    "title": "task: fix two typos",
+    "body": "title",
+    "author": "ZenPZero",
+    "merged_at": "2026-02-16T10:51:10+00:00",
+    "created_at": "2026-02-16T10:20:50+00:00",
+    "files": [
+      "tokio/src/task/blocking.rs",
+      "tokio/src/task/mod.rs"
+    ],
+    "additions": 2,
+    "deletions": 2,
+    "ticket_ids": [],
+    "merge_commit_sha": "00d10c22f831f7d4508444f17a84e19319eaf36b",
+    "pr_number": 7913,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "Darksonn",
+        "state": "approved",
+        "submitted_at": "2026-02-16T10:34:02+00:00",
+        "is_bot": false,
+        "body": "Thanks."
+      }
+    ],
+    "commits": [
+      {
+        "message": "task: fix grammar in `spawn_blocking()`",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "task: fix grammar in `#spawn_blocking`",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 2,
+    "last_edited_at": null,
+    "total_comments_count": 2
+  },
+  {
+    "id": "7908",
+    "source": "github_graphql",
+    "repo": "tokio-rs/tokio",
+    "title": "io: clarify the behavior of `AsyncWriteExt::shutdown()`",
+    "body": "title",
+    "author": "ZenPZero",
+    "merged_at": "2026-02-14T19:42:25+00:00",
+    "created_at": "2026-02-14T13:36:57+00:00",
+    "files": [
+      "tokio/src/io/util/async_write_ext.rs"
+    ],
+    "additions": 2,
+    "deletions": 2,
+    "ticket_ids": [],
+    "merge_commit_sha": "a25d95a8c4f443886e55b24c97d4bbee1d87283d",
+    "pr_number": 7908,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "ADD-SP",
+        "state": "approved",
+        "submitted_at": "2026-02-14T19:42:06+00:00",
+        "is_bot": false,
+        "body": "Thanks!"
+      }
+    ],
+    "commits": [
+      {
+        "message": "Clarify `tokio::io::AsyncWriteExt::shutdown()` docs",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 1
+  },
+  {
+    "id": "7891",
+    "source": "github_graphql",
+    "repo": "tokio-rs/tokio",
+    "title": "task: fix task module feature flags",
+    "body": "<!--\r\nThank you for your Pull Request. Please provide a description above and review\r\nthe requirements below.\r\n\r\nBug fixes and new features should include tests.\r\n\r\nContributors guide: https://github.com/tokio-rs/tokio/blob/master/CONTRIBUTING.md\r\n\r\nThe contributors guide includes instructions for running rustfmt and building the\r\ndocumentation, which requires special commands beyond `cargo fmt` and `cargo doc`.\r\n-->\r\n\r\n## Motivation\r\n\r\nCurrently, if you look at the Tokio docs the task module it's not under the rt feature flag:\r\n\r\n<img width=\"323\" height=\"359\" alt=\"image\" src=\"https://github.com/user-attachments/assets/55560c93-4d4f-43a9-951e-380c196e7d58\" />\r\n\r\nBut every public module and struct inside task is under `rt` feature flag (except for coop which is only available for the crate).\r\n\r\nThis also leads to confusion because items that have multiple feature flags don't display the rt flag:\r\n\r\n<img width=\"320\" height=\"443\" alt=\"image\" src=\"https://github.com/user-attachments/assets/2e312414-58b2-4246-a26b-4f7c9a19166e\" />\r\n\r\n<!--\r\nExplain the context and why you're making that change. What is the problem\r\nyou're trying to solve? In some cases there is not a problem and this can be\r\nthought of as being the motivation for your change.\r\n-->\r\n\r\n## Solution\r\n\r\nThe solution is to gate the task module under rt feature flag:\r\n\r\n<img width=\"320\" height=\"377\" alt=\"image\" src=\"https://github.com/user-attachments/assets/ec5f7000-5c82-468d-ac26-d6d338b68ea3\" />\r\n\r\n<img width=\"317\" height=\"193\" alt=\"image\" src=\"https://github.com/user-attachments/assets/db2cae12-1f9a-4d9a-9e32-bab34e30f482\" />\r\n\r\n<!--\r\nSummarize the solution and provide any necessary context needed to understand\r\nthe code change.\r\n-->\r\n\r\n## Docs\r\n\r\n[rendered docs](https://deploy-preview-7891--tokio-rs.netlify.app/tokio/)",
+    "author": "mattiapitossi",
+    "merged_at": "2026-02-12T11:27:25+00:00",
+    "created_at": "2026-02-06T16:31:53+00:00",
+    "files": [
+      "tokio/src/lib.rs"
+    ],
+    "additions": 5,
+    "deletions": 0,
+    "ticket_ids": [],
+    "merge_commit_sha": "5bcd7c1d09e8d8a89ebcb96069cac1c1fdd76877",
+    "pr_number": 7891,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "mattiapitossi",
+        "state": "commented",
+        "submitted_at": "2026-02-06T16:32:32+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "Darksonn",
+        "state": "commented",
+        "submitted_at": "2026-02-11T09:48:43+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "mattiapitossi",
+        "state": "commented",
+        "submitted_at": "2026-02-11T18:25:18+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "martin-g",
+        "state": "approved",
+        "submitted_at": "2026-02-11T20:28:12+00:00",
+        "is_bot": false,
+        "body": ""
+      }
+    ],
+    "commits": [
+      {
+        "message": "fix-task-module-feature-flags",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Merge branch 'master' into fixing-task-module-feature-flags",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "gate task module only on docs",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "remove nl",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 4,
+    "last_edited_at": "2026-02-06T16:42:58+00:00",
+    "total_comments_count": 5
+  },
+  {
+    "id": "7904",
+    "source": "github_graphql",
+    "repo": "tokio-rs/tokio",
+    "title": "io: Explain how to flush stdout/stderr",
+    "body": "## Motivation\r\n\r\nHelp other people debugging lost stdout.\r\n\r\n## Solution\r\n\r\nExplain behavior of `tokio::io::stdout` and `tokio::io::stderr`.\r\n\r\n## Also\r\n\r\nFixed typo in `stderr.rs`.",
+    "author": "stepancheg",
+    "merged_at": "2026-02-12T14:06:49+00:00",
+    "created_at": "2026-02-12T00:04:59+00:00",
+    "files": [
+      "tokio/src/io/stderr.rs",
+      "tokio/src/io/stdout.rs"
+    ],
+    "additions": 29,
+    "deletions": 1,
+    "ticket_ids": [],
+    "merge_commit_sha": "9e7e1ef7ad30ad84f54a047ecd65b78e5973a9c4",
+    "pr_number": 7904,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "Darksonn",
+        "state": "approved",
+        "submitted_at": "2026-02-12T11:27:58+00:00",
+        "is_bot": false,
+        "body": "Thanks."
+      },
+      {
+        "reviewer": "martin-g",
+        "state": "approved",
+        "submitted_at": "2026-02-12T12:06:51+00:00",
+        "is_bot": false,
+        "body": ""
+      }
+    ],
+    "commits": [
+      {
+        "message": "Explain how to flush stdout/stderr",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 4
+  },
+  {
+    "id": "7933",
+    "source": "github_graphql",
+    "repo": "tokio-rs/tokio",
+    "title": "add wasm32-wasip2 networking support",
+    "body": "## Motivation\r\n\r\nThis adds networking support for the `wasm32-wasip2` target platform, which includes more extensive support for sockets than `wasm32-wasip1`.\r\n\r\n## Solution\r\n\r\nThe bulk of the changes are in https://github.com/tokio-rs/mio/pull/1931.  This patch mainly tweaks a few `cfg` directives to indicate `wasm32-wasip2`'s additional capabilities.\r\n\r\n~~Note that this is a draft PR until https://github.com/tokio-rs/mio/pull/1931 and https://github.com/rust-lang/socket2/pull/639 have been include in stable releases of their respective projects.~~\r\n\r\nAlso note that I've added a `wasm32-wasip2` target to CI and triaged each test which was previously disabled for WASI into one of three categories:\r\n\r\n- Disabled on both WASIp1 and p2 due to not-yet-supported features such as multithreading\r\n- Disabled on p1 but enabled on p2\r\n- Disabled on p1 and _temporarily_ disabled on p2 due to `wasi-libc` bugfixes which have been merged but not yet included in a Rust release.  I'll open an issue to re-enable them when the fixes land in Rust.\r\n\r\n## Future Work\r\n\r\nIn the future, we could consider adding support for `tokio::net::lookup_host`. WASIp2 natively supports asynchronous DNS lookups and is single threaded, whereas Tokio currently assumes DNS lookups are blocking and require multithreading to emulate async lookups.  A WASIp2-specific implementation could do the lookup directly without multithreading.\r\n\r\nWASIp2 also supports single-threaded, asynchronous file I/O, timers, etc.  We could either support those directly or wait for WASIp3's multithreading support, in which case most of `tokio::fs` (as well as `tokio::net::lookup_host`, etc.) _should_ work unchanged via `wasi-libc` and worker threads.\r\n\r\nCurrently, building for WASIp2 requires `RUSTFLAGS=\"--cfg tokio_unstable\"`.  Once we have a solid maintenance plan, we can remove that requirement.\r\n",
+    "author": "dicej",
+    "merged_at": "2026-04-02T09:53:17+00:00",
+    "created_at": "2026-02-24T21:29:16+00:00",
+    "files": [
+      ".github/workflows/ci.yml",
+      "spellcheck.dic",
+      "tokio/Cargo.toml",
+      "tokio/src/macros/cfg.rs",
+      "tokio/src/net/mod.rs",
+      "tokio/src/net/tcp/listener.rs",
+      "tokio/src/net/tcp/mod.rs",
+      "tokio/src/net/tcp/socket.rs",
+      "tokio/src/net/tcp/stream.rs",
+      "tokio/src/net/udp.rs",
+      "tokio/src/runtime/io/registration.rs",
+      "tokio/tests/net_bind_resource.rs",
+      "tokio/tests/net_lookup_host.rs",
+      "tokio/tests/tcp_accept.rs",
+      "tokio/tests/tcp_connect.rs",
+      "tokio/tests/tcp_echo.rs",
+      "tokio/tests/tcp_into_split.rs",
+      "tokio/tests/tcp_into_std.rs",
+      "tokio/tests/tcp_peek.rs",
+      "tokio/tests/tcp_shutdown.rs",
+      "tokio/tests/tcp_socket.rs",
+      "tokio/tests/tcp_split.rs",
+      "tokio/tests/tcp_stream.rs",
+      "tokio/tests/udp.rs"
+    ],
+    "additions": 322,
+    "deletions": 86,
+    "ticket_ids": [],
+    "merge_commit_sha": "43134f1e5784993eb4fb3863933d74ac9e28f598",
+    "pr_number": 7933,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "Darksonn",
+        "state": "commented",
+        "submitted_at": "2026-03-30T08:56:22+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "dicej",
+        "state": "commented",
+        "submitted_at": "2026-03-30T14:18:46+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "Darksonn",
+        "state": "approved",
+        "submitted_at": "2026-04-02T09:52:50+00:00",
+        "is_bot": false,
+        "body": "Thanks."
+      }
+    ],
+    "commits": [
+      {
+        "message": "add wasm32-wasip2 networking support\n\nMotivation\n\nThis adds networking support for the `wasm32-wasip2` target platform, which\nincludes more extensive support for sockets than `wasm32-wasip1`.\n\nSolution\n\nThe bulk of the changes are in https://github.com/tokio-rs/mio/pull/1931.  This\npatch mainly tweaks a few `cfg` directives to indicate `wasm32-wasip2`'s\nadditional capabilities.\n\nNote that this is a draft PR until until\nhttps://github.com/tokio-rs/mio/pull/1931 and\nhttps://github.com/rust-lang/socket2/pull/639 have been include in stable\nreleases of their respective projects.\n\nAlso note that I've added a `wasm32-wasip2` target to CI and triaged each test\nwhich was previously disabled for WASI into one of three categories:\n\n- Disabled on both WASIp1 and p2 due to not-yet-supported features such as multithreading\n- Disabled on p1 but enabled on p2\n- Disabled on p1 and _temporarily_ disabled on p2 due to `wasi-libc` bugfixes which have been merged but not yet included in a Rust release.  I'll open an issue to re-enable them when the fixes land in Rust.\n\nFuture Work\n\nIn the future, we could consider adding support for `tokio::net::lookup_host`.\nWASIp2 natively supports asynchronous DNS lookups and is single threaded,\nwhereas Tokio currently assumes DNS lookups are blocking and require\nmultithreading to emulate async lookups.  A WASIp2-specific implementation could\ndo the lookup directly without multithreading.\n\nWASIp2 also supports single-threaded, asynchronous file I/O, timers, etc.  We\ncould either support those directly or wait for WASIp3's multithreading support,\nin which case most of `tokio::fs` (as well as `tokio::net::lookup_host`, etc.)\n_should_ work unchanged via `wasi-libc` and worker threads.\n\nCurrently, building for WASIp2 requires RUSTFLAGS=\"--cfg tokio_unstable\"`.  Once\nwe have a solid maintenance plan, we can remove that requirement.",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": "2026-04-01T14:48:54+00:00",
+    "total_comments_count": 4
+  },
+  {
+    "id": "7997",
+    "source": "github_graphql",
+    "repo": "tokio-rs/tokio",
+    "title": "macros: improve overall macro hygiene",
+    "body": "## Motivation\r\n\r\nMultiple macro expansions were previously assuming the existence of some\r\nstandard library symbols to both be in-scope and referring to the right symbol,\r\nand not only having the same identifier.\r\n\r\n## Solution\r\n\r\nThis has now been refactored into using reexports from the `support` module\r\nunder the `macros` module. Some other macro invocations were also using absolute\r\nstandard library paths instead of calling into the afore mentioned module\r\nthrough the special `$crate` metavariable. This has been changed, thus also\r\nreexporting some other items in `support`.",
+    "author": "dybucc",
+    "merged_at": "2026-04-02T09:46:58+00:00",
+    "created_at": "2026-03-31T10:03:46+00:00",
+    "files": [
+      "tokio/src/macros/select.rs",
+      "tokio/src/macros/support.rs",
+      "tokio/src/macros/trace.rs",
+      "tokio/src/macros/try_join.rs"
+    ],
+    "additions": 10,
+    "deletions": 9,
+    "ticket_ids": [],
+    "merge_commit_sha": "b4c3246d330379430937bdbb5e1b0c37282ae23e",
+    "pr_number": 7997,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "Darksonn",
+        "state": "commented",
+        "submitted_at": "2026-03-31T10:06:20+00:00",
+        "is_bot": false,
+        "body": "Thanks!"
+      },
+      {
+        "reviewer": "dybucc",
+        "state": "commented",
+        "submitted_at": "2026-03-31T10:19:32+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "Darksonn",
+        "state": "commented",
+        "submitted_at": "2026-03-31T10:39:13+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "martin-g",
+        "state": "commented",
+        "submitted_at": "2026-03-31T11:14:52+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "martin-g",
+        "state": "commented",
+        "submitted_at": "2026-03-31T11:17:44+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "dybucc",
+        "state": "commented",
+        "submitted_at": "2026-03-31T14:23:17+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "martin-g",
+        "state": "commented",
+        "submitted_at": "2026-03-31T19:57:05+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "martin-g",
+        "state": "approved",
+        "submitted_at": "2026-03-31T20:02:27+00:00",
+        "is_bot": false,
+        "body": "LGTM!\n\nThe fixed Pin/Ok/Err may break some users (e.g. hyper - https://github.com/tokio-rs/tokio/pull/7929#issuecomment-3943342335) but IMO it is OK."
+      },
+      {
+        "reviewer": "Darksonn",
+        "state": "approved",
+        "submitted_at": "2026-04-02T09:46:47+00:00",
+        "is_bot": false,
+        "body": "We have to keep imports to avoid breaking users, but changing the actual uses to full paths sounds good to me."
+      }
+    ],
+    "commits": [
+      {
+        "message": "macros: improve overall macro hygiene\n\nMultiple macro expansions were previously assumming the existence of\nsome standard library symbols to both be in-scope and referring to the\nright symbol, and not only having the same identifier.\n\nThis has now been refactored into using reexports from the `support`\nmodule under the `macros` module. Some other macro invocations were also\nusing absolute standard library paths instead of calling into the afore\nmentioned module through the special `$crate` macro. This has been\nchanged, thus also reexporting some other items in `support`.",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": "2026-04-02T14:21:30+00:00",
+    "total_comments_count": 10
+  },
+  {
+    "id": "7924",
+    "source": "github_graphql",
+    "repo": "tokio-rs/tokio",
+    "title": "rt: introduce runtime name",
+    "body": "closes #5545 \r\n\r\n[rendered docs](https://deploy-preview-7924--tokio-rs.netlify.app/tokio/)",
+    "author": "mattiapitossi",
+    "merged_at": "2026-04-01T09:46:28+00:00",
+    "created_at": "2026-02-20T16:07:56+00:00",
+    "files": [
+      "tests-build/tests/fail/macros_invalid_input.rs",
+      "tests-build/tests/fail/macros_invalid_input.stderr",
+      "tokio-macros/Cargo.toml",
+      "tokio-macros/src/entry.rs",
+      "tokio-macros/src/lib.rs",
+      "tokio/Cargo.toml",
+      "tokio/src/runtime/builder.rs",
+      "tokio/src/runtime/handle.rs",
+      "tokio/src/runtime/scheduler/current_thread/mod.rs",
+      "tokio/src/runtime/scheduler/multi_thread/handle.rs",
+      "tokio/src/runtime/scheduler/multi_thread/mod.rs",
+      "tokio/src/runtime/scheduler/multi_thread/worker.rs",
+      "tokio/tests/macros_test.rs",
+      "tokio/tests/rt_basic.rs",
+      "tokio/tests/rt_panic.rs",
+      "tokio/tests/rt_threaded.rs"
+    ],
+    "additions": 243,
+    "deletions": 12,
+    "ticket_ids": [
+      "#5545"
+    ],
+    "merge_commit_sha": "7947fa4bd79d7345aa7e6b189fc1fbb6983a4351",
+    "pr_number": 7924,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "mattiapitossi",
+        "state": "commented",
+        "submitted_at": "2026-02-20T16:18:03+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "mattiapitossi",
+        "state": "commented",
+        "submitted_at": "2026-02-20T16:21:52+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "mattiapitossi",
+        "state": "commented",
+        "submitted_at": "2026-02-20T17:26:47+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "martin-g",
+        "state": "commented",
+        "submitted_at": "2026-03-03T08:25:01+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "martin-g",
+        "state": "commented",
+        "submitted_at": "2026-03-03T09:14:54+00:00",
+        "is_bot": false,
+        "body": "A few more test could be added too:\n- a test with `#[tokio::test(name = \"a valid name\")]` and an assertion that the runtime's name() returns \"a valid name\"\n- rt_threaded.rs has a test for multi-thread. It would be good to add similar for current-thread\n- a test for unnamed runtime, i.e. assert None"
+      },
+      {
+        "reviewer": "mattiapitossi",
+        "state": "commented",
+        "submitted_at": "2026-03-05T07:50:42+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "mattiapitossi",
+        "state": "commented",
+        "submitted_at": "2026-03-05T07:52:10+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "mattiapitossi",
+        "state": "commented",
+        "submitted_at": "2026-03-05T07:55:15+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "martin-g",
+        "state": "commented",
+        "submitted_at": "2026-03-05T08:46:56+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "mattiapitossi",
+        "state": "commented",
+        "submitted_at": "2026-03-06T20:30:03+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "martin-g",
+        "state": "approved",
+        "submitted_at": "2026-03-07T12:10:19+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "mattiapitossi",
+        "state": "commented",
+        "submitted_at": "2026-03-11T17:31:33+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "martin-g",
+        "state": "commented",
+        "submitted_at": "2026-03-11T20:54:07+00:00",
+        "is_bot": false,
+        "body": ""
+      }
+    ],
+    "commits": [
+      {
+        "message": "fix the ci issue",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Merge branch 'tokio-rs:master' into master",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "fix readme",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "fix ci",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Merge branch 'tokio-rs:master' into master",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "add name API to runtime builder",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "add a todo",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "fix example name",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "improve return references",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "improve docs",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "improve docs",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "fix CI warnings",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "fix unwrap",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "add name macro for runtime",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "fix unwrap docs",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "add docs for macro runtime name",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "add docs for test macro",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "fix docs",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "rustfmt",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "fix diagnostic file",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "use path due to unreleased changes",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "set tokio version",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "add test for the name builder",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "trigger ci",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "set name field to private",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Update tokio/src/runtime/builder.rs\n\nCo-authored-by: Martin Grigorov <martin-g@users.noreply.github.com>",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "fix ci",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "trigger ci",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "revert tokio version",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "revert tokio version",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "add path for unreleased deps",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "add test for none and test macro",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "set finish non exhaustive when name is None",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Merge branch 'master' into 5545",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Merge branch 'master' into 5545",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Merge branch 'master' into 5545",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "check runtime name is not empty",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Merge branch 'master' into 5545",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 38,
+    "last_edited_at": "2026-02-21T08:59:39+00:00",
+    "total_comments_count": 16
+  },
+  {
+    "id": "7996",
+    "source": "github_graphql",
+    "repo": "tokio-rs/tokio",
+    "title": "sync: fix `notify_waiters` priority in `Notify`",
+    "body": "Fixes: #7965\r\n\r\n<!--\r\nThank you for your Pull Request. Please provide a description above and review\r\nthe requirements below.\r\n\r\nBug fixes and new features should include tests.\r\n\r\nContributors guide: https://github.com/tokio-rs/tokio/blob/master/CONTRIBUTING.md\r\n\r\nThe contributors guide includes instructions for running rustfmt and building the\r\ndocumentation, which requires special commands beyond `cargo fmt` and `cargo doc`.\r\n-->\r\n\r\n## Motivation\r\n\r\nPreviously, if a `notify_waiters()` was followed by a `notify_one()`, an unpolled `Notified` future created before the `notify_waiters()` call would consume the `NOTIFIED` permit created by the `notify_one()` call.\r\n\r\n\r\n\r\n\r\n\r\n<!--\r\nExplain the context and why you're making that change. What is the problem\r\nyou're trying to solve? In some cases there is not a problem and this can be\r\nthought of as being the motivation for your change.\r\n-->\r\n\r\n## Solution\r\n\r\n\r\nThis commit fixes this by verifying the `notify_waiters_calls` count before optimistically attempting to acquire the `NOTIFIED` permit. If the count indicates a `notify_waiters()` call has already happened, the future transitions directly to `State::Done` and leaves the permit intact for other waiters.\r\n\r\n\r\n<!--\r\nSummarize the solution and provide any necessary context needed to understand\r\nthe code change.\r\n-->\r\n",
+    "author": "Natural-selection1",
+    "merged_at": "2026-03-31T11:52:02+00:00",
+    "created_at": "2026-03-31T02:53:01+00:00",
+    "files": [
+      "tokio/src/sync/notify.rs",
+      "tokio/tests/sync_notify.rs"
+    ],
+    "additions": 20,
+    "deletions": 0,
+    "ticket_ids": [
+      "#7965"
+    ],
+    "merge_commit_sha": "9f132172dbb00b1f6b6bda64bb9b194382079499",
+    "pr_number": 7996,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "Darksonn",
+        "state": "approved",
+        "submitted_at": "2026-03-31T08:09:50+00:00",
+        "is_bot": false,
+        "body": "Looks reasonable to me."
+      },
+      {
+        "reviewer": "martin-g",
+        "state": "commented",
+        "submitted_at": "2026-03-31T08:30:24+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "martin-g",
+        "state": "approved",
+        "submitted_at": "2026-03-31T11:02:11+00:00",
+        "is_bot": false,
+        "body": ""
+      }
+    ],
+    "commits": [
+      {
+        "message": "sync: fix `notify_waiters` priority in `Notify`\n\nPreviously, if a `notify_waiters()` was followed by a `notify_one()`,\nan unpolled `Notified` future created before the `notify_waiters()`\ncall would consume the `NOTIFIED` permit created by the\n`notify_one()` call.\n\nThis commit fixes this by verifying the `notify_waiters_calls` count\nbefore optimistically attempting to acquire the `NOTIFIED` permit. If\nthe count indicates a `notify_waiters()` call has already happened, the\nfuture transitions directly to `State::Done` and leaves the permit\nintact for other waiters.\n\nFixes: #7965",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 4
+  },
+  {
+    "id": "7557",
+    "source": "github_graphql",
+    "repo": "tokio-rs/tokio",
+    "title": "tokio: Stabilize LocalRuntime",
+    "body": "<!--\r\nThank you for your Pull Request. Please provide a description above and review\r\nthe requirements below.\r\n\r\nBug fixes and new features should include tests.\r\n\r\nContributors guide: https://github.com/tokio-rs/tokio/blob/master/CONTRIBUTING.md\r\n\r\nThe contributors guide includes instructions for running rustfmt and building the\r\ndocumentation, which requires special commands beyond `cargo fmt` and `cargo doc`.\r\n-->\r\n\r\n## Motivation\r\n\r\nAfter `LocalRuntime` was implemented as per the issue #6739 I think its time to stabilize it so we don't need to set the `RUSTFLAGS` when using it \r\n\r\n<!--\r\nExplain the context and why you're making that change. What is the problem\r\nyou're trying to solve? In some cases there is not a problem and this can be\r\nthought of as being the motivation for your change.\r\n-->\r\n\r\n## Solution\r\n\r\nRemove cfg unstable in docs and places where it was initially implemented, I have tested the macro\r\n\r\n```rust\r\n#[tokio::main(flavor = \"local\")]\r\nasync fn main() {\r\n    println!(\"hello\");\r\n}\r\n```\r\n\r\nAnd using it just like\r\n\r\n```rust\r\nuse tokio::runtime::LocalRuntime;\r\n\r\nfn main() {\r\n    let rt = LocalRuntime::new().unwrap();\r\n\r\n    rt.block_on(async {\r\n        println!(\"{:?}\", \"hello\");\r\n    });\r\n\r\n    println!(\"hello\");\r\n}\r\n```\r\n\r\n<!--\r\nSummarize the solution and provide any necessary context needed to understand\r\nthe code change.\r\n-->\r\n",
+    "author": "Daksh14",
+    "merged_at": "2026-04-02T13:13:25+00:00",
+    "created_at": "2025-08-29T05:58:36+00:00",
+    "files": [
+      "tokio-macros/src/entry.rs",
+      "tokio-macros/src/lib.rs",
+      "tokio/src/runtime/builder.rs",
+      "tokio/src/runtime/local_runtime/runtime.rs",
+      "tokio/src/runtime/mod.rs",
+      "tokio/src/task/local.rs"
+    ],
+    "additions": 13,
+    "deletions": 54,
+    "ticket_ids": [
+      "#6739"
+    ],
+    "merge_commit_sha": "1fc450aefba4b05cdff9b7825ca5e39cccb3780e",
+    "pr_number": 7557,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "mattiapitossi",
+        "state": "commented",
+        "submitted_at": "2026-03-30T19:53:40+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "mattiapitossi",
+        "state": "commented",
+        "submitted_at": "2026-03-31T08:54:26+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "Darksonn",
+        "state": "commented",
+        "submitted_at": "2026-04-02T12:24:33+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "Darksonn",
+        "state": "approved",
+        "submitted_at": "2026-04-02T12:53:48+00:00",
+        "is_bot": false,
+        "body": "Thanks!"
+      },
+      {
+        "reviewer": "mattiapitossi",
+        "state": "approved",
+        "submitted_at": "2026-04-02T13:10:14+00:00",
+        "is_bot": false,
+        "body": ""
+      }
+    ],
+    "commits": [
+      {
+        "message": "`tokio-macros`: Stabilize LocalRuntime",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Fix macro and remove unstable from LocalRuntime locations",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Remove unstable from docs comments",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Use path dependency for tokio-macros",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Merge branch 'master' into 'stablize-local-thread'",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Minor docs updates",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 6,
+    "last_edited_at": null,
+    "total_comments_count": 9
+  },
+  {
+    "id": "7991",
+    "source": "github_graphql",
+    "repo": "tokio-rs/tokio",
+    "title": "sync: fix panic in `Chan::recv_many` when called with non-empty vector on closed channel",
+    "body": "## Motivation\r\n\r\n`Chan::recv_many` intends to assert that no slots\r\nhave been consumed when exiting with `Ready` via\r\nthe `rx_closed` code path.\r\n\r\nInstead of asserting no items were added to the\r\nbuffer, it asserted buffer emptiness, incorrectly\r\nmaking assumptions about the provided buffer.\r\n\r\nWhen `recv_many` was called on an empty channel\r\nwith idle semaphore after the receiver was closed,\r\nthe method would panic.\r\n\r\n## Solution\r\n\r\nThe branch coverage had been previously missing.\r\n\r\nThis changeset corrects the assertion\r\nand adds tests covering the code path.\r\n\r\nFixes #7990.\r\n\r\n",
+    "author": "LeoniePhiline",
+    "merged_at": "2026-04-02T11:35:26+00:00",
+    "created_at": "2026-03-27T00:32:41+00:00",
+    "files": [
+      "tokio/src/sync/mpsc/chan.rs",
+      "tokio/tests/sync_mpsc.rs"
+    ],
+    "additions": 29,
+    "deletions": 9,
+    "ticket_ids": [
+      "#7990"
+    ],
+    "merge_commit_sha": "bf18ed452d6aae438e84ae008a01a74776abdc19",
+    "pr_number": 7991,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "Darksonn",
+        "state": "commented",
+        "submitted_at": "2026-03-27T06:55:00+00:00",
+        "is_bot": false,
+        "body": "Thanks!\n\n> Merge without squash is recommended.\n\nIf you add the test first, then I will need to merge with squash. Otherwise bisection will not work on the main branch if someone hits the first commit in a bisection."
+      },
+      {
+        "reviewer": "martin-g",
+        "state": "commented",
+        "submitted_at": "2026-03-29T20:26:51+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "LeoniePhiline",
+        "state": "commented",
+        "submitted_at": "2026-03-29T23:12:33+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "LeoniePhiline",
+        "state": "commented",
+        "submitted_at": "2026-03-29T23:18:27+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "Darksonn",
+        "state": "commented",
+        "submitted_at": "2026-03-30T08:17:13+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "LeoniePhiline",
+        "state": "commented",
+        "submitted_at": "2026-03-30T10:32:58+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "LeoniePhiline",
+        "state": "commented",
+        "submitted_at": "2026-03-30T11:18:27+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "LeoniePhiline",
+        "state": "commented",
+        "submitted_at": "2026-03-30T11:20:47+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "LeoniePhiline",
+        "state": "commented",
+        "submitted_at": "2026-03-30T11:24:10+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "LeoniePhiline",
+        "state": "commented",
+        "submitted_at": "2026-03-30T11:27:07+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "Darksonn",
+        "state": "commented",
+        "submitted_at": "2026-03-30T11:27:40+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "Darksonn",
+        "state": "approved",
+        "submitted_at": "2026-04-02T10:06:34+00:00",
+        "is_bot": false,
+        "body": "Thanks."
+      },
+      {
+        "reviewer": "martin-g",
+        "state": "approved",
+        "submitted_at": "2026-04-02T10:59:27+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "mattiapitossi",
+        "state": "approved",
+        "submitted_at": "2026-04-02T11:04:49+00:00",
+        "is_bot": false,
+        "body": ""
+      }
+    ],
+    "commits": [
+      {
+        "message": "sync: fix panic in `Chan::recv_many` when called with non-empty vector on closed channel (#7991)\n\n`Chan::recv_many` intends to assert that no slots\nhave been consumed when exiting with `Ready` via\nthe `rx_closed` code path.\n\nInstead of asserting no items were added to the\nbuffer, it asserted buffer emptiness, incorrectly\nmaking assumptions about the provided buffer.\n\nWhen `recv_many` was called on an empty channel\nwith idle semaphore after the receiver was closed,\nthe method would panic.\n\nThe branch coverage had been previously missing.\n\nThis changeset corrects the assertion\nand adds tests covering the code path.\n\nFixes #7990.",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": "2026-03-30T11:24:56+00:00",
+    "total_comments_count": 18
+  },
+  {
+    "id": "8003",
+    "source": "github_graphql",
+    "repo": "tokio-rs/tokio",
+    "title": "Merge 1.47.4",
+    "body": "This merges the tokio-1.47.4 tag into the master branch. Must be merged on command-line.",
+    "author": "Darksonn",
+    "merged_at": "2026-04-02T12:38:00+00:00",
+    "created_at": "2026-04-02T12:16:19+00:00",
+    "files": [
+      "tokio/CHANGELOG.md",
+      "tokio/src/sync/mpsc/chan.rs",
+      "tokio/tests/sync_mpsc.rs"
+    ],
+    "additions": 38,
+    "deletions": 10,
+    "ticket_ids": [],
+    "merge_commit_sha": "324218f9bbdc26e4bb527d036613826824f3078b",
+    "pr_number": 8003,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "mattiapitossi",
+        "state": "approved",
+        "submitted_at": "2026-04-02T12:37:19+00:00",
+        "is_bot": false,
+        "body": ""
+      }
+    ],
+    "commits": [
+      {
+        "message": "sync: fix panic in `Chan::recv_many` when called with non-empty vector on closed channel (#7991)\n\n`Chan::recv_many` intends to assert that no slots\nhave been consumed when exiting with `Ready` via\nthe `rx_closed` code path.\n\nInstead of asserting no items were added to the\nbuffer, it asserted buffer emptiness, incorrectly\nmaking assumptions about the provided buffer.\n\nWhen `recv_many` was called on an empty channel\nwith idle semaphore after the receiver was closed,\nthe method would panic.\n\nThe branch coverage had been previously missing.\n\nThis changeset corrects the assertion\nand adds tests covering the code path.\n\nFixes #7990.",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "chore: prepare Tokio v1.47.4 (#8002)",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Merge tag 'tokio-1.47.4' (#8003)",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 3,
+    "last_edited_at": null,
+    "total_comments_count": 0
+  },
+  {
+    "id": "8002",
+    "source": "github_graphql",
+    "repo": "tokio-rs/tokio",
+    "title": "chore: prepare Tokio v1.47.4",
+    "body": "# 1.47.4 (April 2nd, 2026)\r\n\r\n### Fixed\r\n\r\n* sync: fix panic in `Chan::recv_many` when called with non-empty vector on closed channel ([#7991])\r\n\r\n[#7991]: https://github.com/tokio-rs/tokio/pull/7991",
+    "author": "Darksonn",
+    "merged_at": "2026-04-02T12:12:06+00:00",
+    "created_at": "2026-04-02T11:38:26+00:00",
+    "files": [
+      "Cargo.lock",
+      "README.md",
+      "tokio/CHANGELOG.md",
+      "tokio/Cargo.toml",
+      "tokio/README.md"
+    ],
+    "additions": 15,
+    "deletions": 7,
+    "ticket_ids": [
+      "#7991"
+    ],
+    "merge_commit_sha": "aa65d0d0b8ea6eec80985b9d231390f137493071",
+    "pr_number": 8002,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "mattiapitossi",
+        "state": "approved",
+        "submitted_at": "2026-04-02T12:00:39+00:00",
+        "is_bot": false,
+        "body": ""
+      }
+    ],
+    "commits": [
+      {
+        "message": "chore: prepare Tokio v1.47.4",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Update Cargo.lock",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 2,
+    "last_edited_at": null,
+    "total_comments_count": 0
+  },
+  {
+    "id": "7123",
+    "source": "github_graphql",
+    "repo": "tokio-rs/tokio",
+    "title": "ci: test AArch64/Armv7hf Linux on ubuntu-22.04-arm runner",
+    "body": "<!--\r\nThank you for your Pull Request. Please provide a description above and review\r\nthe requirements below.\r\n\r\nBug fixes and new features should include tests.\r\n\r\nContributors guide: https://github.com/tokio-rs/tokio/blob/master/CONTRIBUTING.md\r\n\r\nThe contributors guide includes instructions for running rustfmt and building the\r\ndocumentation, which requires special commands beyond `cargo fmt` and `cargo doc`.\r\n-->\r\n\r\n## Motivation\r\n\r\n<!--\r\nExplain the context and why you're making that change. What is the problem\r\nyou're trying to solve? In some cases there is not a problem and this can be\r\nthought of as being the motivation for your change.\r\n-->\r\n\r\nCurrently, we are testing `aarch64-unknown-linux-gnu` and `armv7-unknown-linux-gnueabihf` using QEMU, but QEMU is slow than native execution.\r\n\r\nGitHub [now supports free AArch64 Linux runners as public preview](https://github.blog/changelog/2025-01-16-linux-arm64-hosted-runners-now-available-for-free-in-public-repositories-public-preview/), so this PR use it for them.\r\n\r\n## Solution\r\n\r\nAs for `aarch64-unknown-linux-gnu`, it is enough to change the OS to run on, and as for `armv7-unknown-linux-gnueabihf`, it is necessary to change the OS to run on and install some additional packages, but the [latter is handled by the setup-cross-toolchain-action](https://github.com/taiki-e/setup-cross-toolchain-action/releases/tag/v1.27.0) currently already in use, so in practice it is also enough to change the OS to run on.\r\n\r\n(As for `armv5te-unknown-linux-gnueabi`, Ubuntu does not provide packages for `armel`, so unlike `armv7-unknown-linux-gnueabihf` (`armhf`), we still need to use QEMU for now.)\r\n\r\nThis PR also removes CircleCI config (`.circleci/config.yml`) because native AArch64 test is now covered in GitHub Actions.\r\n\r\nNote that this PR uses `ubuntu-22.04-arm` instead of `ubuntu-24.04-arm` due to upstream bug: https://github.com/rust-lang/rust/issues/135867\r\n(I leaved TODO comments about it.)",
+    "author": "taiki-e",
+    "merged_at": "2025-01-25T10:17:37+00:00",
+    "created_at": "2025-01-25T09:32:04+00:00",
+    "files": [
+      ".circleci/config.yml",
+      ".github/workflows/ci.yml"
+    ],
+    "additions": 10,
+    "deletions": 27,
+    "ticket_ids": [],
+    "merge_commit_sha": "fb7dec0e952d0d796b98650998c44a21d6775564",
+    "pr_number": 7123,
+    "ci_status": "no_checks",
+    "reviews": [
+      {
+        "reviewer": "taiki-e",
+        "state": "commented",
+        "submitted_at": "2025-01-25T09:56:46+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "Darksonn",
+        "state": "approved",
+        "submitted_at": "2025-01-25T10:16:01+00:00",
+        "is_bot": false,
+        "body": "Thanks!"
+      }
+    ],
+    "commits": [
+      {
+        "message": "ci: test AArch64/Armv7hf Linux on ubuntu-22.04-arm runner",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Remove .circleci/config.yml since native aarch64 test is now covered in github actions",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 2,
+    "last_edited_at": "2025-01-25T09:45:47+00:00",
+    "total_comments_count": 2
+  }
+]

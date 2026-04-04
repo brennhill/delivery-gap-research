@@ -1,0 +1,452 @@
+[
+  {
+    "repo": "promptfoo/promptfoo",
+    "pr_number": 7154,
+    "title": "test: add vitest coverage configuration for all test suites",
+    "body": "## Summary\n\nAdds comprehensive test coverage configuration using Vitest's v8 coverage provider across all three test suites in the repository:\n\n- **Backend tests** (root `vitest.config.ts`) - Core library and CLI tests in `test/`\n- **Frontend tests** (`src/app/vite.config.ts`) - React application tests\n- **Site tests** (`site/vitest.config.ts`) - Docusaurus documentation site tests\n\n### Changes\n\n**Coverage Configuration:**\n- Installed `@vitest/coverage-v8` provider\n- Configured coverage with text, JSON, and HTML reporters\n- Added coverage directories to `.gitignore` and `.prettierignore`\n- Added `test:coverage` npm script to run all coverage reports\n\n**Test Fixes:**\n- Fixed flaky timing assertion in `test/evaluator.test.ts` (reduced threshold from 50ms to 45ms for timer precision)\n- Fixed build-dependent test in `test/scripts/postbuild.test.ts` by adding skip condition when wrapper files haven't been copied yet\n\n### Usage\n\n```bash\n# Run all tests with coverage\nnpm run test:coverage\n\n# Individual coverage commands\nnpm run test -- --coverage                # Backend only\nnpm run test:coverage --prefix src/app    # Frontend only\nnpm run test:coverage --prefix site       # Site only\n```\n\n### Coverage Reports\n\nAfter running coverage, HTML reports are available at:\n- Backend: `./coverage/index.html`\n- Frontend: `src/app/coverage/index.html`\n- Site: `site/coverage/index.html`\n\n## Test Plan\n\n- [x] Run `npm run test:coverage` successfully\n- [x] Verify coverage reports are generated in all three locations\n- [x] Confirm coverage directories are ignored by git, prettier, and biome\n- [x] Verify fixed tests pass consistently (test/evaluator.test.ts, test/scripts/postbuild.test.ts)\n- [x] All existing tests continue to pass\n\n\ud83e\udd16 Generated with [Claude Code](https://claude.com/claude-code)",
+    "ai_tagged": true,
+    "reworked": true,
+    "escaped": false
+  },
+  {
+    "repo": "biomejs/biome",
+    "pr_number": 8321,
+    "title": "fix(css): improve CSS `if()` function parsing recovery",
+    "body": "## Summary\r\n\r\nBased on feedback from @ematipico in [PR #8255](https://github.com/biomejs/biome/pull/8255) I realized that I had forgotten to add the new if bogus nodes to [the `to_bogus` function](https://github.com/biomejs/biome/pull/8255#discussion_r2559165317) in my [PR that added the functionality](https://github.com/biomejs/biome/pull/8111). This PR adds those nodes to the functoin and also improves the parseing recovery of the `if()` function parsing. It adds better diagnostics for failed parsing nodes and also now correctly recovers on branch lists dividers and boolean expressions. Based on feedback from the other PR I also added the mandator comments for the `css.ungram` file.\r\n\r\n## Test Plan\r\n\r\nNew error snapshot tests added and all existing tests passing\r\n\r\n## Docs\r\n\r\nn/a\r\n\r\n## AI Usage Disclosure\r\n\r\nClaude Code was used some to help debug and research the speculative parsing conflict issue. Most of the actual written code is my own.\r\n",
+    "ai_tagged": true,
+    "reworked": false,
+    "escaped": false
+  },
+  {
+    "repo": "PostHog/posthog",
+    "pr_number": 52052,
+    "title": "chore: Fallback to inputs if impersonation fails",
+    "body": "## Problem\r\n\r\nMigrating everyone to new integration is scary, let's make it safer.\r\n\r\n<!-- Who are we building for, what are their needs, why is this important? -->\r\n\r\n<!-- Does this fix an issue? Uncomment the line below with the issue ID to automatically close it when merged -->\r\n<!-- Closes #ISSUE_ID -->\r\n\r\n## Changes\r\n\r\nIf using the new methods fails, fallback to using inputs.\r\nAlso re-ordered things a bit in the integration model, but no actual changes.\r\n\r\n<!-- If there are frontend changes, please include screenshots. -->\r\n<!-- If a reference design was involved, include a link to the relevant Figma frame! -->\r\n\r\n## How did you test this code?\r\n\r\n<!-- Briefly describe the steps you took. -->\r\n<!-- Include automated tests if possible, otherwise describe the manual testing routine. -->\r\n<!-- If you are an agent writing this, do NOT include manual tasks you have NOT completed. You can clearly outline you're simply an agent and you haven't tested this manually except for code-based unit/integration tests -->\r\n\r\n\ud83d\udc49 _Stay up-to-date with [PostHog coding conventions](https://posthog.com/docs/contribute/coding-conventions) for a smoother review._\r\n\r\n## Publish to changelog?\r\n\r\n<!-- For features only -->\r\n\r\n<!-- If publishing, you must provide changelog details in the #changelog Slack channel. You will receive a follow-up PR comment or notification. -->\r\n\r\n<!-- If not, write \"no\" or \"do not publish to changelog\" to explicitly opt-out of posting to #changelog. Removing this entire section will not prevent posting. -->\r\n\r\n## Docs update\r\n\r\n<!-- Add the `skip-inkeep-docs` label if this PR should not trigger an automatic docs update from the Inkeep agent. -->\r\n\r\n<!-- ## \ud83e\udd16 LLM context -->\r\n\r\n<!-- If an LLM agent co-authored or authored this PR, uncomment this section and leave any relevant context about the session, tools used, link to the session, or anything else that may help reviewers. -->\r\n",
+    "ai_tagged": true,
+    "reworked": false,
+    "escaped": false
+  },
+  {
+    "repo": "clerkinc/javascript",
+    "pr_number": 7047,
+    "title": "fix(e2e): Align middleware detection test cases for next@16",
+    "body": "## Description\r\n\r\nfixes nightly e2e tests. This seems to be working due to turbopack now being utilized by default.\r\n\r\n<!--\r\n  Thanks for contributing to Clerk. Make sure to read the contributing guide at https://github.com/clerk/javascript/blob/main/docs/CONTRIBUTING.md before opening a PR!\r\n\r\n  **Please create a feature request before starting work on any significant change.**\r\n\r\n  Write a brief description of the changes introduced in this PR.\r\n  Include screenshots/videos if they help convey the change.\r\n\r\n  Also explain how one can test the change.\r\n-->\r\n\r\n<!-- Fixes #(issue number) -->\r\n\r\n## Checklist\r\n\r\n- [ ] `pnpm test` runs as expected.\r\n- [ ] `pnpm build` runs as expected.\r\n- [ ] (If applicable) [JSDoc comments](https://jsdoc.app/about-getting-started.html) have been added or updated for any package exports\r\n- [ ] (If applicable) [Documentation](https://github.com/clerk/clerk-docs) has been updated\r\n\r\n## Type of change\r\n\r\n- [ ] \ud83d\udc1b Bug fix\r\n- [ ] \ud83c\udf1f New feature\r\n- [ ] \ud83d\udd28 Breaking change\r\n- [ ] \ud83d\udcd6 Refactoring / dependency upgrade / documentation\r\n- [ ] other:\r\n\r\n\r\n<!-- This is an auto-generated comment: release notes by coderabbit.ai -->\r\n\r\n## Summary by CodeRabbit\r\n\r\n* **Tests**\r\n  * Enhanced test coverage to validate middleware placement across different Next.js versions, including version 16+.\r\n  * Improved test assertions to properly handle version-specific behavior differences.\r\n\r\n<!-- end of auto-generated comment: release notes by coderabbit.ai -->",
+    "ai_tagged": true,
+    "reworked": true,
+    "escaped": true
+  },
+  {
+    "repo": "clerkinc/javascript",
+    "pr_number": 7268,
+    "title": "feat(clerk-js): Introduce reset password session task",
+    "body": "## Description\r\n\r\nThis PR introduces the new `reset-password` session task.\r\n\r\nThis PR does not yet exports the `<TaskResetPassword/>` from any of the React related packages `@clerk/clerk-react`, `@clerk/nextjs` etc, this will be included in a followup PR\r\n\r\n**N+1 tasks**\r\n\r\nhttps://github.com/user-attachments/assets/0fa98b4c-fc25-4134-a281-7fa579c62e9a\r\n\r\n<!-- Fixes #(issue number) -->\r\n\r\n## Checklist\r\n\r\n- [ ] `pnpm test` runs as expected.\r\n- [ ] `pnpm build` runs as expected.\r\n- [ ] (If applicable) [JSDoc comments](https://jsdoc.app/about-getting-started.html) have been added or updated for any package exports\r\n- [ ] (If applicable) [Documentation](https://github.com/clerk/clerk-docs) has been updated\r\n\r\n## Type of change\r\n\r\n- [ ] \ud83d\udc1b Bug fix\r\n- [x] \ud83c\udf1f New feature\r\n- [ ] \ud83d\udd28 Breaking change\r\n- [ ] \ud83d\udcd6 Refactoring / dependency upgrade / documentation\r\n- [ ] other:\r\n\r\n\r\n<!-- This is an auto-generated comment: release notes by coderabbit.ai -->\n## Summary by CodeRabbit\n\n* **New Features**\n  * New \"Reset password\" session task: users can set a new password and optionally sign out of other devices; integrated into sign-in/session-task flows.\n\n* **Localization**\n  * Added multilingual labels for the reset-password flow across supported locales.\n\n* **Tests**\n  * New unit and end-to-end tests covering the reset-password session task and related sign-in flows.\n\n<sub>\u270f\ufe0f Tip: You can customize this high-level summary in your review settings.</sub>\n<!-- end of auto-generated comment: release notes by coderabbit.ai -->",
+    "ai_tagged": true,
+    "reworked": false,
+    "escaped": false
+  },
+  {
+    "repo": "clerkinc/javascript",
+    "pr_number": 7472,
+    "title": "feat(ui): build legacy variant",
+    "body": "## Description\r\n\r\nAdd legacy @clerk/ui build\r\n\r\nFixes: USER-4210\r\n\r\n## Checklist\r\n\r\n- [ ] `pnpm test` runs as expected.\r\n- [ ] `pnpm build` runs as expected.\r\n- [ ] (If applicable) [JSDoc comments](https://jsdoc.app/about-getting-started.html) have been added or updated for any package exports\r\n- [ ] (If applicable) [Documentation](https://github.com/clerk/clerk-docs) has been updated\r\n\r\n\r\n<!-- This is an auto-generated comment: release notes by coderabbit.ai -->\n## Summary by CodeRabbit\n\n* **New Features**\n  * Added an explicit legacy browser build/compatibility variant with a dedicated entry point.\n  * Enabled legacy bundle monitoring and expanded coverage to track many additional UI bundles with increased size thresholds.\n\n* **Chores**\n  * Added runtime polyfill support (core-js) and helper tooling (@swc/helpers) for legacy builds.\n  * Updated package metadata with a legacy browserslist/publishConfig, workspace catalog entries, and an accompanying changeset.\n\n<sub>\u270f\ufe0f Tip: You can customize this high-level summary in your review settings.</sub>\n<!-- end of auto-generated comment: release notes by coderabbit.ai -->",
+    "ai_tagged": true,
+    "reworked": false,
+    "escaped": false
+  },
+  {
+    "repo": "calcom/cal.com",
+    "pr_number": 27239,
+    "title": "fix(companion): use strict hostname validation to prevent domain spoofing",
+    "body": "## Summary\n- Fixes security vulnerability where `hostname.includes(\"cal.com\")` would accept spoofed domains like `cal.com.evil.com`\n- Replaces permissive hostname checks with strict validation using exact match or `.endsWith()` for legitimate subdomains\n- Applies the same fix to both Cal.com and Daily.co domain validation\n\n## Test plan\n- [ ] Verify `cal.com` is accepted\n- [ ] Verify `app.cal.com` is accepted (legitimate subdomain)\n- [ ] Verify `cal.com.evil.com` is rejected\n- [ ] Verify `daily.co` is accepted\n- [ ] Verify `subdomain.daily.co` is accepted\n- [ ] Verify `daily.co.attacker.com` is rejected\n\n\ud83e\udd16 Generated with [Claude Code](https://claude.com/claude-code)",
+    "ai_tagged": true,
+    "reworked": false,
+    "escaped": false
+  },
+  {
+    "repo": "biomejs/biome",
+    "pr_number": 9085,
+    "title": "chore(deps): update dependency tombi to v0.7.28",
+    "body": "This PR contains the following updates:\n\n| Package | Change | [Age](https://docs.renovatebot.com/merge-confidence/) | [Confidence](https://docs.renovatebot.com/merge-confidence/) |\n|---|---|---|---|\n| [tombi](https://tombi-toml.github.io/tombi/) ([source](https://redirect.github.com/tombi-toml/tombi/tree/HEAD/typescript/@tombi-toml/tombi)) | [`0.7.27` \u2192 `0.7.28`](https://renovatebot.com/diffs/npm/tombi/0.7.27/0.7.28) | ![age](https://developer.mend.io/api/mc/badges/age/npm/tombi/0.7.28?slim=true) | ![confidence](https://developer.mend.io/api/mc/badges/confidence/npm/tombi/0.7.27/0.7.28?slim=true) |\n\n---\n\n### Release Notes\n\n<details>\n<summary>tombi-toml/tombi (tombi)</summary>\n\n### [`v0.7.28`](https://redirect.github.com/tombi-toml/tombi/releases/tag/v0.7.28)\n\n[Compare Source](https://redirect.github.com/tombi-toml/tombi/compare/v0.7.27...v0.7.28)\n\n<!-- Release notes generated using configuration in .github/release.yml at v0.7.28 -->\n\n#### What's Changed\n\n##### \ud83d\udc52 Dependencies\n\n- chore(deps): bump time from 0.3.41 to 0.3.47 in the cargo group across 1 directory by [@&#8203;dependabot](https://redirect.github.com/dependabot)\\[bot] in [#&#8203;1487](https://redirect.github.com/tombi-toml/tombi/pull/1487)\n\n##### \ud83d\udee0\ufe0f Other Changes\n\n- feat: enhance get\\_status handler to include schema information by [@&#8203;ya7010](https://redirect.github.com/ya7010) in [#&#8203;1489](https://redirect.github.com/tombi-toml/tombi/pull/1489)\n\n**Full Changelog**: <https://github.com/tombi-toml/tombi/compare/v0.7.27...v0.7.28>\n\n</details>\n\n---\n\n### Configuration\n\n\ud83d\udcc5 **Schedule**: Branch creation - \"before 9am on monday\" in timezone Europe/Gibraltar, Automerge - At any time (no schedule defined).\n\n\ud83d\udea6 **Automerge**: Disabled by config. Please merge this manually once you are satisfied.\n\n\u267b **Rebasing**: Whenever PR becomes conflicted, or you tick the rebase/retry checkbox.\n\n\ud83d\udd15 **Ignore**: Close this PR and you won't be reminded about this update again.\n\n---\n\n - [ ] <!-- rebase-check -->If you want to rebase/retry this PR, check this box\n\n---\n\nThis PR was generated by [Mend Renovate](https://mend.io/renovate/). View the [repository job log](https://developer.mend.io/github/biomejs/biome).\n<!--renovate-debug:eyJjcmVhdGVkSW5WZXIiOiI0My44LjUiLCJ1cGRhdGVkSW5WZXIiOiI0My44LjUiLCJ0YXJnZXRCcmFuY2giOiJtYWluIiwibGFiZWxzIjpbXX0=-->\n",
+    "ai_tagged": true,
+    "reworked": false,
+    "escaped": false
+  },
+  {
+    "repo": "promptfoo/promptfoo",
+    "pr_number": 6943,
+    "title": "ci: skip Claude Code review workflow for fork PRs",
+    "body": "## Summary\n\nFixes the CI failure when the Claude Code review workflow runs on pull requests from forks.\n\n## Problem\n\nThe workflow was failing on fork PRs with this error:\n```\nWarning: Actor has insufficient permissions: read\nError: Prepare step failed with error: Actor does not have write permissions to the repository\n```\n\nEven though the workflow uses `pull_request_target` and provides `GITHUB_TOKEN` with write permissions, the Claude Code action's OIDC authentication still checks the **PR author's** permissions. For fork contributors, this is always `read` on the base repository.\n\n## Solution\n\nSkip the Claude Code review workflow for cross-repository (fork) PRs by adding a condition:\n```yaml\ngithub.event.pull_request.head.repo.full_name == github.repository\n```\n\nThis is similar to how we skip bot PRs due to OIDC token limitations.\n\n## Testing\n\nThe workflow will now:\n- \u2705 Run on internal PRs (same repository)\n- \u23ed\ufe0f Skip on fork PRs (cross-repository)\n- \u23ed\ufe0f Skip on bot PRs (dependabot, etc.)\n- \u23ed\ufe0f Skip on draft PRs\n\n## Related\n\nThis is a follow-up to #6940 which added OIDC authentication. The limitation is in how OIDC tokens work with `pull_request_target` - the actor context remains the fork contributor rather than the workflow's service account.",
+    "ai_tagged": true,
+    "reworked": false,
+    "escaped": false
+  },
+  {
+    "repo": "promptfoo/promptfoo",
+    "pr_number": 8138,
+    "title": "chore(deps): update dependency tsdown to v0.21.2",
+    "body": "This PR contains the following updates:\n\n| Package | Change | [Age](https://docs.renovatebot.com/merge-confidence/) | [Confidence](https://docs.renovatebot.com/merge-confidence/) |\n|---|---|---|---|\n| [tsdown](http://tsdown.dev/) ([source](https://redirect.github.com/rolldown/tsdown)) | [`0.21.1` \u2192 `0.21.2`](https://renovatebot.com/diffs/npm/tsdown/0.21.1/0.21.2) | ![age](https://developer.mend.io/api/mc/badges/age/npm/tsdown/0.21.2?slim=true) | ![confidence](https://developer.mend.io/api/mc/badges/confidence/npm/tsdown/0.21.1/0.21.2?slim=true) |\n\n---\n\n### Release Notes\n\n<details>\n<summary>rolldown/tsdown (tsdown)</summary>\n\n### [`v0.21.2`](https://redirect.github.com/rolldown/tsdown/releases/tag/v0.21.2)\n\n[Compare Source](https://redirect.github.com/rolldown/tsdown/compare/v0.21.1...v0.21.2)\n\n##### \u00a0\u00a0\u00a0\ud83d\udea8 Breaking Changes\n\n- **exe**: Add `exe.outDir` for separate executable output dir, defaults to `build` \u00a0-\u00a0 by [@&#8203;sxzz](https://redirect.github.com/sxzz) [<samp>(d49ef)</samp>](https://redirect.github.com/rolldown/tsdown/commit/d49ef37)\n\n> Note: Executable is still an **experimental** feature and does not follow SemVer. Breaking changes may occur in any release.\n\n##### \u00a0\u00a0\u00a0\ud83d\ude80 Features\n\n- Add `root` option for controlling output directory structure \u00a0-\u00a0 by [@&#8203;sxzz](https://redirect.github.com/sxzz) [<samp>(bad2d)</samp>](https://redirect.github.com/rolldown/tsdown/commit/bad2d17)\n- **deps**: Rename `onlyAllowBundle` to `onlyBundle` \u00a0-\u00a0 by [@&#8203;peaklabs-dev](https://redirect.github.com/peaklabs-dev) and [@&#8203;sxzz](https://redirect.github.com/sxzz) in [#&#8203;819](https://redirect.github.com/rolldown/tsdown/issues/819) [<samp>(cbd7b)</samp>](https://redirect.github.com/rolldown/tsdown/commit/cbd7b38)\n\n##### \u00a0\u00a0\u00a0\ud83d\udc1e Bug Fixes\n\n- **css**: Skip data URIs and external URLs in CSS url() rebasing \u00a0-\u00a0 by [@&#8203;sxzz](https://redirect.github.com/sxzz) [<samp>(13907)</samp>](https://redirect.github.com/rolldown/tsdown/commit/139076c)\n\n##### \u00a0\u00a0\u00a0\u00a0[View changes on GitHub](https://redirect.github.com/rolldown/tsdown/compare/v0.21.1...v0.21.2)\n\n</details>\n\n---\n\n### Configuration\n\n\ud83d\udcc5 **Schedule**: Branch creation - At any time (no schedule defined), Automerge - At any time (no schedule defined).\n\n\ud83d\udea6 **Automerge**: Disabled by config. Please merge this manually once you are satisfied.\n\n\u267b **Rebasing**: Whenever PR is behind base branch, or you tick the rebase/retry checkbox.\n\n\ud83d\udd15 **Ignore**: Close this PR and you won't be reminded about this update again.\n\n---\n\n - [ ] <!-- rebase-check -->If you want to rebase/retry this PR, check this box\n\n---\n\nThis PR was generated by [Mend Renovate](https://mend.io/renovate/). View the [repository job log](https://developer.mend.io/github/promptfoo/promptfoo).\n<!--renovate-debug:eyJjcmVhdGVkSW5WZXIiOiI0My42Ni40IiwidXBkYXRlZEluVmVyIjoiNDMuNjYuNCIsInRhcmdldEJyYW5jaCI6Im1haW4iLCJsYWJlbHMiOltdfQ==-->\n",
+    "ai_tagged": true,
+    "reworked": false,
+    "escaped": false
+  },
+  {
+    "repo": "biomejs/biome",
+    "pr_number": 9525,
+    "title": "feat(lint): add noDrizzleDeleteWithoutWhere and noDrizzleUpdateWithoutWhere rules",
+    "body": "<!--\r\n    IMPORTANT!!\r\n    If you generated this PR with the help of any AI assistance, please disclose it in the PR.\r\n    https://github.com/biomejs/biome/blob/main/CONTRIBUTING.md#ai-assistance-notice\r\n  -->\r\n> This PR was developed primarily with the assistance of Claude Code (Anthropic).\r\n\r\n## Summary\r\n\r\nCloses #8114.\r\n\r\nAdds two new nursery lint rules for [Drizzle ORM](https://orm.drizzle.team/), mirroring the rules from\r\n[`eslint-plugin-drizzle`](https://orm.drizzle.team/docs/eslint-plugin):\r\n\r\n- **`noDrizzleDeleteWithoutWhere`** \u2014 disallows calling `.delete()` without a `.where()` clause, which would delete all\r\nrows in the table.\r\n- **`noDrizzleUpdateWithoutWhere`** \u2014 disallows calling `.update().set()` without a `.where()` clause, which would update\r\nall rows in the table.\r\n\r\nBoth rules are opt-in and require configuring the `drizzleObjectName` option with the variable names that represent\r\nDrizzle ORM instances in the project. This is necessary because Drizzle does not enforce a specific variable name for the\r\ndatabase client.\r\n\r\n```json\r\n{\r\n  \"linter\": {\r\n    \"rules\": {\r\n      \"nursery\": {\r\n        \"noDrizzleDeleteWithoutWhere\": {\r\n          \"level\": \"error\",\r\n          \"options\": {\r\n            \"drizzleObjectName\": [\"db\"]\r\n          }\r\n        }\r\n      }\r\n    }\r\n  }\r\n}\r\n```\r\n\r\nThe rules also support the drizzle domain, which will be automatically enabled when drizzle-orm is detected as a project\r\ndependency:\r\n\r\n```json\r\n{\r\n  \"linter\": {\r\n    \"domains\": {\r\n      \"drizzle\": \"all\"\r\n    }\r\n  }\r\n}\r\n```\r\n\r\nInfrastructure changes\r\n\r\n- Added RuleDomain::Drizzle to biome_analyze\r\n- Added RuleSource::EslintDrizzle to biome_analyze\r\n\r\nTest Plan\r\n\r\nSnapshot tests covering:\r\n\r\n- db.delete(table) without .where() \u2192 diagnostic\r\n- db.delete(table).where(...) \u2192 no diagnostic\r\n- db.update(table).set({...}) without .where() \u2192 diagnostic\r\n- db.update(table).set({...}).where(...) \u2192 no diagnostic\r\n- Variable not in drizzleObjectName (e.g. database.delete(...)) \u2192 no diagnostic\r\n\r\ncargo test -p biome_js_analyze -- \"specs::nursery::no_drizzle\"\r\n# test result: ok. 8 passed\r\n\r\nDocs\r\n\r\nDocumentation is inline in the rule source via rustdoc, including:\r\n- Rule description\r\n- Options section with JSON example\r\n- Examples with invalid and valid cases using use_options",
+    "ai_tagged": true,
+    "reworked": false,
+    "escaped": false
+  },
+  {
+    "repo": "promptfoo/promptfoo",
+    "pr_number": 7710,
+    "title": "chore(deps): update dependency @anthropic-ai/claude-agent-sdk to ^0.2.42",
+    "body": "This PR contains the following updates:\n\n| Package | Change | [Age](https://docs.renovatebot.com/merge-confidence/) | [Confidence](https://docs.renovatebot.com/merge-confidence/) |\n|---|---|---|---|\n| [@anthropic-ai/claude-agent-sdk](https://redirect.github.com/anthropics/claude-agent-sdk-typescript) | [`^0.2.39` \u2192 `^0.2.42`](https://renovatebot.com/diffs/npm/@anthropic-ai%2fclaude-agent-sdk/0.2.42/0.2.42) | ![age](https://developer.mend.io/api/mc/badges/age/npm/@anthropic-ai%2fclaude-agent-sdk/0.2.42?slim=true) | ![confidence](https://developer.mend.io/api/mc/badges/confidence/npm/@anthropic-ai%2fclaude-agent-sdk/0.2.42/0.2.42?slim=true) |\n\n---\n\n### Configuration\n\n\ud83d\udcc5 **Schedule**: Branch creation - \"every weekday\" (UTC), Automerge - At any time (no schedule defined).\n\n\ud83d\udea6 **Automerge**: Disabled by config. Please merge this manually once you are satisfied.\n\n\u267b **Rebasing**: Whenever PR is behind base branch, or you tick the rebase/retry checkbox.\n\n\ud83d\udd15 **Ignore**: Close this PR and you won't be reminded about these updates again.\n\n---\n\n - [ ] <!-- rebase-check -->If you want to rebase/retry this PR, check this box\n\n---\n\nThis PR was generated by [Mend Renovate](https://mend.io/renovate/). View the [repository job log](https://developer.mend.io/github/promptfoo/promptfoo).\n<!--renovate-debug:eyJjcmVhdGVkSW5WZXIiOiI0My44LjUiLCJ1cGRhdGVkSW5WZXIiOiI0My44LjUiLCJ0YXJnZXRCcmFuY2giOiJtYWluIiwibGFiZWxzIjpbXX0=-->\n",
+    "ai_tagged": true,
+    "reworked": false,
+    "escaped": false
+  },
+  {
+    "repo": "microsoft/vscode",
+    "pr_number": 302596,
+    "title": "chat: populate githubRepo for GitUri marketplace references",
+    "body": "chat: populate githubRepo for GitUri marketplace references\n\nWhen a plugin marketplace reference is a full GitHub URL (e.g.\nhttps://github.com/anthropics/claude-code) parsed as a GitUri, the\ngithubRepo property was not being set. This caused the AgentPluginEditor\nto render the marketplace link as plain text instead of a clickable link.\n\n- Add extractGitHubRepo helper that extracts owner/repo from GitHub URLs\n- Set githubRepo on GitUri references when the authority is github.com\n- Also handle SCP-style references (git@github.com:org/repo.git)\n\nFixes https://github.com/microsoft/vscode/issues/301288\n\n(Commit message generated by Copilot)",
+    "ai_tagged": true,
+    "reworked": false,
+    "escaped": false
+  },
+  {
+    "repo": "PostHog/posthog",
+    "pr_number": 51654,
+    "title": "feat(analytics-platform): Add query tagging of source file name",
+    "body": "## Problem\r\n\r\nAnalytics platform -> platform analytics\r\n\r\nI want to hunt down the untagged queries, so use introspection to tag them with their source file, to make them much easier to hunt down\r\n\r\n## Changes\r\n\r\nAdd introspection of the python backtrace to find the nearest caller that isn't part of the querying system itself.\r\n\r\nAlso add a couple of tests for this.\r\n\r\n## How did you test this code?\r\n\r\nThe backtrace logic has a couple of unit tests, and I have a test for sync_execute and execute_hogql_query to make sure that the correct value appears in the query log\r\n\r\n\r\n## Publish to changelog?\r\n\r\n<!-- For features only -->\r\n\r\n<!-- If publishing, you must provide changelog details in the #changelog Slack channel. You will receive a follow-up PR comment or notification. -->\r\n\r\n<!-- If not, write \"no\" or \"do not publish to changelog\" to explicitly opt-out of posting to #changelog. Removing this entire section will not prevent posting. -->\r\n\r\n## Docs update\r\n\r\n<!-- Add the `skip-inkeep-docs` label if this PR should not trigger an automatic docs update from the Inkeep agent. -->\r\n\r\n<!-- ## \ud83e\udd16 LLM context -->\r\n\r\n<!-- If an LLM agent co-authored or authored this PR, uncomment this section and leave any relevant context about the session, tools used, link to the session, or anything else that may help reviewers. -->\r\n",
+    "ai_tagged": true,
+    "reworked": true,
+    "escaped": false
+  },
+  {
+    "repo": "PostHog/posthog",
+    "pr_number": 51930,
+    "title": "fix: Rust CI",
+    "body": "## Problem\r\n\r\nCommit da67b547 introduced a `timeout-minutes` property at the job level for the `build-images` reusable workflow call, which is not a supported keyword for reusable workflow jobs. This causes GitHub Actions to misinterpret the job as a regular job, breaking the workflow file validation.\r\n\r\n## Changes\r\n\r\n- Remove invalid job-level `timeout-minutes` from the `build-images` reusable workflow call in `rust-docker-build.yml`\r\n- The timeout is already handled via the `with.timeout-minutes` input passed to the reusable workflow\r\n\r\n## How did you test this code?\r\n\r\n<!-- Briefly describe the steps you took. -->\r\n<!-- Include automated tests if possible, otherwise describe the manual testing routine. -->\r\n<!-- If you are an agent writing this, do NOT include manual tasks you have NOT completed. You can clearly outline you're simply an agent and you haven't tested this manually except for code-based unit/integration tests -->\r\n\r\n\ud83d\udc49 _Stay up-to-date with [PostHog coding conventions](https://posthog.com/docs/contribute/coding-conventions) for a smoother review._\r\n\r\n## Publish to changelog?\r\n\r\n<!-- For features only -->\r\n\r\n<!-- If publishing, you must provide changelog details in the #changelog Slack channel. You will receive a follow-up PR comment or notification. -->\r\n\r\n<!-- If not, write \"no\" or \"do not publish to changelog\" to explicitly opt-out of posting to #changelog. Removing this entire section will not prevent posting. -->\r\n\r\n## Docs update\r\n\r\n<!-- Add the `skip-inkeep-docs` label if this PR should not trigger an automatic docs update from the Inkeep agent. -->\r\n\r\n<!-- ## \ud83e\udd16 LLM context -->\r\n\r\n<!-- If an LLM agent co-authored or authored this PR, uncomment this section and leave any relevant context about the session, tools used, link to the session, or anything else that may help reviewers. -->\r\n",
+    "ai_tagged": true,
+    "reworked": false,
+    "escaped": false
+  },
+  {
+    "repo": "biomejs/biome",
+    "pr_number": 9364,
+    "title": "feat(biome_service): include file path in NotFound diagnostic",
+    "body": "<!-- AI Disclosure: This PR was authored with the help of AI (Claude). -->\n\n## Summary\n\nCloses #9357\n\nThe `NotFound` diagnostic previously showed a generic message:\n> The file does not exist in the workspace.\n\nwithout indicating which file was missing, making it impossible to debug in large projects.\n\nThis PR adds the file path to the diagnostic message:\n> The file **not_found.js** does not exist in the workspace.\n\n### AI Assistance Notice\n\nThis PR was written primarily with AI assistance (Claude). The implementation, tests, and changeset were all generated with AI help.\n\n## Changes\n\n- Changed `NotFound` from a unit struct to a struct with a `path: String` field annotated with `#[location(resource)]`\n- Updated `WorkspaceError::not_found()` to accept a path parameter\n- Updated all call sites in `workspace/server.rs` to pass the file path\n- Added a changeset for the patch release\n\n## Test Plan\n\n```\ncargo test -p biome_service -- diagnostics::test::not_found\n# 1 passed; 0 failed\n```\n\n## Docs\n\nNo documentation changes needed \u2014 this is an internal diagnostic improvement.",
+    "ai_tagged": true,
+    "reworked": false,
+    "escaped": false
+  },
+  {
+    "repo": "clerkinc/javascript",
+    "pr_number": 7455,
+    "title": "feat(shared): Remove SWR",
+    "body": "## Description\r\n\r\nRemoves SWR based fetching in favor of RQ.\r\n\r\nFixes: USER-4034\r\n\r\nRelated bug fixes: https://github.com/clerk/javascript/pull/7544\r\n\r\n## Checklist\r\n\r\n- [ ] `pnpm test` runs as expected.\r\n- [ ] `pnpm build` runs as expected.\r\n- [ ] (If applicable) [JSDoc comments](https://jsdoc.app/about-getting-started.html) have been added or updated for any package exports\r\n- [ ] (If applicable) [Documentation](https://github.com/clerk/clerk-docs) has been updated\r\n\r\n## Type of change\r\n\r\n- [ ] \ud83d\udc1b Bug fix\r\n- [ ] \ud83c\udf1f New feature\r\n- [ ] \ud83d\udd28 Breaking change\r\n- [ ] \ud83d\udcd6 Refactoring / dependency upgrade / documentation\r\n- [ ] other:\r\n\r\n\r\n<!-- This is an auto-generated comment: release notes by coderabbit.ai -->\n## Summary by CodeRabbit\n\n* **Refactor**\n  * Consolidated data fetching onto React Query, replacing legacy SWR compatibility layers with unified implementations.\n\n* **Chores**\n  * Removed SWR-based runtime switch, promoted React Query core to runtime, and simplified build/test/type tooling.\n  * Slightly increased bundle size threshold for a UI entry.\n\n* **Tests**\n  * Simplified tests by removing environment branching and standardizing expectations across runs.\n\n<sub>\u270f\ufe0f Tip: You can customize this high-level summary in your review settings.</sub>\n<!-- end of auto-generated comment: release notes by coderabbit.ai -->",
+    "ai_tagged": true,
+    "reworked": true,
+    "escaped": true
+  },
+  {
+    "repo": "clerkinc/javascript",
+    "pr_number": 7447,
+    "title": "feat(localizations,shared): Add temporary email and password/identifier error localization keys",
+    "body": "Cherry-picked from PR #7436 and PR #7437 (branched off release/core-2).\r\n\r\nThis PR adds two new localization keys:\r\n- `form_email_address_blocked` - for temporary email error localization (from PR #7436)\r\n- `form_password_or_identifier_incorrect` - for missing password or identifier error localization (from PR #7437)\n\n<!-- This is an auto-generated comment: release notes by coderabbit.ai -->\n## Summary by CodeRabbit\n\n* **New Features**\n  * Added localized error messages across 40+ languages for temporary email address blocking and for incorrect password/email, providing clearer, language-specific feedback during sign-in and account creation flows.\n\n<sub>\u270f\ufe0f Tip: You can customize this high-level summary in your review settings.</sub>\n<!-- end of auto-generated comment: release notes by coderabbit.ai -->",
+    "ai_tagged": true,
+    "reworked": false,
+    "escaped": false
+  },
+  {
+    "repo": "pingcap/tidb",
+    "pr_number": 66924,
+    "title": "planner: flaky test TestLimitPushdown",
+    "body": "<!--\r\n\r\nThank you for contributing to TiDB!\r\n\r\nPR Title Format:\r\n1. pkg [, pkg2, pkg3]: what's changed\r\n2. *: what's changed\r\n\r\n-->\r\n\r\n### What problem does this PR solve?\r\n<!--\r\n\r\nPlease create an issue first to describe the problem.\r\n\r\nThere MUST be one line starting with \"Issue Number:  \" and\r\nlinking the relevant issues via the \"close\" or \"ref\".\r\n\r\nFor more info, check https://pingcap.github.io/tidb-dev-guide/contribute-to-tidb/contribute-code.html#referring-to-an-issue.\r\n\r\n-->\r\n\r\nIssue Number: close #66730\r\n\r\nProblem Summary:\r\n\r\n### What changed and how does it work?\r\n\r\nUse mock statistics to improve reliability of test.\r\n\r\n### Check List\r\n\r\nTests <!-- At least one of them must be included. -->\r\n\r\n- [x] Unit test\r\n- [ ] Integration test\r\n- [ ] Manual test (add detailed scripts or steps below)\r\n- [ ] No need to test\r\n  > - [ ] I checked and no code files have been changed.\r\n  > <!-- Or your custom  \"No need to test\" reasons -->\r\n\r\nSide effects\r\n\r\n- [ ] Performance regression: Consumes more CPU\r\n- [ ] Performance regression: Consumes more Memory\r\n- [ ] Breaking backward compatibility\r\n\r\nDocumentation\r\n\r\n- [ ] Affects user behaviors\r\n- [ ] Contains syntax changes\r\n- [ ] Contains variable changes\r\n- [ ] Contains experimental features\r\n- [ ] Changes MySQL compatibility\r\n\r\n### Release note\r\n\r\n<!-- compatibility change, improvement, bugfix, and new feature need a release note -->\r\n\r\nPlease refer to [Release Notes Language Style Guide](https://pingcap.github.io/tidb-dev-guide/contribute-to-tidb/release-notes-style-guide.html) to write a quality release note.\r\n\r\n```release-note\r\nNone\r\n```\r\n\n\n<!-- This is an auto-generated comment: release notes by coderabbit.ai -->\n## Summary by CodeRabbit\n\n* **Tests**\n  * Improved determinism of limit pushdown tests by injecting controlled mock statistics, eliminating reliance on sampling and reducing flakiness for more reliable, repeatable outcomes.\n  * Updated test setup to include required supporting components for deterministic statistics injection.\n<!-- end of auto-generated comment: release notes by coderabbit.ai -->",
+    "ai_tagged": true,
+    "reworked": false,
+    "escaped": false
+  },
+  {
+    "repo": "promptfoo/promptfoo",
+    "pr_number": 7580,
+    "title": "fix(deps): update dependency @opencode-ai/sdk to ^1.1.51",
+    "body": "This PR contains the following updates:\n\n| Package | Change | [Age](https://docs.renovatebot.com/merge-confidence/) | [Confidence](https://docs.renovatebot.com/merge-confidence/) |\n|---|---|---|---|\n| @&#8203;opencode-ai/sdk | [`^1.1.50` \u2192 `^1.1.51`](https://renovatebot.com/diffs/npm/@opencode-ai%2fsdk/1.1.53/1.1.51) | ![age](https://developer.mend.io/api/mc/badges/age/npm/@opencode-ai%2fsdk/1.1.51?slim=true) | ![confidence](https://developer.mend.io/api/mc/badges/confidence/npm/@opencode-ai%2fsdk/1.1.53/1.1.51?slim=true) |\n\n---\n\n### Configuration\n\n\ud83d\udcc5 **Schedule**: Branch creation - At any time (no schedule defined), Automerge - At any time (no schedule defined).\n\n\ud83d\udea6 **Automerge**: Disabled by config. Please merge this manually once you are satisfied.\n\n\u267b **Rebasing**: Whenever PR is behind base branch, or you tick the rebase/retry checkbox.\n\n\ud83d\udd15 **Ignore**: Close this PR and you won't be reminded about this update again.\n\n---\n\n - [ ] <!-- rebase-check -->If you want to rebase/retry this PR, check this box\n\n---\n\nThis PR was generated by [Mend Renovate](https://mend.io/renovate/). View the [repository job log](https://developer.mend.io/github/promptfoo/promptfoo).\n<!--renovate-debug:eyJjcmVhdGVkSW5WZXIiOiI0Mi45NS4yIiwidXBkYXRlZEluVmVyIjoiNDIuOTUuMiIsInRhcmdldEJyYW5jaCI6Im1haW4iLCJsYWJlbHMiOltdfQ==-->\n",
+    "ai_tagged": true,
+    "reworked": false,
+    "escaped": false
+  },
+  {
+    "repo": "PostHog/posthog",
+    "pr_number": 52002,
+    "title": "chore(tests): edgecase tests for DateRange + InsightVariables",
+    "body": "## Problem\r\n\r\n\ud83d\udc1b  There were 6 bugs in last 6 months around these, these tests would've caught them.\r\n\r\n## Changes\r\n\r\nAdds tests to:\r\n- insight variables\r\n- query date range\r\n<!-- If there are frontend changes, please include screenshots. -->\r\n<!-- If a reference design was involved, include a link to the relevant Figma frame! -->\r\n\r\n## How did you test this code?\r\n\r\n<!-- Briefly describe the steps you took. -->\r\n<!-- Include automated tests if possible, otherwise describe the manual testing routine. -->\r\n<!-- If you are an agent writing this, do NOT include manual tasks you have NOT completed. You can clearly outline you're simply an agent and you haven't tested this manually except for code-based unit/integration tests -->\r\n\r\n\ud83d\udc49 _Stay up-to-date with [PostHog coding conventions](https://posthog.com/docs/contribute/coding-conventions) for a smoother review._\r\n\r\n## Publish to changelog?\r\n\r\n<!-- For features only -->\r\n\r\n<!-- If publishing, you must provide changelog details in the #changelog Slack channel. You will receive a follow-up PR comment or notification. -->\r\n\r\n<!-- If not, write \"no\" or \"do not publish to changelog\" to explicitly opt-out of posting to #changelog. Removing this entire section will not prevent posting. -->\r\n\r\n## Docs update\r\n\r\n<!-- Add the `skip-inkeep-docs` label if this PR should not trigger an automatic docs update from the Inkeep agent. -->\r\n\r\n<!-- ## \ud83e\udd16 LLM context -->\r\n\r\n<!-- If an LLM agent co-authored or authored this PR, uncomment this section and leave any relevant context about the session, tools used, link to the session, or anything else that may help reviewers. -->\r\n",
+    "ai_tagged": true,
+    "reworked": false,
+    "escaped": false
+  },
+  {
+    "repo": "promptfoo/promptfoo",
+    "pr_number": 7970,
+    "title": "fix(eval): pass dynamic prompt config to providers",
+    "body": "## Summary\n- Recompute `mergedPromptConfig` after `renderPrompt` so dynamic prompt function config is passed to providers\n- Clone prompt per-run to prevent config mutation leaking across test cases\n\nFixes #7867\n\n## Root Cause\nPR #6239 introduced `mergedPromptConfig` to support per-test `test.options` overrides. It was computed **before** `renderPrompt()`, but `renderPrompt()` is what executes prompt functions and assigns their returned config to `prompt.config`. The provider received the stale (pre-render) config, so dynamic config was always empty.\n\n## Test plan\n- [x] `npx vitest run test/evaluator.test.ts` \u2014 142 tests pass\n- [x] New test: dynamic prompt function config reaches provider\n- [x] New test: `test.options` overrides dynamic config\n- [x] New test: dynamic config doesn't leak across test cases sharing a prompt object\n- [x] New test: error path uses pre-render fallback config\n\n\ud83e\udd16 Generated with [Claude Code](https://claude.com/claude-code)",
+    "ai_tagged": true,
+    "reworked": true,
+    "escaped": false
+  },
+  {
+    "repo": "clerkinc/javascript",
+    "pr_number": 7723,
+    "title": "chore(astro): Remove unused \"hotload\" dir",
+    "body": "## Description\r\n\r\nThis seems to be carried over from the community package and is not being used for a while now. When the package is built, `dist/hotload.js` does not exist.\r\n\r\n<!--\r\n  Thanks for contributing to Clerk. Make sure to read the contributing guide at https://github.com/clerk/javascript/blob/main/docs/CONTRIBUTING.md before opening a PR!\r\n\r\n  **Please create a feature request before starting work on any significant change.**\r\n\r\n  Write a brief description of the changes introduced in this PR.\r\n  Include screenshots/videos if they help convey the change.\r\n\r\n  Also explain how one can test the change.\r\n-->\r\n\r\n<!-- Fixes #(issue number) -->\r\n\r\n## Checklist\r\n\r\n- [ ] `pnpm test` runs as expected.\r\n- [ ] `pnpm build` runs as expected.\r\n- [ ] (If applicable) [JSDoc comments](https://jsdoc.app/about-getting-started.html) have been added or updated for any package exports\r\n- [ ] (If applicable) [Documentation](https://github.com/clerk/clerk-docs) has been updated\r\n\r\n## Type of change\r\n\r\n- [ ] \ud83d\udc1b Bug fix\r\n- [ ] \ud83c\udf1f New feature\r\n- [ ] \ud83d\udd28 Breaking change\r\n- [ ] \ud83d\udcd6 Refactoring / dependency upgrade / documentation\r\n- [ ] other:\r\n\n\n<!-- This is an auto-generated comment: release notes by coderabbit.ai -->\n\n## Summary by CodeRabbit\n\n* **Chores**\n  * Updated package configuration for the hotload module.\n\n<sub>\u270f\ufe0f Tip: You can customize this high-level summary in your review settings.</sub>\n\n<!-- end of auto-generated comment: release notes by coderabbit.ai -->",
+    "ai_tagged": true,
+    "reworked": false,
+    "escaped": false
+  },
+  {
+    "repo": "supabase/supabase",
+    "pr_number": 42600,
+    "title": "fix(docs): initialize FormBuilder in constructor in Angular tutorial",
+    "body": "### What kind of change does this PR introduce?\n\nBug fix \u2014 corrects a TypeScript initialization error in the Angular user management tutorial example.\n\n### What is the current behavior?\n\nIn the Angular tutorial's `AuthComponent`, `signInForm` is declared with a non-null assertion (`signInForm!: FormGroup`) and initialized inside `ngOnInit()`. This causes a TypeScript strict-mode error because `formBuilder` is used before the constructor runs. Developers following the tutorial encounter:\n\n> Property 'formBuilder' is used before being initialized.\n\n### What is the new behavior?\n\n`signInForm` is now initialized in the constructor, matching the pattern already used by `AccountComponent` in the same example project. The non-null assertion is removed since the property is properly assigned during construction.\n\n### Changes\n\n**`examples/user-management/angular-user-management/src/app/auth/auth.component.ts`**\n- Moved `signInForm` initialization from `ngOnInit()` into the constructor\n- Removed non-null assertion operator (`!`) from `signInForm` declaration\n- Reordered property declarations for consistency (`loading` before `signInForm`)\n\n### Additional context\n\nThe sibling `AccountComponent` already follows the correct pattern \u2014 initializing `updateProfileForm` inside the constructor (line 35). This PR aligns `AuthComponent` with that established convention.\n\nCloses #34392\n\n<!-- This is an auto-generated comment: release notes by coderabbit.ai -->\n\n## Summary by CodeRabbit\n\n* **New Features**\n  * Added a loading indicator state to the authentication form.\n\n* **Refactor**\n  * Restructured form initialization logic for improved component setup.\n\n<!-- end of auto-generated comment: release notes by coderabbit.ai -->",
+    "ai_tagged": true,
+    "reworked": false,
+    "escaped": false
+  },
+  {
+    "repo": "promptfoo/promptfoo",
+    "pr_number": 7177,
+    "title": "fix(deps): update dependency @opencode-ai/sdk to ^1.1.24",
+    "body": "This PR contains the following updates:\n\n| Package | Change | [Age](https://docs.renovatebot.com/merge-confidence/) | [Confidence](https://docs.renovatebot.com/merge-confidence/) |\n|---|---|---|---|\n| @&#8203;opencode-ai/sdk | [`^1.1.23` \u2192 `^1.1.24`](https://renovatebot.com/diffs/npm/@opencode-ai%2fsdk/1.1.28/1.1.24) | ![age](https://developer.mend.io/api/mc/badges/age/npm/@opencode-ai%2fsdk/1.1.24?slim=true) | ![confidence](https://developer.mend.io/api/mc/badges/confidence/npm/@opencode-ai%2fsdk/1.1.28/1.1.24?slim=true) |\n\n---\n\n### Configuration\n\n\ud83d\udcc5 **Schedule**: Branch creation - At any time (no schedule defined), Automerge - At any time (no schedule defined).\n\n\ud83d\udea6 **Automerge**: Disabled by config. Please merge this manually once you are satisfied.\n\n\u267b **Rebasing**: Whenever PR is behind base branch, or you tick the rebase/retry checkbox.\n\n\ud83d\udd15 **Ignore**: Close this PR and you won't be reminded about this update again.\n\n---\n\n - [ ] <!-- rebase-check -->If you want to rebase/retry this PR, check this box\n\n---\n\nThis PR was generated by [Mend Renovate](https://mend.io/renovate/). View the [repository job log](https://developer.mend.io/github/promptfoo/promptfoo).\n<!--renovate-debug:eyJjcmVhdGVkSW5WZXIiOiI0Mi44NS4xIiwidXBkYXRlZEluVmVyIjoiNDIuODUuMSIsInRhcmdldEJyYW5jaCI6Im1haW4iLCJsYWJlbHMiOltdfQ==-->\n",
+    "ai_tagged": true,
+    "reworked": false,
+    "escaped": false
+  },
+  {
+    "repo": "sveltejs/svelte",
+    "pr_number": 16866,
+    "title": "fix: merge batches",
+    "body": "This is part of a project to update some of the async batching logic to handle a few edge cases that have cropped up.\r\n\r\nThe observable change here is that if you have an `await` expression that runs twice, and the second one somehow resolves before the first, they are no longer forced to resolve in linear order. The easiest way to see it is in this example \u2014 click `a++` then `b++` in quick succession:\r\n\r\n- [`main`](https://svelte.dev/playground/hello-world?version=5.39.6#H4sIAAAAAAAAE41Swa7bIBD8lRV9B6xESV6PjhOpt3fsobe6BzDrJ1SyILNuGln8e7GJ0yelh95gNDszzDIJUhcUtXhD5zxc_eAMSDSW0VRiK3rrMIr6-yT4FmbeDGT8PvUlhF38hY5nTKuI_8I7T4zEWUY0sRtsYHCK3k-t4NiKc0stO2Qw6NQNTnA4rojKt5fIilG-Vg9U_0U_L2jG-5E6tp4gOsQgF6kaaLxoHCqYZkrLA_I4EBBe4evgLzailH0Fp_NKaDkif7MX9CPLflsSFeOWUzmkYqjijTp42CpjpFoNt6CfvNVVWf6YbpW9h1KwAb0aNPtS01wNNXpkzhaeOme7n6dJlsiPvl4Ph8MR1GZzhJSWNvN5FimD_y1yBP1BQz9rlIXW2o9k1HBbaE0Aa-ZNYuS8y0ml_JBJpyw5lTcv1eRKqtTsw7m0N32KZEPIywxIxtK7rFKpowln59UM7Xa7-wBP-zu9dPMUI_8xxt8sah5GTD_yTVl3tWRE3SsXMf0BwGxDAOYCAAA) \u2014 the fast `b++` update is blocked on the slow `a++` update\r\n- [this PR](https://svelte.dev/playground/hello-world?version=pr-16866#H4sIAAAAAAAAE41Swa7bIBD8lRV9B6xESV6PjhOpt3fsobe6BzDrJ1SyILNuGln8e7GJ0yelh95gNDszzDIJUhcUtXhD5zxc_eAMSDSW0VRiK3rrMIr6-yT4FmbeDGT8PvUlhF38hY5nTKuI_8I7T4zEWUY0sRtsYHCK3k-t4NiKc0stO2Qw6NQNTnA4rojKt5fIilG-Vg9U_0U_L2jG-5E6tp4gOsQgF6kaaLxoHCqYZkrLA_I4EBBe4evgLzailH0Fp_NKaDkif7MX9CPLflsSFeOWUzmkYqjijTp42CpjpFoNt6CfvNVVWf6YbpW9h1KwAb0aNPtS01wNNXpkzhaeOme7n6dJlsiPvl4Ph8MR1GZzhJSWNvN5FimD_y1yBP1BQz9rlIXW2o9k1HBbaE0Aa-ZNYuS8y0ml_JBJpyw5lTcv1eRKqtTsw7m0N32KZEPIywxIxtK7rFKpowln59UM7Xa7-wBP-zu9dPMUI_8xxt8sah5GTD_yTVl3tWRE3SsXMf0BwGxDAOYCAAA) \u2014 the `b++` update occurs, followed by the `a++` update\r\n\r\nTo make this work, whenever a batch is _committed_, we essentially 'rebase' other pending batches on top of the newly applied state. In the example above, when we commit the fast `b++` update, we re-run any async effects that depend on `b` in the context of the pending `a++` batch.\r\n\r\n### Before submitting the PR, please make sure you do the following\r\n\r\n- [x] It's really useful if your PR references an issue where it is discussed ahead of time. In many cases, features are absent for a reason. For large changes, please create an RFC: https://github.com/sveltejs/rfcs\r\n- [x] Prefix your PR title with `feat:`, `fix:`, `chore:`, or `docs:`.\r\n- [x] This message body should clearly illustrate what problems it solves.\r\n- [x] Ideally, include a test that fails without this PR but passes with it.\r\n- [x] If this PR changes code within `packages/svelte/src`, add a changeset (`npx changeset`).\r\n\r\n### Tests and linting\r\n\r\n- [x] Run the tests with `pnpm test` and lint the project with `pnpm lint`\r\n",
+    "ai_tagged": false,
+    "reworked": true,
+    "escaped": false
+  },
+  {
+    "repo": "n8n-io/n8n",
+    "pr_number": 24892,
+    "title": "ci: Optimize GHCR cleanup script with early termination and parallel pagination",
+    "body": "## Summary\r\n  Optimizes GHCR cleanup from ~80s \u2192 ~5-20s by reducing unnecessary API pagination:\r\n  [Before](https://github.com/n8n-io/n8n/actions/runs/21375714483/job/61533131186?pr=24884) - [After](https://github.com/n8n-io/n8n/actions/runs/21378455420/job/61541436523?pr=24892)  \r\n  - PR cleanup (--pr): Early termination after 3 consecutive pages with no matches\r\n  - Weekly cleanup: Replace --all with --stale <days> - parallel pagination + age-based filtering\r\n  - Async refactor: execSync \u2192 execAsync for proper error handling\r\n  - Fail-fast: Abort after 3 consecutive delete failures\r\n  - Runner: Use ubuntu-slim for cleanup jobs\r\n\r\n## Related Linear tickets, Github issues, and Community forum posts\r\n\r\n  https://linear.app/n8n/issue/CAT-2226\r\n\r\n\r\n## Review / Merge checklist\r\n\r\n- [ ] PR title and summary are descriptive. ([conventions](../blob/master/.github/pull_request_title_conventions.md)) <!--\r\n   **Remember, the title automatically goes into the changelog.\r\n   Use `(no-changelog)` otherwise.**\r\n-->\r\n- [ ] [Docs updated](https://github.com/n8n-io/n8n-docs) or follow-up ticket created.\r\n- [ ] Tests included. <!--\r\n   A bug is not considered fixed, unless a test is added to prevent it from happening again.\r\n   A feature is not complete without tests.\r\n-->\r\n- [ ] PR Labeled with `release/backport` (if the PR is an urgent fix that needs to be backported)\r\n",
+    "ai_tagged": false,
+    "reworked": false,
+    "escaped": false
+  },
+  {
+    "repo": "continuedev/continue",
+    "pr_number": 11075,
+    "title": "feat(cli): export and import sessions",
+    "body": "## Description\r\n\r\nAdd the ability to export a selected session and import it by path of the file.\r\n\r\n## AI Code Review\r\n\r\n- **Team members only**: AI review runs automatically when PR is opened or marked ready for review\r\n- Team members can also trigger a review by commenting `@continue-review`\r\n\r\n## Checklist\r\n\r\n- [] I've read the [contributing guide](https://github.com/continuedev/continue/blob/main/CONTRIBUTING.md)\r\n- [] The relevant docs, if any, have been updated or created\r\n- [] The relevant tests, if any, have been updated or created\r\n\r\n## Screen recording or screenshot\r\n\r\n[ When applicable, please include a short screen recording or screenshot - this makes it much easier for us as contributors to review and understand your changes. See [this PR](https://github.com/continuedev/continue/pull/6455) as a good example. ]\r\n\r\n## Tests\r\n\r\n[ What tests were added or updated to ensure the changes work as expected? ]\n\n---\n\n<!-- continue-task-summary-start -->\n**Continue Tasks:** \ud83d\udd04 7 running \u2014 [View all](https://hub.continue.dev/inbox/pr/continuedev/continue/11075?utm_source=github_pr&utm_medium=pr_body&utm_campaign=continue_tasks)\n<!-- continue-task-summary-end -->\n\n<!-- This is an auto-generated description by cubic. -->\n---\n## Summary by cubic\nAdd CLI support to export a session to JSON and import a session from a file. Adds new slash commands and a TUI export selector to make moving sessions easy.\n\n- New Features\n  - Added `/export` to open an Export selector in the TUI; saves `continue-session-<id>.json` in the current directory with `version: 1` and `exportedAt`.\n  - Added `/import <file-path>` with clear errors for missing path, missing file, invalid JSON, or unsupported export (expects `version: 1`).\n  - On import, if the `sessionId` exists, a new UUID is generated and the session is saved without overwriting; output shows original and new IDs.\n  - Registered `export` and `import` in system slash commands; wired TUI navigation and system messages for success/failure.\n\n- Bug Fixes\n  - Stabilized `slashCommands` tests by mocking `path.isAbsolute`, `path.resolve`, and `core/util/history.js` to avoid filesystem calls.\n\n<sup>Written for commit ab8760ea473ea1e64d4c0d0219623baaf1cc2fc0. Summary will update on new commits.</sup>\n\n<!-- End of auto-generated description by cubic. -->\n\n",
+    "ai_tagged": false,
+    "reworked": false,
+    "escaped": false
+  },
+  {
+    "repo": "novuhq/novu",
+    "pr_number": 9600,
+    "title": "refactor(worker): workflow trigger update logic to avoid hot items",
+    "body": "Replaces findByTriggerIdentifierAndUpdate with separate find and updateLastTriggeredAt methods. Updates lastTriggeredAt only if not set or older than 5 minutes, improving cache and update efficiency for workflow triggers.\r\n\r\n### What changed? Why was the change needed?\r\n\r\n<!-- Also include any relevant links, such as Linear tickets, Slack discussions, or design documents. -->\r\n\r\n### Screenshots\r\n\r\n<!-- If the changes are visual, include screenshots or screencasts. -->\r\n\r\n<details>\r\n<summary><strong>Expand for optional sections</strong></summary>\r\n\r\n### Related enterprise PR\r\n\r\n<!-- A link to a dependent pull request  -->\r\n\r\n### Special notes for your reviewer\r\n\r\n<!-- Specific instructions or considerations you want to highlight for the reviewer. -->\r\n\r\n</details>\r\n",
+    "ai_tagged": false,
+    "reworked": false,
+    "escaped": false
+  },
+  {
+    "repo": "vercel/next.js",
+    "pr_number": 91485,
+    "title": "Fix `unstable_catchError` type inference for fallback props",
+    "body": "### Why?\r\n\r\nTypeScript fails to infer the generic `P` from `Omit<P, 'children'>` in the fallback function parameter.\r\n\r\n```\r\nArgument of type '(props: { title: string; }, { error, reset, unstable_retry }: ErrorInfo) => Element' is not assignable to parameter of type '(props: Omit<UserProps, \"children\">, errorInfo: ErrorInfo) => ReactNode'.\r\n  Types of parameters 'props' and 'props' are incompatible.\r\n    Property 'title' is missing in type 'Omit<UserProps, \"children\">' but required in type '{ title: string; }'.ts(2345)\r\ncatch-error-wrapper.tsx(7, 12): 'title' is declared here.\r\n```",
+    "ai_tagged": false,
+    "reworked": false,
+    "escaped": false
+  },
+  {
+    "repo": "facebook/react",
+    "pr_number": 35663,
+    "title": "[compiler] Add snap subcommand to minimize a test input",
+    "body": "Snap now supports subcommands 'test' (default) and 'minimize`. The minimize subcommand attempts to minimize a single failing input fixture by incrementally simplifying the ast so long as the same error occurs. I spot-checked it and it seemed to work pretty well. This is intended for use in a new subagent designed for investigating bugs \u2014 fixture simplification is an important part of the process and we can automate this rather than light tokens on fire.\r\n\r\nExample Input:\r\n\r\n```js\r\nfunction Component(props) {\r\n  const x = [];\r\n  let result;\r\n  for (let i = 0; i < 10; i++) {\r\n    if (cond) {\r\n      try {\r\n        result = {key: bar([props.cond && props.foo])};\r\n      } catch (e) {\r\n        console.log(e);\r\n      }\r\n    }\r\n  }\r\n  x.push(result);\r\n  return <Stringify x={x} />;\r\n}\r\n```\r\n\r\nCommand output:\r\n\r\n```\r\n$ yarn snap minimize --path .../input.js\r\nMinimizing: .../input.js\r\n\r\nMinimizing................\r\n\r\n--- Minimized Code ---\r\nfunction Component(props) {\r\n  try {\r\n    props && props;\r\n  } catch (e) {}\r\n}\r\n\r\nReduced from 16 lines to 5 lines\r\n```\r\n\r\nThis demonstrates things like:\r\n* Removing one statement at at time\r\n* Replacing if/else with the test, consequent, or alternate. Similar for other control-flow statements including try/catch\r\n* Removing individual array/object expression properties\r\n* Replacing single-value array/object with the value\r\n* Replacing control-flow expression (logical, consequent) w the test or left/right values\r\n* Removing call arguments\r\n* Replacing calls with a single argument with the argument\r\n* Replacing calls with multiple arguments with an array of the arguments\r\n* Replacing optional member/call with non-optional versions\r\n* Replacing member expression with the object. If computed, also try replacing w the key\r\n* And a bunch more strategies, see the code",
+    "ai_tagged": false,
+    "reworked": true,
+    "escaped": false
+  },
+  {
+    "repo": "PostHog/posthog",
+    "pr_number": 48647,
+    "title": "fix(toolbar): scroll depth canvas tooltip text color for accessibility",
+    "body": "## Problem\n\nThe scroll depth canvas tooltip was using hardcoded white text (`text-white`) which may not have sufficient contrast against the default background color in all theme contexts, affecting readability and accessibility.\n\n## Changes\n\nUpdated the tooltip text color in `ScrollDepthMouseCanvas` from `text-white` to `text-primary-inverse`, which is the semantic color token that ensures proper contrast and respects the current theme settings.\n\n- Changed `text-white` to `text-primary-inverse` in the tooltip className\n\n## How did you test this code?\n\nVerified that the tooltip renders correctly with the new color token and maintains proper contrast in both light and dark theme modes.\n\n## Publish to changelog?\n\nNo\n\nhttps://claude.ai/code/session_01H7jxnZDr775pCtoxUhD9QN",
+    "ai_tagged": false,
+    "reworked": false,
+    "escaped": false
+  },
+  {
+    "repo": "calcom/cal.com",
+    "pr_number": 26920,
+    "title": "feat: clear all filters when deselecting a segment",
+    "body": "## What does this PR do?\n\nWhen a filter segment is selected and the user clicks it again to deselect, this PR now clears all active filters in addition to deselecting the segment.\n\nPreviously, deselecting a segment only called `setSegmentId(null)`, which removed the segment selection but left the filters in place. Now it calls `clearAll()` which clears both the segment selection and all active filters.\n\n## Mandatory Tasks (DO NOT REMOVE)\n\n- [x] I have self-reviewed the code (A decent size PR without self-review might be rejected).\n- [x] I have updated the developer docs in /docs if this PR makes changes that would require a [documentation change](https://cal.com/docs). N/A - no documentation changes needed.\n- [x] I confirm automated tests are in place that prove my fix is effective or that my feature works.\n\n## How should this be tested?\n\n1. Go to a page with DataTable and filter segments (e.g., Bookings page or Organization Members page)\n2. Select a filter segment (e.g., \"My Bookings\" system segment or a user-created segment)\n3. Verify filters are applied (URL contains `activeFilters`)\n4. Click the same segment again to deselect it\n5. Verify the segment is deselected AND all filters are cleared (URL should no longer contain `activeFilters`)\n\nAn e2e test has been added to `filter-segment.e2e.ts`:\n- `Deselecting a segment clears all active filters`\n\n## Checklist\n\n- [x] My code follows the style guidelines of this project\n- [x] I have checked if my changes generate no new warnings\n\n## Human Review Checklist\n\n- [ ] Verify that calling `clearAll()` instead of `setSegmentId(null)` is the intended behavior (clears both segment selection and all active filters)\n- [ ] Consider if there are use cases where users might want to keep filters when deselecting a segment\n\n---\n\n> **Link to Devin run**: https://app.devin.ai/sessions/44f22b80d9c442bdb334d04dac2b476d\n> **Requested by**: @eunjae-lee",
+    "ai_tagged": false,
+    "reworked": true,
+    "escaped": true
+  },
+  {
+    "repo": "nats-io/nats-server",
+    "pr_number": 7759,
+    "title": "Perform `_writeFullState` under read lock only",
+    "body": "Previously the `_writeFullState` calls would take the store write lock, but if the store is very read-heavy with e.g. lots of consumers, this creates a significant contention on those trying to acquire `RLock` and results in pauses that may cause caches to expire. Therefore:\r\n\r\n- A new `wfsmu` is added to allow only one of these calls to run at a time \u2014 it protects the average delete map length field, and also means that we can't have two `_writeFullState` goroutines writing to the same file at the same time;\r\n- The `fs.mu` is now `RLock` instead of `Lock`\r\n\r\nSigned-off-by: Neil Twigg <neil@nats.io>",
+    "ai_tagged": false,
+    "reworked": false,
+    "escaped": false
+  },
+  {
+    "repo": "liam-hq/liam",
+    "pr_number": 3714,
+    "title": "feat: add navigation to Liam logo in GlobalNav",
+    "body": "## Issue\r\n\r\n- resolve: route06/liam-internal#5283\r\n\r\n## Why is this change needed?\r\n\r\nThe Liam logo in the GlobalNav sidebar was previously non-clickable, creating a poor user experience where users would expect the logo to be interactive but clicking it had no effect. This change makes the logo clickable and navigates to the homepage (\"/design_sessions/new\"), following common web navigation patterns.\r\n\r\n## Changes Made\r\n\r\n- Wrapped the logo section with Next.js `Link` component pointing to \"/design_sessions/new\"\r\n- Applied `itemStyles.item` class for consistent hover styling with other navigation items  \r\n- Import `Link` from 'next/link'\r\n\r\n## Human Review Checklist\r\n\r\n\u26a0\ufe0f **Critical**: This change was unable to be tested locally due to missing Supabase environment configuration. Please verify:\r\n\r\n1. **Navigation functionality**: Click the logo and confirm it navigates to the correct destination\r\n2. **Visual styling**: Hover over the logo and verify the background color change looks appropriate \r\n3. **Layout integrity**: Ensure the Link wrapper doesn't break the logo positioning or layout\r\n4. **Accessibility**: Test with screen readers to verify the aria-label is announced correctly\r\n5. **User experience**: Confirm the navigation destination (/ \u2192 /design_sessions/new for authenticated users) matches expected UX\r\n\r\n## Navigation Behavior\r\n\r\nThe logo navigates to \"/\" which intelligently redirects:\r\n- **Authenticated users** \u2192 `/design_sessions/new` \r\n\r\n---\r\n\r\n**Link to Devin run**: https://app.devin.ai/sessions/f5c8bff335f24eb3b6da1fe853df3051  \r\n**Requested by**: noritaka.ikeda@route06.co.jp",
+    "ai_tagged": false,
+    "reworked": true,
+    "escaped": true
+  },
+  {
+    "repo": "facebook/react",
+    "pr_number": 35691,
+    "title": "Fix exhaustive deps bug with flow type casting.",
+    "body": "Summary:\r\nI noticed there's a bug where the lint will recognize the type on a cast annotation as a missing dependency;\r\n\r\n```\r\n        function MyComponent() {\r\n          type ColumnKey = 'id' | 'name';\r\n          type Item = {id: string, name: string};\r\n\r\n          const columns = useMemo(\r\n            () => [\r\n              {\r\n                type: 'text',\r\n                key: 'id',\r\n              } as TextColumn<ColumnKey, Item>,\r\n                              ^^^^^^^^ here\r\n            ],\r\n            [],\r\n          );\r\n        }\r\n```\r\n\r\nThis is due to the AST of AsExpressions being something like:\r\n\r\nAsExpression\r\n  \u2514\u2500\u2500 typeAnnotation: GenericTypeAnnotation\r\n        \u2514\u2500\u2500 typeParameters: TypeParameterInstantiation\r\n              \u2514\u2500\u2500 params[0]: GenericTypeAnnotation\r\n                    \u2514\u2500\u2500 id: Identifier (name: \"ColumnKey\")\r\n\r\nWhere `ColumnKey` never has a TypeParameter Annotation. So we need to consider it to be a flow type due to it belonging to a GenericTypeAnnotation\r\n\r\nTest Plan:\r\nAdded unit tests\r\n\r\nBefore:\r\n```\r\nTest Suites: 1 failed, 2 passed, 3 total\r\nTests:       2 failed, 5065 passed, 5067 total\r\nSnapshots:   0 total\r\nTime:        16.517 s\r\nRan all test suites.\r\nerror Command failed with exit code 1.\r\n```\r\n\r\nAfter:\r\n```\r\n PASS  __tests__/ReactCompilerRuleTypescript-test.ts\r\n PASS  __tests__/ESLintRulesOfHooks-test.js (6.192 s)\r\n PASS  __tests__/ESLintRuleExhaustiveDeps-test.js (9.97 s)\r\n\r\nTest Suites: 3 passed, 3 total\r\nTests:       5067 passed, 5067 total\r\nSnapshots:   0 total\r\nTime:        10.21 s, estimated 11 s\r\nRan all test suites.\r\n\u2728  Done in 12.66s.\r\n```\r\n",
+    "ai_tagged": false,
+    "reworked": false,
+    "escaped": false
+  },
+  {
+    "repo": "calcom/cal.com",
+    "pr_number": 27062,
+    "title": "feat: add Help Desk search link when KBar has no results",
+    "body": "## What does this PR do?\n\nWhen users search in KBar and no results are found, this PR adds a helpful message with a link to the Cal.com Help Desk. The link includes the user's search query as a URL parameter, allowing them to continue their search on the help site.\n\nExample: If a user searches \"I need help with event types\" and no KBar results match, they'll see:\n- \"No results found\"\n- A link: \"Search for 'I need help with event types' on our Help Desk\" \u2192 opens `https://cal.com/help/welcome?search=I+need+help+with+event+types`\n\n**Changes:**\n- Added `NoResultsFound` component that displays when search has no matches\n- Modified `RenderResults` to show the help link when `results.length === 0` and search query is non-empty\n- Added translation keys: `kbar_search_help_desk` and `kbar_no_results_found`\n\n**Note:** Most of the diff is Biome auto-formatting (CSS class sorting, import reordering). The functional changes are in the new `NoResultsFound` component and the conditional in `RenderResults`.\n\n## Mandatory Tasks (DO NOT REMOVE)\n\n- [x] I have self-reviewed the code (A decent size PR without self-review might be rejected).\n- [x] I have updated the developer docs in /docs if this PR makes changes that would require a [documentation change](https://cal.com/docs). N/A - no docs changes needed.\n- [ ] I confirm automated tests are in place that prove my fix is effective or that my feature works.\n\n## How should this be tested?\n\n1. Open KBar (Cmd+K / Ctrl+K)\n2. Type a search query that doesn't match any existing actions (e.g., \"asdfasdf\" or \"help with something random\")\n3. Verify you see \"No results found\" message\n4. Verify the Help Desk link appears with your search query\n5. Click the link and verify it opens `https://cal.com/help/welcome?search=<your-query>` in a new tab\n\n## Checklist\n\n- [x] My code follows the style guidelines of this project\n- [x] I have checked if my changes generate no new warnings\n\n---\n\n> **Link to Devin run**: https://app.devin.ai/sessions/95fcda21ab1b444aa6c42b3da7915da7\n> **Requested by**: @PeerRich",
+    "ai_tagged": false,
+    "reworked": false,
+    "escaped": false
+  },
+  {
+    "repo": "continuedev/continue",
+    "pr_number": 8633,
+    "title": "fix: address headless loading bug",
+    "body": "## Description\n\n[ What changed? Feel free to be brief. ]\n\n## AI Code Review\n\n- **Team members only**: AI review runs automatically when PR is opened or marked ready for review\n- Team members can also trigger a review by commenting `@continue-review`\n\n## Checklist\n\n- [] I've read the [contributing guide](https://github.com/continuedev/continue/blob/main/CONTRIBUTING.md)\n- [] The relevant docs, if any, have been updated or created\n- [] The relevant tests, if any, have been updated or created\n\n## Screen recording or screenshot\n\n[ When applicable, please include a short screen recording or screenshot - this makes it much easier for us as contributors to review and understand your changes. See [this PR](https://github.com/continuedev/continue/pull/6455) as a good example. ]\n\n## Tests\n\n[ What tests were added or updated to ensure the changes work as expected? ]\n\n\n<!-- This is an auto-generated description by cubic. -->\n---\n## Summary by cubic\nFixes headless mode loading by selecting the default agent instead of returning no-config. Headless CLI sessions now start with a usable agent and no longer fail when user assistants aren\u2019t supported.\n\n- **Bug Fixes**\n  - In configLoader.determineConfigSource, return { type: \"default-agent\" } when isHeadless.\n\n<sup>Written for commit 0f9890235c1986dd26ddb4e33299d46bc2dd6323. Summary will update automatically on new commits.</sup>\n\n<!-- End of auto-generated description by cubic. -->\n\n",
+    "ai_tagged": false,
+    "reworked": true,
+    "escaped": false
+  },
+  {
+    "repo": "liam-hq/liam",
+    "pr_number": 4012,
+    "title": "Version Packages",
+    "body": "This PR was opened by the [Changesets release](https://github.com/changesets/action) GitHub action. When you're ready to do a release, you can merge this and the packages will be published to npm automatically. If you're not ready to do a release yet, that's fine, whenever you add more changesets to main, this PR will be updated.\n\n\n# Releases\n## @liam-hq/cli@0.7.24\n\n### Patch Changes\n\n-   [#4006](https://github.com/liam-hq/liam/pull/4006) - - \u2728 Add \"Show All Tables\" and \"Hide All Tables\" table visibility shortcuts and options in CommandPalette / Thanks [@tnyo43](https://github.com/tnyo43)!\n    -   Command Palette: new \"Show All Tables\" and \"Hide All Tables\" commands\n    -   Subscribe shortcuts: \u21e7A for \"Show All Tables\" and \u21e7H for \"Hide All Tables\"\n\n## @liam-hq/erd-core@0.6.18\n\n### Patch Changes\n\n-   [#4006](https://github.com/liam-hq/liam/pull/4006) - - \u2728 Add \"Show All Tables\" and \"Hide All Tables\" table visibility shortcuts and options in CommandPalette / Thanks [@tnyo43](https://github.com/tnyo43)!\n    -   Command Palette: new \"Show All Tables\" and \"Hide All Tables\" commands\n    -   Subscribe shortcuts: \u21e7A for \"Show All Tables\" and \u21e7H for \"Hide All Tables\"\n",
+    "ai_tagged": false,
+    "reworked": false,
+    "escaped": false
+  },
+  {
+    "repo": "astral-sh/ruff",
+    "pr_number": 22114,
+    "title": "[`ruff`] Detect duplicate entries in `__all__` (`RUF068`)",
+    "body": "Hello,\r\n\r\nThis MR adds a new rule and its fix, `RUF069`, `DuplicateEntryInDunderAll`. I'm using `RUF069` because we already have [RUF068](https://github.com/astral-sh/ruff/pull/20585) and [RUF069](https://github.com/astral-sh/ruff/pull/21079#issuecomment-3493839453) in the works.\r\n\r\nThe rule job is to prevent users from accidentally adding duplicate entries to `__all__`, which, for example, can result from copy-paste mistakes.\r\n\r\nIt deals with the following syntaxes:\r\n\r\n```python\r\n__all__: list[str] = [\"a\", \"a\"]\r\n__all__: typing.Any = (\"a\", \"a\")\r\n__all__.extend([\"a\", \"a\"])\r\n__all__ += [\"a\", \"a\"]\r\n```\r\n\r\nBut it does not keep track of `__all__` contents, meaning the following code snippet is a false negative:\r\n```python\r\nclass A: ...\r\n\r\n__all__ = [\"A\"]\r\n__all__.extend([\"A\"])\r\n```\r\n\r\n## Violation Example\r\n\r\n```console\r\nRUF069 `__all__` contains duplicate entries\r\n --> RUF069.py:2:17\r\n  |\r\n1 | __all__ = [\"A\", \"A\", \"B\"]\r\n  |                 ^^^\r\nhelp: Remove duplicate entries from `__all__`\r\n1 | __all__ = [\"A\", \"B\"]\r\n  - __all__ = [\"A\", \"A\", \"B\"]\r\n```\r\n\r\n## Ecosystem Report\r\n\r\nThe `ruff-ecosystem` results contain seven violations in four projects, all of them seem like true positives, with one instance appearing to be an actual bug.\r\n\r\nThis [code snippet](https://github.com/python/typeshed/blob/90d855985be5aae9bc76e77b0f3d4b6738c38347/stubs/reportlab/reportlab/lib/rltempfile.pyi#L4) from `reportlab` contains the same entry twice instead of exporting both functions.\r\n\r\n```python\r\ndef get_rl_tempdir(*subdirs: str) -> str: ...\r\ndef get_rl_tempfile(fn: str | None = None) -> str: ...\r\n\r\n__all__ = (\"get_rl_tempdir\", \"get_rl_tempdir\")\r\n```\r\n\r\nCloses [#21945](https://github.com/astral-sh/ruff/issues/21945)",
+    "ai_tagged": false,
+    "reworked": true,
+    "escaped": false
+  },
+  {
+    "repo": "astral-sh/ruff",
+    "pr_number": 23634,
+    "title": "[`ruff`] Fix false positive for `re.split` with empty string pattern (`RUF055`)",
+    "body": "## Summary\n\nFixes #23629.\n\n`re.split(\"\", s)` is flagged by RUF055 and auto-fixed to `s.split(\"\")`, but `str.split(\"\")` raises `ValueError: empty separator` while `re.split(\"\", s)` succeeds (returning `[\"\", \"a\", \"b\", \"c\", \"\"]`). The same applies to bytes (`rb\"\"`).\n\nThis adds a guard to skip the diagnostic when the separator pattern is an empty string or bytes literal specifically for `re.split` calls. Other `re` functions (`sub`, `match`, `search`, `fullmatch`) are not affected \u2014 their `str` equivalents all handle empty strings equivalently.\n\n## Test Plan\n\nAdded test cases for empty string and bytes patterns in `RUF055_0.py` and `RUF055_3.py`. Verified that no diagnostics are emitted for these cases and all existing RUF055 snapshot tests continue to pass:\n\n```\ncargo test -p ruff_linter -- \"preview_rules::rule_unnecessaryregularexpression\"\ntest result: ok. 4 passed; 0 failed; 0 ignored\n```",
+    "ai_tagged": false,
+    "reworked": false,
+    "escaped": false
+  },
+  {
+    "repo": "microsoft/vscode",
+    "pr_number": 303584,
+    "title": "feat: group chat extension customizations under 'Built-in' in managem\u2026",
+    "body": "closes https://github.com/microsoft/vscode/pull/303584\r\n\r\n\u2026ent editor\r\n\r\nItems contributed by the default chat extension (GitHub Copilot Chat) are now shown under a 'Built-in' group header instead of 'Extensions' in the Chat Customizations editor. This applies to agents, skills, prompts, and instructions \u2014 matching the existing pattern used by the MCP list widget.\r\n\r\nThe grouping is determined at the UI layer using IProductService to identify the chat extension ID, setting groupKey on matching items. No data model changes needed.\r\n\r\n- Move BUILTIN_STORAGE/AICustomizationPromptsStorage to common layer\r\n- Add BUILTIN_STORAGE to VS Code harness filter sources\r\n- Add isChatExtensionItem() helper using productService.defaultChatAgent\r\n- Set groupKey: BUILTIN_STORAGE for items from the chat extension\r\n- Add tests for builtin source filtering\r\n- Update AI_CUSTOMIZATIONS.md spec\r\n\r\n<!-- Thank you for submitting a Pull Request. Please:\r\n* Read our Pull Request guidelines:\r\n  https://github.com/microsoft/vscode/wiki/How-to-Contribute#pull-requests\r\n* Associate an issue with the Pull Request.\r\n* Ensure that the code is up-to-date with the `main` branch.\r\n* Include a description of the proposed changes and how to test them.\r\n-->\r\n",
+    "ai_tagged": false,
+    "reworked": false,
+    "escaped": false
+  },
+  {
+    "repo": "astral-sh/ruff",
+    "pr_number": 22464,
+    "title": "[PT006] Fix syntax error when unpacking nested tuples in parametrize fixes (#22441)",
+    "body": "## Summary\r\n\r\nFixes a syntax error bug in the `PT006` rule where applying fixes could generate invalid Python code.\r\n\r\n**Problem**: When unpacking nested tuples in `pytest.mark.parametrize` decorators, Ruff's code generator unparses tuples without outer parentheses at level 0 (e.g., `(1, 2)` becomes `1, 2` and `((1,),)` becomes `(1,),`). This caused syntax errors like `[1, 2,]` or `[(1,),,]` when used as list elements.\r\n\r\n**Solution**: Introduced two helper functions in `parametrize.rs`:\r\n- `is_parenthesized`: Validates if a string is fully enclosed in matching parentheses\r\n- `unparse_expr_in_sequence`: Ensures non-empty tuples are always parenthesized when used as sequence elements\r\n\r\nFixes https://github.com/astral-sh/ruff/issues/22441\r\n\r\n## Test Plan\r\n\r\n- Added comprehensive regression tests to `PT006.py` covering:\r\n  - Single-element nested empty tuples: `((),)`\r\n  - Single-element nested single-value tuples: `((1,),)`\r\n  - Single-element nested multi-value tuples: `((1, 2),)`\r\n  - Deeply nested structures: `(((1,),),)`\r\n  - Mixed types: `(\"hello\",,)`, `([1, 2],,)`\r\n\r\n- Verified edge cases with automated snapshot testing:\r\n  - All 47 existing flake8-pytest-style tests continue to pass\r\n  - Updated snapshots: `PT006_default.snap`, `PT006_csv.snap`, `PT006_list.snap`",
+    "ai_tagged": false,
+    "reworked": false,
+    "escaped": false
+  },
+  {
+    "repo": "mendableai/firecrawl",
+    "pr_number": 2918,
+    "title": "ci(tests): add JUnit XML reporting for test server",
+    "body": "## Summary\n- Add `jest-junit` reporter to produce JUnit XML test results at `apps/api/test-results/junit.xml`\n- Upload JUnit XML as a CI artifact for each matrix configuration\n- Render test results in the GitHub PR checks UI via `dorny/test-reporter`\n\n## Test plan\n- [ ] Verify JUnit XML file is generated after tests run\n- [ ] Verify test results artifact is uploaded in CI\n- [ ] Verify test report appears in PR checks tab\n\n<!-- This is an auto-generated description by cubic. -->\n---\n## Summary by cubic\nAdd JUnit XML reporting for the API test server and show results in PR checks. Align jest-junit and test-reporter config with the original working setup to ensure reliable annotations.\n\n- **New Features**\n  - Configure jest-junit to write <rootDir>/test-results/junit.xml with addFileAttribute and suiteNameTemplate \"{filepath}\".\n  - Publish the report via dorny/test-reporter with fail-on-error enabled; keep artifact upload for PR check annotations.\n\n- **Dependencies**\n  - Add jest-junit (^16.0.0).\n\n<sup>Written for commit 8747b624493f9f893b67d063174de204851f5c6f. Summary will update on new commits.</sup>\n\n<!-- End of auto-generated description by cubic. -->\n\n",
+    "ai_tagged": false,
+    "reworked": true,
+    "escaped": false
+  },
+  {
+    "repo": "lobehub/lobe-chat",
+    "pr_number": 13126,
+    "title": "\ud83d\udc84 style: redesign image / video",
+    "body": "#### \ud83d\udcbb Change Type\r\n\r\n<!-- For change type, change [ ] to [x]. -->\r\n\r\n- [ ] \u2728 feat\r\n- [ ] \ud83d\udc1b fix\r\n- [ ] \u267b\ufe0f refactor\r\n- [x] \ud83d\udc84 style\r\n- [ ] \ud83d\udc77 build\r\n- [ ] \u26a1\ufe0f perf\r\n- [ ] \u2705 test\r\n- [ ] \ud83d\udcdd docs\r\n- [ ] \ud83d\udd28 chore\r\n\r\n#### \ud83d\udd17 Related Issue\r\n\r\n<!-- Link to the issue that is fixed by this PR -->\r\n\r\n<!-- Example: Fixes #xxx, Closes #xxx, Related to #xxx -->\r\n\r\n#### \ud83d\udd00 Description of Change\r\n\r\n<!-- Thank you for your Pull Request. Please provide a description above. -->\r\n\r\n#### \ud83e\uddea How to Test\r\n\r\n<!-- Please describe how you tested your changes -->\r\n\r\n<!-- For AI features, please include test prompts or scenarios -->\r\n\r\n- [ ] Tested locally\r\n- [ ] Added/updated tests\r\n- [ ] No tests needed\r\n\r\n#### \ud83d\udcf8 Screenshots / Videos\r\n\r\n<!-- If this PR includes UI changes, please provide screenshots or videos -->\r\n\r\n| Before | After |\r\n| ------ | ----- |\r\n| ...    | ...   |\r\n\r\n#### \ud83d\udcdd Additional Information\r\n\r\n<!-- Add any other context about the Pull Request here. -->\r\n\r\n<!-- Breaking changes? Migration guide? Performance impact? -->\r\n",
+    "ai_tagged": false,
+    "reworked": false,
+    "escaped": false
+  },
+  {
+    "repo": "dotnet/aspire",
+    "pr_number": 14328,
+    "title": "CLI fixes: MCP error message and help display",
+    "body": "## Description\n\nMinor CLI fixes:\n1. Update MCP error message to suggest `aspire run --detach` instead of just `aspire run` when no AppHost is running\n2. Show help when `aspire` is invoked without any arguments (previously exited with code 1 and no output)\n\n## Checklist\n\n- Is this feature complete?\n  - [x] Yes. Ready to ship.\n  - [ ] No. Follow-up changes expected.\n- Are you including unit tests for the changes and scenario tests if relevant?\n  - [x] Yes\n  - [ ] No\n- Did you add public API?\n  - [ ] Yes\n  - [x] No\n- Does the change make any security assumptions or guarantees?\n  - [ ] Yes\n  - [x] No\n- Does the change require an update in our Aspire docs?\n  - [ ] Yes\n  - [x] No",
+    "ai_tagged": false,
+    "reworked": false,
+    "escaped": false
+  },
+  {
+    "repo": "antiwork/gumroad",
+    "pr_number": 2353,
+    "title": " fix: Desktop Analytics view missing sales due to DST issue",
+    "body": "## fixes #1811\r\n\r\nprevious attempt #2333\r\n\r\n## What\r\n\r\n**Before:**\r\nThe Analytics view shows fewer sales than the Sales page during Daylight Saving Time periods. The timezone offset used in Elasticsearch queries was static (e.g., `-08:00` for PST), ignoring DST.\r\n\r\n**Now:**\r\nAnalytics services use IANA timezone IDs (e.g., `America/Los_Angeles`) instead of fixed offsets. Elasticsearch automatically handles DST for all dates in the query, including queries that span DST transitions.\r\n\r\n## Root Cause\r\nThe original code used `timezone_formatted_offset` which returns a formatted UTC offset. This offset was static and didn't change based on DST. For example:\r\n- Sale at July 15, 00:30 PDT = July 15, 07:30 UTC\r\n- With `-08:00` (PST): ES calculates 07:30 - 8h = **July 14**, 23:30 \r\n- With IANA ID: ES knows July is PDT (-07:00), calculates 07:30 - 7h = **July 15**, 00:30 \u2713\r\n\r\n## Solution\r\nUse `user.timezone_id` (which returns the IANA timezone ID like `\"America/Los_Angeles\"`) directly in Elasticsearch queries. ES automatically applies the correct offset for each date in the query.\r\n\r\n## Tests Added\r\n\r\n<img width=\"684\" height=\"222\" alt=\"image\" src=\"https://github.com/user-attachments/assets/8c4b92e2-683a-45dc-a3f9-eb1ec9f56512\" />\r\n\r\n\r\n## Edge Cases that are Handled\r\n1. Query during summer (DST active)\r\n2. Query during winter (standard time)\r\n3. Sale at midnight during DST (would fail with fixed offset)\r\n4. Query spanning DST transition (March 8-10)\r\n5. Query spanning DST end (November 1-5)\r\n\r\n\r\n## AI disclosure\r\nClaude was used for research and code generation.\r\nAll code was manually reviewed and verified.\r\n\r\n## Confirmation\r\n\r\nI have watched all Antiwork Live streams ",
+    "ai_tagged": false,
+    "reworked": false,
+    "escaped": false
+  },
+  {
+    "repo": "oven-sh/bun",
+    "pr_number": 27290,
+    "title": "fix(http): align DeadSocket to prevent crash on Windows ARM64 stable builds",
+    "body": "## Summary\r\n\r\n- `DeadSocket` only contains a `u8` field (alignment 1), so the linker could place `DeadSocket.dead_socket` at a non-8-byte-aligned address\r\n- When `markTaggedSocketAsDead` creates a tagged pointer embedding this address and passes it through `bun.cast(**anyopaque, ...)`, the `@alignCast` panics with \"incorrect alignment\" because the bottom bits of the tagged value come from the unaligned address\r\n- Fix: add `align(@alignOf(usize))` to the `dead_socket` variable declaration\r\n\r\nThis only manifested on stable (non-canary) Windows ARM64 builds because the binary layout differs when `ci_assert` is false, shifting the static variable to a non-aligned address. Canary builds happened to place it at an aligned address by coincidence.\r\n\r\n## Test plan\r\n\r\n- [x] Verified `fetch('https://example.com')` no longer crashes on Windows ARM64 stable build (ENABLE_CANARY=OFF)\r\n- [x] Verified 5 sequential HTTPS fetches complete successfully\r\n- [x] Verified the fix is a single-line change with no behavioral side effects",
+    "ai_tagged": false,
+    "reworked": false,
+    "escaped": false
+  },
+  {
+    "repo": "sveltejs/svelte",
+    "pr_number": 17329,
+    "title": "fix: prevent erroneous `state_referenced_locally` warnings on prop fallbacks",
+    "body": "Fixes the erroneous warnings described in https://github.com/sveltejs/svelte/issues/16343#issuecomment-3604288195\r\n\r\n### Before submitting the PR, please make sure you do the following\r\n\r\n- [x] It's really useful if your PR references an issue where it is discussed ahead of time. In many cases, features are absent for a reason. For large changes, please create an RFC: https://github.com/sveltejs/rfcs\r\n- [x] Prefix your PR title with `feat:`, `fix:`, `chore:`, or `docs:`.\r\n- [x] This message body should clearly illustrate what problems it solves.\r\n- [x] Ideally, include a test that fails without this PR but passes with it.\r\n- [x] If this PR changes code within `packages/svelte/src`, add a changeset (`npx changeset`).\r\n\r\n### Tests and linting\r\n\r\n- [x] Run the tests with `pnpm test` and lint the project with `pnpm lint`\r\n",
+    "ai_tagged": false,
+    "reworked": false,
+    "escaped": false
+  },
+  {
+    "repo": "biomejs/biome",
+    "pr_number": 8244,
+    "title": "ci: fix regression in benchmark workflows",
+    "body": "<!--\r\n  IMPORTANT!!\r\n  If you generated this PR with the help of any AI assistance, please disclose it in the PR.\r\n  https://github.com/biomejs/biome/blob/main/CONTRIBUTING.md#ai-assistance-notice\r\n-->\r\n\r\n<!--\r\n\tThanks for submitting a Pull Request! We appreciate you spending the time to work on these changes.\r\n\tPlease provide enough information so that others can review your PR.\r\n\tOnce created, your PR will be automatically labeled according to changed files.\r\n\tLearn more about contributing: https://github.com/biomejs/biome/blob/main/CONTRIBUTING.md\r\n-->\r\n\r\n## Summary\r\n\r\nI merged a pr that has a breaking change in the bench workflows. This PR fixes it\r\n\r\n<!-- Explain the **motivation** for making this change. What existing problem does the pull request solve?-->\r\n\r\n<!-- Link any relevant issues if necessary or include a transcript of any Discord discussion. -->\r\n\r\n<!-- If you create a user-facing change, please write a changeset: https://github.com/biomejs/biome/blob/main/CONTRIBUTING.md#writing-a-changeset (your changeset is often a good starting point for this summary as well) -->\r\n\r\n## Test Plan\r\n\r\nMerge and see if the bench jobs work\r\n\r\n<!-- What demonstrates that your implementation is correct? -->\r\n\r\n## Docs\r\n\r\n<!-- If you're submitting a new rule or action (or an option for them), the documentation is part of the code. Make sure rules and actions have example usages, and that all options are documented. -->\r\n\r\n<!-- For other features, please submit a documentation PR to the `next` branch of our website: https://github.com/biomejs/website/. Link the PR here once it's ready. -->\r\n",
+    "ai_tagged": false,
+    "reworked": false,
+    "escaped": false
+  }
+]

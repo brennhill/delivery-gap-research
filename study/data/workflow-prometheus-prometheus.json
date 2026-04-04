@@ -1,0 +1,3866 @@
+{
+  "repo": "prometheus/prometheus",
+  "lookback_days": 90,
+  "windows": [
+    {
+      "period_start": "2024-12-04T13:03:21+00:00",
+      "period_end": "2024-12-04T13:03:21+00:00",
+      "mechanisms": {
+        "cr_approve": 0.0,
+        "comment_approve": 0.0,
+        "approve_only": 1.0,
+        "label_based": 0.0,
+        "no_review": 0.0,
+        "self_approved": 0.0,
+        "rubber_stamp": 0.0,
+        "sample_size": 1
+      },
+      "depth": {
+        "median_human_reviews": 2,
+        "median_unique_reviewers": 2,
+        "median_review_rounds": 1,
+        "rubber_stamp_rate": 0.0,
+        "substantive_review_rate": 0.0
+      },
+      "participants": {
+        "unique_reviewers": 2,
+        "top_reviewers": [
+          {
+            "login": "krajorama",
+            "review_count": 1,
+            "role": "human"
+          },
+          {
+            "login": "beorn7",
+            "review_count": 1,
+            "role": "human"
+          }
+        ],
+        "reviewer_concentration": 0.0,
+        "bot_reviewers": []
+      },
+      "timing": {
+        "median_time_to_first_review_hours": 24.981666666666666,
+        "median_ttm_by_mechanism": {
+          "approve_only": 78.57722222222222
+        }
+      },
+      "workflow_type": "approve-direct",
+      "sample_size": 1
+    },
+    {
+      "period_start": "2025-04-30T09:53:48+00:00",
+      "period_end": "2026-04-02T18:42:04+00:00",
+      "mechanisms": {
+        "cr_approve": 0.07768595041322314,
+        "comment_approve": 0.2396694214876033,
+        "approve_only": 0.596694214876033,
+        "label_based": 0.006611570247933884,
+        "no_review": 0.03636363636363636,
+        "self_approved": 0.0,
+        "rubber_stamp": 0.04297520661157025,
+        "sample_size": 605
+      },
+      "depth": {
+        "median_human_reviews": 1,
+        "median_unique_reviewers": 1,
+        "median_review_rounds": 1,
+        "rubber_stamp_rate": 0.04297520661157025,
+        "substantive_review_rate": 0.3090909090909091
+      },
+      "participants": {
+        "unique_reviewers": 83,
+        "top_reviewers": [
+          {
+            "login": "bwplotka",
+            "review_count": 374,
+            "role": "human"
+          },
+          {
+            "login": "krajorama",
+            "review_count": 283,
+            "role": "human"
+          },
+          {
+            "login": "aknuds1",
+            "review_count": 150,
+            "role": "human"
+          },
+          {
+            "login": "roidelapluie",
+            "review_count": 128,
+            "role": "human"
+          },
+          {
+            "login": "SuperQ",
+            "review_count": 119,
+            "role": "human"
+          }
+        ],
+        "reviewer_concentration": 0.7643948226925297,
+        "bot_reviewers": [
+          {
+            "login": "copilot-pull-request-reviewer",
+            "review_count": 13,
+            "role": "label_bot"
+          }
+        ]
+      },
+      "timing": {
+        "median_time_to_first_review_hours": 12.184722222222222,
+        "median_ttm_by_mechanism": {
+          "comment_approve": 124.73027777777777,
+          "approve_only": 22.048055555555557,
+          "cr_approve": 114.30666666666667,
+          "no_review": 27.1625,
+          "rubber_stamp": 0.7125,
+          "label_based": 425.7351388888889
+        }
+      },
+      "workflow_type": "mixed",
+      "sample_size": 605
+    }
+  ],
+  "current": {
+    "period_start": "2025-04-30T09:53:48+00:00",
+    "period_end": "2026-04-02T18:42:04+00:00",
+    "mechanisms": {
+      "cr_approve": 0.07768595041322314,
+      "comment_approve": 0.2396694214876033,
+      "approve_only": 0.596694214876033,
+      "label_based": 0.006611570247933884,
+      "no_review": 0.03636363636363636,
+      "self_approved": 0.0,
+      "rubber_stamp": 0.04297520661157025,
+      "sample_size": 605
+    },
+    "depth": {
+      "median_human_reviews": 1,
+      "median_unique_reviewers": 1,
+      "median_review_rounds": 1,
+      "rubber_stamp_rate": 0.04297520661157025,
+      "substantive_review_rate": 0.3090909090909091
+    },
+    "participants": {
+      "unique_reviewers": 83,
+      "top_reviewers": [
+        {
+          "login": "bwplotka",
+          "review_count": 374,
+          "role": "human"
+        },
+        {
+          "login": "krajorama",
+          "review_count": 283,
+          "role": "human"
+        },
+        {
+          "login": "aknuds1",
+          "review_count": 150,
+          "role": "human"
+        },
+        {
+          "login": "roidelapluie",
+          "review_count": 128,
+          "role": "human"
+        },
+        {
+          "login": "SuperQ",
+          "review_count": 119,
+          "role": "human"
+        }
+      ],
+      "reviewer_concentration": 0.7643948226925297,
+      "bot_reviewers": [
+        {
+          "login": "copilot-pull-request-reviewer",
+          "review_count": 13,
+          "role": "label_bot"
+        }
+      ]
+    },
+    "timing": {
+      "median_time_to_first_review_hours": 12.184722222222222,
+      "median_ttm_by_mechanism": {
+        "comment_approve": 124.73027777777777,
+        "approve_only": 22.048055555555557,
+        "cr_approve": 114.30666666666667,
+        "no_review": 27.1625,
+        "rubber_stamp": 0.7125,
+        "label_based": 425.7351388888889
+      }
+    },
+    "workflow_type": "mixed",
+    "sample_size": 605
+  },
+  "transitions": [
+    {
+      "timestamp": "2025-02-15T23:28:34.500000+00:00",
+      "last_old_pr": 15489,
+      "first_new_pr": 16069,
+      "description": "comment_approve shifted from 0% to 100%",
+      "dimension": "comment_approve",
+      "before_value": 0.0,
+      "after_value": 1.0
+    },
+    {
+      "timestamp": "2025-02-15T23:28:34.500000+00:00",
+      "last_old_pr": 15489,
+      "first_new_pr": 16069,
+      "description": "approve_only shifted from 100% to 0%",
+      "dimension": "approve_only",
+      "before_value": 1.0,
+      "after_value": 0.0
+    }
+  ],
+  "recommendations": {
+    "catchrate_signals": [
+      "comment_then_commit",
+      "comment_then_approve"
+    ],
+    "catchrate_cycle_method": "combined",
+    "catchrate_warnings": [
+      "2 workflow transition(s) detected \u2014 per-PR classification recommended over aggregate rates"
+    ],
+    "upfront_friction_baseline": "overall TTM",
+    "upfront_warnings": []
+  },
+  "pr_tags": [
+    {
+      "pr_number": 15489,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2024-12-04T13:03:21+00:00 to 2024-12-04T13:03:21+00:00",
+      "active_workflow_type": "approve-direct"
+    },
+    {
+      "pr_number": 16069,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17200,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17231,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17158,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17043,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17234,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17233,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17204,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 16851,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17243,
+      "approval_mechanism": "cr_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17242,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17240,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17241,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17253,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17245,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17244,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17249,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17248,
+      "approval_mechanism": "cr_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17212,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17271,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17250,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17037,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17287,
+      "approval_mechanism": "rubber_stamp",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17150,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17298,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17299,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17300,
+      "approval_mechanism": "rubber_stamp",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17302,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17306,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17312,
+      "approval_mechanism": "cr_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17316,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17320,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17305,
+      "approval_mechanism": "cr_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17331,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17327,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17326,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17330,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17335,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17315,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17329,
+      "approval_mechanism": "cr_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17344,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17346,
+      "approval_mechanism": "rubber_stamp",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17350,
+      "approval_mechanism": "rubber_stamp",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17353,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17354,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17357,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17365,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17368,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17360,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17382,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17383,
+      "approval_mechanism": "rubber_stamp",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17385,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17389,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17388,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17392,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17391,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17390,
+      "approval_mechanism": "cr_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17404,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17409,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17399,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17413,
+      "approval_mechanism": "rubber_stamp",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17410,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17414,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17400,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17418,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17422,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17426,
+      "approval_mechanism": "rubber_stamp",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17412,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17428,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17166,
+      "approval_mechanism": "cr_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17425,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17430,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17423,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17387,
+      "approval_mechanism": "cr_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17417,
+      "approval_mechanism": "cr_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17337,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17467,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17471,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17470,
+      "approval_mechanism": "cr_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17431,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17415,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17194,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17478,
+      "approval_mechanism": "cr_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17402,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17463,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17451,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17447,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17444,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17443,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17442,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17461,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17458,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17452,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17450,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17486,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17445,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17459,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17454,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17462,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17485,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17491,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17406,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17498,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 14519,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17113,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17304,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17351,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17509,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17479,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17477,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17515,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 15864,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 16637,
+      "approval_mechanism": "cr_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17131,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17252,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17519,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17472,
+      "approval_mechanism": "cr_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17424,
+      "approval_mechanism": "cr_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17524,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17138,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17441,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17523,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17526,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17534,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17506,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17114,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17439,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17537,
+      "approval_mechanism": "label_based",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17161,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17533,
+      "approval_mechanism": "cr_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17527,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17542,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17411,
+      "approval_mechanism": "cr_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17543,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17546,
+      "approval_mechanism": "cr_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17550,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17516,
+      "approval_mechanism": "cr_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17549,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17552,
+      "approval_mechanism": "rubber_stamp",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17528,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 16834,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17555,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17560,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17557,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17559,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17565,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17563,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17564,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17561,
+      "approval_mechanism": "cr_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17592,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17591,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17593,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17594,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17590,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17602,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17596,
+      "approval_mechanism": "rubber_stamp",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17607,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17609,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17490,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17608,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17374,
+      "approval_mechanism": "cr_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17520,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17605,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17620,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17623,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17435,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17483,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17630,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17638,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17643,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17634,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17636,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17640,
+      "approval_mechanism": "cr_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17657,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17629,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17647,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17427,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17668,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17663,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17667,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17661,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17554,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17679,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17682,
+      "approval_mechanism": "label_based",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 16728,
+      "approval_mechanism": "cr_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17678,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17690,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17683,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17695,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17694,
+      "approval_mechanism": "cr_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17530,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 14317,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17664,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 13409,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17704,
+      "approval_mechanism": "rubber_stamp",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17705,
+      "approval_mechanism": "rubber_stamp",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17645,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17706,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17703,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17708,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17677,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17709,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17669,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17639,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17711,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17714,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17718,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17712,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17689,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17571,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17568,
+      "approval_mechanism": "rubber_stamp",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17569,
+      "approval_mechanism": "rubber_stamp",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17570,
+      "approval_mechanism": "rubber_stamp",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17572,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17573,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17574,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17466,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17310,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17631,
+      "approval_mechanism": "cr_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17731,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17726,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17729,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17730,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17725,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17728,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17727,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17716,
+      "approval_mechanism": "cr_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17670,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17433,
+      "approval_mechanism": "cr_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17599,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17687,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17741,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17713,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17746,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17747,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17749,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17748,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17745,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17737,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17758,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17755,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17754,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17756,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17767,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17763,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17760,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17764,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17759,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17757,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17761,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17772,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17784,
+      "approval_mechanism": "cr_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17771,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17785,
+      "approval_mechanism": "rubber_stamp",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17777,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17776,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17753,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17788,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17606,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17773,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17793,
+      "approval_mechanism": "cr_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17782,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17781,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17783,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17780,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17796,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17794,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17762,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17469,
+      "approval_mechanism": "cr_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17802,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17806,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17807,
+      "approval_mechanism": "rubber_stamp",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17804,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17707,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17798,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17676,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17736,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17817,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17743,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17822,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17828,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17843,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17842,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17844,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17846,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17393,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17655,
+      "approval_mechanism": "cr_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17847,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17665,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17834,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17863,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17865,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17866,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17840,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17869,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17860,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17871,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17835,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17879,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17890,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17876,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17644,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17894,
+      "approval_mechanism": "rubber_stamp",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 16355,
+      "approval_mechanism": "cr_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17893,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17878,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17870,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17830,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17896,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17821,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17826,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17881,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17795,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17897,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17898,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17867,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17903,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17797,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17905,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17769,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17892,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17899,
+      "approval_mechanism": "cr_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17626,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17911,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17913,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17912,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17915,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17918,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17902,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17908,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17872,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17917,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 16929,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17929,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17933,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17940,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17906,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17927,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17738,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17735,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17721,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17928,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17945,
+      "approval_mechanism": "rubber_stamp",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17854,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17832,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17934,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17947,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17946,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17907,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 14318,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17954,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17952,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17938,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17962,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17825,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17967,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17944,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17969,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17970,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17937,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17985,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17976,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17963,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17978,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17988,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17987,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17990,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17992,
+      "approval_mechanism": "cr_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17986,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17548,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 15577,
+      "approval_mechanism": "cr_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17979,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17611,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18002,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17996,
+      "approval_mechanism": "cr_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18008,
+      "approval_mechanism": "rubber_stamp",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17768,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17998,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17765,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17600,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17975,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18017,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 15578,
+      "approval_mechanism": "cr_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18020,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17957,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17999,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18027,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17909,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 15687,
+      "approval_mechanism": "label_based",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17926,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17449,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18047,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18019,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18041,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18040,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17531,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17508,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18052,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17481,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18057,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18025,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18024,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18029,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18054,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18053,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18055,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18060,
+      "approval_mechanism": "rubber_stamp",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17977,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18058,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18061,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18063,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18059,
+      "approval_mechanism": "cr_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18070,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17671,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18071,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18045,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18072,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17968,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18068,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18056,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17965,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18095,
+      "approval_mechanism": "rubber_stamp",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18097,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18069,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17598,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18085,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18084,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17476,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18102,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18101,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18075,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18103,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18107,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18108,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18109,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17285,
+      "approval_mechanism": "cr_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18113,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18105,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18077,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18110,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18115,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18013,
+      "approval_mechanism": "cr_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18121,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18119,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18124,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18037,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18128,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18135,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18154,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18144,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18143,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18147,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18136,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18145,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18142,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18138,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18129,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18132,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18156,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18163,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18159,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18158,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18157,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18165,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18099,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18164,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18137,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18166,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18161,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18171,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17916,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18173,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18133,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17338,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17349,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18127,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18180,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18080,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18183,
+      "approval_mechanism": "rubber_stamp",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17904,
+      "approval_mechanism": "cr_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18185,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18179,
+      "approval_mechanism": "cr_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17159,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18184,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18195,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18122,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18193,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18196,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18189,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18141,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18202,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18006,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18203,
+      "approval_mechanism": "rubber_stamp",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17313,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18194,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18216,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18204,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17269,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18215,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17207,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18219,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18214,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17356,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18226,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18223,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17774,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18192,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18206,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18227,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18230,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18218,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18220,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18134,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18229,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18245,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18246,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18252,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18244,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18198,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18267,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17839,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18211,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18263,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17538,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18268,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18259,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18250,
+      "approval_mechanism": "cr_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18247,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18270,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18277,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17829,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18281,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18285,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18228,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18306,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18278,
+      "approval_mechanism": "cr_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18276,
+      "approval_mechanism": "cr_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18311,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18067,
+      "approval_mechanism": "label_based",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18248,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17895,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18316,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18062,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17850,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18319,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18318,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18328,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18326,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18314,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18323,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18200,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18325,
+      "approval_mechanism": "cr_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18283,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18282,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18303,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18346,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 16628,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18357,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18353,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18359,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18366,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18336,
+      "approval_mechanism": "cr_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18347,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18362,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18369,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18372,
+      "approval_mechanism": "no_review",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18373,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18367,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18376,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18375,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18374,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18386,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18352,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18395,
+      "approval_mechanism": "rubber_stamp",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18390,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18287,
+      "approval_mechanism": "cr_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18396,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18408,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18410,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18407,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 16155,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18383,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18382,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18292,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18363,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18409,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18321,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18368,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18139,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 16550,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18333,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18401,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18304,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18415,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18414,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18419,
+      "approval_mechanism": "rubber_stamp",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18406,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17601,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18421,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18427,
+      "approval_mechanism": "rubber_stamp",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18429,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18424,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 17614,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18360,
+      "approval_mechanism": "comment_approve",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    },
+    {
+      "pr_number": 18430,
+      "approval_mechanism": "approve_only",
+      "workflow_window": "2025-04-30T09:53:48+00:00 to 2026-04-02T18:42:04+00:00",
+      "active_workflow_type": "mixed"
+    }
+  ]
+}

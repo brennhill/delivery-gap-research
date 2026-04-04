@@ -1,0 +1,1136 @@
+{
+  "PostHog/posthog#50542->50553": {
+    "pair_index": 0,
+    "repo": "PostHog/posthog",
+    "target": 50542,
+    "source": 50553,
+    "label": "machine_catch",
+    "confidence": "high",
+    "reason": "PR A's security fix changed behavior that broke existing integration tests, which CI caught; PR B updates those stale tests to match the new expected behavior."
+  },
+  "PostHog/posthog#47188->47192": {
+    "pair_index": 1,
+    "repo": "PostHog/posthog",
+    "target": 47188,
+    "source": 47192,
+    "label": "escape",
+    "confidence": "high",
+    "reason": "PR A attempted to fix CPU saturation by adding a raw size check after ClickHouse fetch, but this was insufficient because traces still had to be fetched before the check could run; PR B fixes this escape by filtering oversized traces at the query level before they reach the activity."
+  },
+  "PostHog/posthog#47048->47054": {
+    "pair_index": 2,
+    "repo": "PostHog/posthog",
+    "target": 47048,
+    "source": 47054,
+    "label": "escape",
+    "confidence": "high",
+    "reason": "PR A reverted filtering that excluded remote config flags, which caused a problem that reached users (broken `useFeatureFlagPayload` with unencrypted flags), and PR B applies a more targeted fix based on discovered customer impact."
+  },
+  "anthropics/anthropic-cookbook#263->264": {
+    "pair_index": 3,
+    "repo": "anthropics/anthropic-cookbook",
+    "target": 263,
+    "source": 264,
+    "label": "machine_catch",
+    "confidence": "high",
+    "reason": "PR B fixes a CI failure (lychee link checker) that was caused by PR A's markdown file in a non-standard directory not being caught by the existing CI configuration."
+  },
+  "antiwork/gumroad#3823->3843": {
+    "pair_index": 4,
+    "repo": "antiwork/gumroad",
+    "target": 3823,
+    "source": 3843,
+    "label": "escape",
+    "confidence": "high",
+    "reason": "PR A removed flaky UI assertions but missed adding `force_vcr_on: true` to prevent live API calls, which escaped to production causing CI failures on main; PR B fixes this by adding the VCR configuration that should have been in PR A."
+  },
+  "antiwork/gumroad#2755->2766": {
+    "pair_index": 5,
+    "repo": "antiwork/gumroad",
+    "target": 2755,
+    "source": 2766,
+    "label": "machine_catch",
+    "confidence": "high",
+    "reason": "PR B explicitly fixes a race condition in tests caused by PR A (#2755), indicating automated test infrastructure caught the problem before production impact."
+  },
+  "antiwork/gumroad#3233->3559": {
+    "pair_index": 6,
+    "repo": "antiwork/gumroad",
+    "target": 3233,
+    "source": 3559,
+    "label": "escape",
+    "confidence": "high",
+    "reason": "PR A introduced a scroll preservation workaround for InfiniteScroll that worked for initial page load, but PR B discovered and fixed a critical bug where chat messages reset when performing actions (delete, send, update) after scrolling\u2014a user-facing issue that required manual discovery via screencasts and wasn't caught by automated systems."
+  },
+  "antiwork/gumroad#2942->3294": {
+    "pair_index": 7,
+    "repo": "antiwork/gumroad",
+    "target": 2942,
+    "source": 3294,
+    "label": "escape",
+    "confidence": "high",
+    "reason": "PR A migrated form styles to Tailwind and introduced a visual regression (missing padding on the Products title in Discover search), which PR B discovered and fixed after it reached users/production."
+  },
+  "antiwork/gumroad#2324->3131": {
+    "pair_index": 8,
+    "repo": "antiwork/gumroad",
+    "target": 2324,
+    "source": 3131,
+    "label": "escape",
+    "confidence": "high",
+    "reason": "PR A removed the `.button` CSS class during Tailwind migration, but PR B shows the CommissionSection component still used that class and rendered as plain text instead of a styled button\u2014a visual bug that reached users and required manual discovery to fix."
+  },
+  "antiwork/gumroad#2558->3132": {
+    "pair_index": 9,
+    "repo": "antiwork/gumroad",
+    "target": 2558,
+    "source": 3132,
+    "label": "escape",
+    "confidence": "high",
+    "reason": "PR A's migration to Tailwind introduced a padding regression that reached users (visible in screenshots showing missing padding in Review and Charges sections), which no automated system caught; PR B fixes this by adding the missing className prop support to two components."
+  },
+  "antiwork/gumroad#2223->2416": {
+    "pair_index": 10,
+    "repo": "antiwork/gumroad",
+    "target": 2223,
+    "source": 2416,
+    "label": "escape",
+    "confidence": "high",
+    "reason": "PR B fixes a visual layout bug (image overflow hiding product details) that resulted from PR A's Tailwind migration, discovered post-deployment rather than caught by automated checks."
+  },
+  "antiwork/gumroad#1989->2158": {
+    "pair_index": 11,
+    "repo": "antiwork/gumroad",
+    "target": 1989,
+    "source": 2158,
+    "label": "escape",
+    "confidence": "high",
+    "reason": "PR A's migration removed hover styles from table rows that should have been preserved, which was not caught by automated systems and required PR B to fix the regression after it reached users."
+  },
+  "antiwork/gumroad#1979->1987": {
+    "pair_index": 12,
+    "repo": "antiwork/gumroad",
+    "target": 1979,
+    "source": 1987,
+    "label": "escape",
+    "confidence": "medium",
+    "reason": "PR B fixes a schema version problem in the migration from PR A that likely escaped automated checks since schema versioning issues often only surface when migrations are applied in production or by other developers."
+  },
+  "antiwork/gumroad#1707->1742": {
+    "pair_index": 13,
+    "repo": "antiwork/gumroad",
+    "target": 1707,
+    "source": 1742,
+    "label": "escape",
+    "confidence": "high",
+    "reason": "PR A's migration to Tailwind introduced a visual bug on dark seller themes that went undetected by automated systems and required a human to notice the broken appearance, which PR B then fixed."
+  },
+  "antiwork/gumroad#1724->1767": {
+    "pair_index": 14,
+    "repo": "antiwork/gumroad",
+    "target": 1724,
+    "source": 1767,
+    "label": "escape",
+    "confidence": "high",
+    "reason": "PR A made a visual change (bolding text) that inadvertently broke link styling by using the `link` class, which users discovered was no longer underlined\u2014making buttons unclear to click. PR B fixes this escaped styling problem that reached users."
+  },
+  "antiwork/gumroad#1706->1717": {
+    "pair_index": 15,
+    "repo": "antiwork/gumroad",
+    "target": 1706,
+    "source": 1717,
+    "label": "escape",
+    "confidence": "high",
+    "reason": "PR A fixed the creator's page grid layout but missed the library page with the same underlying issue; PR B discovered and fixed the escaped bug on a different page that PR A's fix didn't cover."
+  },
+  "antiwork/gumroad#1680->1717": {
+    "pair_index": 16,
+    "repo": "antiwork/gumroad",
+    "target": 1680,
+    "source": 1717,
+    "label": "escape",
+    "confidence": "high",
+    "reason": "PR A introduced a visual layout bug (products squashed into sidebar) that reached users and required manual discovery; PR B fixes the unintended side effect by conditionally applying the grid class only when filters are visible."
+  },
+  "biomejs/biome#9353->9373": {
+    "pair_index": 17,
+    "repo": "biomejs/biome",
+    "target": 9353,
+    "source": 9373,
+    "label": "not_related",
+    "confidence": "high",
+    "reason": "PR B is a planned follow-up enhancement that extends PR A's functionality (adding merging of bare exports and reordering logic) rather than fixing a bug or problem introduced by PR A."
+  },
+  "calcom/cal.com#28252->28260": {
+    "pair_index": 18,
+    "repo": "calcom/cal.com",
+    "target": 28252,
+    "source": 28260,
+    "label": "machine_catch",
+    "confidence": "high",
+    "reason": "PR A upgraded PostgreSQL to 18 in the CI service, which caused an automated CI job failure (pg_dump version mismatch) that was caught before reaching users; PR B fixes this build/CI infrastructure failure."
+  },
+  "calcom/cal.com#27912->27923": {
+    "pair_index": 19,
+    "repo": "calcom/cal.com",
+    "target": 27912,
+    "source": 27923,
+    "label": "escape",
+    "confidence": "high",
+    "reason": "PR A introduced a feature with multiple bugs (missing await on delete, email verification race condition, no verification on unlock) that reached users without being caught by automated systems; PR B fixes these runtime bugs discovered through review/testing."
+  },
+  "calcom/cal.com#27833->27900": {
+    "pair_index": 20,
+    "repo": "calcom/cal.com",
+    "target": 27833,
+    "source": 27900,
+    "label": "machine_catch",
+    "confidence": "high",
+    "reason": "PR A's refactor caused a build error (broken import) that would be caught by CI/build system; PR B fixes this build failure by updating the missed import."
+  },
+  "calcom/cal.com#27458->27924": {
+    "pair_index": 21,
+    "repo": "calcom/cal.com",
+    "target": 27458,
+    "source": 27924,
+    "label": "escape",
+    "confidence": "high",
+    "reason": "PR A's icon migration caused visual regressions (icons rendering at wrong size) that reached users on the Insights page, which no automated system caught; PR B fixes the escaped bug by correcting the default icon size in the wrapper."
+  },
+  "calcom/cal.com#27497->27752": {
+    "pair_index": 22,
+    "repo": "calcom/cal.com",
+    "target": 27497,
+    "source": 27752,
+    "label": "escape",
+    "confidence": "high",
+    "reason": "PR A introduced a behavioral regression in the listWithTeam query that caused team event types with userId set to silently disappear from results, which reached users before PR B discovered and fixed it with comprehensive tests."
+  },
+  "calcom/cal.com#27631->27635": {
+    "pair_index": 23,
+    "repo": "calcom/cal.com",
+    "target": 27631,
+    "source": 27635,
+    "label": "escape",
+    "confidence": "high",
+    "reason": "PR A implemented per-user rate limiting but used incorrect limits (core rate limits instead of SMS-specific ones), which PR B discovered and fixed by adjusting to proper SMS-specific thresholds and moving the rate limit check earlier in the flow."
+  },
+  "calcom/cal.com#26976->27625": {
+    "pair_index": 24,
+    "repo": "calcom/cal.com",
+    "target": 26976,
+    "source": 27625,
+    "label": "escape",
+    "confidence": "high",
+    "reason": "PR A's strict input validation broke production by rejecting null/undefined tracking IDs, causing the embed endpoint to fail for unconfigured analytics apps; PR B fixes this runtime bug that reached users."
+  },
+  "calcom/cal.com#27248->27293": {
+    "pair_index": 25,
+    "repo": "calcom/cal.com",
+    "target": 27248,
+    "source": 27293,
+    "label": "escape",
+    "confidence": "high",
+    "reason": "PR B is an outright revert of PR A the next day, indicating PR A reached production with a problem that required human discovery and decision to revert rather than being caught by automated systems."
+  },
+  "calcom/cal.com#27409->27413": {
+    "pair_index": 26,
+    "repo": "calcom/cal.com",
+    "target": 27409,
+    "source": 27413,
+    "label": "escape",
+    "confidence": "high",
+    "reason": "PR A introduced wildcard domain matching feature but didn't account for domain validation rejecting the `*.` prefix syntax, causing the feature to fail in practice until PR B fixed the validation logic."
+  },
+  "calcom/cal.com#27187->27386": {
+    "pair_index": 27,
+    "repo": "calcom/cal.com",
+    "target": 27187,
+    "source": 27386,
+    "label": "escape",
+    "confidence": "high",
+    "reason": "PR A introduced new `value` and `values` fields in display fields for no-show audits, but the search filter in BookingHistory only checked the old `valueKey` and `labelKey` fields, causing users to be unable to search attendee emails/host names in audit logs\u2014a functional regression that would only be caught by user testing."
+  },
+  "calcom/cal.com#27285->27560": {
+    "pair_index": 28,
+    "repo": "calcom/cal.com",
+    "target": 27285,
+    "source": 27560,
+    "label": "escape",
+    "confidence": "high",
+    "reason": "PR A fixed the 413 error by implementing client-side cropping, but users who had already stored oversized images in IndexedDB before the fix would still encounter issues (429 errors); PR B catches this production escape by migrating and clearing those legacy oversized images."
+  },
+  "calcom/cal.com#27340->27384": {
+    "pair_index": 29,
+    "repo": "calcom/cal.com",
+    "target": 27340,
+    "source": 27384,
+    "label": "escape",
+    "confidence": "high",
+    "reason": "PR A introduced a webhook endpoint that silently failed (returned 200 OK but never called the promotion API) because the raw Buffer wasn't parsed before type checking; this bug reached users/production and PR B fixes the actual runtime defect that automated tests missed."
+  },
+  "calcom/cal.com#27258->27359": {
+    "pair_index": 30,
+    "repo": "calcom/cal.com",
+    "target": 27258,
+    "source": 27359,
+    "label": "not_related",
+    "confidence": "high",
+    "reason": "PR B is a planned follow-up enhancement that adjusts rate limit values (30s to 1s) based on business/product decision, not fixing a bug or problem that escaped from PR A."
+  },
+  "calcom/cal.com#27012->27071": {
+    "pair_index": 31,
+    "repo": "calcom/cal.com",
+    "target": 27012,
+    "source": 27071,
+    "label": "machine_catch",
+    "confidence": "high",
+    "reason": "PR A's logic to disable apps without valid keys caused E2E tests to fail in CI (payment-apps.e2e.ts), and PR B fixes those automated test failures by ensuring the app is enabled during test setup."
+  },
+  "calcom/cal.com#26931->26960": {
+    "pair_index": 32,
+    "repo": "calcom/cal.com",
+    "target": 26931,
+    "source": 26960,
+    "label": "escape",
+    "confidence": "high",
+    "reason": "PR A introduced a runtime crash (missing useEffect import and type mismatches) that reached users in the iOS/Android companion apps; PR B fixes this bug that automated systems failed to catch before production."
+  },
+  "calcom/cal.com#26528->27289": {
+    "pair_index": 33,
+    "repo": "calcom/cal.com",
+    "target": 26528,
+    "source": 27289,
+    "label": "not_related",
+    "confidence": "high",
+    "reason": "PR B is a planned strategic revert of PR A based on a business decision to use Cloudflare URL Scanner instead, not a fix for a bug or problem that escaped PR A."
+  },
+  "calcom/cal.com#26896->26924": {
+    "pair_index": 34,
+    "repo": "calcom/cal.com",
+    "target": 26896,
+    "source": 26924,
+    "label": "escape",
+    "confidence": "high",
+    "reason": "PR A was merged with a bug that reached users (special-casing logic broke existing behavior), discovered by humans post-merge, leading PR B to revert it and restore the original approach."
+  },
+  "calcom/cal.com#26823->26824": {
+    "pair_index": 35,
+    "repo": "calcom/cal.com",
+    "target": 26823,
+    "source": 26824,
+    "label": "escape",
+    "confidence": "high",
+    "reason": "PR A introduced a `voidInvoice` method that silently caught errors without re-throwing them, creating a risk of double charging in production; PR B fixes this behavioral bug that would not have been caught by automated systems."
+  },
+  "calcom/cal.com#26195->26826": {
+    "pair_index": 36,
+    "repo": "calcom/cal.com",
+    "target": 26195,
+    "source": 26826,
+    "label": "escape",
+    "confidence": "high",
+    "reason": "PR A added bookingUrl field to the API response without handling the managed users case, which PR B identifies as incorrect behavior that would have reached users; PR B includes a new unit test suggesting the original PR lacked test coverage for this scenario."
+  },
+  "calcom/cal.com#26743->26744": {
+    "pair_index": 37,
+    "repo": "calcom/cal.com",
+    "target": 26743,
+    "source": 26744,
+    "label": "escape",
+    "confidence": "high",
+    "reason": "PR A merged without automated tests (checkbox unchecked: 'I confirm automated tests are in place'), reached production, and caused a problem serious enough that a human discovered it and decided to revert the entire change the same day."
+  },
+  "calcom/cal.com#26702->26703": {
+    "pair_index": 38,
+    "repo": "calcom/cal.com",
+    "target": 26702,
+    "source": 26703,
+    "label": "escape",
+    "confidence": "high",
+    "reason": "PR A introduced a bug in the cache-checkout action's fallback checkout step that lacked a ref parameter fallback, which would break in non-PR contexts like workflow_dispatch; this bug escaped automated detection because CI workflow changes cannot be automatically tested without manual pipeline execution, and PR B fixes the discovered problem."
+  },
+  "calcom/cal.com#26582->26589": {
+    "pair_index": 39,
+    "repo": "calcom/cal.com",
+    "target": 26582,
+    "source": 26589,
+    "label": "machine_catch",
+    "confidence": "high",
+    "reason": "PR A's translation change caused an E2E test to fail (test expected the old '+' prefix), and PR B fixes that automated test failure."
+  },
+  "calcom/cal.com#26351->26828": {
+    "pair_index": 40,
+    "repo": "calcom/cal.com",
+    "target": 26351,
+    "source": 26828,
+    "label": "escape",
+    "confidence": "high",
+    "reason": "PR A's Vitest 4.0 upgrade broke integration tests in production by failing to load .env variables (causing ECONNREFUSED errors), which CI didn't catch because the integration test mode syntax changed; PR B fixes this by adding loadEnv to the vitest config, a problem that reached users."
+  },
+  "calcom/cal.com#26204->26205": {
+    "pair_index": 41,
+    "repo": "calcom/cal.com",
+    "target": 26204,
+    "source": 26205,
+    "label": "escape",
+    "confidence": "high",
+    "reason": "PR A's version pinning changes caused undeclared dependencies to become apparent and unused dependencies to accumulate in package.json files, which PR B discovered and fixed by adding missing declarations and removing unused packages\u2014a problem that would have escaped to users as broken imports or bloated bundle sizes if not caught."
+  },
+  "calcom/cal.com#25765->26027": {
+    "pair_index": 42,
+    "repo": "calcom/cal.com",
+    "target": 25765,
+    "source": 26027,
+    "label": "machine_catch",
+    "confidence": "high",
+    "reason": "PR B explicitly states the integration test 'was not caught in #25765's CI' but is now being fixed, indicating automated CI testing caught the test failure that PR A introduced, and PR B corrects it."
+  },
+  "calcom/cal.com#25450->25621": {
+    "pair_index": 43,
+    "repo": "calcom/cal.com",
+    "target": 25450,
+    "source": 25621,
+    "label": "escape",
+    "confidence": "high",
+    "reason": "PR B fixes the same category of bug that PR A introduced\u2014unintended field resets during partial updates\u2014but for different fields (metadata fields vs. seatsPerTimeSlot), indicating PR A's pattern escaped to production and was only discovered through investigation after the similar bug manifested in other fields."
+  },
+  "clerkinc/javascript#8024->8025": {
+    "pair_index": 44,
+    "repo": "clerkinc/javascript",
+    "target": 8024,
+    "source": 8025,
+    "label": "not_related",
+    "confidence": "high",
+    "reason": "PR B is a planned follow-up applying the same fix pattern to a different workflow file (release-preflight.yml), not correcting a mistake in PR A itself."
+  },
+  "clerkinc/javascript#7915->7992": {
+    "pair_index": 45,
+    "repo": "clerkinc/javascript",
+    "target": 7915,
+    "source": 7992,
+    "label": "escape",
+    "confidence": "high",
+    "reason": "PR A's workflow changes caused canary releases to fail with ENEEDAUTH in production, which users/monitoring discovered through a failed GitHub Actions run; PR B fixes the npm version issue that PR A's OIDC migration introduced, which no automated check caught before merge."
+  },
+  "clerkinc/javascript#7899->7957": {
+    "pair_index": 46,
+    "repo": "clerkinc/javascript",
+    "target": 7899,
+    "source": 7957,
+    "label": "not_related",
+    "confidence": "high",
+    "reason": "PR B is a port/backport of PR A to another package (Core 2), not a fix for a problem that PR A introduced."
+  },
+  "clerkinc/javascript#7875->7882": {
+    "pair_index": 47,
+    "repo": "clerkinc/javascript",
+    "target": 7875,
+    "source": 7882,
+    "label": "not_related",
+    "confidence": "high",
+    "reason": "PR B is a backport/cherry-pick of PR A to another branch (`release/core-2`), not a fix for a problem that PR A introduced or that escaped to users."
+  },
+  "clerkinc/javascript#7857->7876": {
+    "pair_index": 48,
+    "repo": "clerkinc/javascript",
+    "target": 7857,
+    "source": 7876,
+    "label": "not_related",
+    "confidence": "high",
+    "reason": "PR B is explicitly a cherry-pick of PR A to another branch, not a fix for a problem that PR A introduced."
+  },
+  "clerkinc/javascript#7775->7818": {
+    "pair_index": 49,
+    "repo": "clerkinc/javascript",
+    "target": 7775,
+    "source": 7818,
+    "label": "not_related",
+    "confidence": "high",
+    "reason": "PR B is a port/cherry-pick of PR A to a different branch (Core 2 version), not a fix for a problem that escaped in PR A."
+  },
+  "clerkinc/javascript#7657->7660": {
+    "pair_index": 50,
+    "repo": "clerkinc/javascript",
+    "target": 7657,
+    "source": 7660,
+    "label": "not_related",
+    "confidence": "high",
+    "reason": "PR B is a port/cherry-pick of PR A's fix to a different codebase (Core 2 UI package), not a correction of a problem that PR A caused or failed to catch."
+  },
+  "clerkinc/javascript#7621->7625": {
+    "pair_index": 51,
+    "repo": "clerkinc/javascript",
+    "target": 7621,
+    "source": 7625,
+    "label": "not_related",
+    "confidence": "high",
+    "reason": "PR B is explicitly a backport of PR A to a different branch (release/core-2), not a fix for a problem that PR A caused."
+  },
+  "clerkinc/javascript#7568->7639": {
+    "pair_index": 52,
+    "repo": "clerkinc/javascript",
+    "target": 7568,
+    "source": 7639,
+    "label": "escape",
+    "confidence": "high",
+    "reason": "PR A inadvertently introduced a `billingEnabled` gate during SWR removal that broke Stripe element loading in production, which PR B fixes after the problem reached users (evidenced by the bug report and production impact)."
+  },
+  "clerkinc/javascript#7588->7589": {
+    "pair_index": 53,
+    "repo": "clerkinc/javascript",
+    "target": 7588,
+    "source": 7589,
+    "label": "not_related",
+    "confidence": "high",
+    "reason": "PR B is a port/cherry-pick of PR A's fix to a different codebase branch (Core 2), as explicitly stated in the title '(Core 2 port of #7588)', not a correction of a problem that escaped in PR A."
+  },
+  "clerkinc/javascript#7529->7614": {
+    "pair_index": 54,
+    "repo": "clerkinc/javascript",
+    "target": 7529,
+    "source": 7614,
+    "label": "not_related",
+    "confidence": "high",
+    "reason": "PR B is an explicit backport/cherry-pick of PR A to a different branch (release/core-2), not a fix for a problem that escaped or was caught by machines in PR A."
+  },
+  "clerkinc/javascript#7512->7513": {
+    "pair_index": 55,
+    "repo": "clerkinc/javascript",
+    "target": 7512,
+    "source": 7513,
+    "label": "not_related",
+    "confidence": "high",
+    "reason": "PR B is a cherry-pick/backport of PR A to another branch (Core-2), not a fix for a problem that PR A introduced."
+  },
+  "clerkinc/javascript#7450->7500": {
+    "pair_index": 56,
+    "repo": "clerkinc/javascript",
+    "target": 7450,
+    "source": 7500,
+    "label": "not_related",
+    "confidence": "high",
+    "reason": "PR B is a port/backport of fixes from PR A's Core 3 merge to a different branch (Core 2), not a fix for a problem that escaped in PR A itself."
+  },
+  "clerkinc/javascript#7443->7459": {
+    "pair_index": 57,
+    "repo": "clerkinc/javascript",
+    "target": 7443,
+    "source": 7459,
+    "label": "not_related",
+    "confidence": "high",
+    "reason": "PR B is explicitly a port/cherry-pick of PR A to a different codebase (Core 2), not a fix for a problem that PR A caused or that escaped detection."
+  },
+  "clerkinc/javascript#7329->7340": {
+    "pair_index": 58,
+    "repo": "clerkinc/javascript",
+    "target": 7329,
+    "source": 7340,
+    "label": "not_related",
+    "confidence": "high",
+    "reason": "PR B is a port/backport of PR A to another branch, not a fix for a problem that escaped or was caught by automated systems in PR A."
+  },
+  "clerkinc/javascript#7270->7344": {
+    "pair_index": 59,
+    "repo": "clerkinc/javascript",
+    "target": 7270,
+    "source": 7344,
+    "label": "escape",
+    "confidence": "high",
+    "reason": "PR A introduced a bug during hook migration where the `subject` parameter was not passed to the API fetcher, causing UserProfile to load organization API keys instead of user API keys\u2014a functional bug that reached users and required PR B to fix after the fact."
+  },
+  "continuedev/continue#9425->9427": {
+    "pair_index": 60,
+    "repo": "continuedev/continue",
+    "target": 9425,
+    "source": 9427,
+    "label": "escape",
+    "confidence": "high",
+    "reason": "PR A fixed one part of a workflow (Update Check Run step) but missed another (Write job summary step) that was still failing in production with the same class of bug, requiring PR B to fix the escaped issue."
+  },
+  "continuedev/continue#9679->9740": {
+    "pair_index": 61,
+    "repo": "continuedev/continue",
+    "target": 9679,
+    "source": 9740,
+    "label": "not_related",
+    "confidence": "high",
+    "reason": "PR B is a planned follow-up fix addressing a different but related bug (MCP servers failing with cmd.exe) in a different code path, not fixing a problem that PR A's change introduced."
+  },
+  "continuedev/continue#9325->9679": {
+    "pair_index": 62,
+    "repo": "continuedev/continue",
+    "target": 9325,
+    "source": 9679,
+    "label": "escape",
+    "confidence": "high",
+    "reason": "PR A fixed a crash in WSL2 environments, but PR B reveals a new runtime failure (spawn powershell.exe ENOENT) that occurred in production when Windows connects to WSL, which automated tests did not catch beforehand."
+  },
+  "continuedev/continue#8684->8779": {
+    "pair_index": 63,
+    "repo": "continuedev/continue",
+    "target": 8684,
+    "source": 8779,
+    "label": "escape",
+    "confidence": "high",
+    "reason": "PR A fixed Authorization header override but missed the x-api-key header case, which broke Continue for API providers using x-api-key authentication; PR B discovered and fixed this gap that PR A's implementation left unfixed."
+  },
+  "denoland/deno#32582->32593": {
+    "pair_index": 64,
+    "repo": "denoland/deno",
+    "target": 32582,
+    "source": 32593,
+    "label": "machine_catch",
+    "confidence": "high",
+    "reason": "PR A introduced unimplemented Node-API symbols that caused Windows debug CI failures (GetProcAddress failures polluting stdout and breaking the napi cleanup_hook test), which an automated test caught before user impact."
+  },
+  "denoland/deno#32267->32409": {
+    "pair_index": 65,
+    "repo": "denoland/deno",
+    "target": 32267,
+    "source": 32409,
+    "label": "not_related",
+    "confidence": "high",
+    "reason": "PR B is planned follow-up work that builds on PR A's infrastructure (P-521 support) to implement new features (KeyObject.equals, createCipheriv fixes) rather than fixing a bug in PR A itself."
+  },
+  "dotnet/aspire#14422->14497": {
+    "pair_index": 66,
+    "repo": "dotnet/aspire",
+    "target": 14422,
+    "source": 14497,
+    "label": "escape",
+    "confidence": "high",
+    "reason": "PR A's blanket escaping in ConsoleInteractionService broke intentional markup rendering in selection prompts, which escaped users noticed (broken UI in `aspire add` menu), and PR B fixes this overly broad approach by moving escaping to caller sites."
+  },
+  "dotnet/aspire#14811->14868": {
+    "pair_index": 67,
+    "repo": "dotnet/aspire",
+    "target": 14811,
+    "source": 14868,
+    "label": "escape",
+    "confidence": "high",
+    "reason": "PR A's removal of SDK installation logic and related environment variable injection introduced a flaky intermittent failure in E2E tests that was not caught by automated systems until after merge, requiring PR B to add retry logic to handle the transient MSBuild contention issue that escaped to users/CI."
+  },
+  "envoyproxy/envoy#43400->43646": {
+    "pair_index": 68,
+    "repo": "envoyproxy/envoy",
+    "target": 43400,
+    "source": 43646,
+    "label": "machine_catch",
+    "confidence": "high",
+    "reason": "PR B explicitly states it fixes a fuzz test failure introduced by PR A (#43400), indicating an automated test system caught the problem before production impact."
+  },
+  "grafana/grafana#116549->116604": {
+    "pair_index": 69,
+    "repo": "grafana/grafana",
+    "target": 116549,
+    "source": 116604,
+    "label": "not_related",
+    "confidence": "high",
+    "reason": "PR B appears to be the same bugfix ported/applied to the grafana-enterprise counterpart repository (referenced in PR A's body as https://github.com/grafana/grafana-enterprise/pull/10686), making it a cross-repo sync rather than a fix for a problem that escaped in PR A."
+  },
+  "huggingface/transformers#44549->44624": {
+    "pair_index": 70,
+    "repo": "huggingface/transformers",
+    "target": 44549,
+    "source": 44624,
+    "label": "escape",
+    "confidence": "high",
+    "reason": "PR A contained wrong checkpoint values that caused problems with tiny model creation, which reached users/code without being caught by automated systems, and PR B is a follow-up fix addressing additional wrong checkpoint names from the same root issue."
+  },
+  "kubernetes/kubernetes#136046->136229": {
+    "pair_index": 71,
+    "repo": "kubernetes/kubernetes",
+    "target": 136046,
+    "source": 136229,
+    "label": "not_related",
+    "confidence": "high",
+    "reason": "PR B fixes a different code location (apiserver's authorizeUnsafeDelete function) than PR A (storageversionmigrator), even though they address the same underlying logging pattern issue and reference the same GitHub issue #136027."
+  },
+  "mendableai/firecrawl#2902->2914": {
+    "pair_index": 72,
+    "repo": "mendableai/firecrawl",
+    "target": 2902,
+    "source": 2914,
+    "label": "escape",
+    "confidence": "high",
+    "reason": "PR A added the parameter to the type definitions and serialization layer but omitted it from the user-facing method signatures, causing a TypeError at runtime that no automated test caught; PR B fixes this bug discovered by actual usage."
+  },
+  "mendableai/firecrawl#2845->2847": {
+    "pair_index": 73,
+    "repo": "mendableai/firecrawl",
+    "target": 2845,
+    "source": 2847,
+    "label": "escape",
+    "confidence": "high",
+    "reason": "PR A removed awaits on logScrape() calls, causing a race condition that reached production (53 extract jobs/day crashing with 'Job not found in GCS' errors), which PR B fixes by restoring the missing await."
+  },
+  "microsoft/vscode#291876->291894": {
+    "pair_index": 74,
+    "repo": "microsoft/vscode",
+    "target": 291876,
+    "source": 291894,
+    "label": "not_related",
+    "confidence": "medium",
+    "reason": "Both PRs appear to fix the same issue (#290501) with identical titles and bodies, suggesting PR B is likely a duplicate, re-attempt, or alternative fix rather than a correction of a problem in PR A itself."
+  },
+  "microsoft/vscode#291862->291886": {
+    "pair_index": 75,
+    "repo": "microsoft/vscode",
+    "target": 291862,
+    "source": 291886,
+    "label": "not_related",
+    "confidence": "high",
+    "reason": "PR B appears to be a duplicate or re-submission of the same fix for issue #291851 on the same date by the same author, rather than a correction of a problem that PR A introduced."
+  },
+  "mlflow/mlflow#21278->21410": {
+    "pair_index": 76,
+    "repo": "mlflow/mlflow",
+    "target": 21278,
+    "source": 21410,
+    "label": "not_related",
+    "confidence": "high",
+    "reason": "PR B is a planned refactoring/split of PR A's TypeScript changes per review feedback, not a fix for a problem that escaped or was caught by automated systems."
+  },
+  "mlflow/mlflow#21411->21471": {
+    "pair_index": 77,
+    "repo": "mlflow/mlflow",
+    "target": 21411,
+    "source": 21471,
+    "label": "escape",
+    "confidence": "high",
+    "reason": "PR A's upgrade to actions/checkout v6 changed credential storage behavior, breaking the ONNX install_dev script at runtime; the failure was only caught through manual testing after the change reached the codebase, not by automated systems."
+  },
+  "mlflow/mlflow#20809->21105": {
+    "pair_index": 78,
+    "repo": "mlflow/mlflow",
+    "target": 20809,
+    "source": 21105,
+    "label": "escape",
+    "confidence": "high",
+    "reason": "PR A introduced shared tracer provider support that created a new code path; PR B fixes an AttributeError that escapes in that new mode when `flush_trace_async_logging()` is called on non-MLflow span exporters, which would only be discovered at runtime by users."
+  },
+  "mlflow/mlflow#20820->20823": {
+    "pair_index": 79,
+    "repo": "mlflow/mlflow",
+    "target": 20820,
+    "source": 20823,
+    "label": "escape",
+    "confidence": "high",
+    "reason": "PR A introduced a workflow bug (incorrect label delimiter using literal '\\n' instead of real newlines) that would cause runtime failures in the GitHub Actions workflow affecting label removal and duplicate detection, which PR B fixes after the problem reached production."
+  },
+  "novuhq/novu#10063->10064": {
+    "pair_index": 80,
+    "repo": "novuhq/novu",
+    "target": 10063,
+    "source": 10064,
+    "label": "not_related",
+    "confidence": "high",
+    "reason": "PR B is a planned follow-up that applies the same security pattern to a different endpoint (sync workflow), not a fix for a problem that PR A caused to escape or fail automated checks."
+  },
+  "novuhq/novu#9854->9868": {
+    "pair_index": 81,
+    "repo": "novuhq/novu",
+    "target": 9854,
+    "source": 9868,
+    "label": "escape",
+    "confidence": "high",
+    "reason": "PR A refactored chart fetching into separate queries but maintained a single combined loading state, causing charts to display loading skeletons longer than necessary\u2014a UX problem that users would experience. PR B fixes this by implementing granular loading states, indicating the issue escaped to users without being caught by automated systems."
+  },
+  "novuhq/novu#9280->9283": {
+    "pair_index": 82,
+    "repo": "novuhq/novu",
+    "target": 9280,
+    "source": 9283,
+    "label": "not_related",
+    "confidence": "high",
+    "reason": "PR B appears to be a duplicate or re-submission of PR A with the same title, author, date, and ticket reference, suggesting it is a port/re-post rather than a fix for a problem in PR A."
+  },
+  "prometheus/prometheus#17631->17731": {
+    "pair_index": 83,
+    "repo": "prometheus/prometheus",
+    "target": 17631,
+    "source": 17731,
+    "label": "escape",
+    "confidence": "high",
+    "reason": "PR A's refactoring introduced a wiring bug where HonorTimestamps was incorrectly passed instead of HonorLabels in the sampleMutator closure, causing honor_labels configuration to be ignored in production; this bug was not caught by CI/tests and required PR B to fix it with an integration test."
+  },
+  "prometheus/prometheus#17138->17527": {
+    "pair_index": 84,
+    "repo": "prometheus/prometheus",
+    "target": 17138,
+    "source": 17527,
+    "label": "machine_catch",
+    "confidence": "high",
+    "reason": "PR A introduced compilation errors (wrong function signatures) that broke the build, which CI would have caught; PR B fixes the build failures by correcting the function calls to match the expected `DiscovererOptions` signature."
+  },
+  "promptfoo/promptfoo#7979->8034": {
+    "pair_index": 85,
+    "repo": "promptfoo/promptfoo",
+    "target": 7979,
+    "source": 8034,
+    "label": "machine_catch",
+    "confidence": "high",
+    "reason": "PR A introduced email verification handling that broke CI (Redteam Production API job), and PR B fixes the automated CI failure by adding guards to prevent API calls in CI environments."
+  },
+  "promptfoo/promptfoo#7985->7986": {
+    "pair_index": 86,
+    "repo": "promptfoo/promptfoo",
+    "target": 7985,
+    "source": 7986,
+    "label": "escape",
+    "confidence": "high",
+    "reason": "PR B fixes multiple correctness bugs in PR A (wrong plugin structure, incorrect transform syntax, wrong provider format) that were discovered in post-merge review and would have caused the skill to malfunction for users, but were not caught by automated systems."
+  },
+  "promptfoo/promptfoo#7790->7821": {
+    "pair_index": 87,
+    "repo": "promptfoo/promptfoo",
+    "target": 7790,
+    "source": 7821,
+    "label": "escape",
+    "confidence": "high",
+    "reason": "PR B fixes runtime bugs in PR A (undefined vs boolean type inconsistency, loose equality check) that would have reached users since PR A merged with passing tests but incomplete/incorrect implementation."
+  },
+  "promptfoo/promptfoo#7678->8012": {
+    "pair_index": 88,
+    "repo": "promptfoo/promptfoo",
+    "target": 7678,
+    "source": 8012,
+    "label": "escape",
+    "confidence": "high",
+    "reason": "PR A introduced image rendering from markdown syntax, but created a bug where duplicate images appeared when providers returned images in both output and images[] fields; PR B fixes this user-visible rendering issue that was not caught by automated systems."
+  },
+  "promptfoo/promptfoo#7506->7543": {
+    "pair_index": 89,
+    "repo": "promptfoo/promptfoo",
+    "target": 7506,
+    "source": 7543,
+    "label": "escape",
+    "confidence": "high",
+    "reason": "PR A added Claude Opus 4.6 support but missed entries in UI selectors, documentation, and examples for multiple providers (Bedrock, Vertex, OpenRouter); PR B discovered and fixed these gaps that reached users without automated systems catching them."
+  },
+  "promptfoo/promptfoo#7492->7615": {
+    "pair_index": 90,
+    "repo": "promptfoo/promptfoo",
+    "target": 7492,
+    "source": 7615,
+    "label": "escape",
+    "confidence": "high",
+    "reason": "PR A fixed the severity map lookup but had a remaining bug where severity card counts still showed 0 for custom policies; this bug reached users (evidenced by PR B's discovery that Overview.tsx was iterating over the wrong data structure) and required manual discovery since no automated checks caught the counting logic error."
+  },
+  "promptfoo/promptfoo#7387->7475": {
+    "pair_index": 91,
+    "repo": "promptfoo/promptfoo",
+    "target": 7387,
+    "source": 7475,
+    "label": "machine_catch",
+    "confidence": "high",
+    "reason": "PR B fixes TypeScript compilation errors and test failures introduced by PR A that were caught by automated CI checks (tsc and test suite) before reaching users."
+  },
+  "promptfoo/promptfoo#7345->7474": {
+    "pair_index": 92,
+    "repo": "promptfoo/promptfoo",
+    "target": 7345,
+    "source": 7474,
+    "label": "not_related",
+    "confidence": "high",
+    "reason": "PR B is an unrelated security fix for a dependency vulnerability (lodash-es prototype pollution); it happens to reference PR A's author and date but addresses a completely different problem (CVE remediation vs. flaky test removal)."
+  },
+  "promptfoo/promptfoo#7222->7232": {
+    "pair_index": 93,
+    "repo": "promptfoo/promptfoo",
+    "target": 7222,
+    "source": 7232,
+    "label": "machine_catch",
+    "confidence": "high",
+    "reason": "PR B explicitly states it fixes CI failures introduced by PR A\u2014the tests were environment-dependent and failed in CI where sharp wasn't installed, and PR B adds mocking/dependency injection to make them deterministic."
+  },
+  "promptfoo/promptfoo#7186->7192": {
+    "pair_index": 94,
+    "repo": "promptfoo/promptfoo",
+    "target": 7186,
+    "source": 7192,
+    "label": "not_related",
+    "confidence": "high",
+    "reason": "PR B is a CI infrastructure fix for a code review bot's false positives, not a correction of the bug that PR A introduced; PR B merely references PR A as an example victim of the bot's false reporting."
+  },
+  "promptfoo/promptfoo#6963->6985": {
+    "pair_index": 95,
+    "repo": "promptfoo/promptfoo",
+    "target": 6963,
+    "source": 6985,
+    "label": "machine_catch",
+    "confidence": "high",
+    "reason": "PR A introduced a new attestation job requiring specific permissions that caused a CI workflow startup_failure in the release-please workflow; PR B fixes the missing permissions that the automated CI system caught."
+  },
+  "promptfoo/promptfoo#6960->6975": {
+    "pair_index": 96,
+    "repo": "promptfoo/promptfoo",
+    "target": 6960,
+    "source": 6975,
+    "label": "escape",
+    "confidence": "high",
+    "reason": "PR A fixed async leaks but missed the root cause of duplicate `finalizeResponse()` calls from multiple code paths; PR B caught and fixed the actual race condition that was still causing CI flakes after PR A merged, indicating the problem escaped into production/CI despite the earlier fix."
+  },
+  "promptfoo/promptfoo#6930->6944": {
+    "pair_index": 97,
+    "repo": "promptfoo/promptfoo",
+    "target": 6930,
+    "source": 6944,
+    "label": "escape",
+    "confidence": "high",
+    "reason": "PR A fixed the same bug in one provider that reached users (missing cached flag causing unnecessary delays), and PR B's audit discovered the identical bug existed unfixed in 10 other providers, indicating the problem escaped detection across multiple providers before being systematically corrected."
+  },
+  "promptfoo/promptfoo#6812->6818": {
+    "pair_index": 98,
+    "repo": "promptfoo/promptfoo",
+    "target": 6812,
+    "source": 6818,
+    "label": "escape",
+    "confidence": "high",
+    "reason": "PR A merged with incomplete testing (end-to-end test marked unchecked), reached production, and caused a problem severe enough to require a full revert the next day, indicating the issue was discovered by users or in production rather than caught by automated systems."
+  },
+  "promptfoo/promptfoo#6738->6744": {
+    "pair_index": 99,
+    "repo": "promptfoo/promptfoo",
+    "target": 6738,
+    "source": 6744,
+    "label": "escape",
+    "confidence": "high",
+    "reason": "PR A introduced a backwards-incompatible behavior change (always sending `retrievalConfiguration` with a default value) that altered API call behavior from the original implementation, which PR B discovered and fixed\u2014a problem that passed tests but changed production behavior for existing users."
+  },
+  "promptfoo/promptfoo#6554->6588": {
+    "pair_index": 100,
+    "repo": "promptfoo/promptfoo",
+    "target": 6554,
+    "source": 6588,
+    "label": "machine_catch",
+    "confidence": "high",
+    "reason": "PR A added a test fixture with intentional Nunjucks syntax (invalid JSON) that caused `npm run tsc` to fail, which PR B fixed by excluding the fixture from TypeScript compilation in tsconfig.json."
+  },
+  "promptfoo/promptfoo#6483->6512": {
+    "pair_index": 101,
+    "repo": "promptfoo/promptfoo",
+    "target": 6483,
+    "source": 6512,
+    "label": "not_related",
+    "confidence": "high",
+    "reason": "PR B is a planned follow-up enhancement that removes an overly restrictive constraint from PR A, not fixing a bug or escaped problem that PR A caused."
+  },
+  "promptfoo/promptfoo#6511->6593": {
+    "pair_index": 102,
+    "repo": "promptfoo/promptfoo",
+    "target": 6511,
+    "source": 6593,
+    "label": "escape",
+    "confidence": "high",
+    "reason": "PR A used an arbitrary 100ms timeout as a workaround for a real Winston bug that caused log loss during shutdown; PR B fixes the root cause by upgrading Winston and replacing the timeout with proper event-based flushing, indicating the timeout workaround in PR A was an insufficient fix that could still fail in production under timing variations."
+  },
+  "promptfoo/promptfoo#6498->6512": {
+    "pair_index": 103,
+    "repo": "promptfoo/promptfoo",
+    "target": 6498,
+    "source": 6512,
+    "label": "escape",
+    "confidence": "high",
+    "reason": "PR A's `packageManager` field broke alternative package managers (pnpm/yarn) in production, discovered by users/developers trying to use those tools, and PR B fixes the escaped problem by removing the overly-restrictive constraint."
+  },
+  "sveltejs/svelte#17873->17884": {
+    "pair_index": 104,
+    "repo": "sveltejs/svelte",
+    "target": 17873,
+    "source": 17884,
+    "label": "not_related",
+    "confidence": "high",
+    "reason": "PR B is fixing a merge conflict/integration issue from combining PR A with another PR (#17805), not fixing a bug that PR A itself introduced into production."
+  },
+  "sveltejs/svelte#17612->17623": {
+    "pair_index": 105,
+    "repo": "sveltejs/svelte",
+    "target": 17612,
+    "source": 17623,
+    "label": "escape",
+    "confidence": "high",
+    "reason": "PR A introduced console spam/warnings that reached users (described as 'console spam' in PR B), which automated tests and CI did not catch, requiring a human fix the day after."
+  },
+  "sveltejs/svelte#17605->17604": {
+    "pair_index": 106,
+    "repo": "sveltejs/svelte",
+    "target": 17605,
+    "source": 17604,
+    "label": "not_related",
+    "confidence": "high",
+    "reason": "PR B fixes a different bug (#17595 about async derived expressions) and explicitly references PR #17605 as the separate fix for an unrelated issue that causes a test failure, rather than fixing a problem introduced by PR A."
+  },
+  "sveltejs/svelte#17310->17311": {
+    "pair_index": 107,
+    "repo": "sveltejs/svelte",
+    "target": 17310,
+    "source": 17311,
+    "label": "escape",
+    "confidence": "high",
+    "reason": "PR A introduced `srcObject` support which triggered an unwanted a11y warning for videos without captions; PR B fixes this user-facing problem that wasn't caught by automated systems, as acknowledged in PR A's body ('will open a PR for that next')."
+  },
+  "sveltejs/svelte#17244->17240": {
+    "pair_index": 108,
+    "repo": "sveltejs/svelte",
+    "target": 17244,
+    "source": 17240,
+    "label": "escape",
+    "confidence": "high",
+    "reason": "PR B explicitly states that PR A's alternative approach (#17244) didn't work and caused items to 'fall out of the graph', with a detailed reproduction scenario showing incorrect behavior that would only be caught by users or manual testing, not automated checks."
+  },
+  "sveltejs/svelte#17163->17212": {
+    "pair_index": 109,
+    "repo": "sveltejs/svelte",
+    "target": 17163,
+    "source": 17212,
+    "label": "escape",
+    "confidence": "high",
+    "reason": "PR A introduced a fix for derived values during time traveling, but PR B explicitly states it still had to fix a missed case (#17206) where forked derived values were being ignored despite the same scenario being part of PR A's input, indicating the original fix was incomplete and reached users with the problem."
+  },
+  "sveltejs/svelte#17147->17163": {
+    "pair_index": 110,
+    "repo": "sveltejs/svelte",
+    "target": 17147,
+    "source": 17163,
+    "label": "escape",
+    "confidence": "high",
+    "reason": "PR B fixes a bug (derived values being incorrectly set during time traveling) that escaped to users and broke SvelteKit preloading, which PR A's changes to deferred effects did not fully address."
+  },
+  "sveltejs/svelte#17096->17097": {
+    "pair_index": 111,
+    "repo": "sveltejs/svelte",
+    "target": 17096,
+    "source": 17097,
+    "label": "escape",
+    "confidence": "high",
+    "reason": "PR B explicitly states it's a follow-up fix to PR A (#17096) addressing an issue that wasn't caught by automated systems, indicating PR A's fix was incomplete and reached users with a problem."
+  },
+  "sveltejs/svelte#17020->17021": {
+    "pair_index": 112,
+    "repo": "sveltejs/svelte",
+    "target": 17020,
+    "source": 17021,
+    "label": "not_related",
+    "confidence": "high",
+    "reason": "PR B is a re-do/cherry-pick of PR A due to git history issues, not a fix for a problem that PR A introduced\u2014both PRs implement the same feature with the same title and purpose."
+  },
+  "sveltejs/svelte#16944->16947": {
+    "pair_index": 113,
+    "repo": "sveltejs/svelte",
+    "target": 16944,
+    "source": 16947,
+    "label": "not_related",
+    "confidence": "high",
+    "reason": "PR B is a planned follow-up enhancement addressing an edge case in the same subsystem, not fixing a bug that PR A introduced or that automated systems missed."
+  },
+  "temporalio/temporal#9467->9475": {
+    "pair_index": 114,
+    "repo": "temporalio/temporal",
+    "target": 9467,
+    "source": 9475,
+    "label": "not_related",
+    "confidence": "high",
+    "reason": "PR B is a release/patch PR that bundles PR A (#9467), not a fix for a problem that PR A introduced."
+  },
+  "temporalio/temporal#9414->9423": {
+    "pair_index": 115,
+    "repo": "temporalio/temporal",
+    "target": 9414,
+    "source": 9423,
+    "label": "not_related",
+    "confidence": "high",
+    "reason": "PR B is a cherry-pick of PR A to another branch and addresses compilation issues from that cherry-pick process, not fixing a bug in PR A itself."
+  },
+  "temporalio/temporal#9371->9375": {
+    "pair_index": 116,
+    "repo": "temporalio/temporal",
+    "target": 9371,
+    "source": 9375,
+    "label": "not_related",
+    "confidence": "high",
+    "reason": "PR B is a release/patch PR that bundles PR A and other changes, not a fix for a problem that PR A introduced."
+  },
+  "temporalio/temporal#9370->9375": {
+    "pair_index": 117,
+    "repo": "temporalio/temporal",
+    "target": 9370,
+    "source": 9375,
+    "label": "not_related",
+    "confidence": "high",
+    "reason": "PR B is a release/patch bundling PR A and other changes, not a fix for a problem that PR A caused."
+  },
+  "temporalio/temporal#9307->9336": {
+    "pair_index": 118,
+    "repo": "temporalio/temporal",
+    "target": 9307,
+    "source": 9336,
+    "label": "not_related",
+    "confidence": "high",
+    "reason": "PR B is a release/patch PR that bundles PR A, not a fix for a problem that PR A caused."
+  },
+  "temporalio/temporal#8989->8995": {
+    "pair_index": 119,
+    "repo": "temporalio/temporal",
+    "target": 8989,
+    "source": 8995,
+    "label": "not_related",
+    "confidence": "high",
+    "reason": "PR B is a release/patch PR that bundles PR A into a versioned release, not a fix for a problem that PR A caused."
+  },
+  "temporalio/temporal#8985->8987": {
+    "pair_index": 120,
+    "repo": "temporalio/temporal",
+    "target": 8985,
+    "source": 8987,
+    "label": "not_related",
+    "confidence": "high",
+    "reason": "PR B is a release/patch PR that bundles PR A and other changes together, not a fix for a problem that PR A introduced."
+  },
+  "temporalio/temporal#9270->9281": {
+    "pair_index": 121,
+    "repo": "temporalio/temporal",
+    "target": 9270,
+    "source": 9281,
+    "label": "not_related",
+    "confidence": "high",
+    "reason": "PR B is a release/patch PR that bundles PR A into a versioned release, not a fix for a problem that PR A introduced."
+  },
+  "temporalio/temporal#9262->9276": {
+    "pair_index": 122,
+    "repo": "temporalio/temporal",
+    "target": 9262,
+    "source": 9276,
+    "label": "not_related",
+    "confidence": "high",
+    "reason": "PR B is a release/patch bundling PR that includes PR A among other changes; it is not fixing a problem that PR A introduced but rather packaging it as part of a planned v1.30.1 release."
+  },
+  "temporalio/temporal#9119->9121": {
+    "pair_index": 123,
+    "repo": "temporalio/temporal",
+    "target": 9119,
+    "source": 9121,
+    "label": "not_related",
+    "confidence": "high",
+    "reason": "PR B is a release/patch PR that bundles PR A into a release version, not a fix for a problem that PR A caused."
+  },
+  "temporalio/temporal#8978->9121": {
+    "pair_index": 124,
+    "repo": "temporalio/temporal",
+    "target": 8978,
+    "source": 9121,
+    "label": "not_related",
+    "confidence": "high",
+    "reason": "PR B is a release/patch PR that bundles PR A along with other changes, not a fix for a problem that PR A introduced."
+  },
+  "temporalio/temporal#8769->9068": {
+    "pair_index": 125,
+    "repo": "temporalio/temporal",
+    "target": 8769,
+    "source": 9068,
+    "label": "not_related",
+    "confidence": "high",
+    "reason": "PR B is a planned follow-up that improves test coverage and comments related to PR A's work, not a fix for a problem that PR A introduced or that escaped detection."
+  }
+}

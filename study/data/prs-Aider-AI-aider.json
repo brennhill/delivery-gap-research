@@ -1,0 +1,3033 @@
+[
+  {
+    "id": "4935",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "fix: replace two deprecated models, delete one",
+    "body": "Three models that the unit tests use are no longer available online:\r\n\r\n- `gpt-4-32k` (see https://github.com/BerriAI/litellm/pull/20795 and https://github.com/BerriAI/litellm/commit/15075ef9ec881cd51831f9e40423fb2058f701f8)\r\n\r\n- `claude-3-5-sonnet-20240620` (see https://github.com/BerriAI/litellm/pull/23400 and https://github.com/BerriAI/litellm/commit/c9f7075690173165a3a4085bd52e2dee8449063d)\r\n\r\n- the vision model `gpt-4-vision-preview` (see https://github.com/BerriAI/litellm/pull/23400 and https://github.com/BerriAI/litellm/commit/c9f7075690173165a3a4085bd52e2dee8449063d)\r\n\r\nThe LiteLLM commits mentioned suggest suitable alternatives for the three models.  \r\nThis PR updates the unit tests accordingly.\r\nSee commit messages for details.",
+    "author": "claui",
+    "merged_at": "2026-03-16T23:07:00+00:00",
+    "created_at": "2026-03-16T21:46:11+00:00",
+    "files": [
+      "tests/basic/test_commands.py",
+      "tests/basic/test_models.py"
+    ],
+    "additions": 2,
+    "deletions": 5,
+    "ticket_ids": [],
+    "merge_commit_sha": "f8e3379864c3398ae6e00e30023da1c8791fa27e",
+    "pr_number": 4935,
+    "ci_status": "passed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "fix: remove deprecated gpt-4-32k model from test\n\nThe model that this test uses is no longer available online. [1] [2]\n\nPer the upstream commit, the only known suitable replacement is\ngpt-4-0613, which the test already uses.\n\nHence, remove gpt-4-32k from the test without any replacement.\n\n[1]: https://github.com/BerriAI/litellm/pull/20795\n\n[2]: https://github.com/BerriAI/litellm/commit/15075ef9ec881cd51831f9e40423fb2058f701f8",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "fix: remove deprecated timestamped model from test\n\nThe model that this test uses is no longer available online. [1] [2]\n\nPer the upstream commit, claude-sonnet-4-6 is a suitable replacement\nso use that instead.\n\n[1]: https://github.com/BerriAI/litellm/pull/23400\n\n[2]: https://github.com/BerriAI/litellm/commit/c9f7075690173165a3a4085bd52e2dee8449063d",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "fix: remove deprecated vision model from test\n\nThe model that this test uses is no longer available online. [1] [2]\n\nPer the upstream commit, gpt-4o would be the next best candidate for\nvision models, so use that instead.\n\n[1]: https://github.com/BerriAI/litellm/pull/23400\n\n[2]: https://github.com/BerriAI/litellm/commit/c9f7075690173165a3a4085bd52e2dee8449063d",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 3,
+    "last_edited_at": null,
+    "total_comments_count": 1
+  },
+  {
+    "id": "4899",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "Add Python 3.13 and 3.14 support",
+    "body": "This PR enables Python 3.13 and 3.14 for aider-chat.\n\nWhat changed:\n- widens requires-python to 3.10 through 3.14\n- expands the Ubuntu and Windows workflow matrices to 3.10 through 3.14\n- adds marker-based NumPy and SciPy requirements so Python 3.10 stays on older compatible versions while Python 3.11+ can use versions with Python 3.14 wheels\n- adds audioop-lts for Python 3.13+ to keep pydub working until upstream support lands\n\nValidation:\n- fork CI is green across the expanded matrix, including Python 3.13 and 3.14 on Ubuntu and Windows\n- Docker build and pre-commit also passed on the fork\n\nFork validation PR: https://github.com/turian/aider/pull/1",
+    "author": "turian",
+    "merged_at": "2026-03-09T22:00:45+00:00",
+    "created_at": "2026-03-09T20:48:47+00:00",
+    "files": [
+      ".github/workflows/check_pypi_version.yml",
+      ".github/workflows/ubuntu-tests.yml",
+      ".github/workflows/windows-tests.yml",
+      ".github/workflows/windows_check_pypi_version.yml",
+      "pyproject.toml",
+      "requirements.txt",
+      "requirements/common-constraints.txt",
+      "requirements/pydub.in",
+      "requirements/python-compat.in",
+      "requirements/requirements-browser.txt",
+      "requirements/requirements-dev.txt",
+      "requirements/requirements-help.in",
+      "requirements/requirements-help.txt",
+      "requirements/requirements.in",
+      "scripts/pip-compile.sh"
+    ],
+    "additions": 56,
+    "deletions": 42,
+    "ticket_ids": [],
+    "merge_commit_sha": "861a1e4d154f268547a06497cc380e5a5dc8483a",
+    "pr_number": 4899,
+    "ci_status": "passed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "Add experimental Python 3.14 support",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 2
+  },
+  {
+    "id": "4674",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "Allow adding read-only files to editable with git: false.",
+    "body": "When `git: false` is configured, aider won't promote a read-only file in the repo to editable:\r\n\r\n> Cannot add /home/chrism/dev/runprompt/README.md as it's not part of the repository\r\n\r\nThis patch fixes that behaviour so it can promote the file to editable just as if it had been /add'ed.",
+    "author": "chr15m",
+    "merged_at": "2026-02-19T02:33:10+00:00",
+    "created_at": "2025-11-30T01:56:17+00:00",
+    "files": [
+      "aider/commands.py",
+      "aider/repo.py"
+    ],
+    "additions": 9,
+    "deletions": 2,
+    "ticket_ids": [],
+    "merge_commit_sha": "7afaa26f8b8b7b56146f0674d2a67e795b616b7c",
+    "pr_number": 4674,
+    "ci_status": "passed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "Allow adding read-only files to editable with git: false.",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 0
+  },
+  {
+    "id": "4682",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "Don't stage files with no-auto-commits.",
+    "body": "This patch prevents aider from staging files (e.g. `git add`) when it's in no-auto-commits mode.",
+    "author": "chr15m",
+    "merged_at": "2026-02-19T02:31:57+00:00",
+    "created_at": "2025-12-03T09:44:31+00:00",
+    "files": [
+      "aider/coders/base_coder.py"
+    ],
+    "additions": 2,
+    "deletions": 2,
+    "ticket_ids": [],
+    "merge_commit_sha": "cf72acfbf782300ba1c2f512f36a90079bffd4dd",
+    "pr_number": 4682,
+    "ci_status": "passed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "Don't stage files with no-auto-commits.",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 0
+  },
+  {
+    "id": "4830",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "Allow adding files outside repo when git commits off.",
+    "body": "For people who don't allow aider to make commits it is useful to be able to modify files outside the repo.",
+    "author": "chr15m",
+    "merged_at": "2026-02-14T14:17:11+00:00",
+    "created_at": "2026-02-14T12:47:12+00:00",
+    "files": [
+      "aider/commands.py"
+    ],
+    "additions": 5,
+    "deletions": 1,
+    "ticket_ids": [],
+    "merge_commit_sha": "e6f8edda93c5c048206accd8fa72395b0cf92601",
+    "pr_number": 4830,
+    "ci_status": "passed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "Allow adding files outside repo when git commits off.",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 2
+  },
+  {
+    "id": "4838",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "fix: handle symlink loops in safe_abs_path()",
+    "body": "## Summary\n\n- Fixes #4711 \u2014 `Path.resolve()` raises `RuntimeError` when encountering circular symlinks (e.g. `v8/v8 -> v8/v8`), crashing aider during repo map generation.\n- Wraps the `Path.resolve()` call in `safe_abs_path()` with a try/except for `RuntimeError` and `OSError`, falling back to `Path.absolute()` which doesn't follow symlinks.\n\n## Test plan\n\n- [x] New test `test_safe_abs_path_symlink_loop` creates a circular symlink pair and verifies `safe_abs_path()` returns an absolute path without raising\n- [x] `pytest tests/basic/test_utils.py` passes",
+    "author": "clayarnoldg2m",
+    "merged_at": "2026-02-16T16:26:13+00:00",
+    "created_at": "2026-02-16T09:40:32+00:00",
+    "files": [
+      "aider/utils.py",
+      "tests/basic/test_utils.py"
+    ],
+    "additions": 19,
+    "deletions": 1,
+    "ticket_ids": [
+      "#4711"
+    ],
+    "merge_commit_sha": "b9050e1d5faf8096eae7a46a9ecc05a86231384b",
+    "pr_number": 4838,
+    "ci_status": "passed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "fix: handle symlink loops in safe_abs_path() (#4711)\n\nPath.resolve() raises RuntimeError on circular symlinks. Catch\nRuntimeError and OSError, fall back to Path.absolute().\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 1
+  },
+  {
+    "id": "4772",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "Remove `google-generativeai` as a dependency.",
+    "body": "The `google-generativeai` package is deprecated, and emits warnings when it's imported. I'm doing some cleanup work to remove it from popular surfacess, so here's a PR :)\r\n\r\nI'll note that `litellm` uses direct HTTP requests for the API, so it does not use `google-genai` (except for type checking) or `google-generativeai` (except for a deprecated PaLM codepath).",
+    "author": "markmcd",
+    "merged_at": "2026-01-19T15:39:28+00:00",
+    "created_at": "2026-01-16T10:05:52+00:00",
+    "files": [
+      "aider/exceptions.py",
+      "aider/website/docs/llms/gemini.md",
+      "requirements.txt",
+      "requirements/common-constraints.txt",
+      "requirements/requirements-browser.txt",
+      "requirements/requirements-dev.txt",
+      "requirements/requirements-help.txt",
+      "requirements/requirements.in"
+    ],
+    "additions": 130,
+    "deletions": 155,
+    "ticket_ids": [],
+    "merge_commit_sha": "4bf56b77145b0be593ed48c3c90cdecead217496",
+    "pr_number": 4772,
+    "ci_status": "passed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "Remove `google-generativeai` as a dependency.\n\nThe `google-generativeai` package is deprecated, and emits warnings when\nit's imported. I'm doing some cleanup work to remove it from popular\nsurfacess, so here's a PR :)\n\nI'll note that `litellm` uses direct HTTP requests for the API, so it\ndoes not use `google-genai` (except for type checking) or\n`google-generativeai` (except for a deprecated PaLM codepath).",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 4
+  },
+  {
+    "id": "4748",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "Fix regression in the LiteLLM exception list",
+    "body": "In an attempt to fix issue #4615, commit 656301c introduced a regression where running the `coder` feature raises the following error:\r\n\r\n> TypeError: catching classes that do not inherit from BaseException is not allowed\r\n\r\nThe primary misunderstanding that caused the regression is the fact that `ErrorEventError` sounds like an error class that needs to be included in the exceptions list. In reality, however, the name `ErrorEventError` is just a coincidence and actually belongs to a regular class, which doesn\u2019t have `BaseException` in its chain of base classes.\r\n\r\nCurrent Python versions raise a `TypeError` at runtime if you try to include such a class name in an `except` clause, which explains why the error shows up.\r\n\r\nThis PR narrows down the filter so it only tries to include actual exception classes and excludes classes like `ErrorEventError`.\r\nIt also removes `ErrorEventError` from the exception list.\r\n\r\nFixes issue #4615 and #4724. Reverts commit 656301c.\r\n",
+    "author": "claui",
+    "merged_at": "2026-01-04T15:40:30+00:00",
+    "created_at": "2026-01-04T14:38:59+00:00",
+    "files": [
+      "aider/exceptions.py"
+    ],
+    "additions": 4,
+    "deletions": 2,
+    "ticket_ids": [
+      "#4615",
+      "#4724"
+    ],
+    "merge_commit_sha": "fb05748ace65bea780e0766b14b0904fbaac5f7f",
+    "pr_number": 4748,
+    "ci_status": "failed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "fix: exclude regular classes that end with `Error`\n\nIn an attempt to fix issue #4615 [1], commit 656301c [2] introduces a\nregression where running the `coder` feature raises the following error:\n\n> TypeError: catching classes that do not inherit from BaseException is not allowed\n\nThe primary misunderstanding that caused the regression is the fact that\n`ErrorEventError` sounds like an error class that needs to be included\nin the exceptions list. In reality, however, the name `ErrorEventError`\nis just a coincidence and actually belongs to a regular class, which\ndoesn\u2019t have `BaseException` in its chain of base classes.\n\nCurrent Python versions raise a `TypeError` at runtime if you try to\ninclude such a class name in an `except` clause, which explains why the\nerror shows up.\n\nNarrow down the filter so it only tries to include actual exception\nclasses and excludes classes like `ErrorEventError`.\nAlso remove `ErrorEventError` from the exception list.\n\nFixes issue #4615 [1] and #4724 [3]. Reverts commit 656301c [2].\n\n[1]: https://github.com/Aider-AI/aider/issues/4615\n\n[2]: https://github.com/Aider-AI/aider/commit/656301cc8744bd32d1bb25ddcc839774bc73e4ca\n\n[3]: https://github.com/Aider-AI/aider/issues/4724",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 1
+  },
+  {
+    "id": "4698",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "Add gpt-5.2 models",
+    "body": "This PR adds support for the new [`gpt-5.2`](https://openai.com/index/introducing-gpt-5-2/) models.",
+    "author": "codeofdusk",
+    "merged_at": "2025-12-11T19:28:27+00:00",
+    "created_at": "2025-12-11T19:17:42+00:00",
+    "files": [
+      "aider/resources/model-settings.yml"
+    ],
+    "additions": 121,
+    "deletions": 0,
+    "ticket_ids": [],
+    "merge_commit_sha": "7301d4522dd41738a4a3488f51e051766391653b",
+    "pr_number": 4698,
+    "ci_status": "failed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "Add gpt-5.2 models",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 0
+  },
+  {
+    "id": "4656",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "Add support for the latest GPT and Gemini models",
+    "body": "This PR adds support for the latest `gpt-5-pro`, `gpt-5.1`, and `gemini-3-pro-preview` models.",
+    "author": "codeofdusk",
+    "merged_at": "2025-11-19T17:08:49+00:00",
+    "created_at": "2025-11-18T21:54:55+00:00",
+    "files": [
+      "aider/models.py",
+      "aider/resources/model-settings.yml"
+    ],
+    "additions": 188,
+    "deletions": 1,
+    "ticket_ids": [],
+    "merge_commit_sha": "58eae2f94aa2ccc038ec5fe75d7e05eb3fe88654",
+    "pr_number": 4656,
+    "ci_status": "passed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "Add support for gpt-5-pro",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Add gpt-5.1",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Add Gemini 3",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 3,
+    "last_edited_at": null,
+    "total_comments_count": 5
+  },
+  {
+    "id": "4621",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "add initial haskell-tags.scm for repomap building",
+    "body": "Adds basic repomap support for haskell. Beyond the included tests, here's an example of running with these changes on an existing haskell project:\r\n\r\n```shell\r\n\u276f git clone https://github.com/jaspervdj/websockets.git\r\n\u276f cd websockets\r\n\u276f AIDER_ANALYTICS_DISABLE=1 OPENAI_API_KEY=dummy \\\r\n                    aider \\\r\n                    --no-check-update \\\r\n                    --no-gitignore \\\r\n                    --show-repo-map > repomap.txt\r\n```\r\n[repomap.txt](https://github.com/user-attachments/files/23291212/repomap.txt)\r\n",
+    "author": "TimPut",
+    "merged_at": "2025-11-02T17:43:18+00:00",
+    "created_at": "2025-11-02T15:27:46+00:00",
+    "files": [
+      "aider/queries/tree-sitter-languages/haskell-tags.scm",
+      "tests/basic/test_repomap.py",
+      "tests/fixtures/languages/haskell/test.hs"
+    ],
+    "additions": 13,
+    "deletions": 0,
+    "ticket_ids": [],
+    "merge_commit_sha": "c74f5efb2f3870f56f33ed1dbe2c4167742bcb88",
+    "pr_number": 4621,
+    "ci_status": "passed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "add initial haskell-tags.scm for repomap",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 1
+  },
+  {
+    "id": "4620",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "add initial zig-tags.scm for repomap building",
+    "body": "Adds basic repomap support for zig. Beyond the included tests, here's an example of running  with these changes on an existing zig project:\r\n```sh\r\n\u276f git clone https://github.com/BrookJeynes/jido.git\r\n\u276f cd jido\r\n\u276f AIDER_ANALYTICS_DISABLE=1 OPENAI_API_KEY=dummy \\\r\n                    aider \\\r\n                    --no-check-update \\\r\n                    --no-gitignore \\\r\n                    --show-repo-map > repomap.txt\r\n```\r\n[repomap.txt](https://github.com/user-attachments/files/23291152/repomap.txt)\r\n",
+    "author": "TimPut",
+    "merged_at": "2025-11-02T17:42:56+00:00",
+    "created_at": "2025-11-02T15:24:22+00:00",
+    "files": [
+      "aider/queries/tree-sitter-languages/zig-tags.scm",
+      "tests/basic/test_repomap.py",
+      "tests/fixtures/languages/zig/test.zig"
+    ],
+    "additions": 16,
+    "deletions": 0,
+    "ticket_ids": [],
+    "merge_commit_sha": "9fbfa36c273305b0b3b2c9da95f1a69dd1fc7ff3",
+    "pr_number": 4620,
+    "ci_status": "passed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "add initial zig-tags.scm for repomap",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 0
+  },
+  {
+    "id": "4557",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "Remove duplicate instruction \"Always reply to the user in {language}\"",
+    "body": "After refactoring of the final reminders in 849a379a8cc51f94981be86cb73d311dd6eb5dac, the instruction in which language llm should respond became duplicated at the begining of the system prompt. So begining of the system prompt now looks like:\r\n```\r\nAct as an expert software developer.\r\nAlways use best practices when coding.\r\nRespect and use existing conventions, libraries, etc that are already present in the code base.\r\nYou are diligent and tireless!\r\nYou NEVER leave comments describing code without implementing it!\r\nYou always COMPLETELY IMPLEMENT the needed code!\r\n\r\n\r\nReply in English.\r\n\r\nTake requests for changes to the supplied code.\r\nIf the request is ambiguous, ask questions.\r\n\r\nAlways reply to the user in English.\r\n```\r\n\r\nThe first line `Reply in English.` appears from `final_reminders` (added in `Coder.fmt_system_prompt`) and second one `Always reply to the user in English.` is specified in `main_system` prompts themselves.\r\n\r\nIn the pull request I have removed `Always reply to the user in English.` from all prompts, where `final_reminders` are used. In prompts, where `final_reminders` aren't used (ask, architect and context modes) this line left unchanged.\r\n\r\nSo after this change begining of system prompt will look like:\r\n```\r\nAct as an expert software developer.\r\nAlways use best practices when coding.\r\nRespect and use existing conventions, libraries, etc that are already present in the code base.\r\nYou are diligent and tireless!\r\nYou NEVER leave comments describing code without implementing it!\r\nYou always COMPLETELY IMPLEMENT the needed code!\r\n\r\n\r\nReply in English.\r\n\r\nTake requests for changes to the supplied code.\r\nIf the request is ambiguous, ask questions.\r\n```\r\n\r\n",
+    "author": "muravvv",
+    "merged_at": "2025-10-05T19:11:17+00:00",
+    "created_at": "2025-10-05T19:04:49+00:00",
+    "files": [
+      "aider/coders/editblock_prompts.py",
+      "aider/coders/patch_prompts.py",
+      "aider/coders/udiff_prompts.py",
+      "aider/coders/wholefile_prompts.py"
+    ],
+    "additions": 0,
+    "deletions": 9,
+    "ticket_ids": [],
+    "merge_commit_sha": "11516d6d6bc7466b441971f7fb34790242f2a982",
+    "pr_number": 4557,
+    "ci_status": "failed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "Remove duplicate instruction in what language model should respond\n\nthe same instruction included in {final_reminders}",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 0
+  },
+  {
+    "id": "4552",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "chore: version DeepSeek name and fix cost calculation",
+    "body": "The previous result had costs that don't match up with the cost update that was included, and don't align with what I was actually charged. I suspect the model metadata file was incorrect to begin with and that's why my update didn't have any affect.\r\n\r\nThis fixes the leaderboard to have the correct costs.\r\n\r\nIt also versions the model names, as the API endpoints tend to evolve with model updates.\r\n\r\n![IMG_3394](https://github.com/user-attachments/assets/e00a55f0-b3ea-4814-b0b5-833a6d8a3e00)\r\n",
+    "author": "gcp",
+    "merged_at": "2025-10-04T12:19:09+00:00",
+    "created_at": "2025-10-04T09:18:22+00:00",
+    "files": [
+      "aider/resources/model-metadata.json",
+      "aider/website/_data/polyglot_leaderboard.yml"
+    ],
+    "additions": 7,
+    "deletions": 7,
+    "ticket_ids": [],
+    "merge_commit_sha": "1a6d035653c8f0016ef818c212959e1837fbda73",
+    "pr_number": 4552,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "gcp",
+        "state": "commented",
+        "submitted_at": "2025-10-04T09:34:39+00:00",
+        "is_bot": false,
+        "body": ""
+      }
+    ],
+    "commits": [
+      {
+        "message": "chore: update deepseek model names and metadata",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 1
+  },
+  {
+    "id": "4551",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "DeepSeek-3.2-Exp chat and reasoning results",
+    "body": "",
+    "author": "gcp",
+    "merged_at": "2025-10-03T12:54:06+00:00",
+    "created_at": "2025-10-03T11:11:42+00:00",
+    "files": [
+      "aider/resources/model-metadata.json",
+      "aider/website/_data/polyglot_leaderboard.yml"
+    ],
+    "additions": 78,
+    "deletions": 6,
+    "ticket_ids": [],
+    "merge_commit_sha": "d47d689d1890728a51ed70cda96dea7b849c994d",
+    "pr_number": 4551,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "gcp",
+        "state": "commented",
+        "submitted_at": "2025-10-04T08:59:00+00:00",
+        "is_bot": false,
+        "body": ""
+      }
+    ],
+    "commits": [
+      {
+        "message": "feat: update deepseek model metadata and add deepseek-reasoner",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "chore: add deepseek model test results to leaderboard",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 2,
+    "last_edited_at": null,
+    "total_comments_count": 1
+  },
+  {
+    "id": "4547",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "Support for gpt-5-codex",
+    "body": "",
+    "author": "mlang",
+    "merged_at": "2025-09-30T13:23:29+00:00",
+    "created_at": "2025-09-30T05:18:18+00:00",
+    "files": [
+      "aider/resources/model-settings.yml"
+    ],
+    "additions": 7,
+    "deletions": 0,
+    "ticket_ids": [],
+    "merge_commit_sha": "6963e658877df974450c57f83a036b42c010b8dd",
+    "pr_number": 4547,
+    "ci_status": "passed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "Support for gpt-5-codex",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 0
+  },
+  {
+    "id": "4544",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "Feature request: support for Bedrock/Claude 4.5 ",
+    "body": "Support for Bedrock/Claude 4.5.\r\n\r\nAnnounced here:\r\nhttps://aws.amazon.com/blogs/aws/introducing-claude-sonnet-4-5-in-amazon-bedrock-anthropics-most-intelligent-model-best-for-coding-and-complex-agents/\r\n\r\nProposed model name:\r\nbedrock/global.anthropic.claude-sonnet-4-5-20250929-v1:0\r\n\r\nFixes: https://github.com/Aider-AI/aider/issues/4543\r\n#4543",
+    "author": "zlemisie",
+    "merged_at": "2025-09-29T19:30:06+00:00",
+    "created_at": "2025-09-29T19:23:26+00:00",
+    "files": [
+      "aider/resources/model-settings.yml"
+    ],
+    "additions": 14,
+    "deletions": 0,
+    "ticket_ids": [
+      "#4543"
+    ],
+    "merge_commit_sha": "73409a52c3e8993a083a9ae1b45ecffbfe35bf14",
+    "pr_number": 4544,
+    "ci_status": "passed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "Feature request: support for Bedrock/Claude 4.5 #4543",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 0
+  },
+  {
+    "id": "4541",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "added tags for FORTRAN",
+    "body": "Reference:\r\nMerge commit for PR #4534\r\nCommit: 5777ab97036c94e2c55de0df0880b88310bc8a6b",
+    "author": "khulnasoft-bot",
+    "merged_at": "2025-09-29T13:15:16+00:00",
+    "created_at": "2025-09-29T05:47:10+00:00",
+    "files": [
+      "aider/queries/tree-sitter-languages/README.md"
+    ],
+    "additions": 1,
+    "deletions": 0,
+    "ticket_ids": [
+      "#4534"
+    ],
+    "merge_commit_sha": "b2379d585f86192f1564bf7f26a00cfa68c76c95",
+    "pr_number": 4541,
+    "ci_status": "passed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "added tags for FORTRAN\n\nReference:\r\nMerge commit for PR #4534\r\nCommit: 5777ab97036c94e2c55de0df0880b88310bc8a6b",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 0
+  },
+  {
+    "id": "4534",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "Added tree-sitter tags for FORTRAN",
+    "body": "",
+    "author": "varchasgopalaswamy",
+    "merged_at": "2025-09-26T17:36:51+00:00",
+    "created_at": "2025-09-26T14:19:46+00:00",
+    "files": [
+      "aider/queries/tree-sitter-languages/fortran-tags.scm"
+    ],
+    "additions": 15,
+    "deletions": 0,
+    "ticket_ids": [],
+    "merge_commit_sha": "f8aa80396d9696111c93f6f34adbf10347c59a1a",
+    "pr_number": 4534,
+    "ci_status": "passed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "added tags for FORTRAN",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 1
+  },
+  {
+    "id": "4493",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "added julia tree sitter",
+    "body": "added a new tags.scm file for Julia.\r\nImplements semantic tags for Julia constructs including:\r\n- Functions (named and anonymous)\r\n- Macros\r\n- Modules\r\n- Structs / mutable structs\r\n- Constants & variables\r\n\r\nThis makes it easier to navigate Julia codebases",
+    "author": "mubashir1osmani",
+    "merged_at": "2025-09-05T14:09:23+00:00",
+    "created_at": "2025-09-01T00:09:36+00:00",
+    "files": [
+      "aider/queries/tree-sitter-languages/julia-tags.scm"
+    ],
+    "additions": 60,
+    "deletions": 0,
+    "ticket_ids": [],
+    "merge_commit_sha": "e4fc2f515d9ed76b14b79a4b02740cf54d5a0c0b",
+    "pr_number": 4493,
+    "ci_status": "passed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "added julia tree sitter",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "added source + license",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 2,
+    "last_edited_at": null,
+    "total_comments_count": 5
+  },
+  {
+    "id": "4475",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "Add GPT-5 with all reasoning settings to polyglot leaderboard",
+    "body": "Add GPT-5 with high reasoning to polyglot leaderboard",
+    "author": "lreeves",
+    "merged_at": "2025-09-02T15:52:14+00:00",
+    "created_at": "2025-08-23T17:13:00+00:00",
+    "files": [
+      "aider/website/_data/polyglot_leaderboard.yml"
+    ],
+    "additions": 87,
+    "deletions": 0,
+    "ticket_ids": [
+      "GPT-5"
+    ],
+    "merge_commit_sha": "37ab5e4b5602724796de017e2597b977f18d141d",
+    "pr_number": 4475,
+    "ci_status": "passed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "Update polyglot_leaderboard.yml\n\nadd GPT-5 with high reasoning",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Update polyglot_leaderboard.yml with medium and low reasoning",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 2,
+    "last_edited_at": null,
+    "total_comments_count": 0
+  },
+  {
+    "id": "4412",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "Add test results for gpt-oss-120b (high) to polyglot leaderboard",
+    "body": "Settings used:\r\n```yaml\r\n- name: openrouter/openai/gpt-oss-120b\r\n  extra_params:\r\n    extra_body:\r\n      reasoning:\r\n        effort: \"high\"\r\n      provider:\r\n        only:\r\n          - fireworks\r\n    max_tokens: 131072\r\n```\r\n\r\n[2025-08-06-04-54-48--gpt-oss-120b-high-polyglot.zip](https://github.com/user-attachments/files/21612425/2025-08-06-04-54-48--gpt-oss-120b-high-polyglot.zip)",
+    "author": "Oct4Pie",
+    "merged_at": "2025-08-11T16:44:38+00:00",
+    "created_at": "2025-08-06T06:38:25+00:00",
+    "files": [
+      "aider/website/_data/polyglot_leaderboard.yml"
+    ],
+    "additions": 29,
+    "deletions": 1,
+    "ticket_ids": [],
+    "merge_commit_sha": "2f5bb772b5b120e8908e01a5c2c86a63efd4b029",
+    "pr_number": 4412,
+    "ci_status": "passed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "add test results for gpt-oss-120b (high) to polyglot leaderboard",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 0
+  },
+  {
+    "id": "4410",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "chore: prettier scripting usage for faq",
+    "body": "Hi, this repo is awesome.\r\nHowever when I was searching for some programatically usage, it is not that \u200b\u200beye-catching.\r\nFinally I found this issue: https://github.com/Aider-AI/aider/issues/426 , and seems there was a hint before.\r\n\r\nSo I link scripting.md to faq, so that others can find it easily. Thx~  cc @paul-gauthier \r\n\r\n",
+    "author": "liam61",
+    "merged_at": "2025-08-05T11:29:08+00:00",
+    "created_at": "2025-08-05T11:26:32+00:00",
+    "files": [
+      "aider/website/docs/faq.md",
+      "aider/website/docs/scripting.md"
+    ],
+    "additions": 5,
+    "deletions": 1,
+    "ticket_ids": [],
+    "merge_commit_sha": "1af0e591497c40b13ed91e92b9c59ed637e9c2c8",
+    "pr_number": 4410,
+    "ci_status": "passed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "chore: prettier scripting usage for faq",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 1
+  },
+  {
+    "id": "4342",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "Add openrouter kimi-k2 model to `aider/resources`.",
+    "body": "Overall documentation is quite light for this new model.\r\n\r\nMax token information is from https://openrouter.ai/moonshotai/kimi-k2.\r\n\r\nInformation regarding the ideal temperature (0.6) and use of system prompt is from https://platform.moonshot.ai/docs/guide/agent-support ; although this is fairly standard. \r\n\r\n**Moonshot AI mention poor performance on one-shot style prompts, might be worth tweaking settings based on this.**\r\n\r\nUsing:\r\n```\r\n  examples_as_sys_msg: true\r\n```\r\nis a best guess on my part based on a guessed similarity to R1.\r\n\r\nPartially addresses #4341 , however adding Moonshot AI platform API support will probably need to be addressed by litellm.\r\n",
+    "author": "sentienthouseplant",
+    "merged_at": "2025-07-12T16:26:27+00:00",
+    "created_at": "2025-07-12T16:11:37+00:00",
+    "files": [
+      "aider/resources/model-metadata.json",
+      "aider/resources/model-settings.yml"
+    ],
+    "additions": 19,
+    "deletions": 0,
+    "ticket_ids": [
+      "#4341"
+    ],
+    "merge_commit_sha": "90dffa9eae2e46afba5d82e47c7d6322a79982c4",
+    "pr_number": 4342,
+    "ci_status": "passed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "Update model-metadata.json",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Add kimi-k2 to model resources.",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Add source for openrouter kimi-k2 information. Remove `reminder: sys`.",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 3,
+    "last_edited_at": "2025-07-12T16:15:10+00:00",
+    "total_comments_count": 1
+  },
+  {
+    "id": "4324",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "Add gemini 2.5 flash lite preview 06-17",
+    "body": "",
+    "author": "tamirzb",
+    "merged_at": "2025-07-09T15:18:56+00:00",
+    "created_at": "2025-07-09T15:10:48+00:00",
+    "files": [
+      "aider/resources/model-metadata.json",
+      "aider/resources/model-settings.yml"
+    ],
+    "additions": 34,
+    "deletions": 0,
+    "ticket_ids": [],
+    "merge_commit_sha": "6a28864c22aa00d97aa7ca75f264ca875827d5fa",
+    "pr_number": 4324,
+    "ci_status": "passed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "Add gemini 2.5 flash lite preview 06-17",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 2
+  },
+  {
+    "id": "4321",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "fix: add missing output for clear command",
+    "body": "This small PR adds output for the `/clear` in-chat command.\r\nCurrently, all other commands produce output, but `/clear` does not.\r\n\r\n```console\r\n> /drop                                                                      \r\n\r\nDropping all files from the chat session.\r\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r\n> /clear                                                                     \r\n\r\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r\n```",
+    "author": "yzx9",
+    "merged_at": "2025-07-08T11:05:07+00:00",
+    "created_at": "2025-07-08T03:31:56+00:00",
+    "files": [
+      "aider/commands.py"
+    ],
+    "additions": 1,
+    "deletions": 0,
+    "ticket_ids": [],
+    "merge_commit_sha": "f22fbf9b3ae20361c23dfbd989929e25cd3ccd61",
+    "pr_number": 4321,
+    "ci_status": "passed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "fix: add missing output for clear command",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 2
+  },
+  {
+    "id": "3789",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "feat: Add Co-authored-by attribution for AI commits",
+    "body": "This PR implements the proposal from issue #3788, adding support for attributing AI-generated commits using the `Co-authored-by:` Git trailer.\r\n\r\n**Changes:**\r\n\r\n*   Introduces the `--attribute-co-authored-by` command-line flag (and corresponding config option) to enable this feature. Defaults to `False`.\r\n*   Updates `aider/repo.py`'s `commit` method:\r\n    *   When `aider_edits=True` and `--attribute-co-authored-by=True`, a `Co-authored-by: aider (<model_name>) <noreply@aider.dev>` trailer is appended to the commit message.\r\n    *   Implements the following precedence rules for AI edits (`aider_edits=True`):\r\n        *   If `--attribute-co-authored-by=True`:\r\n            *   The trailer is added.\r\n            *   Author/Committer names are *not* modified by default.\r\n            *   If `--attribute-author=True` or `--attribute-committer=True` is *explicitly* set, the respective name *is* modified in addition to the trailer.\r\n        *   If `--attribute-co-authored-by=False`:\r\n            *   The trailer is *not* added.\r\n            *   Author/Committer names *are* modified by default (or based on explicit `--attribute-author=False`/`--attribute-committer=False`).\r\n    *   For user edits (`aider_edits=False`), `--attribute-co-authored-by` is ignored, and attribution follows the existing rules for `--attribute-committer`.\r\n*   Adds the `--attribute-co-authored-by` argument definition and help text to `aider/args.py`.\r\n*   Adds/updates tests in `tests/basic/test_repo.py` to cover the new flag and its interactions with existing attribution flags (`test_commit_with_co_authored_by`, `test_commit_co_authored_by_with_explicit_name_modification`, etc.).\r\n\r\n**Resolves:** #3788\r\n\r\nCo-authored-by: aider (vertex_ai/gemini-2.5-pro-exp-03-25) <noreply@aider.chat>",
+    "author": "ei-grad",
+    "merged_at": "2025-05-07T23:54:46+00:00",
+    "created_at": "2025-04-12T17:14:33+00:00",
+    "files": [
+      "aider/args.py",
+      "aider/coders/base_coder.py",
+      "aider/main.py",
+      "aider/repo.py",
+      "tests/basic/test_repo.py"
+    ],
+    "additions": 353,
+    "deletions": 56,
+    "ticket_ids": [
+      "#3788",
+      "AI-GENERATED"
+    ],
+    "merge_commit_sha": "c6954f9972643c97ffa708bc733b577ce6a58937",
+    "pr_number": 3789,
+    "ci_status": "failed",
+    "reviews": [
+      {
+        "reviewer": "ei-grad",
+        "state": "commented",
+        "submitted_at": "2025-04-12T17:32:22+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "ei-grad",
+        "state": "commented",
+        "submitted_at": "2025-04-12T17:52:01+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "ei-grad",
+        "state": "commented",
+        "submitted_at": "2025-04-17T23:40:53+00:00",
+        "is_bot": false,
+        "body": "Optionally(?) https://github.com/Aider-AI/aider/blob/main/scripts/blame.py should be updated to handle Co-authored-by properly."
+      }
+    ],
+    "commits": [
+      {
+        "message": "feat: add co-authored-by commit attribution",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "test: add tests for co-authored-by commit attribution",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "test: fix mock setup for model name in co-authored-by test",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "test: fix mock model name setup in co-authored-by test",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "test: fix mock setup for co-authored-by commit test",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "feat: implement Co-authored-by attribution option",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "fix: fix syntax error in commit logic",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "chore: Add test comment to dump function",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "chore: Add test comment",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "feat: add attribute-co-authored-by option for commit attribution",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "test: Temporarily disable co-author attribution to verify test failure",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "test: intentionally break co-authored-by logic",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "chore: revert intentional break introduced for testing",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "chore: Add test comment",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "fix: prevent name modification when using co-authored-by",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "test: add comment for testing",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "fix: Pass attribute_co_authored_by arg to GitRepo constructor",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "chore: add test comment to dump function",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "chore: add debug prints for attribute_co_authored_by",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "chore: add another test comment to prompts",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "chore: add third test comment\n\nCo-authored-by: aider (vertex_ai/gemini-2.5-pro-exp-03-25) <noreply@aider.dev>",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Revert \"chore: add third test comment\"\n\nThis reverts commit 316d8f8e9bf919fa431cda7250ea33d4f5b230bd.",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Revert \"chore: add another test comment to prompts\"\n\nThis reverts commit 15d623f2c085478e43ceafda98dffefcc44eec7d.",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Revert \"chore: add debug prints for attribute_co_authored_by\"\n\nThis reverts commit d1437b76665a4e4f51d6ea21200a0b817e6157c3.",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Revert \"chore: add test comment to dump function\"\n\nThis reverts commit ff8e9850ba2dd61a5ff1cc6f5b2cb30d0469082e.",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Revert \"test: add comment for testing\"\n\nThis reverts commit 072bd30443ce0b3bb8cb7df2f9550446b4edb240.",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Revert \"chore: Add test comment\"\n\nThis reverts commit d5671c2879c85f581bd504a962e8b54b6567c776.",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Revert \"chore: Add test comment\"\n\nThis reverts commit 482e0c2d0b5cdfe60281f13bab2ead4aa540e9e6.",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Revert \"chore: Add test comment to dump function\"\n\nThis reverts commit e9511643998d4868bc261b3ec0479e6a2a362b3a.",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "refactor: simplify commit logic and use context manager for git env\n\nCo-authored-by: aider (vertex_ai/gemini-2.5-pro-exp-03-25) <noreply@aider.dev>",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "test: add test for co-authored-by precedence over author/committer\n\nCo-authored-by: aider (vertex_ai/gemini-2.5-pro-exp-03-25) <noreply@aider.dev>",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "feat: Explicit author/committer flags override co-authored-by\n\nCo-authored-by: aider (vertex_ai/gemini-2.5-pro-exp-03-25) <noreply@aider.dev>",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "docs: clarify commit author/committer/co-authored-by logic\n\nCo-authored-by: aider (vertex_ai/gemini-2.5-pro-exp-03-25) <noreply@aider.dev>",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "test: Assert commit return value in more tests\n\nCo-authored-by: aider (vertex_ai/gemini-2.0-flash-lite-001) <noreply@aider.dev>",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "test: Fix commit result assertion in test_noop_commit",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "test: cover user commit with no committer attribution\n\nCo-authored-by: aider (vertex_ai/gemini-2.5-pro-exp-03-25) <noreply@aider.dev>",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "test: add tests for commit author/committer attribution logic\n\nCo-authored-by: aider (vertex_ai/gemini-2.5-pro-exp-03-25) <noreply@aider.dev>",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "test: remove redundant commit attribution tests\n\nCo-authored-by: aider (vertex_ai/gemini-2.5-pro-exp-03-25) <noreply@aider.dev>",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "test: remove redundant co-authored-by precedence test\n\nCo-authored-by: aider (vertex_ai/gemini-2.5-pro-exp-03-25) <noreply@aider.dev>",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "test: improve test clarity with skipIf and assertion messages\n\nCo-authored-by: aider (vertex_ai/gemini-2.5-pro-exp-03-25) <noreply@aider.dev>",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "docs: clarify --attribute-co-authored-by precedence",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "chore: remove unnecessary comment in repo.py\n\nCo-authored-by: aider (vertex_ai/gemini-2.5-pro-exp-03-25) <noreply@aider.dev>",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "refactor: Simplify access to attribute_co_authored_by\n\nCo-authored-by: aider (vertex_ai/gemini-2.5-pro-exp-03-25) <noreply@aider.dev>",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "fix: update co-authored-by domain to aider.chat\n\nCo-authored-by: aider (vertex_ai/gemini-2.5-pro-exp-03-25) <noreply@aider.dev>",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 44,
+    "last_edited_at": "2025-04-14T15:28:39+00:00",
+    "total_comments_count": 9
+  },
+  {
+    "id": "3733",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "fix: follow conventional commits examples by going all lowercase",
+    "body": "Super tiny change, but I recently tried out Aider and I love it. However, when it auto generates commit messages it does so with capital letters, which does not follow any of the examples provided by the [specification](https://www.conventionalcommits.org/en/v1.0.0/#specification). All of them are completely in lowercase.\r\n\r\nEven though the casing does not matter that much (and according to the specification, it is not a must), I would love to be able to stay as close as possible to the actual examples provided whenever I use Aider.\r\n\r\nI basically just updated the prompt by removing capital letters in the example, and adding a new line stating it should always be lowercase. \r\n\r\nIf this is not viable, a flag perhaps is the better way if you still want it to be \"backwards\" compatible. Something like `--lowercase-commits` or similar. ",
+    "author": "banjo",
+    "merged_at": "2025-04-05T19:28:56+00:00",
+    "created_at": "2025-04-05T11:09:13+00:00",
+    "files": [
+      "aider/prompts.py"
+    ],
+    "additions": 2,
+    "deletions": 1,
+    "ticket_ids": [],
+    "merge_commit_sha": "9445a3118b0c76c1148c52f6c94f35141aa2a404",
+    "pr_number": 3733,
+    "ci_status": "passed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "fix: follow conventional commits examples by going all lowercase",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 4
+  },
+  {
+    "id": "3752",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "Update Azure Documentation",
+    "body": "I ran into some issues getting aider to work with models hosted on Azure and wanted to update the documentation to make things a little more clear for anyone else going down the same route.",
+    "author": "tylersatre",
+    "merged_at": "2025-04-07T18:31:41+00:00",
+    "created_at": "2025-04-07T15:06:18+00:00",
+    "files": [
+      "aider/website/assets/azure-deployment.png",
+      "aider/website/docs/llms/azure.md"
+    ],
+    "additions": 9,
+    "deletions": 3,
+    "ticket_ids": [],
+    "merge_commit_sha": "dc2d7b1dfe76b46a371e897aff76c3af76c73dd0",
+    "pr_number": 3752,
+    "ci_status": "passed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "Update azure documentation",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 1
+  },
+  {
+    "id": "3764",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "Optimize head\u2011truncation loop in summarize_real()",
+    "body": "The update in history.py (summarize_real) includes = >\r\n1. Eliminate list reversals and streamline token summation\r\n2. Refactor head slicing: iterate directly over sized_head for speed\r\n3. Improve performance of message splitting by removing unnecessary reversals.\r\n\r\nI think it will make it bit faster as per my exp..",
+    "author": "jayeshthk",
+    "merged_at": "2025-06-25T18:51:08+00:00",
+    "created_at": "2025-04-09T21:02:48+00:00",
+    "files": [
+      "aider/history.py"
+    ],
+    "additions": 18,
+    "deletions": 17,
+    "ticket_ids": [],
+    "merge_commit_sha": "63c92771f23cf6c51a139d4b22c98e0de3053e78",
+    "pr_number": 3764,
+    "ci_status": "failed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "Optimize head\u2011truncation loop in `summarize_real`",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Merge branch 'Aider-AI:main' into main",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 2,
+    "last_edited_at": null,
+    "total_comments_count": 1
+  },
+  {
+    "id": "4307",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "Remove extra duplicated line in default commit instructions",
+    "body": "",
+    "author": "o-nix",
+    "merged_at": "2025-07-04T19:47:06+00:00",
+    "created_at": "2025-07-04T19:04:20+00:00",
+    "files": [
+      "aider/prompts.py"
+    ],
+    "additions": 0,
+    "deletions": 3,
+    "ticket_ids": [],
+    "merge_commit_sha": "096702430497cbaf6745c844ae18cc9ade986d88",
+    "pr_number": 4307,
+    "ci_status": "passed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "Remove extra duplicated line in default commit instructions",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 1
+  },
+  {
+    "id": "4300",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "fix: Remove existing model settings before adding new ones",
+    "body": "Fix #4298",
+    "author": "ei-grad",
+    "merged_at": "2025-07-01T14:12:13+00:00",
+    "created_at": "2025-07-01T08:58:26+00:00",
+    "files": [
+      "aider/models.py"
+    ],
+    "additions": 3,
+    "deletions": 5,
+    "ticket_ids": [
+      "#4298"
+    ],
+    "merge_commit_sha": "3db4d378eb75ce32379aaeb981c78a591e48c824",
+    "pr_number": 4300,
+    "ci_status": "passed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "fix: Remove existing model settings before adding new ones\n\nFix #4298\n\nCo-authored-by: aider (vertex_ai/gemini-2.5-pro) <aider@aider.chat>",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 1
+  },
+  {
+    "id": "4264",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "refactor: update HEAD regex to accept optional closing tag in search blocks",
+    "body": "Fixes https://github.com/Aider-AI/aider/issues/4227\r\n\r\nWhen working with HTML text, the network has a strong bias to go \"well, this is '<' followed by text, it's a tag! I should close it with '>'.\" Then the edit would be ignored.\r\n\r\nFixed by Sonnet. Thanks Sonnet!",
+    "author": "FeepingCreature",
+    "merged_at": "2025-06-25T17:57:36+00:00",
+    "created_at": "2025-06-24T08:22:09+00:00",
+    "files": [
+      "aider/coders/editblock_coder.py"
+    ],
+    "additions": 1,
+    "deletions": 1,
+    "ticket_ids": [],
+    "merge_commit_sha": "d022f4ac634c27b31764350b3daf792bb1360e96",
+    "pr_number": 4264,
+    "ci_status": "failed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "refactor: update HEAD regex to accept optional closing tag in search blocks\nWhen working with HTML text, the network has a strong bias to go \"well, this is '<' followed by text, it's a tag! I should close it with '>'.\" Then the edit would be ignored.",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": "2025-06-24T08:23:52+00:00",
+    "total_comments_count": 1
+  },
+  {
+    "id": "3870",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "feat: add configurable PostHog host and API key parameters",
+    "body": "Hi! \ud83d\udc4b\ud83c\udffb\r\n\r\nWould you consider adding configuration options to specify a custom PostHog project or a custom PostHog host?\r\n\r\nThis could be helpful for teams using aider within a company who want to monitor adoption and usage among engineers using their own PostHog setup.\r\n\r\nThanks for considering it!",
+    "author": "susliko",
+    "merged_at": "2025-06-25T18:47:18+00:00",
+    "created_at": "2025-04-23T12:48:24+00:00",
+    "files": [
+      "aider/analytics.py",
+      "aider/args.py",
+      "aider/main.py",
+      "aider/website/assets/sample.aider.conf.yml",
+      "aider/website/docs/more/analytics.md"
+    ],
+    "additions": 39,
+    "deletions": 4,
+    "ticket_ids": [],
+    "merge_commit_sha": "a0ffc5761c6c97c505c5708198d90cb8a5171266",
+    "pr_number": 3870,
+    "ci_status": "failed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "feat: add configurable PostHog host and API key parameters",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 3
+  },
+  {
+    "id": "4028",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "Add Clojure repomap queries",
+    "body": "Definitions: symbol name (without namespace) immediately following a `def` prefixed symbol\r\nReferences: symbol name (without namespace) found anywhere\r\n\r\nThe definitions is pretty good; using `def` prefix is a very standard Clojure pattern even for 3rd party macros.\r\n\r\nReferences is less than ideal, as it causes building the repo map to be a bit slow. The alternative would be to treat only symbols as the first entry in a `list_lit` as a reference. This works, but I've gotten better results allowing every symbol to contribute to the ranking of definitions.\r\n\r\nAlso added kebab-case as a condition to contribute a definition's ranking. It shouldn't impact most other languages, as `-` is typically unary operation and not allowed in idents.",
+    "author": "garrett-hopper",
+    "merged_at": "2025-06-25T18:36:53+00:00",
+    "created_at": "2025-05-15T17:47:49+00:00",
+    "files": [
+      "aider/queries/tree-sitter-language-pack/clojure-tags.scm",
+      "aider/repomap.py"
+    ],
+    "additions": 9,
+    "deletions": 1,
+    "ticket_ids": [],
+    "merge_commit_sha": "ba97c83be619714a540fdf26540c9da60b372330",
+    "pr_number": 4028,
+    "ci_status": "passed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "Add Clojure repomap queries",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 2
+  },
+  {
+    "id": "4271",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "fix: Auto-create parent directories for chat history files",
+    "body": "This is follow up to #4257\r\n\r\nThere was a missing check for input_history_file = None case",
+    "author": "contributor",
+    "merged_at": "2025-06-25T13:29:10+00:00",
+    "created_at": "2025-06-25T13:13:12+00:00",
+    "files": [
+      "aider/io.py"
+    ],
+    "additions": 2,
+    "deletions": 1,
+    "ticket_ids": [
+      "#4257"
+    ],
+    "merge_commit_sha": "856d94c1dcbb5e6cf08fc31fc7e7811c13b50adc",
+    "pr_number": 4271,
+    "ci_status": "passed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "fix: check for input_history_file none",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 0
+  },
+  {
+    "id": "4257",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "feat: Auto-create parent directories for chat history files",
+    "body": "Automatically create parent directories when writing to chat-history-file and input-history-file.  \r\n  \r\nPreviously, aider would fail to write history files if the parent directory didn't exist, showing errors like\r\n```\r\nWarning: Unable to write to chat history file .chat/.aider.chat.history.md.\r\n[Errno 2] No such file or directory: '.chat/.aider.chat.history.md'\r\n```\r\n\r\nThis change adds `parent.mkdir(parents=True, exist_ok=True)` before writing to both:  \r\n- `chat-history-file`\r\n- `input-history-file`\r\n  \r\nFixes the issue where users couldn't use paths like `.chat/aider.chat.history.md` in their configuration without first manually creating the `.chat` directory.  ",
+    "author": "contributor",
+    "merged_at": "2025-06-25T11:57:05+00:00",
+    "created_at": "2025-06-23T10:01:02+00:00",
+    "files": [
+      "aider/io.py"
+    ],
+    "additions": 2,
+    "deletions": 0,
+    "ticket_ids": [],
+    "merge_commit_sha": "d85078a610cbad69e8561060229aa8f35b4e1163",
+    "pr_number": 4257,
+    "ci_status": "passed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "feat: Auto-create parent directories for chat history files\n\nThis prevents aider startup errors like:\n```\nWarning: Unable to write to chat history file .chat/.aider.chat.history.md.\n[Errno 2] No such file or directory: '.chat/.aider.chat.history.md'\n```",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "feat: better place to create history file dirs (InputOutput ctr)\n\nthis decreases number of IO operations",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 2,
+    "last_edited_at": null,
+    "total_comments_count": 2
+  },
+  {
+    "id": "4268",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "add Gemini 2.5 non-preview Vertex models",
+    "body": "add missing Vertex Gemini 2.5 general available models",
+    "author": "therealmarv",
+    "merged_at": "2025-06-24T16:09:45+00:00",
+    "created_at": "2025-06-24T15:14:52+00:00",
+    "files": [
+      "aider/resources/model-metadata.json",
+      "aider/resources/model-settings.yml"
+    ],
+    "additions": 69,
+    "deletions": 0,
+    "ticket_ids": [],
+    "merge_commit_sha": "a785b0f46347f06909abeab65881c52e4625990c",
+    "pr_number": 4268,
+    "ci_status": "failed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "add Gemini 2.5 non-preview Vertex models",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 3
+  },
+  {
+    "id": "4269",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "fix: Resolve literal paths correctly in /read-only command",
+    "body": "Fixes: #4253 ",
+    "author": "iamFIREcracker",
+    "merged_at": "2025-06-24T19:34:14+00:00",
+    "created_at": "2025-06-24T19:01:49+00:00",
+    "files": [
+      "aider/commands.py",
+      "tests/basic/test_commands.py"
+    ],
+    "additions": 43,
+    "deletions": 5,
+    "ticket_ids": [
+      "#4253"
+    ],
+    "merge_commit_sha": "6a00d8ff5f1501486734515aabf914f73f67a8cf",
+    "pr_number": 4269,
+    "ci_status": "passed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "fix: Resolve literal paths correctly in /read-only command",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 1
+  },
+  {
+    "id": "4260",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "add MATLAB tags to enable repo map support",
+    "body": "### Description\r\n\r\nThis PR adds support for MATLAB repo maps. I added in `matlab-tags.scm` files, and added a test case for these changes.",
+    "author": "mtofano",
+    "merged_at": "2025-06-23T21:10:56+00:00",
+    "created_at": "2025-06-23T20:54:01+00:00",
+    "files": [
+      "aider/queries/tree-sitter-language-pack/matlab-tags.scm",
+      "aider/queries/tree-sitter-languages/matlab-tags.scm",
+      "tests/basic/test_repomap.py",
+      "tests/fixtures/languages/matlab/test.m"
+    ],
+    "additions": 65,
+    "deletions": 0,
+    "ticket_ids": [],
+    "merge_commit_sha": "f9fc2c6a448b45c1bd1bd01da010fc8422ec7c61",
+    "pr_number": 4260,
+    "ci_status": "passed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "add MATLAB tags to enable repo map support",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 3
+  },
+  {
+    "id": "4254",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "Support official model `openrouter/google/gemini-2.5-pro`",
+    "body": "### **PR Type**\nFeature\n\n___\n\n### **PR Description**\n- Added support for `openrouter/google/gemini-2.5-pro` model.\n  - Includes metadata configuration in `model-metadata.json`.\n  - Added model settings in `model-settings.yml`.\n",
+    "author": "KennyDizi",
+    "merged_at": "2025-06-20T12:34:18+00:00",
+    "created_at": "2025-06-20T10:06:08+00:00",
+    "files": [
+      "aider/resources/model-metadata.json",
+      "aider/resources/model-settings.yml"
+    ],
+    "additions": 44,
+    "deletions": 1,
+    "ticket_ids": [],
+    "merge_commit_sha": "9fdc6d4a444f221fbcd406a34b669f346b664fbf",
+    "pr_number": 4254,
+    "ci_status": "failed",
+    "reviews": [
+      {
+        "reviewer": "jdanbrown",
+        "state": "commented",
+        "submitted_at": "2025-06-20T18:23:46+00:00",
+        "is_bot": false,
+        "body": ""
+      }
+    ],
+    "commits": [
+      {
+        "message": "Support model `openrouter/google/gemini-2.5-pro` official",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Add meta data for `openrouter/google/gemini-2.5-pro`",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 2,
+    "last_edited_at": "2025-06-20T10:06:54+00:00",
+    "total_comments_count": 2
+  },
+  {
+    "id": "4242",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "Update gemini models in model-settings.yml",
+    "body": "1. Remove dead gemini models (they can't be accessed anymore)\r\n2. Add the new gemini 2.5 pro and flash settings (with `use_temperature: false`)\r\n\r\nI noticed that the settings for many gemini models don't have `use_temperature: false` which leads to requests being sent with `temperature=0`. This is especially detrimental for thinking models. I am not sure what's the policy on changing configs in-place so I haven't touched those.\r\n\r\nThe temperature thing is also one of the reason why `gemini-2.5-pro-preview-06-05 (32k think)` scores higher than `gemini-2.5-pro-preview-06-05 (default think)` because the [harness automatically sets it to False when thinking budget is specified](https://github.com/Aider-AI/aider/blob/f8855ebc5894e6ba3076645927e56f441d7ad1c3/aider/models.py#L801).",
+    "author": "nims11",
+    "merged_at": "2025-06-19T21:56:39+00:00",
+    "created_at": "2025-06-18T10:45:22+00:00",
+    "files": [
+      "aider/models.py",
+      "aider/resources/model-metadata.json",
+      "aider/resources/model-settings.yml"
+    ],
+    "additions": 73,
+    "deletions": 21,
+    "ticket_ids": [],
+    "merge_commit_sha": "3cb120e0a924f8276f121d95a77193e9c492befa",
+    "pr_number": 4242,
+    "ci_status": "failed",
+    "reviews": [
+      {
+        "reviewer": "Alexdelia",
+        "state": "approved",
+        "submitted_at": "2025-06-19T11:14:07+00:00",
+        "is_bot": false,
+        "body": "good change"
+      }
+    ],
+    "commits": [
+      {
+        "message": "Update gemini models in model-settings.yml",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Add gemini model metadata",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 2,
+    "last_edited_at": "2025-06-18T11:00:42+00:00",
+    "total_comments_count": 7
+  },
+  {
+    "id": "4228",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "[Feature] Resetting thinking tokens using \"0\"",
+    "body": "Once you run `/thinking-tokens 4k` inside chat, there was no way to reset it. With this PR, `/thinking-tokens 0` does that.",
+    "author": "maliayas",
+    "merged_at": "2025-06-15T23:52:39+00:00",
+    "created_at": "2025-06-15T22:19:49+00:00",
+    "files": [
+      "aider/args.py",
+      "aider/commands.py",
+      "aider/models.py",
+      "aider/website/assets/sample.aider.conf.yml",
+      "aider/website/docs/config/options.md",
+      "aider/website/docs/config/reasoning.md",
+      "aider/website/docs/usage/commands.md"
+    ],
+    "additions": 25,
+    "deletions": 11,
+    "ticket_ids": [],
+    "merge_commit_sha": "72c23800a9d09a72ea47cbf094263584ee269c47",
+    "pr_number": 4228,
+    "ci_status": "passed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "feat: add support for disabling thinking tokens with value 0",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 2
+  },
+  {
+    "id": "4236",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "doc: add correct path for github copilot token for windows users",
+    "body": "",
+    "author": "daniel-sc",
+    "merged_at": "2025-06-17T10:31:09+00:00",
+    "created_at": "2025-06-17T09:40:24+00:00",
+    "files": [
+      "aider/website/docs/llms/github.md"
+    ],
+    "additions": 6,
+    "deletions": 0,
+    "ticket_ids": [],
+    "merge_commit_sha": "f8855ebc5894e6ba3076645927e56f441d7ad1c3",
+    "pr_number": 4236,
+    "ci_status": "passed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "doc: add correct path for github copilot token for windows users",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 0
+  },
+  {
+    "id": "4156",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "fix: Always pass `extra_headers` to Copilot models",
+    "body": "As a few people mentioned in the #2227 issue, it is necessary to pass some `extra_headers` to Copilot with each request in order for it to work properly. Furthermore, without a specific `.aider.model.settings.yml`, the most recent patch #4092 that automatically refreshes the GH Copilot API Key does not work because it requires `extra_params` to be explicitly provided for a model; otherwise, the following error occurs:\r\n\r\n```\r\n  File \"~/code/stackbuilders/aider/aider/models.py\", line 892, in github_copilot_token_to_open_ai_key\r\n    \"Editor-Version\": self.extra_params[\"extra_headers\"][\"Editor-Version\"],\r\n                      ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\r\nTypeError: 'NoneType' object is not subscriptable\r\n```\r\n\r\nThis PR defines some default `extra_headers` for each model request, as well as the call to the Copilot API to refresh the token if no headers are explicitly defined in a configuration file.",
+    "author": "sestrella",
+    "merged_at": "2025-06-02T14:06:10+00:00",
+    "created_at": "2025-06-02T13:41:08+00:00",
+    "files": [
+      "aider/models.py"
+    ],
+    "additions": 11,
+    "deletions": 6,
+    "ticket_ids": [
+      "#2227",
+      "#4092"
+    ],
+    "merge_commit_sha": "fa0aa9459b06d0c5512ede05895ca13e7aedb568",
+    "pr_number": 4156,
+    "ci_status": "passed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "fix: Always pass `extra_headers` to Copilot models",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": "2025-06-02T13:52:28+00:00",
+    "total_comments_count": 4
+  },
+  {
+    "id": "4022",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "fix: Vertex AI model names use vertex_ai/ prefix",
+    "body": "Don't be confused with `llm_provider` which is `vertex_ai-language-models`\r\nhttps://github.com/BerriAI/litellm/blob/340a0453d33d980568402713f32238569de5fb30/litellm/__init__.py#L509\r\n\r\nFixes #4109",
+    "author": "ei-grad",
+    "merged_at": "2025-06-12T16:27:21+00:00",
+    "created_at": "2025-05-14T13:40:22+00:00",
+    "files": [
+      "aider/resources/model-settings.yml",
+      "aider/website/docs/config/adv-model-settings.md"
+    ],
+    "additions": 13,
+    "deletions": 12,
+    "ticket_ids": [
+      "#4109"
+    ],
+    "merge_commit_sha": "2df4beb6e975d1d45a4e9b50718543b0d73ab9b9",
+    "pr_number": 4022,
+    "ci_status": "passed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "fix: Vertex AI model names use vertex_ai/ prefix\n\nDon't be confused with `llm_provider` which is `vertex_ai-language-models`\nhttps://github.com/BerriAI/litellm/blob/340a0453d33d980568402713f32238569de5fb30/litellm/__init__.py#L509",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": "2025-06-12T15:46:55+00:00",
+    "total_comments_count": 2
+  },
+  {
+    "id": "4210",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "Add default model settings for o3-pro",
+    "body": "This small PR adds default settings identical to the `o3` settings to provide default support for the new `o3-pro` model, released on June 10.\r\n\r\nhttps://help.openai.com/en/articles/9624314-model-release-notes",
+    "author": "solatis",
+    "merged_at": "2025-06-11T02:28:54+00:00",
+    "created_at": "2025-06-11T01:57:03+00:00",
+    "files": [
+      "aider/resources/model-settings.yml"
+    ],
+    "additions": 56,
+    "deletions": 0,
+    "ticket_ids": [],
+    "merge_commit_sha": "17d40a62c931ac91fc9c31288310b37b62175c47",
+    "pr_number": 4210,
+    "ci_status": "passed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "Adds support for openai/o3-pro",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 3
+  },
+  {
+    "id": "4199",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "Skip expensive `get_tracked_files` call if `skip_sanity_check_repo` is true",
+    "body": "On a very large repo aider spends 8 seconds for each launch to just get the number of files ( `aider/main.py:925` on flamegraph). Put this check behind the existing flag `skip_sanity_check_repo`. One-liner change\r\n\r\n\r\nFlamegraph for reference:\r\n\r\n\r\n![aider_profile](https://github.com/user-attachments/assets/ba9e7113-4838-40cb-94ad-a8d068f27404)\r\n\r\n",
+    "author": "holoskii",
+    "merged_at": "2025-06-09T13:37:53+00:00",
+    "created_at": "2025-06-09T07:16:53+00:00",
+    "files": [
+      "aider/main.py"
+    ],
+    "additions": 2,
+    "deletions": 1,
+    "ticket_ids": [],
+    "merge_commit_sha": "3e07d068ad960e41b17b0be113d997f2b930d65d",
+    "pr_number": 4199,
+    "ci_status": "passed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "Skip expensive `get_tracked_files` call if `skip_sanity_check_repo` is true",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 1
+  },
+  {
+    "id": "4193",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "Let 'rich' use code_theme as inline_code_theme",
+    "body": "# Problem\r\nThe inline code snippets in the reply from AI models are formatted using some default theme. They are somewhat harder to read and are just ugly.\r\n<img width=\"262\" alt=\"image\" src=\"https://github.com/user-attachments/assets/d5d625f2-22c7-4727-a590-f32fa98b47ae\" />\r\n\r\n\r\n# Solution\r\n> Let the `inline_code_theme` as used in the `rich.markdown.Markdown`'s `__init__` have effect.\r\n\r\nBut if a `inline_code_lexer` is **not** passed to `rich.markdown.Markdown`, `inline_code_theme` is not being used to style inline code, as evident in the `__init__` of `rich.markdown.MarkdownContext`. But there's no reasonably easy way to determine the programming language of inline code snippets to be able to identify the lexer. This PR's solution is to utilize the lexer `text` as the value of the `inline_code_lexer` passed to `Markdown`. In this scenario \"rich\" uses `code_theme` as the fallback value for `inline_code_theme`",
+    "author": "tanavamsikrishna",
+    "merged_at": "2025-06-08T14:11:31+00:00",
+    "created_at": "2025-06-08T12:28:01+00:00",
+    "files": [
+      "aider/io.py"
+    ],
+    "additions": 5,
+    "deletions": 1,
+    "ticket_ids": [],
+    "merge_commit_sha": "8d48def24d45c443b02278bbe85ab03c7f867089",
+    "pr_number": 4193,
+    "ci_status": "passed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "Let 'rich' use code_theme as inline_code_theme",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": "2025-06-08T12:48:27+00:00",
+    "total_comments_count": 2
+  },
+  {
+    "id": "4182",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "fix: Correct Vertex AI model name prefixes in settings",
+    "body": "If I call `aider --model vertex_ai/gemini-2.5-pro-preview-05-06`, the default for the weak model is incorrect. It'll say print this error when making a commit message:\r\n\r\n```\r\nlitellm.BadRequestError: LLM Provider NOT provided. \r\nPass in the LLM provider you are trying to call. \r\nYou passed model=vertex_ai-language-models/gemini-2.5-flash-preview-04-17\r\n\r\nPass model as E.g. For 'Huggingface' inference endpoints pass in \r\n`completion(model='huggingface/starcoder',..)`\r\n\r\nLearn more: https://docs.litellm.ai/docs/providers\r\n ```\r\n\r\nI think this is the fix - it replaces `vertexai-language-models/` with `vertexai/` \r\n\r\n",
+    "author": "wietsevenema",
+    "merged_at": "2025-06-08T17:16:28+00:00",
+    "created_at": "2025-06-07T19:51:32+00:00",
+    "files": [
+      "aider/resources/model-settings.yml"
+    ],
+    "additions": 9,
+    "deletions": 9,
+    "ticket_ids": [],
+    "merge_commit_sha": "150711d7e02bbde375dcc3601d9b005251409569",
+    "pr_number": 4182,
+    "ci_status": "passed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "fix: Correct Vertex AI model name prefixes in settings",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 1
+  },
+  {
+    "id": "3609",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "feat: Add --add-gitignore-files flag",
+    "body": "# Changes\r\n- Fixed the file processing logic in base_coder.py to properly skip gitignored files when specified on the command line\r\n- Added a new --add-gitignore-files flag to control whether gitignored files should be included\r\n- Added tests for command line and /add command behavior\r\n\r\n# User Flow\r\n\r\n## Before\r\n$ echo \"ignored.txt\" > .gitignore\r\n$ touch ignored.txt\r\n$ aider ignored.txt\r\nSkipping /path/to/ignored.txt that matches gitignore spec.\r\nAdded ignored.txt to the chat. # Inconsistent behavior\r\n\r\n### But with /add:\r\n\\> /add ignored.txt\r\nCan't add ignored.txt which is in gitignore # Correct behavior\r\n\r\n## After\r\n$ echo \"ignored.txt\" > .gitignore\r\n$ touch ignored.txt\r\n$ aider ignored.txt\r\nSkipping /path/to/ignored.txt that matches gitignore spec. # File is properly skipped\r\n\r\n## With --add-gitignore-files flag\r\n\r\n$ aider --add-gitignore-files ignored.txt\r\nAdded ignored.txt to the chat.",
+    "author": "omarcinkonis",
+    "merged_at": "2025-06-07T12:16:45+00:00",
+    "created_at": "2025-03-22T23:18:09+00:00",
+    "files": [
+      "aider/args.py",
+      "aider/coders/base_coder.py",
+      "aider/commands.py",
+      "aider/main.py",
+      "aider/website/docs/config/options.md",
+      "tests/basic/test_main.py"
+    ],
+    "additions": 135,
+    "deletions": 2,
+    "ticket_ids": [],
+    "merge_commit_sha": "837b8a93e9561a274b09482d7d2a337ad0aa69b2",
+    "pr_number": 3609,
+    "ci_status": "passed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "feat: Add --add-gitignore-files flag",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 4
+  },
+  {
+    "id": "4172",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "[Docs] VSCode Copilot no longer writes out tokens",
+    "body": "When I login with the VSCode Copilot extension, I can't find the `.json` files containing GitHub/Copilot oauth tokens anymore, so I've removed that suggestion from the docs.",
+    "author": "jesstelford",
+    "merged_at": "2025-06-05T14:51:45+00:00",
+    "created_at": "2025-06-05T06:56:42+00:00",
+    "files": [
+      "aider/website/docs/llms/github.md"
+    ],
+    "additions": 1,
+    "deletions": 1,
+    "ticket_ids": [],
+    "merge_commit_sha": "836aaece4f251e522dc4b32629cdad1a3ee97eb1",
+    "pr_number": 4172,
+    "ci_status": "passed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "VSCode Copilot no longer writes out tokens",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 0
+  },
+  {
+    "id": "4163",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "feat: validation and errors for copilot requests",
+    "body": "A simple QoL enhancement to make it easier to figure out what is going wrong when using copilot tokens. Without this change you'll just be presented with generic errors, such as the token not existing in the response, which is misleading.\r\n\r\nPretty basic changes here, so if you want anything tweaked just let me know \ud83d\udc4d\ud83c\udffc ",
+    "author": "vinnymac",
+    "merged_at": "2025-06-03T16:22:52+00:00",
+    "created_at": "2025-06-03T15:54:56+00:00",
+    "files": [
+      "aider/models.py"
+    ],
+    "additions": 32,
+    "deletions": 2,
+    "ticket_ids": [],
+    "merge_commit_sha": "b9a9b4cf616ecbcccc179bb90d7492a52f542f4e",
+    "pr_number": 4163,
+    "ci_status": "passed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "feat: validation and errors for copilot requests",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 2
+  },
+  {
+    "id": "4161",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "Use system prompt prefix for commit messages",
+    "body": "I've been using Qwen3 with reasoning disabled via a /no_think in the system prompt prefix. I found that the commit message generation was ignoring this setting. This change updates the commit message generation loop to incorporate that setting if defined.",
+    "author": "lreeves",
+    "merged_at": "2025-06-03T15:13:57+00:00",
+    "created_at": "2025-06-03T14:30:20+00:00",
+    "files": [
+      "aider/repo.py",
+      "tests/basic/test_repo.py"
+    ],
+    "additions": 44,
+    "deletions": 5,
+    "ticket_ids": [],
+    "merge_commit_sha": "7897d027d4fd4c2d87e0bd7a3f8d809819ec0bc2",
+    "pr_number": 4161,
+    "ci_status": "passed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "Use system prompt prefix for commit messages\n\nI've been using Qwen3 with reasoning disabled via a /no_think in the\nsystem prompt prefix. I found that the commit message generation was\nignoring this setting. This change updates the commit message generation\nloop to incorporate that setting if defined.",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": "2025-06-03T14:30:55+00:00",
+    "total_comments_count": 2
+  },
+  {
+    "id": "4057",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "fix: display marker on error",
+    "body": "# PR Summary\r\nThis small PR evaluates and displays the marker in the error message.",
+    "author": "emmanuel-ferdman",
+    "merged_at": "2025-06-02T21:03:17+00:00",
+    "created_at": "2025-05-22T00:16:14+00:00",
+    "files": [
+      "aider/coders/search_replace.py"
+    ],
+    "additions": 1,
+    "deletions": 1,
+    "ticket_ids": [],
+    "merge_commit_sha": "295122fc971127322846e2357ac3321e370cc71c",
+    "pr_number": 4057,
+    "ci_status": "passed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "fix: display marker on error\n\nSigned-off-by: Emmanuel Ferdman <emmanuelferdman@gmail.com>",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 0
+  },
+  {
+    "id": "4150",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "Fix issues on repositories with non-Unicode encodings",
+    "body": "Fix two issues, which prevents aider from using on repositories with single-byte encodings:\r\n\r\n1. Fix inability to use `--llm-history-file` option when non-Unicode encoding is set by `--encoding`. Before this fix any action in aider with this options results in following error:\r\n```\r\nTraceback (most recent call last):\r\n  File \"C:\\Users\\Vitya\\AppData\\Roaming\\uv\\tools\\aider-chat\\Lib\\site-packages\\aider\\coders\\base_coder.py\", line 1454, in\r\nsend_message\r\n    yield from self.send(messages, functions=self.functions)\r\n  File \"C:\\Users\\Vitya\\AppData\\Roaming\\uv\\tools\\aider-chat\\Lib\\site-packages\\aider\\coders\\base_coder.py\", line 1788, in\r\nsend\r\n    self.io.log_llm_history(\"TO LLM\", format_messages(messages))\r\n  File \"C:\\Users\\Vitya\\AppData\\Roaming\\uv\\tools\\aider-chat\\Lib\\site-packages\\aider\\io.py\", line 754, in log_llm_history\r\n    log_file.write(content + \"\\n\")\r\n  File \"C:\\Program Files\\Python312\\Lib\\encodings\\cp1251.py\", line 19, in encode\r\n    return codecs.charmap_encode(input,self.errors,encoding_table)[0]\r\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nUnicodeEncodeError: 'charmap' codec can't encode character '\\u22ee' in position 8769: character maps to <undefined>\r\n```\r\nThe symbol \u22ee (\\u22ee) is used by aider to mark skipped lines in repo map. So to fix this bug I have made utf-8 encoding to be always used for `.aider.llm.history` log regardless of `--encoding` option.\r\n\r\n2. Fix impossibility to generating commit message if changed lines (or diff context lines) contain non-UTF-8 symbols (non-ASCII symbols in single-byte encoding). I have seen this bug with Ollama models, but most likely the problem arises with most of other models. In this case error message looks like:\r\n```\r\nlitellm.APIConnectionError: 'utf-8' codec can't encode characters in position 3618-3626: surrogates not allowed\r\nTraceback (most recent call last):\r\n  File \"C:\\Users\\user\\AppData\\Roaming\\uv\\tools\\aider-chat\\Lib\\site-packages\\litellm\\main.py\", line 2937, in completion\r\n    generator = ollama_chat.get_ollama_response(\r\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n  File \"C:\\Users\\user\\AppData\\Roaming\\uv\\tools\\aider-chat\\Lib\\site-packages\\litellm\\llms\\ollama_chat.py\", line 313, in get_ollama_response\r\n    response = sync_client.post(\r\n               ^^^^^^^^^^^^^^^^^\r\n  File \"C:\\Users\\user\\AppData\\Roaming\\uv\\tools\\aider-chat\\Lib\\site-packages\\litellm\\llms\\custom_httpx\\http_handler.py\", line 578, in post\r\n    raise e\r\n  File \"C:\\Users\\user\\AppData\\Roaming\\uv\\tools\\aider-chat\\Lib\\site-packages\\litellm\\llms\\custom_httpx\\http_handler.py\", line 554, in post\r\n    req = self.client.build_request(\r\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n  File \"C:\\Users\\user\\AppData\\Roaming\\uv\\tools\\aider-chat\\Lib\\site-packages\\httpx\\_client.py\", line 378, in build_request\r\n    return Request(\r\n           ^^^^^^^^\r\n  File \"C:\\Users\\user\\AppData\\Roaming\\uv\\tools\\aider-chat\\Lib\\site-packages\\httpx\\_models.py\", line 408, in __init__\r\n    headers, stream = encode_request(\r\n                      ^^^^^^^^^^^^^^^\r\n  File \"C:\\Users\\user\\AppData\\Roaming\\uv\\tools\\aider-chat\\Lib\\site-packages\\httpx\\_content.py\", line 216, in encode_request\r\n    return encode_json(json)\r\n           ^^^^^^^^^^^^^^^^^\r\n  File \"C:\\Users\\user\\AppData\\Roaming\\uv\\tools\\aider-chat\\Lib\\site-packages\\httpx\\_content.py\", line 179, in encode_json\r\n    ).encode(\"utf-8\")\r\n      ^^^^^^^^^^^^^^^\r\nUnicodeEncodeError: 'utf-8' codec can't encode characters in position 3618-3626: surrogates not allowed\r\n\r\nRetrying in 0.2 seconds...\r\n```\r\nThe problem was arised from using wrong encoding settings in parsing of git diff command output: it use default encoding for filenames (which is `utf-8` on most systems) instead of encoding set by `--encoding` option, In addtion to wrong encoding,  PythonGit also have used `surrogateescape` error handling mode which produce wrong Unicode surrogates, that cannot be converted to UTF-8 when sending to models.",
+    "author": "muravvv",
+    "merged_at": "2025-06-01T19:46:17+00:00",
+    "created_at": "2025-06-01T19:41:52+00:00",
+    "files": [
+      "aider/io.py",
+      "aider/repo.py",
+      "tests/basic/test_repo.py"
+    ],
+    "additions": 35,
+    "deletions": 5,
+    "ticket_ids": [
+      "UTF-8"
+    ],
+    "merge_commit_sha": "3266eaca91425f5d8b1ce4f1f539ca55552ec532",
+    "pr_number": 4150,
+    "ci_status": "passed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "set fixed utf-8 encoding for llm history log",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "add missing encoding conversion for diff contents",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 2,
+    "last_edited_at": "2025-06-01T19:44:22+00:00",
+    "total_comments_count": 2
+  },
+  {
+    "id": "4146",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "Add --commit-language option to configure commit message language",
+    "body": "This PR adds a new `--commit-language` option that allows users to specify a different language for commit messages, separate from the chat language. This addresses issue #4049 where users wanted the ability to configure commit message language independently.\r\n\r\n## Related issues\r\n- #4049\r\n- #3987\r\n- #4008 ",
+    "author": "ktakayama",
+    "merged_at": "2025-06-01T12:20:22+00:00",
+    "created_at": "2025-06-01T10:33:35+00:00",
+    "files": [
+      "aider/args.py",
+      "aider/coders/base_coder.py",
+      "aider/main.py",
+      "aider/repo.py",
+      "aider/website/assets/sample.aider.conf.yml",
+      "aider/website/docs/config/aider_conf.md",
+      "aider/website/docs/config/options.md",
+      "tests/basic/test_main.py"
+    ],
+    "additions": 34,
+    "deletions": 2,
+    "ticket_ids": [
+      "#3987",
+      "#4008",
+      "#4049"
+    ],
+    "merge_commit_sha": "484b8a3603910caab331a46df6fd39e81d8fd8ee",
+    "pr_number": 4146,
+    "ci_status": "passed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "feat: add commit language option for commit message localization",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "docs: add commit-language option to config and documentation files",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "test: add test for commit-language option",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 3,
+    "last_edited_at": "2025-06-01T10:34:52+00:00",
+    "total_comments_count": 2
+  },
+  {
+    "id": "4114",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "increase context window of Deepseek V3 to new OpenRouter limits",
+    "body": "The new limits should be good to go for most servers:\r\n\r\nhttps://openrouter.ai/deepseek/deepseek-chat-v3-0324",
+    "author": "therealmarv",
+    "merged_at": "2025-05-27T20:33:42+00:00",
+    "created_at": "2025-05-27T20:03:54+00:00",
+    "files": [
+      "aider/resources/model-metadata.json"
+    ],
+    "additions": 1,
+    "deletions": 1,
+    "ticket_ids": [],
+    "merge_commit_sha": "119a44debe0465ea72d6e90001dcc74b93c5a0b1",
+    "pr_number": 4114,
+    "ci_status": "passed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "increase context window of Deepseek V3 to new OpenRouter limits",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "reduce output tokens again",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 2,
+    "last_edited_at": "2025-05-27T20:19:40+00:00",
+    "total_comments_count": 0
+  },
+  {
+    "id": "4092",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "Refresh Github's open api key automatically",
+    "body": "",
+    "author": "noitcudni",
+    "merged_at": "2025-05-26T17:43:53+00:00",
+    "created_at": "2025-05-25T21:56:02+00:00",
+    "files": [
+      "aider/models.py"
+    ],
+    "additions": 23,
+    "deletions": 0,
+    "ticket_ids": [],
+    "merge_commit_sha": "ebaad9d865ffc0a414a96c1d834cb80c2b225c35",
+    "pr_number": 4092,
+    "ci_status": "failed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "Refresh Github's open api key automatically",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 2
+  },
+  {
+    "id": "4096",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "Change `max_tokens` to 32000 for `claude-opus-4-20250514` family model",
+    "body": "### **PR Type**\nEnhancement, Configuration\n\n___\n\n### **PR Description**\n- Reduced `max_tokens` for all `claude-opus-4-20250514` model variants to `32000`.\n\n- Updated settings in `aider/resources/model-settings.yml` for consistency.\n\n- Ensured all aliases and regional variants reflect the new token limit.\n\n- No changes to other model configurations or parameters.\n",
+    "author": "KennyDizi",
+    "merged_at": "2025-05-26T17:41:33+00:00",
+    "created_at": "2025-05-26T04:18:32+00:00",
+    "files": [
+      "aider/resources/model-settings.yml"
+    ],
+    "additions": 10,
+    "deletions": 10,
+    "ticket_ids": [],
+    "merge_commit_sha": "d922023815e1b58ae02fe39142462291d6618fff",
+    "pr_number": 4096,
+    "ci_status": "passed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "Change `max_tokens` to 32000 for `claude-sonnet-4-20250514` family model",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": "2025-05-26T04:19:13+00:00",
+    "total_comments_count": 7
+  },
+  {
+    "id": "4008",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "fix: Fix #3987 Pass the coder object to repo.commit",
+    "body": "fix #3987 ",
+    "author": "facelezzzz",
+    "merged_at": "2025-05-12T16:44:39+00:00",
+    "created_at": "2025-05-12T05:36:14+00:00",
+    "files": [
+      "aider/commands.py"
+    ],
+    "additions": 1,
+    "deletions": 1,
+    "ticket_ids": [
+      "#3987"
+    ],
+    "merge_commit_sha": "56b45ce1d3df101371de2a1bdd4bc8be93c8885e",
+    "pr_number": 4008,
+    "ci_status": "passed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "fix: Fix #3987 Pass the coder object to repo.commit",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 1
+  },
+  {
+    "id": "3993",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "feat: Enable file completion for all file-related arguments",
+    "body": "This commit enhances the command-line interface by enabling file path\r\ncompletion for various arguments that expect file paths. This is\r\nachieved by setting the `complete` attribute of these `argparse`\r\narguments to `shtab.FILE`.\r\n\r\nThis change improves the user experience by allowing users to\r\nleverage shell tab-completion for specifying files and directories,\r\nreducing typos and making it easier to locate files.\r\n\r\nThe following arguments now support file path completion:\r\n\r\n- Positional `files` argument\r\n- `--model-settings-file`\r\n- `--model-metadata-file`\r\n- `--input-history-file`\r\n- `--chat-history-file`\r\n- `--llm-history-file`\r\n- `--analytics-log`\r\n- `--message-file`\r\n- `--apply`\r\n- `--file` (appendable file argument)\r\n- `--read`\r\n- `--load`\r\n- `--config`\r\n- `--env-file`",
+    "author": "savioursho",
+    "merged_at": "2025-05-11T15:00:50+00:00",
+    "created_at": "2025-05-10T12:56:05+00:00",
+    "files": [
+      "aider/args.py"
+    ],
+    "additions": 14,
+    "deletions": 14,
+    "ticket_ids": [],
+    "merge_commit_sha": "ee177054b8b9009bb367f7513cb433b5f583a44a",
+    "pr_number": 3993,
+    "ci_status": "passed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "feat: Enable file completion for all file-related arguments",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Merge branch 'Aider-AI:main' into file-path-completion",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 2,
+    "last_edited_at": null,
+    "total_comments_count": 6
+  },
+  {
+    "id": "3823",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "ci: add pre-commit.yml for GitHub Actions",
+    "body": "I see that this repository has a pre-commit configuration - nice!\r\n\r\nSo I add `pre-commit.yml`) to automate the execution of pre-commit hooks on pull requests and pushes.\r\n\r\nApparently it is not really used as there are quite some suggested changes.\r\n\r\nBefore updating the pre-commit configuration, I want to know if you are ok with applying pre-commit.\r\nExclusions can be added on the configuration to avoid checking certain files.\r\nI can add the fixes/pre-commit configuration update to this PR or a separate one.\r\n",
+    "author": "mdeweerd",
+    "merged_at": "2025-05-08T22:09:16+00:00",
+    "created_at": "2025-04-16T15:04:03+00:00",
+    "files": [
+      ".github/workflows/pre-commit.yml",
+      "aider/coders/editblock_fenced_coder.py",
+      "aider/coders/help_coder.py",
+      "aider/linter.py",
+      "benchmark/refactor_tools.py",
+      "pyproject.toml",
+      "scripts/30k-image.py",
+      "scripts/dl_icons.py",
+      "scripts/redact-cast.py",
+      "tests/basic/test_watch.py"
+    ],
+    "additions": 56,
+    "deletions": 8,
+    "ticket_ids": [],
+    "merge_commit_sha": "2c1685bb366aa5a95d36d4ae72f756180b4af9e9",
+    "pr_number": 3823,
+    "ci_status": "passed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "ci: add pre-commit.yml for GitHub Actions\n\nThis commit adds a new GitHub Actions workflow configuration file (`pre-commit.yml`) to automate the execution of pre-commit hooks on pull requests and pushes.\n\nThe workflow includes steps to install dependencies, cache pre-commit hooks, run the hooks, convert logs to Checkstyle format, save the cache, and upload logs as artifacts.\n\nThis setup ensures that code quality checks are enforced consistently across the repository.",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "chore: update codespell skip patterns\n\nUpdate the `skip` patterns in the `pyproject.toml` file to exclude\n`tests/fixtures/*` and `aider/website/*`.",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "style(pre-commit): apply python style from pre-commit hooks",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "style: remove or ignore unused imports\n\nThe following files had unused imports removed:\n- `scripts/30k-image.py`\n- `scripts/dl_icons.py`\n- `scripts/redact-cast.py`",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "style(scripts): add flake8 noqa directive to 30k-image.py\n\nThis commit adds a flake8 directive to disable the E501 line length check for the 30k-image.py script.",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 5,
+    "last_edited_at": null,
+    "total_comments_count": 3
+  },
+  {
+    "id": "3983",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "Add Qwen3-235B-A22B-Q5_K_M to qwen3_leaderboard.yml",
+    "body": "",
+    "author": "KebobZ",
+    "merged_at": "2025-05-09T00:54:39+00:00",
+    "created_at": "2025-05-09T00:36:51+00:00",
+    "files": [
+      "aider/website/_data/qwen3_leaderboard.yml"
+    ],
+    "additions": 27,
+    "deletions": 1,
+    "ticket_ids": [],
+    "merge_commit_sha": "a26a3145ba628f594f73680c4f41639d5b4b1dd9",
+    "pr_number": 3983,
+    "ci_status": "passed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "Add Qwen3-235B-A22B-Q5_K_M to qwen3_leaderboard.yml",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 3
+  },
+  {
+    "id": "3982",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "refactor: Update OpenRouter Gemini 2.5 Pro Exp model ID",
+    "body": "Hello @paul-gauthier,\r\n\r\nThis PR removes the `:free` suffix from the `openrouter/google/gemini-2.5-pro-exp-03-25` model identifier in `aider/resources/model-settings.yml` and renames its corresponding entry in `aider/resources/model-metadata.json`.\r\n\r\nThis change aligns our configuration with OpenRouter's recent update, where they now alias the `:free` suffixed model ID to the standard, non-suffixed ID. Consequently, the model remains free to use via this standard ID, albeit subject to new, stricter rate limits.\r\n\r\nhttps://openrouter.ai/google/gemini-2.5-pro-exp-03-25",
+    "author": "cantalupo555",
+    "merged_at": "2025-05-09T00:53:44+00:00",
+    "created_at": "2025-05-08T23:39:17+00:00",
+    "files": [
+      "aider/resources/model-metadata.json",
+      "aider/resources/model-settings.yml"
+    ],
+    "additions": 2,
+    "deletions": 2,
+    "ticket_ids": [],
+    "merge_commit_sha": "055a3d795a5aed398168d808c2233e54a65d938f",
+    "pr_number": 3982,
+    "ci_status": "passed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "refactor: Update OpenRouter Gemini 2.5 Pro Exp model ID",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 1
+  },
+  {
+    "id": "3564",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "OpenRouter models parameters fetching directly from their website",
+    "body": "With this patch aider automatically supports all models available through openrouter. Also, it reports error if a model doesn't exist.",
+    "author": "shladnik",
+    "merged_at": "2025-05-08T01:23:02+00:00",
+    "created_at": "2025-03-17T21:47:51+00:00",
+    "files": [
+      "aider/models.py"
+    ],
+    "additions": 49,
+    "deletions": 0,
+    "ticket_ids": [],
+    "merge_commit_sha": "582da0ee445054c0eb340cd7fcf1ab0ca31d3635",
+    "pr_number": 3564,
+    "ci_status": "passed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "feat: Add method to fetch model info from openrouter pages",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "feat: Print parsed model parameters in fetch_openrouter_model_info() method",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "refactor: Remove BeautifulSoup dependency and use regex to strip HTML tags",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "fix: Improve print statement to include model name in parameters output",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "style: Remove unnecessary blank lines in ModelInfoManager class",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "feat: Update cost extraction to capture non-zero input/output costs",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "fix: Update return keys in fetch_openrouter_model_info() to match JSON metadata",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "fix: Adjust input and output cost calculations to use million scale",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "style: Update import location and add SSL verification in fetch_openrouter_model_info()",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "fix: Return empty dict if any required parameters are missing",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "feat: Add error handling for unavailable model in response text",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "fix: Allow arbitrary characters in model availability check regex",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "feat: Print error message in red for unavailable models",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "fix: Remove debug print statement from ModelInfoManager class",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "fix: Return empty dict instead of exiting on model availability error",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 15,
+    "last_edited_at": null,
+    "total_comments_count": 3
+  },
+  {
+    "id": "3679",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "feat: add repomap support for ocaml/ocaml_interface",
+    "body": "Adds repo map support for .ml and .mli\n\nThings I'm not sure about:\n\n1. Should we have same tags files in both `queries/tree-sitter-language-pack`\n   `queries/tree-sitter-languages`?\n\n2. I think we should be smarter and only use tags from .mli files if they are\n   present. E.g. if test.ml and test.mli are both present in the repo \u2014 get\n   atgs only from test.mli as this is the external interface of the `Test`\n   module.\n\nDepends on:\n- https://github.com/Goldziher/tree-sitter-language-pack/pull/25\n- https://github.com/Aider-AI/grep-ast/pull/19\n\n",
+    "author": "andreypopp",
+    "merged_at": "2025-05-08T00:29:47+00:00",
+    "created_at": "2025-03-30T18:13:10+00:00",
+    "files": [
+      "aider/queries/tree-sitter-language-pack/ocaml-tags.scm",
+      "aider/queries/tree-sitter-language-pack/ocaml_interface-tags.scm",
+      "aider/queries/tree-sitter-languages/ocaml_interface-tags.scm",
+      "tests/basic/test_repomap.py",
+      "tests/fixtures/languages/ocaml_interface/test.mli"
+    ],
+    "additions": 332,
+    "deletions": 2,
+    "ticket_ids": [],
+    "merge_commit_sha": "9990965e826a97a0ae7b83b29ec4ea992a98f55a",
+    "pr_number": 3679,
+    "ci_status": "passed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "feat: add repomap support for ocaml/ocaml_interface",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 3
+  },
+  {
+    "id": "3381",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "use playwright if available when invoking scraper via cli",
+    "body": "I just discovered aider (it looks great so far!) and while exploring the installation / configuration options I ran into a problem with the scraper where it wasn't picking up any content from our SPA.\r\n\r\nAfter some debugging of my playwright install I finally realized the sample command `python -m aider.scrape https://aider.chat/docs/usage/tips.html` I was referencing from [the docs ](https://aider.chat/docs/usage/images-urls.html#web-pages) would never utilize the playwright backend. This is an attempt to fix this behavior for the sample command in the docs and also for the experimental web GUI.",
+    "author": "jkeys089",
+    "merged_at": "2025-05-08T00:30:59+00:00",
+    "created_at": "2025-02-26T03:12:18+00:00",
+    "files": [
+      "aider/gui.py",
+      "aider/scrape.py"
+    ],
+    "additions": 14,
+    "deletions": 4,
+    "ticket_ids": [],
+    "merge_commit_sha": "af9fcdcfa8f85cef744aa2ee8e03e7a135c26319",
+    "pr_number": 3381,
+    "ci_status": "passed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "use playwright if available when invoking scraper via cli",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 1
+  },
+  {
+    "id": "3806",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "feat: Add --disable-playwright flag to prevent Playwright installation and prompts",
+    "body": "This PR introduces a new command-line argument `--disable-playwright` to address user requests for a way to prevent Aider from prompting for Playwright installation or attempting to use it for web scraping.\r\n\r\n**Problem:**\r\nUsers, particularly those running Aider in automated environments or on operating systems not supported by Playwright, found the repeated prompts to install Playwright disruptive (as reported in #3765). Even with `--yes-always`, the installation process could hang waiting for sudo passwords.\r\n\r\n**Solution:**\r\n- Added a `--disable-playwright` flag (defaulting to `False`).\r\n- When `--disable-playwright` is set to `True`, Aider will:\r\n    - Skip the check/prompt for Playwright installation within the `/web` command.\r\n    - Initialize the `Scraper` with `playwright_available=False`, ensuring it falls back to using `httpx` for scraping.\r\n- Added tests to verify the behavior of the flag and ensure no warnings are emitted when Playwright is explicitly disabled.\r\n\r\nThis change allows users to completely opt-out of Playwright functionality if desired.\r\n\r\nFixes #3765",
+    "author": "ei-grad",
+    "merged_at": "2025-05-08T00:26:00+00:00",
+    "created_at": "2025-04-14T23:13:19+00:00",
+    "files": [
+      "aider/args.py",
+      "aider/commands.py",
+      "tests/scrape/test_playwright_disable.py"
+    ],
+    "additions": 136,
+    "deletions": 4,
+    "ticket_ids": [
+      "#3765"
+    ],
+    "merge_commit_sha": "b2e3d47d14c5fa0c2f515668e9d8a98de5159e9a",
+    "pr_number": 3806,
+    "ci_status": "failed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "fix: add --disable-playwright option to suppress Playwright prompts and usage\n\nCo-authored-by: aider (openai/gpt-4.1) <noreply@aider.chat>",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": "2025-04-14T23:38:56+00:00",
+    "total_comments_count": 0
+  },
+  {
+    "id": "3869",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "Fix shlex.quote() use in linter on Windows",
+    "body": "Added windows specific test and fixed https://github.com/Aider-AI/aider/issues/3746 by replacing shlex with OS-independent https://github.com/petamas/oslex  ",
+    "author": "titusz",
+    "merged_at": "2025-05-07T23:23:53+00:00",
+    "created_at": "2025-04-23T12:44:18+00:00",
+    "files": [
+      "aider/linter.py",
+      "aider/utils.py",
+      "requirements.txt",
+      "requirements/requirements.in",
+      "tests/basic/test_linter.py"
+    ],
+    "additions": 24,
+    "deletions": 8,
+    "ticket_ids": [
+      "OS-INDEPENDENT"
+    ],
+    "merge_commit_sha": "cbaaf96324aaad57be94066532d7dc038c28d788",
+    "pr_number": 3869,
+    "ci_status": "passed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "fix: remove branch filter from Windows tests workflow",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Add test to reproduce linting failure on windows",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Replace shlex with cross-platform oslex",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Replace shlex with cross-platform oslex - fixes Aider-AI/aider#3746",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Merge branch 'main' into fix/shlex",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Merge branch 'main' into fix/shlex",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 6,
+    "last_edited_at": null,
+    "total_comments_count": 1
+  },
+  {
+    "id": "3931",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "docs: update lint/test pre-commit shell script example to use \"$@\" for proper argument handling",
+    "body": "This makes the example script more safely handle file paths. See https://www.shellcheck.net/wiki/SC2086.",
+    "author": "elohmeier",
+    "merged_at": "2025-05-02T14:21:29+00:00",
+    "created_at": "2025-05-02T03:49:19+00:00",
+    "files": [
+      "aider/website/docs/usage/lint-test.md"
+    ],
+    "additions": 2,
+    "deletions": 2,
+    "ticket_ids": [],
+    "merge_commit_sha": "5e7ef6c50e58aab3c10c6b26cd38595da3e5a323",
+    "pr_number": 3931,
+    "ci_status": "passed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "docs: update lint/test pre-commit shell script example to use \"$@\" for proper argument handling",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 0
+  },
+  {
+    "id": "3930",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "Show dates on \"Release history\" chart",
+    "body": "![Screenshot_20250502_044049](https://github.com/user-attachments/assets/4d22499f-cd46-46ff-95ee-b22d19081742)\r\n\r\nI was always curious when the inflection near release v0.45 happened.\r\nThus, I added dates.\r\n\r\nIt's the first time I send a PR, thus I agree to [Individual Contributor License Agreement](https://aider.chat/docs/legal/contributor-agreement.html).",
+    "author": "erykwieliczko",
+    "merged_at": "2025-05-02T03:03:17+00:00",
+    "created_at": "2025-05-02T02:46:08+00:00",
+    "files": [
+      "aider/website/_includes/blame.md"
+    ],
+    "additions": 5,
+    "deletions": 1,
+    "ticket_ids": [],
+    "merge_commit_sha": "f00c1bf61b1d30d9c6521439cc5a59712803c18b",
+    "pr_number": 3930,
+    "ci_status": "passed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "Show dates on \"Release history\" chart",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 0
+  },
+  {
+    "id": "3898",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "fix: add suffix \"md\" when opening editor in InputOutput class",
+    "body": "First of all, thanks a lot for Aider \u2014 it's an amazing tool and has been super helpful!\r\n\r\n## What\r\nWhen using `C-x C-e` to edit the current input in an external editor, the temp file didn't have a suffix.\r\nNow it sets `suffix=\"md\"` when calling `pipe_editor`, so editors like vim can pick up Markdown syntax highlighting.\r\n\r\n## Why\r\nEditing without a file suffix makes it harder for editors to guess the right language mode.\r\nAdding `.md` improves the editing experience.\r\n\r\nAlso, the `/editor` command already uses a `.md` suffix \u2014 this change brings `C-x C-e` in line with that.\r\n\r\n## Impact\r\n- Only affects the temp file name when opening the editor\r\n- Better UX for editing Markdown\r\n- Consistent behavior between `C-x C-e` and `/editor`\r\n",
+    "author": "acro5piano",
+    "merged_at": "2025-04-27T13:59:11+00:00",
+    "created_at": "2025-04-27T07:13:29+00:00",
+    "files": [
+      "aider/io.py"
+    ],
+    "additions": 1,
+    "deletions": 1,
+    "ticket_ids": [],
+    "merge_commit_sha": "7d185bb710927609e060c1e691d9ce231dcafdb5",
+    "pr_number": 3898,
+    "ci_status": "failed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "fix: add suffix \"md\" when opening editor in InputOutput class",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 1
+  },
+  {
+    "id": "3828",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "fix: correctly detect edit blocks in diff-fenced mode",
+    "body": "Fixed these issues:\r\n[3785](https://github.com/Aider-AI/aider/issues/3785)\r\n[3811](https://github.com/Aider-AI/aider/issues/3811)\r\n[3793](https://github.com/Aider-AI/aider/issues/3793)\r\n\r\nThe root of the problem was that the match for `<<<<<<< SEARCH` only matched the line below \\`\\`\\`. However, diff-fenced is two lines below \\`\\`\\`. Therefore, by matching one more line, it solves the issue of edits being incorrectly identified as commands.",
+    "author": "zjy1412",
+    "merged_at": "2025-04-19T17:03:32+00:00",
+    "created_at": "2025-04-17T06:36:17+00:00",
+    "files": [
+      "aider/coders/editblock_coder.py",
+      "tests/basic/test_editblock.py"
+    ],
+    "additions": 67,
+    "deletions": 1,
+    "ticket_ids": [],
+    "merge_commit_sha": "f1caab9de0478ac0fd56193e69fb372c50b467ad",
+    "pr_number": 3828,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "bramburn",
+        "state": "approved",
+        "submitted_at": "2025-04-18T19:10:01+00:00",
+        "is_bot": false,
+        "body": ""
+      }
+    ],
+    "commits": [
+      {
+        "message": "fix: correctly detect edit blocks in diff-fenced mode",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Added two test cases",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 2,
+    "last_edited_at": null,
+    "total_comments_count": 3
+  },
+  {
+    "id": "3831",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "docs: update editor usage instructions in multi-line guide",
+    "body": "I've just discovered that as I can in my bash (as I configured in .bashrc) press ctrl+x ctrl+e to edit in `$EDITOR`  command line(s) before execution, that it also works in Aider! So I do not have to come back to beginning of prompt and add `/editor` anymore! (what is especially annoying in multi line `{` mode etc...) . It's life changer ! :) So IMHO should be communicated somehow in documentation to people that this also works in Aider prompt!\r\n\r\n---\r\n\r\n* Added keybinding `Ctrl-X Ctrl-E` for invoking editor via terminal compatibility.\r\n* Enhances user ergonomics for terminals supporting this shortcut, streamlining workflow.\r\n* Maintains reference to editor configuration documentation.",
+    "author": "gwpl",
+    "merged_at": "2025-04-17T18:46:57+00:00",
+    "created_at": "2025-04-17T18:45:26+00:00",
+    "files": [
+      "aider/website/_includes/multi-line.md"
+    ],
+    "additions": 1,
+    "deletions": 1,
+    "ticket_ids": [],
+    "merge_commit_sha": "4f8bd2e06de02588b4bab31a64b590d8521b5342",
+    "pr_number": 3831,
+    "ci_status": "passed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "docs: update editor usage instructions in multi-line guide\n\n* Added keybinding `Ctrl-X Ctrl-E` for invoking editor via terminal compatibility.\n* Enhances user ergonomics for terminals supporting this shortcut, streamlining workflow.\n* Maintains reference to editor configuration documentation.",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 0
+  },
+  {
+    "id": "3776",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "Do not lowercase the _entirety_ of the commit message",
+    "body": "The recent prompt change has unintended consequences:\r\n\r\n- 1. Using the word `entirety` has strong consequences for the commit message, see example where `class Scraper` was written as `scraper` (extrapolate to any other term / entity that Aider may change in the future)\r\n- 2. Conventional commits themselves do not use everything as lowercase, see: [Conventional Commits commit history](https://github.com/conventional-commits/conventionalcommits.org/commits/master/)\r\n\r\nFolks can use [`--commit-prompt`](https://aider.chat/docs/config/options.html#--commit-prompt-prompt) to adjust to their liking. _I just think this recent change will break the default for most folks._\r\n\r\nExample where the latest commit message fails:\r\n\r\nWhat is should be (capitalized `Add` and `Scraper`):\r\n`docs: Add docstring to Scraper class explaining its purpose and attributes`\r\n\r\nWhat it is instead:\r\n`docs: add docstring to scraper class explaining its purpose and attributes`\r\n\r\n```\r\n# aider chat started at 2025-04-10 19:56:56\r\n\r\n> Install the development version of aider from the main branch?  \r\n> /Users/pjh/.local/share/uv/tools/aider-chat/bin/python -m pip install --upgrade --upgrade-strategy only-if-needed git+https://github.com/Aider-AI/aider.git  \r\n> Run pip install? (Y)es/(N)o [Yes]: y  \r\n\r\n# aider chat started at 2025-04-10 19:57:06\r\n\r\n> /Users/pjh/.local/bin/aider  \r\n> Aider v0.81.3.dev2+g8ee33da1  \r\n> Main model: anthropic/claude-3-7-sonnet-20250219 with diff edit format, prompt cache, infinite output  \r\n> Weak model: anthropic/claude-3-5-haiku-20241022  \r\n> Git repo: .git with 649 files  \r\n> Repo-map: using 4096 tokens, files refresh  \r\n> Added ../../.llm.txt to the chat (read-only).  \r\n> Cost estimates may be inaccurate when using streaming and caching.  \r\n\r\n#### Add a docstring to Scraper  \r\n> Initial repo scan can be slow in larger repos, but only happens once.  \r\n\r\nTo add a docstring to the Scraper class, I'll need to see the content of the `aider/scrape.py` file. Based on the file summary you provided, I can see that this file contains a `Scraper` class, but I don't have the actual content to edit.\r\n\r\nCould you please add the `aider/scrape.py` file to the chat so I can make the necessary changes?\r\n\r\n> Tokens: 10k sent, 86 received. Cost: $0.03 message, $0.03 session.  \r\n> aider/scrape.py  \r\n> Add file to the chat? (Y)es/(N)o/(D)on't ask again [Yes]: y  \r\n\r\nI'll add a docstring to the Scraper class in the aider/scrape.py file. The docstring will explain the purpose of the class and its functionality.\r\n\r\naider/scrape.py\r\n```python\r\n<<<<<<< SEARCH\r\nclass Scraper:\r\n    pandoc_available = None\r\n    playwright_available = None\r\n    playwright_instructions_shown = False\r\n\r\n    # Public API...\r\n=======\r\nclass Scraper:\r\n    \"\"\"\r\n    A web scraping utility that converts web content to readable markdown.\r\n    \r\n    This class provides methods to scrape web content using either Playwright\r\n    (for JavaScript-heavy sites) or HTTPX (for simpler sites). It can convert\r\n    HTML content to markdown for better readability when communicating with LLMs.\r\n    \r\n    Attributes:\r\n        pandoc_available (bool): Whether pandoc is available for HTML to markdown conversion\r\n        playwright_available (bool): Whether playwright is available for browser-based scraping\r\n        playwright_instructions_shown (bool): Whether playwright installation instructions were shown\r\n    \"\"\"\r\n    pandoc_available = None\r\n    playwright_available = None\r\n    playwright_instructions_shown = False\r\n\r\n    # Public API...\r\n>>>>>>> REPLACE\r\n```\r\n\r\n> Tokens: 9.0k sent, 228 received. Cost: $0.03 message, $0.06 session.  \r\n> Applied edit to aider/scrape.py  \r\n> Commit b196127 docs: add docstring to scraper class explaining its purpose and attributes  \r\n> You can use /undo to undo and discard each aider commit.  \r\n```\r\n\r\n<img width=\"725\" alt=\"image\" src=\"https://github.com/user-attachments/assets/976b5f9d-f5c7-48bc-82cc-48af95829015\" />\r\n",
+    "author": "peterhadlaw",
+    "merged_at": "2025-04-11T02:01:03+00:00",
+    "created_at": "2025-04-11T01:07:41+00:00",
+    "files": [
+      "aider/prompts.py"
+    ],
+    "additions": 0,
+    "deletions": 1,
+    "ticket_ids": [],
+    "merge_commit_sha": "668de71f9ddcd0e6852a5456a1bdc7ed54b5a5c7",
+    "pr_number": 3776,
+    "ci_status": "passed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "fix: Do not lowercase the entirety of the commit message",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 0
+  },
+  {
+    "id": "3736",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "Add Fireworks AI model 'deepseek-v3-0324'",
+    "body": "Fireworks supports the recently released `deepseek-v3-0324` model.\r\n\r\nhttps://fireworks.ai/models/fireworks/deepseek-v3-0324\r\n\r\n<img width=\"373\" alt=\"Screenshot 2025-04-05 at 16 46 48\" src=\"https://github.com/user-attachments/assets/c5dc14c5-266d-455c-8b6c-8764dff24f83\" />\r\n\r\n**Note:** I couldn't verify the `max_input_tokens` and `max_output_tokens` values, as this information isn't available on their homepage. I assume these values remain the same as those for the existing `deepseek-v3` model.",
+    "author": "FelixLisczyk",
+    "merged_at": "2025-04-05T19:19:30+00:00",
+    "created_at": "2025-04-05T14:51:13+00:00",
+    "files": [
+      "aider/resources/model-metadata.json",
+      "aider/resources/model-settings.yml"
+    ],
+    "additions": 22,
+    "deletions": 5,
+    "ticket_ids": [],
+    "merge_commit_sha": "8df7a0960e9563b3c80b670ff250f7f31ce2211d",
+    "pr_number": 3736,
+    "ci_status": "passed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "Add Fireworks AI model 'deepseek-v3-0324'",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 1
+  },
+  {
+    "id": "3735",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "Add support model openrouter/google/gemini-2.5-pro-preview-03-25",
+    "body": "### **PR Type**\r\nFeature\r\n\r\n___\r\n\r\n### **PR Description**\r\n- Added support for `openrouter/google/gemini-2.5-pro-preview-03-25` model.\r\n  - Includes token limits, input/output costs, and feature support.\r\n\r\n- Fixed formatting by removing trailing spaces in the JSON file.",
+    "author": "KennyDizi",
+    "merged_at": "2025-04-05T19:20:22+00:00",
+    "created_at": "2025-04-05T13:53:56+00:00",
+    "files": [
+      "aider/resources/model-metadata.json"
+    ],
+    "additions": 40,
+    "deletions": 4,
+    "ticket_ids": [],
+    "merge_commit_sha": "a2c46c743639b9a660d827bada09b9f853f31df9",
+    "pr_number": 3735,
+    "ci_status": "passed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "Remove trailing spaces",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Add support model openrouter/google/gemini-2.5-pro-preview-03-25",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 2,
+    "last_edited_at": "2025-04-05T13:55:18+00:00",
+    "total_comments_count": 1
+  },
+  {
+    "id": "3692",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "chore: remove redundant code",
+    "body": "1. The module already imports `requests`, so by the time this check is called, the module is already loaded.\r\n\r\n2. Even if the code path were taken, it would fail anyway, because the `aider[oauth]` extra was hallucinated and does not exist.\r\n\r\n3. Downstream distributions usually have managed Python environments, where pip cannot be used at all.\r\n    That means distros must patch out every such pip invocation ([example](https://aur.archlinux.org/cgit/aur.git/tree/archlinux-use-system.patch?h=aider-chat&id=7f8156946857215104bce151454ad0101ade4a48); full disclosure: I maintain this but other distros will eventually bump into the same issues).  \r\n   Restricting at-runtime pip usage to the minimum necessary is friendlier to distro maintainers.\r\n",
+    "author": "claui",
+    "merged_at": "2025-03-31T17:53:26+00:00",
+    "created_at": "2025-03-31T17:26:55+00:00",
+    "files": [
+      "aider/onboarding.py"
+    ],
+    "additions": 0,
+    "deletions": 5,
+    "ticket_ids": [],
+    "merge_commit_sha": "a458215bbbcea1ca9a4199b855f41dad82c23874",
+    "pr_number": 3692,
+    "ci_status": "passed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "chore: remove redundant code\n\n1. The module already imports `requests`, so by the time this check is\n   called, the module is already loaded.\n\n2. Even if the code path were taken, it would fail anyway, because the\n   `aider[oauth]` extra was hallucinated and does not exist.\n\n3. Downstream distributions usually have managed Python environments,\n   where pip cannot be used at all.\n   That means distros must patch out every such pip invocation\n   (example: [1]; full disclosure: I maintain this but other distros\n   will eventually bump into the same issues). Restricting at-runtime\n   pip usage to the minimum necessary is friendlier to distro\n   maintainers.\n\n[1]: https://aur.archlinux.org/cgit/aur.git/tree/archlinux-use-system.patch?h=aider-chat&id=7f8156946857215104bce151454ad0101ade4a48",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 1
+  },
+  {
+    "id": "3698",
+    "source": "github_graphql",
+    "repo": "Aider-AI/aider",
+    "title": "Update benchmark README.md to specify how to config other settings",
+    "body": "",
+    "author": "aj47",
+    "merged_at": "2025-04-01T02:27:38+00:00",
+    "created_at": "2025-04-01T00:06:08+00:00",
+    "files": [
+      "benchmark/README.md"
+    ],
+    "additions": 1,
+    "deletions": 0,
+    "ticket_ids": [],
+    "merge_commit_sha": "88ab6afd3e79022fbc923c7a24316148a1c1b15b",
+    "pr_number": 3698,
+    "ci_status": "passed",
+    "reviews": [],
+    "commits": [
+      {
+        "message": "Update benchmark README.md to specify how to config other settings",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 1
+  }
+]

@@ -1,0 +1,43 @@
+======================================================================
+SZZ ANALYSIS SUMMARY
+======================================================================
+
+Total PRs analyzed: 432
+PRs identified as bug-introducing: 90 (20.8%)
+Total SZZ links (fix -> bug): 606
+
+Bug-introducing rate by repo:
+--------------------------------------------------
+  pnpm/pnpm                                  90/  432 (20.8%)
+
+Bug-introducing rate by AI classification:
+--------------------------------------------------
+  human_save              35/   149 (23.5%)
+  machine_catch           32/   105 (30.5%)
+  pending                  7/    95 (7.4%)
+  ungated                 15/    63 (23.8%)
+
+Bug-introducing rate by tier:
+--------------------------------------------------
+  B                       90/   432 (20.8%)
+
+Top 10 most bug-introducing PRs (by number of subsequent fixes):
+----------------------------------------------------------------------
+  pnpm/pnpm                      #10912  fixes= 5  feat: store config deps and package manager integr...
+  pnpm/pnpm                      #9854   fixes= 5  feat(cli/config)!: breaking changes
+  pnpm/pnpm                      #10110  fixes= 4  feat: export a startWorker function from @pnpm/wor...
+  pnpm/pnpm                      #10030  fixes= 4  feat: respect minimumReleaseAge in outdated comman...
+  pnpm/pnpm                      #10697  fixes= 3  feat: isolated global packages
+  pnpm/pnpm                      #10141  fixes= 3  feat: install js runtime as prod dependency
+  pnpm/pnpm                      #10103  fixes= 3  feat: add support for npm package trust evidence c...
+  pnpm/pnpm                      #10997  fixes= 2  refactor: rename internal packages to @pnpm/<domai...
+  pnpm/pnpm                      #10993  fixes= 2  refactor: rename directories and unify command pac...
+  pnpm/pnpm                      #10947  fixes= 2  style: add eslint-plugin-simple-import-sort
+
+
+======================================================================
+CORRELATION ANALYSIS: Spec Quality vs Bug Introduction
+======================================================================
+
+PRs with spec quality scores: 0
+Too few scored PRs for meaningful analysis

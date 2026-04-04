@@ -1,0 +1,149 @@
+Analysis run: 2026-04-04T21:24:41.683748+00:00
+Script: /Users/brenn/dev/ai-augmented-dev/research/study/scripts/pipeline/propensity-score-matching.py
+
+PURPOSE: Match spec'd and unspec'd PRs on JIT risk profile,
+then compare defect rates within matched pairs.
+If matched effect is smaller than raw effect, JIT features partially
+explain the observed spec–defect association.
+
+Dataset: 100,247 PRs, 119 repos
+SZZ:     64,805 blame links, 103 repos
+JIT:     88,847 feature rows, 119 repos
+Bot exclusion: 12,195 bot PRs removed, 88,052 remaining
+
+Propensity score features: ['log_add', 'log_del', 'log_files', 'ns', 'nd', 'nf', 'entropy', 'la', 'ld', 'lt', 'fix', 'ndev', 'age', 'nuc', 'exp', 'rexp']
+  sexp excluded (zero or missing variance)
+
+SZZ subset: 77,814 PRs in 103 repos
+
+======================================================================
+PSM: specs → SZZ bugs
+======================================================================
+
+  Sample: 61,192 total  |  17,567 treated  |  43,625 control
+  Outcome: szz_buggy  (base rate: 0.135)
+
+  Propensity score: mean=0.287  sd=0.101
+  Logit(PS): sd=0.537  caliper=0.0269 (0.05 SD)
+
+  Matched: 17,375 pairs  |  Unmatched treated: 192 (1.1% excluded)
+
+  --- Covariate balance ---
+
+  Feature                SMD before    SMD after  Balanced?
+  -------------------- ------------ ------------ ----------
+  log_add                    +0.243       -0.006        yes
+  log_del                    +0.009       -0.007        yes
+  log_files                  +0.108       -0.011        yes
+  ns                         +0.042       +0.001        yes
+  nd                         +0.016       -0.008        yes
+  nf                         +0.011       -0.009        yes
+  entropy                    +0.134       -0.012        yes
+  la                         +0.018       -0.010        yes
+  ld                         -0.003       +0.007        yes
+  lt                         +0.059       -0.006        yes
+  fix                        +0.224       +0.009        yes
+  ndev                       +0.052       -0.010        yes
+  age                        +0.171       -0.015        yes
+  nuc                        -0.078       -0.011        yes
+  exp                        -0.186       -0.009        yes
+  rexp                       -0.120       +0.009        yes
+
+  All features well-balanced after matching (SMD < 0.1).
+
+  --- Treatment effect in matched sample ---
+  Spec'd rate:   0.1466  (2548 / 17375 pairs)
+  Unspec'd rate: 0.1524  (2648 / 17375 pairs)
+  Difference:    -0.0058 pp
+  McNemar test:  chi2=2.257  p=0.1330
+  -> not significant
+
+  Raw (unmatched) rates for reference:
+  Spec'd: 0.1468  Unspec'd: 0.1309  Diff: +0.0159
+  Attenuation after matching: -136.1%
+  *** Large attenuation: matching substantially reduces the effect.
+  *** JIT risk profile explains much of the raw association.
+
+Full dataset: 88,052 PRs in 119 repos
+
+======================================================================
+PSM: specs → rework
+======================================================================
+
+  Sample: 69,237 total  |  19,813 treated  |  49,424 control
+  Outcome: reworked  (base rate: 0.138)
+
+  Propensity score: mean=0.286  sd=0.097
+  Logit(PS): sd=0.529  caliper=0.0265 (0.05 SD)
+
+  Matched: 19,648 pairs  |  Unmatched treated: 165 (0.8% excluded)
+
+  --- Covariate balance ---
+
+  Feature                SMD before    SMD after  Balanced?
+  -------------------- ------------ ------------ ----------
+  log_add                    +0.235       -0.004        yes
+  log_del                    +0.007       -0.003        yes
+  log_files                  +0.099       -0.013        yes
+  ns                         +0.043       -0.008        yes
+  nd                         +0.008       -0.007        yes
+  nf                         +0.004       -0.011        yes
+  entropy                    +0.122       -0.014        yes
+  la                         +0.016       -0.002        yes
+  ld                         -0.004       -0.002        yes
+  lt                         +0.046       -0.005        yes
+  fix                        +0.196       +0.001        yes
+  ndev                       +0.042       -0.010        yes
+  age                        +0.154       -0.014        yes
+  nuc                        -0.086       -0.018        yes
+  exp                        -0.209       -0.006        yes
+  rexp                       -0.138       +0.008        yes
+
+  All features well-balanced after matching (SMD < 0.1).
+
+  --- Treatment effect in matched sample ---
+  Spec'd rate:   0.1520  (2986 / 19648 pairs)
+  Unspec'd rate: 0.1467  (2883 / 19648 pairs)
+  Difference:    +0.0052 pp
+  McNemar test:  chi2=2.116  p=0.1458
+  -> not significant
+
+  Raw (unmatched) rates for reference:
+  Spec'd: 0.1520  Unspec'd: 0.1319  Diff: +0.0201
+  Attenuation after matching: -73.9%
+  *** Large attenuation: matching substantially reduces the effect.
+  *** JIT risk profile explains much of the raw association.
+
+Matched pairs saved to: /Users/brenn/dev/ai-augmented-dev/research/study/results/psm-matched-pairs.csv
+  37,023 total pairs across 2 analyses
+
+======================================================================
+SUMMARY: PROPENSITY SCORE MATCHING RESULTS
+======================================================================
+
+specs → SZZ bugs:
+  Matched pairs: 17,375  (unmatched treated: 192)
+  Spec'd defect rate:    0.1466
+  Matched control rate:  0.1524
+  ATT estimate:          -0.0058 pp
+  McNemar p:             0.1330  [not significant]
+  Raw (unmatched) diff:  +0.0159 pp
+  Attenuation:           -136.1%
+
+specs → rework:
+  Matched pairs: 19,648  (unmatched treated: 165)
+  Spec'd defect rate:    0.1520
+  Matched control rate:  0.1467
+  ATT estimate:          +0.0052 pp
+  McNemar p:             0.1458  [not significant]
+  Raw (unmatched) diff:  +0.0201 pp
+  Attenuation:           -73.9%
+
+Interpretation:
+  ATT = Average Treatment effect on the Treated (within matched pairs).
+  Attenuation = % reduction in effect size after matching vs. raw comparison.
+  Large attenuation → JIT features partially explain raw association.
+  Stable effect + significance → association is not explained by JIT risk alone.
+  CAVEAT: PSM only balances measured covariates. Unmeasured confounders remain.
+
+Done. Output written to: /Users/brenn/dev/ai-augmented-dev/research/study/results/propensity-score-matching.txt

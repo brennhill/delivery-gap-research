@@ -1,0 +1,44 @@
+======================================================================
+SZZ ANALYSIS SUMMARY
+======================================================================
+
+Total PRs analyzed: 4,611
+PRs identified as bug-introducing: 666 (14.4%)
+Total SZZ links (fix -> bug): 2,275
+
+Bug-introducing rate by repo:
+--------------------------------------------------
+  ray-project/ray                           666/ 4611 (14.4%)
+
+Bug-introducing rate by AI classification:
+--------------------------------------------------
+  escape                  43/    47 (91.5%)
+  human_save             606/ 4,286 (14.1%)
+  machine_catch            3/    73 (4.1%)
+  pending                  9/   187 (4.8%)
+  ungated                  5/    12 (41.7%)
+
+Bug-introducing rate by tier:
+--------------------------------------------------
+  ?                      666/ 4,611 (14.4%)
+
+Top 10 most bug-introducing PRs (by number of subsequent fixes):
+----------------------------------------------------------------------
+  ray-project/ray                #55469  fixes= 6  [core] Create LeaseID
+  ray-project/ray                #51639  fixes= 6  [RLlib] MetricsLogger + Stats overhaul.
+  ray-project/ray                #54759  fixes= 5  [Core] Making core worker unit testable
+  ray-project/ray                #53434  fixes= 5  Fix lingering socket issue in tests by replacing r...
+  ray-project/ray                #57788  fixes= 4  [Data] Revisiting `OpResourceAllocator` to make da...
+  ray-project/ray                #57778  fixes= 4  [Data] - [1/n] - Move expression_evaluator to inte...
+  ray-project/ray                #56866  fixes= 4  [core] Remove RAY_CHECK from GetAndPinArgsForExecu...
+  ray-project/ray                #57270  fixes= 4  [data] deflake sql + consumption + execution_optim...
+  ray-project/ray                #55213  fixes= 4  [core][1eventx/03] job event: send job events to t...
+  ray-project/ray                #53194  fixes= 4  [core] enable -Wshadow for all c++ targets
+
+
+======================================================================
+CORRELATION ANALYSIS: Spec Quality vs Bug Introduction
+======================================================================
+
+PRs with spec quality scores: 0
+Too few scored PRs for meaningful analysis

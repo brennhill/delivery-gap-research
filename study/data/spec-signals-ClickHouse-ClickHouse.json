@@ -1,0 +1,3814 @@
+{
+  "repo": "ClickHouse/ClickHouse",
+  "lookback_days": 365,
+  "rework_window_days": 30,
+  "coverage": {
+    "coverage_pct": 20,
+    "total_prs": 207,
+    "specd_prs": 41,
+    "prs": [
+      {
+        "number": 98788,
+        "sha": null,
+        "title": "Introduce new \"combined\" subcolumn for JSON data type that combines literal and sub-object values",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T17:02:57+00:00"
+      },
+      {
+        "number": 100902,
+        "sha": null,
+        "title": "Evaluate engine arguments for StorageAlias before storing the definition",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T16:12:19+00:00"
+      },
+      {
+        "number": 101127,
+        "sha": null,
+        "title": "Fix flaky test 03634_autopr_input_bytes_estimation",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T17:27:04+00:00"
+      },
+      {
+        "number": 100582,
+        "sha": null,
+        "title": "Use `aws-sdk-cpp` 1.11.771",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-29T15:20:25+00:00"
+      },
+      {
+        "number": 98299,
+        "sha": null,
+        "title": "Forbid empty part name in detached part operations",
+        "specd": true,
+        "spec_source": "#98052",
+        "merged_at": "2026-02-28T19:02:08+00:00"
+      },
+      {
+        "number": 98284,
+        "sha": null,
+        "title": "Validate corrupted data in DDSketch deserialization",
+        "specd": true,
+        "spec_source": "#92393",
+        "merged_at": "2026-02-28T18:43:01+00:00"
+      },
+      {
+        "number": 98247,
+        "sha": null,
+        "title": "Fix INSERT parser failing on double-parenthesized compound SELECT",
+        "specd": true,
+        "spec_source": "https://github.com/ClickHouse/ClickHouse/issues/90925",
+        "merged_at": "2026-02-27T22:32:52+00:00"
+      },
+      {
+        "number": 100912,
+        "sha": null,
+        "title": "Reduce logging for `test_storage_iceberg_concurrent` to avoid OOM",
+        "specd": true,
+        "spec_source": "DEADLOCK-DETECTION",
+        "merged_at": "2026-03-30T16:29:42+00:00"
+      },
+      {
+        "number": 101215,
+        "sha": null,
+        "title": "`DiskLocal` create directories in setup",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T17:01:23+00:00"
+      },
+      {
+        "number": 98286,
+        "sha": null,
+        "title": "Fix logical error in HashJoin::getNonJoinedBlocks due to overlapping columns",
+        "specd": true,
+        "spec_source": "#85622",
+        "merged_at": "2026-02-28T16:06:50+00:00"
+      },
+      {
+        "number": 98441,
+        "sha": null,
+        "title": "Fix WriteBufferDecorator::cancelImpl writing to finalized buffer",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-02T01:29:20+00:00"
+      },
+      {
+        "number": 99879,
+        "sha": null,
+        "title": "Fix progress stats for async insert queries",
+        "specd": true,
+        "spec_source": "#99758",
+        "merged_at": "2026-03-30T13:24:07+00:00"
+      },
+      {
+        "number": 101249,
+        "sha": null,
+        "title": "Cherry pick #100902 to 26.3: Evaluate engine arguments for StorageAlias before storing the definition",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T16:36:00+00:00"
+      },
+      {
+        "number": 101247,
+        "sha": null,
+        "title": "Cherry pick #100902 to 26.2: Evaluate engine arguments for StorageAlias before storing the definition",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T16:35:29+00:00"
+      },
+      {
+        "number": 101245,
+        "sha": null,
+        "title": "Cherry pick #100902 to 26.1: Evaluate engine arguments for StorageAlias before storing the definition",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T16:34:57+00:00"
+      },
+      {
+        "number": 98238,
+        "sha": null,
+        "title": "Fix inconsistent AST formatting in INTERPOLATE with aliased expressions",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-27T22:14:40+00:00"
+      },
+      {
+        "number": 98179,
+        "sha": null,
+        "title": "Fix logical error with analyzer_compatibility_join_using_top_level_identifier and ARRAY JOIN",
+        "specd": true,
+        "spec_source": "https://github.com/ClickHouse/ClickHouse/issues/98164",
+        "merged_at": "2026-02-27T14:08:31+00:00"
+      },
+      {
+        "number": 89994,
+        "sha": null,
+        "title": "fix rotate in MergeTreeDeduplicationLog",
+        "specd": true,
+        "spec_source": "https://github.com/ClickHouse/ClickHouse/issues/89987",
+        "merged_at": "2025-11-13T22:31:24+00:00"
+      },
+      {
+        "number": 101236,
+        "sha": null,
+        "title": "Cherry pick #98441 to 26.2: Fix WriteBufferDecorator::cancelImpl writing to finalized buffer",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T15:43:03+00:00"
+      },
+      {
+        "number": 101234,
+        "sha": null,
+        "title": "Cherry pick #98441 to 26.1: Fix WriteBufferDecorator::cancelImpl writing to finalized buffer",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T15:42:36+00:00"
+      },
+      {
+        "number": 99164,
+        "sha": null,
+        "title": "Fix LOGICAL_ERROR due to patch parts column order mismatch",
+        "specd": true,
+        "spec_source": "https://github.com/ClickHouse/clickhouse-core-incidents/issues/1021",
+        "merged_at": "2026-03-18T22:01:04+00:00"
+      },
+      {
+        "number": 101222,
+        "sha": null,
+        "title": "Cherry pick #99879 to 26.2: Fix progress stats for async insert queries",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T15:39:42+00:00"
+      },
+      {
+        "number": 99219,
+        "sha": null,
+        "title": "Fix N+1 `HeadObject` calls for S3 brace-expansion globs",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T15:18:56+00:00"
+      },
+      {
+        "number": 93197,
+        "sha": null,
+        "title": "Fix interpolate: disambiguate interpolated columns with __interpolate function",
+        "specd": true,
+        "spec_source": "#71858",
+        "merged_at": "2026-01-02T10:51:08+00:00"
+      },
+      {
+        "number": 100951,
+        "sha": null,
+        "title": "Fix flaky test 00163_shard_join_with_empty_table",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T14:55:55+00:00"
+      },
+      {
+        "number": 101147,
+        "sha": null,
+        "title": "Fix SIGABRT crash when aggregate_functions_null_for_empty is used with Null combinator functions",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T14:58:54+00:00"
+      },
+      {
+        "number": 99131,
+        "sha": null,
+        "title": "Add highlight() function for search term highlighting with tag wrapping",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T13:53:11+00:00"
+      },
+      {
+        "number": 101223,
+        "sha": null,
+        "title": "Cherry pick #99879 to 26.3: Fix progress stats for async insert queries",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T13:45:42+00:00"
+      },
+      {
+        "number": 96713,
+        "sha": null,
+        "title": "Fix DROP COLUMN + ADD COLUMN resurrecting stale data from unapplied mutations",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-15T01:08:35+00:00"
+      },
+      {
+        "number": 96022,
+        "sha": null,
+        "title": "Fix ALTER atomicity when combining UPDATE/DELETE with RENAME COLUMN",
+        "specd": true,
+        "spec_source": "#70678",
+        "merged_at": "2026-02-06T19:19:54+00:00"
+      },
+      {
+        "number": 95110,
+        "sha": null,
+        "title": "Fix flaky test `03794_read_in_order_virtual_row_and_sparse_primary_key_msan`",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-01-26T04:26:41+00:00"
+      },
+      {
+        "number": 100982,
+        "sha": null,
+        "title": "docs: Add beeterty/clickhouse-php-client to PHP third-party client libraries",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T12:24:19+00:00"
+      },
+      {
+        "number": 101185,
+        "sha": null,
+        "title": "Backport #100839 to 26.2: Fix segfault in dictionary internal query",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T13:01:26+00:00"
+      },
+      {
+        "number": 100984,
+        "sha": null,
+        "title": "Fix flaky tests 03632_skip_indices_logged and 04039_skip_index_query_log",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-28T10:38:55+00:00"
+      },
+      {
+        "number": 93115,
+        "sha": null,
+        "title": "Fix inconsistent casting of Bool type in IN operator",
+        "specd": true,
+        "spec_source": "https://github.com/ClickHouse/ClickHouse/issues/92980.",
+        "merged_at": "2026-03-30T12:14:04+00:00"
+      },
+      {
+        "number": 96359,
+        "sha": null,
+        "title": "Fix race between `setDeduplicationWindowSize` and `shutdown` in `MergeTreeDeduplicationLog`",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-08T08:49:07+00:00"
+      },
+      {
+        "number": 95594,
+        "sha": null,
+        "title": "Revert \"Do not hold a storage in storage snapshot\"",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-01-30T10:25:21+00:00"
+      },
+      {
+        "number": 99741,
+        "sha": null,
+        "title": "Properly startup cache disks",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T09:59:43+00:00"
+      },
+      {
+        "number": 97430,
+        "sha": null,
+        "title": "Revert \"Fix incorrect last mark granularity in constant granularity parts\"",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-19T22:01:53+00:00"
+      },
+      {
+        "number": 100798,
+        "sha": null,
+        "title": "Fix two latent defects: nullable flag in parallel merge and FixedString in JIT getColumnData",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T10:53:47+00:00"
+      },
+      {
+        "number": 100796,
+        "sha": null,
+        "title": "Fix incorrect usage of shared locks.",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T11:02:10+00:00"
+      },
+      {
+        "number": 100794,
+        "sha": null,
+        "title": "Fix incorrect argument types in AggregateFunction for optimized trivial count",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T11:03:45+00:00"
+      },
+      {
+        "number": 101197,
+        "sha": null,
+        "title": "Cherry pick #99741 to 26.3: Properly startup cache disks",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T10:42:27+00:00"
+      },
+      {
+        "number": 101195,
+        "sha": null,
+        "title": "Cherry pick #99741 to 26.2: Properly startup cache disks",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T10:42:04+00:00"
+      },
+      {
+        "number": 100064,
+        "sha": null,
+        "title": "DiskObjectStorage synchronously wait blob removal in transactions",
+        "specd": true,
+        "spec_source": "https://github.com/ClickHouse/ClickHouse/issues/99996",
+        "merged_at": "2026-03-26T12:58:20+00:00"
+      },
+      {
+        "number": 100839,
+        "sha": null,
+        "title": "Fix segfault in dictionary internal query",
+        "specd": true,
+        "spec_source": "https://github.com/ClickHouse/clickhouse-core-incidents/issues/1464",
+        "merged_at": "2026-03-30T09:10:12+00:00"
+      },
+      {
+        "number": 100968,
+        "sha": null,
+        "title": "Cherry pick #100064 to 26.2: DiskObjectStorage synchronously wait blob removal in transactions",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T09:48:02+00:00"
+      },
+      {
+        "number": 101186,
+        "sha": null,
+        "title": "Cherry pick #100839 to 26.3: Fix segfault in dictionary internal query",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T09:47:25+00:00"
+      },
+      {
+        "number": 101184,
+        "sha": null,
+        "title": "Cherry pick #100839 to 26.2: Fix segfault in dictionary internal query",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T09:46:53+00:00"
+      },
+      {
+        "number": 101182,
+        "sha": null,
+        "title": "Cherry pick #100839 to 26.1: Fix segfault in dictionary internal query",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T09:46:23+00:00"
+      },
+      {
+        "number": 101180,
+        "sha": null,
+        "title": "Cherry pick #100839 to 25.8: Fix segfault in dictionary internal query",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T09:45:50+00:00"
+      },
+      {
+        "number": 100970,
+        "sha": null,
+        "title": "Backport #100064 to 26.3: DiskObjectStorage synchronously wait blob removal in transactions",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T09:39:56+00:00"
+      },
+      {
+        "number": 101175,
+        "sha": null,
+        "title": "auto-bisect: use portable base64 encoding for private CI credentials",
+        "specd": true,
+        "spec_source": "POSIX-PORTABLE",
+        "merged_at": "2026-03-30T08:50:08+00:00"
+      },
+      {
+        "number": 100455,
+        "sha": null,
+        "title": "Fix segfault due to calling `StorageRabbitMQ::shutdown` twice",
+        "specd": true,
+        "spec_source": "https://github.com/ClickHouse/clickhouse-core-incidents/issues/1500",
+        "merged_at": "2026-03-24T09:52:16+00:00"
+      },
+      {
+        "number": 101015,
+        "sha": null,
+        "title": "Backport #100895 to 26.3: Fix exception in intDiv/intDivOrZero on arrays of nullable tuples",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T08:55:29+00:00"
+      },
+      {
+        "number": 101160,
+        "sha": null,
+        "title": "Update README.md",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T08:00:11+00:00"
+      },
+      {
+        "number": 98597,
+        "sha": null,
+        "title": "Optimize TRUNCATE DATABASE TABLES LIKE by pre-cancelling merges in parallel",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T06:27:56+00:00"
+      },
+      {
+        "number": 101168,
+        "sha": null,
+        "title": "Cherry pick #101115 to 26.3: Fix out-of-bounds access in lazy materialization with projection PREWHERE",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T05:10:37+00:00"
+      },
+      {
+        "number": 101166,
+        "sha": null,
+        "title": "Cherry pick #101115 to 26.2: Fix out-of-bounds access in lazy materialization with projection PREWHERE",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T05:10:10+00:00"
+      },
+      {
+        "number": 101164,
+        "sha": null,
+        "title": "Cherry pick #101115 to 26.1: Fix out-of-bounds access in lazy materialization with projection PREWHERE",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T05:09:42+00:00"
+      },
+      {
+        "number": 101115,
+        "sha": null,
+        "title": "Fix out-of-bounds access in lazy materialization with projection PREWHERE",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T03:21:26+00:00"
+      },
+      {
+        "number": 101112,
+        "sha": null,
+        "title": "Add test: No test covers INDEX ... TYPE projection combined with WITH ",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T03:18:14+00:00"
+      },
+      {
+        "number": 101142,
+        "sha": null,
+        "title": "Fix flaky test_server_reload/test_change_listen_host under coverage",
+        "specd": true,
+        "spec_source": "ZK-BASED",
+        "merged_at": "2026-03-30T03:19:49+00:00"
+      },
+      {
+        "number": 101117,
+        "sha": null,
+        "title": "Miscellaneous",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T03:20:18+00:00"
+      },
+      {
+        "number": 101057,
+        "sha": null,
+        "title": "Fix flaky test_polymorphic_parts repeated run failures",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T03:23:32+00:00"
+      },
+      {
+        "number": 101042,
+        "sha": null,
+        "title": "Check for query cancellation in h3PolygonToCells",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T03:24:37+00:00"
+      },
+      {
+        "number": 100977,
+        "sha": null,
+        "title": "Fix \"Invalid action query tree node\" exception for UNION/INTERSECT with constant folding",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T03:25:46+00:00"
+      },
+      {
+        "number": 101411,
+        "sha": null,
+        "title": "Native Common Virtuals for RabbitMQ",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T09:12:39+00:00"
+      },
+      {
+        "number": 101555,
+        "sha": null,
+        "title": "CI: remove experimental result file mechanism from runner",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T08:25:06+00:00"
+      },
+      {
+        "number": 101477,
+        "sha": null,
+        "title": "doc: clarify not enforcing data types settings in INSERT statement",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T08:47:22+00:00"
+      },
+      {
+        "number": 101602,
+        "sha": null,
+        "title": "Cherry pick #100901 to 26.3: Subtract slab_reclaimable from kernel memory in cgroupv2 reader",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T08:36:41+00:00"
+      },
+      {
+        "number": 101600,
+        "sha": null,
+        "title": "Cherry pick #100901 to 26.2: Subtract slab_reclaimable from kernel memory in cgroupv2 reader",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T08:36:16+00:00"
+      },
+      {
+        "number": 101598,
+        "sha": null,
+        "title": "Cherry pick #100901 to 26.1: Subtract slab_reclaimable from kernel memory in cgroupv2 reader",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T08:35:49+00:00"
+      },
+      {
+        "number": 101596,
+        "sha": null,
+        "title": "Cherry pick #100901 to 25.8: Subtract slab_reclaimable from kernel memory in cgroupv2 reader",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T08:35:21+00:00"
+      },
+      {
+        "number": 100829,
+        "sha": null,
+        "title": "Add e2e integration tests for Iceberg and DataLake catalogs (running in private)",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T08:25:06+00:00"
+      },
+      {
+        "number": 100901,
+        "sha": null,
+        "title": "Subtract slab_reclaimable from kernel memory in cgroupv2 reader",
+        "specd": true,
+        "spec_source": "https://github.com/ClickHouse/ClickHouse/issues/82036,",
+        "merged_at": "2026-04-02T07:48:21+00:00"
+      },
+      {
+        "number": 101412,
+        "sha": null,
+        "title": "ci: prefer the last failed query in case of identical query_id",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T06:43:16+00:00"
+      },
+      {
+        "number": 98479,
+        "sha": null,
+        "title": "Transitive join predicates",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T06:12:20+00:00"
+      },
+      {
+        "number": 101278,
+        "sha": null,
+        "title": "Fix Iceberg `ALTER TABLE UPDATE` exception on partitioned tables.",
+        "specd": true,
+        "spec_source": "https://github.com/ClickHouse/ClickHouse/issues/100565",
+        "merged_at": "2026-04-01T22:10:30+00:00"
+      },
+      {
+        "number": 98242,
+        "sha": null,
+        "title": "Fix deferred filters with partition pruning on non-sorting key",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-01T04:36:32+00:00"
+      },
+      {
+        "number": 101484,
+        "sha": null,
+        "title": "Add missing Keeper component tracking guard to no-arg loadStatistics",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T01:52:17+00:00"
+      },
+      {
+        "number": 101485,
+        "sha": null,
+        "title": "Fix flaky 01926_order_by_desc_limit test timeout under MSan + S3",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T01:55:19+00:00"
+      },
+      {
+        "number": 98371,
+        "sha": null,
+        "title": "Fix logical error exception in lightweight updates with implicit_transaction",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-01T23:58:52+00:00"
+      },
+      {
+        "number": 101299,
+        "sha": null,
+        "title": "Fix insert-select from delta lake cluster with replicated merge tree",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T21:33:51+00:00"
+      },
+      {
+        "number": 99794,
+        "sha": null,
+        "title": "Fix parsing of shell-style quotes in arguments for the executable table function",
+        "specd": true,
+        "spec_source": "#66634",
+        "merged_at": "2026-03-25T00:34:42+00:00"
+      },
+      {
+        "number": 101562,
+        "sha": null,
+        "title": "Cherry pick #101299 to 26.3: Fix insert-select from delta lake cluster with replicated merge tree",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T22:23:54+00:00"
+      },
+      {
+        "number": 101560,
+        "sha": null,
+        "title": "Cherry pick #101299 to 26.2: Fix insert-select from delta lake cluster with replicated merge tree",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T22:23:27+00:00"
+      },
+      {
+        "number": 101492,
+        "sha": null,
+        "title": "CI: avoid OSError for long result filenames by not dumping sub-results",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T21:38:34+00:00"
+      },
+      {
+        "number": 98369,
+        "sha": null,
+        "title": "Fix MATERIALIZE INDEX/PROJECTION mutation stuck after DROP",
+        "specd": true,
+        "spec_source": "#38643",
+        "merged_at": "2026-03-01T23:58:52+00:00"
+      },
+      {
+        "number": 99305,
+        "sha": null,
+        "title": "Cancel WriteBuffer in IcebergStorageSink on query cancellation",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-12T18:43:29+00:00"
+      },
+      {
+        "number": 101194,
+        "sha": null,
+        "title": "CI: read GitHub App installation_id from AWS secret instead of fetching via API",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T21:02:35+00:00"
+      },
+      {
+        "number": 101438,
+        "sha": null,
+        "title": "Fix ArrowFlight integration test port conflict under pytest-xdist",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T19:31:39+00:00"
+      },
+      {
+        "number": 95373,
+        "sha": null,
+        "title": "CI: Stress Upgrade result processing clean up",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-01-28T13:17:24+00:00"
+      },
+      {
+        "number": 94207,
+        "sha": null,
+        "title": "Enforce both min and max block size thresholds during INSERT squashing",
+        "specd": true,
+        "spec_source": "https://github.com/ClickHouse/ClickHouse/issues/42515.",
+        "merged_at": "2026-04-01T18:13:40+00:00"
+      },
+      {
+        "number": 101535,
+        "sha": null,
+        "title": "Changelog: replace release webinar video TO DO with link",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T18:45:47+00:00"
+      },
+      {
+        "number": 101406,
+        "sha": null,
+        "title": "Add setting validation",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T17:38:35+00:00"
+      },
+      {
+        "number": 101442,
+        "sha": null,
+        "title": "Backport distroless Docker image to 25.12",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T17:38:53+00:00"
+      },
+      {
+        "number": 101441,
+        "sha": null,
+        "title": "Backport distroless Docker image to 25.11",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T17:38:50+00:00"
+      },
+      {
+        "number": 101440,
+        "sha": null,
+        "title": "Backport distroless Docker image to 25.10",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T17:38:47+00:00"
+      },
+      {
+        "number": 101439,
+        "sha": null,
+        "title": "Backport distroless Docker image to 25.9",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T17:38:44+00:00"
+      },
+      {
+        "number": 101426,
+        "sha": null,
+        "title": "Backport distroless Docker image to 25.8",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T17:37:16+00:00"
+      },
+      {
+        "number": 100800,
+        "sha": null,
+        "title": "Dont show secrets in select from system.databases query",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T15:55:10+00:00"
+      },
+      {
+        "number": 101524,
+        "sha": null,
+        "title": "Fix clang tidy",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T16:26:49+00:00"
+      },
+      {
+        "number": 101397,
+        "sha": null,
+        "title": "sync a server setting",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T16:40:12+00:00"
+      },
+      {
+        "number": 101533,
+        "sha": null,
+        "title": "Cherry pick #100800 to 26.3: Dont show secrets in select from system.databases query",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T16:35:48+00:00"
+      },
+      {
+        "number": 101531,
+        "sha": null,
+        "title": "Cherry pick #100800 to 26.2: Dont show secrets in select from system.databases query",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T16:35:18+00:00"
+      },
+      {
+        "number": 101529,
+        "sha": null,
+        "title": "Cherry pick #100800 to 26.1: Dont show secrets in select from system.databases query",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T16:34:47+00:00"
+      },
+      {
+        "number": 101527,
+        "sha": null,
+        "title": "Cherry pick #100800 to 25.8: Dont show secrets in select from system.databases query",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T16:34:13+00:00"
+      },
+      {
+        "number": 101488,
+        "sha": null,
+        "title": "Use f-strings in kill query integration tests",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T16:04:56+00:00"
+      },
+      {
+        "number": 95003,
+        "sha": null,
+        "title": "Check total memory limit overflow earlier.",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-19T15:48:45+00:00"
+      },
+      {
+        "number": 101192,
+        "sha": null,
+        "title": "Add log_first test coverage for executable UDF stderr_reaction",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T15:39:21+00:00"
+      },
+      {
+        "number": 100019,
+        "sha": null,
+        "title": "MetadataStorageFromDisk add removal log",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T14:54:07+00:00"
+      },
+      {
+        "number": 101376,
+        "sha": null,
+        "title": "Add assert and remove dead argument",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T13:50:37+00:00"
+      },
+      {
+        "number": 101378,
+        "sha": null,
+        "title": " Fix endianness in `QBit` binary serialization",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T13:57:00+00:00"
+      },
+      {
+        "number": 100878,
+        "sha": null,
+        "title": "Regression test for `dictGet` with unqualified dictionary name over Distributed tables",
+        "specd": true,
+        "spec_source": "https://github.com/ClickHouse/ClickHouse/issues/44301",
+        "merged_at": "2026-04-01T13:58:55+00:00"
+      },
+      {
+        "number": 101496,
+        "sha": null,
+        "title": "Update version_date.tsv and changelog after v26.3.3.20-lts",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T14:00:09+00:00"
+      },
+      {
+        "number": 101297,
+        "sha": null,
+        "title": "Fix UBSAN float-cast-overflow in ConditionSelectivityEstimator",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T14:23:42+00:00"
+      },
+      {
+        "number": 93876,
+        "sha": null,
+        "title": "Prevent excessive output on syntax error",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-01-11T20:40:46+00:00"
+      },
+      {
+        "number": 92644,
+        "sha": null,
+        "title": "Add guardrails for text index with large parts",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-12-26T20:07:29+00:00"
+      },
+      {
+        "number": 100649,
+        "sha": null,
+        "title": "Extend float-to-string `itoa` fast path for large integer values",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T13:15:15+00:00"
+      },
+      {
+        "number": 101365,
+        "sha": null,
+        "title": "Fix logical error: Unexpected return type from A. Expected B. Got C. Action: (STID: 1611-343c)",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T13:16:36+00:00"
+      },
+      {
+        "number": 94493,
+        "sha": null,
+        "title": "Fix `LogicalExpressionOptimizer` in the presense of `GROUPING SETS` and `group_by_use_nulls`",
+        "specd": true,
+        "spec_source": "#89851",
+        "merged_at": "2026-01-17T20:55:50+00:00"
+      },
+      {
+        "number": 101381,
+        "sha": null,
+        "title": "Disable test_overcommit_tracker for llvm-coverage",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T13:37:21+00:00"
+      },
+      {
+        "number": 100909,
+        "sha": null,
+        "title": "Fix processAndOptimizeTextIndexFunctions when `query_plan_merge_expressions = 0`",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-29T15:35:51+00:00"
+      },
+      {
+        "number": 101071,
+        "sha": null,
+        "title": "Fix distributed `OFFSET` returning fewer rows",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T08:41:00+00:00"
+      },
+      {
+        "number": 101495,
+        "sha": null,
+        "title": "Update version_date.tsv and changelog after v26.2.7.17-stable",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T12:51:16+00:00"
+      },
+      {
+        "number": 95100,
+        "sha": null,
+        "title": "Fix exception when processing duplicate aliases in nested scopes",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-01-25T21:52:11+00:00"
+      },
+      {
+        "number": 101364,
+        "sha": null,
+        "title": "Backport #101203 to 26.3: Fix JIT-compiled MIN/MAX on Decimal columns using unsigned comparison",
+        "specd": true,
+        "spec_source": "JIT-COMPILED",
+        "merged_at": "2026-04-01T12:49:39+00:00"
+      },
+      {
+        "number": 93102,
+        "sha": null,
+        "title": "Fix error in the query rewrite while adding a random ORDER BY",
+        "specd": true,
+        "spec_source": "#92219",
+        "merged_at": "2025-12-27T21:32:43+00:00"
+      },
+      {
+        "number": 98350,
+        "sha": null,
+        "title": "Fix exception in assertHasValidVersionMetadata due to in-memory CSN caching",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-01T02:09:01+00:00"
+      },
+      {
+        "number": 99651,
+        "sha": null,
+        "title": "Keeper object-based snapshots",
+        "specd": true,
+        "spec_source": "https://github.com/ClickHouse/ClickHouse/issues/95766.",
+        "merged_at": "2026-04-01T11:40:20+00:00"
+      },
+      {
+        "number": 101472,
+        "sha": null,
+        "title": "Backport #99484 to 26.2: Keeper: fix race between read requests and session close",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T12:14:03+00:00"
+      },
+      {
+        "number": 101471,
+        "sha": null,
+        "title": "Backport #99484 to 26.1: Keeper: fix race between read requests and session close",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T12:13:55+00:00"
+      },
+      {
+        "number": 100792,
+        "sha": null,
+        "title": "Support job's pre-hooks scripts in praktika",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T09:32:28+00:00"
+      },
+      {
+        "number": 101069,
+        "sha": null,
+        "title": "Native Common Virtuals for Hive",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T10:35:09+00:00"
+      },
+      {
+        "number": 101382,
+        "sha": null,
+        "title": "Fix `test_keeper_remove_rejoin_leader/test.py::test_leader_election_after_rolling_membership_change` ",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T10:36:44+00:00"
+      },
+      {
+        "number": 101139,
+        "sha": null,
+        "title": "Native Common Virtuals for NATS",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T10:40:05+00:00"
+      },
+      {
+        "number": 101138,
+        "sha": null,
+        "title": "Native Common Virtuals for Kafka",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T11:04:34+00:00"
+      },
+      {
+        "number": 101409,
+        "sha": null,
+        "title": "Native Common Virtuals for File-Like",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T11:06:41+00:00"
+      },
+      {
+        "number": 101432,
+        "sha": null,
+        "title": "CI: skip stateless flaky check only when no changed, previously-failed, or relevant tests exist",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T10:13:34+00:00"
+      },
+      {
+        "number": 101333,
+        "sha": null,
+        "title": "Docs: fix URL formatting in lemmatize.cpp",
+        "specd": true,
+        "spec_source": "#101285",
+        "merged_at": "2026-04-01T09:06:49+00:00"
+      },
+      {
+        "number": 100444,
+        "sha": null,
+        "title": "Update NuRaft submodule",
+        "specd": true,
+        "spec_source": "https://github.com/ClickHouse/clickhouse-core-incidents/issues/1479",
+        "merged_at": "2026-04-01T09:20:55+00:00"
+      },
+      {
+        "number": 100671,
+        "sha": null,
+        "title": "Optimize itoa for Int128/UInt128: Barrett reduction and loop unrolling",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T09:35:05+00:00"
+      },
+      {
+        "number": 100448,
+        "sha": null,
+        "title": "Make min/max/argMin/argMax treat NaN consistently with ORDER BY",
+        "specd": true,
+        "spec_source": "#72228",
+        "merged_at": "2026-04-01T09:36:06+00:00"
+      },
+      {
+        "number": 99484,
+        "sha": null,
+        "title": "Keeper: fix race between read requests and session close",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T05:30:25+00:00"
+      },
+      {
+        "number": 101461,
+        "sha": null,
+        "title": "Backport #99484 to 26.3: Keeper: fix race between read requests and session close",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T09:16:12+00:00"
+      },
+      {
+        "number": 100836,
+        "sha": null,
+        "title": "Detect lost baseline coverage and report it",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T08:58:50+00:00"
+      },
+      {
+        "number": 101459,
+        "sha": null,
+        "title": "Cherry pick #99484 to 26.2: Keeper: fix race between read requests and session close",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T08:42:48+00:00"
+      },
+      {
+        "number": 101458,
+        "sha": null,
+        "title": "Cherry pick #99484 to 26.1: Keeper: fix race between read requests and session close",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T08:42:28+00:00"
+      },
+      {
+        "number": 100904,
+        "sha": null,
+        "title": "Allow `use_partition_pruning` setting to also disable `MinMax` index on partition key columns",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T08:22:41+00:00"
+      },
+      {
+        "number": 100928,
+        "sha": null,
+        "title": "Fix `divide` and `intDiv` monotonicity causing exception during index analysis",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T08:24:54+00:00"
+      },
+      {
+        "number": 101457,
+        "sha": null,
+        "title": "Cherry pick #99484 to 25.8: Keeper: fix race between read requests and session close",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T08:31:41+00:00"
+      },
+      {
+        "number": 100905,
+        "sha": null,
+        "title": "Fuzz nasty SQL identifiers",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T07:32:41+00:00"
+      },
+      {
+        "number": 101394,
+        "sha": null,
+        "title": "Backport #100647 to 26.3: Fix session_timezone ignored during server-side DateTime parsing",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T08:06:54+00:00"
+      },
+      {
+        "number": 101393,
+        "sha": null,
+        "title": "Backport #100647 to 26.2: Fix session_timezone ignored during server-side DateTime parsing",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T08:06:34+00:00"
+      },
+      {
+        "number": 101460,
+        "sha": null,
+        "title": "Cherry pick #99484 to 26.3: Keeper: fix race between read requests and session close",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T06:49:43+00:00"
+      },
+      {
+        "number": 101430,
+        "sha": null,
+        "title": "Revert \"CI: enable failpoint injection in stress tests\"",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T05:43:06+00:00"
+      },
+      {
+        "number": 101141,
+        "sha": null,
+        "title": "Add test: New WKT and WKB uppercase aliases have zero test coverage",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T04:50:59+00:00"
+      },
+      {
+        "number": 101302,
+        "sha": null,
+        "title": "Add test: No test for insert_deduplication_token + INSERT SELECT witho",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T04:47:18+00:00"
+      },
+      {
+        "number": 99755,
+        "sha": null,
+        "title": "Fix several minor bugs in text index",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-18T13:45:20+00:00"
+      },
+      {
+        "number": 100673,
+        "sha": null,
+        "title": "ci: allow using customized sccache storage.",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T15:23:16+00:00"
+      },
+      {
+        "number": 101169,
+        "sha": null,
+        "title": "Backport #101115 to 26.3: Fix out-of-bounds access in lazy materialization with projection PREWHERE",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T01:21:22+00:00"
+      },
+      {
+        "number": 101388,
+        "sha": null,
+        "title": "Backport #101241 to 26.1: Revert \"Use memory tracking in hash table for patches\"",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T01:21:03+00:00"
+      },
+      {
+        "number": 101390,
+        "sha": null,
+        "title": "Backport #101241 to 26.2: Revert \"Use memory tracking in hash table for patches\"",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T01:18:23+00:00"
+      },
+      {
+        "number": 101270,
+        "sha": null,
+        "title": "tests: attempt to fix test_overcommit_tracker flakiness under amd_llvm_coverage",
+        "specd": true,
+        "spec_source": "https://github.com/ClickHouse/ClickHouse/issues/101318",
+        "merged_at": "2026-03-31T23:40:31+00:00"
+      },
+      {
+        "number": 101377,
+        "sha": null,
+        "title": "Disable `03783_autopr_dataflow_cache_reuse_qcc` with distributed cache",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T21:30:18+00:00"
+      },
+      {
+        "number": 100925,
+        "sha": null,
+        "title": "Update replxx to include fix for out-of-bounds access in do_complete_line",
+        "specd": true,
+        "spec_source": "https://github.com/ClickHouse/ClickHouse/issues/95278",
+        "merged_at": "2026-03-31T21:32:05+00:00"
+      },
+      {
+        "number": 101287,
+        "sha": null,
+        "title": "Fix wrong results for integer boolean predicates in WHERE on MergeTree",
+        "specd": true,
+        "spec_source": "https://github.com/ClickHouse/ClickHouse/issues/101269",
+        "merged_at": "2026-03-31T20:14:34+00:00"
+      },
+      {
+        "number": 101392,
+        "sha": null,
+        "title": "Backport #101241 to 26.3: Revert \"Use memory tracking in hash table for patches\"",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T21:02:21+00:00"
+      },
+      {
+        "number": 80237,
+        "sha": null,
+        "title": "[Iceberg] Support position deletes for Iceberg TableEngine",
+        "specd": true,
+        "spec_source": "#79678",
+        "merged_at": "2025-06-26T15:29:16+00:00"
+      },
+      {
+        "number": 101110,
+        "sha": null,
+        "title": "Add test: No test combines multiple text indexes + LWD + vertical merge",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T19:18:14+00:00"
+      },
+      {
+        "number": 101137,
+        "sha": null,
+        "title": "Add test: DELETED watch event type is not tested in the suite",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T19:21:43+00:00"
+      },
+      {
+        "number": 101146,
+        "sha": null,
+        "title": "Add test: Map and Nested types untested with ALTER ADD COLUMN + lazy m",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T19:22:41+00:00"
+      },
+      {
+        "number": 101316,
+        "sha": null,
+        "title": "Fix flaky test 03800_assume_not_null_coalesce_if_null_monotonicity_key_condition",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T18:17:14+00:00"
+      },
+      {
+        "number": 100225,
+        "sha": null,
+        "title": "Fix use-of-uninitialized-value in StringSearcher.h",
+        "specd": true,
+        "spec_source": "https://github.com/ClickHouse/ClickHouse/issues/99165",
+        "merged_at": "2026-03-31T17:30:52+00:00"
+      },
+      {
+        "number": 101421,
+        "sha": null,
+        "title": "Cherry pick #100225 to 26.3: Fix use-of-uninitialized-value in StringSearcher.h",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T17:35:15+00:00"
+      },
+      {
+        "number": 101419,
+        "sha": null,
+        "title": "Cherry pick #100225 to 26.2: Fix use-of-uninitialized-value in StringSearcher.h",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T17:34:44+00:00"
+      },
+      {
+        "number": 101417,
+        "sha": null,
+        "title": "Cherry pick #100225 to 26.1: Fix use-of-uninitialized-value in StringSearcher.h",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T17:34:14+00:00"
+      },
+      {
+        "number": 101373,
+        "sha": null,
+        "title": "Backport #101230 to 26.3: s3queue: fix cleanup of stale processing  nodes",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T17:27:03+00:00"
+      },
+      {
+        "number": 100182,
+        "sha": null,
+        "title": "Fix join runtime filter with Variant type",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-20T23:29:00+00:00"
+      },
+      {
+        "number": 101371,
+        "sha": null,
+        "title": "Backport #101230 to 26.2: s3queue: fix cleanup of stale processing  nodes",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T17:22:49+00:00"
+      },
+      {
+        "number": 91998,
+        "sha": null,
+        "title": "Allow multiple authentication methods to be specified in users xml",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-31T16:18:23+00:00"
+      },
+      {
+        "number": 101627,
+        "sha": null,
+        "title": "Undo Groene AI collageral damage",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T20:35:34+00:00"
+      },
+      {
+        "number": 100702,
+        "sha": null,
+        "title": "Fix ASAN integration with boost fibers in case of address+undefined sanitizers",
+        "specd": true,
+        "spec_source": "https://github.com/ClickHouse/ClickHouse/issues/100442",
+        "merged_at": "2026-03-25T17:51:32+00:00"
+      },
+      {
+        "number": 94776,
+        "sha": null,
+        "title": "Add `arrayAutocorrelation` function",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T20:49:52+00:00"
+      },
+      {
+        "number": 101619,
+        "sha": null,
+        "title": "Fix flaky test 02346_text_index_prewhere_support",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T20:53:57+00:00"
+      },
+      {
+        "number": 101634,
+        "sha": null,
+        "title": "Add test with virtual columns pruning for delta lake",
+        "specd": true,
+        "spec_source": "https://github.com/ClickHouse/ClickHouse/issues/101515",
+        "merged_at": "2026-04-02T20:12:41+00:00"
+      },
+      {
+        "number": 100948,
+        "sha": null,
+        "title": "Fix undefined behaviour in DateTimeBestEffort parsing",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T14:21:16+00:00"
+      },
+      {
+        "number": 101616,
+        "sha": null,
+        "title": "Test: raise `max_memory_usage` for TPC-H Q05 to 6 GB",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T18:50:48+00:00"
+      },
+      {
+        "number": 99285,
+        "sha": null,
+        "title": "Do not invalidate dictionary if there is only one of them",
+        "specd": true,
+        "spec_source": "#99236",
+        "merged_at": "2026-04-02T18:09:21+00:00"
+      },
+      {
+        "number": 99822,
+        "sha": null,
+        "title": "improvement: use INCORRECT_DATA instead of LOGICAL_ERROR for data-reachable deserialization checks",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T18:09:21+00:00"
+      },
+      {
+        "number": 99823,
+        "sha": null,
+        "title": "Fix abort in DataTypeTuple::createColumn when serialization is SerializationDetached",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T18:09:21+00:00"
+      },
+      {
+        "number": 101569,
+        "sha": null,
+        "title": "Fix logical error in `arraySymmetricDifference` with nullable complex types",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T18:09:21+00:00"
+      },
+      {
+        "number": 101521,
+        "sha": null,
+        "title": "Add a skill to set up test datasets",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T18:17:25+00:00"
+      },
+      {
+        "number": 100956,
+        "sha": null,
+        "title": "Rename unicodeWord tokenizer to asciiCJK",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T18:09:21+00:00"
+      },
+      {
+        "number": 100864,
+        "sha": null,
+        "title": "cast_keep_nullable when enabled should  not throw when casting Dynamic NULL to Variant",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-28T01:53:46+00:00"
+      },
+      {
+        "number": 100388,
+        "sha": null,
+        "title": "Fix DROP TABLE hang on Kafka tables after consumer heartbeat error",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-24T18:08:31+00:00"
+      },
+      {
+        "number": 94849,
+        "sha": null,
+        "title": "Support Materialized CTE",
+        "specd": true,
+        "spec_source": "https://github.com/ClickHouse/ClickHouse/issues/53449.",
+        "merged_at": "2026-03-21T17:55:54+00:00"
+      },
+      {
+        "number": 101464,
+        "sha": null,
+        "title": "Fix null pointer dereference in DataTypeDynamic::create() error path",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T14:31:17+00:00"
+      },
+      {
+        "number": 101633,
+        "sha": null,
+        "title": "Backport #100948 to 26.3: Fix undefined behaviour in DateTimeBestEffort parsing",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T17:43:23+00:00"
+      },
+      {
+        "number": 101396,
+        "sha": null,
+        "title": "Add ability limit amount of jemalloc profile flushes on MEMORY_LIMIT_EXCEEDED per time interval",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T17:28:39+00:00"
+      },
+      {
+        "number": 101549,
+        "sha": null,
+        "title": "Truncate malformed IPv4/6 addresses in exception messages",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T16:47:29+00:00"
+      },
+      {
+        "number": 101625,
+        "sha": null,
+        "title": "Backport #101448 to 26.3: Fix crash when reading Map column from substreams cache in Variant deserialization",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T16:50:55+00:00"
+      },
+      {
+        "number": 101631,
+        "sha": null,
+        "title": "Cherry pick #100948 to 26.2: Fix undefined behaviour in DateTimeBestEffort parsing",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-02T16:33:50+00:00"
+      },
+      {
+        "number": 97546,
+        "sha": null,
+        "title": "Remove incorrect replaceRegexpOne to extract rewrite; fix exception with group_by_use_nulls",
+        "specd": true,
+        "spec_source": "https://github.com/ClickHouse/ClickHouse/issues/88218",
+        "merged_at": "2026-02-26T06:02:16+00:00"
+      },
+      {
+        "number": 74224,
+        "sha": null,
+        "title": "Mark support for KQL and PRQL as experimental",
+        "specd": true,
+        "spec_source": "PRQL-TO",
+        "merged_at": "2025-01-07T13:13:52+00:00"
+      },
+      {
+        "number": 74212,
+        "sha": null,
+        "title": "ClickHouse Client: Autodetect secure connection based on port",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-01-06T19:14:57+00:00"
+      }
+    ]
+  },
+  "quality": {
+    "mode": "heuristic",
+    "average_score": 45,
+    "verdicts": {
+      "REVIEW": 41
+    },
+    "specs": [
+      {
+        "pr_number": 98299,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Added an empty name check to validateDetachedPartName so that ALTER TABLE ... DR",
+            "suggestion": "Goal without test: 'Added an empty name check to validateDetachedPartName so tha...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Added a test for empty part names",
+            "suggestion": "Goal without test: 'Added a test for empty part names' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "CI Fix or Improvement",
+            "suggestion": "Goal without test: 'CI Fix or Improvement' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[ ] Documentation is written (mandatory for new features)",
+            "suggestion": "Goal without test: '[ ] Documentation is written (mandatory for new features)' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 98284,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Add validation in DDSketchLogarithmicMapping::deserialize, DDSketchDenseStore::d",
+            "suggestion": "Goal without test: 'Add validation in DDSketchLogarithmicMapping::deserialize, D...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Add guards in DDSketchDenseLogarithmic::changeMapping to prevent infinite loops ",
+            "suggestion": "Goal without test: 'Add guards in DDSketchDenseLogarithmic::changeMapping to pre...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Add unit tests (11 new gtest cases) and a functional test with hex-encoded corru",
+            "suggestion": "Goal without test: 'Add unit tests (11 new gtest cases) and a functional test wi...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Bug Fix (user-visible misbehavior in an official stable release)",
+            "suggestion": "Goal without test: 'Bug Fix (user-visible misbehavior in an official stable rele...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[ ] Documentation is written (mandatory for new features)",
+            "suggestion": "Goal without test: '[ ] Documentation is written (mandatory for new features)' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 98247,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 97,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 44,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 4,
+            "type": "ambiguity",
+            "term": "correctly",
+            "suggestion": "Replace 'correctly' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Fix the INSERT query parser to rewind on column list parse failure, instead of r",
+            "suggestion": "Goal without test: 'Fix the INSERT query parser to rewind on column list parse f...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "CI Fix or Improvement (changelog entry is not required)",
+            "suggestion": "Goal without test: 'CI Fix or Improvement (changelog entry is not required)' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[ ] Documentation is written (mandatory for new features)",
+            "suggestion": "Goal without test: '[ ] Documentation is written (mandatory for new features)' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 100912,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Not for changelog (changelog entry is not required)",
+            "suggestion": "Goal without test: 'Not for changelog (changelog entry is not required)' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 98286,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Fix a logical error exception in HashJoin::getNonJoinedBlocks caused by left-tab",
+            "suggestion": "Goal without test: 'Fix a logical error exception in HashJoin::getNonJoinedBlock...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "In edge cases (found by AST fuzzer), AddedColumns deduplicates overlapping colum",
+            "suggestion": "Goal without test: 'In edge cases (found by AST fuzzer), AddedColumns deduplicat...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Add an ExpressionStep projection in buildJoinQueryPlan to remove non-key right c",
+            "suggestion": "Goal without test: 'Add an ExpressionStep projection in buildJoinQueryPlan to re...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] Added test 03993joinnooverlappingcolumns_85622 reproducing the issue",
+            "suggestion": "Goal without test: '[x] Added test 03993joinnooverlappingcolumns_85622 reproduci...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[ ] Verify test passes in CI (Debug/ASan builds where the assertion fires)",
+            "suggestion": "Goal without test: '[ ] Verify test passes in CI (Debug/ASan builds where the as...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[ ] Run AST fuzzer suite to confirm no regressions",
+            "suggestion": "Goal without test: '[ ] Run AST fuzzer suite to confirm no regressions' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "CI Fix or Improvement",
+            "suggestion": "Goal without test: 'CI Fix or Improvement' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 99879,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Bug Fix (user-visible misbehavior in an official stable release)",
+            "suggestion": "Goal without test: 'Bug Fix (user-visible misbehavior in an official stable rele...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[ ] Documentation is written (mandatory for new features)",
+            "suggestion": "Goal without test: '[ ] Documentation is written (mandatory for new features)' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 98179,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 97,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 44,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 21,
+            "type": "ambiguity",
+            "term": "as needed",
+            "suggestion": "Replace 'as needed' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Bug Fix (user-visible misbehavior in an official stable release)",
+            "suggestion": "Goal without test: 'Bug Fix (user-visible misbehavior in an official stable rele...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Fix logical error with analyzercompatibilityjoinusingtoplevelidentifier and ARRA",
+            "suggestion": "Goal without test: 'Fix logical error with analyzercompatibilityjoinusingtopleve...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[ ] Documentation is written (mandatory for new features)",
+            "suggestion": "Goal without test: '[ ] Documentation is written (mandatory for new features)' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Motivation: Why is this function, table engine, etc. useful to ClickHouse users?",
+            "suggestion": "Goal without test: 'Motivation: Why is this function, table engine, etc. useful ...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Parameters: If the feature being added takes arguments, options or is influenced",
+            "suggestion": "Goal without test: 'Parameters: If the feature being added takes arguments, opti...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Example use: A query or command.",
+            "suggestion": "Goal without test: 'Example use: A query or command.' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 89994,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 98,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 44,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 28,
+            "type": "ambiguity",
+            "term": "as needed",
+            "suggestion": "Replace 'as needed' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "All hashes are stored in memory, they just have to be written to the disk period",
+            "suggestion": "Goal without test: 'All hashes are stored in memory, they just have to be writte...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 99164,
+        "format": "freeform",
+        "completeness": 50,
+        "ambiguity": 98,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 59,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 32,
+            "type": "ambiguity",
+            "term": "as needed",
+            "suggestion": "Replace 'as needed' with a specific, measurable term"
+          },
+          {
+            "line": 45,
+            "type": "ambiguity",
+            "term": "lightweight",
+            "suggestion": "Replace 'lightweight' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboard?tab=bugbot) for c",
+            "suggestion": "Goal without test: '> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboa...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 93197,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Bug Fix (user-visible misbehavior in an official stable release)",
+            "suggestion": "Goal without test: 'Bug Fix (user-visible misbehavior in an official stable rele...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 96022,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "\"Cannot UPDATE column c0 and RENAME it in the same ALTER query. Please split int",
+            "suggestion": "Goal without test: '\"Cannot UPDATE column c0 and RENAME it in the same ALTER que...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "\"Cannot use column c0` in DELETE predicate and RENAME it in the same ALTER query",
+            "suggestion": "Goal without test: '\"Cannot use column c0` in DELETE predicate and RENAME it in ...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 93115,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 95,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 44,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 16,
+            "type": "ambiguity",
+            "term": "correctly",
+            "suggestion": "Replace 'correctly' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Backward Incompatible Change",
+            "suggestion": "Goal without test: 'Backward Incompatible Change' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 100064,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Not for changelog (changelog entry is not required)",
+            "suggestion": "Goal without test: 'Not for changelog (changelog entry is not required)' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 100839,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 96,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 44,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 11,
+            "type": "ambiguity",
+            "term": "normal",
+            "suggestion": "Replace 'normal' with a specific, measurable term"
+          },
+          {
+            "line": 25,
+            "type": "ambiguity",
+            "term": "as needed",
+            "suggestion": "Replace 'as needed' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "fixes https://github.com/ClickHouse/clickhouse-core-incidents/issues/1464",
+            "suggestion": "Goal without test: 'fixes https://github.com/ClickHouse/clickhouse-core-incident...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Critical Bug Fix (crash, data loss, RBAC)",
+            "suggestion": "Goal without test: 'Critical Bug Fix (crash, data loss, RBAC)' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[ ] Documentation is written (mandatory for new features)",
+            "suggestion": "Goal without test: '[ ] Documentation is written (mandatory for new features)' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Motivation: Why is this function, table engine, etc. useful to ClickHouse users?",
+            "suggestion": "Goal without test: 'Motivation: Why is this function, table engine, etc. useful ...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Parameters: If the feature being added takes arguments, options or is influenced",
+            "suggestion": "Goal without test: 'Parameters: If the feature being added takes arguments, opti...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Example use: A query or command.",
+            "suggestion": "Goal without test: 'Example use: A query or command.' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 101175,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "CI Fix or Improvement (changelog entry is not required)",
+            "suggestion": "Goal without test: 'CI Fix or Improvement (changelog entry is not required)' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[ ] Documentation is written (mandatory for new features)",
+            "suggestion": "Goal without test: '[ ] Documentation is written (mandatory for new features)' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 100455,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 98,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 44,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 26,
+            "type": "ambiguity",
+            "term": "as needed",
+            "suggestion": "Replace 'as needed' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "fixes https://github.com/ClickHouse/clickhouse-core-incidents/issues/1500",
+            "suggestion": "Goal without test: 'fixes https://github.com/ClickHouse/clickhouse-core-incident...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "fixes https://github.com/ClickHouse/clickhouse-core-incidents/issues/1487",
+            "suggestion": "Goal without test: 'fixes https://github.com/ClickHouse/clickhouse-core-incident...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "fixes https://github.com/ClickHouse/clickhouse-core-incidents/issues/1511",
+            "suggestion": "Goal without test: 'fixes https://github.com/ClickHouse/clickhouse-core-incident...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Critical Bug Fix (crash, data loss, RBAC)",
+            "suggestion": "Goal without test: 'Critical Bug Fix (crash, data loss, RBAC)' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[ ] Documentation is written (mandatory for new features)",
+            "suggestion": "Goal without test: '[ ] Documentation is written (mandatory for new features)' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Motivation: Why is this function, table engine, etc. useful to ClickHouse users?",
+            "suggestion": "Goal without test: 'Motivation: Why is this function, table engine, etc. useful ...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Parameters: If the feature being added takes arguments, options or is influenced",
+            "suggestion": "Goal without test: 'Parameters: If the feature being added takes arguments, opti...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Example use: A query or command.",
+            "suggestion": "Goal without test: 'Example use: A query or command.' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 101142,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "CI Fix or Improvement (changelog entry is not required)",
+            "suggestion": "Goal without test: 'CI Fix or Improvement (changelog entry is not required)' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[ ] Documentation is written (mandatory for new features)",
+            "suggestion": "Goal without test: '[ ] Documentation is written (mandatory for new features)' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 100901,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[ ] Documentation is written (mandatory for new features)",
+            "suggestion": "Goal without test: '[ ] Documentation is written (mandatory for new features)' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 101278,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Bug Fix (user-visible misbehavior in an official stable release)",
+            "suggestion": "Goal without test: 'Bug Fix (user-visible misbehavior in an official stable rele...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[ ] Documentation is written (mandatory for new features)",
+            "suggestion": "Goal without test: '[ ] Documentation is written (mandatory for new features)' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 99794,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 96,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 44,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 3,
+            "type": "ambiguity",
+            "term": "simple",
+            "suggestion": "Replace 'simple' with a specific, measurable term"
+          },
+          {
+            "line": 23,
+            "type": "ambiguity",
+            "term": "as needed",
+            "suggestion": "Replace 'as needed' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Bug Fix (user-visible misbehavior in an official stable release)",
+            "suggestion": "Goal without test: 'Bug Fix (user-visible misbehavior in an official stable rele...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[ ] Documentation is written (mandatory for new features)",
+            "suggestion": "Goal without test: '[ ] Documentation is written (mandatory for new features)' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Motivation: Why is this function, table engine, etc. useful to ClickHouse users?",
+            "suggestion": "Goal without test: 'Motivation: Why is this function, table engine, etc. useful ...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Parameters: If the feature being added takes arguments, options or is influenced",
+            "suggestion": "Goal without test: 'Parameters: If the feature being added takes arguments, opti...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Example use: A query or command.",
+            "suggestion": "Goal without test: 'Example use: A query or command.' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 98369,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Fix MATERIALIZE INDEX and MATERIALIZE PROJECTION mutations getting stuck with \"U",
+            "suggestion": "Goal without test: 'Fix MATERIALIZE INDEX and MATERIALIZE PROJECTION mutations g...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Bug Fix (user-visible misbehavior in an official stable release)",
+            "suggestion": "Goal without test: 'Bug Fix (user-visible misbehavior in an official stable rele...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 94207,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Note: If min settings are smaller than max settings, the max limits take precede",
+            "suggestion": "Goal without test: 'Note: If min settings are smaller than max settings, the max...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboard?tab=bugbot) for c",
+            "suggestion": "Goal without test: '> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboa...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 100878,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Not for changelog (changelog entry is not required)",
+            "suggestion": "Goal without test: 'Not for changelog (changelog entry is not required)' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 94493,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "CI Fix or Improvement (changelog entry is not required)",
+            "suggestion": "Goal without test: 'CI Fix or Improvement (changelog entry is not required)' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 101364,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 93102,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "CI Fix or Improvement (changelog entry is not required)",
+            "suggestion": "Goal without test: 'CI Fix or Improvement (changelog entry is not required)' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 99651,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 97,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 44,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 19,
+            "type": "ambiguity",
+            "term": "as needed",
+            "suggestion": "Replace 'as needed' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[ ] Documentation is written (mandatory for new features)",
+            "suggestion": "Goal without test: '[ ] Documentation is written (mandatory for new features)' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Motivation: Why is this function, table engine, etc. useful to ClickHouse users?",
+            "suggestion": "Goal without test: 'Motivation: Why is this function, table engine, etc. useful ...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Parameters: If the feature being added takes arguments, options or is influenced",
+            "suggestion": "Goal without test: 'Parameters: If the feature being added takes arguments, opti...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Example use: A query or command.",
+            "suggestion": "Goal without test: 'Example use: A query or command.' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 101333,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 97,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 44,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 19,
+            "type": "ambiguity",
+            "term": "as needed",
+            "suggestion": "Replace 'as needed' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Documentation (changelog entry is not required)",
+            "suggestion": "Goal without test: 'Documentation (changelog entry is not required)' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[ ] Documentation is written (mandatory for new features)",
+            "suggestion": "Goal without test: '[ ] Documentation is written (mandatory for new features)' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Motivation: Why is this function, table engine, etc. useful to ClickHouse users?",
+            "suggestion": "Goal without test: 'Motivation: Why is this function, table engine, etc. useful ...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Parameters: If the feature being added takes arguments, options or is influenced",
+            "suggestion": "Goal without test: 'Parameters: If the feature being added takes arguments, opti...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Example use: A query or command.",
+            "suggestion": "Goal without test: 'Example use: A query or command.' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 100444,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 97,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 44,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 25,
+            "type": "ambiguity",
+            "term": "as needed",
+            "suggestion": "Replace 'as needed' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "fixes https://github.com/ClickHouse/clickhouse-core-incidents/issues/1479",
+            "suggestion": "Goal without test: 'fixes https://github.com/ClickHouse/clickhouse-core-incident...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Critical Bug Fix (crash, data loss, RBAC)",
+            "suggestion": "Goal without test: 'Critical Bug Fix (crash, data loss, RBAC)' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[ ] Documentation is written (mandatory for new features)",
+            "suggestion": "Goal without test: '[ ] Documentation is written (mandatory for new features)' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Motivation: Why is this function, table engine, etc. useful to ClickHouse users?",
+            "suggestion": "Goal without test: 'Motivation: Why is this function, table engine, etc. useful ...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Parameters: If the feature being added takes arguments, options or is influenced",
+            "suggestion": "Goal without test: 'Parameters: If the feature being added takes arguments, opti...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Example use: A query or command.",
+            "suggestion": "Goal without test: 'Example use: A query or command.' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 100448,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Bug Fix (user-visible misbehavior in an official stable release)",
+            "suggestion": "Goal without test: 'Bug Fix (user-visible misbehavior in an official stable rele...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[ ] Documentation is written (mandatory for new features)",
+            "suggestion": "Goal without test: '[ ] Documentation is written (mandatory for new features)' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 101270,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Not for changelog (changelog entry is not required)",
+            "suggestion": "Goal without test: 'Not for changelog (changelog entry is not required)' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 100925,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Bug Fix (user-visible misbehavior in an official stable release)",
+            "suggestion": "Goal without test: 'Bug Fix (user-visible misbehavior in an official stable rele...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 101287,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 96,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 44,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 13,
+            "type": "ambiguity",
+            "term": "correctly",
+            "suggestion": "Replace 'correctly' with a specific, measurable term"
+          },
+          {
+            "line": 13,
+            "type": "ambiguity",
+            "term": "correctly",
+            "suggestion": "Replace 'correctly' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Bug Fix (user-visible misbehavior in an official stable release)",
+            "suggestion": "Goal without test: 'Bug Fix (user-visible misbehavior in an official stable rele...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 80237,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 97,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 44,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 25,
+            "type": "ambiguity",
+            "term": "as needed",
+            "suggestion": "Replace 'as needed' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "This PR is based on #74146. And it will close #79678.",
+            "suggestion": "Goal without test: 'This PR is based on #74146. And it will close #79678.' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 100225,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Critical Bug Fix (crash, data loss, RBAC)",
+            "suggestion": "Goal without test: 'Critical Bug Fix (crash, data loss, RBAC)' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 100702,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Not for changelog (changelog entry is not required)",
+            "suggestion": "Goal without test: 'Not for changelog (changelog entry is not required)' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 101634,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[ ] Documentation is written (mandatory for new features)",
+            "suggestion": "Goal without test: '[ ] Documentation is written (mandatory for new features)' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 99285,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 98,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 44,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 28,
+            "type": "ambiguity",
+            "term": "as needed",
+            "suggestion": "Replace 'as needed' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboard?tab=bugbot) for c",
+            "suggestion": "Goal without test: '> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboa...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 94849,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 98,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 44,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 20,
+            "type": "ambiguity",
+            "term": "as needed",
+            "suggestion": "Replace 'as needed' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboard?tab=bugbot) for c",
+            "suggestion": "Goal without test: '> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboa...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 97546,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Critical Bug Fix (crash, data loss, RBAC) or LOGICAL_ERROR",
+            "suggestion": "Goal without test: 'Critical Bug Fix (crash, data loss, RBAC) or LOGICAL_ERROR' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[ ] Documentation is written (mandatory for new features)",
+            "suggestion": "Goal without test: '[ ] Documentation is written (mandatory for new features)' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 74224,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "PRQL: seems not very popular, implemented in Rust ([original PR](https://github.",
+            "suggestion": "Goal without test: 'PRQL: seems not very popular, implemented in Rust ([original...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "KQL: https://github.com/ClickHouse/ClickHouse/issues/61742",
+            "suggestion": "Goal without test: 'KQL: https://github.com/ClickHouse/ClickHouse/issues/61742' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      }
+    ]
+  },
+  "effectiveness": {
+    "specd_rework_rate": 0.122,
+    "unspecd_rework_rate": 0.0361,
+    "delta": 0.0858,
+    "specd_sample_size": 41,
+    "unspecd_sample_size": 166,
+    "significance": "significant",
+    "signals": [
+      {
+        "type": "bug-fix",
+        "source": "95100",
+        "target": "93197",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/Analyzer/Resolve/QueryAnalyzer.cpp"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "98350",
+        "target": "97430",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/Storages/MergeTree/IMergeTreeDataPart.cpp"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "100909",
+        "target": "99755",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/Processors/QueryPlan/Optimizations/optimizeDirectReadFromTextIndex.cpp"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "100794",
+        "target": "98286",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/Planner/PlannerJoinTree.cpp"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "101147",
+        "target": "94849",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/Analyzer/Resolve/QueryAnalyzer.cpp"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "100928",
+        "target": "101015",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/Functions/FunctionBinaryArithmetic.h"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "101071",
+        "target": "94849",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/Planner/Planner.cpp"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "101524",
+        "target": "99651",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/Coordination/tests/gtest_coordination_snapshot.cpp"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "101438",
+        "target": "100792",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "tests/integration/helpers/cluster.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "101299",
+        "target": "94207",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/Interpreters/InterpreterInsertQuery.cpp"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "101555",
+        "target": "101492",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "ci/praktika/result.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "101627",
+        "target": "100909",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/Processors/QueryPlan/Optimizations/optimizeDirectReadFromTextIndex.cpp",
+          "tests/queries/0_stateless/02346_text_index_bug100879.reference",
+          "tests/queries/0_stateless/02346_text_index_bug100879.sql"
+        ]
+      }
+    ],
+    "by_complexity": {
+      "small": {
+        "specd_rework_rate": 0.04,
+        "unspecd_rework_rate": 0.0259,
+        "specd_count": 25,
+        "unspecd_count": 116
+      },
+      "medium": {
+        "specd_rework_rate": 0.1,
+        "unspecd_rework_rate": 0.0833,
+        "specd_count": 10,
+        "unspecd_count": 36
+      },
+      "large": {
+        "specd_rework_rate": 0.5,
+        "unspecd_rework_rate": 0.0,
+        "specd_count": 6,
+        "unspecd_count": 14
+      }
+    }
+  }
+}

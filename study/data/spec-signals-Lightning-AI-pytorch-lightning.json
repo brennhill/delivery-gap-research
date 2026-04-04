@@ -1,0 +1,1863 @@
+{
+  "repo": "Lightning-AI/pytorch-lightning",
+  "lookback_days": 365,
+  "rework_window_days": 30,
+  "coverage": {
+    "coverage_pct": 54,
+    "total_prs": 41,
+    "specd_prs": 22,
+    "prs": [
+      {
+        "number": 21621,
+        "sha": null,
+        "title": "Docs: avoid unresolved torch.jit Sphinx refs to fix the CICD doc build failure.",
+        "specd": true,
+        "spec_source": "#21620",
+        "merged_at": "2026-03-30T06:26:01+00:00"
+      },
+      {
+        "number": 21598,
+        "sha": null,
+        "title": "Update issue templates and labeler for v2.6 release",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T06:26:20+00:00"
+      },
+      {
+        "number": 21597,
+        "sha": null,
+        "title": "drop deprecated stale.yml config",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-30T06:26:16+00:00"
+      },
+      {
+        "number": 21595,
+        "sha": null,
+        "title": "Use fs.pipe() for S3/GCS checkpoint uploads in _atomic_save",
+        "specd": true,
+        "spec_source": "#21499",
+        "merged_at": "2026-03-21T11:02:24+00:00"
+      },
+      {
+        "number": 21545,
+        "sha": null,
+        "title": "Fix LearningRateMonitor TypeError on MPS with float64 lr values",
+        "specd": true,
+        "spec_source": "#20250",
+        "merged_at": "2026-03-20T13:47:19+00:00"
+      },
+      {
+        "number": 21430,
+        "sha": null,
+        "title": "Adds litlogger integration",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-12-20T00:56:07+00:00"
+      },
+      {
+        "number": 21321,
+        "sha": null,
+        "title": "Improve RichProgreasBar speed performance ",
+        "specd": true,
+        "spec_source": "#13937",
+        "merged_at": "2025-12-19T23:43:19+00:00"
+      },
+      {
+        "number": 21384,
+        "sha": null,
+        "title": "Fix ModelParallelStrategy fails with non-distributed checkpoint.",
+        "specd": true,
+        "spec_source": "#21357",
+        "merged_at": "2025-12-19T14:23:25+00:00"
+      },
+      {
+        "number": 21572,
+        "sha": null,
+        "title": "Remove NeptuneLogger integration from PyTorch Lightning",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-19T09:29:28+00:00"
+      },
+      {
+        "number": 21427,
+        "sha": null,
+        "title": "ci: revert part of #21413",
+        "specd": true,
+        "spec_source": "#21424",
+        "merged_at": "2025-12-19T11:12:39+00:00"
+      },
+      {
+        "number": 21592,
+        "sha": null,
+        "title": "Prepare Release Note for 2.6.2 Release",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-19T09:52:20+00:00"
+      },
+      {
+        "number": 21591,
+        "sha": null,
+        "title": "Update Litlogger Integration to latest version",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-19T08:42:47+00:00"
+      },
+      {
+        "number": 21402,
+        "sha": null,
+        "title": "Fix ddp_notebook CUDA fork check to allow passive initialization",
+        "specd": true,
+        "spec_source": "#21389",
+        "merged_at": "2025-12-18T09:20:12+00:00"
+      },
+      {
+        "number": 21586,
+        "sha": null,
+        "title": "fix: FSDP mixed precision initializes params in fp32, not bf16/fp16",
+        "specd": true,
+        "spec_source": "#21556",
+        "merged_at": "2026-03-17T09:20:11+00:00"
+      },
+      {
+        "number": 21501,
+        "sha": null,
+        "title": "chore(tests): update PyTorch versions in CI workflows to include 2.10",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-17T07:45:55+00:00"
+      },
+      {
+        "number": 21587,
+        "sha": null,
+        "title": "chore(pre-commit) : pin docformatter to python3.12 for compatibility",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-17T06:07:12+00:00"
+      },
+      {
+        "number": 21581,
+        "sha": null,
+        "title": "fix(strategies): correct `device_mesh` type hint in FSDP strategies",
+        "specd": true,
+        "spec_source": "#21580",
+        "merged_at": "2026-03-17T06:04:27+00:00"
+      },
+      {
+        "number": 21395,
+        "sha": null,
+        "title": "Sanitize profile filename",
+        "specd": true,
+        "spec_source": "#21365",
+        "merged_at": "2025-12-16T06:13:07+00:00"
+      },
+      {
+        "number": 21397,
+        "sha": null,
+        "title": "Deprecate method `to_torchscript`",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-12-16T05:33:21+00:00"
+      },
+      {
+        "number": 21396,
+        "sha": null,
+        "title": "Fix `StochasticWeightAveraging`  with infinite epochs",
+        "specd": true,
+        "spec_source": "#21347",
+        "merged_at": "2025-12-15T19:03:25+00:00"
+      },
+      {
+        "number": 21398,
+        "sha": null,
+        "title": "Deprecate Python 3.9 support ",
+        "specd": true,
+        "spec_source": "https://github.com/Lightning-AI/pytorch-lightning/issues/21304",
+        "merged_at": "2025-12-15T16:58:12+00:00"
+      },
+      {
+        "number": 21413,
+        "sha": null,
+        "title": "fix torch-tensorrt dependency in testing",
+        "specd": true,
+        "spec_source": "#21412",
+        "merged_at": "2025-12-15T08:04:45+00:00"
+      },
+      {
+        "number": 21399,
+        "sha": null,
+        "title": "Fix `_generate_seed_sequence` sampling",
+        "specd": true,
+        "spec_source": "#20412",
+        "merged_at": "2025-12-10T17:30:36+00:00"
+      },
+      {
+        "number": 21575,
+        "sha": null,
+        "title": "ci: move torch-tensorrt to GPU-only test requirements",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-09T16:18:56+00:00"
+      },
+      {
+        "number": 21538,
+        "sha": null,
+        "title": "fix: resolve pkg-resources deprecation issue",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-02-16T11:28:25+00:00"
+      },
+      {
+        "number": 21559,
+        "sha": null,
+        "title": "docs: add LR scheduler section with automatic optimization examples",
+        "specd": true,
+        "spec_source": "#16564",
+        "merged_at": "2026-03-06T15:24:48+00:00"
+      },
+      {
+        "number": 21467,
+        "sha": null,
+        "title": "Fix RichModelSummary model size display",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-06T16:25:14+00:00"
+      },
+      {
+        "number": 21570,
+        "sha": null,
+        "title": "CI: ignore neptune links for linkcheck",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-06T15:23:20+00:00"
+      },
+      {
+        "number": 21560,
+        "sha": null,
+        "title": "fix: Skip val_check_interval validation when limit_val_batches=0",
+        "specd": true,
+        "spec_source": "#21553",
+        "merged_at": "2026-03-06T15:23:47+00:00"
+      },
+      {
+        "number": 21565,
+        "sha": null,
+        "title": "Docs: pin Intel Neural Compressor validated model list link",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-03-04T08:53:48+00:00"
+      },
+      {
+        "number": 21388,
+        "sha": null,
+        "title": "Adding test for legacy checkpoint created with 2.6.0",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-11-28T11:55:32+00:00"
+      },
+      {
+        "number": 21380,
+        "sha": null,
+        "title": "Fix ModelCheckpoint file_exists OOM in DDP",
+        "specd": true,
+        "spec_source": "#19674",
+        "merged_at": "2025-11-25T12:22:22+00:00"
+      },
+      {
+        "number": 21258,
+        "sha": null,
+        "title": "[Fabric] Ignore Keyword Arguments Outside of Callback Signature",
+        "specd": true,
+        "spec_source": "#20915",
+        "merged_at": "2025-11-25T10:35:52+00:00"
+      },
+      {
+        "number": 21370,
+        "sha": null,
+        "title": "Change Import Error Message",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-11-21T15:18:44+00:00"
+      },
+      {
+        "number": 21361,
+        "sha": null,
+        "title": "Fix FSDP mixed precision semantics and add user warning",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-11-21T12:17:05+00:00"
+      },
+      {
+        "number": 21618,
+        "sha": null,
+        "title": "Fix free-threaded cleanup race in _replace_dunder_methods",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2026-04-01T21:24:46+00:00"
+      },
+      {
+        "number": 21632,
+        "sha": null,
+        "title": "feat: add `suggest_integrations` flag to toggle `integration suggestions` in Trainer logs (default `True`)",
+        "specd": true,
+        "spec_source": "#21294",
+        "merged_at": "2026-04-01T11:01:58+00:00"
+      },
+      {
+        "number": 21616,
+        "sha": null,
+        "title": "fix: restore cached AMP step context after no_grad workaround",
+        "specd": true,
+        "spec_source": "#21611",
+        "merged_at": "2026-04-01T10:30:49+00:00"
+      },
+      {
+        "number": 21612,
+        "sha": null,
+        "title": "Add `log_key_prefix` parameter to `LearningRateMonitor`",
+        "specd": true,
+        "spec_source": "#21590",
+        "merged_at": "2026-04-01T09:00:54+00:00"
+      },
+      {
+        "number": 21623,
+        "sha": null,
+        "title": "fix: set nonzero exit code for SIGTERMException",
+        "specd": true,
+        "spec_source": "#19916",
+        "merged_at": "2026-03-30T11:27:37+00:00"
+      },
+      {
+        "number": 5432,
+        "sha": null,
+        "title": "[tests/core] Updated with BoringModel and added BoringDataModule",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2021-01-13T06:48:37+00:00"
+      }
+    ]
+  },
+  "quality": {
+    "mode": "heuristic",
+    "average_score": 45,
+    "verdicts": {
+      "REVIEW": 22
+    },
+    "specs": [
+      {
+        "pr_number": 21621,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "torch.jit.ScriptModule",
+            "suggestion": "Goal without test: 'torch.jit.ScriptModule' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "torch.jit.script",
+            "suggestion": "Goal without test: 'torch.jit.script' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "torch.jit.trace",
+            "suggestion": "Goal without test: 'torch.jit.trace' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] Did you read the contributor guideline, Pull Request section?",
+            "suggestion": "Goal without test: '[x] Did you read the contributor guideline, Pull Request sec...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] Did you make sure your PR does only one thing, instead of bundling different",
+            "suggestion": "Goal without test: '[x] Did you make sure your PR does only one thing, instead o...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] Did you verify new and existing tests pass locally with your changes?",
+            "suggestion": "Goal without test: '[x] Did you verify new and existing tests pass locally with ...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "./.venv/bin/python -m py_compile src/lightning/pytorch/core/module.py",
+            "suggestion": "Goal without test: './.venv/bin/python -m py_compile src/lightning/pytorch/core/...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 21595,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "I haven't signed the CLA yet \u2014 will do so when prompted by the bot.",
+            "suggestion": "Goal without test: 'I haven't signed the CLA yet \u2014 will do so when prompted by t...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 21545,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Added testlrmonitorwithfloat64_lr that creates a model with np.float64` lr and v",
+            "suggestion": "Goal without test: 'Added testlrmonitorwithfloat64_lr that creates a model with ...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Ran full lr_monitor test suite (20/20 passed)",
+            "suggestion": "Goal without test: 'Ran full lr_monitor test suite (20/20 passed)' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 21321,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "If we didn't discuss your PR in Github issues there's a high chance it will not ",
+            "suggestion": "Goal without test: 'If we didn't discuss your PR in Github issues there's a high...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 21384,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Adds a CUDA-only integration test that mirrors the reporter\u2019s compiled ModelPara",
+            "suggestion": "Goal without test: 'Adds a CUDA-only integration test that mirrors the reporter\u2019...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Fixes [ModelParallelStrategy.optimizer_state] so when torch.compile wraps the mo",
+            "suggestion": "Goal without test: 'Fixes [ModelParallelStrategy.optimizer_state] so when torch....' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Documents the fix in the unreleased changelog.",
+            "suggestion": "Goal without test: 'Documents the fix in the unreleased changelog.' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Was this discussed/agreed via a GitHub issue? (not for typos and docs)",
+            "suggestion": "Goal without test: 'Was this discussed/agreed via a GitHub issue? (not for typos...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] Did you read the [contributor guideline](https://github.com/Lightning-AI/pyt",
+            "suggestion": "Goal without test: '[x] Did you read the [contributor guideline](https://github....' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] Did you make sure your PR does only one thing, instead of bundling different",
+            "suggestion": "Goal without test: '[x] Did you make sure your PR does only one thing, instead o...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Did you make sure to update the documentation with your changes? (if necessary)",
+            "suggestion": "Goal without test: 'Did you make sure to update the documentation with your chan...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Did you write any new necessary tests? (not for typos and docs)",
+            "suggestion": "Goal without test: 'Did you write any new necessary tests? (not for typos and do...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] Did you verify new and existing tests pass locally with your changes? (CUDA ",
+            "suggestion": "Goal without test: '[x] Did you verify new and existing tests pass locally with ...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Did you list all the breaking changes introduced by this pull request?",
+            "suggestion": "Goal without test: 'Did you list all the breaking changes introduced by this pul...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] Did you update the CHANGELOG? (not for typos, docs, test updates, or minor i",
+            "suggestion": "Goal without test: '[x] Did you update the CHANGELOG? (not for typos, docs, test...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 21427,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "If we didn't discuss your PR in Github issues there's a high chance it will not ",
+            "suggestion": "Goal without test: 'If we didn't discuss your PR in Github issues there's a high...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 21402,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] Code follows style guidelines",
+            "suggestion": "Goal without test: '[x] Code follows style guidelines' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] Changes preserve backward compatibility",
+            "suggestion": "Goal without test: '[x] Changes preserve backward compatibility' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] Fallback exists for older PyTorch versions",
+            "suggestion": "Goal without test: '[x] Fallback exists for older PyTorch versions' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 21586,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[ ] Is this pull request ready for review? (if not, please submit in draft mode)",
+            "suggestion": "Goal without test: '[ ] Is this pull request ready for review? (if not, please s...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[ ] Check that all items from Before submitting are resolved",
+            "suggestion": "Goal without test: '[ ] Check that all items from Before submitting are resolved' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[ ] Make sure the title is self-explanatory and the description concisely explai",
+            "suggestion": "Goal without test: '[ ] Make sure the title is self-explanatory and the descript...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[ ] Add labels and milestones (and optionally projects) to the PR so it can be c",
+            "suggestion": "Goal without test: '[ ] Add labels and milestones (and optionally projects) to t...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 21581,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "src/lightning/fabric/strategies/fsdp.py",
+            "suggestion": "Goal without test: 'src/lightning/fabric/strategies/fsdp.py' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "src/lightning/pytorch/strategies/fsdp.py",
+            "suggestion": "Goal without test: 'src/lightning/pytorch/strategies/fsdp.py' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "tests/testsfabric/strategies/testfsdp.py",
+            "suggestion": "Goal without test: 'tests/testsfabric/strategies/testfsdp.py' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "tests/testspytorch/strategies/testfsdp.py",
+            "suggestion": "Goal without test: 'tests/testspytorch/strategies/testfsdp.py' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 21395,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "If we didn't discuss your PR in Github issues there's a high chance it will not ",
+            "suggestion": "Goal without test: 'If we didn't discuss your PR in Github issues there's a high...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "This will currently crash if there are characters such as \"/\" in the filename, w",
+            "suggestion": "Goal without test: 'This will currently crash if there are characters such as \"/...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 21396,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "If we didn't discuss your PR in Github issues there's a high chance it will not ",
+            "suggestion": "Goal without test: 'If we didn't discuss your PR in Github issues there's a high...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 21398,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "If we didn't discuss your PR in Github issues there's a high chance it will not ",
+            "suggestion": "Goal without test: 'If we didn't discuss your PR in Github issues there's a high...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 21413,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "If we didn't discuss your PR in Github issues there's a high chance it will not ",
+            "suggestion": "Goal without test: 'If we didn't discuss your PR in Github issues there's a high...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 21399,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 99,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 16,
+            "type": "ambiguity",
+            "term": "simple",
+            "suggestion": "Replace 'simple' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "If we didn't discuss your PR in Github issues there's a high chance it will not ",
+            "suggestion": "Goal without test: 'If we didn't discuss your PR in Github issues there's a high...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 21559,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 97,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 44,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 10,
+            "type": "ambiguity",
+            "term": "simple",
+            "suggestion": "Replace 'simple' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Added a \"Learning Rate Scheduling\" section to docs/source-pytorch/common/optimiz",
+            "suggestion": "Goal without test: 'Added a \"Learning Rate Scheduling\" section to docs/source-py...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Includes a simple configure_optimizers code example for automatic optimization",
+            "suggestion": "Goal without test: 'Includes a simple configure_optimizers code example for auto...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Explains all 4 combinations of interval and frequency with a table",
+            "suggestion": "Goal without test: 'Explains all 4 combinations of interval and frequency with a...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Adds a note clarifying that manual optimization requires calling scheduler.step(",
+            "suggestion": "Goal without test: 'Adds a note clarifying that manual optimization requires cal...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Adds a cross-reference link to the configure_optimizers API docs",
+            "suggestion": "Goal without test: 'Adds a cross-reference link to the configure_optimizers API ...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] Was this discussed/agreed via a GitHub issue? Yes \u2014 #16564",
+            "suggestion": "Goal without test: '[x] Was this discussed/agreed via a GitHub issue? Yes \u2014 #165...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] Did you read the contributor guidelines?",
+            "suggestion": "Goal without test: '[x] Did you read the contributor guidelines?' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] PR does only one thing",
+            "suggestion": "Goal without test: '[x] PR does only one thing' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] Documentation updated",
+            "suggestion": "Goal without test: '[x] Documentation updated' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[ ] New tests \u2014 not needed (docs-only change)",
+            "suggestion": "Goal without test: '[ ] New tests \u2014 not needed (docs-only change)' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[ ] Existing tests pass \u2014 not needed (docs-only change)",
+            "suggestion": "Goal without test: '[ ] Existing tests pass \u2014 not needed (docs-only change)' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[ ] Breaking changes \u2014 none",
+            "suggestion": "Goal without test: '[ ] Breaking changes \u2014 none' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 21560,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "In FitLoop.setupdata(), added an early check: when trainer.limitvalbatches == 0,",
+            "suggestion": "Goal without test: 'In FitLoop.setupdata(), added an early check: when trainer.l...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Added regression test confirming valcheckinterval > limittrainbatches no longer ",
+            "suggestion": "Goal without test: 'Added regression test confirming valcheckinterval > limittra...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 21380,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 94,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 43,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 6,
+            "type": "ambiguity",
+            "term": "simple",
+            "suggestion": "Replace 'simple' with a specific, measurable term"
+          },
+          {
+            "line": 13,
+            "type": "ambiguity",
+            "term": "better",
+            "suggestion": "Replace 'better' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Use [strategy.reducebooleandecision] instead of [broadcast] in [ModelCheckpoint.",
+            "suggestion": "Goal without test: 'Use [strategy.reducebooleandecision] instead of [broadcast] ...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Ensure only global rank 0 touches the filesystem when checking for existing chec",
+            "suggestion": "Goal without test: 'Ensure only global rank 0 touches the filesystem when checki...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Avoid broadcastobjectlist for a simple boolean in DDP to reduce memory pressure ",
+            "suggestion": "Goal without test: 'Avoid broadcastobjectlist for a simple boolean in DDP to red...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Add a small DDP test with monitor=None to exercise this path.",
+            "suggestion": "Goal without test: 'Add a small DDP test with monitor=None to exercise this path...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "No new runtime dependencies introduced by this PR.",
+            "suggestion": "Goal without test: 'No new runtime dependencies introduced by this PR.' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "Tests rely on pytorchlightningenterprise being available, as required by [tests/",
+            "suggestion": "Goal without test: 'Tests rely on pytorchlightningenterprise being available, as...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "python -m pytest tests/testspytorch/checkpointing/testcheckpointcallbackfrequenc",
+            "suggestion": "Goal without test: 'python -m pytest tests/testspytorch/checkpointing/testcheckp...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "python -m pytest tests/testspytorch/checkpointing -k \"not legacycheckpoints\"",
+            "suggestion": "Goal without test: 'python -m pytest tests/testspytorch/checkpointing -k \"not le...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "python -m pytest tests/testspytorch/callbacks/testmodelcheckpoint*.py tests/test",
+            "suggestion": "Goal without test: 'python -m pytest tests/testspytorch/callbacks/testmodelcheck...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 21258,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "If we didn't discuss your PR in Github issues there's a high chance it will not ",
+            "suggestion": "Goal without test: 'If we didn't discuss your PR in Github issues there's a high...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 21632,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "If we didn't discuss your PR in Github issues there's a high chance it will not ",
+            "suggestion": "Goal without test: 'If we didn't discuss your PR in Github issues there's a high...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 21616,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 98,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 44,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 21,
+            "type": "ambiguity",
+            "term": "normal",
+            "suggestion": "Replace 'normal' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "autocastcontextmanager() still uses cache_enabled=False",
+            "suggestion": "Goal without test: 'autocastcontextmanager() still uses cache_enabled=False' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "keep MixedPrecision.autocastcontextmanager() behavior unchanged",
+            "suggestion": "Goal without test: 'keep MixedPrecision.autocastcontextmanager() behavior unchan...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "move the narrower workaround into MixedPrecision.forward_context()",
+            "suggestion": "Goal without test: 'move the narrower workaround into MixedPrecision.forward_con...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "clear the autocast cache after nested nograd() / inferencemode() exits within fo",
+            "suggestion": "Goal without test: 'clear the autocast cache after nested nograd() / inferencemo...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "add regression tests covering:",
+            "suggestion": "Goal without test: 'add regression tests covering:' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "raw PyTorch autocast behavior with cache_enabled=True vs False",
+            "suggestion": "Goal without test: 'raw PyTorch autocast behavior with cache_enabled=True vs Fal...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "nested nograd() inside Lightning AMP forwardcontext()",
+            "suggestion": "Goal without test: 'nested nograd() inside Lightning AMP forwardcontext()' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "nested inferencemode() inside Lightning AMP forwardcontext()",
+            "suggestion": "Goal without test: 'nested inferencemode() inside Lightning AMP forwardcontext()' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "restoration of patched grad-mode context managers after exiting forward_context(",
+            "suggestion": "Goal without test: 'restoration of patched grad-mode context managers after exit...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 21612,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "src/lightning/pytorch/callbacks/lrmonitor.py: Added logkeyprefix parameter to in",
+            "suggestion": "Goal without test: 'src/lightning/pytorch/callbacks/lrmonitor.py: Added logkeypr...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "tests/testspytorch/callbacks/testlrmonitor.py: Added 4 test cases covering prefi",
+            "suggestion": "Goal without test: 'tests/testspytorch/callbacks/testlrmonitor.py: Added 4 test ...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "src/lightning/pytorch/CHANGELOG.md: Added entry under [unreleased]`",
+            "suggestion": "Goal without test: 'src/lightning/pytorch/CHANGELOG.md: Added entry under [unrel...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] Was this discussed/agreed via a GitHub issue? (#21590, maintainer @justussch",
+            "suggestion": "Goal without test: '[x] Was this discussed/agreed via a GitHub issue? (#21590, m...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] Did you read the [contributor guideline](https://github.com/Lightning-AI/pyt",
+            "suggestion": "Goal without test: '[x] Did you read the [contributor guideline](https://github....' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] Did you make sure your PR does only one thing, instead of bundling different",
+            "suggestion": "Goal without test: '[x] Did you make sure your PR does only one thing, instead o...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] Did you make sure to update the documentation with your changes? (docstring ",
+            "suggestion": "Goal without test: '[x] Did you make sure to update the documentation with your ...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] Did you write any new necessary tests? (4 new tests)",
+            "suggestion": "Goal without test: '[x] Did you write any new necessary tests? (4 new tests)' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] Did you verify new and existing tests pass locally with your changes? (24 pa",
+            "suggestion": "Goal without test: '[x] Did you verify new and existing tests pass locally with ...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] Did you update the CHANGELOG?",
+            "suggestion": "Goal without test: '[x] Did you update the CHANGELOG?' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[ ] Is this pull request ready for review? (if not, please submit in draft mode)",
+            "suggestion": "Goal without test: '[ ] Is this pull request ready for review? (if not, please s...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[ ] Check that all items from Before submitting are resolved",
+            "suggestion": "Goal without test: '[ ] Check that all items from Before submitting are resolved' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[ ] Make sure the title is self-explanatory and the description concisely explai",
+            "suggestion": "Goal without test: '[ ] Make sure the title is self-explanatory and the descript...' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[ ] Add labels and milestones (and optionally projects) to the PR so it can be c",
+            "suggestion": "Goal without test: '[ ] Add labels and milestones (and optionally projects) to t...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 21623,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 96,
+        "testability": 20,
+        "consistency": 100,
+        "overall": 49,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 5,
+            "type": "ambiguity",
+            "term": "clean",
+            "suggestion": "Replace 'clean' with a specific, measurable term"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] Did you read the [contributor guideline](https://github.com/Lightning-AI/pyt",
+            "suggestion": "Goal without test: '[x] Did you read the [contributor guideline](https://github....' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] Did you make sure your PR does only one thing?",
+            "suggestion": "Goal without test: '[x] Did you make sure your PR does only one thing?' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] Did you write any new necessary tests?",
+            "suggestion": "Goal without test: '[x] Did you write any new necessary tests?' \u2014 add a Given/When/Then criterion"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "[x] Did you update the [CHANGELOG](https://github.com/Lightning-AI/pytorch-light",
+            "suggestion": "Goal without test: '[x] Did you update the [CHANGELOG](https://github.com/Lightn...' \u2014 add a Given/When/Then criterion"
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      }
+    ]
+  },
+  "effectiveness": {
+    "specd_rework_rate": 0.3182,
+    "unspecd_rework_rate": 0.2632,
+    "delta": 0.055,
+    "specd_sample_size": 22,
+    "unspecd_sample_size": 19,
+    "significance": "limited",
+    "signals": [
+      {
+        "type": "bug-fix",
+        "source": "21380",
+        "target": "21361",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/lightning/pytorch/CHANGELOG.md"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "21399",
+        "target": "21380",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/lightning/pytorch/CHANGELOG.md"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "21396",
+        "target": "21398",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/lightning/pytorch/CHANGELOG.md"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "21392",
+        "target": "21379",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "requirements/pytorch/extra.txt"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "21402",
+        "target": "21258",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/lightning/fabric/CHANGELOG.md"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "21420",
+        "target": "21427",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "requirements/pytorch/test.txt"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "21417",
+        "target": "21420",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "requirements/pytorch/test.txt"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "21415",
+        "target": "21417",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "requirements/fabric/test.txt",
+          "requirements/pytorch/test.txt"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "21384",
+        "target": "21395",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/lightning/pytorch/CHANGELOG.md"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "21467",
+        "target": "21560",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/lightning/pytorch/CHANGELOG.md"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "21581",
+        "target": "21467",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/lightning/pytorch/CHANGELOG.md"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "21495",
+        "target": "21494",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "requirements/docs.txt"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "21496",
+        "target": "21495",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "requirements/docs.txt"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "21497",
+        "target": "21496",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "requirements/docs.txt"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "21508",
+        "target": "21575",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "requirements/pytorch/test.txt"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "21509",
+        "target": "21508",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "requirements/pytorch/test.txt"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "21522",
+        "target": "21497",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "requirements/docs.txt"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "21586",
+        "target": "21581",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/lightning/fabric/CHANGELOG.md",
+          "src/lightning/pytorch/CHANGELOG.md"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "21599",
+        "target": "21508",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "requirements/fabric/test.txt",
+          "requirements/pytorch/test.txt"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "21600",
+        "target": "21571",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "requirements/pytorch/extra.txt"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "21607",
+        "target": "21599",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "requirements/pytorch/test.txt"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "21627",
+        "target": "21599",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "requirements/fabric/test.txt",
+          "requirements/pytorch/test.txt"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "21625",
+        "target": "21501",
+        "classification": "heuristic",
+        "overlapping_files": [
+          ".github/workflows/ci-tests-fabric.yml",
+          ".github/workflows/ci-tests-pytorch.yml"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "21623",
+        "target": "21592",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "src/lightning/pytorch/CHANGELOG.md"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "21626",
+        "target": "21602",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "requirements/pytorch/docs.txt"
+        ]
+      }
+    ],
+    "by_complexity": {
+      "small": {
+        "specd_rework_rate": 0.3529,
+        "unspecd_rework_rate": 0.3261,
+        "specd_count": 17,
+        "unspecd_count": 46
+      }
+    }
+  }
+}

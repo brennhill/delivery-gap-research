@@ -1,0 +1,309 @@
+{
+  "repo": "QuivrHQ/quivr",
+  "lookback_days": 365,
+  "rework_window_days": 30,
+  "coverage": {
+    "coverage_pct": 17,
+    "total_prs": 18,
+    "specd_prs": 3,
+    "prs": [
+      {
+        "number": 3645,
+        "sha": null,
+        "title": "fix: add Claude 4 support",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-06-19T13:02:37+00:00"
+      },
+      {
+        "number": 3641,
+        "sha": null,
+        "title": "feat: add default values for GPT-4.1 ",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-06-12T18:41:19+00:00"
+      },
+      {
+        "number": 3642,
+        "sha": null,
+        "title": "fix: historic and iterate",
+        "specd": true,
+        "spec_source": "ENT-1146",
+        "merged_at": "2025-06-02T10:25:06+00:00"
+      },
+      {
+        "number": 3640,
+        "sha": null,
+        "title": "feat: metadata brain core",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-05-26T13:10:43+00:00"
+      },
+      {
+        "number": 3590,
+        "sha": null,
+        "title": "refactor: replace user_id with workspace_id in Brain class",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-05-15T07:49:02+00:00"
+      },
+      {
+        "number": 3636,
+        "sha": null,
+        "title": "fix: prompts to ensure correct formatting",
+        "specd": true,
+        "spec_source": "ENT-1043",
+        "merged_at": "2025-05-05T13:47:08+00:00"
+      },
+      {
+        "number": 3635,
+        "sha": null,
+        "title": "feat: cache llm endpoint",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-05-01T21:32:24+00:00"
+      },
+      {
+        "number": 3633,
+        "sha": null,
+        "title": "feat: add langchain-groq dependency and update LLMEndpoint to use ChatGroq",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-04-23T15:42:00+00:00"
+      },
+      {
+        "number": 3632,
+        "sha": null,
+        "title": "feat: Add Gemini support for language models",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-04-23T08:07:31+00:00"
+      },
+      {
+        "number": 3631,
+        "sha": null,
+        "title": "fix(brain): pass missing run_id",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-04-18T07:41:20+00:00"
+      },
+      {
+        "number": 3628,
+        "sha": null,
+        "title": "fix: fix grammar and typo in zendesk prompte template",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-04-17T07:29:46+00:00"
+      },
+      {
+        "number": 3629,
+        "sha": null,
+        "title": "feat: add run-id langfuse",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-04-17T07:28:57+00:00"
+      },
+      {
+        "number": 3627,
+        "sha": null,
+        "title": "fix: format prompt for zendesk",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-04-10T19:24:24+00:00"
+      },
+      {
+        "number": 3626,
+        "sha": null,
+        "title": "refactor: improve assertion formatting and remove debug print statement in QuivrQARAGLangGraph",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-04-10T18:56:03+00:00"
+      },
+      {
+        "number": 3625,
+        "sha": null,
+        "title": "feat: add system_prompt parameter to Brain methods and enhance message handling in RAG pipeline",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-04-10T18:53:47+00:00"
+      },
+      {
+        "number": 3624,
+        "sha": null,
+        "title": "feat: enhance zendesk template with clearer guidelines and instructions",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-04-09T11:09:27+00:00"
+      },
+      {
+        "number": 3622,
+        "sha": null,
+        "title": "feat: renamed system_prompt to correct naming",
+        "specd": false,
+        "spec_source": null,
+        "merged_at": "2025-04-02T09:31:49+00:00"
+      },
+      {
+        "number": 3621,
+        "sha": null,
+        "title": "feat: add filters",
+        "specd": true,
+        "spec_source": "ENT-801",
+        "merged_at": "2025-03-31T16:28:47+00:00"
+      }
+    ]
+  },
+  "quality": {
+    "mode": "heuristic",
+    "average_score": 45,
+    "verdicts": {
+      "REVIEW": 3
+    },
+    "specs": [
+      {
+        "pr_number": 3642,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 3636,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      },
+      {
+        "pr_number": 3621,
+        "format": "freeform",
+        "completeness": 0,
+        "ambiguity": 100,
+        "testability": 0,
+        "consistency": 100,
+        "overall": 45,
+        "verdict": "REVIEW",
+        "issues": [
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "acceptance criteria",
+            "suggestion": "Missing expected section: acceptance criteria"
+          },
+          {
+            "line": 0,
+            "type": "completeness",
+            "term": "scope",
+            "suggestion": "Missing expected section: scope"
+          },
+          {
+            "line": 0,
+            "type": "testability",
+            "term": "(no goals found)",
+            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
+          }
+        ],
+        "warnings": [
+          "No context anchors \u2014 AI will invent its own architecture",
+          "No I/O contracts \u2014 AI will invent API shapes",
+          "No side effects listed \u2014 AI may miss integrations",
+          "No error contract \u2014 AI will invent error shapes per function",
+          "No state transitions \u2014 AI may allow invalid transitions",
+          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
+        ]
+      }
+    ]
+  },
+  "effectiveness": {
+    "specd_rework_rate": 0.3333,
+    "unspecd_rework_rate": 0.0667,
+    "delta": 0.2667,
+    "specd_sample_size": 3,
+    "unspecd_sample_size": 15,
+    "significance": "insufficient",
+    "signals": [
+      {
+        "type": "bug-fix",
+        "source": "3633",
+        "target": "3632",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "core/pyproject.toml",
+          "core/quivr_core/llm/llm_endpoint.py"
+        ]
+      },
+      {
+        "type": "bug-fix",
+        "source": "3645",
+        "target": "3642",
+        "classification": "heuristic",
+        "overlapping_files": [
+          "core/quivr_core/rag/entities/config.py"
+        ]
+      }
+    ],
+    "by_complexity": {}
+  }
+}

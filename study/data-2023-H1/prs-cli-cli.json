@@ -1,0 +1,2172 @@
+[
+  {
+    "id": "13030",
+    "source": "github_graphql",
+    "repo": "cli/cli",
+    "title": "Align triage.md with current triage process",
+    "body": "## Summary\n\nUpdates `docs/triage.md` to reflect the current triage process used by the team.\n\n### Key changes\n\n- **Bug triage:** Removed requirement for standalone acceptance-criteria comment. Bugs are triaged via reproduction + `bug` + priority label.\n- **Enhancement triage:** Goal is now to **remove** `needs-triage` by classifying to an end-state (`bug`, `enhancement`, `ready-for-review`, or close), rather than leaving `needs-triage` on.\n- **Labels:** Removed references to `help wanted candidate`, `core`, `needs-investigation` labels that are no longer part of the triage workflow. Added current automation labels (`unable-to-reproduce`, `suspected-spam`, `off-topic`, `no-help-wanted-issue`).\n- **PR triage:** Clarified that triage is a quick validity check, not a review. Added `ready-for-review` workflow and auto-assignment.\n- **Added automated workflows table** documenting label-triggered automations.\n- **Removed:** Weekly PR audit section (superseded by automated stale PR handling), useful aliases section (stale gist link), `discuss` label details.\n- **Preserved:** Bug priority table, spam/abuse handling, community examples section.\n\nCloses https://github.com/github/gh-cli-and-desktop/issues/3 (partial)",
+    "author": "tidy-dev",
+    "merged_at": "2026-03-25T17:59:27+00:00",
+    "created_at": "2026-03-25T13:48:53+00:00",
+    "files": [
+      "docs/triage.md"
+    ],
+    "additions": 66,
+    "deletions": 81,
+    "ticket_ids": [],
+    "merge_commit_sha": "a32d004d9d56dd9908ca167c42c52da56575eb31",
+    "pr_number": 13030,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "copilot-pull-request-reviewer",
+        "state": "commented",
+        "submitted_at": "2026-03-25T13:55:37+00:00",
+        "is_bot": true,
+        "body": "## Pull request overview\n\nUpdates `docs/triage.md` to match the team\u2019s current First Responder triage workflow, emphasizing label-driven \u201cend states\u201d (remove `needs-triage` by classifying/closing) and documenting automation-triggered behaviors.\n\n**Changes:**\n- Replaces the prior weekly triage guidance with a \u201cQuick Guide\u201d decision flow for issues and PRs.\n- Updates bug/enhancement/PR triage steps to reflect current labels and automation (e.g., `unable-to-reproduce`, `ready-for-review`, `suspected-spam`, `off-topic`).\n- Adds an \u201cAutomated Workflows\u201d table and removes older/stale sections (weekly PR audit, aliases, deprecated labels).\n\n\n\n\n\n---\n\n\ud83d\udca1 <a href=\"/cli/cli/new/trunk?filename=.github/instructions/*.instructions.md\" class=\"Link--inTextBlock\" target=\"_blank\" rel=\"noopener noreferrer\">Add Copilot custom instructions</a> for smarter, more guided reviews. <a href=\"https://docs.github.com/en/copilot/customizing-copilot/adding-repository-custom-instructions-for-github-copilot\" class=\"Link--inTextBlock\" target=\"_blank\" rel=\"noopener noreferrer\">Learn how to get started</a>."
+      },
+      {
+        "reviewer": "BagToad",
+        "state": "approved",
+        "submitted_at": "2026-03-25T17:59:16+00:00",
+        "is_bot": false,
+        "body": "great thank you \u2764\ufe0f "
+      }
+    ],
+    "commits": [
+      {
+        "message": "Align triage.md with unified triage process",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Update docs/triage.md\n\nCo-authored-by: Copilot <175728472+Copilot@users.noreply.github.com>",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Update docs/triage.md\n\nCo-authored-by: Copilot <175728472+Copilot@users.noreply.github.com>",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 3,
+    "last_edited_at": null,
+    "total_comments_count": 5
+  },
+  {
+    "id": "13025",
+    "source": "github_graphql",
+    "repo": "cli/cli",
+    "title": "Consolidate actor-mode signals into ApiActorsSupported",
+    "body": "## Description\n\nSo the diff here is gnarly but bear with me :sweat_smile:. In #13009 I was frustrated seeing the divergence between how actor types were handled for assignees vs reviewers (this is my fault I'm sure).\n\nNow, with all the context, I recognize that these two paths for handling actor types are not actually different. They're keying on the same feature detector field (`ActorIsAssignable`) anyway, but they ended up diverging and checking different things across the stack:\n\n### The divergence\n\nThere are two flows: **create** (`pr create`, `issue create`) uses `IssueMetadataState`, and **edit** (`pr edit`, `issue edit`) uses `Editable`. The actor signal was carried differently in each, and assignees vs reviewers were handled asymmetrically:\n\n**Create flows** (via `IssueMetadataState`):\n\n| Layer | Assignees | Reviewers |\n|-------|-----------|-----------|\n| State struct | `ActorAssignees` field | `ActorReviewers` field (separate, always same value) |\n| `MetadataSurvey` | Explicit `state.ActorAssignees` checks | Only checked `reviewerSearchFunc != nil` |\n| `params.go` mutation | `tb.ActorAssignees` for login vs ID | `tb.ActorReviewers` for login vs ID |\n\n**Edit flows** (via `Editable`):\n\n| Layer | Assignees | Reviewers |\n|-------|-----------|-----------|\n| Editable struct | `EditableAssignees.ActorAssignees` | Nothing, no equivalent |\n| `RepoMetadataInput` | `ActorAssignees` field | Nothing |\n| `RepoMetadata` fetch | Branched on `ActorAssignees` for actor-aware fetch | No reviewer-specific branch |\n| `FetchOptions` | Skipped fetch when `ActorAssignees` true | No equivalent optimization |\n| Reviewer mutations | Piggybacked on `editable.Assignees.ActorAssignees`[^1] | No own field to check |\n\n[^1]: Particularly confusing: the reviewer mutation decision in `pr edit` was keyed off the *assignee* actor flag because reviewers didn't carry their own. See the [write-up on #13009](https://github.com/cli/cli/pull/13009#issuecomment-4122700998) for the full investigation.\n\n**Shared** (used by both flows):\n\n| Layer | Assignees | Reviewers |\n|-------|-----------|-----------|\n| Feature detection | `issueFeatures.ActorIsAssignable` | Same (single source of truth) |\n\nSo the source was always one signal, but it fanned out into different field names on different structs, with reviewers missing coverage in the edit path entirely.\n\nAfter this PR, it's just one field at every level:\n\n| Layer | Assignees & Reviewers |\n|-------|-----------------------|\n| Feature detection | `issueFeatures.ApiActorsSupported` |\n| `IssueMetadataState` (create) | `state.ApiActorsSupported` |\n| `Editable` (edit) | `editable.ApiActorsSupported` |\n| `RepoMetadataInput` | `input.ApiActorsSupported` |\n| `MetadataSurvey` | `state.ApiActorsSupported` |\n| `params.go` mutation | `tb.ApiActorsSupported` |\n| `pr edit` reviewer mutations | `editable.ApiActorsSupported` |\n\n\n### What this PR does\n\nThis PR calls it like it is: these are all the same capability signal. \n\n1. It consolidates `ActorAssignees` and `ActorReviewers` into a single `ApiActorsSupported` field that lives at the shared level on each struct (`Editable`, `IssueMetadataState`, `RepoMetadataInput`). Both assignees and reviewers key off the same signal.\n2. The feature detector field is also renamed from `ActorIsAssignable` to `ApiActorsSupported` so the name is consistent from detection through to consumption.\n3. BONUS: I also expanded the documentation on the feature detector to describe exactly when this codepath can be consolidated and what GraphQL schema additions to look for to confirm GHES support is ready. Previously the feature detector was multi-purposed and the documentation didn't reflect the breadth of what it affects.\n\nEvery branch site in the code is now tagged with `// TODO ApiActorsSupported` so a future cleanup can be done with a single grep.\n\n### Why one field and not separate feature detectors?\n\nYou may be wondering: these seem like somewhat different features (actor assignees vs actor reviewers vs search-based selection), so why not have separate feature detector fields?\n\nIn short, I believe it is simpler to group them. The harm is that, sure, maybe Copilot coding agent could hypothetically be allowed on GHES sooner than Copilot code reviewer or the other login-based mutations. But the complexity would matrix really quickly IMO, and the juice isn't worth the squeeze.\n\nSo: group all the actor stuff together, control it with one field. The state is easier to reason about and we can ship GHES support with more confidence because we know these things are compatible.\n\n## Acceptance & Regression Testing\n\n**38 scenarios tested** across github.com and GHES 3.20, all passing: [Acceptance test results](https://gist.github.com/BagToad/4798ace48cf721b0ff35e4df21e73f83)\n\n## Notes For Reviewers\n\nCommits are intentionally grouped. Some are chunky, but thematic, and IMO it's easier to review this way.\n\n### Commits\n\n1. [`3c00ffd`](https://github.com/cli/cli/commit/3c00ffdade319d47505479edf215909762d46bac) \u2014 **Core change: Consolidate actor signals** into `ApiActorsSupported` on `Editable`, `IssueMetadataState`, `RepoMetadataInput`\n2. [`ae5e857`](https://github.com/cli/cli/commit/ae5e857c2e4c23be065667b4515de9c82588035f) \u2014 **Rename feature detector** from `ActorIsAssignable` to `ApiActorsSupported`\n3. [`92f205e`](https://github.com/cli/cli/commit/92f205e54bca14d70d428fd7e5fd2f4fe596d57c) \u2014 **Document GHES removal criteria** on the feature detector struct\n4. [`6a68ebc`](https://github.com/cli/cli/commit/6a68ebc1c9e49cfb0760be7fd7d987fb582c455d) \u2014 **Nit: simplify redundant expression** in survey.go where `RepoMetadataInput.ApiActorsSupported` was rechecking conditions already gated upstream\n5. [`bff468b`](https://github.com/cli/cli/commit/bff468bafe1d7144d23aaf7ff25191361f16f9e2) \u2014 **Fix: wire up `@copilot` assignee replacement** in `pr create` and add `[bot]` suffix for `replaceActorsForAssignable` mutation (bugs introduced in #13009)\n6. [`391e661`](https://github.com/cli/cli/commit/391e6616d5abb75cc4d148bb671b15c2f4f28c70) \u2014 **Fix: use `useReviewerSearch` consistently** in the reviewer prompt path (matched existing assignee pattern)\n",
+    "author": "BagToad",
+    "merged_at": "2026-03-25T17:43:18+00:00",
+    "created_at": "2026-03-25T04:03:17+00:00",
+    "files": [
+      "api/queries_issue.go",
+      "api/queries_pr.go",
+      "api/queries_repo.go",
+      "internal/featuredetection/feature_detection.go",
+      "internal/featuredetection/feature_detection_test.go",
+      "pkg/cmd/issue/create/create.go",
+      "pkg/cmd/issue/create/create_test.go",
+      "pkg/cmd/issue/edit/edit.go",
+      "pkg/cmd/issue/edit/edit_test.go",
+      "pkg/cmd/pr/create/create.go",
+      "pkg/cmd/pr/create/create_test.go",
+      "pkg/cmd/pr/edit/edit.go",
+      "pkg/cmd/pr/edit/edit_test.go",
+      "pkg/cmd/pr/shared/editable.go",
+      "pkg/cmd/pr/shared/editable_http.go",
+      "pkg/cmd/pr/shared/params.go",
+      "pkg/cmd/pr/shared/state.go",
+      "pkg/cmd/pr/shared/survey.go"
+    ],
+    "additions": 178,
+    "deletions": 121,
+    "ticket_ids": [
+      "#13009"
+    ],
+    "merge_commit_sha": "8f7d20855e1e7f43d29a68d43aa42d1f95b224db",
+    "pr_number": 13025,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "copilot-pull-request-reviewer",
+        "state": "commented",
+        "submitted_at": "2026-03-25T04:08:34+00:00",
+        "is_bot": true,
+        "body": "## Pull request overview\n\nThis PR consolidates the previously divergent \u201cactor-mode\u201d capability signals for assignees/reviewers across PR/issue create and edit flows into a single `ApiActorsSupported` flag, aligning feature detection, state/editable structs, metadata fetching, and mutation parameter selection.\n\n**Changes:**\n- Replaces `ActorAssignees` / `ActorReviewers` (and `ActorIsAssignable`) with a single `ApiActorsSupported` capability flag across create/edit state and API metadata inputs.\n- Updates branching logic to consistently use login-based mutations (github.com/ghe.com) vs ID-based fallbacks (GHES) under the unified flag.\n- Expands and clarifies feature detection documentation for what \u201cactor-based APIs supported\u201d entails and what schema elements to check for GHES parity.\n\n### Reviewed changes\n\nCopilot reviewed 17 out of 17 changed files in this pull request and generated 1 comment.\n\n<details>\n<summary>Show a summary per file</summary>\n\n| File | Description |\r\n| ---- | ----------- |\r\n| pkg/cmd/pr/shared/survey.go | Switches survey prefetch/search gating to the unified `ApiActorsSupported` flag. |\r\n| pkg/cmd/pr/shared/state.go | Consolidates create-flow state flags into `ApiActorsSupported`. |\r\n| pkg/cmd/pr/shared/params.go | Uses `ApiActorsSupported` to select login vs ID reviewer/assignee mutation params. |\r\n| pkg/cmd/pr/shared/editable_http.go | Uses `ApiActorsSupported` to decide when to do separate actor-assignment mutation. |\r\n| pkg/cmd/pr/shared/editable.go | Moves capability flag to `Editable` and threads it through fetch/clone and assignee handling. |\r\n| pkg/cmd/pr/edit/edit.go | Updates PR edit flow to key assignedActors fields, search wiring, and reviewer mutation choice off `ApiActorsSupported`. |\r\n| pkg/cmd/pr/edit/edit_test.go | Renames mocks/expectations to reflect `ApiActorsSupported` and updated behavior. |\r\n| pkg/cmd/pr/create/create.go | Wires search-based selection and state capability via `ApiActorsSupported`. |\r\n| pkg/cmd/pr/create/c"
+      },
+      {
+        "reviewer": "williammartin",
+        "state": "approved",
+        "submitted_at": "2026-03-25T13:15:36+00:00",
+        "is_bot": false,
+        "body": "Seems like a fairly mechanical change. There does seem to be some missing test coverage around the `api` package so test coverage was a bit tricky to verify e.g. `[bot]` addition, but removing it does cause things to fail so \ud83d\udc4d "
+      }
+    ],
+    "commits": [
+      {
+        "message": "refactor(pr shared): consolidate ActorAssignees and ActorReviewers into ApiActorsSupported\n\nThe CLI had two per-entity flags (ActorAssignees on EditableAssignees and\nIssueMetadataState, ActorReviewers on IssueMetadataState) threaded through\ndifferent layers of the stack to distinguish github.com from GHES. Both\nflags were always set from the same source (issueFeatures.ActorIsAssignable)\nand never had different values, but they were carried independently on\ndifferent structs. This led to a confusing asymmetry where:\n\n- EditableAssignees had ActorAssignees but EditableReviewers had nothing\n- The PR edit flow piggybacked on editable.Assignees.ActorAssignees to\n  make reviewer mutation decisions, which was misleading\n- RepoMetadataInput only had ActorAssignees with no reviewer equivalent\n\nThis commit replaces all per-entity flags with a single ApiActorsSupported\nbool hoisted to the shared level on Editable, IssueMetadataState, and\nRepoMetadataInput. Both assignees and reviewers now key off the same signal.\n\nEvery branch site is marked with // TODO ApiActorsSupported so we can grep\nfor cleanup sites when GHES eventually supports the actor-based mutations\n(replaceActorsForAssignable, requestReviewsByLogin).\n\nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "refactor(featuredetection): rename ActorIsAssignable to ApiActorsSupported\n\nAligns the feature detector field name with the downstream\nApiActorsSupported flag introduced in the previous commit, so the\nsignal has one consistent name from detection through to consumption.\n\nAlso consolidates leftover TODO tags (actorIsAssignableCleanup,\nrequestReviewsByLoginCleanup) under the single // TODO ApiActorsSupported\ntag so there's exactly one thing to grep for.\n\nPure rename with no logic changes.\n\nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "docs(featuredetection): document GHES removal criteria for ApiActorsSupported\n\nExpand the ApiActorsSupported doc comment to explain the two API\ngenerations (legacy AssignableUser vs actor-based AssignableActor),\nwhat each returns, and the specific GraphQL schema additions to\ncheck for when evaluating GHES support.\n\nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "refactor(survey): simplify ApiActorsSupported in RepoMetadataInput\n\nThe expression was redundantly re-checking whether assignees or\nreviewers were chosen. RepoMetadata already gates on\ninput.Assignees || input.Reviewers before consulting\nApiActorsSupported, so passing state.ApiActorsSupported directly\nis sufficient.\n\nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "fix(pr create): wire up @copilot assignee replacement and [bot] suffix\n\nTwo bugs introduced in #13009 found during acceptance testing:\n\n1. `pr create --assignee @copilot` sent the literal `@copilot` to the\n   API because NewIssueState only ran MeReplacer on assignees, not\n   CopilotReplacer. Fixed by switching to SpecialAssigneeReplacer (which\n   handles both @me and @copilot) like issue create already does.\n\n2. The replaceActorsForAssignable mutation requires the [bot] suffix on\n   bot actor logins (e.g. `copilot-swe-agent[bot]`), unlike\n   requestReviewsByLogin which has a separate botLogins field. Added the\n   suffix in ReplaceActorsForAssignableByLogin for CopilotAssigneeLogin.\n\nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "fix(survey): use useReviewerSearch consistently in prompt path\n\nThe reviewer prompt branch checked reviewerSearchFunc != nil directly\ninstead of useReviewerSearch, making the fetch and prompt decisions\ninconsistent. This mirrors how the assignee path already uses\nuseAssigneeSearch at both the fetch and prompt gates.\n\nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 6,
+    "last_edited_at": "2026-03-25T06:18:26+00:00",
+    "total_comments_count": 4
+  },
+  {
+    "id": "13033",
+    "source": "github_graphql",
+    "repo": "cli/cli",
+    "title": "define err in go func instead of use err defined in outer scope",
+    "body": "Two benefits:\r\n1. make `err` allocated in stack\r\n2. avoid `err` data race\r\n\r\nFixes #13001\r\n\r\n<!--\r\n  Thank you for contributing to GitHub CLI!\r\n  To reference an open issue, please write this in your description: `Fixes #NUMBER`\r\n-->\r\n",
+    "author": "Lslightly",
+    "merged_at": "2026-03-25T17:13:38+00:00",
+    "created_at": "2026-03-25T16:33:13+00:00",
+    "files": [
+      "internal/codespaces/portforwarder/port_forwarder.go"
+    ],
+    "additions": 1,
+    "deletions": 1,
+    "ticket_ids": [
+      "#13001"
+    ],
+    "merge_commit_sha": "9b4a989d350133e5e50aa3b425f4d6d03a7b2cc5",
+    "pr_number": 13033,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "williammartin",
+        "state": "approved",
+        "submitted_at": "2026-03-25T17:00:48+00:00",
+        "is_bot": false,
+        "body": "Thanks"
+      }
+    ],
+    "commits": [
+      {
+        "message": "internal/codespaces/portforwarder: define err in go func instead of use err defined in outer scope\n\nFixes #13001",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 3
+  },
+  {
+    "id": "13031",
+    "source": "github_graphql",
+    "repo": "cli/cli",
+    "title": "chore(deps): bump github.com/zalando/go-keyring from 0.2.6 to 0.2.8",
+    "body": "Bumps [github.com/zalando/go-keyring](https://github.com/zalando/go-keyring) from 0.2.6 to 0.2.8.\n<details>\n<summary>Release notes</summary>\n<p><em>Sourced from <a href=\"https://github.com/zalando/go-keyring/releases\">github.com/zalando/go-keyring's releases</a>.</em></p>\n<blockquote>\n<h2>v0.2.8</h2>\n<h2>What's Changed</h2>\n<ul>\n<li>gh: hardening workflows by <a href=\"https://github.com/szuecs\"><code>@\u200bszuecs</code></a> in <a href=\"https://redirect.github.com/zalando/go-keyring/pull/141\">zalando/go-keyring#141</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/zalando/go-keyring/compare/v0.2.7...v0.2.8\">https://github.com/zalando/go-keyring/compare/v0.2.7...v0.2.8</a></p>\n<h2>v0.2.7</h2>\n<h2>What's Changed</h2>\n<ul>\n<li>Inline shellescape dependency by <a href=\"https://github.com/williammartin\"><code>@\u200bwilliammartin</code></a> in <a href=\"https://redirect.github.com/zalando/go-keyring/pull/117\">zalando/go-keyring#117</a></li>\n<li>docs: Fix 404-ing secret service link by <a href=\"https://github.com/tinder-ryantrontz\"><code>@\u200btinder-ryantrontz</code></a> in <a href=\"https://redirect.github.com/zalando/go-keyring/pull/120\">zalando/go-keyring#120</a></li>\n<li>fix(readme): remove extra trailing slash by <a href=\"https://github.com/tinder-ryantrontz\"><code>@\u200btinder-ryantrontz</code></a> in <a href=\"https://redirect.github.com/zalando/go-keyring/pull/121\">zalando/go-keyring#121</a></li>\n<li>docs: document how to set data via the CLI and then access it via the Go library by <a href=\"https://github.com/alexec\"><code>@\u200balexec</code></a> in <a href=\"https://redirect.github.com/zalando/go-keyring/pull/128\">zalando/go-keyring#128</a></li>\n<li>security: GH Actions by <a href=\"https://github.com/szuecs\"><code>@\u200bszuecs</code></a> in <a href=\"https://redirect.github.com/zalando/go-keyring/pull/137\">zalando/go-keyring#137</a></li>\n<li>Bump actions/checkout from 4 to 6 by <a href=\"https://github.com/dependabot\"><code>@\u200bdependabot</code></a>[bot] in <a href=\"https://redirect.github.com/zalando/go-keyring/pull/138\">zalando/go-keyring#138</a></li>\n<li>Bump actions/setup-go from 5 to 6 by <a href=\"https://github.com/dependabot\"><code>@\u200bdependabot</code></a>[bot] in <a href=\"https://redirect.github.com/zalando/go-keyring/pull/139\">zalando/go-keyring#139</a></li>\n<li>Bump the all-go-mod-patch-and-minor group with 2 updates by <a href=\"https://github.com/dependabot\"><code>@\u200bdependabot</code></a>[bot] in <a href=\"https://redirect.github.com/zalando/go-keyring/pull/140\">zalando/go-keyring#140</a></li>\n</ul>\n<h2>New Contributors</h2>\n<ul>\n<li><a href=\"https://github.com/tinder-ryantrontz\"><code>@\u200btinder-ryantrontz</code></a> made their first contribution in <a href=\"https://redirect.github.com/zalando/go-keyring/pull/120\">zalando/go-keyring#120</a></li>\n<li><a href=\"https://github.com/alexec\"><code>@\u200balexec</code></a> made their first contribution in <a href=\"https://redirect.github.com/zalando/go-keyring/pull/128\">zalando/go-keyring#128</a></li>\n<li><a href=\"https://github.com/dependabot\"><code>@\u200bdependabot</code></a>[bot] made their first contribution in <a href=\"https://redirect.github.com/zalando/go-keyring/pull/138\">zalando/go-keyring#138</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/zalando/go-keyring/compare/v0.2.6...v0.2.7\">https://github.com/zalando/go-keyring/compare/v0.2.6...v0.2.7</a></p>\n</blockquote>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/zalando/go-keyring/commit/a8cdfe320cc8bc0534c895a648dc9214715a9da5\"><code>a8cdfe3</code></a> Merge pull request <a href=\"https://redirect.github.com/zalando/go-keyring/issues/141\">#141</a> from zalando/gh/hardening-workflows</li>\n<li><a href=\"https://github.com/zalando/go-keyring/commit/d4162d94f66beacc13567120695ad927bb235d77\"><code>d4162d9</code></a> gh: hardening workflows</li>\n<li><a href=\"https://github.com/zalando/go-keyring/commit/e0dd98fca908ebee87a334a3c4d91b58a0f0fb6b\"><code>e0dd98f</code></a> Merge pull request <a href=\"https://redirect.github.com/zalando/go-keyring/issues/140\">#140</a> from zalando/dependabot/go_modules/all-go-mod-patch-a...</li>\n<li><a href=\"https://github.com/zalando/go-keyring/commit/98f909141083b197ccb11e82761f4195d79f3514\"><code>98f9091</code></a> Merge pull request <a href=\"https://redirect.github.com/zalando/go-keyring/issues/139\">#139</a> from zalando/dependabot/github_actions/actions/setup-...</li>\n<li><a href=\"https://github.com/zalando/go-keyring/commit/40806c246809ec001d1f3d1b74562a09fe3940e3\"><code>40806c2</code></a> Merge pull request <a href=\"https://redirect.github.com/zalando/go-keyring/issues/138\">#138</a> from zalando/dependabot/github_actions/actions/checko...</li>\n<li><a href=\"https://github.com/zalando/go-keyring/commit/1d4d07c4eb4c3c2a6cb15035927bdc13537e9911\"><code>1d4d07c</code></a> Bump the all-go-mod-patch-and-minor group with 2 updates</li>\n<li><a href=\"https://github.com/zalando/go-keyring/commit/e6c0d8a891f489c0e591eb9c8a5c97da027001d2\"><code>e6c0d8a</code></a> Bump actions/setup-go from 5 to 6</li>\n<li><a href=\"https://github.com/zalando/go-keyring/commit/0151d300e6971b67dd77c5a859542056e717fa81\"><code>0151d30</code></a> Bump actions/checkout from 4 to 6</li>\n<li><a href=\"https://github.com/zalando/go-keyring/commit/d6ac580187d916223178b11147bdb56c1988ef16\"><code>d6ac580</code></a> Merge pull request <a href=\"https://redirect.github.com/zalando/go-keyring/issues/137\">#137</a> from zalando/security/gh-actions</li>\n<li><a href=\"https://github.com/zalando/go-keyring/commit/036041f36712a6c53fdb2f896ebb724d0dfee5d4\"><code>036041f</code></a> security: GH Actions should be able read only</li>\n<li>Additional commits viewable in <a href=\"https://github.com/zalando/go-keyring/compare/v0.2.6...v0.2.8\">compare view</a></li>\n</ul>\n</details>\n<br />\n\n\n[![Dependabot compatibility score](https://dependabot-badges.githubapp.com/badges/compatibility_score?dependency-name=github.com/zalando/go-keyring&package-manager=go_modules&previous-version=0.2.6&new-version=0.2.8)](https://docs.github.com/en/github/managing-security-vulnerabilities/about-dependabot-security-updates#about-compatibility-scores)\n\nDependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting `@dependabot rebase`.\n\n[//]: # (dependabot-automerge-start)\n[//]: # (dependabot-automerge-end)\n\n---\n\n<details>\n<summary>Dependabot commands and options</summary>\n<br />\n\nYou can trigger Dependabot actions by commenting on this PR:\n- `@dependabot rebase` will rebase this PR\n- `@dependabot recreate` will recreate this PR, overwriting any edits that have been made to it\n- `@dependabot show <dependency name> ignore conditions` will show all of the ignore conditions of the specified dependency\n- `@dependabot ignore this major version` will close this PR and stop Dependabot creating any more for this major version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this minor version` will close this PR and stop Dependabot creating any more for this minor version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this dependency` will close this PR and stop Dependabot creating any more for this dependency (unless you reopen the PR or upgrade to it yourself)\n\n\n</details>",
+    "author": "dependabot",
+    "merged_at": "2026-03-25T14:55:00+00:00",
+    "created_at": "2026-03-25T14:03:12+00:00",
+    "files": [
+      "go.mod",
+      "go.sum"
+    ],
+    "additions": 9,
+    "deletions": 12,
+    "ticket_ids": [
+      "#137",
+      "#138",
+      "#139",
+      "#140",
+      "#141"
+    ],
+    "merge_commit_sha": "d81c9bbdd3bd88c6d0362c5d5a3ebe0bbd3095fd",
+    "pr_number": 13031,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "williammartin",
+        "state": "approved",
+        "submitted_at": "2026-03-25T14:54:52+00:00",
+        "is_bot": false,
+        "body": ""
+      }
+    ],
+    "commits": [
+      {
+        "message": "chore(deps): bump github.com/zalando/go-keyring from 0.2.6 to 0.2.8\n\nBumps [github.com/zalando/go-keyring](https://github.com/zalando/go-keyring) from 0.2.6 to 0.2.8.\n- [Release notes](https://github.com/zalando/go-keyring/releases)\n- [Commits](https://github.com/zalando/go-keyring/compare/v0.2.6...v0.2.8)\n\n---\nupdated-dependencies:\n- dependency-name: github.com/zalando/go-keyring\n  dependency-version: 0.2.8\n  dependency-type: direct:production\n  update-type: version-update:semver-patch\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": "2026-03-25T14:40:31+00:00",
+    "total_comments_count": 0
+  },
+  {
+    "id": "12884",
+    "source": "github_graphql",
+    "repo": "cli/cli",
+    "title": "fix(issue): avoid fetching unnecessary fields for discovery",
+    "body": "Fixes #12798\n\nAdd a new `IssueRepoInfo` API function that fetches only the minimal fields needed for issue operations (`id`, `name`, `owner`, `hasIssuesEnabled`, `viewerPermission`), and switch both `issue create` and `issue transfer` to use it instead of `GitHubRepo`, which also fetches `defaultBranchRef` and merge-strategy fields that require additional token permissions beyond what issue commands need.\n\n## Review notes\n\nMost of the changes in this PR are test stub updates \u2014 switching mock query names from `RepositoryInfo` to `IssueRepositoryInfo` and using the new `StubIssueRepoInfoResponse` helper. The core logic change is minimal: a new `IssueRepoInfo` function in `api/queries_repo.go` and a one-line swap in each of `issue create` and `issue transfer`. Each test stub was individually reviewed to confirm the response body only contains fields within `IssueRepoInfo`'s scope and no adjustments beyond the query name were needed.\n\n## Alternative approach (#12873)\n\nAn alternative fix in #12873 uses `FetchRepository` with only `hasIssuesEnabled`, but this misses `id` (needed by the `IssueCreate` mutation for `repositoryId`) and `viewerPermission` (needed by `ViewerCanTriage()` to decide whether to show the metadata prompt in interactive mode). A dedicated function like `IssueRepoInfo` avoids this kind of issue by encapsulating the exact fields required, rather than pushing that responsibility onto each caller.",
+    "author": "babakks",
+    "merged_at": "2026-03-25T14:39:40+00:00",
+    "created_at": "2026-03-09T11:58:54+00:00",
+    "files": [
+      "api/queries_repo.go",
+      "api/queries_repo_test.go",
+      "pkg/cmd/issue/create/create.go",
+      "pkg/cmd/issue/create/create_test.go",
+      "pkg/cmd/issue/transfer/transfer.go",
+      "pkg/cmd/issue/transfer/transfer_test.go",
+      "pkg/httpmock/legacy.go"
+    ],
+    "additions": 247,
+    "deletions": 26,
+    "ticket_ids": [
+      "#12798",
+      "#12873"
+    ],
+    "merge_commit_sha": "69d89a6590a711d4a214c012adeff467046f19cb",
+    "pr_number": 12884,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "copilot-pull-request-reviewer",
+        "state": "commented",
+        "submitted_at": "2026-03-09T12:11:52+00:00",
+        "is_bot": true,
+        "body": "## Pull request overview\n\nThis PR fixes #12798 where `gh issue create` fails with fine-grained PATs that have Issues:Write but not Contents:Read permissions. The root cause was that `GitHubRepo` fetches `defaultBranchRef` and merge-strategy fields via GraphQL, which require Contents:Read. The fix introduces a minimal `IssueRepoInfo` function that only fetches the fields actually needed for issue operations (`id`, `name`, `owner`, `hasIssuesEnabled`, `viewerPermission`).\n\n**Changes:**\n- Added new `IssueRepoInfo` API function in `api/queries_repo.go` with a narrower GraphQL query (`IssueRepositoryInfo`) that avoids permission-sensitive fields.\n- Switched `issue create` and `issue transfer` from `api.GitHubRepo` to `api.IssueRepoInfo`.\n- Updated all test stubs to match the new query name and added unit tests for the new function, plus a `StubIssueRepoInfoResponse` test helper.\n\n### Reviewed changes\n\nCopilot reviewed 7 out of 7 changed files in this pull request and generated 2 comments.\n\n<details>\n<summary>Show a summary per file</summary>\n\n| File | Description |\r\n| ---- | ----------- |\r\n| api/queries_repo.go | New `IssueRepoInfo` function with minimal GraphQL query |\r\n| api/queries_repo_test.go | Tests for `IssueRepoInfo` (not found, success, issues disabled) and improved `GitHubRepo` tests |\r\n| pkg/cmd/issue/create/create.go | Swap `GitHubRepo` \u2192 `IssueRepoInfo` |\r\n| pkg/cmd/issue/create/create_test.go | Update mock query names and stub helpers |\r\n| pkg/cmd/issue/transfer/transfer.go | Swap `GitHubRepo` \u2192 `IssueRepoInfo` |\r\n| pkg/cmd/issue/transfer/transfer_test.go | Update mock query name |\r\n| pkg/httpmock/legacy.go | New `StubIssueRepoInfoResponse` helper |\n</details>\n\n\n\n\n\n\n---\n\n\ud83d\udca1 <a href=\"/cli/cli/new/trunk?filename=.github/instructions/*.instructions.md\" class=\"Link--inTextBlock\" target=\"_blank\" rel=\"noopener noreferrer\">Add Copilot custom instructions</a> for smarter, more guided reviews. <a href=\"https://docs.github.com/en/copilot/customizing-copilot/adding-rep"
+      },
+      {
+        "reviewer": "williammartin",
+        "state": "approved",
+        "submitted_at": "2026-03-25T14:39:02+00:00",
+        "is_bot": false,
+        "body": "Passes all the issue acceptance tests (after I rebased on `main`):\n\n```\n\u279c  pr-12884 git:(babakks/use-min-discovery-fields-for-issue-create) GH_ACCEPTANCE_HOST=github.com GH_ACCEPTANCE_ORG=gh-acceptance-testing GH_ACCEPTANCE_TOKEN=$(gh auth token) go test -tags=acceptance -run ^TestIssues$ ./acceptance\nok  \tgithub.com/cli/cli/v2/acceptance\t24.048s\n```"
+      }
+    ],
+    "commits": [
+      {
+        "message": "refactor(api): add IssueRepoInfo for minimal issue repo queries\n\nAdd a new IssueRepoInfo function that fetches only the fields needed\nfor issue creation (id, name, owner, hasIssuesEnabled, viewerPermission),\navoiding defaultBranchRef and other fields that require Contents:Read.\n\nAlso add StubIssueRepoInfoResponse helper to httpmock for testing.\n\nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "test(api): add tests for GitHubRepo and IssueRepoInfo\n\nAdd success, not-found, and edge case tests for both GitHubRepo and\nIssueRepoInfo, covering field population, parent repo handling,\nviewer permission checks, and issues-disabled scenarios.\n\nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "fix(issue create): use IssueRepoInfo to avoid requiring Contents:Read permission\n\nSwitch issue create from GitHubRepo to IssueRepoInfo so that\ngh issue create works with fine-grained PATs that only have\nIssues:Write and Metadata:Read permissions.\n\nFixes cli/cli#12798\n\nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "test(issue create): update stubs for IssueRepositoryInfo query\n\nUpdate test mocks to match the renamed GraphQL query used by\nIssueRepoInfo, and switch to StubIssueRepoInfoResponse helper.\n\nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "fix(issue transfer): use IssueRepoInfo to fetch minimal fields for issues\n\nOnly the destination repo ID is needed for issue transfer. Switch from\nGitHubRepo to IssueRepoInfo to use minimal fields appropriate for issues.\n\nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "test(issue transfer): update stub for IssueRepositoryInfo query\n\nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "fix: improve docs around IssueRepoInfo\n\nCo-authored-by: Copilot <175728472+Copilot@users.noreply.github.com>",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 7,
+    "last_edited_at": "2026-03-09T12:07:40+00:00",
+    "total_comments_count": 4
+  },
+  {
+    "id": "12962",
+    "source": "github_graphql",
+    "repo": "cli/cli",
+    "title": "chore(deps): bump github.com/google/go-containerregistry from 0.20.7 to 0.21.3",
+    "body": "Bumps [github.com/google/go-containerregistry](https://github.com/google/go-containerregistry) from 0.20.7 to 0.21.3.\n<details>\n<summary>Release notes</summary>\n<p><em>Sourced from <a href=\"https://github.com/google/go-containerregistry/releases\">github.com/google/go-containerregistry's releases</a>.</em></p>\n<blockquote>\n<h2>v0.21.3</h2>\n<h2>What's Changed</h2>\n<ul>\n<li>Adds local file support to the <code>crane index</code> subcommand  by <a href=\"https://github.com/edwardthiele\"><code>@\u200bedwardthiele</code></a> in <a href=\"https://redirect.github.com/google/go-containerregistry/pull/2223\">google/go-containerregistry#2223</a></li>\n<li>migrate to github.com/moby/moby modules by <a href=\"https://github.com/thaJeztah\"><code>@\u200bthaJeztah</code></a> in <a href=\"https://redirect.github.com/google/go-containerregistry/pull/2228\">google/go-containerregistry#2228</a></li>\n<li>Bump the go-deps group across 4 directories with 7 updates by <a href=\"https://github.com/dependabot\"><code>@\u200bdependabot</code></a>[bot] in <a href=\"https://redirect.github.com/google/go-containerregistry/pull/2233\">google/go-containerregistry#2233</a></li>\n<li>Bump goreleaser/goreleaser-action from 6.4.0 to 7.0.0 in the actions group by <a href=\"https://github.com/dependabot\"><code>@\u200bdependabot</code></a>[bot] in <a href=\"https://redirect.github.com/google/go-containerregistry/pull/2220\">google/go-containerregistry#2220</a></li>\n<li>mutate: reject path traversal and symlink escape in Extract by <a href=\"https://github.com/KevinZhao\"><code>@\u200bKevinZhao</code></a> in <a href=\"https://redirect.github.com/google/go-containerregistry/pull/2227\">google/go-containerregistry#2227</a></li>\n<li>tarball: detect symlink cycles in extractFileFromTar by <a href=\"https://github.com/vnykmshr\"><code>@\u200bvnykmshr</code></a> in <a href=\"https://redirect.github.com/google/go-containerregistry/pull/2232\">google/go-containerregistry#2232</a></li>\n<li>bump golang to 1.25.7 by <a href=\"https://github.com/Subserial\"><code>@\u200bSubserial</code></a> in <a href=\"https://redirect.github.com/google/go-containerregistry/pull/2236\">google/go-containerregistry#2236</a></li>\n</ul>\n<h2>New Contributors</h2>\n<ul>\n<li><a href=\"https://github.com/edwardthiele\"><code>@\u200bedwardthiele</code></a> made their first contribution in <a href=\"https://redirect.github.com/google/go-containerregistry/pull/2223\">google/go-containerregistry#2223</a></li>\n<li><a href=\"https://github.com/thaJeztah\"><code>@\u200bthaJeztah</code></a> made their first contribution in <a href=\"https://redirect.github.com/google/go-containerregistry/pull/2228\">google/go-containerregistry#2228</a></li>\n<li><a href=\"https://github.com/KevinZhao\"><code>@\u200bKevinZhao</code></a> made their first contribution in <a href=\"https://redirect.github.com/google/go-containerregistry/pull/2227\">google/go-containerregistry#2227</a></li>\n<li><a href=\"https://github.com/vnykmshr\"><code>@\u200bvnykmshr</code></a> made their first contribution in <a href=\"https://redirect.github.com/google/go-containerregistry/pull/2232\">google/go-containerregistry#2232</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/google/go-containerregistry/compare/v0.21.2...v0.21.3\">https://github.com/google/go-containerregistry/compare/v0.21.2...v0.21.3</a></p>\n<h2>v0.21.2</h2>\n<h2>What's Changed</h2>\n<ul>\n<li>Better handle redirects to https in ping by <a href=\"https://github.com/jonjohnsonjr\"><code>@\u200bjonjohnsonjr</code></a> in <a href=\"https://redirect.github.com/google/go-containerregistry/pull/2225\">google/go-containerregistry#2225</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/google/go-containerregistry/compare/v0.21.1...v0.21.2\">https://github.com/google/go-containerregistry/compare/v0.21.1...v0.21.2</a></p>\n<h2>v0.21.1</h2>\n<p>This release fixes a regression in <code>crane</code> introduced in the previous release.</p>\n<h2>What's Changed</h2>\n<ul>\n<li>Add WithFileBufferedOpener for file-backed daemon image buffering by <a href=\"https://github.com/twdamhore\"><code>@\u200btwdamhore</code></a> in <a href=\"https://redirect.github.com/google/go-containerregistry/pull/2214\">google/go-containerregistry#2214</a></li>\n<li>crane: fix case in auth response json by <a href=\"https://github.com/aelindeman\"><code>@\u200baelindeman</code></a> in <a href=\"https://redirect.github.com/google/go-containerregistry/pull/2218\">google/go-containerregistry#2218</a></li>\n</ul>\n<h2>New Contributors</h2>\n<ul>\n<li><a href=\"https://github.com/twdamhore\"><code>@\u200btwdamhore</code></a> made their first contribution in <a href=\"https://redirect.github.com/google/go-containerregistry/pull/2214\">google/go-containerregistry#2214</a></li>\n<li><a href=\"https://github.com/aelindeman\"><code>@\u200baelindeman</code></a> made their first contribution in <a href=\"https://redirect.github.com/google/go-containerregistry/pull/2218\">google/go-containerregistry#2218</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/google/go-containerregistry/compare/v0.21.0...v0.21.1\">https://github.com/google/go-containerregistry/compare/v0.21.0...v0.21.1</a></p>\n<h2>v0.21.0</h2>\n<p>This release updates the minimum Go version to <code>1.25.6</code>.</p>\n<h2>What's Changed</h2>\n<ul>\n<li>fix(mutate): don't skip dir replacements via whiteout in export by <a href=\"https://github.com/r4f4\"><code>@\u200br4f4</code></a> in <a href=\"https://redirect.github.com/google/go-containerregistry/pull/2191\">google/go-containerregistry#2191</a></li>\n<li>Improve performance of v1.NewHash by <a href=\"https://github.com/bmoylan\"><code>@\u200bbmoylan</code></a> in <a href=\"https://redirect.github.com/google/go-containerregistry/pull/2194\">google/go-containerregistry#2194</a></li>\n<li>Bump the actions group across 1 directory with 4 updates by <a href=\"https://github.com/dependabot\"><code>@\u200bdependabot</code></a>[bot] in <a href=\"https://redirect.github.com/google/go-containerregistry/pull/2207\">google/go-containerregistry#2207</a></li>\n<li>Bump the root-deps group across 1 directory with 7 updates by <a href=\"https://github.com/dependabot\"><code>@\u200bdependabot</code></a>[bot] in <a href=\"https://redirect.github.com/google/go-containerregistry/pull/2195\">google/go-containerregistry#2195</a></li>\n<li>Fix error messages in crane_test.go by <a href=\"https://github.com/jammie-jelly\"><code>@\u200bjammie-jelly</code></a> in <a href=\"https://redirect.github.com/google/go-containerregistry/pull/2189\">google/go-containerregistry#2189</a></li>\n<li>Bump go version across packages to 1.25.6 by <a href=\"https://github.com/Subserial\"><code>@\u200bSubserial</code></a> in <a href=\"https://redirect.github.com/google/go-containerregistry/pull/2211\">google/go-containerregistry#2211</a></li>\n<li>Join go.mod dependency updates by <a href=\"https://github.com/Subserial\"><code>@\u200bSubserial</code></a> in <a href=\"https://redirect.github.com/google/go-containerregistry/pull/2212\">google/go-containerregistry#2212</a></li>\n<li>Bump the go-deps group across 3 directories with 3 updates by <a href=\"https://github.com/dependabot\"><code>@\u200bdependabot</code></a>[bot] in <a href=\"https://redirect.github.com/google/go-containerregistry/pull/2213\">google/go-containerregistry#2213</a></li>\n</ul>\n<!-- raw HTML omitted -->\n</blockquote>\n<p>... (truncated)</p>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/google/go-containerregistry/commit/3888fb8f87385a95591ba2fa08acc97a72058f2e\"><code>3888fb8</code></a> bump golang to 1.25.7 (<a href=\"https://redirect.github.com/google/go-containerregistry/issues/2236\">#2236</a>)</li>\n<li><a href=\"https://github.com/google/go-containerregistry/commit/f4396242bd42e42954077c6ead76628dd0fc6c38\"><code>f439624</code></a> tarball: detect symlink cycles in extractFileFromTar (<a href=\"https://redirect.github.com/google/go-containerregistry/issues/2232\">#2232</a>)</li>\n<li><a href=\"https://github.com/google/go-containerregistry/commit/400c263d8e8d374d2c53153b820c26bb250e9196\"><code>400c263</code></a> mutate: reject path traversal and symlink escape in Extract (<a href=\"https://redirect.github.com/google/go-containerregistry/issues/2227\">#2227</a>)</li>\n<li><a href=\"https://github.com/google/go-containerregistry/commit/47eedc9de49f351198daa5e6a6bd1374df9dd4e8\"><code>47eedc9</code></a> Bump goreleaser/goreleaser-action in the actions group (<a href=\"https://redirect.github.com/google/go-containerregistry/issues/2220\">#2220</a>)</li>\n<li><a href=\"https://github.com/google/go-containerregistry/commit/be0a84599955dbf8421de3723e1e2dc782343af6\"><code>be0a845</code></a> Bump the go-deps group across 4 directories with 7 updates (<a href=\"https://redirect.github.com/google/go-containerregistry/issues/2233\">#2233</a>)</li>\n<li><a href=\"https://github.com/google/go-containerregistry/commit/e9163014982efe9b72a469d9953f43519e46b1e1\"><code>e916301</code></a> migrate to github.com/moby/moby modules (<a href=\"https://redirect.github.com/google/go-containerregistry/issues/2228\">#2228</a>)</li>\n<li><a href=\"https://github.com/google/go-containerregistry/commit/8b2478e69f3dd9039a5d89e2fbcefb512ac735eb\"><code>8b2478e</code></a> Adds local file support to the <code>crane index</code> subcommand  (<a href=\"https://redirect.github.com/google/go-containerregistry/issues/2223\">#2223</a>)</li>\n<li><a href=\"https://github.com/google/go-containerregistry/commit/9e0ccb0a7240fe7cc820f0fc78e2e2b1ef8b7e71\"><code>9e0ccb0</code></a> Better handle redirects to https in ping (<a href=\"https://redirect.github.com/google/go-containerregistry/issues/2225\">#2225</a>)</li>\n<li><a href=\"https://github.com/google/go-containerregistry/commit/85f2bf5f7303fc95161f334e4fc2e66c36e12b1e\"><code>85f2bf5</code></a> crane: fix case in auth response json (<a href=\"https://redirect.github.com/google/go-containerregistry/issues/2218\">#2218</a>)</li>\n<li><a href=\"https://github.com/google/go-containerregistry/commit/e971d630dc417fd583bbd65f45e73abb1393cadf\"><code>e971d63</code></a> Add WithFileBufferedOpener for file-backed daemon image buffering (<a href=\"https://redirect.github.com/google/go-containerregistry/issues/2214\">#2214</a>)</li>\n<li>Additional commits viewable in <a href=\"https://github.com/google/go-containerregistry/compare/v0.20.7...v0.21.3\">compare view</a></li>\n</ul>\n</details>\n<br />\n\n\n[![Dependabot compatibility score](https://dependabot-badges.githubapp.com/badges/compatibility_score?dependency-name=github.com/google/go-containerregistry&package-manager=go_modules&previous-version=0.20.7&new-version=0.21.3)](https://docs.github.com/en/github/managing-security-vulnerabilities/about-dependabot-security-updates#about-compatibility-scores)\n\nDependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting `@dependabot rebase`.\n\n[//]: # (dependabot-automerge-start)\n[//]: # (dependabot-automerge-end)\n\n---\n\n<details>\n<summary>Dependabot commands and options</summary>\n<br />\n\nYou can trigger Dependabot actions by commenting on this PR:\n- `@dependabot rebase` will rebase this PR\n- `@dependabot recreate` will recreate this PR, overwriting any edits that have been made to it\n- `@dependabot show <dependency name> ignore conditions` will show all of the ignore conditions of the specified dependency\n- `@dependabot ignore this major version` will close this PR and stop Dependabot creating any more for this major version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this minor version` will close this PR and stop Dependabot creating any more for this minor version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this dependency` will close this PR and stop Dependabot creating any more for this dependency (unless you reopen the PR or upgrade to it yourself)\n\n\n</details>",
+    "author": "dependabot",
+    "merged_at": "2026-03-25T14:38:07+00:00",
+    "created_at": "2026-03-18T14:03:41+00:00",
+    "files": [
+      "go.mod",
+      "go.sum"
+    ],
+    "additions": 41,
+    "deletions": 42,
+    "ticket_ids": [
+      "#2214",
+      "#2218",
+      "#2220",
+      "#2223",
+      "#2225",
+      "#2227",
+      "#2228",
+      "#2232",
+      "#2233",
+      "#2236"
+    ],
+    "merge_commit_sha": "7ef7d7fb6920f283138a17d99736b774153694ce",
+    "pr_number": 12962,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "williammartin",
+        "state": "approved",
+        "submitted_at": "2026-03-25T14:38:01+00:00",
+        "is_bot": false,
+        "body": ""
+      }
+    ],
+    "commits": [
+      {
+        "message": "chore(deps): bump github.com/google/go-containerregistry\n\nBumps [github.com/google/go-containerregistry](https://github.com/google/go-containerregistry) from 0.20.7 to 0.21.3.\n- [Release notes](https://github.com/google/go-containerregistry/releases)\n- [Commits](https://github.com/google/go-containerregistry/compare/v0.20.7...v0.21.3)\n\n---\nupdated-dependencies:\n- dependency-name: github.com/google/go-containerregistry\n  dependency-version: 0.21.3\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": "2026-03-24T19:33:50+00:00",
+    "total_comments_count": 0
+  },
+  {
+    "id": "12725",
+    "source": "github_graphql",
+    "repo": "cli/cli",
+    "title": "Fix typo: remove extra space in README.md link",
+    "body": "Fixed a small typo in README.md - removed an extra space before the URL in the manual link.\n\nBefore: `[see the manual]( https://cli.github.com/manual/)`\nAfter: `[see the manual](https://cli.github.com/manual/)`",
+    "author": "realMelTuc",
+    "merged_at": "2026-03-25T14:25:12+00:00",
+    "created_at": "2026-02-19T18:31:39+00:00",
+    "files": [
+      "README.md"
+    ],
+    "additions": 1,
+    "deletions": 1,
+    "ticket_ids": [],
+    "merge_commit_sha": "52850321b4934edadc4ccfb25393951fe18d60fc",
+    "pr_number": 12725,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "williammartin",
+        "state": "approved",
+        "submitted_at": "2026-03-25T14:25:05+00:00",
+        "is_bot": false,
+        "body": ""
+      }
+    ],
+    "commits": [
+      {
+        "message": "Fix typo: remove extra space in README.md link",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 0
+  },
+  {
+    "id": "13009",
+    "source": "github_graphql",
+    "repo": "cli/cli",
+    "title": "Use login-based assignee mutation on github.com",
+    "body": "Fixes https://github.com/cli/cli/issues/13000\r\n\r\n## Description\r\n\r\n`gh pr create -a @me` fails with `could not assign user: 'xx' not found` when the user interactively adds metadata (reviewers, labels, etc.) during the PR creation flow, because the assignee login cannot be resolved to a node ID from the cached metadata that only contains the interactively selected fields. This has been broken since the actor assignee work shipped a few weeks ago.\r\n\r\nWhile investigating, we found that all assignee flows on github.com were still going through an unnecessary bulk fetch and ID resolution step, even though the API already supports assigning by login directly. This PR fixes the original bug and migrates all assignee paths to use the login-based approach.\r\n## To Fix\r\n\r\nThis PR migrates all github.com assignee flows to pass logins directly to the mutation, and wires up the multi-select with search UX. This experience avoids bulk fetching of IDs. GHES retains the legacy ID-based path unchanged.\r\n\r\n### Before\r\n\r\n| Path | Bulk fetch? | ID resolution? |\r\n|------|------------|----------------|\r\n| `gh pr create -a` | \u274c Yes | \u274c Yes |\r\n| `gh pr create -a` + interactive metadata | \u274c Yes (does not work) | \u274c Yes (does not work) |\r\n| `gh pr create` interactive assignees | \u274c Yes (static list) | \u274c Yes |\r\n| `gh issue create -a` | \u2705 No | \u2705 No |\r\n| `gh issue create` interactive assignees | \u274c Yes (static list) | \u274c Yes |\r\n| `gh pr edit` interactive | \u2705 No | \u26a0\ufe0f Yes |\r\n| `gh pr edit --add-assignee` | \u274c Yes | \u274c Yes |\r\n| `gh issue edit` interactive | \u274c Yes (static list) | \u274c Yes |\r\n| `gh issue edit --add-assignee` | \u274c Yes | \u274c Yes |\r\n\r\n### After\r\n\r\n| Path | Bulk fetch? | ID resolution? |\r\n|------|------------|----------------|\r\n| `gh pr create -a` | \u2705 No | \u2705 No |\r\n| `gh pr create -a` + interactive metadata | \u2705 No | \u2705 No |\r\n| `gh pr create` interactive assignees | \u2705 No (search) | \u2705 No |\r\n| `gh issue create -a` | \u2705 No | \u2705 No |\r\n| `gh issue create` interactive assignees | \u2705 No (search) | \u2705 No |\r\n| `gh pr edit` interactive | \u2705 No (search) | \u2705 No |\r\n| `gh pr edit --add-assignee` | \u2705 No | \u2705 No |\r\n| `gh issue edit` interactive | \u2705 No (search) | \u2705 No |\r\n| `gh issue edit --add-assignee` | \u2705 No | \u2705 No |\r\n\r\n## Key Changes\r\n\r\n- Fix the missing `state.ActorAssignees = true` in `pr create` that caused the original bug\r\n- On github.com, assignee logins now go straight to the `replaceActorsForAssignable` mutation via its `actorLogins` field. No more fetching all assignable actors just to resolve a login to a node ID\r\n- The `--add-assignee` and `--remove-assignee` flag paths for both `pr edit` and `issue edit` skip the bulk fetch entirely on github.com. A new `AssigneeLogins()` method computes the final set from logins directly\r\n- All interactive assignee selection now uses `MultiSelectWithSearch` on github.com:\r\n  - `pr create` and `issue create` via `MetadataSurvey` (new `assigneeSearchFunc` parameter, backed by new `SearchRepoAssignableActors` repo-level API)\r\n  - `issue edit` wired up with `AssigneeSearchFunc` (previously missing, was using static list)\r\n  - `pr edit` already had search, now simplified (actor accumulation hack removed)\r\n- `AssigneeSearchFunc` extracted to shared location, `actorsToSearchResult` helper shared by both repo-level and node-level search functions\r\n- Fixed a bug where `Editable.Clone()` was silently dropping `AssigneeSearchFunc` and `ReviewerSearchFunc`\r\n\r\n## Reviewer Notes\r\n\r\n- The `replaceActorsForAssignable` mutation has always accepted `actorLogins` alongside `actorIds` on github.com. We just never used it until now\r\n- `AssigneeIds()` on `Editable` is now only called on GHES. On github.com, `AssigneeLogins()` is used instead\r\n- `MetadataSurvey` now accepts an `assigneeSearchFunc` parameter alongside the existing `reviewerSearchFunc`\r\n- Create flows use `SearchRepoAssignableActors` (repo-level, no issue/PR ID needed), edit flows use `SuggestedAssignableActors` (node-level)\r\n- GHES flows are completely unchanged, they still use `RepositoryAssignableUsers` + `assigneeIds`\r\n\r\n## Acceptance & Regression Testing\r\n\r\n**16 scenarios tested** across github.com and GHES (3.20), all passing: [Acceptance test results](https://gist.github.com/BagToad/d472cc6dfeb3aa482494a72c894f08a8)\r\n\r\nCovers `pr create`, `issue create`, `pr edit` (flags + interactive), `issue edit` (flags + interactive), multi-issue edit, remove-all-assignees, and zero-bulk-fetch verification on both hosts.\r\n\r\nThe full automated acceptance test suite (`go test -tags=acceptance ./acceptance`) was also run locally against github.com with all relevant tests passing.",
+    "author": "BagToad",
+    "merged_at": "2026-03-25T02:29:11+00:00",
+    "created_at": "2026-03-24T00:26:45+00:00",
+    "files": [
+      "api/queries_issue.go",
+      "api/queries_pr.go",
+      "api/queries_repo.go",
+      "pkg/cmd/issue/create/create.go",
+      "pkg/cmd/issue/create/create_test.go",
+      "pkg/cmd/issue/edit/edit.go",
+      "pkg/cmd/issue/edit/edit_test.go",
+      "pkg/cmd/pr/create/create.go",
+      "pkg/cmd/pr/create/create_test.go",
+      "pkg/cmd/pr/edit/edit.go",
+      "pkg/cmd/pr/edit/edit_test.go",
+      "pkg/cmd/pr/shared/editable.go",
+      "pkg/cmd/pr/shared/editable_http.go",
+      "pkg/cmd/pr/shared/params.go",
+      "pkg/cmd/pr/shared/survey.go",
+      "pkg/cmd/pr/shared/survey_test.go"
+    ],
+    "additions": 390,
+    "deletions": 271,
+    "ticket_ids": [
+      "ID-BASED"
+    ],
+    "merge_commit_sha": "1df6f84d70e2ac6f116528483eaf9b9f1e9e4b38",
+    "pr_number": 13009,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "copilot-pull-request-reviewer",
+        "state": "commented",
+        "submitted_at": "2026-03-24T00:39:51+00:00",
+        "is_bot": true,
+        "body": "## Pull request overview\n\nThis PR fixes `gh pr create -a @me` failing when interactive metadata is added during PR creation by switching github.com assignee handling to a login-based mutation path (skipping node ID resolution and bulk assignable-actor fetches), while keeping GHES on the legacy ID-based flow.\n\n**Changes:**\n- Enable actor-based assignee handling in `pr create` (`state.ActorAssignees = true`) and pass assignee logins through to mutations on github.com.\n- Add a shared `ReplaceActorsForAssignableByLogin` helper and use it for PR/issue creation and edit flows on github.com.\n- Rework edit flows to avoid bulk assignee metadata fetches on github.com and share an assignee search function; fix `Editable.Clone()` to preserve search funcs.\n\n### Reviewed changes\n\nCopilot reviewed 12 out of 12 changed files in this pull request and generated no comments.\n\n<details>\n<summary>Show a summary per file</summary>\n\n| File | Description |\r\n| ---- | ----------- |\r\n| pkg/cmd/pr/shared/params.go | Avoid assignee ID resolution on github.com; pass `assigneeLogins` instead. |\r\n| pkg/cmd/pr/shared/editable_http.go | Use the shared login-based replace-actors mutation for actor assignees; remove local mutation helper. |\r\n| pkg/cmd/pr/shared/editable.go | Add `AssigneeLogins()`, preserve search funcs in `Clone()`, reduce assignee metadata fetching, and extract shared `AssigneeSearchFunc`. |\r\n| pkg/cmd/pr/edit/edit.go | Switch to the shared assignee search function. |\r\n| pkg/cmd/pr/edit/edit_test.go | Update expectations to assert `actorLogins` usage and no assignee metadata prefetch. |\r\n| pkg/cmd/pr/create/create.go | Ensure actor assignees are enabled when `ActorIsAssignable` is available. |\r\n| pkg/cmd/pr/create/create_test.go | Expect assignee assignment via `ReplaceActorsForAssignable` with `actorLogins`. |\r\n| pkg/cmd/issue/edit/edit.go | Wire the shared assignee search function for interactive actor-assignee selection. |\r\n| pkg/cmd/issue/edit/edit_test.go | Remove bulk assignab"
+      },
+      {
+        "reviewer": "BagToad",
+        "state": "commented",
+        "submitted_at": "2026-03-24T16:37:51+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "BagToad",
+        "state": "commented",
+        "submitted_at": "2026-03-24T17:24:13+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "babakks",
+        "state": "approved",
+        "submitted_at": "2026-03-24T17:26:52+00:00",
+        "is_bot": false,
+        "body": "LGTM! Reviewed in sync."
+      }
+    ],
+    "commits": [
+      {
+        "message": "fix(pr create): use login-based assignee mutation on github.com\n\nWhen ActorAssignees is true (github.com), pass assignee logins directly\nto the ReplaceActorsForAssignable mutation instead of resolving logins\nto node IDs. This eliminates the need to bulk fetch all assignable\nusers/actors and fixes a bug where providing assignees via CLI flag\nand then interactively adding metadata would fail with 'not found'\nbecause the cached MetadataResult had no assignee data.\n\nChanges:\n- Set state.ActorAssignees = true in pr create (was missing)\n- AddMetadataToIssueParams: pass assigneeLogins when ActorAssignees\n  is true, skip fetch and ID resolution entirely\n- CreatePullRequest/IssueCreate: call ReplaceActorsForAssignableByLogin\n  after creation to assign via logins\n- Consolidate replaceActorsForAssignable mutation into api/ package\n  (ReplaceActorsForAssignableByLogin + ReplaceActorsForAssignableByID)\n- Remove duplicate replaceActorAssigneesForEditable from editable_http.go\n- Add TODO replaceActorsByLoginCleanup markers on edit paths\n\nFixes cli/cli#13000\n\nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "refactor(pr edit, issue edit): use login-based assignee mutation for flag flows\n\nWhen ActorAssignees is true (github.com), the --add-assignee and\n--remove-assignee flag flows now pass logins directly to\nReplaceActorsForAssignableByLogin instead of bulk fetching all\nassignable actors and resolving logins to node IDs.\n\nChanges:\n- New AssigneeLogins() method on Editable that computes the final\n  login set (defaults + add - remove) without ID resolution\n- UpdateIssue: call AssigneeLogins + ByLogin when ActorAssignees is true\n- EditableOptionsFetch: skip assignee bulk fetch for flag flows on\n  github.com (only fetch on GHES where ID resolution is needed)\n\nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "refactor(pr edit): remove actor accumulation hack from assignee search\n\nThe assigneeSearchFunc previously accumulated actors into\neditable.Metadata.AssignableActors so that MembersToIDs could\nlater resolve logins to node IDs. Now that the edit flow uses\nAssigneeLogins + ReplaceActorsForAssignableByLogin on github.com,\nthis accumulation is no longer needed.\n\nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "refactor(issue edit): wire up search-based assignee selection\n\nAdd AssigneeSearchFunc to gh issue edit interactive flow, matching\nthe pattern already used in gh pr edit. This eliminates the bulk\nRepositoryAssignableActors fetch for interactive assignee selection,\nusing dynamic SuggestedAssignableActors search instead.\n\nAlso clean up pr edit assigneeSearchFunc signature to remove the\nunused editable parameter (no longer needed after removing the\nactor accumulation hack).\n\nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "review: address code review feedback\n\n- Fix tests: assert logins (not display names) in actorLogins\n- Remove dead ReplaceActorsForAssignableByID (no callers)\n- Extract shared AssigneeSearchFunc to pkg/cmd/pr/shared/editable.go\n- Remove duplicate assigneeSearchFunc from pr/edit and issue/edit\n\nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "feat(pr create, issue create): search-based assignee selection in MetadataSurvey\n\nWire up MultiSelectWithSearch for assignees in MetadataSurvey, replacing\nthe static MultiSelect that required bulk fetching all assignable actors.\nThis applies to both gh pr create and gh issue create interactive flows\nwhen selecting assignees via the 'Add metadata' prompt.\n\nChanges:\n- Add assigneeSearchFunc parameter to MetadataSurvey\n- Skip assignee bulk fetch when search func is available\n- New SearchRepoAssignableActors API function for repo-level search\n  (create flows have no issue/PR node ID yet)\n- New RepoAssigneeSearchFunc in shared editable.go\n- Refactor actorsToSearchResult helper shared by both search functions\n\nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "refactor(pr shared): extract SpecialAssigneeReplacer for @me and Copilot expansion\n\nThe inline replaceSpecialAssigneeNames closures in AssigneeIds and\nAssigneeLogins were duplicated. Extract them into an exported\nSpecialAssigneeReplacer type that consolidates MeReplacer and\nCopilotReplacer into a single ReplaceSlice call, parameterised by\nactorAssignees and copilotUseLogin.\n\nAdopt the new type in the issue create flow as well, replacing the\nmanual MeReplacer + conditional CopilotReplacer sequence.\n\nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 7,
+    "last_edited_at": "2026-03-24T16:30:24+00:00",
+    "total_comments_count": 5
+  },
+  {
+    "id": "12963",
+    "source": "github_graphql",
+    "repo": "cli/cli",
+    "title": "chore(deps): bump google.golang.org/grpc from 1.79.2 to 1.79.3",
+    "body": "Bumps [google.golang.org/grpc](https://github.com/grpc/grpc-go) from 1.79.2 to 1.79.3.\n<details>\n<summary>Release notes</summary>\n<p><em>Sourced from <a href=\"https://github.com/grpc/grpc-go/releases\">google.golang.org/grpc's releases</a>.</em></p>\n<blockquote>\n<h2>Release 1.79.3</h2>\n<h1>Security</h1>\n<ul>\n<li>server: fix an authorization bypass where malformed :path headers (missing the leading slash) could bypass path-based restricted &quot;deny&quot; rules in interceptors like <code>grpc/authz</code>. Any request with a non-canonical path is now immediately rejected with an <code>Unimplemented</code> error. (<a href=\"https://redirect.github.com/grpc/grpc-go/issues/8981\">#8981</a>)</li>\n</ul>\n</blockquote>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/grpc/grpc-go/commit/dda86dbd9cecb8b35b58c73d507d81d67761205f\"><code>dda86db</code></a> Change version to 1.79.3 (<a href=\"https://redirect.github.com/grpc/grpc-go/issues/8983\">#8983</a>)</li>\n<li><a href=\"https://github.com/grpc/grpc-go/commit/72186f163e75a065c39e6f7df9b6dea07fbdeff5\"><code>72186f1</code></a> grpc: enforce strict path checking for incoming requests on the server (<a href=\"https://redirect.github.com/grpc/grpc-go/issues/8981\">#8981</a>)</li>\n<li><a href=\"https://github.com/grpc/grpc-go/commit/97ca3522b239edf6813e2b1106924e9d55e89d43\"><code>97ca352</code></a> Changing version to 1.79.3-dev (<a href=\"https://redirect.github.com/grpc/grpc-go/issues/8954\">#8954</a>)</li>\n<li>See full diff in <a href=\"https://github.com/grpc/grpc-go/compare/v1.79.2...v1.79.3\">compare view</a></li>\n</ul>\n</details>\n<br />\n\n\n[![Dependabot compatibility score](https://dependabot-badges.githubapp.com/badges/compatibility_score?dependency-name=google.golang.org/grpc&package-manager=go_modules&previous-version=1.79.2&new-version=1.79.3)](https://docs.github.com/en/github/managing-security-vulnerabilities/about-dependabot-security-updates#about-compatibility-scores)\n\nDependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting `@dependabot rebase`.\n\n[//]: # (dependabot-automerge-start)\n[//]: # (dependabot-automerge-end)\n\n---\n\n<details>\n<summary>Dependabot commands and options</summary>\n<br />\n\nYou can trigger Dependabot actions by commenting on this PR:\n- `@dependabot rebase` will rebase this PR\n- `@dependabot recreate` will recreate this PR, overwriting any edits that have been made to it\n- `@dependabot show <dependency name> ignore conditions` will show all of the ignore conditions of the specified dependency\n- `@dependabot ignore this major version` will close this PR and stop Dependabot creating any more for this major version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this minor version` will close this PR and stop Dependabot creating any more for this minor version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this dependency` will close this PR and stop Dependabot creating any more for this dependency (unless you reopen the PR or upgrade to it yourself)\n\n\n</details>",
+    "author": "dependabot",
+    "merged_at": "2026-03-24T19:31:35+00:00",
+    "created_at": "2026-03-18T14:03:51+00:00",
+    "files": [
+      "go.mod",
+      "go.sum"
+    ],
+    "additions": 3,
+    "deletions": 3,
+    "ticket_ids": [
+      "#8954",
+      "#8981",
+      "#8983"
+    ],
+    "merge_commit_sha": "bdc04137747a1ab273978899ad365df0822dee51",
+    "pr_number": 12963,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "williammartin",
+        "state": "approved",
+        "submitted_at": "2026-03-24T19:31:29+00:00",
+        "is_bot": false,
+        "body": ""
+      }
+    ],
+    "commits": [
+      {
+        "message": "chore(deps): bump google.golang.org/grpc from 1.79.2 to 1.79.3\n\nBumps [google.golang.org/grpc](https://github.com/grpc/grpc-go) from 1.79.2 to 1.79.3.\n- [Release notes](https://github.com/grpc/grpc-go/releases)\n- [Commits](https://github.com/grpc/grpc-go/compare/v1.79.2...v1.79.3)\n\n---\nupdated-dependencies:\n- dependency-name: google.golang.org/grpc\n  dependency-version: 1.79.3\n  dependency-type: direct:production\n  update-type: version-update:semver-patch\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 2
+  },
+  {
+    "id": "13024",
+    "source": "github_graphql",
+    "repo": "cli/cli",
+    "title": "Add AGENTS.md",
+    "body": "## Description\r\n\r\nAdds foundational `AGENTS.md` to guide agentic development in this repository. I asked GPT 5.4, Opus 4.6, and Sonnet 4.6 to review it for token optimization. I expect we will iterate on this in every PR as we discover necessary prompting changes, but felt like we should land something to begin with.\r\n",
+    "author": "williammartin",
+    "merged_at": "2026-03-24T19:28:41+00:00",
+    "created_at": "2026-03-24T17:02:14+00:00",
+    "files": [
+      "AGENTS.md"
+    ],
+    "additions": 165,
+    "deletions": 0,
+    "ticket_ids": [],
+    "merge_commit_sha": "dedb2287bee47d722059a7b67c1165734168c303",
+    "pr_number": 13024,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "copilot-pull-request-reviewer",
+        "state": "commented",
+        "submitted_at": "2026-03-24T17:19:19+00:00",
+        "is_bot": true,
+        "body": "## Pull request overview\n\nAdds an `AGENTS.md` document intended to guide agentic development and provide a concise \u201chow this repo works\u201d reference for contributors/automation in the GitHub CLI codebase.\n\n**Changes:**\n- Introduces `AGENTS.md` with build/test/lint commands and repository architecture notes\n- Documents common command patterns (Options + Factory), JSON output conventions, and testing practices\n- Captures guidance on error handling, feature detection, and API usage patterns\n\n\n\n\n\n---\n\n\ud83d\udca1 <a href=\"/cli/cli/new/trunk?filename=.github/instructions/*.instructions.md\" class=\"Link--inTextBlock\" target=\"_blank\" rel=\"noopener noreferrer\">Add Copilot custom instructions</a> for smarter, more guided reviews. <a href=\"https://docs.github.com/en/copilot/customizing-copilot/adding-repository-custom-instructions-for-github-copilot\" class=\"Link--inTextBlock\" target=\"_blank\" rel=\"noopener noreferrer\">Learn how to get started</a>."
+      },
+      {
+        "reviewer": "BagToad",
+        "state": "commented",
+        "submitted_at": "2026-03-24T17:34:47+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "BagToad",
+        "state": "approved",
+        "submitted_at": "2026-03-24T17:35:54+00:00",
+        "is_bot": false,
+        "body": "LGTM - just a small request in a comment"
+      },
+      {
+        "reviewer": "babakks",
+        "state": "approved",
+        "submitted_at": "2026-03-24T18:15:18+00:00",
+        "is_bot": false,
+        "body": "LGTM. I'd also appreciate if agents are instructed to avoid unnecessary comments, and also add godocs to exported declrations."
+      },
+      {
+        "reviewer": "williammartin",
+        "state": "commented",
+        "submitted_at": "2026-03-24T18:53:33+00:00",
+        "is_bot": false,
+        "body": ""
+      }
+    ],
+    "commits": [
+      {
+        "message": "Add AGENTS.md optimized for AI agent token efficiency\n\nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Address review: table tests, godocs, code style\n\nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 2,
+    "last_edited_at": "2026-03-24T17:14:55+00:00",
+    "total_comments_count": 8
+  },
+  {
+    "id": "13023",
+    "source": "github_graphql",
+    "repo": "cli/cli",
+    "title": "Record agentic invocations in User-Agent header",
+    "body": "## Description\r\n\r\nThere has been a significant increase in agentic use of `gh` in the last few months and it's important we are able to identify that usage. This PR tries to detect which agent is invoking `gh` by checking well-known environment variables and includes the agent name in the `User-Agent` header sent to GitHub APIs.\r\n\r\nSupported agents: Codex, Gemini CLI, Copilot CLI, OpenCode, Claude Code, and Amp. The generic `AI_AGENT` env var is also supported with validation (`[a-zA-Z0-9_-]`) to prevent header injection.\r\n\r\n### Format\r\n\r\n```\r\nGitHub CLI 2.x.y Agent/<agent-name>\r\n```\r\n\r\n### Acceptance Criteria\r\n\r\n**Given** I set `GH_DEBUG=api` in the environment\r\n**When** I invoke `gh` in a shell tool in Claude Code CLI, Gemini CLI, Codex CLI, Copilot CLI, Amp, or OpenCode\r\n**Then** I see that the `User-Agent` header in http requests contains the agent name\r\n\r\nRunning in `copilot` CLI:\r\n\r\n```\r\nGH_DEBUG=api gh pr view\r\n```\r\n\r\n```\r\n\u2502 * Request to https://api.github.com/graphql\r\n\u2502 > POST /graphql HTTP/1.1\r\n\u2502 > Host: api.github.com\r\n\u2502 > Accept: application/vnd.github.merge-info-preview+json, application/vnd.github.nebula-preview\r\n\u2502 > Authorization: token \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\r\n\u2502 > Content-Length: 461\r\n\u2502 > Content-Type: application/json\r\n\u2502 > Graphql-Features: merge_queue\r\n\u2502 > Time-Zone: Europe/Amsterdam\r\n\u2502 > User-Agent: GitHub CLI v2.88.1-4-gc1daf35db Agent/copilot-cli\r\n\u2502 > X-Github-Api-Version: 2022-11-28\r\n```\r\n\r\n**Given** I set `GH_DEBUG=api` in the environment\r\n**When** I invoke `gh` directly (in copilot CLI, run with `COPILOT_CLI` unset in the environment)\r\n**Then** I see that the `User-Agent` header in http requests does not contain an agent name\r\n\r\nRunning in shell:\r\n\r\n```\r\nGH_DEBUG=api gh pr view\r\n```\r\n\r\n```\r\n* Request to https://api.github.com/graphql\r\n> POST /graphql HTTP/1.1\r\n> Host: api.github.com\r\n> Accept: application/vnd.github.merge-info-preview+json, application/vnd.github.nebula-preview\r\n> Authorization: token \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\r\n> Content-Length: 1968\r\n> Content-Type: application/json; charset=utf-8\r\n> Graphql-Features: merge_queue\r\n> Time-Zone: Europe/Amsterdam\r\n> User-Agent: GitHub CLI 2.88.1\r\n> X-Github-Api-Version: 2022-11-28\r\n```",
+    "author": "williammartin",
+    "merged_at": "2026-03-24T19:28:33+00:00",
+    "created_at": "2026-03-24T17:01:58+00:00",
+    "files": [
+      "api/client.go",
+      "api/http_client.go",
+      "api/http_client_test.go",
+      "internal/agents/detect.go",
+      "internal/agents/detect_test.go",
+      "internal/ghcmd/cmd.go",
+      "pkg/cmd/attestation/verify/verify_integration_test.go",
+      "pkg/cmd/factory/default.go",
+      "pkg/cmd/factory/default_test.go",
+      "pkg/cmd/search/shared/shared_test.go"
+    ],
+    "additions": 311,
+    "deletions": 41,
+    "ticket_ids": [],
+    "merge_commit_sha": "1ea295256650ef74b838516a1f476ad7d882eec2",
+    "pr_number": 13023,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "williammartin",
+        "state": "commented",
+        "submitted_at": "2026-03-24T17:03:06+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "copilot-pull-request-reviewer",
+        "state": "commented",
+        "submitted_at": "2026-03-24T17:19:50+00:00",
+        "is_bot": true,
+        "body": "## Pull request overview\n\nThis PR adds lightweight agent detection (via well-known environment variables) and threads the detected agent name into API client construction so that `gh` includes an `Agent/<name>` suffix in the `User-Agent` header for GitHub API requests, improving visibility into agentic CLI usage.\n\n**Changes:**\n- Introduces `internal/agents` with `Detect()` plus tests for supported agent environment variable signals and precedence.\n- Extends factory and HTTP client plumbing to pass an `invokingAgent` value into `api.NewHTTPClient`, appending it to the `User-Agent`.\n- Updates call sites and tests for the new factory/HTTP client function signatures.\n\n### Reviewed changes\n\nCopilot reviewed 10 out of 10 changed files in this pull request and generated 1 comment.\n\n<details>\n<summary>Show a summary per file</summary>\n\n| File | Description |\r\n| ---- | ----------- |\r\n| `internal/agents/detect.go` | Adds agent detection + validation for `AI_AGENT` values. |\r\n| `internal/agents/detect_test.go` | Adds unit tests covering detection signals and precedence. |\r\n| `internal/ghcmd/cmd.go` | Wires detected agent into factory creation at CLI entrypoint. |\r\n| `api/http_client.go` | Adds `InvokingAgent` option and appends it to `User-Agent`. |\r\n| `api/http_client_test.go` | Adds test asserting agent suffix is included in `User-Agent`. |\r\n| `pkg/cmd/factory/default.go` | Threads `invokingAgent` through factory into HTTP client options. |\r\n| `pkg/cmd/factory/default_test.go` | Updates factory constructor usage for new parameter. |\r\n| `pkg/cmd/search/shared/shared_test.go` | Updates factory constructor usage for new parameter. |\r\n| `pkg/cmd/attestation/verify/verify_integration_test.go` | Updates factory constructor usage for new parameter. |\r\n| `api/client.go` | Removes an unused header constant. |\n</details>\n\n\n\n\n\n\n---\n\n\ud83d\udca1 <a href=\"/cli/cli/new/trunk?filename=.github/instructions/*.instructions.md\" class=\"Link--inTextBlock\" target=\"_blank\" rel=\"noopener noreferrer\">Add Copi"
+      },
+      {
+        "reviewer": "williammartin",
+        "state": "commented",
+        "submitted_at": "2026-03-24T17:24:03+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "babakks",
+        "state": "approved",
+        "submitted_at": "2026-03-24T18:12:06+00:00",
+        "is_bot": false,
+        "body": "LGTM!"
+      },
+      {
+        "reviewer": "williammartin",
+        "state": "commented",
+        "submitted_at": "2026-03-24T18:52:53+00:00",
+        "is_bot": false,
+        "body": ""
+      }
+    ],
+    "commits": [
+      {
+        "message": "Record agentic invocations in User-Agent header\n\nDetect which AI coding agent is invoking gh by checking well-known\nenvironment variables and include the agent name in the User-Agent\nheader sent to GitHub APIs.\n\nSupported agents: Codex, Gemini CLI, Copilot CLI, OpenCode,\nClaude Code, and Amp. Generic AI_AGENT env var is also supported\nwith validation to prevent header injection.\n\nFixes github/cli#1111\n\nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": "2026-03-24T17:13:04+00:00",
+    "total_comments_count": 8
+  },
+  {
+    "id": "13021",
+    "source": "github_graphql",
+    "repo": "cli/cli",
+    "title": "docs: clarify that `gh pr edit --add-reviewer` can re-request reviews",
+    "body": "The `gh pr edit --add-reviewer` flag on pr edit already supports re-requesting reviews from reviewers who have already submitted their review, but this wasn't documented in the help text. I think this would help others (and AI tools) who otherwise assume `--add-reviewer` means ADD reviewer if they don't exist, not re-request review if they've already been added and submitted a review. I have been using this to re-request Copilot Code Review runs on a PR `gh pr edit --add-reviewer @copilot`.\r\n\r\nI don't think this PR closes the following issues, but they at least reference this.\r\n\r\nRef #12489\r\nRef #2053\r\n\r\n<!--\r\n  Thank you for contributing to GitHub CLI!\r\n  To reference an open issue, please write this in your description: `Fixes #NUMBER`\r\n-->\r\n",
+    "author": "joshjohanning",
+    "merged_at": "2026-03-24T15:46:11+00:00",
+    "created_at": "2026-03-24T14:48:11+00:00",
+    "files": [
+      "pkg/cmd/pr/edit/edit.go"
+    ],
+    "additions": 21,
+    "deletions": 2,
+    "ticket_ids": [
+      "#12489",
+      "#2053"
+    ],
+    "merge_commit_sha": "b046d2030efd02e1b4716014150d9f173bb92802",
+    "pr_number": 13021,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "copilot-pull-request-reviewer",
+        "state": "commented",
+        "submitted_at": "2026-03-24T14:50:33+00:00",
+        "is_bot": true,
+        "body": "## Pull request overview\n\nClarifies `gh pr edit --add-reviewer` help text to document that it can be used to re-request reviews from reviewers who have already reviewed a PR, aligning the CLI documentation with existing behavior.\n\n**Changes:**\n- Updated `--add-reviewer` flag help text to mention re-requesting reviews from previous reviewers.\n\n\n\n\n\n---\n\n\ud83d\udca1 <a href=\"/cli/cli/new/trunk?filename=.github/instructions/*.instructions.md\" class=\"Link--inTextBlock\" target=\"_blank\" rel=\"noopener noreferrer\">Add Copilot custom instructions</a> for smarter, more guided reviews. <a href=\"https://docs.github.com/en/copilot/customizing-copilot/adding-repository-custom-instructions-for-github-copilot\" class=\"Link--inTextBlock\" target=\"_blank\" rel=\"noopener noreferrer\">Learn how to get started</a>."
+      },
+      {
+        "reviewer": "BagToad",
+        "state": "commented",
+        "submitted_at": "2026-03-24T15:23:13+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "BagToad",
+        "state": "approved",
+        "submitted_at": "2026-03-24T15:38:16+00:00",
+        "is_bot": false,
+        "body": ""
+      }
+    ],
+    "commits": [
+      {
+        "message": "docs: clarify that --add-reviewer can re-request reviews\n\nThe --add-reviewer flag on pr edit already supports re-requesting\nreviews from reviewers who have already submitted their review,\nbut this wasn't documented in the help text.\n\nRef #12489\nRef #2053",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "docs(pr edit): improve command examples with grouped sections\n\nAdd comment headers to group examples by concern (title/body, labels,\nreviewers, assignees, projects/milestones), matching the style used by\nother commands like pr review and repo create. Also adds examples for\n--body-file and re-requesting review via --add-reviewer.\n\nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "docs: simplify flag text\r\n\r\napplying @BagToad's suggestion to simplify the wording to avoid line wrapping\n\nCo-authored-by: Kynan Ware <47394200+BagToad@users.noreply.github.com>",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 3,
+    "last_edited_at": null,
+    "total_comments_count": 3
+  },
+  {
+    "id": "12324",
+    "source": "github_graphql",
+    "repo": "cli/cli",
+    "title": "fix: prevent panic when processing null project items",
+    "body": "The GraphQL API can return `null` nodes in the `projectItems` connection, causing a runtime panic (nil pointer dereference) when the CLI attempted to access fields on these nil nodes. This crash occurs even with personal access tokens with full read access.\r\n\r\nAdds a check to safely skip `nil` nodes in `ProjectsV2ItemsForIssue` and `ProjectsV2ItemsForPullRequest`.\r\n\r\nFixes #12325",
+    "author": "chrishenzie",
+    "merged_at": "2025-12-22T15:28:21+00:00",
+    "created_at": "2025-12-16T19:20:14+00:00",
+    "files": [
+      "api/queries_projects_v2.go",
+      "api/queries_projects_v2_test.go"
+    ],
+    "additions": 28,
+    "deletions": 0,
+    "ticket_ids": [
+      "#12325"
+    ],
+    "merge_commit_sha": "6acf74e04e0e7642664f93cad96af4d72880c265",
+    "pr_number": 12324,
+    "ci_status": "failed",
+    "reviews": [
+      {
+        "reviewer": "andyfeller",
+        "state": "approved",
+        "submitted_at": "2025-12-22T15:17:38+00:00",
+        "is_bot": false,
+        "body": "Adding tests to ensure this works as expected, but it looks good to me \ud83d\udc4d \n\nThanks @chrishenzie!"
+      }
+    ],
+    "commits": [
+      {
+        "message": "fix: prevent panic when processing null project items\n\nThe GraphQL API can return `null` nodes in the `projectItems`\nconnection, causing a runtime panic (nil pointer dereference) when the\nCLI attempted to access fields on these nil nodes. This crash occurs\neven with personal access tokens with full read access.\n\nAdds a check to safely skip `nil` nodes in `ProjectsV2ItemsForIssue` and\n`ProjectsV2ItemsForPullRequest`.\n\nSigned-off-by: Chris Henzie <chrishenzie@google.com>",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Add test to ensure null values are skipped",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 2,
+    "last_edited_at": "2025-12-16T19:28:50+00:00",
+    "total_comments_count": 4
+  },
+  {
+    "id": "12972",
+    "source": "github_graphql",
+    "repo": "cli/cli",
+    "title": "Remove auto-labels from issue templates",
+    "body": "## Problem\n\nThe `bug_report`, `submit-a-request`, and `submit-a-design-proposal` issue templates currently auto-apply `bug` and `enhancement` labels respectively. This means issues arrive pre-labeled with type classifications that may not be accurate \u2014 an issue filed as a \"bug\" might actually be an enhancement, and vice versa.\n\nDuring FR triage, these template-applied labels can't be trusted, making it harder to distinguish between issues that have been properly triaged and those that just have auto-applied labels.\n\n## Solution\n\nRemove the auto-applied labels from all three issue templates:\n- `bug_report.md`: removed `bug` label\n- `submit-a-request.md`: removed `enhancement` label  \n- `submit-a-design-proposal.md`: removed `enhancement` label\n\nThis ensures all type classification happens during triage, giving the team confidence that labeled issues have actually been reviewed.\n\n> **Note:** Issues will still receive the `needs-triage` label (applied separately), so the triage workflow is unaffected.",
+    "author": "tidy-dev",
+    "merged_at": "2026-03-19T23:45:36+00:00",
+    "created_at": "2026-03-19T23:37:13+00:00",
+    "files": [
+      ".github/ISSUE_TEMPLATE/bug_report.md",
+      ".github/ISSUE_TEMPLATE/submit-a-design-proposal.md",
+      ".github/ISSUE_TEMPLATE/submit-a-request.md"
+    ],
+    "additions": 3,
+    "deletions": 3,
+    "ticket_ids": [],
+    "merge_commit_sha": "8723e3bb5270af646fe7535b21e4db337a5bd73e",
+    "pr_number": 12972,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "copilot-pull-request-reviewer",
+        "state": "commented",
+        "submitted_at": "2026-03-19T23:38:52+00:00",
+        "is_bot": true,
+        "body": "## Pull request overview\n\nRemoves template-assigned type labels from legacy GitHub Markdown issue templates so that issue type classification happens during triage rather than at submission time.\n\n**Changes:**\n- Removed the default `enhancement` label from the \u201cSubmit a request\u201d template.\n- Removed the default `enhancement` label from the \u201cSubmit a design proposal\u201d template.\n- Removed the default `bug` label from the \u201cBug report\u201d template.\n\n### Reviewed changes\n\nCopilot reviewed 3 out of 3 changed files in this pull request and generated no comments.\n\n| File | Description |\n| ---- | ----------- |\n| .github/ISSUE_TEMPLATE/submit-a-request.md | Stops auto-applying `enhancement` to new \u201crequest\u201d issues. |\n| .github/ISSUE_TEMPLATE/submit-a-design-proposal.md | Stops auto-applying `enhancement` to new \u201cdesign proposal\u201d issues. |\n| .github/ISSUE_TEMPLATE/bug_report.md | Stops auto-applying `bug` to new \u201cbug report\u201d issues. |\n\n\n\n\n\n---\n\n\ud83d\udca1 <a href=\"/cli/cli/new/trunk?filename=.github/instructions/*.instructions.md\" class=\"Link--inTextBlock\" target=\"_blank\" rel=\"noopener noreferrer\">Add Copilot custom instructions</a> for smarter, more guided reviews. <a href=\"https://docs.github.com/en/copilot/customizing-copilot/adding-repository-custom-instructions-for-github-copilot\" class=\"Link--inTextBlock\" target=\"_blank\" rel=\"noopener noreferrer\">Learn how to get started</a>."
+      },
+      {
+        "reviewer": "BagToad",
+        "state": "approved",
+        "submitted_at": "2026-03-19T23:42:10+00:00",
+        "is_bot": false,
+        "body": "Yup lgtm. Let's see how this goes!"
+      }
+    ],
+    "commits": [
+      {
+        "message": "Remove auto-labels from issue templates\n\nThe bug_report, submit-a-request, and submit-a-design-proposal issue\ntemplates currently auto-apply 'bug' and 'enhancement' labels. This\ncauses issues to arrive pre-labeled with types that may not be accurate,\nmaking triage harder since the template-applied labels can't be trusted.\n\nRemoving auto-labels ensures all type classification happens during\ntriage, giving the team confidence that labeled issues have been\nreviewed.\n\nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 1
+  },
+  {
+    "id": "12956",
+    "source": "github_graphql",
+    "repo": "cli/cli",
+    "title": "fix(agent-task): resolve Copilot API URL dynamically",
+    "body": "## Description\n\n`gh agent-task` commands fail with `401 Unauthorized` for users on ghe.com tenancy hosts. The Copilot API URL was hardcoded to `api.githubcopilot.com`, but ghe.com tenants use a different endpoint. The URL must be resolved dynamically per host.\n\n## Key changes\n\n- **`shared/capi.go`**: Added `resolveCapiURL` which queries `viewer.copilotEndpoints.api` via GraphQL to get the correct Copilot API URL for the user's host. Uses the cached HTTP client to avoid redundant lookups.\n- **`capi/client.go`**: Removed hardcoded `baseCAPIURL` and `capiHost` constants. `NewCAPIClient` now accepts a `capiURL` parameter. The transport extracts the host from the resolved URL for conditional header matching.\n- **`capi/sessions.go`** / **`capi/job.go`**: Replaced `baseCAPIURL` constant references with the instance-level `capiURL` field.\n\n## Notes for Reviewers\n\n- This may also resolve the Copilot API URL to a different host than `api.githubcopilot.com` for some github.com users, depending on their plan.\n- The `IsEnterprise` guard in `agent_task.go` already allows ghe.com tenancy hosts through (they are not considered \"enterprise\" by `go-gh`), so no changes were needed there.",
+    "author": "BagToad",
+    "merged_at": "2026-03-18T18:14:02+00:00",
+    "created_at": "2026-03-18T00:44:29+00:00",
+    "files": [
+      "pkg/cmd/agent-task/capi/client.go",
+      "pkg/cmd/agent-task/capi/job.go",
+      "pkg/cmd/agent-task/capi/job_test.go",
+      "pkg/cmd/agent-task/capi/sessions.go",
+      "pkg/cmd/agent-task/capi/sessions_test.go",
+      "pkg/cmd/agent-task/shared/capi.go",
+      "pkg/cmd/agent-task/shared/capi_test.go"
+    ],
+    "additions": 166,
+    "deletions": 33,
+    "ticket_ids": [],
+    "merge_commit_sha": "78b958f9ae9f5828f62252e4b1bfcc006ec0f158",
+    "pr_number": 12956,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "copilot-pull-request-reviewer",
+        "state": "commented",
+        "submitted_at": "2026-03-18T00:48:20+00:00",
+        "is_bot": true,
+        "body": "## Pull request overview\n\nThis PR fixes `gh agent-task` failures on ghe.com tenancy hosts by dynamically resolving the correct Copilot API base URL per authenticated host via a GraphQL lookup, instead of assuming `https://api.githubcopilot.com`.\n\n**Changes:**\n- Add Copilot API endpoint resolution (`viewer.copilotEndpoints.api`) and wire it into `CapiClientFunc`.\n- Refactor the CAPI client to accept a resolved base URL (removing hardcoded constants) and use instance-level URL construction.\n- Update session/job CAPI calls and tests to use the new URL plumbing.\n\n### Reviewed changes\n\nCopilot reviewed 7 out of 7 changed files in this pull request and generated 3 comments.\n\n<details>\n<summary>Show a summary per file</summary>\n\n| File | Description |\r\n| ---- | ----------- |\r\n| pkg/cmd/agent-task/shared/capi.go | Resolves the Copilot API URL via GraphQL and passes it into the CAPI client constructor. |\r\n| pkg/cmd/agent-task/shared/capi_test.go | Adds tests covering endpoint resolution and that `CapiClientFunc` triggers the GraphQL lookup. |\r\n| pkg/cmd/agent-task/capi/client.go | Removes hardcoded Copilot base URL; adds `capiURL` to the client and derives host for conditional headers. |\r\n| pkg/cmd/agent-task/capi/sessions.go | Switches session endpoints to build URLs from the instance `capiURL`. |\r\n| pkg/cmd/agent-task/capi/sessions_test.go | Updates tests to construct the client with an explicit base URL parameter. |\r\n| pkg/cmd/agent-task/capi/job.go | Switches jobs endpoints to use the instance `capiURL` via a helper method. |\r\n| pkg/cmd/agent-task/capi/job_test.go | Updates tests to construct the client with an explicit base URL parameter. |\n</details>\n\n\n\n\n\n\n---\n\n\ud83d\udca1 <a href=\"/cli/cli/new/trunk?filename=.github/instructions/*.instructions.md\" class=\"Link--inTextBlock\" target=\"_blank\" rel=\"noopener noreferrer\">Add Copilot custom instructions</a> for smarter, more guided reviews. <a href=\"https://docs.github.com/en/copilot/customizing-copilot/adding-repository-custom-instruc"
+      },
+      {
+        "reviewer": "babakks",
+        "state": "commented",
+        "submitted_at": "2026-03-18T01:51:00+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "babakks",
+        "state": "approved",
+        "submitted_at": "2026-03-18T02:13:56+00:00",
+        "is_bot": false,
+        "body": "LGTM! \ud83d\udea2 "
+      },
+      {
+        "reviewer": "BagToad",
+        "state": "commented",
+        "submitted_at": "2026-03-18T18:02:56+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "BagToad",
+        "state": "commented",
+        "submitted_at": "2026-03-18T18:03:01+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "BagToad",
+        "state": "commented",
+        "submitted_at": "2026-03-18T18:03:42+00:00",
+        "is_bot": false,
+        "body": ""
+      }
+    ],
+    "commits": [
+      {
+        "message": "fix(agent-task): resolve Copilot API URL dynamically\n\nQuery viewer.copilotEndpoints.api to get the correct Copilot API URL\nfor the user's host instead of hardcoding api.githubcopilot.com. This\nfixes 401 errors for ghe.com tenancy users whose Copilot API lives at\na different endpoint.\n\nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Build session URL with `url.JoinPath`\n\nCo-authored-by: Copilot Autofix powered by AI <175728472+Copilot@users.noreply.github.com>",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "refactor(agent-task): address PR review comments\n\n- Remove redundant assert on GraphQL request path in test\n- Rename capiURL to capiBaseURL for clarity\n\nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "fix(agent-task): fix gofmt alignment\n\nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 4,
+    "last_edited_at": null,
+    "total_comments_count": 13
+  },
+  {
+    "id": "12915",
+    "source": "github_graphql",
+    "repo": "cli/cli",
+    "title": "Revert \"fix: clarify scope error while creating issues for projects\"",
+    "body": "## Description\r\n \r\nReverts cli/cli#12596\r\n\r\nFixes https://github.com/cli/cli/issues/12904\r\n\r\nThis PR introduced a change that adjusted the stringified error message returned in GQL response when there were missing scopes. However, that error message was interrogated by [`ProjectsV2IgnorableError`](https://github.com/cli/cli/blob/4a3f7d9ce0eb7c0c22004441c63efc916dcd0b86/api/queries_projects_v2.go#L328-L339) in order to gracefully degrade the experience on `pr` and `issue view` commands when `read:projects` was missing.\r\n\r\nWe could move this forward, but I actually think the implementation in that PR was incorrect because it previously showed an error message that made sense for personal access tokens and was changed to a message that only made sense for OAuth tokens. And so it just sort of swapped the problem around. I'm gonna reopen that issue, but if we were to address it again we would need to interrogate the type of token or provide an error message that covered both cases.\r\n\r\n### Acceptance Test\r\n\r\n#### Before\r\n\r\n```\r\n\u279c  cli git:(trunk) GH_ACCEPTANCE_SCRIPT=pr-view.txtar GH_ACCEPTANCE_HOST=github.com GH_ACCEPTANCE_ORG=gh-acceptance-testing GH_ACCEPTANCE_TOKEN=$(gh auth token) go test -tags=acceptance -run ^TestPullRequests$ ./acceptance\r\n--- FAIL: TestPullRequests (0.00s)\r\n    --- FAIL: TestPullRequests/pr-view (9.67s)\r\n        testscript.go:584: # Use gh as a credential helper (0.735s)\r\n            # Create a repository with a file so it has a default branch (1.273s)\r\n            # Defer repo cleanup (0.000s)\r\n            # Clone the repo (1.914s)\r\n            # Prepare a branch to PR (1.181s)\r\n            # Create the PR (2.270s)\r\n            # View the PR (2.249s)\r\n            > exec gh pr view $PR_URL\r\n            [stderr]\r\n            error: your authentication token is missing required scopes [read:project]\r\n            To request it, run:  gh auth refresh -s read:project\r\n            [exit status 1]\r\n            FAIL: testdata/pr/pr-view.txtar:28: unexpected command failure\r\n\r\nFAIL\r\nFAIL\tgithub.com/cli/cli/v2/acceptance\t10.296s\r\nFAIL\r\n```\r\n\r\n#### After\r\n\r\n```\r\n\u279c  cli git:(revert-12596-fix/clarify-scope-error) \u2717 GH_ACCEPTANCE_SCRIPT=pr-view.txtar GH_ACCEPTANCE_HOST=github.com GH_ACCEPTANCE_ORG=gh-acceptance-testing GH_ACCEPTANCE_TOKEN=$(gh auth token) go test -tags=acceptance -run ^TestPullRequests$ ./acceptance\r\nok  \tgithub.com/cli/cli/v2/acceptance\t10.317s\r\n```\r\n",
+    "author": "williammartin",
+    "merged_at": "2026-03-12T12:06:18+00:00",
+    "created_at": "2026-03-12T11:55:56+00:00",
+    "files": [
+      "api/client.go",
+      "api/client_test.go"
+    ],
+    "additions": 0,
+    "deletions": 116,
+    "ticket_ids": [],
+    "merge_commit_sha": "37800dd56a536e69b20d682b770e983c3829c164",
+    "pr_number": 12915,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "copilot-pull-request-reviewer",
+        "state": "commented",
+        "submitted_at": "2026-03-12T11:57:10+00:00",
+        "is_bot": true,
+        "body": "## Pull request overview\n\nThis PR reverts #12596, which had added a centralized `GenerateScopeErrorForGQL` function in `api/client.go` to detect `INSUFFICIENT_SCOPES` GraphQL errors and generate user-friendly scope error messages. The revert removes this centralized handling, leaving the original scope error handling in `pkg/cmd/project/shared/queries/queries.go` intact.\n\n**Changes:**\n- Removes `GenerateScopeErrorForGQL` and `requiredScopesFromServerMessage` functions from `api/client.go`, along with the call site in `handleResponse`\n- Removes associated test cases from `api/client_test.go`\n- Removes now-unused imports (`pkg/set`, `go-gh/v2/pkg/api`)\n\n### Reviewed changes\n\nCopilot reviewed 2 out of 2 changed files in this pull request and generated no comments.\n\n| File | Description |\n| ---- | ----------- |\n| api/client.go | Removes `GenerateScopeErrorForGQL`, `requiredScopesFromServerMessage`, and the scope error interception in `handleResponse` |\n| api/client_test.go | Removes tests for `GenerateScopeErrorForGQL` and `requiredScopesFromServerMessage`, and the unused import |\n\n\n\n\n\n---\n\n\ud83d\udca1 <a href=\"/cli/cli/new/trunk?filename=.github/instructions/*.instructions.md\" class=\"Link--inTextBlock\" target=\"_blank\" rel=\"noopener noreferrer\">Add Copilot custom instructions</a> for smarter, more guided reviews. <a href=\"https://docs.github.com/en/copilot/customizing-copilot/adding-repository-custom-instructions-for-github-copilot\" class=\"Link--inTextBlock\" target=\"_blank\" rel=\"noopener noreferrer\">Learn how to get started</a>."
+      },
+      {
+        "reviewer": "babakks",
+        "state": "approved",
+        "submitted_at": "2026-03-12T11:57:32+00:00",
+        "is_bot": false,
+        "body": "LGTM! reviewed in sync."
+      }
+    ],
+    "commits": [
+      {
+        "message": "Revert \"fix: clarify scope error while creating issues for projects\"",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": "2026-03-12T12:01:50+00:00",
+    "total_comments_count": 2
+  },
+  {
+    "id": "12596",
+    "source": "github_graphql",
+    "repo": "cli/cli",
+    "title": "fix: clarify scope error while creating issues for projects",
+    "body": "### Summary\r\nEnhanced GraphQL error handling to provide more user-friendly and actionable messages when a token lacks the necessary permissions. Instead of a verbose technical trace, users now receive a concise list of missing scopes and a direct command to resolve the issue via gh auth refresh.\r\n\r\n### Changes\r\n- Modified handleResponse to intercept GraphQL errors and check for INSUFFICIENT_SCOPES types.\r\n- Implemented GenerateScopeErrorForGQL to extract specific required scopes from the API response message.\r\n- Added requiredScopesFromServerMessage using regex to parse scope requirements (e.g., project, repo) from the server's text.\r\n\r\n### Note\r\nI basically replicated the logic being used for queries (`handleError` found in `pkg/cmd/project/shared/queries/queries.go`)\r\n<img width=\"701\" height=\"471\" alt=\"image\" src=\"https://github.com/user-attachments/assets/e081a66f-a8b0-46b1-9c62-b582c113c6aa\" />\r\n\r\n\r\n### Example\r\n# Before (Raw GraphQL Trace):\r\n`GraphQL: Your token has not been granted the required scopes to execute this query. The 'addProjectV2ItemById' field requires one of the following scopes: ['project'], but your token has only been granted the: ['gist', 'read:org', 'read:project', 'repo', 'workflow'] scopes. Please modify your token's scopes at: https://github.com/settings/tokens.`\r\n\r\n# Now (Clean CLI Error):\r\n```\r\nerror: your authentication token is missing required scopes [project]\r\nTo request it, run:  gh auth refresh -s project\r\n```\r\n\r\n### Test plan\r\n- Added test cases for newly-created functions\r\n- All existing tests pass\r\n\r\nFixes #12585 \r\n",
+    "author": "elijahthis",
+    "merged_at": "2026-03-02T18:12:35+00:00",
+    "created_at": "2026-02-01T22:34:42+00:00",
+    "files": [
+      "api/client.go",
+      "api/client_test.go"
+    ],
+    "additions": 116,
+    "deletions": 0,
+    "ticket_ids": [
+      "#12585"
+    ],
+    "merge_commit_sha": "e725e383701d67a63fd67d53fce0933a30019ce5",
+    "pr_number": 12596,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "BagToad",
+        "state": "approved",
+        "submitted_at": "2026-03-02T18:11:12+00:00",
+        "is_bot": false,
+        "body": "@elijahthis, apologies for the delay. The team has been busy.\r\n\r\nTested this locally and it works correctly for the exact error from #12585, multi-scope scenarios, and non-scope errors. Approving as-is. I've opened #12823 to track deduplicating the scope error handling between `api/client.go` and `queries.go` - I do think we should do this at some point or at least document why it's not possible or practical.\r\n\r\n@elijahthis, if you want to take a stab at that cleanup I've opened that issue up for contributing."
+      }
+    ],
+    "commits": [
+      {
+        "message": "fix: clarify scope error while creating issues for projects",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "test: TestGenerateScopeErrorForGQL and TestRequiredScopesFromServerMessage",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "trigger rerun",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 3,
+    "last_edited_at": "2026-02-01T22:39:24+00:00",
+    "total_comments_count": 10
+  },
+  {
+    "id": "12914",
+    "source": "github_graphql",
+    "repo": "cli/cli",
+    "title": "Revert \"refactor: deduplicate scope error handling between api/client.go and project queries\"",
+    "body": "## Description\r\n\r\nReverts cli/cli#12845\r\n\r\nPart of fixing https://github.com/cli/cli/issues/12904",
+    "author": "williammartin",
+    "merged_at": "2026-03-12T11:54:55+00:00",
+    "created_at": "2026-03-12T11:45:49+00:00",
+    "files": [
+      "api/client.go",
+      "pkg/cmd/project/shared/queries/queries.go",
+      "pkg/cmd/project/shared/queries/queries_test.go"
+    ],
+    "additions": 66,
+    "deletions": 4,
+    "ticket_ids": [],
+    "merge_commit_sha": "4a3f7d9ce0eb7c0c22004441c63efc916dcd0b86",
+    "pr_number": 12914,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "copilot-pull-request-reviewer",
+        "state": "commented",
+        "submitted_at": "2026-03-12T11:49:34+00:00",
+        "is_bot": true,
+        "body": "## Pull request overview\n\nThis PR reverts cli/cli#12845 by restoring project-queries-specific handling for GraphQL \u201cinsufficient scopes\u201d errors, rather than relying on the deduplicated API client behavior.\n\n**Changes:**\n- Reintroduces missing-scope detection and error formatting inside `pkg/cmd/project/shared/queries` GraphQL error handling.\n- Adds unit coverage for parsing required scopes from GraphQL server error messages in project queries.\n- Adds a TODO note in `api/client.go` flagging duplication in the scope-suggestion messaging.\n\n### Reviewed changes\n\nCopilot reviewed 3 out of 3 changed files in this pull request and generated 4 comments.\n\n| File | Description |\n| ---- | ----------- |\n| pkg/cmd/project/shared/queries/queries.go | Restores local insufficient-scope parsing + error construction for project GraphQL calls. |\n| pkg/cmd/project/shared/queries/queries_test.go | Adds a new unit test for `requiredScopesFromServerMessage`. |\n| api/client.go | Adds a TODO comment noting duplicated scope-suggestion logic. |\n\n\n\n\n\n---\n\n\ud83d\udca1 <a href=\"/cli/cli/new/trunk?filename=.github/instructions/*.instructions.md\" class=\"Link--inTextBlock\" target=\"_blank\" rel=\"noopener noreferrer\">Add Copilot custom instructions</a> for smarter, more guided reviews. <a href=\"https://docs.github.com/en/copilot/customizing-copilot/adding-repository-custom-instructions-for-github-copilot\" class=\"Link--inTextBlock\" target=\"_blank\" rel=\"noopener noreferrer\">Learn how to get started</a>."
+      },
+      {
+        "reviewer": "babakks",
+        "state": "approved",
+        "submitted_at": "2026-03-12T11:52:14+00:00",
+        "is_bot": false,
+        "body": "LGTM! reviewed in sync."
+      }
+    ],
+    "commits": [
+      {
+        "message": "Revert \"refactor: deduplicate scope error handling between api/client.go and project queries\"",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": "2026-03-12T11:49:16+00:00",
+    "total_comments_count": 6
+  },
+  {
+    "id": "12911",
+    "source": "github_graphql",
+    "repo": "cli/cli",
+    "title": "Migrate Windows code signing from client secret to OIDC",
+    "body": "## Summary\r\n\r\nReplaces `AZURE_CLIENT_SECRET`-based authentication for Windows code signing with OIDC federated identity credentials via `azure/login@v2`.\r\n\r\n## Changes\r\n\r\n- Add `azure/login@v2` step before signing (production only) to establish OIDC session\r\n- Remove `AZURE_CLIENT_SECRET` from both the .exe signing (GoReleaser) and .msi signing steps\r\n- Keep `AZURE_CLIENT_ID` and `AZURE_TENANT_ID` env vars for `DefaultAzureCredential` identification\r\n\r\n## Pre-requisites completed\r\n\r\n- [x] OIDC subject customization set on `cli/cli` (`repository_owner_id`, `repository_id`, `context`)\r\n- [x] `id-token: write` permission already present at workflow level\r\n\r\n## Companion work\r\n\r\nModeled after desktop's identical migration: [desktop/desktop#21786](https://github.com/desktop/desktop/pull/21786)\r\n\r\n## Notes for reviewer\r\n\r\nPlease see the successful test run using this workflow: https://github.com/cli/cli/actions/runs/22981502108/job/66722159067",
+    "author": "BagToad",
+    "merged_at": "2026-03-12T09:02:36+00:00",
+    "created_at": "2026-03-12T00:41:00+00:00",
+    "files": [
+      ".github/workflows/deployment.yml"
+    ],
+    "additions": 9,
+    "deletions": 5,
+    "ticket_ids": [],
+    "merge_commit_sha": "2bf1669a6b12df47025ae5e18fc6d03253d1ff7a",
+    "pr_number": 12911,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "github-advanced-security",
+        "state": "commented",
+        "submitted_at": "2026-03-12T00:41:52+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "copilot-pull-request-reviewer",
+        "state": "commented",
+        "submitted_at": "2026-03-12T00:43:01+00:00",
+        "is_bot": true,
+        "body": "## Pull request overview\n\nMigrates Windows release code signing in the deployment workflow from client-secret auth to OIDC-based authentication using `azure/login@v2`, aligning with the Trusted Signing/`DefaultAzureCredential` flow and removing long-lived secrets from the workflow.\n\n**Changes:**\n- Add `azure/login@v2` (production-only) to establish an Azure auth session for code signing via OIDC.\n- Remove `AZURE_CLIENT_SECRET` from Windows `.exe` (GoReleaser) and `.msi` signing environments.\n- Keep `AZURE_CLIENT_ID` / `AZURE_TENANT_ID` environment variables for identity selection.\n\n\n<details>\n<summary>Comments suppressed due to low confidence (1)</summary>\n\n**.github/workflows/deployment.yml:226**\n* `azure/login@v2` only runs for `production`, but the GoReleaser build step still sets `DLIB_PATH`/`METADATA_PATH` unconditionally. Since `.goreleaser.yml` always runs `pwsh .\\script\\sign.ps1` as a post-hook for Windows builds, staging runs will still attempt to code-sign but won\u2019t have an authenticated Azure session (and may also not have these environment-scoped secrets), which is likely to fail the build. Consider only setting `DLIB_PATH`/`METADATA_PATH` (and Azure env vars, if only needed for signing) when `inputs.environment == 'production'`, so `script/sign.ps1` reliably skips signing outside production, or alternatively run `azure/login` for all environments where signing is expected to occur.\n```\n      - name: Authenticate to Azure for code signing\n        if: inputs.environment == 'production'\n        uses: azure/login@v2\n        with:\n          client-id: ${{ secrets.SPN_GITHUB_CLI_SIGNING_CLIENT_ID }}\n          tenant-id: ${{ secrets.SPN_GITHUB_CLI_SIGNING_TENANT_ID }}\n          allow-no-subscriptions: true\n      # Azure Code Signing authenticates via OIDC (azure/login above). AZURE_CLIENT_ID and AZURE_TENANT_ID\n      # are still passed so DefaultAzureCredential can identify the service principal.\n      - name: Build release binaries\n        shell: bash\n       "
+      },
+      {
+        "reviewer": "babakks",
+        "state": "approved",
+        "submitted_at": "2026-03-12T09:02:34+00:00",
+        "is_bot": false,
+        "body": ""
+      }
+    ],
+    "commits": [
+      {
+        "message": "Switch deployment signing to OIDC authentication",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": "2026-03-12T00:55:54+00:00",
+    "total_comments_count": 3
+  },
+  {
+    "id": "12894",
+    "source": "github_graphql",
+    "repo": "cli/cli",
+    "title": "Add monthly pitch surfacing workflow",
+    "body": "Adds a monthly scheduled job (1st of each month at 2 PM UTC) that surfaces the top 30 most-engaged open issues (by reactions + comments) and applies the `pitch` label. Also runs on manual `workflow_dispatch` for on-demand use before meetings.\r\n\r\nUses the shared reusable workflow from `desktop/gh-cli-and-desktop-shared-workflows`.",
+    "author": "tidy-dev",
+    "merged_at": "2026-03-10T16:02:10+00:00",
+    "created_at": "2026-03-10T13:31:06+00:00",
+    "files": [
+      ".github/workflows/triage-scheduled-tasks.yml"
+    ],
+    "additions": 8,
+    "deletions": 0,
+    "ticket_ids": [],
+    "merge_commit_sha": "e8cc7f94367a0d862501aea1e318e6e0c326f0b9",
+    "pr_number": 12894,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "copilot-pull-request-reviewer",
+        "state": "commented",
+        "submitted_at": "2026-03-10T15:43:05+00:00",
+        "is_bot": true,
+        "body": "## Pull request overview\n\nAdds a new scheduled triage task to automatically \u201csurface\u201d highly engaged issues each month by applying the `pitch` label, using the shared reusable workflow.\n\n**Changes:**\n- Add a monthly cron trigger (1st of each month at 14:00 UTC) for pitch surfacing.\n- Add a `pitch-surface` job that calls `desktop/gh-cli-and-desktop-shared-workflows/.github/workflows/pitch-surface-top-issues.yml`.\n\n\n\n\n\n---\n\n\ud83d\udca1 <a href=\"/cli/cli/new/trunk?filename=.github/instructions/*.instructions.md\" class=\"Link--inTextBlock\" target=\"_blank\" rel=\"noopener noreferrer\">Add Copilot custom instructions</a> for smarter, more guided reviews. <a href=\"https://docs.github.com/en/copilot/customizing-copilot/adding-repository-custom-instructions-for-github-copilot\" class=\"Link--inTextBlock\" target=\"_blank\" rel=\"noopener noreferrer\">Learn how to get started</a>."
+      },
+      {
+        "reviewer": "BagToad",
+        "state": "approved",
+        "submitted_at": "2026-03-10T16:02:08+00:00",
+        "is_bot": false,
+        "body": ""
+      }
+    ],
+    "commits": [
+      {
+        "message": "Add pitch surfacing workflow (monthly + manual dispatch)",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "fix: add if guard to no-response job to prevent running on workflow_dispatch\n\nPrevents no-response from accidentally closing issues when manually\ndispatching the workflow for pitch surfacing.\n\nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 2,
+    "last_edited_at": "2026-03-10T15:40:12+00:00",
+    "total_comments_count": 2
+  },
+  {
+    "id": "12846",
+    "source": "github_graphql",
+    "repo": "cli/cli",
+    "title": "feat(repo): add --squash-merge-commit-message flag to gh repo edit",
+    "body": "Closes #10092\n\nAdds `--squash-merge-commit-message` to `gh repo edit` with 4 human-friendly values that map to the GitHub API's `squash_merge_commit_title` and `squash_merge_commit_message` fields.\n\n**Flag values and API mapping:**\n\n| Flag value | `squash_merge_commit_title` | `squash_merge_commit_message` |\n|---|---|---|\n| `default` | `COMMIT_OR_PR_TITLE` | `COMMIT_MESSAGES` |\n| `pr-title` | `PR_TITLE` | `BLANK` |\n| `pr-title-commits` | `PR_TITLE` | `COMMIT_MESSAGES` |\n| `pr-title-description` | `PR_TITLE` | `PR_BODY` |\n\nThese match the 4 options in the GitHub web UI for configuring squash merge behavior.\n\n**CLI usage:**\n\n```\ngh repo edit --enable-squash-merge --squash-merge-commit-message pr-title\n```\n\n**Interactive mode:**\n\nWhen the user selects \"Allow Squash Merging\" in the merge strategies prompt, a follow-up prompt asks which commit message format to use:\n\n```\n? Default squash merge commit message [Use arrows to move, type to filter]\n> default\n  pr-title\n  pr-title-commits\n  pr-title-description\n```\n\n**Validation:**\n- Invalid values produce a clear error listing the valid options\n- Using the flag without `--enable-squash-merge` produces an error explaining the requirement\n\n**Tests added:**\n- Flag parsing: valid value, missing `--enable-squash-merge`, invalid value\n- API payload: verifies correct `squash_merge_commit_title` and `squash_merge_commit_message` in PATCH body\n- Interactive flow: squash enabled with commit message prompt, squash disabled (no prompt)\n- Transform function: all 4 mappings\n- Validation function: all valid values + invalid inputs",
+    "author": "yuvrajangadsingh",
+    "merged_at": "2026-03-10T15:32:56+00:00",
+    "created_at": "2026-03-05T11:15:17+00:00",
+    "files": [
+      "pkg/cmd/repo/edit/edit.go",
+      "pkg/cmd/repo/edit/edit_test.go"
+    ],
+    "additions": 281,
+    "deletions": 21,
+    "ticket_ids": [
+      "#10092"
+    ],
+    "merge_commit_sha": "8f2673062e5a011f5a4523c06d2196e62e1b5758",
+    "pr_number": 12846,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "marsam2489-lang",
+        "state": "commented",
+        "submitted_at": "2026-03-08T11:02:10+00:00",
+        "is_bot": false,
+        "body": "Submit the approvel"
+      },
+      {
+        "reviewer": "copilot-pull-request-reviewer",
+        "state": "commented",
+        "submitted_at": "2026-03-10T10:35:14+00:00",
+        "is_bot": true,
+        "body": "## Pull request overview\n\nAdds support in `gh repo edit` for configuring the default squash merge commit message behavior using a single user-friendly flag, mapping to the REST API\u2019s `squash_merge_commit_title` and `squash_merge_commit_message` fields.\n\n**Changes:**\n- Adds `--squash-merge-commit-message` flag parsing/validation and mapping into the repo edit PATCH payload.\n- Extends interactive merge options flow to prompt for the default squash merge commit message format when squash merge is enabled.\n- Adds unit tests for flag parsing, validation/mapping, REST payload fields, and interactive prompting behavior.\n\n### Reviewed changes\n\nCopilot reviewed 2 out of 2 changed files in this pull request and generated 2 comments.\n\n| File | Description |\n| ---- | ----------- |\n| pkg/cmd/repo/edit/edit.go | Implements the new flag, interactive prompt, validation, and mapping to REST fields. |\n| pkg/cmd/repo/edit/edit_test.go | Adds coverage for parsing, mapping, payload formation, and interactive prompt flow. |\n\n\n\n\n\n---\n\n\ud83d\udca1 <a href=\"/cli/cli/new/trunk?filename=.github/instructions/*.instructions.md\" class=\"Link--inTextBlock\" target=\"_blank\" rel=\"noopener noreferrer\">Add Copilot custom instructions</a> for smarter, more guided reviews. <a href=\"https://docs.github.com/en/copilot/customizing-copilot/adding-repository-custom-instructions-for-github-copilot\" class=\"Link--inTextBlock\" target=\"_blank\" rel=\"noopener noreferrer\">Learn how to get started</a>."
+      },
+      {
+        "reviewer": "babakks",
+        "state": "changes_requested",
+        "submitted_at": "2026-03-10T11:36:02+00:00",
+        "is_bot": false,
+        "body": "Nice PR, @yuvrajangadsingh! \ud83d\ude4f \n\nI haven't end-to-end tested it yet, but all seems to be in a good shape. I'll do proper testing once you apply the requested changes."
+      },
+      {
+        "reviewer": "babakks",
+        "state": "commented",
+        "submitted_at": "2026-03-10T11:36:52+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "yuvrajangadsingh",
+        "state": "commented",
+        "submitted_at": "2026-03-10T13:01:05+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "yuvrajangadsingh",
+        "state": "commented",
+        "submitted_at": "2026-03-10T13:01:07+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "yuvrajangadsingh",
+        "state": "commented",
+        "submitted_at": "2026-03-10T13:01:09+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "yuvrajangadsingh",
+        "state": "commented",
+        "submitted_at": "2026-03-10T13:01:10+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "yuvrajangadsingh",
+        "state": "commented",
+        "submitted_at": "2026-03-10T13:01:12+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "yuvrajangadsingh",
+        "state": "commented",
+        "submitted_at": "2026-03-10T13:01:14+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "yuvrajangadsingh",
+        "state": "commented",
+        "submitted_at": "2026-03-10T13:01:15+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "yuvrajangadsingh",
+        "state": "commented",
+        "submitted_at": "2026-03-10T13:01:17+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "yuvrajangadsingh",
+        "state": "commented",
+        "submitted_at": "2026-03-10T13:01:30+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "yuvrajangadsingh",
+        "state": "commented",
+        "submitted_at": "2026-03-10T13:01:32+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "yuvrajangadsingh",
+        "state": "commented",
+        "submitted_at": "2026-03-10T13:01:34+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "babakks",
+        "state": "commented",
+        "submitted_at": "2026-03-10T14:29:47+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "babakks",
+        "state": "approved",
+        "submitted_at": "2026-03-10T15:09:45+00:00",
+        "is_bot": false,
+        "body": "LGTM! Thanks for your contribution, @yuvrajangadsingh! \ud83d\ude4f \n\nVerified both interactive and non-interactive flows."
+      }
+    ],
+    "commits": [
+      {
+        "message": "feat(repo): add --squash-merge-commit-message flag to gh repo edit\n\nAdd a single --squash-merge-commit-message flag that maps to both\nsquash_merge_commit_title and squash_merge_commit_message API fields.\n\nSupported values:\n- default: COMMIT_OR_PR_TITLE + COMMIT_MESSAGES\n- pr-title: PR_TITLE + BLANK\n- pr-title-commits: PR_TITLE + COMMIT_MESSAGES\n- pr-title-description: PR_TITLE + PR_BODY\n\nThe flag requires --enable-squash-merge to be set alongside it. In\ninteractive mode, the squash merge commit message prompt appears when\nsquash merging is selected.\n\nCloses #10092",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "fix: gofmt alignment in test struct literals",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "fix: address review feedback on squash merge commit message\n\n- reorder if checks: validate --enable-squash-merge is set before\n  checking the value, and error when --enable-squash-merge=false\n- use validSquashMsgValues directly in interactive prompt instead of\n  duplicating the slice\n- use slices.Contains in validateSquashMergeCommitMsg\n- interpolate const values in Long description instead of hardcoding\n- add default clause in transformSquashMergeOpts to avoid mutating\n  title/message on unknown input\n- move optionDiscussions to end of const block with TODO comment\n- add test for unknown input and --enable-squash-merge=false case",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 3,
+    "last_edited_at": null,
+    "total_comments_count": 31
+  },
+  {
+    "id": "3",
+    "source": "github_graphql",
+    "repo": "cli/cli",
+    "title": "Add branch name to `gh pr list`",
+    "body": "It was bugging me that our text prototypes had the branch name in the PR list but our prototype didn't. Now that we use graphql to get PR information we **can** display the branch names!\r\n\r\nHere is what it looks like in this PR.\r\n![](https://d.pr/i/x5TWoM+)",
+    "author": "probablycorey",
+    "merged_at": "2019-10-09T20:12:25+00:00",
+    "created_at": "2019-10-07T18:27:37+00:00",
+    "files": [
+      "command/pr.go"
+    ],
+    "additions": 10,
+    "deletions": 9,
+    "ticket_ids": [],
+    "merge_commit_sha": "e25464939399f806489c90959505bd62fb841240",
+    "pr_number": 3,
+    "ci_status": "no_checks",
+    "reviews": [
+      {
+        "reviewer": "mislav",
+        "state": "approved",
+        "submitted_at": "2019-10-08T10:01:56+00:00",
+        "is_bot": false,
+        "body": "Awesome! \ud83c\udf89 "
+      },
+      {
+        "reviewer": "tierninho",
+        "state": "approved",
+        "submitted_at": "2019-10-09T01:46:38+00:00",
+        "is_bot": false,
+        "body": "Based on the commits, it looks as if this is the change. The bold, cyan text for the branch name.\r\n\r\n![Screen Shot 2019-10-08 at 3 45 06 PM](https://user-images.githubusercontent.com/14828183/66445516-c516d780-e9e2-11e9-9334-785f1e7f7b24.png)\r\n![Screen Shot 2019-10-09 at 10 41 58 AM](https://user-images.githubusercontent.com/14828183/66518773-ac113380-ea81-11e9-8ae9-7440b1d8757c.png)\r\n"
+      },
+      {
+        "reviewer": "probablycorey",
+        "state": "commented",
+        "submitted_at": "2019-10-09T20:12:10+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "ghos6t69-del",
+        "state": "commented",
+        "submitted_at": "2026-03-10T04:17:06+00:00",
+        "is_bot": false,
+        "body": ".\r\n"
+      }
+    ],
+    "commits": [
+      {
+        "message": "Add HeadRefName",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "We only need one styled text now",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Whoops, that was supposed to stay in here.",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 3,
+    "last_edited_at": null,
+    "total_comments_count": 5
+  },
+  {
+    "id": "12886",
+    "source": "github_graphql",
+    "repo": "cli/cli",
+    "title": "chore(deps): bump golang.org/x/sync from 0.19.0 to 0.20.0",
+    "body": "Bumps [golang.org/x/sync](https://github.com/golang/sync) from 0.19.0 to 0.20.0.\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/golang/sync/commit/ec11c4a93de22cde2abe2bf74d70791033c2464c\"><code>ec11c4a</code></a> errgroup: fix a typo in the documentation</li>\n<li><a href=\"https://github.com/golang/sync/commit/1a583072c11b16c643c8f6051ff1fab5a424d0a9\"><code>1a58307</code></a> all: modernize interface{} -&gt; any</li>\n<li><a href=\"https://github.com/golang/sync/commit/3172ca581eb96530283f713311f81df986c19932\"><code>3172ca5</code></a> all: upgrade go directive to at least 1.25.0 [generated]</li>\n<li>See full diff in <a href=\"https://github.com/golang/sync/compare/v0.19.0...v0.20.0\">compare view</a></li>\n</ul>\n</details>\n<br />\n\n\n[![Dependabot compatibility score](https://dependabot-badges.githubapp.com/badges/compatibility_score?dependency-name=golang.org/x/sync&package-manager=go_modules&previous-version=0.19.0&new-version=0.20.0)](https://docs.github.com/en/github/managing-security-vulnerabilities/about-dependabot-security-updates#about-compatibility-scores)\n\nDependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting `@dependabot rebase`.\n\n[//]: # (dependabot-automerge-start)\n[//]: # (dependabot-automerge-end)\n\n---\n\n<details>\n<summary>Dependabot commands and options</summary>\n<br />\n\nYou can trigger Dependabot actions by commenting on this PR:\n- `@dependabot rebase` will rebase this PR\n- `@dependabot recreate` will recreate this PR, overwriting any edits that have been made to it\n- `@dependabot show <dependency name> ignore conditions` will show all of the ignore conditions of the specified dependency\n- `@dependabot ignore this major version` will close this PR and stop Dependabot creating any more for this major version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this minor version` will close this PR and stop Dependabot creating any more for this minor version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this dependency` will close this PR and stop Dependabot creating any more for this dependency (unless you reopen the PR or upgrade to it yourself)\n\n\n</details>",
+    "author": "dependabot",
+    "merged_at": "2026-03-09T15:08:45+00:00",
+    "created_at": "2026-03-09T14:59:57+00:00",
+    "files": [
+      "go.mod",
+      "go.sum"
+    ],
+    "additions": 3,
+    "deletions": 3,
+    "ticket_ids": [],
+    "merge_commit_sha": "19864b9e1ee40ab868e3b1932fbfa5f82e62172c",
+    "pr_number": 12886,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "babakks",
+        "state": "approved",
+        "submitted_at": "2026-03-09T15:06:51+00:00",
+        "is_bot": false,
+        "body": "LGTM!"
+      }
+    ],
+    "commits": [
+      {
+        "message": "chore(deps): bump golang.org/x/sync from 0.19.0 to 0.20.0\n\nBumps [golang.org/x/sync](https://github.com/golang/sync) from 0.19.0 to 0.20.0.\n- [Commits](https://github.com/golang/sync/compare/v0.19.0...v0.20.0)\n\n---\nupdated-dependencies:\n- dependency-name: golang.org/x/sync\n  dependency-version: 0.20.0\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 1
+  },
+  {
+    "id": "12655",
+    "source": "github_graphql",
+    "repo": "cli/cli",
+    "title": "feat(pr diff): add --exclude flag to filter files from diff output",
+    "body": "Adds a `--exclude` (`-e`) flag to `gh pr diff` that lets you filter out files matching glob patterns from the diff output.\n\n**Example usage:**\n```bash\n# Exclude all YAML files\ngh pr diff --exclude '*.yml'\n\n# Exclude multiple patterns\ngh pr diff --exclude '*.yml' --exclude 'vendor/*'\n\n# Works with --name-only too\ngh pr diff --name-only --exclude '*.generated.*'\n```\n\nPatterns are matched against both the full file path and the basename, so `--exclude '*.yml'` will match `dir/file.yml`.\n\nUses Go's `filepath.Match` for glob support \u2014 no new dependencies.\n\nCloses #8739",
+    "author": "yuvrajangadsingh",
+    "merged_at": "2026-03-09T15:08:19+00:00",
+    "created_at": "2026-02-10T10:18:17+00:00",
+    "files": [
+      "pkg/cmd/pr/diff/diff.go",
+      "pkg/cmd/pr/diff/diff_test.go"
+    ],
+    "additions": 266,
+    "deletions": 2,
+    "ticket_ids": [
+      "#8739"
+    ],
+    "merge_commit_sha": "4ae2743bf16fcbf4e697e1678e675a8905c7bfe6",
+    "pr_number": 12655,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "BagToad",
+        "state": "changes_requested",
+        "submitted_at": "2026-03-04T00:14:55+00:00",
+        "is_bot": false,
+        "body": "Nice implementation \u2014 the exclude logic is clean and well-tested.\n\nOne change needed: the diff header regex is duplicated. `changedFilesNames` (line ~310) already has an inline regex that's nearly identical to your new `diffHeaderRegexp`:\n\n```go\n// existing (changedFilesNames):\npattern := regexp.MustCompile(`(?:^|\\n)diff\\s--git.*\\s([\"']?)b/(.*)`)\n\n// new (extractFileName):\nvar diffHeaderRegexp = regexp.MustCompile(`diff\\s--git.*\\s([\"']?)b/(.*)`)\n```\n\nCould you share the compiled regex between both and ideally refactor `changedFilesNames` to use your `splitDiffSections`/`extractFileName` helpers? That would reduce duplication and make the code easier to maintain.\n\nIf this is too painful, let me know \u2014 it's kind of a nit so I'm happy to tackle it in a follow-up if needed instead."
+      },
+      {
+        "reviewer": "babakks",
+        "state": "commented",
+        "submitted_at": "2026-03-05T16:35:29+00:00",
+        "is_bot": false,
+        "body": "Thanks for the PR, @yuvrajangadsingh! \ud83d\ude4f \n\nJust commented some thoughts, but the main one is the last (about using `path` instead of `filepath`)."
+      },
+      {
+        "reviewer": "BagToad",
+        "state": "commented",
+        "submitted_at": "2026-03-05T16:53:43+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "BagToad",
+        "state": "commented",
+        "submitted_at": "2026-03-05T16:54:06+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "BagToad",
+        "state": "commented",
+        "submitted_at": "2026-03-05T16:56:35+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "BagToad",
+        "state": "changes_requested",
+        "submitted_at": "2026-03-05T17:40:16+00:00",
+        "is_bot": false,
+        "body": "Please re-request review when @babakks comments addressed \ud83d\ude4f thank you"
+      },
+      {
+        "reviewer": "yuvrajangadsingh",
+        "state": "commented",
+        "submitted_at": "2026-03-06T08:09:53+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "yuvrajangadsingh",
+        "state": "commented",
+        "submitted_at": "2026-03-06T08:09:55+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "yuvrajangadsingh",
+        "state": "commented",
+        "submitted_at": "2026-03-06T08:09:56+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "yuvrajangadsingh",
+        "state": "commented",
+        "submitted_at": "2026-03-06T08:09:57+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "yuvrajangadsingh",
+        "state": "commented",
+        "submitted_at": "2026-03-06T08:09:59+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "yuvrajangadsingh",
+        "state": "commented",
+        "submitted_at": "2026-03-06T08:10:00+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "babakks",
+        "state": "commented",
+        "submitted_at": "2026-03-09T12:54:51+00:00",
+        "is_bot": false,
+        "body": "Just a nitpick, @yuvrajangadsingh."
+      },
+      {
+        "reviewer": "yuvrajangadsingh",
+        "state": "commented",
+        "submitted_at": "2026-03-09T14:02:32+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "babakks",
+        "state": "approved",
+        "submitted_at": "2026-03-09T15:01:39+00:00",
+        "is_bot": false,
+        "body": "LGTM! Thanks for your time and effort, @yuvrajangadsingh! \ud83d\ude4f \ud83d\ude80 \n\nTested on Linux and Windows, and works like a charm."
+      },
+      {
+        "reviewer": "BagToad",
+        "state": "approved",
+        "submitted_at": "2026-03-09T15:07:10+00:00",
+        "is_bot": false,
+        "body": ""
+      }
+    ],
+    "commits": [
+      {
+        "message": "feat(pr diff): add --exclude flag to filter files from diff output\n\nAdd a new --exclude (-e) flag to gh pr diff that allows users to exclude\nfiles matching glob patterns from the diff output. This is useful for\nfiltering out auto-generated files, vendor directories, or other noise\nwhen reviewing pull requests.\n\nSupports standard glob patterns and can be specified multiple times.\nPatterns match against both the full path and basename.\n\nCloses #8739",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "fix: share diffHeaderRegexp between changedFilesNames and extractFileName, fix gofmt",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "fix: address review feedback for --exclude flag\n\n- add usage examples to --help output\n- use path.Match instead of filepath.Match for OS-consistent behavior\n- rename patterns to excludePatterns for clarity\n- simplify splitDiffSections using strings.Split",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "fix: align example indentation with codebase convention",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "refactor: change extractFileName param from []byte to string",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Merge branch 'trunk' into feature/pr-diff-exclude",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 6,
+    "last_edited_at": null,
+    "total_comments_count": 27
+  },
+  {
+    "id": "12864",
+    "source": "github_graphql",
+    "repo": "cli/cli",
+    "title": "Update Go version requirement to 1.26+",
+    "body": "Small follow-up to https://github.com/cli/cli/pull/12860",
+    "author": "BagToad",
+    "merged_at": "2026-03-07T17:37:18+00:00",
+    "created_at": "2026-03-07T17:00:34+00:00",
+    "files": [
+      ".github/CONTRIBUTING.md",
+      ".github/workflows/lint.yml",
+      "docs/install_source.md",
+      "docs/source.md"
+    ],
+    "additions": 4,
+    "deletions": 4,
+    "ticket_ids": [],
+    "merge_commit_sha": "3d867380174d32b6512804856194826c4738f08b",
+    "pr_number": 12864,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "copilot-pull-request-reviewer",
+        "state": "commented",
+        "submitted_at": "2026-03-07T17:02:42+00:00",
+        "is_bot": true,
+        "body": "## Pull request overview\n\nUpdates the documented Go toolchain requirement for building `gh` from source to align with the recent Go 1.26.x bump.\n\n**Changes:**\n- Update source installation documentation to require Go 1.26+.\n\n\n\n\n\n---\n\n\ud83d\udca1 <a href=\"/cli/cli/new/trunk?filename=.github/instructions/*.instructions.md\" class=\"Link--inTextBlock\" target=\"_blank\" rel=\"noopener noreferrer\">Add Copilot custom instructions</a> for smarter, more guided reviews. <a href=\"https://docs.github.com/en/copilot/customizing-copilot/adding-repository-custom-instructions-for-github-copilot\" class=\"Link--inTextBlock\" target=\"_blank\" rel=\"noopener noreferrer\">Learn how to get started</a>."
+      },
+      {
+        "reviewer": "babakks",
+        "state": "approved",
+        "submitted_at": "2026-03-07T17:05:14+00:00",
+        "is_bot": false,
+        "body": "Let's also see if go1.26 image is available for our devcontainer."
+      }
+    ],
+    "commits": [
+      {
+        "message": "Update Go version requirement to 1.26+",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 6
+  },
+  {
+    "id": "12851",
+    "source": "github_graphql",
+    "repo": "cli/cli",
+    "title": "chore(deps): bump google.golang.org/grpc from 1.79.1 to 1.79.2",
+    "body": "Bumps [google.golang.org/grpc](https://github.com/grpc/grpc-go) from 1.79.1 to 1.79.2.\n<details>\n<summary>Release notes</summary>\n<p><em>Sourced from <a href=\"https://github.com/grpc/grpc-go/releases\">google.golang.org/grpc's releases</a>.</em></p>\n<blockquote>\n<h2>Release 1.79.2</h2>\n<h1>Bug Fixes</h1>\n<ul>\n<li>stats: Prevent redundant error logging in health/ORCA producers by skipping stats/tracing processing when no stats handler is configured. (<a href=\"https://redirect.github.com/grpc/grpc-go/pull/8874\">grpc/grpc-go#8874</a>)</li>\n</ul>\n</blockquote>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/grpc/grpc-go/commit/8902ab6efea590f5b3861126559eaa26fa9783b2\"><code>8902ab6</code></a> Change the version to release 1.79.2 (<a href=\"https://redirect.github.com/grpc/grpc-go/issues/8947\">#8947</a>)</li>\n<li><a href=\"https://github.com/grpc/grpc-go/commit/a9286705aa689bee321ec674323b6896284f3e02\"><code>a928670</code></a> Cherry-pick <a href=\"https://redirect.github.com/grpc/grpc-go/issues/8874\">#8874</a> to v1.79.x (<a href=\"https://redirect.github.com/grpc/grpc-go/issues/8904\">#8904</a>)</li>\n<li><a href=\"https://github.com/grpc/grpc-go/commit/06df3638c0bcee88197b1033b3ba83e1eb8bc010\"><code>06df363</code></a> Change version to 1.79.2-dev (<a href=\"https://redirect.github.com/grpc/grpc-go/issues/8903\">#8903</a>)</li>\n<li>See full diff in <a href=\"https://github.com/grpc/grpc-go/compare/v1.79.1...v1.79.2\">compare view</a></li>\n</ul>\n</details>\n<br />\n\n\n[![Dependabot compatibility score](https://dependabot-badges.githubapp.com/badges/compatibility_score?dependency-name=google.golang.org/grpc&package-manager=go_modules&previous-version=1.79.1&new-version=1.79.2)](https://docs.github.com/en/github/managing-security-vulnerabilities/about-dependabot-security-updates#about-compatibility-scores)\n\nDependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting `@dependabot rebase`.\n\n[//]: # (dependabot-automerge-start)\n[//]: # (dependabot-automerge-end)\n\n---\n\n<details>\n<summary>Dependabot commands and options</summary>\n<br />\n\nYou can trigger Dependabot actions by commenting on this PR:\n- `@dependabot rebase` will rebase this PR\n- `@dependabot recreate` will recreate this PR, overwriting any edits that have been made to it\n- `@dependabot show <dependency name> ignore conditions` will show all of the ignore conditions of the specified dependency\n- `@dependabot ignore this major version` will close this PR and stop Dependabot creating any more for this major version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this minor version` will close this PR and stop Dependabot creating any more for this minor version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this dependency` will close this PR and stop Dependabot creating any more for this dependency (unless you reopen the PR or upgrade to it yourself)\n\n\n</details>",
+    "author": "dependabot",
+    "merged_at": "2026-03-08T01:03:26+00:00",
+    "created_at": "2026-03-06T14:03:22+00:00",
+    "files": [
+      "go.mod",
+      "go.sum"
+    ],
+    "additions": 3,
+    "deletions": 3,
+    "ticket_ids": [
+      "#8874",
+      "#8903",
+      "#8904",
+      "#8947"
+    ],
+    "merge_commit_sha": "6e49747f49f31c9c0a68cfa344df7262a684e723",
+    "pr_number": 12851,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "babakks",
+        "state": "approved",
+        "submitted_at": "2026-03-08T01:03:11+00:00",
+        "is_bot": false,
+        "body": ""
+      }
+    ],
+    "commits": [
+      {
+        "message": "chore(deps): bump google.golang.org/grpc from 1.79.1 to 1.79.2\n\nBumps [google.golang.org/grpc](https://github.com/grpc/grpc-go) from 1.79.1 to 1.79.2.\n- [Release notes](https://github.com/grpc/grpc-go/releases)\n- [Commits](https://github.com/grpc/grpc-go/compare/v1.79.1...v1.79.2)\n\n---\nupdated-dependencies:\n- dependency-name: google.golang.org/grpc\n  dependency-version: 1.79.2\n  dependency-type: direct:production\n  update-type: version-update:semver-patch\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 0
+  },
+  {
+    "id": "12860",
+    "source": "github_graphql",
+    "repo": "cli/cli",
+    "title": "Bump Go from 1.25.7 to 1.26.1",
+    "body": "Bump Go to 1.26.1 to resolve these vulnerabilities:\n\n- GO-2026-4603: html/template URL escaping\n- GO-2026-4602: os FileInfo root escape\n- GO-2026-4601: net/url IPv6 parsing\n- GO-2026-4600: crypto/x509 malformed cert panic\n- GO-2026-4599: crypto/x509 email constraint enforcement\n\nAlso bumps golangci-lint from v2.6.0 to v2.11.0, as v2.6.0 was built with Go 1.25 and cannot lint Go 1.26 code.",
+    "author": "BagToad",
+    "merged_at": "2026-03-07T09:20:02+00:00",
+    "created_at": "2026-03-07T04:22:47+00:00",
+    "files": [
+      ".github/workflows/lint.yml",
+      "go.mod"
+    ],
+    "additions": 2,
+    "deletions": 2,
+    "ticket_ids": [
+      "GO-2026"
+    ],
+    "merge_commit_sha": "02196707e64d2d83ec8a2f8a3e3694421978f703",
+    "pr_number": 12860,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "copilot-pull-request-reviewer",
+        "state": "commented",
+        "submitted_at": "2026-03-07T04:24:50+00:00",
+        "is_bot": true,
+        "body": "## Pull request overview\n\nThis PR bumps the minimum Go version requirement in `go.mod` from `1.25.7` to `1.26.1`, motivated by resolving five security vulnerabilities in the Go standard library (CVE-equivalent GO-2026-* advisories in `html/template`, `os`, `net/url`, and `crypto/x509`).\n\n**Changes:**\n- Updates the `go` directive in `go.mod` from `go 1.25.7` to `go 1.26.1`.\n\n\n\n\n\n---\n\n\ud83d\udca1 <a href=\"/cli/cli/new/trunk?filename=.github/instructions/*.instructions.md\" class=\"Link--inTextBlock\" target=\"_blank\" rel=\"noopener noreferrer\">Add Copilot custom instructions</a> for smarter, more guided reviews. <a href=\"https://docs.github.com/en/copilot/customizing-copilot/adding-repository-custom-instructions-for-github-copilot\" class=\"Link--inTextBlock\" target=\"_blank\" rel=\"noopener noreferrer\">Learn how to get started</a>."
+      },
+      {
+        "reviewer": "williammartin",
+        "state": "approved",
+        "submitted_at": "2026-03-07T09:19:52+00:00",
+        "is_bot": false,
+        "body": ""
+      }
+    ],
+    "commits": [
+      {
+        "message": "Bump Go from 1.25.7 to 1.26.1 to fix stdlib vulnerabilities\n\nFixes 5 Go standard library vulnerabilities found by govulncheck:\n- GO-2026-4603: html/template URL escaping\n- GO-2026-4602: os FileInfo root escape\n- GO-2026-4601: net/url IPv6 parsing\n- GO-2026-4600: crypto/x509 malformed cert panic\n- GO-2026-4599: crypto/x509 email constraint enforcement\n\nCo-Authored-By: Copilot <223556219+Copilot@users.noreply.github.com>",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Bump golangci-lint from v2.6.0 to v2.11.0 for Go 1.26 support\n\ngolangci-lint v2.6.0 was built with Go 1.25 and cannot lint code targeting\nGo 1.26.1. Go 1.26 support was added in golangci-lint v2.9.0.\n\nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 2,
+    "last_edited_at": "2026-03-07T04:26:02+00:00",
+    "total_comments_count": 2
+  },
+  {
+    "id": "12854",
+    "source": "github_graphql",
+    "repo": "cli/cli",
+    "title": "`gh pr view` and `gh issue view`: show friendly display names for all actors",
+    "body": "## Description\n\n`gh pr view` and `gh issue view` currently display raw bot logins like `copilot-pull-request-reviewer` and `Copilot` for Copilot's reviewer/assignee status and comments, and don't show user names alongside logins. This adds a generic `actorDisplayName` function that produces user-friendly display names for all actor types, and wires it into all display paths across both commands.\n\n\n## Key changes\n\n- **`actorDisplayName(typeName, login, name)`**: New unexported function in `api/queries_repo.go` that handles all actor display name logic in one place. Known Copilot logins \u2192 `Copilot (AI)`, regular bots \u2192 login, users with names \u2192 `login (Name)`, fallback \u2192 login.\n- **`DisplayName()` on all actor types**: `Author`, `CommentAuthor`, `GitHubUser`, `AssignableUser`, `AssignableBot`, `RequestedReviewer`, and `ReviewerBot` all delegate to `actorDisplayName` with their available fields.\n- **`PullRequestReview.AuthorLogin()`** and **`Comment.AuthorLogin()`**: Now return friendly names via their type's `DisplayName()`.\n- **`gh pr view`**: `parseReviewers()`, `prAssigneeList()`, and author display all use `DisplayName()`.\n- **`gh issue view`**: `issueAssigneeList()` and author display use `DisplayName()`.\n\n## Notes for reviewers\n\n- The translation only affects human-readable display output. JSON output via `--json` is unaffected \u2014 it still returns raw logins from the API.\n- `actorDisplayName` handles three known Copilot logins: `copilot-pull-request-reviewer` (code review), `copilot-swe-agent` (assignment via suggestedActors), and `Copilot` (assignment via legacy assignees field).\n- The `parseReviewers()` change switches review requests from `LoginOrSlug()` to `DisplayName()` \u2014 no behavioral change for non-Copilot reviewers since `DisplayName()` returns the same values for teams and regular users.\n\n## Acceptance testing\n\n**github.com** (8 scenarios, 8/8 passed): [Acceptance test results](https://gist.github.com/BagToad/e30e9e44663dfc4b53b7d6feb9ae90d5)",
+    "author": "BagToad",
+    "merged_at": "2026-03-07T03:45:39+00:00",
+    "created_at": "2026-03-06T18:06:03+00:00",
+    "files": [
+      "api/queries_comments.go",
+      "api/queries_issue.go",
+      "api/queries_pr_review.go",
+      "api/queries_repo.go",
+      "api/queries_repo_test.go",
+      "pkg/cmd/issue/view/view.go",
+      "pkg/cmd/pr/view/view.go"
+    ],
+    "additions": 76,
+    "deletions": 33,
+    "ticket_ids": [],
+    "merge_commit_sha": "59ba50885feeed63a6f31de06ced5a06a5a3930d",
+    "pr_number": 12854,
+    "ci_status": "failed",
+    "reviews": [
+      {
+        "reviewer": "copilot-pull-request-reviewer",
+        "state": "commented",
+        "submitted_at": "2026-03-06T19:11:32+00:00",
+        "is_bot": true,
+        "body": "## Pull request overview\n\nThis PR improves the human-readable output of `gh pr view` and `gh issue view` by introducing centralized \u201cfriendly\u201d actor display-name formatting (including special-casing Copilot) and using it across author/assignee/reviewer display paths.\n\n**Changes:**\n- Adds a shared `actorDisplayName(typeName, login, name)` helper and updates multiple actor types\u2019 `DisplayName()` methods to delegate to it.\n- Switches `gh pr view` and `gh issue view` author/assignee/reviewer rendering to use `DisplayName()` rather than raw logins.\n- Updates `AuthorLogin()` for PR reviews and comments to return the friendly display string; adds unit tests for `actorDisplayName`.\n\n### Reviewed changes\n\nCopilot reviewed 7 out of 7 changed files in this pull request and generated 2 comments.\n\n<details>\n<summary>Show a summary per file</summary>\n\n| File | Description |\r\n| ---- | ----------- |\r\n| pkg/cmd/pr/view/view.go | Uses `DisplayName()`/friendly author login in PR preview and reviewer/assignee lists. |\r\n| pkg/cmd/issue/view/view.go | Uses `DisplayName()` for issue author and assignee display. |\r\n| api/queries_repo.go | Introduces `actorDisplayName`; updates assignable actor display-name logic; adds `GitHubUser.DisplayName()`. |\r\n| api/queries_repo_test.go | Adds unit tests for the new `actorDisplayName` helper. |\r\n| api/queries_pr_review.go | Switches review `AuthorLogin()` and reviewer display-name formatting to the shared helper. |\r\n| api/queries_issue.go | Adds `DisplayName()` methods for issue `Author` and `CommentAuthor`. |\r\n| api/queries_comments.go | Switches comment `AuthorLogin()` to return the friendly display name. |\n</details>\n\n\n\n<details>\n<summary>Comments suppressed due to low confidence (2)</summary>\n\n**api/queries_repo.go:1169**\n* AssignableBot.DisplayName passes the string literal \"Bot\" into actorDisplayName. Since actorDisplayName compares `typeName` to the `botTypeName` constant, using the constant here would keep behavior coupled and prevent subtle m"
+      },
+      {
+        "reviewer": "babakks",
+        "state": "approved",
+        "submitted_at": "2026-03-06T21:25:53+00:00",
+        "is_bot": false,
+        "body": "LGTM! Just some minor notes."
+      },
+      {
+        "reviewer": "BagToad",
+        "state": "commented",
+        "submitted_at": "2026-03-06T21:28:11+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "BagToad",
+        "state": "commented",
+        "submitted_at": "2026-03-06T21:29:04+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "babakks",
+        "state": "commented",
+        "submitted_at": "2026-03-06T21:36:58+00:00",
+        "is_bot": false,
+        "body": ""
+      }
+    ],
+    "commits": [
+      {
+        "message": "Show friendly Copilot (AI) name in gh pr view\n\nAdd CopilotDisplayName helper that translates known Copilot bot\nlogins (copilot-pull-request-reviewer, copilot-swe-agent) to the\nfriendly 'Copilot (AI)' display name. Applied to:\n\n- PullRequestReview.AuthorLogin() \u2014 review comment author\n- Comment.AuthorLogin() \u2014 PR/issue comment author\n- parseReviewers() in pr view \u2014 reviewer list display\n\nThis ensures gh pr view shows 'Copilot (AI)' instead of the raw\n'copilot-pull-request-reviewer' login for both the reviewer status\nline and any review comments left by Copilot.\n\nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Add generic actorDisplayName for all actor display names\n\nReplace copilotDisplayName with actorDisplayName(typeName, login, name)\nwhich handles all actor types: known bots get friendly names (e.g.\nCopilot \u2192 'Copilot (AI)'), regular bots return login, users with\nnames return 'login (Name)', others return login.\n\nAll DisplayName() methods on Author, CommentAuthor, GitHubUser,\nAssignableUser, AssignableBot, RequestedReviewer, and ReviewerBot\nnow delegate to actorDisplayName with their available fields.\n\nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Show friendly display names in gh issue view\n\nApply DisplayName() to author and assignee display in issue view,\nconsistent with the pr view changes.\n\nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Address review comments: use actorDisplayName for Copilot author display\n\n- Add actorDisplayName call in CommentAuthor.DisplayName for consistency\n- Use require.Equal in TestActorDisplayName instead of manual comparisons\n- Simplify user type name constant usage\n\nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 4,
+    "last_edited_at": "2026-03-06T19:06:37+00:00",
+    "total_comments_count": 12
+  },
+  {
+    "id": "12627",
+    "source": "github_graphql",
+    "repo": "cli/cli",
+    "title": "`gh pr create`: login-based reviewer requests and search-based interactive selection",
+    "body": "## Description\n\nBrings the same reviewer performance improvements from `gh pr edit` ([#12567](https://github.com/cli/cli/pull/12567)) to `gh pr create`. On supported hosts (github.com), reviewers are now requested via the `requestReviewsByLogin` GraphQL mutation using logins/slugs directly, eliminating the expensive paginated fetch of all assignable users and teams to resolve IDs. Interactive mode gains search-based reviewer selection via `MultiSelectWithSearch`. GHES falls back to the existing ID-resolution path.\n\nAdditionally addresses several bugs found during acceptance testing: `@copilot` not resolving in `gh pr create`, PR author appearing in suggested reviewers, and duplicate reviewers in `gh pr edit` interactive mode.\n\nfixes https://github.com/cli/cli/issues/11501\n\n## Key changes\n\n- **Login-based reviewer requests on github.com**: `CreatePullRequest` branches on whether `userReviewerLogins`/`botReviewerLogins`/`teamReviewerSlugs` are present (github.com) vs `userReviewerIds`/`teamReviewerIds` (GHES), calling `RequestReviewsByLogin` directly in the former case.\n- **Bot reviewer support**: Reviewers are partitioned into users, bots, and teams \u2014 mirroring `pr edit`'s `partitionReviewersByType`. Bot logins (e.g. Copilot) are passed via `botReviewerLogins` so `RequestReviewsByLogin` can append the `[bot]` suffix correctly.\n- **`@copilot` support in `gh pr create`**: Wired `CopilotReviewerReplacer` into `NewIssueState` so `--reviewer @copilot` resolves to `copilot-pull-request-reviewer`, matching `gh pr edit` behavior.\n- **`SuggestedReviewerActorsForRepo`**: New query that fetches reviewer candidates (collaborators + org teams) for a repo without an existing PR, using a cascading quota (5 base per source, unfilled quota rolls over). Also surfaces Copilot availability by inspecting an open PR's `suggestedReviewerActors`. Queries `viewer { login }` to exclude the current user from results.\n- **Author exclusion in `SuggestedReviewerActors`**: Added `author { login }` to the PR-based query and pre-seeds the `seen` map so the PR author is excluded from all sources (suggestions, collaborators, teams) \u2014 not just the `isAuthor`-flagged suggestions.\n- **Duplicate reviewer fix in `gh pr edit`**: `MultiSelectWithSearch` for reviewers now receives `DefaultLogins` (keys) instead of `Default` (display names) so the dedup logic correctly matches pre-selected reviewers against search results.\n- **Search-based interactive selection**: When `ActorIsAssignable` is detected, `MetadataSurvey` uses `MultiSelectWithSearch` backed by `SuggestedReviewerActorsForRepo` instead of pre-fetching all reviewers into a static list. The expensive `Reviewers`/`TeamReviewers` metadata fetch is skipped entirely when the search function is available.\n- **`ActorReviewers` flag on `IssueMetadataState`**: Controls whether `AddMetadataToIssueParams` passes logins or resolves IDs, and skips the `RepositoryAssignableUsers`/`OrganizationTeamList` fetches when IDs aren't needed.\n- **Extracted helper**: `toGitHubV4Strings` deduplicates `githubv4.String` slice conversion with optional suffix support.\n- **Test split**: `Test_createRun` now uses `EnabledDetectorMock` (github.com path); GHES-specific tests (dry-run with all opts, org team fetching, ID-based mutations) moved to `Test_createRun_GHES` with `DisabledDetectorMock`.\n- **Cleanup TODOs**: Added `// TODO requestReviewsByLoginCleanup` comments at all GHES feature detection branch points for future cleanup when GHES supports `requestReviewsByLogin`.\n\n## Notes for reviewers\n\n- The Copilot detection in `SuggestedReviewerActorsForRepo` piggybacks on `pullRequests(first: 1, states: [OPEN])` \u2014 it requires at least one open PR to detect Copilot availability. This is a pragmatic tradeoff; there's no repo-level API to check Copilot reviewer eligibility without a PR context.\n- The organization query gracefully handles personal repos by checking for the `\"Could not resolve to an Organization\"` error and continuing with partial data.\n- Dry-run tests with `--reviewer` that previously ran under the github.com path now live in `Test_createRun_GHES` since they test the legacy ID-resolution flow. The github.com path test (`\"request reviewers by login\"`) validates the new `RequestReviewsByLogin` mutation directly.\n- The `/slug` team shorthand (auto-prefixing repo owner) has been removed \u2014 team reviewers must be fully qualified as `org/teamname`.\n\n## Acceptance testing\n\n**github.com** (10 scenarios, 10/10 passed): [Acceptance test results](https://gist.github.com/BagToad/0a935421e75eeaa4d7a8f05afd42c1d0)\n\n**GHES 3.20** (7 scenarios, 6/6 passed, 1 skipped): [GHES acceptance test results](https://gist.github.com/BagToad/5ea018104cc75c9e1e6d0fbc462a5d2a)\n\nBugs found and fixed during acceptance testing:\n1. `gh pr create --reviewer @copilot` was not resolving `@copilot` to the bot login\n2. PR author appeared as a suggested reviewer in `gh pr create` (viewer) and `gh pr edit` (author)\n3. Duplicate reviewers appeared in `gh pr edit` when an existing reviewer was also in search results",
+    "author": "BagToad",
+    "merged_at": "2026-03-06T17:24:19+00:00",
+    "created_at": "2026-02-06T18:00:26+00:00",
+    "files": [
+      "api/queries_pr.go",
+      "api/queries_pr_review.go",
+      "api/queries_pr_test.go",
+      "pkg/cmd/issue/create/create.go",
+      "pkg/cmd/pr/create/create.go",
+      "pkg/cmd/pr/create/create_test.go",
+      "pkg/cmd/pr/shared/editable.go",
+      "pkg/cmd/pr/shared/params.go",
+      "pkg/cmd/pr/shared/state.go",
+      "pkg/cmd/pr/shared/survey.go",
+      "pkg/cmd/pr/shared/survey_test.go"
+    ],
+    "additions": 1421,
+    "deletions": 831,
+    "ticket_ids": [
+      "#12567",
+      "GHES-SPECIFIC",
+      "ID-BASED",
+      "ID-RESOLUTION",
+      "PR-BASED"
+    ],
+    "merge_commit_sha": "93c4340f2985a50e89d1738145e53851049a5fb2",
+    "pr_number": 12627,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "copilot-pull-request-reviewer",
+        "state": "commented",
+        "submitted_at": "2026-02-10T17:44:21+00:00",
+        "is_bot": true,
+        "body": "## Pull request overview\n\nThis PR updates `gh pr create` to avoid expensive reviewer ID-resolution on GitHub.com by using login-based review requests, and adds search-based interactive reviewer selection to improve performance on large repos while retaining GHES compatibility.\n\n**Changes:**\n- Add login-based reviewer requesting for `gh pr create` (via `requestReviewsByLogin`) on hosts that support it, with GHES fallback to the legacy ID-based flow.\n- Introduce `SuggestedReviewerActorsForRepo` to provide reviewer candidates for repos without an existing PR, enabling search-driven interactive selection.\n- Wire search-based reviewer selection into `MetadataSurvey` and thread through new state/params (`ActorReviewers`) to control whether IDs need resolving.\n\n### Reviewed changes\n\nCopilot reviewed 9 out of 9 changed files in this pull request and generated 6 comments.\n\n<details>\n<summary>Show a summary per file</summary>\n\n| File | Description |\r\n| ---- | ----------- |\r\n| pkg/cmd/pr/shared/survey_test.go | Updates `MetadataSurvey` call sites for the new `reviewerSearchFunc` parameter. |\r\n| pkg/cmd/pr/shared/survey.go | Adds optional `MultiSelectWithSearch` path for reviewer selection in metadata survey. |\r\n| pkg/cmd/pr/shared/state.go | Adds `ActorReviewers` flag to control login-vs-ID reviewer behavior. |\r\n| pkg/cmd/pr/shared/params.go | Skips reviewer ID resolution when `ActorReviewers` is enabled; passes logins/slugs into params. |\r\n| pkg/cmd/pr/create/create_test.go | Splits GitHub.com vs GHES behaviors and updates reviewer-request mutation expectations. |\r\n| pkg/cmd/pr/create/create.go | Detects feature support, enables search-based reviewer selection, and sets `ActorReviewers`. |\r\n| pkg/cmd/issue/create/create.go | Updates `MetadataSurvey` call signature (passes `nil` search func). |\r\n| api/queries_pr_test.go | Adds unit tests for the new `SuggestedReviewerActorsForRepo` query behavior. |\r\n| api/queries_pr.go | Uses `RequestReviewsByLogin` during PR creation when lo"
+      },
+      {
+        "reviewer": "BagToad",
+        "state": "commented",
+        "submitted_at": "2026-02-10T17:52:12+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "BagToad",
+        "state": "commented",
+        "submitted_at": "2026-02-13T21:30:01+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "BagToad",
+        "state": "commented",
+        "submitted_at": "2026-02-13T21:43:21+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "BagToad",
+        "state": "commented",
+        "submitted_at": "2026-02-13T21:51:05+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "BagToad",
+        "state": "commented",
+        "submitted_at": "2026-02-13T21:57:01+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "BagToad",
+        "state": "commented",
+        "submitted_at": "2026-02-13T22:18:32+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "BagToad",
+        "state": "commented",
+        "submitted_at": "2026-02-13T22:19:58+00:00",
+        "is_bot": false,
+        "body": ""
+      },
+      {
+        "reviewer": "babakks",
+        "state": "approved",
+        "submitted_at": "2026-02-13T22:26:26+00:00",
+        "is_bot": false,
+        "body": "LGTM! @BagToad and I reviewed this in sync."
+      }
+    ],
+    "commits": [
+      {
+        "message": "gh pr create: CCR and multiselectwithsearch",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Address PR review comments\n\nAddress PR review comments: code consistency and DRY improvements\n\n- Add botTypeName const for consistency with teamTypeName\n- Create extractTeamSlugs helper using strings.SplitN to simplify\n  team slug extraction logic\n- Replace duplicate code in AddPullRequestReviews and\n  RemovePullRequestReviews with extractTeamSlugs helper\n- Fix ClientMutationId naming with explicit graphql tag for\n  consistency with other mutations in the codebase",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Add toGitHubV4Strings helper to reduce code duplication",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Merge branch 'trunk' into kw/pr-create-multi-select-with-search-ccr",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Merge branch 'trunk' into kw/pr-create-multi-select-with-search-ccr",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Merge branch 'trunk' into kw/pr-create-multi-select-with-search-ccr",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Remove redundant comments",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Don't swallow error from FD\n\nCo-authored-by: Copilot <175728472+Copilot@users.noreply.github.com>",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Remove redundant comment",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Apply suggestion from @BagToad",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Preserve org/slug format for team reviewer slugs",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Partition bot reviewers separately for RequestReviewsByLogin",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Wire bot reviewer logins through CreatePullRequest",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Update test assertions to expect org/slug team format",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Skip reviewer metadata fetch when using search-based selection",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Include bot logins in login-based reviewer mutation guard",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Normalize /slug team shorthand to org/slug and fix docs",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Use org/slug format in test fixtures and remove /slug normalization",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Move PR review queries from queries_pr.go to queries_pr_review.go\n\nConsolidate all review-related types, methods, and functions into\nqueries_pr_review.go for better code organization. The file is now\nordered by logical sections: review data types, review status, review\nrequests, reviewer candidates, API operations, and helpers.\n\nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Clarify ReviewerCandidate relationship to AssignableActor\n\nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Add TODO requestReviewsByLoginCleanup in CreatePullRequest\n\nAdd a cleanup TODO comment above the GHES feature detection branch\nin CreatePullRequest so we can track removing the ID-based reviewer\nrequest path once GHES supports requestReviewsByLogin.\n\nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Label Copilot detection in SuggestedReviewerActorsForRepo as a hack\n\nMark the piggyback-on-open-PR technique for detecting Copilot\nreviewer availability as a HACK, since there is no repo-level API\nto check Copilot eligibility without a PR context.\n\nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Check state.ActorReviewers in MetadataSurvey reviewer search gate\n\nGate search-based reviewer selection on both state.ActorReviewers\nand the search function being available, consistent with the\nActorAssignees pattern used for assignees.\n\nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Add TODO requestReviewsByLoginCleanup on static reviewer MultiSelect\n\nMark the legacy static MultiSelect reviewer path for cleanup once\nGHES supports requestReviewsByLogin and search-based selection can\nbe used universally.\n\nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Remove /slug team reviewer shorthand normalization\n\nTeam reviewers must be provided as fully qualified org/teamname.\nRemove the /slug shorthand that auto-prefixed the repo owner,\nas this format is not supported.\n\nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Add TODO requestReviewsByLoginCleanup on GHES ID-based reviewer path\n\nMark the GHES ID-resolution branch in AddMetadataToIssueParams\nfor cleanup once GHES supports requestReviewsByLogin.\n\nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Replace @copilot with Copilot reviewer login in gh pr create\n\nWire CopilotReviewerReplacer into NewIssueState so that\n`gh pr create --reviewer @copilot` correctly resolves to the\ncopilot-pull-request-reviewer bot login, matching the behavior\nalready implemented in gh pr edit.\n\nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Exclude current user from suggested reviewers in gh pr create\n\nQuery the viewer login in SuggestedReviewerActorsForRepo and\npre-seed the seen map so the current user is filtered out of\ncollaborator results. You cannot review your own PR.\n\nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Fix duplicate reviewers in gh pr edit by passing logins as defaults\n\nUse DefaultLogins instead of Default display names when calling\nMultiSelectWithSearch for reviewers. The dedup logic in the\nprompter compares keys (logins) against defaults, so passing\ndisplay names like 'mxie (Melissa Xie)' prevented deduplication\nagainst search result keys like 'mxie'.\n\nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Exclude PR author from reviewer candidates in SuggestedReviewerActors\n\nAdd author { login } to the SuggestedReviewerActors GraphQL query\nand pre-seed the seen map with the author login so they are excluded\nfrom all sources (suggestions, collaborators, teams). Previously the\nauthor was only skipped via the isAuthor flag in the suggestions loop\nbut could still appear as a collaborator.\n\nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>",
+        "sha": "",
+        "authored_at": null
+      },
+      {
+        "message": "Fetch org teams via repository.owner inline fragment\n\nReplace the top-level organization(login: $owner) query with\nrepository.owner { ... on Organization { teams } }. This uses\nGraphQL inline fragments to conditionally fetch team data only\nwhen the repo owner is an Organization, eliminating the need to\nhandle 'Could not resolve to an Organization' errors for\npersonal repos.\n\nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 31,
+    "last_edited_at": "2026-03-06T16:28:51+00:00",
+    "total_comments_count": 18
+  },
+  {
+    "id": "12845",
+    "source": "github_graphql",
+    "repo": "cli/cli",
+    "title": "refactor: deduplicate scope error handling between api/client.go and project queries",
+    "body": "Fixes #12823\n\nBoth `api/client.go` and `pkg/cmd/project/shared/queries/queries.go` had their own copy of `requiredScopesFromServerMessage` and the same `INSUFFICIENT_SCOPES` parsing logic. The existing code even had a TODO noting this: `// TODO: this duplicates parts of generateScopesSuggestion`.\n\nThis PR removes the duplicated functions from `queries.go` and has `handleError` call `api.GenerateScopeErrorForGQL` instead. The duplicate test was also removed since `api/client_test.go` already covers `requiredScopesFromServerMessage`.\n\n**Changes:**\n- `queries.go`: replaced `handleError` internals with a call to `api.GenerateScopeErrorForGQL`, removed `requiredScopesFromServerMessage` and `scopesRE`\n- `queries_test.go`: removed `Test_requiredScopesFromServerMessage` (covered by `api/client_test.go:TestRequiredScopesFromServerMessage`)\n- `api/client.go`: removed the now-resolved TODO comment",
+    "author": "yuvrajangadsingh",
+    "merged_at": "2026-03-05T17:31:25+00:00",
+    "created_at": "2026-03-05T08:40:07+00:00",
+    "files": [
+      "api/client.go",
+      "pkg/cmd/project/shared/queries/queries.go",
+      "pkg/cmd/project/shared/queries/queries_test.go"
+    ],
+    "additions": 4,
+    "deletions": 66,
+    "ticket_ids": [
+      "#12823"
+    ],
+    "merge_commit_sha": "c0cd4c13d02e4f664eab42d81635e7c8feb70d3c",
+    "pr_number": 12845,
+    "ci_status": "passed",
+    "reviews": [
+      {
+        "reviewer": "BagToad",
+        "state": "approved",
+        "submitted_at": "2026-03-05T17:31:16+00:00",
+        "is_bot": false,
+        "body": "Tested locally and saw the same behavior between trunk and this PR - proper scope error message generation. LGTM"
+      }
+    ],
+    "commits": [
+      {
+        "message": "refactor: deduplicate scope error handling between api/client.go and project queries\n\nConsolidate duplicated INSUFFICIENT_SCOPES error handling into a single\nimplementation. The project queries package now calls\napi.GenerateScopeErrorForGQL instead of reimplementing the same logic.\n\nRemoves duplicated requiredScopesFromServerMessage, scopesRE, and the\nassociated test (already covered by api/client_test.go).\n\nFixes #12823",
+        "sha": "",
+        "authored_at": null
+      }
+    ],
+    "commit_count": 1,
+    "last_edited_at": null,
+    "total_comments_count": 1
+  }
+]

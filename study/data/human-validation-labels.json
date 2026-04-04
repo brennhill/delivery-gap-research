@@ -1,0 +1,376 @@
+{
+  "labeler": "brenn",
+  "date": "2026-03-26",
+  "description": "Human ground truth labels for 60 stratified rework pairs (50 + 10 extension)",
+  "labels": [
+    {
+      "pair": 0,
+      "label": "yes",
+      "confidence_tier": "high",
+      "notes": "unfinished work = shipping known bug, still rework"
+    },
+    {
+      "pair": 1,
+      "label": "yes",
+      "confidence_tier": "confirmed",
+      "notes": "revert, broke CI tests"
+    },
+    {
+      "pair": 2,
+      "label": "yes",
+      "confidence_tier": "confirmed",
+      "notes": "same day revert"
+    },
+    {
+      "pair": 3,
+      "label": "yes",
+      "confidence_tier": "low",
+      "notes": "same author, solana verification/error handling critical"
+    },
+    {
+      "pair": 4,
+      "label": "yes",
+      "confidence_tier": "medium",
+      "notes": "same author same day, reverts accidental removal"
+    },
+    {
+      "pair": 5,
+      "label": "no",
+      "confidence_tier": "high",
+      "notes": "backport to release/core-2, not rework"
+    },
+    {
+      "pair": 6,
+      "label": "yes",
+      "confidence_tier": "medium",
+      "notes": "optimization broke exclusion filter"
+    },
+    {
+      "pair": 7,
+      "label": "yes",
+      "confidence_tier": "high",
+      "notes": "PR B explicitly says PR A missed a test"
+    },
+    {
+      "pair": 8,
+      "label": "yes",
+      "confidence_tier": "confirmed",
+      "notes": "same day revert, duplicate fix approach"
+    },
+    {
+      "pair": 9,
+      "label": "no",
+      "confidence_tier": "medium",
+      "notes": "separate runner tickets, different issues"
+    },
+    {
+      "pair": 10,
+      "label": "yes",
+      "confidence_tier": "confirmed",
+      "notes": "revert, broke gemini entirely"
+    },
+    {
+      "pair": 11,
+      "label": "unsure",
+      "confidence_tier": "medium",
+      "notes": "could be requirements change, leaning yes"
+    },
+    {
+      "pair": 12,
+      "label": "unsure",
+      "confidence_tier": "medium",
+      "notes": "separate tickets for similar API field issues"
+    },
+    {
+      "pair": 13,
+      "label": "yes",
+      "confidence_tier": "medium",
+      "notes": "same endpoint, optimization missed edge case with 2.2M jobs"
+    },
+    {
+      "pair": 14,
+      "label": "yes",
+      "confidence_tier": "low",
+      "notes": "changelog broke lint, copilot fixed typos"
+    },
+    {
+      "pair": 15,
+      "label": "no",
+      "confidence_tier": "low",
+      "notes": "different pages, independent UI fixes"
+    },
+    {
+      "pair": 16,
+      "label": "yes",
+      "confidence_tier": "medium",
+      "notes": "same author same day, A/B test logic incomplete"
+    },
+    {
+      "pair": 17,
+      "label": "yes",
+      "confidence_tier": "medium",
+      "notes": "flag rename was too narrow, locked out early adopters"
+    },
+    {
+      "pair": 18,
+      "label": "yes",
+      "confidence_tier": "confirmed",
+      "notes": "revert, admin route migration"
+    },
+    {
+      "pair": 19,
+      "label": "yes",
+      "confidence_tier": "confirmed",
+      "notes": "AI agent rework, unconditional focus stealing"
+    },
+    {
+      "pair": 20,
+      "label": "no",
+      "confidence_tier": "low",
+      "notes": "automated release PR bundling, not rework"
+    },
+    {
+      "pair": 21,
+      "label": "no",
+      "confidence_tier": "low",
+      "notes": "planned incremental work, sequential upstream PRs"
+    },
+    {
+      "pair": 22,
+      "label": "yes",
+      "confidence_tier": "high",
+      "notes": "same author same day, removed too much"
+    },
+    {
+      "pair": 23,
+      "label": "no",
+      "confidence_tier": "low",
+      "notes": "new vulnerabilities appeared after PR A, independent"
+    },
+    {
+      "pair": 24,
+      "label": "no",
+      "confidence_tier": "high",
+      "notes": "release bundling by temporal-cicd"
+    },
+    {
+      "pair": 25,
+      "label": "yes",
+      "confidence_tier": "medium",
+      "notes": "PDF feature missed error handling for branding"
+    },
+    {
+      "pair": 26,
+      "label": "yes",
+      "confidence_tier": "high",
+      "notes": "follow-up, first fix wrong for multi-session apps"
+    },
+    {
+      "pair": 27,
+      "label": "yes",
+      "confidence_tier": "confirmed",
+      "notes": "same day revert of build change"
+    },
+    {
+      "pair": 28,
+      "label": "yes",
+      "confidence_tier": "high",
+      "notes": "follow-up fix, post-gen cap was wasteful"
+    },
+    {
+      "pair": 29,
+      "label": "no",
+      "confidence_tier": "medium",
+      "notes": "different authors fixing different leaks on same issue"
+    },
+    {
+      "pair": 30,
+      "label": "yes",
+      "confidence_tier": "high",
+      "notes": "SQL query timed out on primary, missed in #3825"
+    },
+    {
+      "pair": 31,
+      "label": "no",
+      "confidence_tier": "medium",
+      "notes": "caching optimization, not fixing something A broke"
+    },
+    {
+      "pair": 32,
+      "label": "yes",
+      "confidence_tier": "high",
+      "notes": "superseding incomplete fix with proper solution"
+    },
+    {
+      "pair": 33,
+      "label": "no",
+      "confidence_tier": "low",
+      "notes": "different root cause PR cited"
+    },
+    {
+      "pair": 34,
+      "label": "no",
+      "confidence_tier": "low",
+      "notes": "different crypto functions, independent fixes"
+    },
+    {
+      "pair": 35,
+      "label": "yes",
+      "confidence_tier": "high",
+      "notes": "follow-up, flash messages still broken in prod"
+    },
+    {
+      "pair": 36,
+      "label": "yes",
+      "confidence_tier": "high",
+      "notes": "same author same day, OIDC fix was wrong"
+    },
+    {
+      "pair": 37,
+      "label": "yes",
+      "confidence_tier": "confirmed",
+      "notes": "revert, change too disruptive for users"
+    },
+    {
+      "pair": 38,
+      "label": "no",
+      "confidence_tier": "low",
+      "notes": "independent button styling issues"
+    },
+    {
+      "pair": 39,
+      "label": "yes",
+      "confidence_tier": "confirmed",
+      "notes": "same day revert of docs restructuring"
+    },
+    {
+      "pair": 40,
+      "label": "no",
+      "confidence_tier": "high",
+      "notes": "release bundling by temporal-cicd"
+    },
+    {
+      "pair": 41,
+      "label": "no",
+      "confidence_tier": "high",
+      "notes": "cherry-pick to release/core-2"
+    },
+    {
+      "pair": 42,
+      "label": "no",
+      "confidence_tier": "low",
+      "notes": "React upgrade vs unrelated backport"
+    },
+    {
+      "pair": 43,
+      "label": "yes",
+      "confidence_tier": "confirmed",
+      "notes": "revert, mixed up code from another PR"
+    },
+    {
+      "pair": 44,
+      "label": "yes",
+      "confidence_tier": "confirmed",
+      "notes": "revert of a revert"
+    },
+    {
+      "pair": 45,
+      "label": "yes",
+      "confidence_tier": "high",
+      "notes": "fixes two bugs introduced in #3881"
+    },
+    {
+      "pair": 46,
+      "label": "no",
+      "confidence_tier": "medium",
+      "notes": "separate styling issues on same page"
+    },
+    {
+      "pair": 47,
+      "label": "yes",
+      "confidence_tier": "high",
+      "notes": "workaround then root cause fix"
+    },
+    {
+      "pair": 48,
+      "label": "no",
+      "confidence_tier": "medium",
+      "notes": "independent extractions from same parent PR"
+    },
+    {
+      "pair": 49,
+      "label": "no",
+      "confidence_tier": "low",
+      "notes": "completely unrelated, CI cache vs Google Meet"
+    }
+  ],
+  "summary": {
+    "total": 60,
+    "yes": 35,
+    "no": 23,
+    "unsure": 2
+  },
+  "extension_labels": [
+    {
+      "pair": 0,
+      "label": "no",
+      "confidence_tier": "medium",
+      "notes": "different concerns - linting vs security"
+    },
+    {
+      "pair": 1,
+      "label": "yes",
+      "confidence_tier": "confirmed",
+      "notes": "revert of watcher replacement"
+    },
+    {
+      "pair": 2,
+      "label": "yes",
+      "confidence_tier": "high",
+      "notes": "removed backwards compat shim, broke consumers"
+    },
+    {
+      "pair": 3,
+      "label": "no",
+      "confidence_tier": "medium",
+      "notes": "different areas - flaky test vs child_process impl"
+    },
+    {
+      "pair": 4,
+      "label": "yes",
+      "confidence_tier": "medium",
+      "notes": "file move broke atom build dependency"
+    },
+    {
+      "pair": 5,
+      "label": "yes",
+      "confidence_tier": "high",
+      "notes": "turbo cache credential error introduced by PR A"
+    },
+    {
+      "pair": 6,
+      "label": "no",
+      "confidence_tier": "high",
+      "notes": "port to different codebase version, not rework"
+    },
+    {
+      "pair": 7,
+      "label": "yes",
+      "confidence_tier": "confirmed",
+      "notes": "revert, viewport restriction was wrong"
+    },
+    {
+      "pair": 8,
+      "label": "no",
+      "confidence_tier": "low",
+      "notes": "different authors, discovered independently"
+    },
+    {
+      "pair": 9,
+      "label": "no",
+      "confidence_tier": "low",
+      "notes": "icon migration vs button color, unrelated"
+    }
+  ],
+  "extension_sample": "human-validation-sample-ext.json"
+}
