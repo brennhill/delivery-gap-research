@@ -1,4 +1,4 @@
-Temporal robustness run: 2026-04-04T13:22:15.916070+00:00
+Temporal robustness run: 2026-04-04T18:07:48.864870+00:00
 Script: /Users/brenn/dev/ai-augmented-dev/research/study/scripts/pipeline/robustness-temporal.py
 
 ======================================================================
@@ -7,122 +7,122 @@ MONTHLY SPECIFICATION AND AI ADOPTION RATES
 
        Month        N   Spec%     AI%
   ──────────  ───────  ──────  ──────
-     2025-04    2,946    0.0%    0.0%
-     2025-05    3,530    0.0%    0.0%
-     2025-06    3,724    0.0%    0.0%
-     2025-07    4,047    0.0%    0.0%
-     2025-08    4,436    0.0%    0.0%
-     2025-09    4,480    1.2%    0.9%
-     2025-10    6,432    9.1%    4.0%
-     2025-11    6,188    8.8%    2.7%
-     2025-12    8,174   10.0%    3.0%
-     2026-01   11,023   12.5%    3.4%
-     2026-02   12,589   12.8%    3.5%
-     2026-03   20,140   14.6%    5.6%
-     2026-04    1,677    0.0%    0.0%
+     2025-04    2,923    0.0%    0.3%
+     2025-05    3,484    0.0%    1.4%
+     2025-06    3,653    0.0%    2.9%
+     2025-07    3,958    0.0%    4.5%
+     2025-08    4,316    0.0%    6.0%
+     2025-09    4,382    1.1%    5.5%
+     2025-10    6,349    8.8%    6.1%
+     2025-11    6,148    8.8%    4.9%
+     2025-12    7,903   10.3%    5.6%
+     2026-01   10,832   12.7%    7.6%
+     2026-02   12,396   13.0%    8.1%
+     2026-03   19,856   14.5%    9.8%
+     2026-04    1,641    0.0%   13.5%
 
 
 ======================================================================
 RECENT WINDOW: 2026-01-01 to 2026-03-31
 ======================================================================
-PRs: 43,880
-Spec rate: 13.5%
-AI rate: 4.4%
-Rework (spec'd): 15.1%
+PRs: 43,208
+Spec rate: 13.6%
+AI rate: 8.8%
+Rework (spec'd): 14.9%
 Rework (not spec'd): 4.5%
 
-SZZ coverage in recent window: 39,828 PRs, 100 repos
-SZZ buggy: 3,905 (9.8%)
+SZZ coverage in recent window: 39,188 PRs, 100 repos
+SZZ buggy: 3,794 (9.7%)
 
 ──────────────────────────────────────────────────
 H1: Specs → SZZ bugs (recent, within-author)
-  [recent-H1] N=36,723, authors=2,894 (738 with variation)
-  coef=+0.0171, p=0.0362 *
+  [recent-H1] N=36,085, authors=2,879 (735 with variation)
+  coef=+0.0147, p=0.0567 
 
 ──────────────────────────────────────────────────
 H2: Specs → rework (recent, within-author)
-  [recent-H2] N=40,402, authors=3,272 (812 with variation)
-  coef=+0.0424, p=0.0000 ***
+  [recent-H2] N=39,732, authors=3,251 (809 with variation)
+  coef=+0.0401, p=0.0000 ***
 
 ──────────────────────────────────────────────────
 H3: Spec quality → SZZ bugs (recent, within-author)
-  Scored PRs in SZZ repos (recent): 3,997
-  [recent-H3] N=3,780, authors=322 (320 with variation)
-  coef=-0.0007, p=0.0668 
+  Scored PRs in SZZ repos (recent): 3,986
+  [recent-H3] N=3,769, authors=321 (319 with variation)
+  coef=-0.0006, p=0.0719 
 
 ──────────────────────────────────────────────────
 H4: Spec quality → rework (recent, within-author)
-  Scored PRs (recent): 3,997
-  [recent-H4] N=3,780, authors=322 (320 with variation)
-  coef=-0.0005, p=0.1523 
+  Scored PRs (recent): 3,986
+  [recent-H4] N=3,769, authors=321 (319 with variation)
+  coef=-0.0005, p=0.1548 
 
 ──────────────────────────────────────────────────
 H5: Specs constrain AI scope (recent, within-author)
-  AI-tagged PRs (recent, nonzero churn): 1,930
-  [recent-H5-AI] N=1,751, authors=174 (98 with variation)
-  coef=+0.0080, p=0.9386 
-  Human PRs (recent, nonzero churn): 41,884
-  [recent-H5-human] N=38,435, authors=3,209 (753 with variation)
-  coef=+0.0862, p=0.0062 **
-  [recent-H5-interaction] N=40,339, authors=3,268 (168 with variation)
-  coef=-0.0097, p=0.9149 
+  AI-tagged PRs (recent, nonzero churn): 3,785
+  [recent-H5-AI] N=3,400, authors=321 (127 with variation)
+  coef=-0.0026, p=0.9747 
+  Human PRs (recent, nonzero churn): 39,357
+  [recent-H5-human] N=35,971, authors=3,116 (735 with variation)
+  coef=+0.0866, p=0.0073 **
+  [recent-H5-interaction] N=39,669, authors=3,247 (176 with variation)
+  coef=-0.1188, p=0.1216 
 
 
 ======================================================================
 SUBGROUP ANALYSIS (RECENT WINDOW)
 ======================================================================
 
-Human-only PRs (recent): 41,946
+Human-only PRs (recent): 39,419
   Specs → bugs (human-only, recent):
-  [recent-human-bugs] N=34,844, authors=2,835 (681 with variation)
-  coef=+0.0176, p=0.0464 *
+  [recent-human-bugs] N=32,523, authors=2,752 (663 with variation)
+  coef=+0.0154, p=0.0730 
   Specs → rework (human-only, recent):
-  [recent-human-rework] N=38,494, authors=3,213 (753 with variation)
-  coef=+0.0465, p=0.0000 ***
+  [recent-human-rework] N=36,030, authors=3,120 (735 with variation)
+  coef=+0.0441, p=0.0000 ***
 
-AI-tagged PRs (recent): 1,934
-  AI spec rate: 34.5%
-  AI bug rate: 14.8%
-  AI rework rate: 19.9%
+AI-tagged PRs (recent): 3,789
+  AI spec rate: 18.8%
+  AI bug rate: 14.0%
+  AI rework rate: 11.0%
   Specs → bugs (AI-only, recent):
-  [recent-ai-bugs] N=1,731, authors=169 (95 with variation)
-  coef=+0.0087, p=0.6459 
+  [recent-ai-bugs] N=3,283, authors=307 (124 with variation)
+  coef=+0.0137, p=0.4424 
   Specs → rework (AI-only, recent):
-  [recent-ai-rework] N=1,755, authors=174 (98 with variation)
-  coef=-0.0099, p=0.5884 
+  [recent-ai-rework] N=3,404, authors=321 (127 with variation)
+  coef=+0.0139, p=0.5217 
 
 
 ======================================================================
 HIGH-QUALITY SPECS (RECENT WINDOW)
 ======================================================================
   Quality distribution (recent): median=56, p75=68, p90=77
-  High-quality spec'd (recent SZZ): 1,052
+  High-quality spec'd (recent SZZ): 1,042
 
   Top-quartile specs → SZZ bugs (recent, within-author):
-  [recent-hq-bugs] N=36,723, authors=2,894 (191 with variation)
-  coef=-0.0295, p=0.0323 *
+  [recent-hq-bugs] N=36,085, authors=2,879 (190 with variation)
+  coef=-0.0319, p=0.0216 *
 
   Top-quartile specs → rework (recent, within-author):
-  [recent-hq-rework] N=40,402, authors=3,272 (191 with variation)
-  coef=+0.0028, p=0.8713 
+  [recent-hq-rework] N=39,732, authors=3,251 (190 with variation)
+  coef=-0.0027, p=0.8707 
 
   High-quality vs NO spec → bugs (recent, within-author):
-  (34,537 PRs, low-quality excluded)
-  [recent-hq-vs-none] N=31,740, authors=2,573 (167 with variation)
-  coef=-0.0255, p=0.1162 
+  (33,948 PRs, low-quality excluded)
+  [recent-hq-vs-none] N=31,153, authors=2,558 (166 with variation)
+  coef=-0.0281, p=0.0873 
 
 
 ======================================================================
 ALTERNATIVE OUTCOMES (RECENT WINDOW)
 ======================================================================
 
-  Escaped: 398 (0.9%)
-  [recent-escaped] N=40,402, authors=3,272 (812 with variation)
-  coef=-0.0025, p=0.2018 
+  Escaped: 390 (0.9%)
+  [recent-escaped] N=39,732, authors=3,251 (809 with variation)
+  coef=-0.0025, p=0.2096 
 
-  Strict escaped: 105 (0.2%)
-  [recent-strict_escaped] N=40,402, authors=3,272 (812 with variation)
-  coef=-0.0008, p=0.5715 
+  Strict escaped: 104 (0.2%)
+  [recent-strict_escaped] N=39,732, authors=3,251 (809 with variation)
+  coef=-0.0009, p=0.5688 
 
 
 ======================================================================
@@ -130,16 +130,16 @@ FULL DATASET (for comparison)
 ======================================================================
 
 --- H1: Specs → SZZ bugs (full, within-author) ---
-  [full-H1] N=73,276, authors=4,346 (897 with variation)
-  coef=+0.0192, p=0.0112 *
+  [full-H1] N=72,046, authors=4,328 (894 with variation)
+  coef=+0.0171, p=0.0209 *
 
 --- H2: Specs → rework (full, within-author) ---
-  [full-H2] N=83,188, authors=4,918 (988 with variation)
-  coef=+0.0503, p=0.0000 ***
+  [full-H2] N=81,647, authors=4,892 (985 with variation)
+  coef=+0.0488, p=0.0000 ***
 
 --- H5: AI scope interaction (full, within-author) ---
-  [full-H5-interaction] N=83,055, authors=4,913 (200 with variation)
-  coef=-0.0490, p=0.4644 
+  [full-H5-interaction] N=81,516, authors=4,887 (212 with variation)
+  coef=-0.1892, p=0.0007 ***
 
 
 ======================================================================
@@ -152,17 +152,17 @@ are improving outcomes, the effect should appear in the most recent data.
 
                                       Test   Recent coef         p     Full coef         p
   ────────────────────────────────────────  ────────────  ────────  ────────────  ────────
-  [summary-ai-bugs] N=1,731, authors=169 (95 with variation)
-  coef=+0.0087, p=0.6459 
-  [summary-ai-rework] N=1,755, authors=174 (98 with variation)
-  coef=-0.0099, p=0.5884 
-                      H1: Specs → SZZ bugs       +0.0171    0.0362       +0.0192    0.0112
-                        H2: Specs → rework       +0.0424    0.0000       +0.0503    0.0000
-                   H3: Spec quality → bugs       -0.0007    0.0668           ---       ---
-                 H4: Spec quality → rework       -0.0005    0.1523           ---       ---
-                H5: AI scope (interaction)       -0.0097    0.9149       -0.0490    0.4644
-                         AI + specs → bugs       +0.0087    0.6459           ---       ---
-                       AI + specs → rework       -0.0099    0.5884           ---       ---
+  [summary-ai-bugs] N=3,283, authors=307 (124 with variation)
+  coef=+0.0137, p=0.4424 
+  [summary-ai-rework] N=3,404, authors=321 (127 with variation)
+  coef=+0.0139, p=0.5217 
+                      H1: Specs → SZZ bugs       +0.0147    0.0567       +0.0171    0.0209
+                        H2: Specs → rework       +0.0401    0.0000       +0.0488    0.0000
+                   H3: Spec quality → bugs       -0.0006    0.0719           ---       ---
+                 H4: Spec quality → rework       -0.0005    0.1548           ---       ---
+                H5: AI scope (interaction)       -0.1188    0.1216       -0.1892    0.0007
+                         AI + specs → bugs       +0.0137    0.4424           ---       ---
+                       AI + specs → rework       +0.0139    0.5217           ---       ---
 
 The pattern is identical across all five hypotheses. In the period of
 highest SDD adoption, specification artifacts are still associated with

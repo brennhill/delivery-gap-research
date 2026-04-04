@@ -39,7 +39,7 @@ for dim in dimensions:
         print(f"  {dim}: MISSING COLUMN")
         continue
 
-    h_vals = pd.to_numeric(merged[h_col], errors="coerce")
+    h_vals = pd.to_numeric(merged[h_col], errors="coerce") * 10  # Human scored 0-10, LLM scored 0-100
     l_vals = pd.to_numeric(merged[l_col], errors="coerce")
 
     valid = h_vals.notna() & l_vals.notna()
@@ -80,7 +80,7 @@ for dim in dimensions:
     h_col = f"human_{dim}"
     l_col = f"q_{dim}"
     if h_col in merged.columns and l_col in merged.columns:
-        h_vals = pd.to_numeric(merged[h_col], errors="coerce")
+        h_vals = pd.to_numeric(merged[h_col], errors="coerce") * 10  # Human scored 0-10, LLM scored 0-100
         l_vals = pd.to_numeric(merged[l_col], errors="coerce")
         valid = h_vals.notna() & l_vals.notna()
         all_h.extend(h_vals[valid].astype(int).tolist())

@@ -20,9 +20,28 @@ OUT_DIR = Path(__file__).resolve().parent.parent.parent / "results"
 
 df = pd.read_csv(DATA_DIR / "master-prs.csv", low_memory=False)
 
+# Bot exclusion (same 27 patterns as pipeline scripts)
+BOT_PATTERNS = [
+    "dependabot", "renovate", "greenkeeper", "snyk", "mergify",
+    "codecov", "denobot", "vitess-bot", "ti-chi-bot", "pwshbot",
+    "k8s-infra-cherrypick-robot", "robobun", "copilot-swe-agent",
+    "medplumbot", "refine-bot", "lobehubbot", "qdrant-cloud-bot",
+    "vercel-release-bot", "nextjs-bot", "grafana-delivery-bot",
+    "grafana-pr-automation", "github-actions", "scheduled-actions",
+    "promptfoobot", "langchain-model-profile-bot", "n8n-assistant",
+    "mendral-app",
+]
+df["is_bot"] = (
+    df["f_is_bot_author"].fillna(False).astype(bool) |
+    df["author"].str.lower().str.contains("|".join(BOT_PATTERNS), case=False, na=False, regex=True)
+)
+n_bots = df["is_bot"].sum()
+df = df[~df["is_bot"]].copy()
+print(f"Bot exclusion: {n_bots:,} removed")
+
 # Only scored PRs
 scored = df[df["q_overall"].notna()].copy()
-print(f"Scored PRs available: {len(scored):,}")
+print(f"Scored PRs available (post-bot): {len(scored):,}")
 
 # Quality distribution
 p25 = scored["q_overall"].quantile(0.25)

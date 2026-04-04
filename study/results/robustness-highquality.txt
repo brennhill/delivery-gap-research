@@ -1,8 +1,8 @@
-High-quality robustness run: 2026-04-04T13:22:11.977887+00:00
+High-quality robustness run: 2026-04-04T18:07:45.119199+00:00
 Script: /Users/brenn/dev/ai-augmented-dev/research/study/scripts/pipeline/robustness-highquality.py
 
-Dataset (bots excluded): 89,599 PRs
-Quality scored: 5,246
+Dataset (bots excluded): 88,052 PRs
+Quality scored: 5,192
 Quality distribution: median=55, p75=67, p90=77
 
 ======================================================================
@@ -10,31 +10,31 @@ TEST 1: TOP-QUARTILE SPECS (q_overall >= 67) vs ALL OTHERS
 ======================================================================
 If SDD claims hold, the BEST specs should show the strongest effect.
 
-  High-quality spec'd: 1,398 PRs, bug rate: 0.153
-  All others:          77,651 PRs, bug rate: 0.126
+  High-quality spec'd: 1,369 PRs, bug rate: 0.153
+  All others:          76,445 PRs, bug rate: 0.125
 
   High-quality specs → SZZ bugs (within-author):
-  N=73,276, authors=4,346 (226 with variation)
-  coef=-0.0227, p=0.0469 → DECREASES *
+  N=72,046, authors=4,328 (225 with variation)
+  coef=-0.0247, p=0.0359 → DECREASES *
 
   High-quality specs → rework (within-author):
-  N=83,188, authors=4,918 (226 with variation)
-  coef=+0.0277, p=0.0775 → INCREASES 
+  N=81,647, authors=4,892 (225 with variation)
+  coef=+0.0184, p=0.1765 → INCREASES 
 
 ======================================================================
 TEST 2: TOP-DECILE SPECS (q_overall >= 77) vs ALL OTHERS
 ======================================================================
 Even more selective: only the very best specs.
 
-  Top-decile spec'd: 543 PRs, bug rate: 0.175
+  Top-decile spec'd: 530 PRs, bug rate: 0.174
 
   Top-decile specs → SZZ bugs (within-author):
-  N=73,276, authors=4,346 (114 with variation)
-  coef=-0.0130, p=0.4122 → DECREASES 
+  N=72,046, authors=4,328 (113 with variation)
+  coef=-0.0146, p=0.3704 → DECREASES 
 
   Top-decile specs → rework (within-author):
-  N=83,188, authors=4,918 (114 with variation)
-  coef=+0.0109, p=0.6848 → INCREASES 
+  N=81,647, authors=4,892 (113 with variation)
+  coef=-0.0038, p=0.8703 → DECREASES 
 
 ======================================================================
 TEST 3: HIGH-QUALITY SPECS vs NO SPEC (exclude low-quality)
@@ -42,34 +42,34 @@ TEST 3: HIGH-QUALITY SPECS vs NO SPEC (exclude low-quality)
 Remove the 'junk specs' objection entirely: compare only top-quartile
 specs against PRs with NO spec at all.
 
-  High-quality spec'd: 1,398 PRs
-  No spec at all:      70,589 PRs
-  (Low-quality specs excluded: 7,062 PRs)
+  High-quality spec'd: 1,369 PRs
+  No spec at all:      69,440 PRs
+  (Low-quality specs excluded: 7,005 PRs)
 
   High-quality spec vs no spec → SZZ bugs (within-author):
-  N=66,652, authors=3,999 (201 with variation)
-  coef=-0.0189, p=0.1456 → DECREASES 
+  N=65,479, authors=3,981 (200 with variation)
+  coef=-0.0211, p=0.1182 → DECREASES 
 
   High-quality spec vs no spec → rework (within-author):
-  N=76,196, authors=4,541 (201 with variation)
-  coef=+0.0338, p=0.0516 → INCREASES 
+  N=74,740, authors=4,515 (200 with variation)
+  coef=+0.0235, p=0.1190 → INCREASES 
 
 ======================================================================
 TEST 4: AI-TAGGED PRs — DO HIGH-QUALITY SPECS HELP?
 ======================================================================
 Closest proxy to the agentic SDD workflow the vendors are selling.
 
-  AI-tagged PRs in SZZ repos: 2,493
-  AI + any spec: 832 (33.4%)
-  AI + high-quality spec: 324 (13.0%)
+  AI-tagged PRs in SZZ repos: 5,310
+  AI + any spec: 903 (17.0%)
+  AI + high-quality spec: 381 (7.2%)
 
   AI: any spec → SZZ bugs (within-author):
-  N=2,290, authors=196 (107 with variation)
-  coef=-0.0004, p=0.9842 → DECREASES 
+  N=4,787, authors=421 (140 with variation)
+  coef=-0.0116, p=0.5610 → DECREASES 
 
   AI: high-quality spec → SZZ bugs (within-author):
-  N=2,290, authors=196 (42 with variation)
-  coef=-0.0479, p=0.0445 → DECREASES *
+  N=4,787, authors=421 (52 with variation)
+  coef=-0.0417, p=0.0898 → DECREASES 
 
 ======================================================================
 SUMMARY: DO HIGH-QUALITY SPECS REDUCE DEFECTS?
@@ -83,9 +83,9 @@ Results (within-author LPM, all with size controls):
 
                                            Test   → bugs coef         p
   ─────────────────────────────────────────────  ────────────  ────────
-              Top-quartile specs (q>=67) vs all       -0.0227    0.0469
-                Top-decile specs (q>=77) vs all       -0.0130    0.4122
-        High-quality vs NO spec (junk excluded)       -0.0189    0.1456
+              Top-quartile specs (q>=67) vs all       -0.0247    0.0359
+                Top-decile specs (q>=77) vs all       -0.0146    0.3704
+        High-quality vs NO spec (junk excluded)       -0.0211    0.1182
 
 No protective effect emerges at any quality threshold. High-quality specs
 do not reduce defects. The objection that our measure is "too loose" does
