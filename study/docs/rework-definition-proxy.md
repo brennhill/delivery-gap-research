@@ -88,7 +88,7 @@ No tool currently tracks all four signals together.
 - Revert detection (100% precision)
 - Fix-follow-up detection via PR body references (67% precision, HIGH tier only)
 - AI detection (co-author tags + classifier)
-- Spec detection (upfront scores)
+- Spec detection (spec-signals scores)
 
 ## What We'd Need to Fetch
 

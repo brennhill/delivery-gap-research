@@ -58,8 +58,8 @@ def _median(values: list[float]) -> float | None:
 # ── Loaders ──────────────────────────────────────────────────────────────
 
 
-def load_upfront(repo: str) -> dict | None:
-    path = DATA_DIR / f"upfront-{_slug(repo)}.json"
+def load_spec_signals(repo: str) -> dict | None:
+    path = DATA_DIR / f"spec-signals-{_slug(repo)}.json"
     if not path.exists():
         return None
     try:
@@ -83,7 +83,7 @@ def load_catchrate(repo: str) -> dict | None:
 # ── Per-repo summary row ─────────────────────────────────────────────────
 
 
-def build_repo_row(repo: str, upfront: dict | None, catchrate: dict | None) -> dict:
+def build_repo_row(repo: str, spec_signals: dict | None, catchrate: dict | None) -> dict:
     """Build one row for per-repo-summary.csv."""
     meta = REPO_META.get(repo, {"lang": "unknown", "tier": "?"})
     row: dict = {
@@ -100,11 +100,11 @@ def build_repo_row(repo: str, upfront: dict | None, catchrate: dict | None) -> d
         "rework_rate_unspecd": None,
     }
 
-    if upfront:
-        cov = upfront.get("coverage", {})
+    if spec_signals:
+        cov = spec_signals.get("coverage", {})
         row["spec_coverage_pct"] = cov.get("coverage_pct")
 
-        eff = upfront.get("effectiveness", {})
+        eff = spec_signals.get("effectiveness", {})
         row["rework_rate_specd"] = eff.get("specd_rework_rate")
         row["rework_rate_unspecd"] = eff.get("unspecd_rework_rate")
 
@@ -123,22 +123,22 @@ def build_repo_row(repo: str, upfront: dict | None, catchrate: dict | None) -> d
 # ── Per-PR detail rows ───────────────────────────────────────────────────
 
 
-def build_pr_rows(repo: str, upfront: dict | None, catchrate: dict | None) -> list[dict]:
+def build_pr_rows(repo: str, spec_signals: dict | None, catchrate: dict | None) -> list[dict]:
     """Build per-PR rows combining UPFRONT and CATCHRATE data."""
     rows: list[dict] = []
 
     # Build lookup of UPFRONT spec classifications by PR number
     specd_map: dict[int, bool] = {}
-    if upfront:
-        for pr in upfront.get("coverage", {}).get("prs", []):
+    if spec_signals:
+        for pr in spec_signals.get("coverage", {}).get("prs", []):
             num = pr.get("number")
             if num is not None:
                 specd_map[num] = pr.get("specd", False)
 
     # Build lookup of UPFRONT rework signals by target PR
     rework_targets: set[int] = set()
-    if upfront:
-        for sig in upfront.get("effectiveness", {}).get("signals", []):
+    if spec_signals:
+        for sig in spec_signals.get("effectiveness", {}).get("signals", []):
             target = sig.get("target")
             if target is not None:
                 rework_targets.add(target)
@@ -162,9 +162,9 @@ def build_pr_rows(repo: str, upfront: dict | None, catchrate: dict | None) -> li
                 "rework": "yes" if num in rework_targets else "no",
                 "merged_at": pr.get("merged_at", ""),
             })
-    elif upfront:
+    elif spec_signals:
         # Fallback: use UPFRONT PRs if no CATCHRATE data
-        for pr in upfront.get("coverage", {}).get("prs", []):
+        for pr in spec_signals.get("coverage", {}).get("prs", []):
             num = pr.get("number")
             rows.append({
                 "repo": repo,
@@ -194,7 +194,7 @@ def _bool_str(val: bool | None) -> str:
 
 def build_complexity_rows(
     repo: str,
-    upfront: dict | None,
+    spec_signals: dict | None,
     catchrate: dict | None,
 ) -> list[dict]:
     """Build per-(repo, size_bucket, spec_status) rows with aggregates.
@@ -207,16 +207,16 @@ def build_complexity_rows(
 
     # Build spec lookup from UPFRONT
     specd_map: dict[int, bool] = {}
-    if upfront:
-        for pr in upfront.get("coverage", {}).get("prs", []):
+    if spec_signals:
+        for pr in spec_signals.get("coverage", {}).get("prs", []):
             num = pr.get("number")
             if num is not None:
                 specd_map[num] = pr.get("specd", False)
 
     # Build rework lookup from UPFRONT
     rework_targets: set[int] = set()
-    if upfront:
-        for sig in upfront.get("effectiveness", {}).get("signals", []):
+    if spec_signals:
+        for sig in spec_signals.get("effectiveness", {}).get("signals", []):
             target = sig.get("target")
             if target is not None:
                 rework_targets.add(target)
@@ -461,19 +461,19 @@ def main() -> None:
     all_complexity_rows: list[dict] = []
 
     for repo in repos:
-        upfront = load_upfront(repo)
+        spec_signals = load_spec_signals(repo)
         catchrate = load_catchrate(repo)
 
-        if upfront is None and catchrate is None:
+        if spec_signals is None and catchrate is None:
             print(f"  Skipping {repo} (no data files found)")
             continue
 
         loaded += 1
         print(f"  Loading {repo}...")
 
-        all_repo_rows.append(build_repo_row(repo, upfront, catchrate))
-        all_pr_rows.extend(build_pr_rows(repo, upfront, catchrate))
-        all_complexity_rows.extend(build_complexity_rows(repo, upfront, catchrate))
+        all_repo_rows.append(build_repo_row(repo, spec_signals, catchrate))
+        all_pr_rows.extend(build_pr_rows(repo, spec_signals, catchrate))
+        all_complexity_rows.extend(build_complexity_rows(repo, spec_signals, catchrate))
 
     if loaded == 0:
         print("No data files found. Run runner.py first.", file=sys.stderr)

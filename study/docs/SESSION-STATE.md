@@ -5,7 +5,7 @@
 ### Data files (data/)
 - `unified-prs.csv` — **START HERE.** 10,660 rows, 33 columns, one row per PR across 35 repos. Everything joined: repo, tier, size, spec coverage, catchrate classification, workflow tags, rework signals, rework type (alignment/implementation), LLM quality scores (7 dimensions). Rebuild with `python3 build-unified-csv.py`.
 - `prs-{slug}.json` — Raw PR data per repo (reviews, files, body text)
-- `upfront-{slug}.json` — Spec coverage + effectiveness + rework signals per repo
+- `spec-signals-{slug}.json` — Spec coverage + effectiveness + rework signals per repo
 - `catchrate-{slug}.json` — Machine catch / human save / escape classification per PR
 - `workflow-{slug}.json` — Workflow analysis (mechanism rates, transitions, bot detection)
 - `spec-quality-{slug}.json` — **FULL LLM REVIEWS** per spec'd PR. Each entry has: 7 dimension scores, `missing` (list of what the spec lacks), `present` (list of what it does well), `reasoning` (1-2 sentence overall assessment), `change_type`, `spec_length_signal`. This is the complete AI review — the CSV only has the numeric scores.
@@ -27,7 +27,7 @@
 
 ### Key files in other repos
 - `/Users/brenn/dev/delivery-gap-signals/` — Shared library (sources, workflow analyzer, bot detection)
-- `/Users/brenn/dev/upfront/` — UPFRONT tool (coverage, quality, effectiveness)
+- `/Users/brenn/dev/upfront/` — spec-signals tool (coverage, quality, effectiveness)
 - `/Users/brenn/dev/ai-augmented-dev/research/codex.md` — Master evidence compendium (A066-A070 = AI agent papers)
 
 ## Repos completed (10/38)

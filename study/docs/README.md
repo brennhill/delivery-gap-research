@@ -4,7 +4,7 @@ Runs UPFRONT (spec quality) and CATCHRATE (pipeline trustworthiness) against 30 
 
 ## Prerequisites
 
-- `upfront` CLI installed and on PATH (from `~/dev/upfront`)
+- `spec-signals` CLI installed and on PATH (from `~/dev/upfront`)
 - `catchrate` CLI installed and on PATH (from `~/dev/catchrate`)
 - `gh` CLI authenticated with sufficient API rate limits
 
@@ -46,7 +46,7 @@ study/
   runner.py              # Step 1: collect data
   aggregate.py           # Step 2: aggregate results
   data/                  # Raw JSON outputs (gitignored)
-    upfront-owner-repo.json
+    spec-signals-owner-repo.json
     catchrate-owner-repo.json
     manifest.json
   results/               # Aggregated outputs

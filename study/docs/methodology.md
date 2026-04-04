@@ -11,7 +11,7 @@
 ```
 prs-{slug}.json          ← GitHub GraphQL/REST (runner.py)
   ↓
-upfront-{slug}.json      ← UPFRONT rework detection (runner.py)
+spec-signals-{slug}.json      ← Spec-signals rework detection (runner.py)
 catchrate-{slug}.json    ← CatchRate escape detection (runner.py)
 workflow-{slug}.json     ← Workflow type classification (runner.py)
   ↓

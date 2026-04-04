@@ -70,26 +70,26 @@ Rules:
 
 
 def load_rework_pairs():
-    """Load rework pairs from CatchRate upfront data."""
+    """Load rework pairs from CatchRate spec-signals data."""
     pairs = []
 
-    # Load all upfront files to find target->source mappings
-    for fp in sorted(DATA_DIR.glob("upfront-*.json")):
-        slug = fp.stem.replace("upfront-", "")
+    # Load all spec_signals files to find target->source mappings
+    for fp in sorted(DATA_DIR.glob("spec-signals-*.json")):
+        slug = fp.stem.replace("spec-signals-", "")
         prs_fp = DATA_DIR / f"prs-{slug}.json"
 
         if not prs_fp.exists():
             continue
 
         with open(fp) as f:
-            upfront = json.load(f)
+            spec_signals = json.load(f)
         with open(prs_fp) as f:
             prs = json.load(f)
 
         # Index PRs by number
         pr_by_num = {p["pr_number"]: p for p in prs}
 
-        signals = upfront.get("effectiveness", {}).get("signals", [])
+        signals = spec_signals.get("effectiveness", {}).get("signals", [])
         for s in signals:
             target_num = int(s["target"])
             source_num = int(s["source"])

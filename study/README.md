@@ -47,7 +47,7 @@ study/
 │   ├── szz-checkpoint-*.json # SZZ/JIT batch checkpoints
 │   ├── spec-quality-*.json  # LLM spec quality scores
 │   ├── engagement-*.json    # LLM engagement scores
-│   ├── upfront-*.json       # Upfront coverage signals
+│   ├── spec-signals-*.json  # Spec coverage and rework signals
 │   ├── catchrate-*.json     # CatchRate classifications
 │   ├── pr-features.csv      # Regex text features
 │   ├── repo-manifest.json   # Canonical repo list

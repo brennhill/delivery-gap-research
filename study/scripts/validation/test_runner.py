@@ -23,7 +23,7 @@ def _make_manifest(tmp, repos_data):
         "started_at": "2026-01-01T00:00:00+00:00",
         "finished_at": "2026-01-01T01:00:00+00:00",
         "total_repos": len(repos_data),
-        "upfront_success": sum(1 for r in repos_data if r["upfront"]["success"]),
+        "spec_signals_success": sum(1 for r in repos_data if r["spec_signals"]["success"]),
         "catchrate_success": sum(1 for r in repos_data if r["catchrate"]["success"]),
         "repos": repos_data,
     }
@@ -36,7 +36,7 @@ def _fake_result(repo, success=True, msg="100 PRs"):
         "language": "TypeScript",
         "tier": "AI",
         "fetch": {"success": success, "message": msg},
-        "upfront": {"success": success, "message": "success" if success else "skipped"},
+        "spec_signals": {"success": success, "message": "success" if success else "skipped"},
         "catchrate": {"success": success, "message": "success" if success else "skipped"},
     }
 
@@ -59,7 +59,7 @@ class TestSaveManifest:
 
         data = json.loads(path.read_text())
         assert data["total_repos"] == 1
-        assert data["upfront_success"] == 1
+        assert data["spec_signals_success"] == 1
         assert len(data["repos"]) == 1
         assert data["repos"][0]["repo"] == "foo/bar"
 

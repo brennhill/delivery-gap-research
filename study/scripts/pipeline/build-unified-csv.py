@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Build a unified CSV with one row per PR across all repos.
 
-Joins: PR data + UPFRONT coverage + CATCHRATE classification + workflow tags + quality scores + rework signals.
+Joins: PR data + spec-signals coverage + CATCHRATE classification + workflow tags + quality scores + rework signals.
 
 Output: data/unified-prs.csv
 """
@@ -33,15 +33,15 @@ def build_rows():
         if not prs:
             continue
 
-        upfront = load_json(DATA_DIR / f"upfront-{slug}.json")
+        spec_signals = load_json(DATA_DIR / f"spec-signals-{slug}.json")
         catchrate = load_json(DATA_DIR / f"catchrate-{slug}.json")
         workflow = load_json(DATA_DIR / f"workflow-{slug}.json")
         quality_data = load_json(DATA_DIR / f"spec-quality-{slug}.json")
 
-        # Index upfront coverage by number
+        # Index spec_signals coverage by number
         cov_by_num = {}
-        if upfront:
-            for p in upfront.get("coverage", {}).get("prs", []):
+        if spec_signals:
+            for p in spec_signals.get("coverage", {}).get("prs", []):
                 cov_by_num[p["number"]] = p
 
         # Index catchrate by number
@@ -68,8 +68,8 @@ def build_rows():
         rework_type = {}  # pr_number -> 'alignment' or 'implementation'
         pr_files = {pr["pr_number"]: pr.get("files", []) for pr in prs}
 
-        if upfront:
-            for s in upfront.get("effectiveness", {}).get("signals", []):
+        if spec_signals:
+            for s in spec_signals.get("effectiveness", {}).get("signals", []):
                 target = int(s["target"])
                 source = int(s["source"])
                 reworked_targets.add(target)

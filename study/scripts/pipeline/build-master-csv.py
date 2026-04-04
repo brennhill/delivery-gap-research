@@ -6,7 +6,7 @@ Joins:
 - pr-features.csv (regex features: humanness, org context, reasoning, template/slop, text stats)
 - spec-quality-*.json (LLM quality scores: 7 dimensions)
 - engagement-*.json (LLM formality scores: 8 dimensions + classification + evidence)
-- upfront-*.json (effectiveness signals for strict_escaped computation)
+- spec-signals-*.json (effectiveness signals for strict_escaped computation)
 
 Output: data/master-prs.csv
 """
@@ -53,21 +53,21 @@ def main():
                     continue
                 formality[(r['repo'], r['pr_number'])] = r
 
-    # 5. Load UPFRONT signals for strict_escaped computation
+    # 5. Load spec-signals for strict_escaped computation
     # strict_escaped = escaped AND has a follow-up PR with fix/revert/regression in title
-    upfront_fix_targets = set()  # (repo, target_pr) that have a fix-titled follow-up
+    spec_fix_targets = set()  # (repo, target_pr) that have a fix-titled follow-up
     all_pr_titles = {}
     for fp in DATA_DIR.glob('prs-*.json'):
         with open(fp) as f:
             for p in json.load(f):
                 all_pr_titles[(p.get('repo', ''), p['pr_number'])] = p['title']
-    for fp in DATA_DIR.glob('upfront-*.json'):
+    for fp in DATA_DIR.glob('spec-signals-*.json'):
         try:
             with open(fp) as f:
                 uf = json.load(f)
         except Exception:
             continue
-        slug = fp.stem.replace('upfront-', '')
+        slug = fp.stem.replace('spec-signals-', '')
         for s in uf.get('effectiveness', {}).get('signals', []):
             source = int(s['source'])
             target = int(s['target'])
@@ -82,7 +82,7 @@ def main():
                 # Find repo name for this slug
                 for repo_key in all_pr_titles:
                     if repo_key[0].replace('/', '-') == slug and repo_key[1] == target:
-                        upfront_fix_targets.add(repo_key)
+                        spec_fix_targets.add(repo_key)
                         break
 
     # Build master rows
@@ -96,7 +96,7 @@ def main():
         # Compute strict_escaped: escaped AND has a fix-titled follow-up
         row['strict_escaped'] = (
             str(row.get('escaped', '')).lower() == 'true'
-            and key in upfront_fix_targets
+            and key in spec_fix_targets
         )
 
         # Add regex features (prefix: f_)

@@ -68,7 +68,7 @@ Key definitions used throughout:
   - "ai_probability" — a float 0-1 estimating how much of the PR body was
     AI-generated, based on formality classifiers.  >0.6 = "high-AI."
   - "reworked" — the PR required rework (reverted or followed by a fix PR).
-  - "specd" — the PR had an UPFRONT spec written before implementation.
+  - "specd" — the PR had an spec-signals spec written before implementation.
   - "q_overall" — LLM-scored quality of the spec (0-100).  Only present for
     PRs that had specs.
   - "tier" — repository tier label (e.g., T1, T2, T3) based on team size
@@ -154,7 +154,7 @@ def claim_1(human):
 def claim_2(human):
     """CLAIM 2: Specs shift catches earlier (rework up, escape down).
 
-    Hypothesis: PRs built from an UPFRONT spec get caught more during
+    Hypothesis: PRs built from an spec-signals spec get caught more during
     review (higher rework) but escape to production less (lower escape).
     This "shift left" pattern should hold across tiers and repos.
 
@@ -831,7 +831,7 @@ def finding_11(human):
     testable.
 
     Method:
-    1. Build fix graph from upfront-*.json signal data.
+    1. Build fix graph from spec-signals-*.json signal data.
     2. Trace chains from root broken PRs.
     3. Report chain-length distribution.
     4. For chains of length 3+, check attention on 1st vs 2nd fix
@@ -844,10 +844,10 @@ def finding_11(human):
 
     DATA_DIR = MASTER.parent
 
-    # Build fix graph from UPFRONT signals
+    # Build fix graph from spec-signals signals
     fix_graph = {}  # (slug, target) -> (slug, source)
-    for uf_path in sorted(DATA_DIR.glob("upfront-*.json")):
-        slug = uf_path.stem.replace("upfront-", "")
+    for uf_path in sorted(DATA_DIR.glob("spec-signals-*.json")):
+        slug = uf_path.stem.replace("spec-signals-", "")
         try:
             with open(uf_path) as f:
                 uf = json.load(f)

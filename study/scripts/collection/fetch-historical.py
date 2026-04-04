@@ -113,7 +113,7 @@ def run_tools(repo: str, data_dir: Path) -> None:
         return
 
     for tool, subcmd, out_name in [
-        ("upfront", "report", f"upfront-{slug}.json"),
+        ("upfront", "report", f"spec-signals-{slug}.json"),
         ("catchrate", "check", f"catchrate-{slug}.json"),
     ]:
         out_path = data_dir / out_name

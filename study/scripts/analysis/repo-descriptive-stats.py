@@ -244,7 +244,7 @@ print(f"  Max:     {max_repo_prs}")
 print(f"  P25/P75: {p25_repo_prs:.0f} / {p75_repo_prs:.0f}")
 print()
 
-print("── Spec rate (% of PRs with upfront spec, per repo) ─────────────────")
+print("── Spec rate (% of PRs with specification, per repo) ─────────────────")
 print(f"  Median:  {spec_rates.median():.1f}%")
 print(f"  Mean:    {spec_rates.mean():.1f}%")
 print(f"  Min:     {spec_rates.min():.1f}%")
@@ -339,7 +339,7 @@ print(r"""
 \begin{longtable}{llrrrr}
 \caption{Per-repository descriptive statistics.
   Med.\ size = median lines changed (additions + deletions).
-  Spec\% = percentage of PRs with an upfront specification.
+  Spec\% = percentage of PRs with an specificationification.
   AI\% = percentage of PRs tagged as AI-augmented.}
 \label{tab:per-repo-stats} \\
 \toprule
