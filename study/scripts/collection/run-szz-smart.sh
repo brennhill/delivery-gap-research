@@ -49,12 +49,23 @@ echo ""
 
 # ── Step 2: Unshallow clones that need SZZ ─────────────────────────────────
 
-echo "Unshallowing clones that need SZZ..."
+echo "Ensuring full clones for SZZ repos..."
 for repo in $NEEDS_SZZ $NEEDS_BOTH; do
     repo_dir="$REPOS_DIR/$repo"
     if [ -f "$repo_dir/.git/shallow" ]; then
-        echo "  Unshallowing: $repo"
-        git -C "$repo_dir" fetch --unshallow 2>&1 | tail -1 || echo "  WARNING: failed for $repo"
+        echo "  Shallow: $repo — attempting unshallow..."
+        if ! git -C "$repo_dir" fetch --unshallow 2>/dev/null; then
+            echo "    Unshallow failed (corrupted graft). Deleting and re-cloning..."
+            rm -rf "$repo_dir"
+            mkdir -p "$(dirname "$repo_dir")"
+            git clone --single-branch "https://github.com/$repo.git" "$repo_dir" 2>&1 | tail -1 || echo "    WARNING: clone failed for $repo"
+        fi
+    elif [ ! -d "$repo_dir/.git" ]; then
+        echo "  Missing: $repo — cloning..."
+        mkdir -p "$(dirname "$repo_dir")"
+        git clone --single-branch "https://github.com/$repo.git" "$repo_dir" 2>&1 | tail -1 || echo "    WARNING: clone failed for $repo"
+    else
+        echo "  OK: $repo (full clone)"
     fi
 done
 echo ""
