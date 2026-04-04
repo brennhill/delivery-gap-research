@@ -5,7 +5,7 @@
   "coverage": {
     "coverage_pct": 28,
     "total_prs": 2318,
-    "specd_prs": 646,
+    "specd_prs": 644,
     "prs": [
       {
         "number": 23587,
@@ -1123,8 +1123,8 @@
         "number": 23115,
         "sha": null,
         "title": "Move visibility range checking from the CPU to the GPU if `NoCpuCulling` is specified.",
-        "specd": true,
-        "spec_source": "GPU-DRIVEN",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-03-15T21:08:54+00:00"
       },
       {
@@ -11987,8 +11987,8 @@
         "number": 20623,
         "sha": null,
         "title": "Add caution to glTF coordinate conversion docs and release notes",
-        "specd": true,
-        "spec_source": "https://github.com/bevyengine/bevy/issues/20621).",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-08-17T22:05:47+00:00"
       },
       {
@@ -18557,7 +18557,7 @@
     "mode": "heuristic",
     "average_score": 45,
     "verdicts": {
-      "REVIEW": 636,
+      "REVIEW": 634,
       "REWRITE": 10
     },
     "specs": [
@@ -19925,44 +19925,6 @@
             "type": "testability",
             "term": "checking the performance hit introduced by unconditional clearcoat in the deferr",
             "suggestion": "Goal without test: 'checking the performance hit introduced by unconditional cle...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 23115,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Note that, even with this patch, LOD buffers (i.e. the on-GPU buffers that store",
-            "suggestion": "Goal without test: 'Note that, even with this patch, LOD buffers (i.e. the on-GP...' \u2014 add a Given/When/Then criterion"
           }
         ],
         "warnings": [
@@ -38416,44 +38378,6 @@
         ]
       },
       {
-        "pr_number": 20623,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "(no goals found)",
-            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 20620,
         "format": "freeform",
         "completeness": 0,
@@ -49943,11 +49867,11 @@
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.1176,
-    "unspecd_rework_rate": 0.1071,
-    "delta": 0.0106,
-    "specd_sample_size": 646,
-    "unspecd_sample_size": 1672,
+    "specd_rework_rate": 0.1165,
+    "unspecd_rework_rate": 0.1075,
+    "delta": 0.0089,
+    "specd_sample_size": 644,
+    "unspecd_sample_size": 1674,
     "significance": "significant",
     "signals": [
       {
@@ -53401,16 +53325,16 @@
     ],
     "by_complexity": {
       "small": {
-        "specd_rework_rate": 0.06,
+        "specd_rework_rate": 0.0601,
         "unspecd_rework_rate": 0.0757,
-        "specd_count": 450,
-        "unspecd_count": 1228
+        "specd_count": 449,
+        "unspecd_count": 1229
       },
       "medium": {
-        "specd_rework_rate": 0.1805,
-        "unspecd_rework_rate": 0.1728,
-        "specd_count": 133,
-        "unspecd_count": 382
+        "specd_rework_rate": 0.1742,
+        "unspecd_rework_rate": 0.1749,
+        "specd_count": 132,
+        "unspecd_count": 383
       },
       "large": {
         "specd_rework_rate": 0.3968,

@@ -5,7 +5,7 @@
   "coverage": {
     "coverage_pct": 21,
     "total_prs": 1494,
-    "specd_prs": 310,
+    "specd_prs": 308,
     "prs": [
       {
         "number": 8770,
@@ -2083,8 +2083,8 @@
         "number": 8280,
         "sha": null,
         "title": "Expose `membershipId` parameter in `exchangeExternalAccessToken`",
-        "specd": true,
-        "spec_source": "https://github.com/medplum/medplum/issues/new?title=\u2728+Set+up+Copilot+instructions&body=Configure%20instructions%20for%20this%20repository%20as%20documented%20in%20%5BBest%20practices%20for%20Copilot%20coding%20agent%20in%20your%20repository%5D%28https://gh.io/copilot-coding-agent-tips%29%2E%0A%0A%3COnboard%20this%20repo%3E&assignees=copilot)",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-01-30T17:27:06+00:00"
       },
       {
@@ -6419,8 +6419,8 @@
         "number": 7488,
         "sha": null,
         "title": "[Certification Provider App] Refactor code to use `string` instead of `dateTime`",
-        "specd": true,
-        "spec_source": "UTC-3",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-09-29T16:40:51+00:00"
       },
       {
@@ -11965,7 +11965,7 @@
     "mode": "heuristic",
     "average_score": 45,
     "verdicts": {
-      "REVIEW": 284,
+      "REVIEW": 282,
       "REWRITE": 2
     },
     "specs": [
@@ -14766,66 +14766,6 @@
           "No side effects listed \u2014 AI may miss integrations",
           "No error contract \u2014 AI will invent error shapes per function",
           "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 8280,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 99,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 84,
-            "type": "ambiguity",
-            "term": "good",
-            "suggestion": "Replace 'good' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Added optional membershipId parameter to exchangeExternalAccessToken() method",
-            "suggestion": "Goal without test: 'Added optional membershipId parameter to exchangeExternalAcc...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Parameter is passed as membership_id in the OAuth token exchange request when pr",
-            "suggestion": "Goal without test: 'Parameter is passed as membership_id in the OAuth token exch...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Backward compatible - existing calls without the parameter work unchanged",
-            "suggestion": "Goal without test: 'Backward compatible - existing calls without the parameter w...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Fixes medplum/medplum#8139",
-            "suggestion": "Goal without test: 'Fixes medplum/medplum#8139' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
           "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
         ]
       },
@@ -21180,44 +21120,6 @@
             "type": "testability",
             "term": "AWS S3 SDK fix: https://github.com/aws/aws-sdk-js-v3/pull/7381",
             "suggestion": "Goal without test: 'AWS S3 SDK fix: https://github.com/aws/aws-sdk-js-v3/pull/73...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 7488,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "> PLEASE NOTE: After this change, on resource detail pages in app.medplum, the J",
-            "suggestion": "Goal without test: '> PLEASE NOTE: After this change, on resource detail pages i...' \u2014 add a Given/When/Then criterion"
           }
         ],
         "warnings": [
@@ -29916,11 +29818,11 @@
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.1645,
-    "unspecd_rework_rate": 0.114,
-    "delta": 0.0505,
-    "specd_sample_size": 310,
-    "unspecd_sample_size": 1184,
+    "specd_rework_rate": 0.1656,
+    "unspecd_rework_rate": 0.1138,
+    "delta": 0.0518,
+    "specd_sample_size": 308,
+    "unspecd_sample_size": 1186,
     "significance": "significant",
     "signals": [
       {
@@ -32320,16 +32222,16 @@
     ],
     "by_complexity": {
       "small": {
-        "specd_rework_rate": 0.1103,
-        "unspecd_rework_rate": 0.0793,
-        "specd_count": 136,
-        "unspecd_count": 656
+        "specd_rework_rate": 0.1111,
+        "unspecd_rework_rate": 0.0791,
+        "specd_count": 135,
+        "unspecd_count": 657
       },
       "medium": {
-        "specd_rework_rate": 0.2143,
-        "unspecd_rework_rate": 0.1362,
-        "specd_count": 98,
-        "unspecd_count": 301
+        "specd_rework_rate": 0.2165,
+        "unspecd_rework_rate": 0.1358,
+        "specd_count": 97,
+        "unspecd_count": 302
       },
       "large": {
         "specd_rework_rate": 0.1974,

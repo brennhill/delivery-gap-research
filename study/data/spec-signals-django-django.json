@@ -3,9 +3,9 @@
   "lookback_days": 365,
   "rework_window_days": 30,
   "coverage": {
-    "coverage_pct": 27,
+    "coverage_pct": 26,
     "total_prs": 435,
-    "specd_prs": 117,
+    "specd_prs": 115,
     "prs": [
       {
         "number": 20985,
@@ -1075,8 +1075,8 @@
         "number": 20539,
         "sha": null,
         "title": "Fixed #27489 -- Renamed permissions upon model renaming in migrations.",
-        "specd": true,
-        "spec_source": "GPT-5",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-02-27T12:45:21+00:00"
       },
       {
@@ -3435,8 +3435,8 @@
         "number": 21032,
         "sha": null,
         "title": "[5.2.x] Bumped black to 26.3.1.",
-        "specd": true,
-        "spec_source": "GHSA-V53H",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-03-30T19:55:07+00:00"
       },
       {
@@ -3493,7 +3493,7 @@
     "mode": "heuristic",
     "average_score": 44,
     "verdicts": {
-      "REVIEW": 115
+      "REVIEW": 113
     },
     "specs": [
       {
@@ -4944,49 +4944,6 @@
           },
           {
             "line": 22,
-            "type": "ambiguity",
-            "term": "if applicable",
-            "suggestion": "Replace 'if applicable' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] This PR targets the main branch. <!-- Backports will be evaluated and done b",
-            "suggestion": "Goal without test: '[x] This PR targets the main branch. <!-- Backports will be ...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 20539,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 97,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 44,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 17,
             "type": "ambiguity",
             "term": "if applicable",
             "suggestion": "Replace 'if applicable' with a specific, measurable term"
@@ -8284,74 +8241,6 @@
         ]
       },
       {
-        "pr_number": 21032,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "black fixed a security issue in their Github Action in 26.3.0, affecting a featu",
-            "suggestion": "Goal without test: 'black fixed a security issue in their Github Action in 26.3....' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Django 4.2 is only in extended support for another week",
-            "suggestion": "Goal without test: 'Django 4.2 is only in extended support for another week' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Django 5.2 has two years to run",
-            "suggestion": "Goal without test: 'Django 5.2 has two years to run' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Proposal: bump black to a patched version on Django 5.2",
-            "suggestion": "Goal without test: 'Proposal: bump black to a patched version on Django 5.2' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Proposal: ignore 4.2",
-            "suggestion": "Goal without test: 'Proposal: ignore 4.2' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Proposal: ignore 6.0 & main, continue to leave them unpinned, revisit when adopt",
-            "suggestion": "Goal without test: 'Proposal: ignore 6.0 & main, continue to leave them unpinned...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 21030,
         "format": "freeform",
         "completeness": 0,
@@ -8496,11 +8385,11 @@
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.0598,
-    "unspecd_rework_rate": 0.0472,
-    "delta": 0.0127,
-    "specd_sample_size": 117,
-    "unspecd_sample_size": 318,
+    "specd_rework_rate": 0.0609,
+    "unspecd_rework_rate": 0.0469,
+    "delta": 0.014,
+    "specd_sample_size": 115,
+    "unspecd_sample_size": 320,
     "significance": "significant",
     "signals": [
       {
@@ -8724,10 +8613,10 @@
         "unspecd_count": 270
       },
       "medium": {
-        "specd_rework_rate": 0.0769,
-        "unspecd_rework_rate": 0.0488,
-        "specd_count": 13,
-        "unspecd_count": 41
+        "specd_rework_rate": 0.0833,
+        "unspecd_rework_rate": 0.0476,
+        "specd_count": 12,
+        "unspecd_count": 42
       }
     }
   }

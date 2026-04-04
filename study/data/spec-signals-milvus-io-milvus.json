@@ -5,7 +5,7 @@
   "coverage": {
     "coverage_pct": 48,
     "total_prs": 725,
-    "specd_prs": 348,
+    "specd_prs": 347,
     "prs": [
       {
         "number": 48465,
@@ -3427,8 +3427,8 @@
         "number": 47862,
         "sha": null,
         "title": "doc: add CLAUDE.md for AI-assisted development",
-        "specd": true,
-        "spec_source": "AI-ASSISTED",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-02-25T11:25:51+00:00"
       },
       {
@@ -5813,7 +5813,7 @@
     "mode": "heuristic",
     "average_score": 45,
     "verdicts": {
-      "REVIEW": 348
+      "REVIEW": 347
     },
     "specs": [
       {
@@ -14602,62 +14602,6 @@
         ]
       },
       {
-        "pr_number": 47862,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Add CLAUDE.md with project-specific instructions for Claude Code (architecture, ",
-            "suggestion": "Goal without test: 'Add CLAUDE.md with project-specific instructions for Claude ...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Remove claude.md from .gitignore to allow tracking",
-            "suggestion": "Goal without test: 'Remove claude.md from .gitignore to allow tracking' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Verify CLAUDE.md content is accurate against codebase",
-            "suggestion": "Goal without test: '[x] Verify CLAUDE.md content is accurate against codebase' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Confirm DCO check passes",
-            "suggestion": "Goal without test: '[x] Confirm DCO check passes' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 47830,
         "format": "freeform",
         "completeness": 0,
@@ -22591,11 +22535,11 @@
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.342,
-    "unspecd_rework_rate": 0.321,
-    "delta": 0.021,
-    "specd_sample_size": 348,
-    "unspecd_sample_size": 377,
+    "specd_rework_rate": 0.3429,
+    "unspecd_rework_rate": 0.3201,
+    "delta": 0.0228,
+    "specd_sample_size": 347,
+    "unspecd_sample_size": 378,
     "significance": "significant",
     "signals": [
       {
@@ -26079,10 +26023,10 @@
     ],
     "by_complexity": {
       "small": {
-        "specd_rework_rate": 0.2532,
-        "unspecd_rework_rate": 0.2708,
-        "specd_count": 154,
-        "unspecd_count": 192
+        "specd_rework_rate": 0.2549,
+        "unspecd_rework_rate": 0.2694,
+        "specd_count": 153,
+        "unspecd_count": 193
       },
       "medium": {
         "specd_rework_rate": 0.3964,

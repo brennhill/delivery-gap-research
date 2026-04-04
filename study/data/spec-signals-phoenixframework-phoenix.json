@@ -5,7 +5,7 @@
   "coverage": {
     "coverage_pct": 19,
     "total_prs": 213,
-    "specd_prs": 41,
+    "specd_prs": 40,
     "prs": [
       {
         "number": 6630,
@@ -764,7 +764,7 @@
         "sha": null,
         "title": "Remove reference to OTP version affected by CVE-2025-32433",
         "specd": true,
-        "spec_source": "GHSA-37",
+        "spec_source": "OTP-25",
         "merged_at": "2025-08-15T09:06:26+00:00"
       },
       {
@@ -1163,8 +1163,8 @@
         "number": 6283,
         "sha": null,
         "title": "Update Node Deps",
-        "specd": true,
-        "spec_source": "GHSA-968",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-06-03T11:09:49+00:00"
       },
       {
@@ -1717,7 +1717,7 @@
     "mode": "heuristic",
     "average_score": 44,
     "verdicts": {
-      "REVIEW": 38,
+      "REVIEW": 37,
       "REWRITE": 2
     },
     "specs": [
@@ -2746,74 +2746,6 @@
         ]
       },
       {
-        "pr_number": 6283,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 95,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 44,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 8,
-            "type": "ambiguity",
-            "term": "good",
-            "suggestion": "Replace 'good' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "GHSA-968p-4wvh-cqc8",
-            "suggestion": "Goal without test: 'GHSA-968p-4wvh-cqc8' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "GHSA-g3ch-rx76-35fx",
-            "suggestion": "Goal without test: 'GHSA-g3ch-rx76-35fx' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Update all node deps",
-            "suggestion": "Goal without test: 'Update all node deps' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Switch from @stylistic/eslint-plugin-js (deprecated) to @stylistic/eslint-plugin",
-            "suggestion": "Goal without test: 'Switch from @stylistic/eslint-plugin-js (deprecated) to @sty...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Fix new linter errors",
-            "suggestion": "Goal without test: 'Fix new linter errors' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 6282,
         "format": "freeform",
         "completeness": 0,
@@ -3404,11 +3336,11 @@
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.1463,
-    "unspecd_rework_rate": 0.0988,
-    "delta": 0.0475,
-    "specd_sample_size": 41,
-    "unspecd_sample_size": 172,
+    "specd_rework_rate": 0.125,
+    "unspecd_rework_rate": 0.104,
+    "delta": 0.021,
+    "specd_sample_size": 40,
+    "unspecd_sample_size": 173,
     "significance": "significant",
     "signals": [
       {

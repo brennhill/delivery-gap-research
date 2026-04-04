@@ -31,6 +31,16 @@ _TICKET_FALSE_POSITIVES = {
     "RSA",
     "CWE",
     "CVE",
+    # Common false positives from real data
+    "GPT",       # GPT-5, GPT-4, etc. — model names, not tickets
+    "AI",        # AI-GENERATED, AI-COMPATIBLE, AI-ASSISTED, AI-POWERED
+    "CSS",       # CSS-TO, CSS-IN, etc. — technology references
+    "LICENSE",   # LICENSE-2.0, etc. — license identifiers
+    "NEXT",      # NEXT-XXX — placeholder patterns
+    "CLA",       # CLA-APPROVED, CLA-SIGNED — bot labels
+    "WIP",       # WIP-123 — work-in-progress markers
+    "GPU",       # GPU-D6DE3398 — hardware identifiers
+    "GHSA",      # GHSA-xxxx — GitHub Security Advisory identifiers
 }
 
 # URL pattern
@@ -95,9 +105,23 @@ _SPEC_URL_RE = re.compile(
 )
 
 
+_SPEC_URL_EXCLUDE_RE = re.compile(
+    r"issues/new|issues/choose|/issues/new\b",
+    re.IGNORECASE,
+)
+
+
 def _is_spec_url(url: str) -> bool:
-    """Check if URL points to a known spec-hosting domain."""
-    return bool(_SPEC_URL_RE.search(url))
+    """Check if URL points to a known spec-hosting domain.
+
+    Excludes issue *creation* URLs (issues/new, issues/choose) which are
+    template links, not references to existing issues.
+    """
+    if not _SPEC_URL_RE.search(url):
+        return False
+    if _SPEC_URL_EXCLUDE_RE.search(url):
+        return False
+    return True
 
 
 def _has_section_content(body: str) -> tuple[bool, str | None]:
@@ -140,12 +164,23 @@ def _detect_spec_source(text: str, check_sections: bool = False) -> tuple[bool, 
     # Bare #NNN refs are too noisy — only accept them when the shared package found
     # them via a context keyword (fixes/closes/resolves).  Project-key tickets
     # (PROJ-123) are accepted unconditionally after false-positive filtering.
-    ticket_ids = extract_ticket_ids(text)
+    #
+    # Strip blockquote lines ("> ...") and HTML comments before extraction —
+    # many PR templates have example text like 'Fixes #1234' in blockquotes.
+    cleaned_lines = []
+    for line in text.splitlines():
+        stripped = line.strip()
+        if stripped.startswith(">"):
+            continue  # Skip blockquote/template example lines
+        cleaned_lines.append(line)
+    cleaned_text = "\n".join(cleaned_lines)
+
+    ticket_ids = extract_ticket_ids(cleaned_text)
     _CONTEXT_KW_RE = re.compile(
         r"(?:fix|fixes|closed?|closes|resolves?|references|refs|related?\s+to)\s+#(\d+)",
         re.IGNORECASE,
     )
-    contextual_nums = {m.group(1) for m in _CONTEXT_KW_RE.finditer(text)}
+    contextual_nums = {m.group(1) for m in _CONTEXT_KW_RE.finditer(cleaned_text)}
     for tid in sorted(ticket_ids):
         if tid.startswith("#"):
             # Only accept GitHub-style #NNN when it appeared with a context keyword
@@ -159,7 +194,7 @@ def _detect_spec_source(text: str, check_sections: bool = False) -> tuple[bool, 
         return True, tid
 
     # Check for URLs to known spec-hosting domains
-    for url_match in URL_RE.finditer(text):
+    for url_match in URL_RE.finditer(cleaned_text):
         if _is_spec_url(url_match.group()):
             return True, url_match.group()
 

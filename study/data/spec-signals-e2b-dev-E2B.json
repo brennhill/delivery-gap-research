@@ -3,9 +3,9 @@
   "lookback_days": 365,
   "rework_window_days": 30,
   "coverage": {
-    "coverage_pct": 6,
+    "coverage_pct": 4,
     "total_prs": 335,
-    "specd_prs": 21,
+    "specd_prs": 15,
     "prs": [
       {
         "number": 1237,
@@ -139,16 +139,16 @@
         "number": 1199,
         "sha": null,
         "title": "Remove: SDK Reference artifacts and apps/web",
-        "specd": true,
-        "spec_source": "SDK-REFERENCE",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-03-17T17:08:28+00:00"
       },
       {
         "number": 1164,
         "sha": null,
         "title": "fix(cli): add implicit limit to sandbox list",
-        "specd": true,
-        "spec_source": "CLI-ONLY",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-03-09T20:16:08+00:00"
       },
       {
@@ -259,8 +259,8 @@
         "number": 1165,
         "sha": null,
         "title": "Update Node.js Dockerfile to install Yarn differently",
-        "specd": true,
-        "spec_source": "GPG-VERIFYING",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-02-25T16:14:48+00:00"
       },
       {
@@ -355,8 +355,8 @@
         "number": 1141,
         "sha": null,
         "title": "chore(ci): add unified SDK tests workflow with staging",
-        "specd": true,
-        "spec_source": "CI-ONLY",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-02-17T17:15:31+00:00"
       },
       {
@@ -395,8 +395,8 @@
         "number": 1135,
         "sha": null,
         "title": "Potential fix for code scanning alert no. 3: Workflow does not contain permissions",
-        "specd": true,
-        "spec_source": "CI-ONLY",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-02-15T16:14:38+00:00"
       },
       {
@@ -1139,8 +1139,8 @@
         "number": 957,
         "sha": null,
         "title": "Build System v2 Introduction",
-        "specd": true,
-        "spec_source": "SDK-BASED",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-10-16T11:41:21+00:00"
       },
       {
@@ -2693,7 +2693,7 @@
     "mode": "heuristic",
     "average_score": 44,
     "verdicts": {
-      "REVIEW": 20,
+      "REVIEW": 14,
       "REWRITE": 1
     },
     "specs": [
@@ -2736,80 +2736,6 @@
             "type": "ambiguity",
             "term": "simple",
             "suggestion": "Replace 'simple' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboard?tab=bugbot) for c",
-            "suggestion": "Goal without test: '> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboa...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 1199,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboard?tab=bugbot) for c",
-            "suggestion": "Goal without test: '> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboa...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 1164,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
           },
           {
             "line": 0,
@@ -2877,129 +2803,6 @@
             "type": "testability",
             "term": "[ ] Verify sandbox headers are correctly passed to EnvdApiClient",
             "suggestion": "Goal without test: '[ ] Verify sandbox headers are correctly passed to EnvdApiCl...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 1165,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboard?tab=bugbot) for c",
-            "suggestion": "Goal without test: '> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboa...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 1141,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboard?tab=bugbot) for c",
-            "suggestion": "Goal without test: '> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboa...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 1135,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 98,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 44,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 3,
-            "type": "ambiguity",
-            "term": "sufficient",
-            "suggestion": "Replace 'sufficient' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "The best minimal fix is to add a top-level permissions block immediately after t",
-            "suggestion": "Goal without test: 'The best minimal fix is to add a top-level permissions block...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboard?tab=bugbot) for c",
-            "suggestion": "Goal without test: '> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboa...' \u2014 add a Given/When/Then criterion"
           }
         ],
         "warnings": [
@@ -3243,43 +3046,6 @@
           }
         ],
         "warnings": [
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 957,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboard?tab=bugbot) for c",
-            "suggestion": "Goal without test: '> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboa...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
           "No I/O contracts \u2014 AI will invent API shapes",
           "No side effects listed \u2014 AI may miss integrations",
           "No error contract \u2014 AI will invent error shapes per function",
@@ -3789,11 +3555,11 @@
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.2381,
-    "unspecd_rework_rate": 0.1529,
-    "delta": 0.0852,
-    "specd_sample_size": 21,
-    "unspecd_sample_size": 314,
+    "specd_rework_rate": 0.3333,
+    "unspecd_rework_rate": 0.15,
+    "delta": 0.1833,
+    "specd_sample_size": 15,
+    "unspecd_sample_size": 320,
     "significance": "limited",
     "signals": [
       {
@@ -4700,16 +4466,10 @@
     ],
     "by_complexity": {
       "small": {
-        "specd_rework_rate": 0.0833,
-        "unspecd_rework_rate": 0.0558,
-        "specd_count": 12,
-        "unspecd_count": 197
-      },
-      "large": {
-        "specd_rework_rate": 0.6,
-        "unspecd_rework_rate": 0.3559,
-        "specd_count": 5,
-        "unspecd_count": 59
+        "specd_rework_rate": 0.125,
+        "unspecd_rework_rate": 0.0547,
+        "specd_count": 8,
+        "unspecd_count": 201
       }
     }
   }

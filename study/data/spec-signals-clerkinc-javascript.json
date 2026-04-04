@@ -3,9 +3,9 @@
   "lookback_days": 365,
   "rework_window_days": 30,
   "coverage": {
-    "coverage_pct": 16,
+    "coverage_pct": 15,
     "total_prs": 996,
-    "specd_prs": 155,
+    "specd_prs": 152,
     "prs": [
       {
         "number": 8160,
@@ -3331,8 +3331,8 @@
         "number": 7590,
         "sha": null,
         "title": "feat(ui): Add warning for structural CSS customization without version pinning",
-        "specd": true,
-        "spec_source": "CSS-IN",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-01-20T19:07:26+00:00"
       },
       {
@@ -3355,8 +3355,8 @@
         "number": 7560,
         "sha": null,
         "title": "feat(ui): Add `light-dark` theme support",
-        "specd": true,
-        "spec_source": "CSS-VARIABLE",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-01-20T16:50:25+00:00"
       },
       {
@@ -6467,8 +6467,8 @@
         "number": 7089,
         "sha": null,
         "title": "chore(repo): Update playwright to fix CVE-2025-59288",
-        "specd": true,
-        "spec_source": "GHSA-7",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-10-29T15:18:25+00:00"
       },
       {
@@ -7981,7 +7981,7 @@
     "mode": "heuristic",
     "average_score": 44,
     "verdicts": {
-      "REVIEW": 155
+      "REVIEW": 152
     },
     "specs": [
       {
@@ -13908,193 +13908,6 @@
         ]
       },
       {
-        "pr_number": 7590,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 97,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 44,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 18,
-            "type": "ambiguity",
-            "term": "Simple",
-            "suggestion": "Replace 'Simple' with a specific, measurable term"
-          },
-          {
-            "line": 46,
-            "type": "ambiguity",
-            "term": "Comprehensive",
-            "suggestion": "Replace 'Comprehensive' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Adds a development-mode console warning when users customize Clerk components us",
-            "suggestion": "Goal without test: 'Adds a development-mode console warning when users customize...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Detects patterns in both appearance.elements (CSS-in-JS) and external stylesheet",
-            "suggestion": "Goal without test: 'Detects patterns in both appearance.elements (CSS-in-JS) and...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Guides users to pin their @clerk/ui version to avoid breakages",
-            "suggestion": "Goal without test: 'Guides users to pin their @clerk/ui version to avoid breakag...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Combinators (>, +, ~) with .cl- classes",
-            "suggestion": "Goal without test: 'Combinators (>, +, ~) with .cl- classes' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Descendant selectors with .cl- classes",
-            "suggestion": "Goal without test: 'Descendant selectors with .cl- classes' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Positional pseudo-selectors (:nth-child, :first-child, etc.)",
-            "suggestion": "Goal without test: 'Positional pseudo-selectors (:nth-child, :first-child, etc.)' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": ":has() selector",
-            "suggestion": "Goal without test: ':has() selector' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Multiple .cl- classes in a single selector",
-            "suggestion": "Goal without test: 'Multiple .cl- classes in a single selector' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Tag coupled with .cl- class (e.g., div.cl-button)",
-            "suggestion": "Goal without test: 'Tag coupled with .cl- class (e.g., div.cl-button)' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Simple .cl- class styling (e.g., .cl-button { color: red })",
-            "suggestion": "Goal without test: 'Simple .cl- class styling (e.g., .cl-button { color: red })' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Pseudo-classes like :hover, :focus",
-            "suggestion": "Goal without test: 'Pseudo-classes like :hover, :focus' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Pseudo-elements like ::before, ::after",
-            "suggestion": "Goal without test: 'Pseudo-elements like ::before, ::after' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "String className values in appearance.elements",
-            "suggestion": "Goal without test: 'String className values in appearance.elements' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Only runs in development mode",
-            "suggestion": "Goal without test: 'Only runs in development mode' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Deferred via setTimeout to avoid blocking component mount",
-            "suggestion": "Goal without test: 'Deferred via setTimeout to avoid blocking component mount' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Uses module-level hasChecked guard to prevent rescanning on remount",
-            "suggestion": "Goal without test: 'Uses module-level hasChecked guard to prevent rescanning on ...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Early returns when structural patterns found in appearance.elements (skips style",
-            "suggestion": "Goal without test: 'Early returns when structural patterns found in appearance.e...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Unit tests for detectStructuralClerkCss() - 16 tests",
-            "suggestion": "Goal without test: '[x] Unit tests for detectStructuralClerkCss() - 16 tests' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Unit tests for warnAboutCustomizationWithoutPinning() - 18 tests",
-            "suggestion": "Goal without test: '[x] Unit tests for warnAboutCustomizationWithoutPinning() - ...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] TypeScript compiles cleanly",
-            "suggestion": "Goal without test: '[x] TypeScript compiles cleanly' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[ ] Manual verification in dev mode with structural customization",
-            "suggestion": "Goal without test: '[ ] Manual verification in dev mode with structural customiz...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Development-mode warning that alerts developers when customizing Clerk UI with s",
-            "suggestion": "Goal without test: 'Development-mode warning that alerts developers when customi...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Comprehensive unit tests for stylesheet/selector pattern detection and the custo",
-            "suggestion": "Goal without test: 'Comprehensive unit tests for stylesheet/selector pattern det...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Added a changeset documenting package patch bumps and the new development-mode w",
-            "suggestion": "Goal without test: 'Added a changeset documenting package patch bumps and the ne...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 7621,
         "format": "freeform",
         "completeness": 0,
@@ -14181,139 +13994,6 @@
             "type": "testability",
             "term": "Added comprehensive tests covering prototype-pollution scenarios (including nest",
             "suggestion": "Goal without test: 'Added comprehensive tests covering prototype-pollution scena...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 7560,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 97,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 44,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 65,
-            "type": "ambiguity",
-            "term": "If applicable",
-            "suggestion": "Replace 'If applicable' with a specific, measurable term"
-          },
-          {
-            "line": 66,
-            "type": "ambiguity",
-            "term": "If applicable",
-            "suggestion": "Replace 'If applicable' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Provider icons for Apple, GitHub, OKX Wallet, and Vercel now use CSS mask-image ",
-            "suggestion": "Goal without test: 'Provider icons for Apple, GitHub, OKX Wallet, and Vercel now...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "These icons support a customizable --cl-icon-fill CSS variable",
-            "suggestion": "Goal without test: 'These icons support a customizable --cl-icon-fill CSS variab...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Other provider icons (like Google) continue to render as full-color images using",
-            "suggestion": "Goal without test: 'Other provider icons (like Google) continue to render as ful...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[ ] pnpm test runs as expected.",
-            "suggestion": "Goal without test: '[ ] pnpm test runs as expected.' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[ ] pnpm build` runs as expected.",
-            "suggestion": "Goal without test: '[ ] pnpm build` runs as expected.' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[ ] (If applicable) [JSDoc comments](https://jsdoc.app/about-getting-started.htm",
-            "suggestion": "Goal without test: '[ ] (If applicable) [JSDoc comments](https://jsdoc.app/about...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[ ] (If applicable) [Documentation](https://github.com/clerk/clerk-docs) has bee",
-            "suggestion": "Goal without test: '[ ] (If applicable) [Documentation](https://github.com/clerk...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[ ] \ud83c\udf1f New feature",
-            "suggestion": "Goal without test: '[ ] \ud83c\udf1f New feature' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[ ] \ud83d\udd28 Breaking change",
-            "suggestion": "Goal without test: '[ ] \ud83d\udd28 Breaking change' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[ ] \ud83d\udcd6 Refactoring / dependency upgrade / documentation",
-            "suggestion": "Goal without test: '[ ] \ud83d\udcd6 Refactoring / dependency upgrade / documentation' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Adds a lightDark theming option that auto-adapts colors to system theme.",
-            "suggestion": "Goal without test: 'Adds a lightDark theming option that auto-adapts colors to s...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Provider icons now support CSS-variable-driven fills (monochrome icons customiza",
-            "suggestion": "Goal without test: 'Provider icons now support CSS-variable-driven fills (monoch...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Core color system updated to be theme-aware.",
-            "suggestion": "Goal without test: 'Core color system updated to be theme-aware.' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Removed dark-mode icon inversion so icons display consistently and respect custo",
-            "suggestion": "Goal without test: 'Removed dark-mode icon inversion so icons display consistent...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Guidance added for per-provider icon theming and theme-aware usage.",
-            "suggestion": "Goal without test: 'Guidance added for per-provider icon theming and theme-aware...' \u2014 add a Given/When/Then criterion"
           }
         ],
         "warnings": [
@@ -20378,103 +20058,6 @@
         ]
       },
       {
-        "pr_number": 7089,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 93,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 43,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 13,
-            "type": "ambiguity",
-            "term": "If applicable",
-            "suggestion": "Replace 'If applicable' with a specific, measurable term"
-          },
-          {
-            "line": 14,
-            "type": "ambiguity",
-            "term": "If applicable",
-            "suggestion": "Replace 'If applicable' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] pnpm test runs as expected.",
-            "suggestion": "Goal without test: '[x] pnpm test runs as expected.' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] pnpm build runs as expected.",
-            "suggestion": "Goal without test: '[x] pnpm build runs as expected.' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[ ] (If applicable) [JSDoc comments](https://jsdoc.app/about-getting-started.htm",
-            "suggestion": "Goal without test: '[ ] (If applicable) [JSDoc comments](https://jsdoc.app/about...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[ ] (If applicable) [Documentation](https://github.com/clerk/clerk-docs) has bee",
-            "suggestion": "Goal without test: '[ ] (If applicable) [Documentation](https://github.com/clerk...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[ ] \ud83c\udf1f New feature",
-            "suggestion": "Goal without test: '[ ] \ud83c\udf1f New feature' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[ ] \ud83d\udd28 Breaking change",
-            "suggestion": "Goal without test: '[ ] \ud83d\udd28 Breaking change' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] \ud83d\udcd6 Refactoring / dependency upgrade / documentation",
-            "suggestion": "Goal without test: '[x] \ud83d\udcd6 Refactoring / dependency upgrade / documentation' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Updated devDependency @playwright/test to ^1.56.1 in root and testing package ma",
-            "suggestion": "Goal without test: 'Updated devDependency @playwright/test to ^1.56.1 in root an...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Added a placeholder changeset entry.",
-            "suggestion": "Goal without test: 'Added a placeholder changeset entry.' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 7079,
         "format": "freeform",
         "completeness": 0,
@@ -23742,11 +23325,11 @@
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.2903,
-    "unspecd_rework_rate": 0.2045,
-    "delta": 0.0858,
-    "specd_sample_size": 155,
-    "unspecd_sample_size": 841,
+    "specd_rework_rate": 0.2961,
+    "unspecd_rework_rate": 0.2038,
+    "delta": 0.0923,
+    "specd_sample_size": 152,
+    "unspecd_sample_size": 844,
     "significance": "significant",
     "signals": [
       {
@@ -27014,16 +26597,16 @@
         "unspecd_count": 513
       },
       "medium": {
-        "specd_rework_rate": 0.2979,
-        "unspecd_rework_rate": 0.2,
-        "specd_count": 47,
-        "unspecd_count": 250
+        "specd_rework_rate": 0.3111,
+        "unspecd_rework_rate": 0.1984,
+        "specd_count": 45,
+        "unspecd_count": 252
       },
       "large": {
-        "specd_rework_rate": 0.6061,
-        "unspecd_rework_rate": 0.4151,
-        "specd_count": 33,
-        "unspecd_count": 106
+        "specd_rework_rate": 0.625,
+        "unspecd_rework_rate": 0.4112,
+        "specd_count": 32,
+        "unspecd_count": 107
       }
     }
   }

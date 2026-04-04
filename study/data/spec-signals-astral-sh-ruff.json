@@ -5,7 +5,7 @@
   "coverage": {
     "coverage_pct": 45,
     "total_prs": 1058,
-    "specd_prs": 478,
+    "specd_prs": 476,
     "prs": [
       {
         "number": 24166,
@@ -587,8 +587,8 @@
         "number": 23867,
         "sha": null,
         "title": "Preserve type-expression parentheses in the formatter",
-        "specd": true,
-        "spec_source": "https://github.com/astral-sh/ruff/issues/23864",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-03-11T19:08:55+00:00"
       },
       {
@@ -8451,8 +8451,8 @@
         "number": 19599,
         "sha": null,
         "title": "Add license classifier back to pyproject.toml",
-        "specd": true,
-        "spec_source": "https://github.com/python/typing_extensions/issues/576",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-07-28T19:58:16+00:00"
       },
       {
@@ -8477,7 +8477,7 @@
     "mode": "heuristic",
     "average_score": 45,
     "verdicts": {
-      "REVIEW": 471,
+      "REVIEW": 469,
       "REWRITE": 7
     },
     "specs": [
@@ -9735,49 +9735,6 @@
           "No side effects listed \u2014 AI may miss integrations",
           "No error contract \u2014 AI will invent error shapes per function",
           "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 23867,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 97,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 44,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 7,
-            "type": "ambiguity",
-            "term": "correctly",
-            "suggestion": "Replace 'correctly' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "(no goals found)",
-            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
           "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
         ]
       },
@@ -29397,53 +29354,15 @@
           "No state transitions \u2014 AI may allow invalid transitions",
           "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
         ]
-      },
-      {
-        "pr_number": 19599,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "(no goals found)",
-            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
       }
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.0837,
-    "unspecd_rework_rate": 0.0328,
-    "delta": 0.0509,
-    "specd_sample_size": 478,
-    "unspecd_sample_size": 580,
+    "specd_rework_rate": 0.084,
+    "unspecd_rework_rate": 0.0326,
+    "delta": 0.0514,
+    "specd_sample_size": 476,
+    "unspecd_sample_size": 582,
     "significance": "significant",
     "signals": [
       {
@@ -30164,16 +30083,16 @@
     ],
     "by_complexity": {
       "small": {
-        "specd_rework_rate": 0.0394,
-        "unspecd_rework_rate": 0.0158,
-        "specd_count": 203,
-        "unspecd_count": 571
+        "specd_rework_rate": 0.0396,
+        "unspecd_rework_rate": 0.0157,
+        "specd_count": 202,
+        "unspecd_count": 572
       },
       "medium": {
-        "specd_rework_rate": 0.1005,
-        "unspecd_rework_rate": 0.0539,
-        "specd_count": 209,
-        "unspecd_count": 167
+        "specd_rework_rate": 0.101,
+        "unspecd_rework_rate": 0.0536,
+        "specd_count": 208,
+        "unspecd_count": 168
       },
       "large": {
         "specd_rework_rate": 0.1667,

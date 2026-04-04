@@ -3,9 +3,9 @@
   "lookback_days": 365,
   "rework_window_days": 30,
   "coverage": {
-    "coverage_pct": 24,
+    "coverage_pct": 21,
     "total_prs": 431,
-    "specd_prs": 102,
+    "specd_prs": 92,
     "prs": [
       {
         "number": 14549,
@@ -107,8 +107,8 @@
         "number": 14542,
         "sha": null,
         "title": "[test] AI-assisted flaky E2E test fixes",
-        "specd": true,
-        "spec_source": "AI-ASSISTED",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-03-27T13:56:24+00:00"
       },
       {
@@ -275,8 +275,8 @@
         "number": 14493,
         "sha": null,
         "title": "[docs] AI-assisted documentation updates",
-        "specd": true,
-        "spec_source": "AI-ASSISTED",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-03-24T16:47:26+00:00"
       },
       {
@@ -547,8 +547,8 @@
         "number": 14436,
         "sha": null,
         "title": "[chore] Rename opus-4.6-thinking to claude-4.6-opus-high-thinking",
-        "specd": true,
-        "spec_source": "AI-ASSISTED",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-03-20T15:00:22+00:00"
       },
       {
@@ -619,8 +619,8 @@
         "number": 14376,
         "sha": null,
         "title": "[chore] Add AI skill and workflow for fixing flaky E2E tests",
-        "specd": true,
-        "spec_source": "AI-POWERED",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-03-18T16:01:15+00:00"
       },
       {
@@ -659,8 +659,8 @@
         "number": 14403,
         "sha": null,
         "title": "[docs] AI-assisted documentation updates",
-        "specd": true,
-        "spec_source": "AI-ASSISTED",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-03-17T18:48:38+00:00"
       },
       {
@@ -1083,8 +1083,8 @@
         "number": 14298,
         "sha": null,
         "title": "[docs] AI-assisted documentation updates",
-        "specd": true,
-        "spec_source": "AI-ASSISTED",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-03-10T16:27:50+00:00"
       },
       {
@@ -1523,8 +1523,8 @@
         "number": 14198,
         "sha": null,
         "title": "[docs] AI-assisted documentation updates",
-        "specd": true,
-        "spec_source": "AI-ASSISTED",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-03-03T17:01:57+00:00"
       },
       {
@@ -1563,8 +1563,8 @@
         "number": 14181,
         "sha": null,
         "title": "[docs] AI-assisted documentation updates",
-        "specd": true,
-        "spec_source": "AI-ASSISTED",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-03-03T10:24:42+00:00"
       },
       {
@@ -2155,8 +2155,8 @@
         "number": 13986,
         "sha": null,
         "title": "[chore] Enhance contribution guidelines",
-        "specd": true,
-        "spec_source": "AI-ASSISTED",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-02-20T21:14:35+00:00"
       },
       {
@@ -3363,8 +3363,8 @@
         "number": 14596,
         "sha": null,
         "title": "[docs] AI-assisted documentation updates",
-        "specd": true,
-        "spec_source": "AI-ASSISTED",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-04-01T06:08:57+00:00"
       },
       {
@@ -3459,9 +3459,9 @@
   },
   "quality": {
     "mode": "heuristic",
-    "average_score": 45,
+    "average_score": 44,
     "verdicts": {
-      "REVIEW": 102
+      "REVIEW": 92
     },
     "specs": [
       {
@@ -3841,56 +3841,6 @@
         ]
       },
       {
-        "pr_number": 14542,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "expect(trigger.getbytext(\"Foo count: 0\")).tobevisible()",
-            "suggestion": "Goal without test: 'expect(trigger.getbytext(\"Foo count: 0\")).tobevisible()' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "8 out of 9 non-skipped tests could not be reproduced locally after 25 runs each.",
-            "suggestion": "Goal without test: '8 out of 9 non-skipped tests could not be reproduced locally...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "1 test was already marked with @pytest.mark.flaky and was skipped per the skill ",
-            "suggestion": "Goal without test: '1 test was already marked with @pytest.mark.flaky and was sk...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 14455,
         "format": "freeform",
         "completeness": 0,
@@ -4242,200 +4192,6 @@
           "No I/O contracts \u2014 AI will invent API shapes",
           "No side effects listed \u2014 AI may miss integrations",
           "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 14493,
-        "format": "freeform",
-        "completeness": 50,
-        "ambiguity": 99,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 60,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 69,
-            "type": "ambiguity",
-            "term": "correctly",
-            "suggestion": "Replace 'correctly' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "AGENTS.md files (11 files)",
-            "suggestion": "Goal without test: 'AGENTS.md files (11 files)' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "README.md files (10 files)",
-            "suggestion": "Goal without test: 'README.md files (10 files)' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": ".claude/skills/*/SKILL.md (14 files)",
-            "suggestion": "Goal without test: '.claude/skills/*/SKILL.md (14 files)' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": ".claude/agents/*.md (3 files)",
-            "suggestion": "Goal without test: '.claude/agents/*.md (3 files)' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "wiki/*/.md (5 files)",
-            "suggestion": "Goal without test: 'wiki/*/.md (5 files)' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "CONTRIBUTING.md",
-            "suggestion": "Goal without test: 'CONTRIBUTING.md' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Line 16: Referenced ../wiki/creating-prs.md which does not exist.",
-            "suggestion": "Goal without test: 'Line 16: Referenced ../wiki/creating-prs.md which does not e...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Fix: Changed to ../wiki/pull-requests.md (the actual file name).",
-            "suggestion": "Goal without test: 'Fix: Changed to ../wiki/pull-requests.md (the actual file na...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Lines 14-17: Used test_results (underscore) for the test results directory path ",
-            "suggestion": "Goal without test: 'Lines 14-17: Used test_results (underscore) for the test res...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Actual: The Playwright output directory is test-results (hyphen), as configured ",
-            "suggestion": "Goal without test: 'Actual: The Playwright output directory is test-results (hyp...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Fix: Changed all 4 occurrences of test_results to test-results.",
-            "suggestion": "Goal without test: 'Fix: Changed all 4 occurrences of test_results to test-resul...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Line 51: Used e2eplaywright/testresults/ (underscore) for the local test results",
-            "suggestion": "Goal without test: 'Line 51: Used e2eplaywright/testresults/ (underscore) for th...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Fix: Changed to e2e_playwright/test-results/ (hyphen) to match actual directory ",
-            "suggestion": "Goal without test: 'Fix: Changed to e2e_playwright/test-results/ (hyphen) to mat...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Line 59: Used snapshot_updates (underscore) for the snapshot updates subfolder.",
-            "suggestion": "Goal without test: 'Line 59: Used snapshot_updates (underscore) for the snapshot...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Fix: Changed to snapshot-updates (hyphen) to match actual directory name from co",
-            "suggestion": "Goal without test: 'Fix: Changed to snapshot-updates (hyphen) to match actual di...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Line 88: Referenced [Prettier](https://prettier.io) as a code formatter. Prettie",
-            "suggestion": "Goal without test: 'Line 88: Referenced [Prettier](https://prettier.io) as a cod...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Fix: Updated the tool list to mention oxfmt, oxlint, ESLint, and Ruff (the actua",
-            "suggestion": "Goal without test: 'Fix: Updated the tool list to mention oxfmt, oxlint, ESLint,...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "All make commands listed in AGENTS.md match make help output",
-            "suggestion": "Goal without test: 'All make commands listed in AGENTS.md match make help output' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "All file/folder paths referenced in documentation exist in the codebase",
-            "suggestion": "Goal without test: 'All file/folder paths referenced in documentation exist in t...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Version numbers in frontend/AGENTS.md match frontend/package.json (TypeScript v5",
-            "suggestion": "Goal without test: 'Version numbers in frontend/AGENTS.md match frontend/package...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Version numbers in lib/AGENTS.md match pyproject.toml (Python 3.10-3.14, Ruff 0.",
-            "suggestion": "Goal without test: 'Version numbers in lib/AGENTS.md match pyproject.toml (Pytho...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "All 41 GitHub Actions workflows listed in .github/workflows/AGENTS.md match actu",
-            "suggestion": "Goal without test: 'All 41 GitHub Actions workflows listed in .github/workflows/...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "All 5 composite actions listed in .github/workflows/AGENTS.md match .github/acti",
-            "suggestion": "Goal without test: 'All 5 composite actions listed in .github/workflows/AGENTS.m...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "All 14 skills listed in CONTRIBUTING.md match .claude/skills/*/SKILL.md files",
-            "suggestion": "Goal without test: 'All 14 skills listed in CONTRIBUTING.md match .claude/skills...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "All 3 subagents listed in CONTRIBUTING.md match .claude/agents/*.md files",
-            "suggestion": "Goal without test: 'All 3 subagents listed in CONTRIBUTING.md match .claude/agen...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Cross-references between wiki, AGENTS.md files, and skill files are consistent",
-            "suggestion": "Goal without test: 'Cross-references between wiki, AGENTS.md files, and skill fi...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Node.js version in .nvmrc (v24) is used correctly in documentation",
-            "suggestion": "Goal without test: 'Node.js version in .nvmrc (v24) is used correctly in documen...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
           "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
         ]
       },
@@ -5079,73 +4835,6 @@
         ]
       },
       {
-        "pr_number": 14436,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 95,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 44,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 10,
-            "type": "ambiguity",
-            "term": "if applicable",
-            "suggestion": "Replace 'if applicable' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": ".github/workflows/ai-issue-triage.yml",
-            "suggestion": "Goal without test: '.github/workflows/ai-issue-triage.yml' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": ".github/workflows/ai-pr-review.yml",
-            "suggestion": "Goal without test: '.github/workflows/ai-pr-review.yml' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": ".github/workflows/ai-update-docs.yml",
-            "suggestion": "Goal without test: '.github/workflows/ai-update-docs.yml' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": ".github/workflows/ai-fix-flaky-e2e-tests.yml",
-            "suggestion": "Goal without test: '.github/workflows/ai-fix-flaky-e2e-tests.yml' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[ ] No tests needed (CI workflow configuration change only)",
-            "suggestion": "Goal without test: '[ ] No tests needed (CI workflow configuration change only)' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 14373,
         "format": "freeform",
         "completeness": 0,
@@ -5393,85 +5082,6 @@
         ]
       },
       {
-        "pr_number": 14376,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 94,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 43,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 5,
-            "type": "ambiguity",
-            "term": "comprehensive",
-            "suggestion": "Replace 'comprehensive' with a specific, measurable term"
-          },
-          {
-            "line": 9,
-            "type": "ambiguity",
-            "term": "if applicable",
-            "suggestion": "Replace 'if applicable' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "New /fixing-flaky-e2e-tests skill with comprehensive instructions for reproducin",
-            "suggestion": "Goal without test: 'New /fixing-flaky-e2e-tests skill with comprehensive instruc...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Python script (scripts/fetchflakytests.py) to identify top flaky tests from CI a",
-            "suggestion": "Goal without test: 'Python script (scripts/fetchflakytests.py) to identify top f...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Weekly GitHub Actions workflow (ai-fix-flaky-e2e-tests.yml) that automatically c",
-            "suggestion": "Goal without test: 'Weekly GitHub Actions workflow (ai-fix-flaky-e2e-tests.yml) ...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Documentation and tooling changes only, no runtime behavior modifications",
-            "suggestion": "Goal without test: 'Documentation and tooling changes only, no runtime behavior ...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Python script follows repository conventions and passes all linting/type checks",
-            "suggestion": "Goal without test: 'Python script follows repository conventions and passes all ...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Workflow follows established patterns from ai-update-docs.yml",
-            "suggestion": "Goal without test: 'Workflow follows established patterns from ai-update-docs.ym...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 14370,
         "format": "freeform",
         "completeness": 0,
@@ -5596,128 +5206,6 @@
             "type": "testability",
             "term": "Manual Testing: \u2705",
             "suggestion": "Goal without test: 'Manual Testing: \u2705' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 14403,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 98,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 44,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 44,
-            "type": "ambiguity",
-            "term": "correctly",
-            "suggestion": "Replace 'correctly' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Before: /usr/bin/ruby -e \"$(curl -fsSL https://raw.githubusercontent.com/Homebre",
-            "suggestion": "Goal without test: 'Before: /usr/bin/ruby -e \"$(curl -fsSL https://raw.githubuse...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "After: /bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/ins",
-            "suggestion": "Goal without test: 'After: /bin/bash -c \"$(curl -fsSL https://raw.githubusercont...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Added: component-lib - Library for building Streamlit custom components v1.",
-            "suggestion": "Goal without test: 'Added: component-lib - Library for building Streamlit custom...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Reordered list alphabetically for consistency with package.json.",
-            "suggestion": "Goal without test: 'Reordered list alphabetically for consistency with package.j...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Make commands: All documented make targets exist and descriptions match make hel",
-            "suggestion": "Goal without test: 'Make commands: All documented make targets exist and descrip...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "File/folder paths: All referenced paths across all docs verified to exist",
-            "suggestion": "Goal without test: 'File/folder paths: All referenced paths across all docs veri...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Tool versions: TypeScript v5, React v18, Vite v8, Vitest v4, ESLint v9, oxlint v",
-            "suggestion": "Goal without test: 'Tool versions: TypeScript v5, React v18, Vite v8, Vitest v4,...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Workflow documentation: All 41 workflow files documented in .github/workflows/AG",
-            "suggestion": "Goal without test: 'Workflow documentation: All 41 workflow files documented in ...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Composite actions: All 5 composite actions documented and match .github/actions/",
-            "suggestion": "Goal without test: 'Composite actions: All 5 composite actions documented and ma...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Skills: All 11 skills documented in CONTRIBUTING.md match .claude/skills/*/SKILL",
-            "suggestion": "Goal without test: 'Skills: All 11 skills documented in CONTRIBUTING.md match .c...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Subagents: All 3 subagents documented in CONTRIBUTING.md match .claude/agents/*.",
-            "suggestion": "Goal without test: 'Subagents: All 3 subagents documented in CONTRIBUTING.md mat...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Cross-references: All internal links between docs resolve correctly",
-            "suggestion": "Goal without test: 'Cross-references: All internal links between docs resolve co...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Testing instructions: Commands and patterns are accurate",
-            "suggestion": "Goal without test: 'Testing instructions: Commands and patterns are accurate' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Code examples: Referenced file patterns match actual codebase structure",
-            "suggestion": "Goal without test: 'Code examples: Referenced file patterns match actual codebas...' \u2014 add a Given/When/Then criterion"
           }
         ],
         "warnings": [
@@ -6800,218 +6288,6 @@
         ]
       },
       {
-        "pr_number": 14298,
-        "format": "freeform",
-        "completeness": 50,
-        "ambiguity": 99,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 60,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 37,
-            "type": "ambiguity",
-            "term": "correctly",
-            "suggestion": "Replace 'correctly' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "AGENTS.md (root + 9 sub-directory files)",
-            "suggestion": "Goal without test: 'AGENTS.md (root + 9 sub-directory files)' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "CONTRIBUTING.md",
-            "suggestion": "Goal without test: 'CONTRIBUTING.md' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": ".claude/skills/*/SKILL.md (11 skill files)",
-            "suggestion": "Goal without test: '.claude/skills/*/SKILL.md (11 skill files)' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": ".claude/agents/*.md (3 subagent files)",
-            "suggestion": "Goal without test: '.claude/agents/*.md (3 subagent files)' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "wiki/*.md (5 files)",
-            "suggestion": "Goal without test: 'wiki/*.md (5 files)' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "README.md files (frontend, e2e_playwright, root)",
-            "suggestion": "Goal without test: 'README.md files (frontend, e2e_playwright, root)' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "All make commands verified against make help output",
-            "suggestion": "Goal without test: 'All make commands verified against make help output' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "All documented file/folder paths verified to exist",
-            "suggestion": "Goal without test: 'All documented file/folder paths verified to exist' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Tool version numbers cross-checked against config files (pyproject.toml, fronten",
-            "suggestion": "Goal without test: 'Tool version numbers cross-checked against config files (pyp...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "External URLs verified (Homebrew, nvm, uv install scripts)",
-            "suggestion": "Goal without test: 'External URLs verified (Homebrew, nvm, uv install scripts)' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Skills and subagents table in CONTRIBUTING.md verified against actual .claude/sk",
-            "suggestion": "Goal without test: 'Skills and subagents table in CONTRIBUTING.md verified again...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Workflow files in .github/workflows/AGENTS.md verified against actual .yml files",
-            "suggestion": "Goal without test: 'Workflow files in .github/workflows/AGENTS.md verified again...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Architecture skill file references verified",
-            "suggestion": "Goal without test: 'Architecture skill file references verified' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Problem: Recommended @parameterized.expand for parameterized tests, but the same",
-            "suggestion": "Goal without test: 'Problem: Recommended @parameterized.expand for parameterized...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Fix: Changed recommendation to @pytest.mark.parametrize with a note that legacy ",
-            "suggestion": "Goal without test: 'Fix: Changed recommendation to @pytest.mark.parametrize with...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Problem: Package list was missing component-v2-lib and eslint-plugin-streamlit-c",
-            "suggestion": "Goal without test: 'Problem: Package list was missing component-v2-lib and eslin...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Fix: Added both packages to the README's package list in alphabetical order with",
-            "suggestion": "Goal without test: 'Fix: Added both packages to the README's package list in alp...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "All make commands in AGENTS.md match make help output",
-            "suggestion": "Goal without test: 'All make commands in AGENTS.md match make help output' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "All folder structure paths exist as documented",
-            "suggestion": "Goal without test: 'All folder structure paths exist as documented' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Python version range (3.10-3.14) matches lib/pyproject.toml classifiers",
-            "suggestion": "Goal without test: 'Python version range (3.10-3.14) matches lib/pyproject.toml ...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Frontend versions (TypeScript v5, React v18, Vite v7, Vitest v4, ESLint v9, Pret",
-            "suggestion": "Goal without test: 'Frontend versions (TypeScript v5, React v18, Vite v7, Vitest...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Node.js version (v24) matches .nvmrc",
-            "suggestion": "Goal without test: 'Node.js version (v24) matches .nvmrc' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Python tool versions (Ruff 0.x, mypy 1.x, pytest 9.x) match pyproject.toml",
-            "suggestion": "Goal without test: 'Python tool versions (Ruff 0.x, mypy 1.x, pytest 9.x) match ...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "All workflow files listed in .github/workflows/AGENTS.md exist",
-            "suggestion": "Goal without test: 'All workflow files listed in .github/workflows/AGENTS.md exi...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "All composite actions listed in .github/workflows/AGENTS.md exist",
-            "suggestion": "Goal without test: 'All composite actions listed in .github/workflows/AGENTS.md ...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Skills/subagents table in CONTRIBUTING.md matches actual files",
-            "suggestion": "Goal without test: 'Skills/subagents table in CONTRIBUTING.md matches actual fil...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Architecture skill file paths and references all valid",
-            "suggestion": "Goal without test: 'Architecture skill file paths and references all valid' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Proto file paths all valid",
-            "suggestion": "Goal without test: 'Proto file paths all valid' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "External URLs reachable",
-            "suggestion": "Goal without test: 'External URLs reachable' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Wiki cross-references valid",
-            "suggestion": "Goal without test: 'Wiki cross-references valid' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 14113,
         "format": "freeform",
         "completeness": 0,
@@ -7935,297 +7211,6 @@
         ]
       },
       {
-        "pr_number": 14198,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "File: AGENTS.md (line 61)",
-            "suggestion": "Goal without test: 'File: AGENTS.md (line 61)' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Issue: frontend-format described as using \"(eslint)\" but make frontend-format ru",
-            "suggestion": "Goal without test: 'Issue: frontend-format described as using \"(eslint)\" but mak...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Fix: Changed \"(eslint)\" to \"(prettier)\".",
-            "suggestion": "Goal without test: 'Fix: Changed \"(eslint)\" to \"(prettier)\".' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "File: frontend/AGENTS.md (line 134)",
-            "suggestion": "Goal without test: 'File: frontend/AGENTS.md (line 134)' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Issue: Same incorrect \"(eslint)\" description for make frontend-format.",
-            "suggestion": "Goal without test: 'Issue: Same incorrect \"(eslint)\" description for make fronte...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "File: .claude/skills/finalizing-pr/SKILL.md",
-            "suggestion": "Goal without test: 'File: .claude/skills/finalizing-pr/SKILL.md' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Issue: Two steps numbered \"### 10.\" (Fix CI issues / Post agent metrics), follow",
-            "suggestion": "Goal without test: 'Issue: Two steps numbered \"### 10.\" (Fix CI issues / Post ag...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Fix: Renumbered \"Post agent metrics\" to step 11 and \"Trigger final AI review\" to",
-            "suggestion": "Goal without test: 'Fix: Renumbered \"Post agent metrics\" to step 11 and \"Trigger...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "File: CONTRIBUTING.md (line 166)",
-            "suggestion": "Goal without test: 'File: CONTRIBUTING.md (line 166)' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Issue: Included git submodule update --init in the clone instructions, but the r",
-            "suggestion": "Goal without test: 'Issue: Included git submodule update --init in the clone ins...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Fix: Removed the git submodule update --init line.",
-            "suggestion": "Goal without test: 'Fix: Removed the git submodule update --init line.' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "All make commands in AGENTS.md match make help output",
-            "suggestion": "Goal without test: 'All make commands in AGENTS.md match make help output' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "All folder paths in AGENTS.md exist in the codebase",
-            "suggestion": "Goal without test: 'All folder paths in AGENTS.md exist in the codebase' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "All workflow files in .github/workflows/AGENTS.md match actual .yml files (41/41",
-            "suggestion": "Goal without test: 'All workflow files in .github/workflows/AGENTS.md match actu...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "All composite actions in .github/actions/ match documentation (5/5)",
-            "suggestion": "Goal without test: 'All composite actions in .github/actions/ match documentatio...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "All skills in CONTRIBUTING.md match .claude/skills/*/ (11/11)",
-            "suggestion": "Goal without test: 'All skills in CONTRIBUTING.md match .claude/skills/*/ (11/11...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "All subagents in CONTRIBUTING.md match .claude/agents/ (3/3)",
-            "suggestion": "Goal without test: 'All subagents in CONTRIBUTING.md match .claude/agents/ (3/3)' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Tool versions match config files (TypeScript v5, React v18, Vite v7, Vitest v4, ",
-            "suggestion": "Goal without test: 'Tool versions match config files (TypeScript v5, React v18, ...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "All file paths referenced in architecture docs exist",
-            "suggestion": "Goal without test: 'All file paths referenced in architecture docs exist' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Wiki pages and README files are up to date",
-            "suggestion": "Goal without test: 'Wiki pages and README files are up to date' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Skill cross-references use current names",
-            "suggestion": "Goal without test: 'Skill cross-references use current names' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 14181,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Before: vitest v3",
-            "suggestion": "Goal without test: 'Before: vitest v3' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "After: vitest v4",
-            "suggestion": "Goal without test: 'After: vitest v4' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Reason: frontend/package.json has \"vitest\": \"^4.0.18\"",
-            "suggestion": "Goal without test: 'Reason: frontend/package.json has \"vitest\": \"^4.0.18\"' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Before: pytest 8.x",
-            "suggestion": "Goal without test: 'Before: pytest 8.x' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "After: pytest 9.x",
-            "suggestion": "Goal without test: 'After: pytest 9.x' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Reason: Installed pytest is 9.0.2 (pyproject.toml specifies \"pytest>=8.3.5\")",
-            "suggestion": "Goal without test: 'Reason: Installed pytest is 9.0.2 (pyproject.toml specifies ...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Added finalizing-pr skill entry to the \"AI Agent Skills and Subagents\" table",
-            "suggestion": "Goal without test: 'Added finalizing-pr skill entry to the \"AI Agent Skills and ...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Reason: Skill exists at .claude/skills/finalizing-pr/SKILL.md but was not listed",
-            "suggestion": "Goal without test: 'Reason: Skill exists at .claude/skills/finalizing-pr/SKILL.m...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Added component-v2-lib workspace entry",
-            "suggestion": "Goal without test: 'Added component-v2-lib workspace entry' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Reason: frontend/package.json workspaces includes component-v2-lib but it was no",
-            "suggestion": "Goal without test: 'Reason: frontend/package.json workspaces includes component-...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "All make commands in docs match make help output",
-            "suggestion": "Goal without test: 'All make commands in docs match make help output' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "All file/folder paths referenced in docs exist in the codebase",
-            "suggestion": "Goal without test: 'All file/folder paths referenced in docs exist in the codeba...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "All workflow files listed in .github/workflows/AGENTS.md exist",
-            "suggestion": "Goal without test: 'All workflow files listed in .github/workflows/AGENTS.md exi...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "All composite actions listed match .github/actions/ contents",
-            "suggestion": "Goal without test: 'All composite actions listed match .github/actions/ contents' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "All skill/agent cross-references are valid",
-            "suggestion": "Goal without test: 'All skill/agent cross-references are valid' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Python version range (3.10-3.14) matches lib/pyproject.toml classifiers",
-            "suggestion": "Goal without test: 'Python version range (3.10-3.14) matches lib/pyproject.toml ...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Node.js v24 in .nvmrc is consistent with docs",
-            "suggestion": "Goal without test: 'Node.js v24 in .nvmrc is consistent with docs' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 14140,
         "format": "freeform",
         "completeness": 0,
@@ -9048,61 +8033,6 @@
           "No side effects listed \u2014 AI may miss integrations",
           "No error contract \u2014 AI will invent error shapes per function",
           "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 13986,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[ ] Unit tests (JS and/or Python)",
-            "suggestion": "Goal without test: '[ ] Unit tests (JS and/or Python)' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[ ] Manually tested",
-            "suggestion": "Goal without test: '[ ] Manually tested' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] No tests needed",
-            "suggestion": "Goal without test: '[x] No tests needed' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Rationale: Documentation changes only",
-            "suggestion": "Goal without test: 'Rationale: Documentation changes only' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
           "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
         ]
       },
@@ -11357,190 +10287,15 @@
           "No error contract \u2014 AI will invent error shapes per function",
           "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
         ]
-      },
-      {
-        "pr_number": 14596,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 99,
-        "testability": 28,
-        "consistency": 100,
-        "overall": 52,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 80,
-            "type": "ambiguity",
-            "term": "correctly",
-            "suggestion": "Replace 'correctly' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "CONTRIBUTING.md",
-            "suggestion": "Goal without test: 'CONTRIBUTING.md' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Issue: Missing component-lib from the packages list. The frontend/package.json w",
-            "suggestion": "Goal without test: 'Issue: Missing component-lib from the packages list. The fro...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Fix: Added component-lib entry to the packages list.",
-            "suggestion": "Goal without test: 'Fix: Added component-lib entry to the packages list.' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Issue: Missing manymessagesapp scenario which exists in SCENARIOS in testload.py",
-            "suggestion": "Goal without test: 'Issue: Missing manymessagesapp scenario which exists in SCEN...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Fix: Added manymessagesapp row to the Test Scenarios table.",
-            "suggestion": "Goal without test: 'Fix: Added manymessagesapp row to the Test Scenarios table.' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Issue: The example JSON showed a flat structure with scenario and concurrentuser",
-            "suggestion": "Goal without test: 'Issue: The example JSON showed a flat structure with scenari...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Fix: Updated the JSON example to match the actual combined output format with me",
-            "suggestion": "Goal without test: 'Fix: Updated the JSON example to match the actual combined o...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Issue: The command uv run python generatereport.py --results-dir=results assumed",
-            "suggestion": "Goal without test: 'Issue: The command uv run python generatereport.py --results...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Fix: Changed to use full repo-root relative paths: uv run python e2eplaywright/l",
-            "suggestion": "Goal without test: 'Fix: Changed to use full repo-root relative paths: uv run py...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Issue: Missing worker.py and scenarios/manymessagesapp.py from the directory tre",
-            "suggestion": "Goal without test: 'Issue: Missing worker.py and scenarios/manymessagesapp.py fr...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Fix: Added both files to the directory structure listing.",
-            "suggestion": "Goal without test: 'Fix: Added both files to the directory structure listing.' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Issue: Missing memoryrssmb_avg metric which is present in the actual output.",
-            "suggestion": "Goal without test: 'Issue: Missing memoryrssmb_avg metric which is present in th...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Fix: Added memoryrssmb_avg row to the Server Metrics table.",
-            "suggestion": "Goal without test: 'Fix: Added memoryrssmb_avg row to the Server Metrics table.' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Issue: Only mentioned \"mypy\" as the type checker, but ty is also used (as docume",
-            "suggestion": "Goal without test: 'Issue: Only mentioned \"mypy\" as the type checker, but ty is ...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Fix: Changed \"checked by our mypy script\" to \"checked by mypy and ty\".",
-            "suggestion": "Goal without test: 'Fix: Changed \"checked by our mypy script\" to \"checked by myp...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Fix: Updated link to https://github.com/streamlit/streamlit/blob/develop/CONTRIB",
-            "suggestion": "Goal without test: 'Fix: Updated link to https://github.com/streamlit/streamlit/...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Issue: Referenced component-lib/ as a top-level path, but the actual path is fro",
-            "suggestion": "Goal without test: 'Issue: Referenced component-lib/ as a top-level path, but th...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Fix: Updated to frontend/component-lib/, frontend/component-v2-lib/.",
-            "suggestion": "Goal without test: 'Fix: Updated to frontend/component-lib/, frontend/component-...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "All make commands referenced in documentation exist in make help output",
-            "suggestion": "Goal without test: 'All make commands referenced in documentation exist in make ...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "All file/directory paths referenced in AGENTS.md, CONTRIBUTING.md, and wiki file",
-            "suggestion": "Goal without test: 'All file/directory paths referenced in AGENTS.md, CONTRIBUTI...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Frontend tool versions (TypeScript v6, React v18, Vite v8, Vitest v4, etc.) matc",
-            "suggestion": "Goal without test: 'Frontend tool versions (TypeScript v6, React v18, Vite v8, V...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Skill/subagent lists in CONTRIBUTING.md match actual .claude/skills/ and .claude",
-            "suggestion": "Goal without test: 'Skill/subagent lists in CONTRIBUTING.md match actual .claude...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "All internal cross-references between documentation files resolve correctly",
-            "suggestion": "Goal without test: 'All internal cross-references between documentation files re...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
       }
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.1176,
-    "unspecd_rework_rate": 0.0669,
-    "delta": 0.0508,
-    "specd_sample_size": 102,
-    "unspecd_sample_size": 329,
+    "specd_rework_rate": 0.1304,
+    "unspecd_rework_rate": 0.0649,
+    "delta": 0.0655,
+    "specd_sample_size": 92,
+    "unspecd_sample_size": 339,
     "significance": "significant",
     "signals": [
       {
@@ -12449,10 +11204,10 @@
     ],
     "by_complexity": {
       "small": {
-        "specd_rework_rate": 0.0882,
-        "unspecd_rework_rate": 0.1158,
-        "specd_count": 34,
-        "unspecd_count": 311
+        "specd_rework_rate": 0.12,
+        "unspecd_rework_rate": 0.1125,
+        "specd_count": 25,
+        "unspecd_count": 320
       },
       "medium": {
         "specd_rework_rate": 0.093,
@@ -12461,10 +11216,10 @@
         "unspecd_count": 90
       },
       "large": {
-        "specd_rework_rate": 0.2,
-        "unspecd_rework_rate": 0.1967,
-        "specd_count": 25,
-        "unspecd_count": 61
+        "specd_rework_rate": 0.2083,
+        "unspecd_rework_rate": 0.1935,
+        "specd_count": 24,
+        "unspecd_count": 62
       }
     }
   }

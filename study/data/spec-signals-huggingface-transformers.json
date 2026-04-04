@@ -3,9 +3,9 @@
   "lookback_days": 365,
   "rework_window_days": 30,
   "coverage": {
-    "coverage_pct": 24,
+    "coverage_pct": 23,
     "total_prs": 314,
-    "specd_prs": 74,
+    "specd_prs": 72,
     "prs": [
       {
         "number": 44976,
@@ -1211,8 +1211,8 @@
         "number": 43274,
         "sha": null,
         "title": "[Model] Add PP-OCRV5_server_det Model Support",
-        "specd": true,
-        "spec_source": "CV-BASED",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-03-12T18:41:28+00:00"
       },
       {
@@ -1275,8 +1275,8 @@
         "number": 44411,
         "sha": null,
         "title": "Update agentic contributions guidelines in AGENTS.md to force yielding.",
-        "specd": true,
-        "spec_source": "AI-ASSISTANCE",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-03-12T09:28:43+00:00"
       },
       {
@@ -2525,7 +2525,7 @@
     "mode": "heuristic",
     "average_score": 45,
     "verdicts": {
-      "REVIEW": 74
+      "REVIEW": 72
     },
     "specs": [
       {
@@ -4383,73 +4383,6 @@
         ]
       },
       {
-        "pr_number": 43274,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 97,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 44,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 8,
-            "type": "ambiguity",
-            "term": "if applicable",
-            "suggestion": "Replace 'if applicable' with a specific, measurable term"
-          },
-          {
-            "line": 10,
-            "type": "ambiguity",
-            "term": "better",
-            "suggestion": "Replace 'better' with a specific, measurable term"
-          },
-          {
-            "line": 88,
-            "type": "ambiguity",
-            "term": "fast",
-            "suggestion": "Replace 'fast' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Once you're done, someone will review your PR shortly (see the section \"Who can ",
-            "suggestion": "Goal without test: 'Once you're done, someone will review your PR shortly (see t...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "<!-- Your PR will be replied to more quickly if you can figure out the right per",
-            "suggestion": "Goal without test: '<!-- Your PR will be replied to more quickly if you can figu...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboard?tab=bugbot) for c",
-            "suggestion": "Goal without test: '> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboa...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 44584,
         "format": "freeform",
         "completeness": 0,
@@ -4508,79 +4441,6 @@
           "No side effects listed \u2014 AI may miss integrations",
           "No error contract \u2014 AI will invent error shapes per function",
           "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 44411,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "CLAUDE.md-> AGENTS.md",
-            "suggestion": "Goal without test: 'CLAUDE.md-> AGENTS.md' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "ssue-thread coordination before PRs",
-            "suggestion": "Goal without test: 'ssue-thread coordination before PRs' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "mandatory duplicate-PR checks with gh commands",
-            "suggestion": "Goal without test: 'mandatory duplicate-PR checks with gh commands' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "no one-off busywork PRs",
-            "suggestion": "Goal without test: 'no one-off busywork PRs' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "no pure code-agent PRs",
-            "suggestion": "Goal without test: 'no pure code-agent PRs' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "required AI-assistance disclosure",
-            "suggestion": "Goal without test: 'required AI-assistance disclosure' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "and fail-closed stop conditions",
-            "suggestion": "Goal without test: 'and fail-closed stop conditions' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
           "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
         ]
       },
@@ -6543,11 +6403,11 @@
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.1757,
-    "unspecd_rework_rate": 0.2083,
-    "delta": -0.0327,
-    "specd_sample_size": 74,
-    "unspecd_sample_size": 240,
+    "specd_rework_rate": 0.1806,
+    "unspecd_rework_rate": 0.2066,
+    "delta": -0.0261,
+    "specd_sample_size": 72,
+    "unspecd_sample_size": 242,
     "significance": "significant",
     "signals": [
       {
@@ -7581,10 +7441,10 @@
     ],
     "by_complexity": {
       "small": {
-        "specd_rework_rate": 0.1,
-        "unspecd_rework_rate": 0.1615,
-        "specd_count": 50,
-        "unspecd_count": 161
+        "specd_rework_rate": 0.102,
+        "unspecd_rework_rate": 0.1605,
+        "specd_count": 49,
+        "unspecd_count": 162
       },
       "medium": {
         "specd_rework_rate": 0.3636,
@@ -7593,10 +7453,10 @@
         "unspecd_count": 34
       },
       "large": {
-        "specd_rework_rate": 0.3077,
-        "unspecd_rework_rate": 0.4583,
-        "specd_count": 13,
-        "unspecd_count": 48
+        "specd_rework_rate": 0.3333,
+        "unspecd_rework_rate": 0.449,
+        "specd_count": 12,
+        "unspecd_count": 49
       }
     }
   }

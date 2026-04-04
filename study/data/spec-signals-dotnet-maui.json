@@ -3,9 +3,9 @@
   "lookback_days": 365,
   "rework_window_days": 30,
   "coverage": {
-    "coverage_pct": 65,
+    "coverage_pct": 63,
     "total_prs": 652,
-    "specd_prs": 422,
+    "specd_prs": 414,
     "prs": [
       {
         "number": 34734,
@@ -243,8 +243,8 @@
         "number": 34259,
         "sha": null,
         "title": "Fix dogfood scripts: workflow trigger, build detection, and in-progress handling",
-        "specd": true,
-        "spec_source": "GPT-5",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-02-26T14:13:50+00:00"
       },
       {
@@ -2051,8 +2051,8 @@
         "number": 34156,
         "sha": null,
         "title": "ci-copilot: set pipeline run title early using build.updatebuildnumber",
-        "specd": true,
-        "spec_source": "https://github.com/dotnet/maui/issues/new?title=\u2728+Set+up+Copilot+instructions&body=Configure%20instructions%20for%20this%20repository%20as%20documented%20in%20%5BBest%20practices%20for%20Copilot%20coding%20agent%20in%20your%20repository%5D%28https://gh.io/copilot-coding-agent-tips%29%2E%0A%0A%3COnboard%20this%20repo%3E&assignees=copilot)",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-02-20T15:09:53+00:00"
       },
       {
@@ -2291,8 +2291,8 @@
         "number": 34053,
         "sha": null,
         "title": "Skip Xcode provisioning for RunOnAndroid integration tests",
-        "specd": true,
-        "spec_source": "https://github.com/dotnet/maui/issues/new?title=\u2728+Set+up+Copilot+instructions&body=Configure%20instructions%20for%20this%20repository%20as%20documented%20in%20%5BBest%20practices%20for%20Copilot%20coding%20agent%20in%20your%20repository%5D%28https://gh.io/copilot-coding-agent-tips%29%2E%0A%0A%3COnboard%20this%20repo%3E&assignees=copilot)",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-02-18T14:01:38+00:00"
       },
       {
@@ -3675,8 +3675,8 @@
         "number": 33610,
         "sha": null,
         "title": "[Sample] Add Microsoft.Maui.Essentials.AI sample app with multi-agent workflow",
-        "specd": true,
-        "spec_source": "AI-POWERED",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-02-09T23:32:14+00:00"
       },
       {
@@ -4011,8 +4011,8 @@
         "number": 33813,
         "sha": null,
         "title": "Enhance PR agent: multi-model workflow, blocker handling, shared rules extraction",
-        "specd": true,
-        "spec_source": "GPT-5",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-02-03T15:30:46+00:00"
       },
       {
@@ -4147,8 +4147,8 @@
         "number": 33434,
         "sha": null,
         "title": "Improve agent workflow documentation",
-        "specd": true,
-        "spec_source": "https://github.com/dotnet/maui/issues/new?title=\u2728+Set+up+Copilot+instructions&body=Configure%20instructions%20for%20this%20repository%20as%20documented%20in%20%5BBest%20practices%20for%20Copilot%20coding%20agent%20in%20your%20repository%5D%28https://gh.io/copilot-coding-agent-tips%29%2E%0A%0A%3COnboard%20this%20repo%3E&assignees=copilot)",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-01-09T00:59:21+00:00"
       },
       {
@@ -4171,8 +4171,8 @@
         "number": 33327,
         "sha": null,
         "title": "Add issue-triage skill from PureWeen/maui PR #9",
-        "specd": true,
-        "spec_source": "https://github.com/dotnet/maui/issues/new?title=\u2728+Set+up+Copilot+instructions&body=Configure%20instructions%20for%20this%20repository%20as%20documented%20in%20%5BBest%20practices%20for%20Copilot%20coding%20agent%20in%20your%20repository%5D%28https://gh.io/copilot-coding-agent-tips%29%2E%0A%0A%3COnboard%20this%20repo%3E&assignees=copilot)",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-01-09T21:55:00+00:00"
       },
       {
@@ -4275,8 +4275,8 @@
         "number": 33817,
         "sha": null,
         "title": "Fix integration test log collection to use explicit allowlist",
-        "specd": true,
-        "spec_source": "GPT-5",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-02-04T22:02:10+00:00"
       },
       {
@@ -5229,7 +5229,7 @@
     "mode": "heuristic",
     "average_score": 45,
     "verdicts": {
-      "REVIEW": 422
+      "REVIEW": 414
     },
     "specs": [
       {
@@ -6292,121 +6292,6 @@
             "type": "testability",
             "term": "Updated ControlsModalWrapper constructor to use Brush.HasTransparency  for deter",
             "suggestion": "Goal without test: 'Updated ControlsModalWrapper constructor to use Brush.HasTra...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 34259,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 96,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 44,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 8,
-            "type": "ambiguity",
-            "term": "correctly",
-            "suggestion": "Replace 'correctly' with a specific, measurable term"
-          },
-          {
-            "line": 29,
-            "type": "ambiguity",
-            "term": "Better",
-            "suggestion": "Replace 'Better' with a specific, measurable term"
-          },
-          {
-            "line": 35,
-            "type": "ambiguity",
-            "term": "correctly",
-            "suggestion": "Replace 'correctly' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Build in progress: \"A build is currently in progress. Please wait for it to comp",
-            "suggestion": "Goal without test: 'Build in progress: \"A build is currently in progress. Please...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Stale artifacts: When an older build has artifacts but a newer build is running,",
-            "suggestion": "Goal without test: 'Stale artifacts: When an older build has artifacts but a new...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Build ID numeric validation to prevent URL injection",
-            "suggestion": "Goal without test: 'Build ID numeric validation to prevent URL injection' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "PR number validation in bash script",
-            "suggestion": "Goal without test: 'PR number validation in bash script' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Protection against set -e crashes on invalid jq input",
-            "suggestion": "Goal without test: 'Protection against set -e crashes on invalid jq input' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Better error messages for all failure scenarios",
-            "suggestion": "Goal without test: 'Better error messages for all failure scenarios' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "\u2705 PR #34216 (completed, successful) - both scripts find build and apply artifact",
-            "suggestion": "Goal without test: '\u2705 PR #34216 (completed, successful) - both scripts find buil...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "\u2705 PR #34250 (in-progress build) - correctly finds existing artifacts with warnin",
-            "suggestion": "Goal without test: '\u2705 PR #34250 (in-progress build) - correctly finds existing a...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "\u2705 PR #99999999 (non-existent) - proper error handling",
-            "suggestion": "Goal without test: '\u2705 PR #99999999 (non-existent) - proper error handling' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "\u2705 Invalid PR number (\"abc\") - input validation works",
-            "suggestion": "Goal without test: '\u2705 Invalid PR number (\"abc\") - input validation works' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "\u2705 Multi-model code review (Claude Sonnet 4.5, GPT-5.1, Gemini 3 Pro) - all findi",
-            "suggestion": "Goal without test: '\u2705 Multi-model code review (Claude Sonnet 4.5, GPT-5.1, Gemin...' \u2014 add a Given/When/Then criterion"
           }
         ],
         "warnings": [
@@ -16434,43 +16319,6 @@
         ]
       },
       {
-        "pr_number": 34156,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "eng/pipelines/ci-copilot.yml: Adds a Set Pipeline Run Title step after Validate ",
-            "suggestion": "Goal without test: 'eng/pipelines/ci-copilot.yml: Adds a Set Pipeline Run Title ...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 34144,
         "format": "freeform",
         "completeness": 0,
@@ -17683,79 +17531,6 @@
           "No side effects listed \u2014 AI may miss integrations",
           "No error contract \u2014 AI will invent error shapes per function",
           "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 34053,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 98,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 44,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 38,
-            "type": "ambiguity",
-            "term": "appropriate",
-            "suggestion": "Replace 'appropriate' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "setup-test-env.yml: Added skipXcode parameter (default false)",
-            "suggestion": "Goal without test: 'setup-test-env.yml: Added skipXcode parameter (default false...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Passes value to provision.yml for both skipXcode and skipSimulatorSetup",
-            "suggestion": "Goal without test: 'Passes value to provision.yml for both skipXcode and skipSim...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "stage-integration-tests.yml: Skip Xcode for Android-only tests",
-            "suggestion": "Goal without test: 'stage-integration-tests.yml: Skip Xcode for Android-only tes...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "skipXcode: ${{ eq(job.testCategory, 'RunOnAndroid') }}",
-            "suggestion": "Goal without test: 'skipXcode: ${{ eq(job.testCategory, 'RunOnAndroid') }}' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "All other categories (Build, Blazor, MultiProject, macOSTemplates, AOT, RunOniOS",
-            "suggestion": "Goal without test: 'All other categories (Build, Blazor, MultiProject, macOSTemp...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "template: /eng/pipelines/arcade/setup-test-env.yml",
-            "suggestion": "Goal without test: 'template: /eng/pipelines/arcade/setup-test-env.yml' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
           "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
         ]
       },
@@ -24365,67 +24140,6 @@
         ]
       },
       {
-        "pr_number": 33610,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 98,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 44,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 8,
-            "type": "ambiguity",
-            "term": "comprehensive",
-            "suggestion": "Replace 'comprehensive' with a specific, measurable term"
-          },
-          {
-            "line": 20,
-            "type": "ambiguity",
-            "term": "Real-time",
-            "suggestion": "Replace 'Real-time' with a specific, measurable term"
-          },
-          {
-            "line": 155,
-            "type": "ambiguity",
-            "term": "clean",
-            "suggestion": "Replace 'clean' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "This PR establishes the foundation. Subsequent PRs will add:",
-            "suggestion": "Goal without test: 'This PR establishes the foundation. Subsequent PRs will add:' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "These on-device implementations will allow the sample to run with local models i",
-            "suggestion": "Goal without test: 'These on-device implementations will allow the sample to run...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 34294,
         "format": "freeform",
         "completeness": 0,
@@ -25539,343 +25253,6 @@
         ]
       },
       {
-        "pr_number": 33813,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 208,
-            "type": "ambiguity",
-            "term": "correctly",
-            "suggestion": "Replace 'correctly' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Added Phase 4 multi-model workflow using 5 models:",
-            "suggestion": "Goal without test: 'Added Phase 4 multi-model workflow using 5 models:' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "claude-sonnet-4.5, claude-opus-4.5, gpt-5.2, gpt-5.2-codex, gemini-3-pro-preview",
-            "suggestion": "Goal without test: 'claude-sonnet-4.5, claude-opus-4.5, gpt-5.2, gpt-5.2-codex, ...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Cross-pollination loop: Share results between models to spark new ideas",
-            "suggestion": "Goal without test: 'Cross-pollination loop: Share results between models to spar...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Continue until all models confirm \"no more approaches to explore\"",
-            "suggestion": "Goal without test: 'Continue until all models confirm \"no more approaches to exp...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Minor formatting and clarity improvements to pr.md",
-            "suggestion": "Goal without test: 'Minor formatting and clarity improvements to pr.md' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Added \"Follow Templates EXACTLY\" rule - no adding attributes, no improving forma",
-            "suggestion": "Goal without test: 'Added \"Follow Templates EXACTLY\" rule - no adding attributes...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Added \"Use Skills' Scripts\" rule - run provided PowerShell scripts, don't bypass",
-            "suggestion": "Goal without test: 'Added \"Use Skills' Scripts\" rule - run provided PowerShell s...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Added explicit blocker handling section to pr.md",
-            "suggestion": "Goal without test: 'Added explicit blocker handling section to pr.md' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Common blockers: Appium drivers, WinAppDriver, Xcode, emulators, port conflicts",
-            "suggestion": "Goal without test: 'Common blockers: Appium drivers, WinAppDriver, Xcode, emulat...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Must STOP, report the blocker, and ask user how to proceed",
-            "suggestion": "Goal without test: 'Must STOP, report the blocker, and ask user how to proceed' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Never mark phase as blocked and continue to next phase",
-            "suggestion": "Goal without test: 'Never mark phase as blocked and continue to next phase' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Created .github/agents/pr/PLAN-TEMPLATE.md - Reusable 5-phase review plan",
-            "suggestion": "Goal without test: 'Created .github/agents/pr/PLAN-TEMPLATE.md - Reusable 5-phas...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Created .github/scripts/Review-PR.ps1 - Script to prepare environment and invoke",
-            "suggestion": "Goal without test: 'Created .github/scripts/Review-PR.ps1 - Script to prepare en...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Added strict retry limits table:",
-            "suggestion": "Goal without test: 'Added strict retry limits table:' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Added \"What I tried\" section to blocker report template",
-            "suggestion": "Goal without test: 'Added \"What I tried\" section to blocker report template' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "New prohibitions: Never spend more than 2-3 tool calls on same blocker",
-            "suggestion": "Goal without test: 'New prohibitions: Never spend more than 2-3 tool calls on sa...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Script now invokes copilot --agent pr -i \"<prompt>\" directly",
-            "suggestion": "Goal without test: 'Script now invokes copilot --agent pr -i \"<prompt>\" directly' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Validates both gh CLI and copilot CLI are installed",
-            "suggestion": "Goal without test: 'Validates both gh CLI and copilot CLI are installed' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "New -NoInteractive switch for -p mode (exits after completion)",
-            "suggestion": "Goal without test: 'New -NoInteractive switch for -p mode (exits after completio...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Dry run mode shows exactly what would be invoked",
-            "suggestion": "Goal without test: 'Dry run mode shows exactly what would be invoked' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Added explicit \"Do NOT Switch Branches\" rule to both pr.md and PLAN-TEMPLATE.md",
-            "suggestion": "Goal without test: 'Added explicit \"Do NOT Switch Branches\" rule to both pr.md a...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Agent must work on current branch as-is, using git diff or gh pr diff to see PR ",
-            "suggestion": "Goal without test: 'Agent must work on current branch as-is, using git diff or g...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Fixed variable expansion in Review-PR.ps1 prompt (double backticks for here-stri",
-            "suggestion": "Goal without test: 'Fixed variable expansion in Review-PR.ps1 prompt (double bac...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Created SHARED-RULES.md (167 lines) - Single source of truth for:",
-            "suggestion": "Goal without test: 'Created SHARED-RULES.md (167 lines) - Single source of truth...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Phase Completion Protocol",
-            "suggestion": "Goal without test: 'Phase Completion Protocol' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Follow Templates EXACTLY",
-            "suggestion": "Goal without test: 'Follow Templates EXACTLY' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "No Direct Git Commands (absolute - agent never runs git)",
-            "suggestion": "Goal without test: 'No Direct Git Commands (absolute - agent never runs git)' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Use Skills' Scripts",
-            "suggestion": "Goal without test: 'Use Skills' Scripts' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Stop on Environment Blockers (with retry limits)",
-            "suggestion": "Goal without test: 'Stop on Environment Blockers (with retry limits)' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Multi-Model Configuration (5 models list)",
-            "suggestion": "Goal without test: 'Multi-Model Configuration (5 models list)' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Platform Selection guidance",
-            "suggestion": "Goal without test: 'Platform Selection guidance' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Simplified git policy - Agent is ALWAYS on correct branch, never runs git comman",
-            "suggestion": "Goal without test: 'Simplified git policy - Agent is ALWAYS on correct branch, n...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Removed git fetch/checkout from Phase 1 Pre-Flight",
-            "suggestion": "Goal without test: 'Removed git fetch/checkout from Phase 1 Pre-Flight' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Phase 5: User handles commit/push/PR creation",
-            "suggestion": "Goal without test: 'Phase 5: User handles commit/push/PR creation' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Changed all \"State file committed\" \u2192 \"State file saved\" (gitignored files)",
-            "suggestion": "Goal without test: 'Changed all \"State file committed\" \u2192 \"State file saved\" (git...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Compressed content:",
-            "suggestion": "Goal without test: 'Compressed content:' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Cross-pollination ASCII box: 51 \u2192 20 lines",
-            "suggestion": "Goal without test: 'Cross-pollination ASCII box: 51 \u2192 20 lines' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "PLAN-TEMPLATE.md: Full docs \u2192 Pure checklist (226 \u2192 112 lines)",
-            "suggestion": "Goal without test: 'PLAN-TEMPLATE.md: Full docs \u2192 Pure checklist (226 \u2192 112 line...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "pr.md: 662 \u2192 535 lines (-19%)",
-            "suggestion": "Goal without test: 'pr.md: 662 \u2192 535 lines (-19%)' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "post-gate.md: 403 \u2192 302 lines (-25%)",
-            "suggestion": "Goal without test: 'post-gate.md: 403 \u2192 302 lines (-25%)' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Total reduction: 1291 \u2192 1116 lines (-14%)",
-            "suggestion": "Goal without test: 'Total reduction: 1291 \u2192 1116 lines (-14%)' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Eliminated duplication:",
-            "suggestion": "Goal without test: 'Eliminated duplication:' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Blocker handling was in 3 files \u2192 now in SHARED-RULES.md only",
-            "suggestion": "Goal without test: 'Blocker handling was in 3 files \u2192 now in SHARED-RULES.md onl...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Phase Completion Protocol was in 2 files \u2192 now in SHARED-RULES.md only",
-            "suggestion": "Goal without test: 'Phase Completion Protocol was in 2 files \u2192 now in SHARED-RUL...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Model list was in 3 files \u2192 now in SHARED-RULES.md only",
-            "suggestion": "Goal without test: 'Model list was in 3 files \u2192 now in SHARED-RULES.md only' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Pre-Flight phase completed successfully",
-            "suggestion": "Goal without test: 'Pre-Flight phase completed successfully' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Tests phase verified test files exist",
-            "suggestion": "Goal without test: 'Tests phase verified test files exist' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Gate phase encountered WinAppDriver blocker \u2192 agent correctly stopped and asked",
-            "suggestion": "Goal without test: 'Gate phase encountered WinAppDriver blocker \u2192 agent correctl...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Blocker handling rules validated through real-world usage",
-            "suggestion": "Goal without test: 'Blocker handling rules validated through real-world usage' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Branch safety verified: Agent stayed on branch instead of switching",
-            "suggestion": "Goal without test: 'Branch safety verified: Agent stayed on branch instead of sw...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 33699,
         "format": "freeform",
         "completeness": 0,
@@ -25950,152 +25327,6 @@
             "type": "testability",
             "term": "Deleted obsolete skills.instructions.md",
             "suggestion": "Goal without test: 'Deleted obsolete skills.instructions.md' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 33434,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 95,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 44,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 10,
-            "type": "ambiguity",
-            "term": "better",
-            "suggestion": "Replace 'better' with a specific, measurable term"
-          },
-          {
-            "line": 24,
-            "type": "ambiguity",
-            "term": "Clean",
-            "suggestion": "Replace 'Clean' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Clarify state file commit rule: state file should always be included when commit",
-            "suggestion": "Goal without test: 'Clarify state file commit rule: state file should always be ...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Add rule prohibiting inline #if platform directives in test methods",
-            "suggestion": "Goal without test: 'Add rule prohibiting inline #if platform directives in test ...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Require platform-specific logic to be in extension methods for better readabilit",
-            "suggestion": "Goal without test: 'Require platform-specific logic to be in extension methods f...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Add \"Model\" column to Fix Candidates table format to track which AI model genera",
-            "suggestion": "Goal without test: 'Add \"Model\" column to Fix Candidates table format to track w...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 33327,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": ".github/skills/issue-triage/SKILL.md - Skill definition with workflow, trigger p",
-            "suggestion": "Goal without test: '.github/skills/issue-triage/SKILL.md - Skill definition with...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "scripts/init-triage-session.ps1 - Initializes session with current milestones an",
-            "suggestion": "Goal without test: 'scripts/init-triage-session.ps1 - Initializes session with c...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "scripts/query-issues.ps1 - Queries open issues with platform/area/age filters, f",
-            "suggestion": "Goal without test: 'scripts/query-issues.ps1 - Queries open issues with platform...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "scripts/record-triage.ps1 - Tracks triaged issues in session file",
-            "suggestion": "Goal without test: 'scripts/record-triage.ps1 - Tracks triaged issues in session...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": ".github/copilot-instructions.md - Added \"Reusable Skills\" section documenting th",
-            "suggestion": "Goal without test: '.github/copilot-instructions.md - Added \"Reusable Skills\" se...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "SR milestones: Identified by pattern \\.NET.*SR\\d+, sorted by due date to determi",
-            "suggestion": "Goal without test: 'SR milestones: Identified by pattern \\.NET.*SR\\d+, sorted by...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Servicing milestone: Identified by pattern \\.NET.*Servicing",
-            "suggestion": "Goal without test: 'Servicing milestone: Identified by pattern \\.NET.*Servicing' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Suggestions use the dynamically discovered milestones based on issue characteris",
-            "suggestion": "Goal without test: 'Suggestions use the dynamically discovered milestones based ...' \u2014 add a Given/When/Then criterion"
           }
         ],
         "warnings": [
@@ -26282,97 +25513,6 @@
             "type": "testability",
             "term": "(no goals found)",
             "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 33817,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "R.txt (59 files) - Android resource IDs",
-            "suggestion": "Goal without test: 'R.txt (59 files) - Android resource IDs' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "public.txt (50 files) - Android public resources",
-            "suggestion": "Goal without test: 'public.txt (50 files) - Android public resources' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "LICENSE.txt (46 files) - NuGet package licenses",
-            "suggestion": "Goal without test: 'LICENSE.txt (46 files) - NuGet package licenses' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "proguard.txt (34 files) - ProGuard rules",
-            "suggestion": "Goal without test: 'proguard.txt (34 files) - ProGuard rules' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "baseline-prof.txt (14 files) - AndroidX baseline profiles",
-            "suggestion": "Goal without test: 'baseline-prof.txt (14 files) - AndroidX baseline profiles' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": ".log, .binlog - Core log files (critical for debugging)",
-            "suggestion": "Goal without test: '.log, .binlog - Core log files (critical for debugging)' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "acw-map.txt - Android Callable Wrapper mapping",
-            "suggestion": "Goal without test: 'acw-map.txt - Android Callable Wrapper mapping' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "custom-linker-options*.txt - Trimmer/linker configuration",
-            "suggestion": "Goal without test: 'custom-linker-options*.txt - Trimmer/linker configuration' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "aot-compiler-path*.txt - AOT compiler paths",
-            "suggestion": "Goal without test: 'aot-compiler-path*.txt - AOT compiler paths' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "customview-map.txt - Android custom view mappings",
-            "suggestion": "Goal without test: 'customview-map.txt - Android custom view mappings' \u2014 add a Given/When/Then criterion"
           }
         ],
         "warnings": [
@@ -30473,11 +29613,11 @@
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.1114,
-    "unspecd_rework_rate": 0.1043,
-    "delta": 0.007,
-    "specd_sample_size": 422,
-    "unspecd_sample_size": 230,
+    "specd_rework_rate": 0.1135,
+    "unspecd_rework_rate": 0.1008,
+    "delta": 0.0127,
+    "specd_sample_size": 414,
+    "unspecd_sample_size": 238,
     "significance": "significant",
     "signals": [
       {
@@ -31588,22 +30728,22 @@
     ],
     "by_complexity": {
       "small": {
-        "specd_rework_rate": 0.0811,
-        "unspecd_rework_rate": 0.037,
-        "specd_count": 148,
-        "unspecd_count": 135
+        "specd_rework_rate": 0.0833,
+        "unspecd_rework_rate": 0.036,
+        "specd_count": 144,
+        "unspecd_count": 139
       },
       "medium": {
-        "specd_rework_rate": 0.1099,
-        "unspecd_rework_rate": 0.2143,
-        "specd_count": 191,
-        "unspecd_count": 42
+        "specd_rework_rate": 0.1105,
+        "unspecd_rework_rate": 0.2093,
+        "specd_count": 190,
+        "unspecd_count": 43
       },
       "large": {
-        "specd_rework_rate": 0.1687,
-        "unspecd_rework_rate": 0.1887,
-        "specd_count": 83,
-        "unspecd_count": 53
+        "specd_rework_rate": 0.175,
+        "unspecd_rework_rate": 0.1786,
+        "specd_count": 80,
+        "unspecd_count": 56
       }
     }
   }

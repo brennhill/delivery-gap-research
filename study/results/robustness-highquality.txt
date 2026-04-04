@@ -1,4 +1,4 @@
-High-quality robustness run: 2026-04-04T18:40:25.412222+00:00
+High-quality robustness run: 2026-04-04T21:24:41.683703+00:00
 Script: /Users/brenn/dev/ai-augmented-dev/research/study/scripts/pipeline/robustness-highquality.py
 
 Dataset (bots excluded): 88,052 PRs
@@ -19,7 +19,7 @@ If SDD claims hold, the BEST specs should show the strongest effect.
 
   High-quality specs → rework (within-author):
   N=81,647, authors=4,892 (225 with variation)
-  coef=+0.0184, p=0.1765 → INCREASES 
+  coef=+0.0085, p=0.5777 → INCREASES 
 
 ======================================================================
 TEST 2: TOP-DECILE SPECS (q_overall >= 77) vs ALL OTHERS
@@ -34,7 +34,7 @@ Even more selective: only the very best specs.
 
   Top-decile specs → rework (within-author):
   N=81,647, authors=4,892 (113 with variation)
-  coef=-0.0038, p=0.8703 → DECREASES 
+  coef=+0.0051, p=0.8379 → INCREASES 
 
 ======================================================================
 TEST 3: HIGH-QUALITY SPECS vs NO SPEC (exclude low-quality)
@@ -43,16 +43,16 @@ Remove the 'junk specs' objection entirely: compare only top-quartile
 specs against PRs with NO spec at all.
 
   High-quality spec'd: 1,369 PRs
-  No spec at all:      69,440 PRs
-  (Low-quality specs excluded: 7,005 PRs)
+  No spec at all:      55,172 PRs
+  (Low-quality specs excluded: 21,273 PRs)
 
   High-quality spec vs no spec → SZZ bugs (within-author):
-  N=65,479, authors=3,981 (200 with variation)
-  coef=-0.0211, p=0.1182 → DECREASES 
+  N=52,336, authors=3,180 (184 with variation)
+  coef=-0.0272, p=0.0523 → DECREASES 
 
   High-quality spec vs no spec → rework (within-author):
-  N=74,740, authors=4,515 (200 with variation)
-  coef=+0.0235, p=0.1190 → INCREASES 
+  N=59,531, authors=3,608 (184 with variation)
+  coef=+0.0095, p=0.5663 → INCREASES 
 
 ======================================================================
 TEST 4: AI-TAGGED PRs — DO HIGH-QUALITY SPECS HELP?
@@ -60,12 +60,12 @@ TEST 4: AI-TAGGED PRs — DO HIGH-QUALITY SPECS HELP?
 Closest proxy to the agentic SDD workflow the vendors are selling.
 
   AI-tagged PRs in SZZ repos: 5,324
-  AI + any spec: 906 (17.0%)
+  AI + any spec: 1,712 (32.2%)
   AI + high-quality spec: 381 (7.2%)
 
   AI: any spec → SZZ bugs (within-author):
-  N=4,797, authors=422 (140 with variation)
-  coef=-0.0097, p=0.6282 → DECREASES 
+  N=4,797, authors=422 (224 with variation)
+  coef=+0.0114, p=0.4239 → INCREASES 
 
   AI: high-quality spec → SZZ bugs (within-author):
   N=4,797, authors=422 (52 with variation)
@@ -85,7 +85,7 @@ Results (within-author LPM, all with size controls):
   ─────────────────────────────────────────────  ────────────  ────────
               Top-quartile specs (q>=67) vs all       -0.0247    0.0359
                 Top-decile specs (q>=77) vs all       -0.0146    0.3704
-        High-quality vs NO spec (junk excluded)       -0.0211    0.1182
+        High-quality vs NO spec (junk excluded)       -0.0272    0.0523
 
 No protective effect emerges at any quality threshold. High-quality specs
 do not reduce defects. The objection that our measure is "too loose" does

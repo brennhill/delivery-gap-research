@@ -3,9 +3,9 @@
   "lookback_days": 365,
   "rework_window_days": 30,
   "coverage": {
-    "coverage_pct": 25,
+    "coverage_pct": 24,
     "total_prs": 166,
-    "specd_prs": 41,
+    "specd_prs": 40,
     "prs": [
       {
         "number": 16637,
@@ -587,8 +587,8 @@
         "number": 16157,
         "sha": null,
         "title": "fix(express): Update express to 4.22.1 to address CVE-2025-15284",
-        "specd": true,
-        "spec_source": "GHSA-6",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-01-08T09:20:19+00:00"
       },
       {
@@ -1341,7 +1341,7 @@
     "mode": "heuristic",
     "average_score": 45,
     "verdicts": {
-      "REVIEW": 41
+      "REVIEW": 40
     },
     "specs": [
       {
@@ -2923,67 +2923,6 @@
             "type": "testability",
             "term": "Please let me know if any changes are needed!",
             "suggestion": "Goal without test: 'Please let me know if any changes are needed!' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 16157,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Express 4.22.1 uses qs ~6.14.0 which resolves to qs@6.14.1 containing the fix",
-            "suggestion": "Goal without test: 'Express 4.22.1 uses qs ~6.14.0 which resolves to qs@6.14.1 c...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "https://github.com/advisories/GHSA-6rw7-vpxm-498p",
-            "suggestion": "Goal without test: 'https://github.com/advisories/GHSA-6rw7-vpxm-498p' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "package.json: express 4.21.2 \u2192 4.22.1",
-            "suggestion": "Goal without test: 'package.json: express 4.21.2 \u2192 4.22.1' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "packages/platform-express/package.json: express 4.21.2 \u2192 4.22.1",
-            "suggestion": "Goal without test: 'packages/platform-express/package.json: express 4.21.2 \u2192 4.2...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "package-lock.json: updated (qs now at 6.14.1)",
-            "suggestion": "Goal without test: 'package-lock.json: updated (qs now at 6.14.1)' \u2014 add a Given/When/Then criterion"
           }
         ],
         "warnings": [
@@ -4864,11 +4803,11 @@
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.1707,
-    "unspecd_rework_rate": 0.136,
-    "delta": 0.0347,
-    "specd_sample_size": 41,
-    "unspecd_sample_size": 125,
+    "specd_rework_rate": 0.15,
+    "unspecd_rework_rate": 0.1429,
+    "delta": 0.0071,
+    "specd_sample_size": 40,
+    "unspecd_sample_size": 126,
     "significance": "significant",
     "signals": [
       {
@@ -9421,10 +9360,10 @@
     ],
     "by_complexity": {
       "small": {
-        "specd_rework_rate": 0.2174,
-        "unspecd_rework_rate": 0.1326,
-        "specd_count": 23,
-        "unspecd_count": 935
+        "specd_rework_rate": 0.1818,
+        "unspecd_rework_rate": 0.1335,
+        "specd_count": 22,
+        "unspecd_count": 936
       },
       "medium": {
         "specd_rework_rate": 0.0588,

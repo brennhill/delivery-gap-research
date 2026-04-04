@@ -3,9 +3,9 @@
   "lookback_days": 365,
   "rework_window_days": 30,
   "coverage": {
-    "coverage_pct": 41,
+    "coverage_pct": 40,
     "total_prs": 815,
-    "specd_prs": 332,
+    "specd_prs": 330,
     "prs": [
       {
         "number": 32978,
@@ -5219,8 +5219,8 @@
         "number": 32508,
         "sha": null,
         "title": "fix: normalize `capture` to boolean in `removeEventListener` options",
-        "specd": true,
-        "spec_source": "https://github.com/denoland/deno/issues/new?title=\u2728+Set+up+Copilot+instructions&body=Configure%20instructions%20for%20this%20repository%20as%20documented%20in%20%5BBest%20practices%20for%20Copilot%20coding%20agent%20in%20your%20repository%5D%28https://gh.io/copilot-coding-agent-tips%29%2E%0A%0A%3COnboard%20this%20repo%3E&assignees=copilot)",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-03-06T08:33:49+00:00"
       },
       {
@@ -5939,8 +5939,8 @@
         "number": 32028,
         "sha": null,
         "title": "feat(ext/web): add brotli support to CompressionStream",
-        "specd": true,
-        "spec_source": "https://github.com/whatwg/compression/issues/34#issuecomment-2824592203",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-02-19T08:30:39+00:00"
       },
       {
@@ -6533,7 +6533,7 @@
     "mode": "heuristic",
     "average_score": 45,
     "verdicts": {
-      "REVIEW": 331,
+      "REVIEW": 329,
       "REWRITE": 1
     },
     "specs": [
@@ -19671,73 +19671,6 @@
         ]
       },
       {
-        "pr_number": 32508,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 95,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 44,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 1,
-            "type": "ambiguity",
-            "term": "properly",
-            "suggestion": "Replace 'properly' with a specific, measurable term"
-          },
-          {
-            "line": 28,
-            "type": "ambiguity",
-            "term": "correctly",
-            "suggestion": "Replace 'correctly' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Fix normalizeEventHandlerOptions in ext/web/02_event.js to properly normaliz",
-            "suggestion": "Goal without test: '[x] Fix normalizeEventHandlerOptions in ext/web/02_event.js ...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Add test in tests/unit/event_test.ts verifying removeEventListener works wit",
-            "suggestion": "Goal without test: '[x] Add test in tests/unit/event_test.ts verifying removeEve...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Verify fix works and existing tests pass (28/28 pass)",
-            "suggestion": "Goal without test: '[x] Verify fix works and existing tests pass (28/28 pass)' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Fixes denoland/deno#29681",
-            "suggestion": "Goal without test: 'Fixes denoland/deno#29681' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 32430,
         "format": "freeform",
         "completeness": 0,
@@ -22911,103 +22844,6 @@
         ]
       },
       {
-        "pr_number": 32028,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Add brotli crate dependency to ext/web/Cargo.toml",
-            "suggestion": "Goal without test: '[x] Add brotli crate dependency to ext/web/Cargo.toml' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Update CompressionFormat validator in ext/web/14_compression.js to support \"",
-            "suggestion": "Goal without test: '[x] Update CompressionFormat validator in ext/web/14_compres...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Add brotli encoder/decoder variants to Inner enum in ext/web/compression.rs",
-            "suggestion": "Goal without test: '[x] Add brotli encoder/decoder variants to Inner enum in ext...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Update opcompressionnew to handle \"brotli\" format",
-            "suggestion": "Goal without test: '[x] Update opcompressionnew to handle \"brotli\" format' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Update opcompressionwrite to handle brotli variants",
-            "suggestion": "Goal without test: '[x] Update opcompressionwrite to handle brotli variants' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Update opcompressionfinish to handle brotli variants",
-            "suggestion": "Goal without test: '[x] Update opcompressionfinish to handle brotli variants' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Update TypeScript definitions in lib.deno_web.d.ts, lib.dom.d.ts, and lib.we",
-            "suggestion": "Goal without test: '[x] Update TypeScript definitions in lib.deno_web.d.ts, lib....' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Add test cases in tests/unit/streams_test.ts for brotli compression/decompre",
-            "suggestion": "Goal without test: '[x] Add test cases in tests/unit/streams_test.ts for brotli ...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Verify changes work by running tests",
-            "suggestion": "Goal without test: '[x] Verify changes work by running tests' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Run cargo fmt and cargo clippy - fixed clippy warning about large enum varia",
-            "suggestion": "Goal without test: '[x] Run cargo fmt and cargo clippy - fixed clippy warning ab...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Fixes denoland/deno#29379",
-            "suggestion": "Goal without test: 'Fixes denoland/deno#29379' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 31977,
         "format": "freeform",
         "completeness": 0,
@@ -24967,11 +24803,11 @@
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.3404,
-    "unspecd_rework_rate": 0.354,
-    "delta": -0.0137,
-    "specd_sample_size": 332,
-    "unspecd_sample_size": 483,
+    "specd_rework_rate": 0.3394,
+    "unspecd_rework_rate": 0.3546,
+    "delta": -0.0152,
+    "specd_sample_size": 330,
+    "unspecd_sample_size": 485,
     "significance": "significant",
     "signals": [
       {
@@ -29183,10 +29019,10 @@
     ],
     "by_complexity": {
       "small": {
-        "specd_rework_rate": 0.2642,
-        "unspecd_rework_rate": 0.2803,
-        "specd_count": 193,
-        "unspecd_count": 264
+        "specd_rework_rate": 0.2618,
+        "unspecd_rework_rate": 0.282,
+        "specd_count": 191,
+        "unspecd_count": 266
       },
       "medium": {
         "specd_rework_rate": 0.3983,

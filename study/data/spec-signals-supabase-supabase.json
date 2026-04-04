@@ -3,9 +3,9 @@
   "lookback_days": 365,
   "rework_window_days": 30,
   "coverage": {
-    "coverage_pct": 24,
+    "coverage_pct": 22,
     "total_prs": 170,
-    "specd_prs": 41,
+    "specd_prs": 37,
     "prs": [
       {
         "number": 44198,
@@ -435,8 +435,8 @@
         "number": 44062,
         "sha": null,
         "title": "error rates in functions list",
-        "specd": true,
-        "spec_source": "https://github.com/supabase/supabase/issues/new?title=\u2728+Set+up+Copilot+instructions&body=Configure%20instructions%20for%20this%20repository%20as%20documented%20in%20%5BBest%20practices%20for%20Copilot%20coding%20agent%20in%20your%20repository%5D%28https://gh.io/copilot-coding-agent-tips%29%2E%0A%0A%3COnboard%20this%20repo%3E&assignees=copilot)",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-03-23T04:51:07+00:00"
       },
       {
@@ -611,8 +611,8 @@
         "number": 43983,
         "sha": null,
         "title": "feat(assistant): track chat IDs in PostHog events",
-        "specd": true,
-        "spec_source": "AI-519",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-03-20T16:27:18+00:00"
       },
       {
@@ -627,8 +627,8 @@
         "number": 43981,
         "sha": null,
         "title": "feat(assistant): per-endpoint reasoningEffort + model config cleanup",
-        "specd": true,
-        "spec_source": "AI-446",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-03-25T15:29:24+00:00"
       },
       {
@@ -788,7 +788,7 @@
         "sha": null,
         "title": "feat(assistant): upgrade AI SDK v5 \u2192 v6",
         "specd": true,
-        "spec_source": "AI-509",
+        "spec_source": "https://github.com/vercel/ai/issues/10060",
         "merged_at": "2026-03-19T13:07:33+00:00"
       },
       {
@@ -859,8 +859,8 @@
         "number": 44296,
         "sha": null,
         "title": "feat(assistant): lazy load topic knowledge via load_knowledge tool",
-        "specd": true,
-        "spec_source": "AI-508",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-04-02T20:09:06+00:00"
       },
       {
@@ -1373,7 +1373,7 @@
     "mode": "heuristic",
     "average_score": 45,
     "verdicts": {
-      "REVIEW": 41
+      "REVIEW": 37
     },
     "specs": [
       {
@@ -1696,67 +1696,6 @@
         ]
       },
       {
-        "pr_number": 44062,
-        "format": "freeform",
-        "completeness": 50,
-        "ambiguity": 100,
-        "testability": 14,
-        "consistency": 100,
-        "overall": 64,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "count(distinct id) instead of count(*) after unnest() joins \u2014 prevents row multi",
-            "suggestion": "Goal without test: 'count(distinct id) instead of count(*) after unnest() joins ...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "edge-functions-last-hour-stats SQL comment for analytics attribution",
-            "suggestion": "Goal without test: 'edge-functions-last-hour-stats SQL comment for analytics att...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Handles data?.error payload in addition to HTTP-level errors (previously silent ",
-            "suggestion": "Goal without test: 'Handles data?.error payload in addition to HTTP-level errors...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "refetchOnWindowFocus: false / refetchOnReconnect: false \u2014 prevents implicit refe",
-            "suggestion": "Goal without test: 'refetchOnWindowFocus: false / refetchOnReconnect: false \u2014 pr...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Stats columns hidden entirely when IS_PLATFORM is false; colSpan updated accordi",
-            "suggestion": "Goal without test: 'Stats columns hidden entirely when IS_PLATFORM is false; col...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Per-row shimmer during isPending, distinct - with tooltip on isError \u2014 loading v",
-            "suggestion": "Goal without test: 'Per-row shimmer during isPending, distinct - with tooltip on...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 44058,
         "format": "freeform",
         "completeness": 0,
@@ -1968,148 +1907,6 @@
             "type": "testability",
             "term": "Confirm all other time windows (10m, 30m, 1h, 24h) still load and display correc",
             "suggestion": "Goal without test: 'Confirm all other time windows (10m, 30m, 1h, 24h) still loa...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 43983,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "(no goals found)",
-            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 43981,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 97,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 44,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 6,
-            "type": "ambiguity",
-            "term": "simple",
-            "suggestion": "Replace 'simple' with a specific, measurable term"
-          },
-          {
-            "line": 30,
-            "type": "ambiguity",
-            "term": "properly",
-            "suggestion": "Replace 'properly' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "making reasoning effort configurable on a per-request basis",
-            "suggestion": "Goal without test: 'making reasoning effort configurable on a per-request basis' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "adding compile-time guardrails to prevent selecting an incompatible reasoning le",
-            "suggestion": "Goal without test: 'adding compile-time guardrails to prevent selecting an incom...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "adding a DEFAULTCOMPLETIONMODEL with minimal reasoning that we can update with n",
-            "suggestion": "Goal without test: 'adding a DEFAULTCOMPLETIONMODEL with minimal reasoning that ...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Fixes bug in onboarding/design.ts and assistant.eval.ts where providerOptions wa",
-            "suggestion": "Goal without test: 'Fixes bug in onboarding/design.ts and assistant.eval.ts wher...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "getModel() now returns a bundled modelParams object (spread into AI SDK calls) s",
-            "suggestion": "Goal without test: 'getModel() now returns a bundled modelParams object (spread ...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Introduces an ASSISTANT_MODELS registry as a single source of truth for assistan",
-            "suggestion": "Goal without test: 'Introduces an ASSISTANT_MODELS registry as a single source o...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Aligns free/pro model conditional logic with assistant.advance_model entitlement",
-            "suggestion": "Goal without test: 'Aligns free/pro model conditional logic with assistant.advan...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Adds console.error logging of Assistant stream errors so we can interpret reason",
-            "suggestion": "Goal without test: 'Adds console.error logging of Assistant stream errors so we ...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Removes unnecessary type casts and generally making the model config logic stric",
-            "suggestion": "Goal without test: 'Removes unnecessary type casts and generally making the mode...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Removes pre-existing dead code: anthropic provider variant in GetModelParams / P",
-            "suggestion": "Goal without test: 'Removes pre-existing dead code: anthropic provider variant i...' \u2014 add a Given/When/Then criterion"
           }
         ],
         "warnings": [
@@ -2697,96 +2494,6 @@
           "No I/O contracts \u2014 AI will invent API shapes",
           "No side effects listed \u2014 AI may miss integrations",
           "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 44296,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "New always-available load_knowledge tool added to rendering-tools.ts",
-            "suggestion": "Goal without test: 'New always-available load_knowledge tool added to rendering-...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Updated Message.Parts.tsx so the \"Ran load_knowledge\" chip renders in chat",
-            "suggestion": "Goal without test: 'Updated Message.Parts.tsx so the \"Ran load_knowledge\" chip r...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "System prompt replaces the four knowledge blobs with an ## Available Knowledge b",
-            "suggestion": "Goal without test: 'System prompt replaces the four knowledge blobs with an ## A...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "New \"Knowledge Usage\" scorer and requiredKnowledge assertions check that knowled",
-            "suggestion": "Goal without test: 'New \"Knowledge Usage\" scorer and requiredKnowledge assertion...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Filters GraphQL error responses out of output.docs before faithfulness scoring t",
-            "suggestion": "Goal without test: 'Filters GraphQL error responses out of output.docs before fa...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "https://ai-sdk.dev/cookbook/guides/agent-skills",
-            "suggestion": "Goal without test: 'https://ai-sdk.dev/cookbook/guides/agent-skills' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Added dynamic knowledge loading capability enabling the AI assistant to retrieve",
-            "suggestion": "Goal without test: 'Added dynamic knowledge loading capability enabling the AI a...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Improved search results filtering to exclude error responses in tool outputs.",
-            "suggestion": "Goal without test: 'Improved search results filtering to exclude error responses...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Enhanced evaluation metrics with knowledge usage scoring.",
-            "suggestion": "Goal without test: 'Enhanced evaluation metrics with knowledge usage scoring.' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Expanded test dataset cases to validate knowledge requirement handling.",
-            "suggestion": "Goal without test: 'Expanded test dataset cases to validate knowledge requiremen...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
           "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
         ]
       },
@@ -4094,11 +3801,11 @@
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.0488,
-    "unspecd_rework_rate": 0.1628,
-    "delta": -0.114,
-    "specd_sample_size": 41,
-    "unspecd_sample_size": 129,
+    "specd_rework_rate": 0.0541,
+    "unspecd_rework_rate": 0.1579,
+    "delta": -0.1038,
+    "specd_sample_size": 37,
+    "unspecd_sample_size": 133,
     "significance": "significant",
     "signals": [
       {
@@ -4383,21 +4090,21 @@
     "by_complexity": {
       "small": {
         "specd_rework_rate": 0.0,
-        "unspecd_rework_rate": 0.1212,
-        "specd_count": 22,
-        "unspecd_count": 66
+        "unspecd_rework_rate": 0.1194,
+        "specd_count": 21,
+        "unspecd_count": 67
       },
       "medium": {
-        "specd_rework_rate": 0.0833,
-        "unspecd_rework_rate": 0.2,
-        "specd_count": 12,
-        "unspecd_count": 35
+        "specd_rework_rate": 0.1,
+        "unspecd_rework_rate": 0.1892,
+        "specd_count": 10,
+        "unspecd_count": 37
       },
       "large": {
-        "specd_rework_rate": 0.1429,
-        "unspecd_rework_rate": 0.2143,
-        "specd_count": 7,
-        "unspecd_count": 28
+        "specd_rework_rate": 0.1667,
+        "unspecd_rework_rate": 0.2069,
+        "specd_count": 6,
+        "unspecd_count": 29
       }
     }
   }

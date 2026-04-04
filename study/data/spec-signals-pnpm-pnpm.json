@@ -3,9 +3,9 @@
   "lookback_days": 365,
   "rework_window_days": 30,
   "coverage": {
-    "coverage_pct": 35,
+    "coverage_pct": 34,
     "total_prs": 441,
-    "specd_prs": 156,
+    "specd_prs": 151,
     "prs": [
       {
         "number": 11086,
@@ -1387,8 +1387,8 @@
         "number": 10545,
         "sha": null,
         "title": "fix(deps): add override for @isaacs/brace-expansion@5.0.1",
-        "specd": true,
-        "spec_source": "GHSA-7",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-02-05T22:00:53+00:00"
       },
       {
@@ -1403,8 +1403,8 @@
         "number": 10539,
         "sha": null,
         "title": "Updating tar dependency version to fix security vulnerability (fix: #10530)",
-        "specd": true,
-        "spec_source": "GHSA-34",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-02-03T00:47:37+00:00"
       },
       {
@@ -1811,8 +1811,8 @@
         "number": 10389,
         "sha": null,
         "title": "chore: upgrade qs to 6.14.1",
-        "specd": true,
-        "spec_source": "GHSA-6",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-12-31T12:08:39+00:00"
       },
       {
@@ -2115,8 +2115,8 @@
         "number": 10293,
         "sha": null,
         "title": "test: add coverage for excluded packages missing time field",
-        "specd": true,
-        "spec_source": "https://github.com/pnpm/pnpm/issues/new?title=\u2728+Set+up+Copilot+instructions&body=Configure%20instructions%20for%20this%20repository%20as%20documented%20in%20%5BBest%20practices%20for%20Copilot%20coding%20agent%20in%20your%20repository%5D%28https://gh.io/copilot-coding-agent-tips%29%2E%0A%0A%3COnboard%20this%20repo%3E&assignees=copilot)",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-12-08T13:39:18+00:00"
       },
       {
@@ -2316,7 +2316,7 @@
         "sha": null,
         "title": "chore: ignore GHSA-mh29-5h37-fv8m",
         "specd": true,
-        "spec_source": "GHSA-MH29",
+        "spec_source": "https://github.com/changesets/changesets/issues/1762.",
         "merged_at": "2025-11-16T21:21:41+00:00"
       },
       {
@@ -2627,8 +2627,8 @@
         "number": 10043,
         "sha": null,
         "title": "chore: add GHSA-ffrw-9mx8-89p8 to `ignoreGhsas` config",
-        "specd": true,
-        "spec_source": "GHSA-FFRW",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-10-05T16:29:49+00:00"
       },
       {
@@ -3541,8 +3541,8 @@
     "mode": "heuristic",
     "average_score": 45,
     "verdicts": {
-      "REVIEW": 153,
-      "REWRITE": 3
+      "REVIEW": 149,
+      "REWRITE": 2
     },
     "specs": [
       {
@@ -6339,82 +6339,6 @@
         ]
       },
       {
-        "pr_number": 10545,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "(no goals found)",
-            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 10539,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "If my changes are correct, I think a new version of pnpm will need to be release",
-            "suggestion": "Goal without test: 'If my changes are correct, I think a new version of pnpm wil...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 10536,
         "format": "freeform",
         "completeness": 0,
@@ -6995,44 +6919,6 @@
         ]
       },
       {
-        "pr_number": 10389,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "(no goals found)",
-            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 10387,
         "format": "freeform",
         "completeness": 0,
@@ -7476,49 +7362,6 @@
           "No side effects listed \u2014 AI may miss integrations",
           "No error contract \u2014 AI will invent error shapes per function",
           "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 10293,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Version-specific exclusion (package@version) without time field",
-            "suggestion": "Goal without test: 'Version-specific exclusion (package@version) without time fi...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Package-wide exclusion (package) without time field",
-            "suggestion": "Goal without test: 'Package-wide exclusion (package) without time field' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
           "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
         ]
       },
@@ -8721,68 +8564,6 @@
             "type": "completeness",
             "term": "scope",
             "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "(no goals found)",
-            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 10043,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 80,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 39,
-        "verdict": "REWRITE",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 1,
-            "type": "ambiguity",
-            "term": "fast",
-            "suggestion": "Replace 'fast' with a specific, measurable term"
-          },
-          {
-            "line": 5,
-            "type": "ambiguity",
-            "term": "fast",
-            "suggestion": "Replace 'fast' with a specific, measurable term"
-          },
-          {
-            "line": 7,
-            "type": "ambiguity",
-            "term": "fast",
-            "suggestion": "Replace 'fast' with a specific, measurable term"
-          },
-          {
-            "line": 13,
-            "type": "ambiguity",
-            "term": "fast",
-            "suggestion": "Replace 'fast' with a specific, measurable term"
           },
           {
             "line": 0,
@@ -11172,11 +10953,11 @@
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.2949,
-    "unspecd_rework_rate": 0.2877,
-    "delta": 0.0072,
-    "specd_sample_size": 156,
-    "unspecd_sample_size": 285,
+    "specd_rework_rate": 0.3046,
+    "unspecd_rework_rate": 0.2828,
+    "delta": 0.0219,
+    "specd_sample_size": 151,
+    "unspecd_sample_size": 290,
     "significance": "significant",
     "signals": [
       {
@@ -13093,10 +12874,10 @@
     ],
     "by_complexity": {
       "small": {
-        "specd_rework_rate": 0.2353,
-        "unspecd_rework_rate": 0.1173,
-        "specd_count": 102,
-        "unspecd_count": 162
+        "specd_rework_rate": 0.2474,
+        "unspecd_rework_rate": 0.1138,
+        "specd_count": 97,
+        "unspecd_count": 167
       },
       "medium": {
         "specd_rework_rate": 0.381,

@@ -5,7 +5,7 @@
   "coverage": {
     "coverage_pct": 7,
     "total_prs": 567,
-    "specd_prs": 39,
+    "specd_prs": 38,
     "prs": [
       {
         "number": 15139,
@@ -836,7 +836,7 @@
         "sha": null,
         "title": "\ud83d\udd27 Update LLM-prompt for `abbr` and `dfn` tags",
         "specd": true,
-        "spec_source": "GPT-5",
+        "spec_source": "LLM-PROMPT",
         "merged_at": "2026-02-10T11:56:21+00:00"
       },
       {
@@ -1179,8 +1179,8 @@
         "number": 14823,
         "sha": null,
         "title": "\u2b07\ufe0f Downgrade LLM translations model to GPT-5 to reduce mistakes",
-        "specd": true,
-        "spec_source": "GPT-5",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-02-04T17:00:40+00:00"
       },
       {
@@ -3100,7 +3100,7 @@
         "sha": null,
         "title": "\ud83d\udcdd Update `tutorial/security/oauth2-jwt/` to use `pwdlib` with Argon2 instead of `passlib`",
         "specd": true,
-        "spec_source": "GPU-BASED",
+        "spec_source": "https://github.com/fastapi-users/fastapi-users/issues/1325)),",
         "merged_at": "2025-09-29T02:57:38+00:00"
       },
       {
@@ -4549,7 +4549,7 @@
     "mode": "heuristic",
     "average_score": 45,
     "verdicts": {
-      "REVIEW": 39
+      "REVIEW": 38
     },
     "specs": [
       {
@@ -4847,44 +4847,6 @@
         ],
         "warnings": [
           "No context anchors \u2014 AI will invent its own architecture",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 14823,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "(no goals found)",
-            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
           "No side effects listed \u2014 AI may miss integrations",
           "No error contract \u2014 AI will invent error shapes per function",
           "No state transitions \u2014 AI may allow invalid transitions",
@@ -6246,11 +6208,11 @@
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.3333,
-    "unspecd_rework_rate": 0.0663,
-    "delta": 0.267,
-    "specd_sample_size": 39,
-    "unspecd_sample_size": 528,
+    "specd_rework_rate": 0.3421,
+    "unspecd_rework_rate": 0.0662,
+    "delta": 0.2759,
+    "specd_sample_size": 38,
+    "unspecd_sample_size": 529,
     "significance": "significant",
     "signals": [
       {
@@ -7058,10 +7020,10 @@
     ],
     "by_complexity": {
       "small": {
-        "specd_rework_rate": 0.2609,
-        "unspecd_rework_rate": 0.0933,
-        "specd_count": 23,
-        "unspecd_count": 375
+        "specd_rework_rate": 0.2727,
+        "unspecd_rework_rate": 0.0931,
+        "specd_count": 22,
+        "unspecd_count": 376
       },
       "medium": {
         "specd_rework_rate": 0.5,

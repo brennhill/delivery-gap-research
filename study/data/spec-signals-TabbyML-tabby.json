@@ -3,16 +3,16 @@
   "lookback_days": 365,
   "rework_window_days": 30,
   "coverage": {
-    "coverage_pct": 6,
+    "coverage_pct": 5,
     "total_prs": 180,
-    "specd_prs": 11,
+    "specd_prs": 9,
     "prs": [
       {
         "number": 4448,
         "sha": null,
         "title": "feat: add Avian as a model provider",
-        "specd": true,
-        "spec_source": "AI-COMPATIBLE",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-03-02T08:20:29+00:00"
       },
       {
@@ -187,8 +187,8 @@
         "number": 4387,
         "sha": null,
         "title": "docs: add Hugging Face Inference Providers documentation",
-        "specd": true,
-        "spec_source": "AI-COMPATIBLE",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-11-06T12:26:46+00:00"
       },
       {
@@ -1453,88 +1453,9 @@
     "mode": "heuristic",
     "average_score": 45,
     "verdicts": {
-      "REVIEW": 11
+      "REVIEW": 9
     },
     "specs": [
-      {
-        "pr_number": 4448,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Add [Avian](https://avian.io/) as a supported model provider for chat completion",
-            "suggestion": "Goal without test: 'Add [Avian](https://avian.io/) as a supported model provider...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Register avian/chat kind in the HTTP API chat bindings alongside existing OpenAI",
-            "suggestion": "Goal without test: 'Register avian/chat kind in the HTTP API chat bindings along...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Add documentation page with configuration examples and available models",
-            "suggestion": "Goal without test: 'Add documentation page with configuration examples and avail...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "crates/http-api-bindings/src/chat/mod.rs \u2014 Add \"avian/chat\" to the match arm for",
-            "suggestion": "Goal without test: 'crates/http-api-bindings/src/chat/mod.rs \u2014 Add \"avian/chat\" ...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "website/docs/references/models-http-api/avian.md \u2014 Documentation page with setup",
-            "suggestion": "Goal without test: 'website/docs/references/models-http-api/avian.md \u2014 Documenta...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Verified the code change follows the exact same pattern as existing provider",
-            "suggestion": "Goal without test: '[x] Verified the code change follows the exact same pattern ...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[ ] The avian/chat kind routes through the same ExtendedOpenAIConfig path as ope",
-            "suggestion": "Goal without test: '[ ] The avian/chat kind routes through the same ExtendedOpen...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[ ] Configuration can be tested with a valid Avian API key",
-            "suggestion": "Goal without test: '[ ] Configuration can be tested with a valid Avian API key' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
       {
         "pr_number": 4402,
         "format": "freeform",
@@ -1562,56 +1483,6 @@
             "type": "testability",
             "term": "(no goals found)",
             "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 4387,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Add documentation for configuring Tabby with HF Inference Providers",
-            "suggestion": "Goal without test: 'Add documentation for configuring Tabby with HF Inference Pr...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Document chat model support via OpenAI-compatible API",
-            "suggestion": "Goal without test: 'Document chat model support via OpenAI-compatible API' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Info on finding suitable models on the Hub supported by Inference Providers",
-            "suggestion": "Goal without test: 'Info on finding suitable models on the Hub supported by Infe...' \u2014 add a Given/When/Then criterion"
           }
         ],
         "warnings": [
@@ -2055,12 +1926,12 @@
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.0909,
-    "unspecd_rework_rate": 0.1361,
-    "delta": -0.0452,
-    "specd_sample_size": 11,
-    "unspecd_sample_size": 169,
-    "significance": "limited",
+    "specd_rework_rate": 0.1111,
+    "unspecd_rework_rate": 0.1345,
+    "delta": -0.0234,
+    "specd_sample_size": 9,
+    "unspecd_sample_size": 171,
+    "significance": "insufficient",
     "signals": [
       {
         "type": "bug-fix",
@@ -2376,9 +2247,9 @@
     "by_complexity": {
       "small": {
         "specd_rework_rate": 0.0,
-        "unspecd_rework_rate": 0.0991,
-        "specd_count": 8,
-        "unspecd_count": 111
+        "unspecd_rework_rate": 0.0973,
+        "specd_count": 6,
+        "unspecd_count": 113
       }
     }
   }

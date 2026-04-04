@@ -5,7 +5,7 @@
   "coverage": {
     "coverage_pct": 7,
     "total_prs": 1297,
-    "specd_prs": 96,
+    "specd_prs": 95,
     "prs": [
       {
         "number": 13399,
@@ -2363,8 +2363,8 @@
         "number": 12793,
         "sha": null,
         "title": "chore: upgrade request-filtering-agent to version 3.2.0",
-        "specd": true,
-        "spec_source": "GHSA-PW25",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-01-16T04:11:45+00:00"
       },
       {
@@ -10389,7 +10389,7 @@
     "mode": "heuristic",
     "average_score": 45,
     "verdicts": {
-      "REVIEW": 96
+      "REVIEW": 95
     },
     "specs": [
       {
@@ -10808,44 +10808,6 @@
             "type": "testability",
             "term": "[ ] fix: (bug fix for the user, not a fix to a build script)",
             "suggestion": "Goal without test: '[ ] fix: (bug fix for the user, not a fix to a build script)' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 12793,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] chore: (updating grunt tasks etc; no production code change)",
-            "suggestion": "Goal without test: '[x] chore: (updating grunt tasks etc; no production code cha...' \u2014 add a Given/When/Then criterion"
           }
         ],
         "warnings": [
@@ -15024,11 +14986,11 @@
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.1458,
-    "unspecd_rework_rate": 0.199,
-    "delta": -0.0532,
-    "specd_sample_size": 96,
-    "unspecd_sample_size": 1201,
+    "specd_rework_rate": 0.1474,
+    "unspecd_rework_rate": 0.1988,
+    "delta": -0.0515,
+    "specd_sample_size": 95,
+    "unspecd_sample_size": 1202,
     "significance": "significant",
     "signals": [
       {
@@ -19124,10 +19086,10 @@
         "unspecd_count": 727
       },
       "medium": {
-        "specd_rework_rate": 0.2143,
-        "unspecd_rework_rate": 0.2698,
-        "specd_count": 14,
-        "unspecd_count": 278
+        "specd_rework_rate": 0.2308,
+        "unspecd_rework_rate": 0.2688,
+        "specd_count": 13,
+        "unspecd_count": 279
       },
       "large": {
         "specd_rework_rate": 0.7143,

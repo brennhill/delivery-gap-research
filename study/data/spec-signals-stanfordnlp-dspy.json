@@ -3,9 +3,9 @@
   "lookback_days": 365,
   "rework_window_days": 30,
   "coverage": {
-    "coverage_pct": 18,
+    "coverage_pct": 17,
     "total_prs": 568,
-    "specd_prs": 105,
+    "specd_prs": 99,
     "prs": [
       {
         "number": 9522,
@@ -955,8 +955,8 @@
         "number": 9111,
         "sha": null,
         "title": "Fix GEPAFeedbackMetric Protocol missing 'self' parameter",
-        "specd": true,
-        "spec_source": "https://github.com/stanfordnlp/dspy/issues/new?title=\u2728+Set+up+Copilot+instructions&body=Configure%20instructions%20for%20this%20repository%20as%20documented%20in%20%5BBest%20practices%20for%20Copilot%20coding%20agent%20in%20your%20repository%5D%28https://gh.io/copilot-coding-agent-tips%29%2E%0A%0A%3COnboard%20this%20repo%3E&assignees=copilot)",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-12-04T09:17:52+00:00"
       },
       {
@@ -1059,8 +1059,8 @@
         "number": 9047,
         "sha": null,
         "title": "fix(dspy): Example.toDict() fails to serialize dspy.History objects",
-        "specd": true,
-        "spec_source": "https://github.com/stanfordnlp/dspy/issues/new?title=\u2728+Set+up+Copilot+instructions&body=Configure%20instructions%20for%20this%20repository%20as%20documented%20in%20%5BBest%20practices%20for%20Copilot%20coding%20agent%20in%20your%20repository%5D%28https://gh.io/copilot-coding-agent-tips%29%2E%0A%0A%3COnboard%20this%20repo%3E&assignees=copilot)",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-11-17T07:37:47+00:00"
       },
       {
@@ -1091,8 +1091,8 @@
         "number": 8986,
         "sha": null,
         "title": "Introduce dspy.Reasoning to capture native reasoning from reasoning models",
-        "specd": true,
-        "spec_source": "GPT-5",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-11-13T22:36:55+00:00"
       },
       {
@@ -1307,8 +1307,8 @@
         "number": 8978,
         "sha": null,
         "title": "Fix TypeError when tracking usage with Anthropic models returning Pydantic objects",
-        "specd": true,
-        "spec_source": "https://github.com/stanfordnlp/dspy/issues/new?title=\u2728+Set+up+Copilot+instructions&body=Configure%20instructions%20for%20this%20repository%20as%20documented%20in%20%5BBest%20practices%20for%20Copilot%20coding%20agent%20in%20your%20repository%5D%28https://gh.io/copilot-coding-agent-tips%29%2E%0A%0A%3COnboard%20this%20repo%3E&assignees=copilot)",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-10-27T18:57:27+00:00"
       },
       {
@@ -1339,8 +1339,8 @@
         "number": 8970,
         "sha": null,
         "title": "Add documentation for provider-side prompt caching with Anthropic and OpenAI",
-        "specd": true,
-        "spec_source": "https://github.com/stanfordnlp/dspy/issues/new?title=\u2728+Set+up+Copilot+instructions&body=Configure%20instructions%20for%20this%20repository%20as%20documented%20in%20%5BBest%20practices%20for%20Copilot%20coding%20agent%20in%20your%20repository%5D%28https://gh.io/copilot-coding-agent-tips%29%2E%0A%0A%3COnboard%20this%20repo%3E&assignees=copilot)",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-10-25T10:43:04+00:00"
       },
       {
@@ -2660,7 +2660,7 @@
         "sha": null,
         "title": "Included MedVAL references to DSPy Use Cases",
         "specd": true,
-        "spec_source": "AI-GENERATED",
+        "spec_source": "VAL-4",
         "merged_at": "2025-07-10T18:16:52+00:00"
       },
       {
@@ -2795,8 +2795,8 @@
         "number": 8474,
         "sha": null,
         "title": "Fix typo in language_models.md",
-        "specd": true,
-        "spec_source": "GPT-4",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-07-03T05:44:53+00:00"
       },
       {
@@ -4557,7 +4557,7 @@
     "mode": "heuristic",
     "average_score": 45,
     "verdicts": {
-      "REVIEW": 104,
+      "REVIEW": 98,
       "REWRITE": 1
     },
     "specs": [
@@ -6192,73 +6192,6 @@
         ]
       },
       {
-        "pr_number": 9111,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Added self as first parameter to GEPAFeedbackMetric.call in dspy/teleprompt/gepa",
-            "suggestion": "Goal without test: 'Added self as first parameter to GEPAFeedbackMetric.call in ...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Added self as first parameter to PredictorFeedbackFn.call in dspy/teleprompt/gep",
-            "suggestion": "Goal without test: 'Added self as first parameter to PredictorFeedbackFn.call in...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Pre-Commit checks are passing (locally and remotely)",
-            "suggestion": "Goal without test: '[x] Pre-Commit checks are passing (locally and remotely)' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Title of your PR / MR corresponds to the required format",
-            "suggestion": "Goal without test: '[x] Title of your PR / MR corresponds to the required format' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Commit message follows required format {label}(dspy): {message}",
-            "suggestion": "Goal without test: '[x] Commit message follows required format {label}(dspy): {m...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Fixes stanfordnlp/dspy#9079",
-            "suggestion": "Goal without test: 'Fixes stanfordnlp/dspy#9079' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 9014,
         "format": "freeform",
         "completeness": 0,
@@ -6548,249 +6481,6 @@
             "type": "testability",
             "term": "(no goals found)",
             "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 9047,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 95,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 44,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 4,
-            "type": "ambiguity",
-            "term": "properly",
-            "suggestion": "Replace 'properly' with a specific, measurable term"
-          },
-          {
-            "line": 14,
-            "type": "ambiguity",
-            "term": "comprehensive",
-            "suggestion": "Replace 'comprehensive' with a specific, measurable term"
-          },
-          {
-            "line": 19,
-            "type": "ambiguity",
-            "term": "Comprehensive",
-            "suggestion": "Replace 'Comprehensive' with a specific, measurable term"
-          },
-          {
-            "line": 65,
-            "type": "ambiguity",
-            "term": "comprehensive",
-            "suggestion": "Replace 'comprehensive' with a specific, measurable term"
-          },
-          {
-            "line": 74,
-            "type": "ambiguity",
-            "term": "Comprehensive",
-            "suggestion": "Replace 'Comprehensive' with a specific, measurable term"
-          },
-          {
-            "line": 81,
-            "type": "ambiguity",
-            "term": "better",
-            "suggestion": "Replace 'better' with a specific, measurable term"
-          },
-          {
-            "line": 82,
-            "type": "ambiguity",
-            "term": "maintainable",
-            "suggestion": "Replace 'maintainable' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Explore repository and understand the issue",
-            "suggestion": "Goal without test: '[x] Explore repository and understand the issue' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Understand current toDict() implementation in Example class",
-            "suggestion": "Goal without test: '[x] Understand current toDict() implementation in Example cl...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Identify that History is a Pydantic model with model_dump() method",
-            "suggestion": "Goal without test: '[x] Identify that History is a Pydantic model with model_dum...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Run existing tests to establish baseline",
-            "suggestion": "Goal without test: '[x] Run existing tests to establish baseline' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Update Example.toDict() to handle Pydantic models",
-            "suggestion": "Goal without test: '[x] Update Example.toDict() to handle Pydantic models' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Update Evaluate.prepareresults_output() to use toDict()",
-            "suggestion": "Goal without test: '[x] Update Evaluate.prepareresults_output() to use toDict()' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Create test for Example with History serialization",
-            "suggestion": "Goal without test: '[x] Create test for Example with History serialization' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Create comprehensive tests for saveasjson/csv with History",
-            "suggestion": "Goal without test: '[x] Create comprehensive tests for saveasjson/csv with Histo...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Run tests to verify fix",
-            "suggestion": "Goal without test: '[x] Run tests to verify fix' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Verify JSON serialization works end-to-end",
-            "suggestion": "Goal without test: '[x] Verify JSON serialization works end-to-end' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Fix linting issues",
-            "suggestion": "Goal without test: '[x] Fix linting issues' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Run security scan with codeql_checker - NO VULNERABILITIES FOUND",
-            "suggestion": "Goal without test: '[x] Run security scan with codeql_checker - NO VULNERABILITI...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Comprehensive manual verification",
-            "suggestion": "Goal without test: '[x] Comprehensive manual verification' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Address reviewer feedback - consolidated tests into existing file",
-            "suggestion": "Goal without test: '[x] Address reviewer feedback - consolidated tests into exis...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Refactored to move serialization logic into merge_dicts",
-            "suggestion": "Goal without test: '[x] Refactored to move serialization logic into merge_dicts' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Use isinstance(BaseModel) instead of hasattr for type checking",
-            "suggestion": "Goal without test: '[x] Use isinstance(BaseModel) instead of hasattr for type ch...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Simplified to always use toDict() without fallback to dict()",
-            "suggestion": "Goal without test: '[x] Simplified to always use toDict() without fallback to di...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Remove unnecessary try/except since pydantic is a core dependency",
-            "suggestion": "Goal without test: '[x] Remove unnecessary try/except since pydantic is a core d...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "testexampletodictwithhistory in tests/primitives/testexample.py - Tests basic Hi",
-            "suggestion": "Goal without test: 'testexampletodictwithhistory in tests/primitives/testexample...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "testevaluatesaveasjsonwithhistory in tests/evaluate/test_evaluate.py - Tests end",
-            "suggestion": "Goal without test: 'testevaluatesaveasjsonwithhistory in tests/evaluate/test_eva...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "testevaluatesaveascsvwithhistory in tests/evaluate/test_evaluate.py - Tests CSV ",
-            "suggestion": "Goal without test: 'testevaluatesaveascsvwithhistory in tests/evaluate/test_eval...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Fixes stanfordnlp/dspy#9045",
-            "suggestion": "Goal without test: 'Fixes stanfordnlp/dspy#9045' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 8986,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "For non-reasoning model, the above code will treat dspy.Reasoning` field as a st",
-            "suggestion": "Goal without test: 'For non-reasoning model, the above code will treat dspy.Reas...' \u2014 add a Given/When/Then criterion"
           }
         ],
         "warnings": [
@@ -7116,200 +6806,6 @@
           "No side effects listed \u2014 AI may miss integrations",
           "No error contract \u2014 AI will invent error shapes per function",
           "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 8978,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 96,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 44,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 13,
-            "type": "ambiguity",
-            "term": "correctly",
-            "suggestion": "Replace 'correctly' with a specific, measurable term"
-          },
-          {
-            "line": 30,
-            "type": "ambiguity",
-            "term": "correctly",
-            "suggestion": "Replace 'correctly' with a specific, measurable term"
-          },
-          {
-            "line": 54,
-            "type": "ambiguity",
-            "term": "should work",
-            "suggestion": "Replace 'should work' with a specific, measurable term"
-          },
-          {
-            "line": 54,
-            "type": "ambiguity",
-            "term": "correctly",
-            "suggestion": "Replace 'correctly' with a specific, measurable term"
-          },
-          {
-            "line": 134,
-            "type": "ambiguity",
-            "term": "appropriately",
-            "suggestion": "Replace 'appropriately' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Skip or ignore non-numeric fields",
-            "suggestion": "Goal without test: 'Skip or ignore non-numeric fields' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Convert Pydantic objects to their numeric values",
-            "suggestion": "Goal without test: 'Convert Pydantic objects to their numeric values' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Handle these objects gracefully in some other way",
-            "suggestion": "Goal without test: 'Handle these objects gracefully in some other way' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "First call doesn't crash (nothing to merge)",
-            "suggestion": "Goal without test: 'First call doesn't crash (nothing to merge)' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "OpenAI and other providers that return only numeric usage values are unaffected",
-            "suggestion": "Goal without test: 'OpenAI and other providers that return only numeric usage va...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Fixes stanfordnlp/dspy#8965",
-            "suggestion": "Goal without test: 'Fixes stanfordnlp/dspy#8965' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 8970,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 99,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 13,
-            "type": "ambiguity",
-            "term": "comprehensive",
-            "suggestion": "Replace 'comprehensive' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Explore repository structure and understand caching documentation",
-            "suggestion": "Goal without test: '[x] Explore repository structure and understand caching docu...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Understand how dspy.LM passes kwargs to litellm",
-            "suggestion": "Goal without test: '[x] Understand how dspy.LM passes kwargs to litellm' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Add prompt caching documentation section to the cache tutorial",
-            "suggestion": "Goal without test: '[x] Add prompt caching documentation section to the cache tu...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Address review feedback - remove unnecessary paragraph",
-            "suggestion": "Goal without test: '[x] Address review feedback - remove unnecessary paragraph' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Simplify documentation by consolidating Anthropic and OpenAI sections",
-            "suggestion": "Goal without test: '[x] Simplify documentation by consolidating Anthropic and Op...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Remove additional configuration options section",
-            "suggestion": "Goal without test: '[x] Remove additional configuration options section' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Remove duplicated OpenAI example and redundant explanation",
-            "suggestion": "Goal without test: '[x] Remove duplicated OpenAI example and redundant explanati...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Add reference to LiteLLM documentation",
-            "suggestion": "Goal without test: '[x] Add reference to LiteLLM documentation' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Run code review and security checks",
-            "suggestion": "Goal without test: '[x] Run code review and security checks' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Fixes stanfordnlp/dspy#8925",
-            "suggestion": "Goal without test: 'Fixes stanfordnlp/dspy#8925' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
           "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
         ]
       },
@@ -9186,44 +8682,6 @@
         ]
       },
       {
-        "pr_number": 8474,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "(no goals found)",
-            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 8485,
         "format": "freeform",
         "completeness": 0,
@@ -9958,11 +9416,11 @@
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.219,
-    "unspecd_rework_rate": 0.1901,
-    "delta": 0.029,
-    "specd_sample_size": 105,
-    "unspecd_sample_size": 463,
+    "specd_rework_rate": 0.2222,
+    "unspecd_rework_rate": 0.1898,
+    "delta": 0.0325,
+    "specd_sample_size": 99,
+    "unspecd_sample_size": 469,
     "significance": "significant",
     "signals": [
       {
@@ -11391,22 +10849,22 @@
     ],
     "by_complexity": {
       "small": {
-        "specd_rework_rate": 0.1892,
-        "unspecd_rework_rate": 0.1566,
-        "specd_count": 74,
-        "unspecd_count": 332
+        "specd_rework_rate": 0.1972,
+        "unspecd_rework_rate": 0.1552,
+        "specd_count": 71,
+        "unspecd_count": 335
       },
       "medium": {
-        "specd_rework_rate": 0.2174,
-        "unspecd_rework_rate": 0.2857,
-        "specd_count": 23,
-        "unspecd_count": 105
+        "specd_rework_rate": 0.2381,
+        "unspecd_rework_rate": 0.2804,
+        "specd_count": 21,
+        "unspecd_count": 107
       },
       "large": {
-        "specd_rework_rate": 0.5,
-        "unspecd_rework_rate": 0.2667,
-        "specd_count": 8,
-        "unspecd_count": 30
+        "specd_rework_rate": 0.4286,
+        "unspecd_rework_rate": 0.2903,
+        "specd_count": 7,
+        "unspecd_count": 31
       }
     }
   }

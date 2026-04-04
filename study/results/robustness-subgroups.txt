@@ -1,4 +1,4 @@
-Subgroup robustness run: 2026-04-04T18:40:21.127808+00:00
+Subgroup robustness run: 2026-04-04T21:24:01.081014+00:00
 Script: /Users/brenn/dev/ai-augmented-dev/research/study/scripts/pipeline/robustness-subgroups.py
 
 Bot exclusion:
@@ -14,16 +14,16 @@ SUBGROUP 1: HUMAN-ONLY PRs (no bots, no AI tags)
 ────────────────────────────────────────────────────────────
   Human-only
 ────────────────────────────────────────────────────────────
-  PRs: 82,063 | Spec'd: 6,872 (8.4%) | In SZZ: 72,490
-  Bug rate: 12.2% | Rework rate: 3.5%
+  PRs: 82,063 | Spec'd: 22,377 (27.3%) | In SZZ: 72,490
+  Bug rate: 12.2% | Rework rate: 13.0%
 
   Specs → SZZ bugs:
-  N=66,872, authors=4,171 (819 with variation)
-  coef=+0.0217, p=0.0071 → INCREASES **
+  N=66,872, authors=4,171 (2,077 with variation)
+  coef=+0.0149, p=0.0026 → INCREASES **
 
   Specs → rework:
-  N=75,810, authors=4,728 (904 with variation)
-  coef=+0.0524, p=0.0000 → INCREASES ***
+  N=75,810, authors=4,728 (2,409 with variation)
+  coef=+0.0109, p=0.0042 → INCREASES **
 
   Spec quality → SZZ bugs (N=4,320 scored):
   N=4,033, authors=331 (328 with variation)
@@ -36,16 +36,16 @@ SUBGROUP 2: AI-TAGGED PRs (excluding bots)
 ────────────────────────────────────────────────────────────
   AI-tagged (non-bot)
 ────────────────────────────────────────────────────────────
-  PRs: 5,989 | Spec'd: 965 (16.1%) | In SZZ: 5,324
-  Bug rate: 16.7% | Rework rate: 9.2%
+  PRs: 5,989 | Spec'd: 1,921 (32.1%) | In SZZ: 5,324
+  Bug rate: 16.7% | Rework rate: 18.6%
 
   Specs → SZZ bugs:
-  N=4,797, authors=422 (140 with variation)
-  coef=-0.0097, p=0.6282 → DECREASES 
+  N=4,797, authors=422 (224 with variation)
+  coef=+0.0114, p=0.4239 → INCREASES 
 
   Specs → rework:
-  N=5,431, authors=447 (149 with variation)
-  coef=+0.0266, p=0.1377 → INCREASES 
+  N=5,431, authors=447 (241 with variation)
+  coef=+0.0097, p=0.3993 → INCREASES 
 
   Spec quality → SZZ bugs (N=872 scored):
   N=809, authors=78 (78 with variation)
@@ -65,16 +65,16 @@ Repo AI adoption (non-bot):
 ────────────────────────────────────────────────────────────
   Zero-AI repos
 ────────────────────────────────────────────────────────────
-  PRs: 3,562 | Spec'd: 127 (3.6%) | In SZZ: 1,596
-  Bug rate: 5.8% | Rework rate: 1.2%
+  PRs: 3,562 | Spec'd: 771 (21.6%) | In SZZ: 1,596
+  Bug rate: 5.8% | Rework rate: 12.7%
 
   Specs → SZZ bugs:
-  N=1,387, authors=150 (12 with variation)
-  coef=+0.0253, p=0.6067 → INCREASES 
+  N=1,387, authors=150 (55 with variation)
+  coef=-0.0161, p=0.3771 → DECREASES 
 
   Specs → rework:
-  N=3,206, authors=273 (48 with variation)
-  coef=+0.0040, p=0.8953 → INCREASES 
+  N=3,206, authors=273 (111 with variation)
+  coef=-0.0332, p=0.0144 → DECREASES *
 
   Spec quality → SZZ bugs: SKIPPED (0 scored PRs)
 
@@ -83,16 +83,16 @@ Repo AI adoption (non-bot):
 ────────────────────────────────────────────────────────────
   Low-AI repos
 ────────────────────────────────────────────────────────────
-  PRs: 51,877 | Spec'd: 2,348 (4.5%) | In SZZ: 45,007
-  Bug rate: 10.6% | Rework rate: 1.2%
+  PRs: 51,877 | Spec'd: 13,258 (25.6%) | In SZZ: 45,007
+  Bug rate: 10.6% | Rework rate: 10.7%
 
   Specs → SZZ bugs:
-  N=41,133, authors=2,551 (294 with variation)
-  coef=+0.0003, p=0.9750 → INCREASES 
+  N=41,133, authors=2,551 (1,203 with variation)
+  coef=+0.0191, p=0.0006 → INCREASES ***
 
   Specs → rework:
-  N=47,548, authors=2,890 (309 with variation)
-  coef=+0.0592, p=0.0000 → INCREASES ***
+  N=47,548, authors=2,890 (1,421 with variation)
+  coef=+0.0086, p=0.0612 → INCREASES 
 
   Spec quality → SZZ bugs (N=1,232 scored):
   N=1,135, authors=96 (95 with variation)
@@ -103,16 +103,16 @@ Repo AI adoption (non-bot):
 ────────────────────────────────────────────────────────────
   High-AI repos
 ────────────────────────────────────────────────────────────
-  PRs: 32,613 | Spec'd: 5,362 (16.4%) | In SZZ: 31,211
-  Bug rate: 15.6% | Rework rate: 8.5%
+  PRs: 32,613 | Spec'd: 10,269 (31.5%) | In SZZ: 31,211
+  Bug rate: 15.6% | Rework rate: 17.8%
 
   Specs → SZZ bugs:
-  N=29,323, authors=1,643 (568 with variation)
-  coef=+0.0226, p=0.0142 → INCREASES *
+  N=29,323, authors=1,643 (906 with variation)
+  coef=+0.0104, p=0.1853 → INCREASES 
 
   Specs → rework:
-  N=30,670, authors=1,748 (606 with variation)
-  coef=+0.0417, p=0.0000 → INCREASES ***
+  N=30,670, authors=1,748 (973 with variation)
+  coef=+0.0176, p=0.0025 → INCREASES **
 
   Spec quality → SZZ bugs (N=3,960 scored):
   N=3,763, authors=263 (261 with variation)
@@ -125,16 +125,16 @@ SUBGROUP 4: ALL PRs (bots excluded) — MAIN RESULT REPLICATION
 ────────────────────────────────────────────────────────────
   All non-bot PRs
 ────────────────────────────────────────────────────────────
-  PRs: 88,052 | Spec'd: 7,837 (8.9%) | In SZZ: 77,814
-  Bug rate: 12.5% | Rework rate: 3.9%
+  PRs: 88,052 | Spec'd: 24,298 (27.6%) | In SZZ: 77,814
+  Bug rate: 12.5% | Rework rate: 13.4%
 
   Specs → SZZ bugs:
-  N=72,046, authors=4,328 (894 with variation)
-  coef=+0.0171, p=0.0209 → INCREASES *
+  N=72,046, authors=4,328 (2,181 with variation)
+  coef=+0.0142, p=0.0026 → INCREASES **
 
   Specs → rework:
-  N=81,647, authors=4,892 (985 with variation)
-  coef=+0.0488, p=0.0000 → INCREASES ***
+  N=81,647, authors=4,892 (2,524 with variation)
+  coef=+0.0116, p=0.0012 → INCREASES **
 
   Spec quality → SZZ bugs (N=5,192 scored):
   N=4,901, authors=360 (357 with variation)
@@ -146,12 +146,12 @@ SUMMARY: SPEC EFFECTS ACROSS SUBGROUPS
 
                       Subgroup   → Bugs coef         p   → Rework coef         p
 ──────────────────────────────  ────────────  ────────  ──────────────  ────────
-               All non-bot PRs       +0.0171    0.0209         +0.0488    0.0000
-            Human-only (no AI)       +0.0217    0.0071         +0.0524    0.0000
-           AI-tagged (non-bot)       -0.0097    0.6282         +0.0266    0.1377
-                 Zero-AI repos       +0.0253    0.6067         +0.0040    0.8953
-                  Low-AI repos       +0.0003    0.9750         +0.0592    0.0000
-                 High-AI repos       +0.0226    0.0142         +0.0417    0.0000
+               All non-bot PRs       +0.0142    0.0026         +0.0116    0.0012
+            Human-only (no AI)       +0.0149    0.0026         +0.0109    0.0042
+           AI-tagged (non-bot)       +0.0114    0.4239         +0.0097    0.3993
+                 Zero-AI repos       -0.0161    0.3771         -0.0332    0.0144
+                  Low-AI repos       +0.0191    0.0006         +0.0086    0.0612
+                 High-AI repos       +0.0104    0.1853         +0.0176    0.0025
 
 Interpretation:
   If SDD claims held, we would see NEGATIVE coefficients (specs reduce bugs/rework).

@@ -3,9 +3,9 @@
   "lookback_days": 365,
   "rework_window_days": 30,
   "coverage": {
-    "coverage_pct": 21,
+    "coverage_pct": 20,
     "total_prs": 173,
-    "specd_prs": 36,
+    "specd_prs": 34,
     "prs": [
       {
         "number": 19851,
@@ -619,8 +619,8 @@
         "number": 19434,
         "sha": null,
         "title": "\ud83d\udea8 [security] Update all of nextjs 16.0.7 \u2192 16.0.10 (patch)",
-        "specd": true,
-        "spec_source": "GHSA-MWV6",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-12-12T14:52:15+00:00"
       },
       {
@@ -715,8 +715,8 @@
         "number": 19404,
         "sha": null,
         "title": "\ud83d\udea8 [security] Update all of nextjs 16.0.3 \u2192 16.0.7 (patch)",
-        "specd": true,
-        "spec_source": "GHSA-9",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-12-03T20:19:40+00:00"
       },
       {
@@ -1397,7 +1397,7 @@
     "mode": "heuristic",
     "average_score": 45,
     "verdicts": {
-      "REVIEW": 36
+      "REVIEW": 34
     },
     "specs": [
       {
@@ -1983,55 +1983,6 @@
         ]
       },
       {
-        "pr_number": 19434,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 99,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 12,
-            "type": "ambiguity",
-            "term": "good",
-            "suggestion": "Replace 'good' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[Depfu](https://depfu.com) will automatically keep this PR conflict-free, as lon",
-            "suggestion": "Goal without test: '[Depfu](https://depfu.com) will automatically keep this PR c...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "<dt>@\u200bdepfu resume</dt><dd>Future versions of this dependency will create PRs ag",
-            "suggestion": "Goal without test: '<dt>@\u200bdepfu resume</dt><dd>Future versions of this dependenc...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 19421,
         "format": "freeform",
         "completeness": 0,
@@ -2104,67 +2055,6 @@
           "No side effects listed \u2014 AI may miss integrations",
           "No error contract \u2014 AI will invent error shapes per function",
           "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 19404,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 98,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 44,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 12,
-            "type": "ambiguity",
-            "term": "good",
-            "suggestion": "Replace 'good' with a specific, measurable term"
-          },
-          {
-            "line": 72,
-            "type": "ambiguity",
-            "term": "properly",
-            "suggestion": "Replace 'properly' with a specific, measurable term"
-          },
-          {
-            "line": 103,
-            "type": "ambiguity",
-            "term": "properly",
-            "suggestion": "Replace 'properly' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[Depfu](https://depfu.com) will automatically keep this PR conflict-free, as lon",
-            "suggestion": "Goal without test: '[Depfu](https://depfu.com) will automatically keep this PR c...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "<dt>@\u200bdepfu resume</dt><dd>Future versions of this dependency will create PRs ag",
-            "suggestion": "Goal without test: '<dt>@\u200bdepfu resume</dt><dd>Future versions of this dependenc...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
           "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
         ]
       },
@@ -3050,11 +2940,11 @@
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.25,
-    "unspecd_rework_rate": 0.1314,
-    "delta": 0.1186,
-    "specd_sample_size": 36,
-    "unspecd_sample_size": 137,
+    "specd_rework_rate": 0.2647,
+    "unspecd_rework_rate": 0.1295,
+    "delta": 0.1352,
+    "specd_sample_size": 34,
+    "unspecd_sample_size": 139,
     "significance": "significant",
     "signals": [
       {
@@ -3359,10 +3249,10 @@
         "unspecd_count": 111
       },
       "medium": {
-        "specd_rework_rate": 0.2857,
-        "unspecd_rework_rate": 0.0513,
-        "specd_count": 14,
-        "unspecd_count": 39
+        "specd_rework_rate": 0.3333,
+        "unspecd_rework_rate": 0.0488,
+        "specd_count": 12,
+        "unspecd_count": 41
       }
     }
   }

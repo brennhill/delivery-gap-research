@@ -5,7 +5,7 @@
   "coverage": {
     "coverage_pct": 12,
     "total_prs": 502,
-    "specd_prs": 60,
+    "specd_prs": 58,
     "prs": [
       {
         "number": 36134,
@@ -1507,8 +1507,8 @@
         "number": 35317,
         "sha": null,
         "title": "[playground] Downgrade Next.js to a secure version",
-        "specd": true,
-        "spec_source": "GHSA-9",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-12-08T19:06:58+00:00"
       },
       {
@@ -2659,8 +2659,8 @@
         "number": 34902,
         "sha": null,
         "title": "[compiler] loosen computed key restriction for compiler",
-        "specd": true,
-        "spec_source": "CSS-IN",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-10-20T20:52:11+00:00"
       },
       {
@@ -4029,7 +4029,7 @@
     "mode": "heuristic",
     "average_score": 45,
     "verdicts": {
-      "REVIEW": 60
+      "REVIEW": 58
     },
     "specs": [
       {
@@ -4839,44 +4839,6 @@
         ]
       },
       {
-        "pr_number": 35317,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Downgrading to fix https://github.com/vercel/next.js/security/advisories/GHSA-9q",
-            "suggestion": "Goal without test: 'Downgrading to fix https://github.com/vercel/next.js/securit...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 35284,
         "format": "freeform",
         "completeness": 0,
@@ -5669,43 +5631,6 @@
         ]
       },
       {
-        "pr_number": 34902,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "(no goals found)",
-            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
-          }
-        ],
-        "warnings": [
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 34879,
         "format": "freeform",
         "completeness": 0,
@@ -6458,11 +6383,11 @@
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.1167,
-    "unspecd_rework_rate": 0.1041,
-    "delta": 0.0126,
-    "specd_sample_size": 60,
-    "unspecd_sample_size": 442,
+    "specd_rework_rate": 0.1207,
+    "unspecd_rework_rate": 0.1036,
+    "delta": 0.0171,
+    "specd_sample_size": 58,
+    "unspecd_sample_size": 444,
     "significance": "significant",
     "signals": [
       {
@@ -7160,10 +7085,10 @@
         "unspecd_count": 261
       },
       "medium": {
-        "specd_rework_rate": 0.0952,
-        "unspecd_rework_rate": 0.0827,
-        "specd_count": 21,
-        "unspecd_count": 133
+        "specd_rework_rate": 0.1053,
+        "unspecd_rework_rate": 0.0815,
+        "specd_count": 19,
+        "unspecd_count": 135
       },
       "large": {
         "specd_rework_rate": 0.3333,

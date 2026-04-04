@@ -3,9 +3,9 @@
   "lookback_days": 365,
   "rework_window_days": 30,
   "coverage": {
-    "coverage_pct": 49,
+    "coverage_pct": 48,
     "total_prs": 251,
-    "specd_prs": 122,
+    "specd_prs": 121,
     "prs": [
       {
         "number": 146433,
@@ -603,8 +603,8 @@
         "number": 146193,
         "sha": null,
         "title": "gh-146192: Add base32 support to binascii",
-        "specd": true,
-        "spec_source": "ASCII-ENCODED",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-03-22T21:10:28+00:00"
       },
       {
@@ -2021,7 +2021,7 @@
     "mode": "heuristic",
     "average_score": 45,
     "verdicts": {
-      "REVIEW": 122
+      "REVIEW": 121
     },
     "specs": [
       {
@@ -3457,43 +3457,6 @@
             "type": "testability",
             "term": "Most PRs will require an issue number. Trivial changes, like fixing a typo, do n",
             "suggestion": "Goal without test: 'Most PRs will require an issue number. Trivial changes, like...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 146193,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "> The [binascii](https://docs.python.org/3/library/binascii.html#module-binascii",
-            "suggestion": "Goal without test: '> The [binascii](https://docs.python.org/3/library/binascii....' \u2014 add a Given/When/Then criterion"
           }
         ],
         "warnings": [
@@ -6656,11 +6619,11 @@
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.0492,
-    "unspecd_rework_rate": 0.0543,
-    "delta": -0.0051,
-    "specd_sample_size": 122,
-    "unspecd_sample_size": 129,
+    "specd_rework_rate": 0.0496,
+    "unspecd_rework_rate": 0.0538,
+    "delta": -0.0043,
+    "specd_sample_size": 121,
+    "unspecd_sample_size": 130,
     "significance": "significant",
     "signals": [
       {

@@ -3,9 +3,9 @@
   "lookback_days": 365,
   "rework_window_days": 30,
   "coverage": {
-    "coverage_pct": 6,
+    "coverage_pct": 4,
     "total_prs": 323,
-    "specd_prs": 20,
+    "specd_prs": 12,
     "prs": [
       {
         "number": 11207,
@@ -1651,8 +1651,8 @@
         "number": 10901,
         "sha": null,
         "title": "deps(dev): update `valibot`",
-        "specd": true,
-        "spec_source": "GHSA-VQPR",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-12-17T16:56:52+00:00"
       },
       {
@@ -2211,8 +2211,8 @@
         "number": 10638,
         "sha": null,
         "title": "v2: update `tar-fs`",
-        "specd": true,
-        "spec_source": "GHSA-PQ67",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-05-29T20:40:32+00:00"
       },
       {
@@ -2387,8 +2387,8 @@
         "number": 10611,
         "sha": null,
         "title": "fix(dev): update `vite-node`",
-        "specd": true,
-        "spec_source": "GHSA-8",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-05-12T15:06:57+00:00"
       },
       {
@@ -2547,16 +2547,16 @@
         "number": 10577,
         "sha": null,
         "title": "chore: Update version for release",
-        "specd": true,
-        "spec_source": "GHSA-C76H",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-04-09T14:07:52+00:00"
       },
       {
         "number": 10573,
         "sha": null,
         "title": "chore: Update version for release (pre)",
-        "specd": true,
-        "spec_source": "GHSA-C76H",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-04-07T19:45:55+00:00"
       },
       {
@@ -2571,24 +2571,24 @@
         "number": 10547,
         "sha": null,
         "title": "fix(server-runtime): bump `cookie` to fix `GHSA-pxg6-pf52-xh8x`",
-        "specd": true,
-        "spec_source": "GHSA-PXG6",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-03-31T15:25:05+00:00"
       },
       {
         "number": 10561,
         "sha": null,
         "title": "chore: Update version for release",
-        "specd": true,
-        "spec_source": "GHSA-PXG6",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-03-31T16:05:29+00:00"
       },
       {
         "number": 10560,
         "sha": null,
         "title": "chore: Update version for release (pre)",
-        "specd": true,
-        "spec_source": "GHSA-PXG6",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-03-31T15:28:42+00:00"
       }
     ]
@@ -2597,7 +2597,7 @@
     "mode": "heuristic",
     "average_score": 45,
     "verdicts": {
-      "REVIEW": 20
+      "REVIEW": 12
     },
     "specs": [
       {
@@ -2785,44 +2785,6 @@
             "type": "ambiguity",
             "term": "correctly",
             "suggestion": "Replace 'correctly' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "(no goals found)",
-            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 10901,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
           },
           {
             "line": 0,
@@ -3140,82 +3102,6 @@
         ]
       },
       {
-        "pr_number": 10638,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "(no goals found)",
-            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 10611,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "(no goals found)",
-            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 10601,
         "format": "freeform",
         "completeness": 0,
@@ -3252,221 +3138,15 @@
           "No state transitions \u2014 AI may allow invalid transitions",
           "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
         ]
-      },
-      {
-        "pr_number": 10577,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "This PR was opened by the [Changesets release](https://github.com/changesets/act",
-            "suggestion": "Goal without test: 'This PR was opened by the [Changesets release](https://githu...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 10573,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 98,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 44,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 5,
-            "type": "ambiguity",
-            "term": "normal",
-            "suggestion": "Replace 'normal' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "This PR was opened by the [Changesets release](https://github.com/changesets/act",
-            "suggestion": "Goal without test: 'This PR was opened by the [Changesets release](https://githu...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 10547,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "https://scout.docker.com/vulnerabilities/id/CVE-2024-47764",
-            "suggestion": "Goal without test: 'https://scout.docker.com/vulnerabilities/id/CVE-2024-47764' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "https://github.com/advisories/GHSA-pxg6-pf52-xh8x",
-            "suggestion": "Goal without test: 'https://github.com/advisories/GHSA-pxg6-pf52-xh8x' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 10561,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "This PR was opened by the [Changesets release](https://github.com/changesets/act",
-            "suggestion": "Goal without test: 'This PR was opened by the [Changesets release](https://githu...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 10560,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 98,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 44,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 5,
-            "type": "ambiguity",
-            "term": "normal",
-            "suggestion": "Replace 'normal' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "This PR was opened by the [Changesets release](https://github.com/changesets/act",
-            "suggestion": "Goal without test: 'This PR was opened by the [Changesets release](https://githu...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
       }
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.15,
-    "unspecd_rework_rate": 0.0792,
-    "delta": 0.0708,
-    "specd_sample_size": 20,
-    "unspecd_sample_size": 303,
+    "specd_rework_rate": 0.0833,
+    "unspecd_rework_rate": 0.0836,
+    "delta": -0.0003,
+    "specd_sample_size": 12,
+    "unspecd_sample_size": 311,
     "significance": "limited",
     "signals": [
       {
@@ -3817,16 +3497,10 @@
     ],
     "by_complexity": {
       "small": {
-        "specd_rework_rate": 0.0909,
-        "unspecd_rework_rate": 0.029,
-        "specd_count": 11,
-        "unspecd_count": 138
-      },
-      "medium": {
-        "specd_rework_rate": 0.3333,
-        "unspecd_rework_rate": 0.086,
-        "specd_count": 6,
-        "unspecd_count": 93
+        "specd_rework_rate": 0.0,
+        "unspecd_rework_rate": 0.0352,
+        "specd_count": 7,
+        "unspecd_count": 142
       }
     }
   }

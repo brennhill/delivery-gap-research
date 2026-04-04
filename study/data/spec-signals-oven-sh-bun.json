@@ -5,7 +5,7 @@
   "coverage": {
     "coverage_pct": 37,
     "total_prs": 535,
-    "specd_prs": 200,
+    "specd_prs": 199,
     "prs": [
       {
         "number": 28543,
@@ -2603,8 +2603,8 @@
         "number": 25788,
         "sha": null,
         "title": "feat(cli): add `--grep` as alias for `-t`/`--test-name-pattern` in `bun test`",
-        "specd": true,
-        "spec_source": "AI-GENERATED",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-01-02T12:52:47+00:00"
       },
       {
@@ -4293,7 +4293,7 @@
     "mode": "heuristic",
     "average_score": 45,
     "verdicts": {
-      "REVIEW": 199,
+      "REVIEW": 198,
       "REWRITE": 1
     },
     "specs": [
@@ -12573,104 +12573,6 @@
         ]
       },
       {
-        "pr_number": 25788,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 96,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 44,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 16,
-            "type": "ambiguity",
-            "term": "correctly",
-            "suggestion": "Replace 'correctly' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Adds --grep as an alias for -t/--test-name-pattern in bun test",
-            "suggestion": "Goal without test: 'Adds --grep as an alias for -t/--test-name-pattern in bun te...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Extends the clap argument parser to support multiple long name aliases using / s",
-            "suggestion": "Goal without test: 'Extends the clap argument parser to support multiple long na...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "All three variants now work identically:",
-            "suggestion": "Goal without test: 'All three variants now work identically:' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "bun test -t \"pattern\"",
-            "suggestion": "Goal without test: 'bun test -t \"pattern\"' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "bun test --test-name-pattern \"pattern\"",
-            "suggestion": "Goal without test: 'bun test --test-name-pattern \"pattern\"' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "bun test --grep \"pattern\"",
-            "suggestion": "Goal without test: 'bun test --grep \"pattern\"' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] bun test --grep \"pattern\" filters tests correctly",
-            "suggestion": "Goal without test: '[x] bun test --grep \"pattern\" filters tests correctly' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] bun test -t \"pattern\" still works",
-            "suggestion": "Goal without test: '[x] bun test -t \"pattern\" still works' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] bun test --test-name-pattern \"pattern\" still works",
-            "suggestion": "Goal without test: '[x] bun test --test-name-pattern \"pattern\" still works' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Build passes",
-            "suggestion": "Goal without test: '[x] Build passes' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 25762,
         "format": "freeform",
         "completeness": 0,
@@ -17508,11 +17410,11 @@
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.23,
-    "unspecd_rework_rate": 0.2448,
-    "delta": -0.0148,
-    "specd_sample_size": 200,
-    "unspecd_sample_size": 335,
+    "specd_rework_rate": 0.2312,
+    "unspecd_rework_rate": 0.244,
+    "delta": -0.0129,
+    "specd_sample_size": 199,
+    "unspecd_sample_size": 336,
     "significance": "significant",
     "signals": [
       {
@@ -18963,10 +18865,10 @@
     ],
     "by_complexity": {
       "small": {
-        "specd_rework_rate": 0.188,
-        "unspecd_rework_rate": 0.201,
-        "specd_count": 117,
-        "unspecd_count": 209
+        "specd_rework_rate": 0.1897,
+        "unspecd_rework_rate": 0.2,
+        "specd_count": 116,
+        "unspecd_count": 210
       },
       "medium": {
         "specd_rework_rate": 0.2836,

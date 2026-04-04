@@ -3,9 +3,9 @@
   "lookback_days": 365,
   "rework_window_days": 30,
   "coverage": {
-    "coverage_pct": 22,
+    "coverage_pct": 17,
     "total_prs": 18,
-    "specd_prs": 4,
+    "specd_prs": 3,
     "prs": [
       {
         "number": 3645,
@@ -19,8 +19,8 @@
         "number": 3641,
         "sha": null,
         "title": "feat: add default values for GPT-4.1 ",
-        "specd": true,
-        "spec_source": "GPT-4",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-06-12T18:41:19+00:00"
       },
       {
@@ -157,47 +157,9 @@
     "mode": "heuristic",
     "average_score": 45,
     "verdicts": {
-      "REVIEW": 4
+      "REVIEW": 3
     },
     "specs": [
-      {
-        "pr_number": 3641,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "(no goals found)",
-            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
       {
         "pr_number": 3642,
         "format": "freeform",
@@ -315,11 +277,11 @@
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.25,
-    "unspecd_rework_rate": 0.0714,
-    "delta": 0.1786,
-    "specd_sample_size": 4,
-    "unspecd_sample_size": 14,
+    "specd_rework_rate": 0.3333,
+    "unspecd_rework_rate": 0.0667,
+    "delta": 0.2667,
+    "specd_sample_size": 3,
+    "unspecd_sample_size": 15,
     "significance": "insufficient",
     "signals": [
       {

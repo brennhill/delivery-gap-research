@@ -5,7 +5,7 @@
   "coverage": {
     "coverage_pct": 15,
     "total_prs": 788,
-    "specd_prs": 120,
+    "specd_prs": 116,
     "prs": [
       {
         "number": 36204,
@@ -731,8 +731,8 @@
         "number": 35690,
         "sha": null,
         "title": "ci(infra): require issue link for external PRs",
-        "specd": true,
-        "spec_source": "AI-DISCLAIMER",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-03-09T15:12:34+00:00"
       },
       {
@@ -3331,8 +3331,8 @@
         "number": 34035,
         "sha": null,
         "title": "fix(core): fix validation for input variables in f-string templates, restrict functionality supported by jinja2, mustache templates (GHSA-6qv9-48xg-fc7f)",
-        "specd": true,
-        "spec_source": "GHSA-6",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-11-19T21:09:47+00:00"
       },
       {
@@ -3347,8 +3347,8 @@
         "number": 34038,
         "sha": null,
         "title": "fix(core): fix validation for input variables in f-string templates, restrict functionality supported by jinja2, mustache templates",
-        "specd": true,
-        "spec_source": "GHSA-6",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-11-19T21:52:33+00:00"
       },
       {
@@ -5483,8 +5483,8 @@
         "number": 34621,
         "sha": null,
         "title": "refactor(core): add warning for fallback GPT-2 tokenizer usage",
-        "specd": true,
-        "spec_source": "GPT-2",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-01-07T00:11:11+00:00"
       },
       {
@@ -6315,9 +6315,9 @@
   },
   "quality": {
     "mode": "heuristic",
-    "average_score": 45,
+    "average_score": 44,
     "verdicts": {
-      "REVIEW": 117,
+      "REVIEW": 114,
       "REWRITE": 2
     },
     "specs": [
@@ -7021,73 +7021,6 @@
             "type": "testability",
             "term": "[x] No breaking changes",
             "suggestion": "Goal without test: '[x] No breaking changes' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 35690,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Add requireissuelink.yml workflow that chains off the external label applied by ",
-            "suggestion": "Goal without test: 'Add requireissuelink.yml workflow that chains off the extern...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Scan PR body with a case-insensitive regex matching all conjugations of close/fi",
-            "suggestion": "Goal without test: 'Scan PR body with a case-insensitive regex matching all conj...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Apply a missing-issue-link label on failure, remove it on pass \u2014 enables bulk cl",
-            "suggestion": "Goal without test: 'Apply a missing-issue-link label on failure, remove it on pa...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Add workflowdispatch backfill job to prsize_labeler.yml for retroactively applyi",
-            "suggestion": "Goal without test: 'Add workflowdispatch backfill job to prsize_labeler.yml for ...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Quote author in GitHub search queries in tag-external-contributions.yml to preve",
-            "suggestion": "Goal without test: 'Quote author in GitHub search queries in tag-external-contri...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Update PULLREQUESTTEMPLATE.md to replace the AI-disclaimer guideline with the ne",
-            "suggestion": "Goal without test: 'Update PULLREQUESTTEMPLATE.md to replace the AI-disclaimer g...' \u2014 add a Given/When/Then criterion"
           }
         ],
         "warnings": [
@@ -10315,94 +10248,6 @@
         ]
       },
       {
-        "pr_number": 34035,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Fix validation for input variables in f-string templates",
-            "suggestion": "Goal without test: 'Fix validation for input variables in f-string templates' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Restrict functionality of features supported by jinja2 and mustache templates",
-            "suggestion": "Goal without test: 'Restrict functionality of features supported by jinja2 and m...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 34038,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Fix validation for input variables in f-string templates",
-            "suggestion": "Goal without test: 'Fix validation for input variables in f-string templates' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Restrict functionality of features supported by jinja2 and mustache templates",
-            "suggestion": "Goal without test: 'Restrict functionality of features supported by jinja2 and m...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 34046,
         "format": "freeform",
         "completeness": 0,
@@ -12803,11 +12648,11 @@
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.2417,
-    "unspecd_rework_rate": 0.232,
-    "delta": 0.0096,
-    "specd_sample_size": 120,
-    "unspecd_sample_size": 668,
+    "specd_rework_rate": 0.2241,
+    "unspecd_rework_rate": 0.2351,
+    "delta": -0.011,
+    "specd_sample_size": 116,
+    "unspecd_sample_size": 672,
     "significance": "significant",
     "signals": [
       {
@@ -15599,16 +15444,16 @@
     ],
     "by_complexity": {
       "small": {
-        "specd_rework_rate": 0.1798,
-        "unspecd_rework_rate": 0.1904,
-        "specd_count": 89,
-        "unspecd_count": 562
+        "specd_rework_rate": 0.1818,
+        "unspecd_rework_rate": 0.1901,
+        "specd_count": 88,
+        "unspecd_count": 563
       },
       "medium": {
-        "specd_rework_rate": 0.375,
-        "unspecd_rework_rate": 0.2809,
-        "specd_count": 24,
-        "unspecd_count": 178
+        "specd_rework_rate": 0.2857,
+        "unspecd_rework_rate": 0.2928,
+        "specd_count": 21,
+        "unspecd_count": 181
       },
       "large": {
         "specd_rework_rate": 0.5714,

@@ -5,7 +5,7 @@
   "coverage": {
     "coverage_pct": 2,
     "total_prs": 564,
-    "specd_prs": 14,
+    "specd_prs": 13,
     "prs": [
       {
         "number": 9637,
@@ -4483,8 +4483,8 @@
         "number": 9597,
         "sha": null,
         "title": "[Nexus] Migrate event definition tests from HSM to CHASM",
-        "specd": true,
-        "spec_source": "CHASM-BASED",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-03-26T16:59:21+00:00"
       },
       {
@@ -4525,7 +4525,7 @@
     "mode": "heuristic",
     "average_score": 45,
     "verdicts": {
-      "REVIEW": 14
+      "REVIEW": 13
     },
     "specs": [
       {
@@ -5308,51 +5308,15 @@
           "No state transitions \u2014 AI may allow invalid transitions",
           "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
         ]
-      },
-      {
-        "pr_number": 9597,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboard?tab=bugbot) for c",
-            "suggestion": "Goal without test: '> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboa...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
       }
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.1429,
-    "unspecd_rework_rate": 0.1655,
-    "delta": -0.0226,
-    "specd_sample_size": 14,
-    "unspecd_sample_size": 550,
+    "specd_rework_rate": 0.1538,
+    "unspecd_rework_rate": 0.1652,
+    "delta": -0.0113,
+    "specd_sample_size": 13,
+    "unspecd_sample_size": 551,
     "significance": "limited",
     "signals": [
       {

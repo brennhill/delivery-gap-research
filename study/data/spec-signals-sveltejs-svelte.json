@@ -3,9 +3,9 @@
   "lookback_days": 365,
   "rework_window_days": 30,
   "coverage": {
-    "coverage_pct": 35,
+    "coverage_pct": 34,
     "total_prs": 515,
-    "specd_prs": 178,
+    "specd_prs": 177,
     "prs": [
       {
         "number": 17999,
@@ -1123,8 +1123,8 @@
         "number": 17708,
         "sha": null,
         "title": "Warn on non-destructured `$props()` reads in runes mode",
-        "specd": true,
-        "spec_source": "XGR-IT",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-02-15T10:00:50+00:00"
       },
       {
@@ -4133,7 +4133,7 @@
     "mode": "heuristic",
     "average_score": 45,
     "verdicts": {
-      "REVIEW": 178
+      "REVIEW": 177
     },
     "specs": [
       {
@@ -6701,67 +6701,6 @@
           "No side effects listed \u2014 AI may miss integrations",
           "No error contract \u2014 AI will invent error shapes per function",
           "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 17708,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Analyzer behavior",
-            "suggestion": "Goal without test: 'Analyzer behavior' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Include restprop bindings in statereferenced_locally detection so reads of $prop",
-            "suggestion": "Goal without test: 'Include restprop bindings in statereferenced_locally detecti...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Validation coverage",
-            "suggestion": "Goal without test: 'Validation coverage' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Add a validator fixture for $props() identifiers and update the props-identifier",
-            "suggestion": "Goal without test: 'Add a validator fixture for $props() identifiers and update ...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Fixes sveltejs/svelte#17685",
-            "suggestion": "Goal without test: 'Fixes sveltejs/svelte#17685' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
           "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
         ]
       },
@@ -15112,11 +15051,11 @@
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.3652,
-    "unspecd_rework_rate": 0.1958,
-    "delta": 0.1693,
-    "specd_sample_size": 178,
-    "unspecd_sample_size": 337,
+    "specd_rework_rate": 0.3672,
+    "unspecd_rework_rate": 0.1953,
+    "delta": 0.172,
+    "specd_sample_size": 177,
+    "unspecd_sample_size": 338,
     "significance": "significant",
     "signals": [
       {
@@ -17187,10 +17126,10 @@
         "unspecd_count": 284
       },
       "medium": {
-        "specd_rework_rate": 0.5238,
-        "unspecd_rework_rate": 0.3571,
-        "specd_count": 42,
-        "unspecd_count": 42
+        "specd_rework_rate": 0.5366,
+        "unspecd_rework_rate": 0.3488,
+        "specd_count": 41,
+        "unspecd_count": 43
       },
       "large": {
         "specd_rework_rate": 0.8571,

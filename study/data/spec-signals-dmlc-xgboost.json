@@ -5,7 +5,7 @@
   "coverage": {
     "coverage_pct": 24,
     "total_prs": 430,
-    "specd_prs": 105,
+    "specd_prs": 102,
     "prs": [
       {
         "number": 12127,
@@ -843,8 +843,8 @@
         "number": 11949,
         "sha": null,
         "title": "[ci] Refactor CUDA builds.",
-        "specd": true,
-        "spec_source": "AI-ASSISTED",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-01-23T17:26:32+00:00"
       },
       {
@@ -1867,8 +1867,8 @@
         "number": 11741,
         "sha": null,
         "title": "Implement a tree view for the scalar tree.",
-        "specd": true,
-        "spec_source": "GPU-SPECIFIC",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-10-13T09:18:18+00:00"
       },
       {
@@ -2180,7 +2180,7 @@
         "sha": null,
         "title": "Cleanup IO functions and add IO for GPU QDM.",
         "specd": true,
-        "spec_source": "GPU-ONLY",
+        "spec_source": "https://github.com/dmlc/xgboost/issues/11419",
         "merged_at": "2025-08-31T17:46:12+00:00"
       },
       {
@@ -3403,8 +3403,8 @@
         "number": 11393,
         "sha": null,
         "title": "[jvm-packages] Update helper script for publishing Maven Central",
-        "specd": true,
-        "spec_source": "GPU-ENABLED",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-04-09T06:09:33+00:00"
       },
       {
@@ -3453,7 +3453,7 @@
     "mode": "heuristic",
     "average_score": 45,
     "verdicts": {
-      "REVIEW": 102,
+      "REVIEW": 99,
       "REWRITE": 2
     },
     "specs": [
@@ -4734,50 +4734,6 @@
             "type": "testability",
             "term": "[x] restore the workflow.",
             "suggestion": "Goal without test: '[x] restore the workflow.' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 11949,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Merge CUDA12 and CUDA13 builds.",
-            "suggestion": "Goal without test: 'Merge CUDA12 and CUDA13 builds.' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Use GA container.",
-            "suggestion": "Goal without test: 'Use GA container.' \u2014 add a Given/When/Then criterion"
           }
         ],
         "warnings": [
@@ -6182,62 +6138,6 @@
             "type": "testability",
             "term": "(no goals found)",
             "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 11741,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Add scalar tree view.",
-            "suggestion": "Goal without test: 'Add scalar tree view.' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Replace the GPU-specific tree view.",
-            "suggestion": "Goal without test: 'Replace the GPU-specific tree view.' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Replace the walk tree routine.",
-            "suggestion": "Goal without test: 'Replace the walk tree routine.' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Replace the multi-target-specific prediction function.",
-            "suggestion": "Goal without test: 'Replace the multi-target-specific prediction function.' \u2014 add a Given/When/Then criterion"
           }
         ],
         "warnings": [
@@ -7987,68 +7887,6 @@
         ]
       },
       {
-        "pr_number": 11393,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Update the logic for deploying GPU-enabled JVM packages, as we no longer have a ",
-            "suggestion": "Goal without test: 'Update the logic for deploying GPU-enabled JVM packages, as ...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Maven Central now has a new system for publishing artifacts. See https://central",
-            "suggestion": "Goal without test: 'Maven Central now has a new system for publishing artifacts....' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Automate almost all publishing steps. Now the only manual steps are authenticati",
-            "suggestion": "Goal without test: 'Automate almost all publishing steps. Now the only manual st...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Reduce duplicated code.",
-            "suggestion": "Goal without test: 'Reduce duplicated code.' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Add the module docstring and the CLI --help message.",
-            "suggestion": "Goal without test: 'Add the module docstring and the CLI --help message.' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 12114,
         "format": "freeform",
         "completeness": 0,
@@ -8095,11 +7933,11 @@
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.0857,
-    "unspecd_rework_rate": 0.0615,
-    "delta": 0.0242,
-    "specd_sample_size": 105,
-    "unspecd_sample_size": 325,
+    "specd_rework_rate": 0.0882,
+    "unspecd_rework_rate": 0.061,
+    "delta": 0.0273,
+    "specd_sample_size": 102,
+    "unspecd_sample_size": 328,
     "significance": "significant",
     "signals": [
       {
@@ -8500,16 +8338,16 @@
         "unspecd_count": 226
       },
       "medium": {
-        "specd_rework_rate": 0.0541,
-        "unspecd_rework_rate": 0.05,
-        "specd_count": 37,
-        "unspecd_count": 80
+        "specd_rework_rate": 0.0556,
+        "unspecd_rework_rate": 0.0494,
+        "specd_count": 36,
+        "unspecd_count": 81
       },
       "large": {
-        "specd_rework_rate": 0.2,
-        "unspecd_rework_rate": 0.0976,
-        "specd_count": 25,
-        "unspecd_count": 41
+        "specd_rework_rate": 0.2174,
+        "unspecd_rework_rate": 0.093,
+        "specd_count": 23,
+        "unspecd_count": 43
       }
     }
   }

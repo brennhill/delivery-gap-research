@@ -3,9 +3,9 @@
   "lookback_days": 365,
   "rework_window_days": 30,
   "coverage": {
-    "coverage_pct": 15,
+    "coverage_pct": 13,
     "total_prs": 79,
-    "specd_prs": 12,
+    "specd_prs": 10,
     "prs": [
       {
         "number": 4935,
@@ -171,8 +171,8 @@
         "number": 4475,
         "sha": null,
         "title": "Add GPT-5 with all reasoning settings to polyglot leaderboard",
-        "specd": true,
-        "spec_source": "GPT-5",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-09-02T15:52:14+00:00"
       },
       {
@@ -219,8 +219,8 @@
         "number": 3789,
         "sha": null,
         "title": "feat: Add Co-authored-by attribution for AI commits",
-        "specd": true,
-        "spec_source": "AI-GENERATED",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-05-07T23:54:46+00:00"
       },
       {
@@ -645,7 +645,7 @@
     "mode": "heuristic",
     "average_score": 46,
     "verdicts": {
-      "REVIEW": 12
+      "REVIEW": 10
     },
     "specs": [
       {
@@ -742,44 +742,6 @@
         ]
       },
       {
-        "pr_number": 4475,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "(no goals found)",
-            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 4410,
         "format": "freeform",
         "completeness": 0,
@@ -806,68 +768,6 @@
             "type": "testability",
             "term": "(no goals found)",
             "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 3789,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Introduces the --attribute-co-authored-by command-line flag (and corresponding c",
-            "suggestion": "Goal without test: 'Introduces the --attribute-co-authored-by command-line flag ...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Updates aider/repo.py's commit method:",
-            "suggestion": "Goal without test: 'Updates aider/repo.py's commit method:' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Implements the following precedence rules for AI edits (aider_edits=True):",
-            "suggestion": "Goal without test: 'Implements the following precedence rules for AI edits (aide...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Adds the --attribute-co-authored-by argument definition and help text to aider/a",
-            "suggestion": "Goal without test: 'Adds the --attribute-co-authored-by argument definition and ...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Adds/updates tests in tests/basic/testrepo.py to cover the new flag and its inte",
-            "suggestion": "Goal without test: 'Adds/updates tests in tests/basic/testrepo.py to cover the n...' \u2014 add a Given/When/Then criterion"
           }
         ],
         "warnings": [
@@ -1142,11 +1042,11 @@
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.1667,
-    "unspecd_rework_rate": 0.1045,
-    "delta": 0.0622,
-    "specd_sample_size": 12,
-    "unspecd_sample_size": 67,
+    "specd_rework_rate": 0.1,
+    "unspecd_rework_rate": 0.1159,
+    "delta": -0.0159,
+    "specd_sample_size": 10,
+    "unspecd_sample_size": 69,
     "significance": "limited",
     "signals": [
       {
@@ -1248,9 +1148,9 @@
     "by_complexity": {
       "small": {
         "specd_rework_rate": 0.0,
-        "unspecd_rework_rate": 0.127,
-        "specd_count": 10,
-        "unspecd_count": 63
+        "unspecd_rework_rate": 0.125,
+        "specd_count": 9,
+        "unspecd_count": 64
       }
     }
   }

@@ -3,9 +3,9 @@
   "lookback_days": 365,
   "rework_window_days": 30,
   "coverage": {
-    "coverage_pct": 22,
+    "coverage_pct": 21,
     "total_prs": 768,
-    "specd_prs": 172,
+    "specd_prs": 163,
     "prs": [
       {
         "number": 12458,
@@ -835,8 +835,8 @@
         "number": 12227,
         "sha": null,
         "title": "\ud83d\udce6 chore: Bump NPM Audit Packages",
-        "specd": true,
-        "spec_source": "GHSA-GMQ8",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-03-14T07:36:03+00:00"
       },
       {
@@ -1083,8 +1083,8 @@
         "number": 12099,
         "sha": null,
         "title": "\ud83e\udd16 feat: GPT-5.4 and GPT-5.4-pro Context + Pricing",
-        "specd": true,
-        "spec_source": "GPT-5",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-03-06T07:11:01+00:00"
       },
       {
@@ -1923,8 +1923,8 @@
         "number": 11788,
         "sha": null,
         "title": "\ud83c\udfad feat: Override Custom Endpoint Schema with Specified Params Endpoint",
-        "specd": true,
-        "spec_source": "AI-SPECIFIC",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-02-14T04:04:52+00:00"
       },
       {
@@ -2483,8 +2483,8 @@
         "number": 11503,
         "sha": null,
         "title": "\ud83d\udef8 feat: Remote Agent Access with External API Support",
-        "specd": true,
-        "spec_source": "AI-COMPATIBLE",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-01-26T15:50:30+00:00"
       },
       {
@@ -2795,8 +2795,8 @@
         "number": 11362,
         "sha": null,
         "title": "\ud83d\uddc2\ufe0f feat: Better Persistence for Code Execution Files Between Sessions",
-        "specd": true,
-        "spec_source": "API-BASED",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-01-16T15:06:25+00:00"
       },
       {
@@ -3539,8 +3539,8 @@
         "number": 11101,
         "sha": null,
         "title": "\ud83e\ude99 feat: Update GPT-5.1 and GPT-5.2 Token Pricing",
-        "specd": true,
-        "spec_source": "GPT-5",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-12-25T21:08:49+00:00"
       },
       {
@@ -4284,7 +4284,7 @@
         "sha": null,
         "title": "\ud83d\udd11 fix: Gemini Custom Endpoint Auth. for OAI-Compatible API",
         "specd": true,
-        "spec_source": "AI-COMPATIBLE",
+        "spec_source": "OAI-COMPATIBLE",
         "merged_at": "2025-12-04T19:09:42+00:00"
       },
       {
@@ -4380,7 +4380,7 @@
         "sha": null,
         "title": "\ud83e\udded fix: Add Base Path Support for Login/Register and Image Paths",
         "specd": true,
-        "spec_source": "AI-GENERATED",
+        "spec_source": "https://github.com/danny-avila/LibreChat/issues/10013",
         "merged_at": "2025-11-21T16:25:14+00:00"
       },
       {
@@ -5011,8 +5011,8 @@
         "number": 10491,
         "sha": null,
         "title": "\ud83e\udd16 feat: GPT-5.1",
-        "specd": true,
-        "spec_source": "GPT-5",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-11-14T17:28:20+00:00"
       },
       {
@@ -5643,8 +5643,8 @@
         "number": 10085,
         "sha": null,
         "title": "\ud83c\udff7\ufe0f chore: update OpenAI models list in `.env.example`",
-        "specd": true,
-        "spec_source": "GPT-3",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-10-12T08:13:17+00:00"
       },
       {
@@ -5731,8 +5731,8 @@
         "number": 9994,
         "sha": null,
         "title": "\ud83d\udcce feat: Direct Provider Attachment Support for Multimodal Content",
-        "specd": true,
-        "spec_source": "AI-LIKE",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-10-06T21:30:16+00:00"
       },
       {
@@ -6157,7 +6157,7 @@
     "mode": "heuristic",
     "average_score": 45,
     "verdicts": {
-      "REVIEW": 170
+      "REVIEW": 163
     },
     "specs": [
       {
@@ -9853,79 +9853,6 @@
         ]
       },
       {
-        "pr_number": 12227,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "file-type: ^18.7.0 \u2192 ^21.3.2 (api/package.json)",
-            "suggestion": "Goal without test: 'file-type: ^18.7.0 \u2192 ^21.3.2 (api/package.json)' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "undici: 7.18.2 \u2192 7.24.1 (api/package.json, packages/api/package.json)",
-            "suggestion": "Goal without test: 'undici: 7.18.2 \u2192 7.24.1 (api/package.json, packages/api/pack...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "yauzl: 3.2.0 \u2192 3.2.1 \u2014 fixes [GHSA-gmq8-994r-jv83](https://github.com/advisories",
-            "suggestion": "Goal without test: 'yauzl: 3.2.0 \u2192 3.2.1 \u2014 fixes [GHSA-gmq8-994r-jv83](https://g...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "hono: 4.12.5 \u2192 4.12.7 \u2014 fixes [GHSA-v8w9-8mx6-g223](https://github.com/advisorie",
-            "suggestion": "Goal without test: 'hono: 4.12.5 \u2192 4.12.7 \u2014 fixes [GHSA-v8w9-8mx6-g223](https://...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[ ] npm audit shows no new moderate+ vulnerabilities for bumped packages",
-            "suggestion": "Goal without test: '[ ] npm audit shows no new moderate+ vulnerabilities for bum...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[ ] npm run build succeeds",
-            "suggestion": "Goal without test: '[ ] npm run build succeeds' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[ ] Backend starts without errors",
-            "suggestion": "Goal without test: '[ ] Backend starts without errors' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 12175,
         "format": "freeform",
         "completeness": 0,
@@ -10532,56 +10459,6 @@
         "warnings": [
           "No side effects listed \u2014 AI may miss integrations",
           "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 12099,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Introduced new token values and cache settings for 'gpt-5.4' and 'gpt-5.4-pro' i",
-            "suggestion": "Goal without test: 'Introduced new token values and cache settings for 'gpt-5.4'...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Updated maximum output limits for the new models in the tokens utility.",
-            "suggestion": "Goal without test: 'Updated maximum output limits for the new models in the toke...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Included 'gpt-5.4' and 'gpt-5.4-pro' in the shared OpenAI models list for consis",
-            "suggestion": "Goal without test: 'Included 'gpt-5.4' and 'gpt-5.4-pro' in the shared OpenAI mo...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
           "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
         ]
       },
@@ -12856,224 +12733,6 @@
         ]
       },
       {
-        "pr_number": 11788,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 98,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 44,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 23,
-            "type": "ambiguity",
-            "term": "comprehensive",
-            "suggestion": "Replace 'comprehensive' with a specific, measurable term"
-          },
-          {
-            "line": 36,
-            "type": "ambiguity",
-            "term": "correctly",
-            "suggestion": "Replace 'correctly' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Added getDefaultParamsEndpoint() helper function to extract the configured defau",
-            "suggestion": "Goal without test: 'Added getDefaultParamsEndpoint() helper function to extract ...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Modified parseConvo() and parseCompactConvo() to accept defaultParamsEndpoint pa",
-            "suggestion": "Goal without test: 'Modified parseConvo() and parseCompactConvo() to accept defa...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Updated buildEndpointOption middleware to fetch endpoints config and pass defaul",
-            "suggestion": "Goal without test: 'Updated buildEndpointOption middleware to fetch endpoints co...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Threaded defaultParamsEndpoint through all frontend conversation hooks (useAdded",
-            "suggestion": "Goal without test: 'Threaded defaultParamsEndpoint through all frontend conversa...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Updated buildDefaultConvo and cleanupPreset utilities to accept and forward defa",
-            "suggestion": "Goal without test: 'Updated buildDefaultConvo and cleanupPreset utilities to acc...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Modified agent initialization to preserve user-configured maxContextTokens when ",
-            "suggestion": "Goal without test: 'Modified agent initialization to preserve user-configured ma...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Refactored AgentClient.getSaveOptions() to use this.maxContextTokens and removed",
-            "suggestion": "Goal without test: 'Refactored AgentClient.getSaveOptions() to use this.maxConte...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Removed unused bedrockInputSchema import from agent client",
-            "suggestion": "Goal without test: 'Removed unused bedrockInputSchema import from agent client' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] New feature (non-breaking change which adds functionality)",
-            "suggestion": "Goal without test: '[x] New feature (non-breaking change which adds functionalit...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Bug fix (non-breaking change which fixes an issue)",
-            "suggestion": "Goal without test: '[x] Bug fix (non-breaking change which fixes an issue)' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Verified maxOutputTokens preservation when defaultParamsEndpoint is set to anthr",
-            "suggestion": "Goal without test: 'Verified maxOutputTokens preservation when defaultParamsEndp...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Confirmed maxOutputTokens stripping for custom endpoints without defaultParamsEn",
-            "suggestion": "Goal without test: 'Confirmed maxOutputTokens stripping for custom endpoints wit...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Tested OpenAI-specific field stripping when using Anthropic schema",
-            "suggestion": "Goal without test: 'Tested OpenAI-specific field stripping when using Anthropic ...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Validated Google-specific fields (topK, topP) with defaultParamsEndpoint: google",
-            "suggestion": "Goal without test: 'Validated Google-specific fields (topK, topP) with defaultPa...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Ensured bedrock region field isolation across endpoints",
-            "suggestion": "Goal without test: 'Ensured bedrock region field isolation across endpoints' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Tested fallback behavior with invalid defaultParamsEndpoint values",
-            "suggestion": "Goal without test: 'Tested fallback behavior with invalid defaultParamsEndpoint ...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "buildEndpointOption.spec.js: Verified middleware correctly passes defaultParamsE",
-            "suggestion": "Goal without test: 'buildEndpointOption.spec.js: Verified middleware correctly p...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "cleanupPreset.integration.test.ts: Tested real parsing behavior without mocks fo",
-            "suggestion": "Goal without test: 'cleanupPreset.integration.test.ts: Tested real parsing behav...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "buildDefaultConvo.test.ts: Validated conversation building preserves provider-sp",
-            "suggestion": "Goal without test: 'buildDefaultConvo.test.ts: Validated conversation building p...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "cleanupPreset.test.ts: Confirmed defaultParamsEndpoint threading through parseCo",
-            "suggestion": "Goal without test: 'cleanupPreset.test.ts: Confirmed defaultParamsEndpoint threa...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Confirmed user-configured maxContextTokens from model_parameters takes precedenc",
-            "suggestion": "Goal without test: 'Confirmed user-configured maxContextTokens from model_parame...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Verified fallback to formula when maxContextTokens is undefined, 0, or negative",
-            "suggestion": "Goal without test: 'Verified fallback to formula when maxContextTokens is undefi...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Tested preservation of small user-configured values from model specs",
-            "suggestion": "Goal without test: 'Tested preservation of small user-configured values from mod...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] My code adheres to this project's style guidelines",
-            "suggestion": "Goal without test: '[x] My code adheres to this project's style guidelines' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] I have performed a self-review of my own code",
-            "suggestion": "Goal without test: '[x] I have performed a self-review of my own code' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] I have commented in any complex areas of my code",
-            "suggestion": "Goal without test: '[x] I have commented in any complex areas of my code' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] My changes do not introduce new warnings",
-            "suggestion": "Goal without test: '[x] My changes do not introduce new warnings' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] I have written tests demonstrating that my changes are effective or that my ",
-            "suggestion": "Goal without test: '[x] I have written tests demonstrating that my changes are e...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Local unit tests pass with my changes",
-            "suggestion": "Goal without test: '[x] Local unit tests pass with my changes' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 11786,
         "format": "freeform",
         "completeness": 0,
@@ -15197,206 +14856,6 @@
         ]
       },
       {
-        "pr_number": 11503,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 97,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 44,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 3,
-            "type": "ambiguity",
-            "term": "robust",
-            "suggestion": "Replace 'robust' with a specific, measurable term"
-          },
-          {
-            "line": 7,
-            "type": "ambiguity",
-            "term": "secure",
-            "suggestion": "Replace 'secure' with a specific, measurable term"
-          },
-          {
-            "line": 16,
-            "type": "ambiguity",
-            "term": "comprehensive",
-            "suggestion": "Replace 'comprehensive' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Add new Remote Agent Access feature with dedicated permission type (REMOTE_AGENT",
-            "suggestion": "Goal without test: 'Add new Remote Agent Access feature with dedicated permissio...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Implement OpenAI-compatible API endpoints (/api/v1/chat/completions, /api/v1/mod",
-            "suggestion": "Goal without test: 'Implement OpenAI-compatible API endpoints (/api/v1/chat/comp...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Create API key management system with secure generation, hashing, and user-scope",
-            "suggestion": "Goal without test: 'Create API key management system with secure generation, has...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Build permission enrichment system that automatically derives remote access righ",
-            "suggestion": "Goal without test: 'Build permission enrichment system that automatically derive...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Add fire-and-forget ACL backfill optimization for improved query performance on ",
-            "suggestion": "Goal without test: 'Add fire-and-forget ACL backfill optimization for improved q...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Implement streaming and non-streaming response support matching OpenAI API forma",
-            "suggestion": "Goal without test: 'Implement streaming and non-streaming response support match...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Create React UI components for API key management including creation, viewing, a",
-            "suggestion": "Goal without test: 'Create React UI components for API key management including ...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Add agent panel integration with Remote Access tab for configuring per-agent API",
-            "suggestion": "Goal without test: 'Add agent panel integration with Remote Access tab for confi...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Extend existing permission dialog to support remote agent principal management",
-            "suggestion": "Goal without test: 'Extend existing permission dialog to support remote agent pr...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Implement proper ACL cleanup on agent deletion, removing both AGENT and REMOTE_A",
-            "suggestion": "Goal without test: 'Implement proper ACL cleanup on agent deletion, removing bot...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Add feature flag (REMOTE_AGENTS) for controlled rollout with middleware enforcem",
-            "suggestion": "Goal without test: 'Add feature flag (REMOTE_AGENTS) for controlled rollout with...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Create comprehensive E2E test suite covering API interactions, permissions, and ",
-            "suggestion": "Goal without test: 'Create comprehensive E2E test suite covering API interaction...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] New feature (non-breaking change which adds functionality)",
-            "suggestion": "Goal without test: '[x] New feature (non-breaking change which adds functionalit...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] This change requires a documentation update",
-            "suggestion": "Goal without test: '[x] This change requires a documentation update' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Feature flag REMOTE_AGENTS=true enabled",
-            "suggestion": "Goal without test: 'Feature flag REMOTE_AGENTS=true enabled' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Local MongoDB instance",
-            "suggestion": "Goal without test: 'Local MongoDB instance' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Test agents with various permission configurations",
-            "suggestion": "Goal without test: 'Test agents with various permission configurations' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] My code adheres to this project's style guidelines",
-            "suggestion": "Goal without test: '[x] My code adheres to this project's style guidelines' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] I have performed a self-review of my own code",
-            "suggestion": "Goal without test: '[x] I have performed a self-review of my own code' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] I have commented in any complex areas of my code",
-            "suggestion": "Goal without test: '[x] I have commented in any complex areas of my code' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] I have made pertinent documentation changes",
-            "suggestion": "Goal without test: '[x] I have made pertinent documentation changes' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] My changes do not introduce new warnings",
-            "suggestion": "Goal without test: '[x] My changes do not introduce new warnings' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] I have written tests demonstrating that my changes are effective or that my ",
-            "suggestion": "Goal without test: '[x] I have written tests demonstrating that my changes are e...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Local unit tests pass with my changes",
-            "suggestion": "Goal without test: '[x] Local unit tests pass with my changes' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Any changes dependent on mine have been merged and published in downstream m",
-            "suggestion": "Goal without test: '[x] Any changes dependent on mine have been merged and publi...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 11484,
         "format": "freeform",
         "completeness": 0,
@@ -15944,61 +15403,6 @@
           }
         ],
         "warnings": [
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 11362,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 97,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 44,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 7,
-            "type": "ambiguity",
-            "term": "comprehensive",
-            "suggestion": "Replace 'comprehensive' with a specific, measurable term"
-          },
-          {
-            "line": 11,
-            "type": "ambiguity",
-            "term": "appropriate",
-            "suggestion": "Replace 'appropriate' with a specific, measurable term"
-          },
-          {
-            "line": 55,
-            "type": "ambiguity",
-            "term": "comprehensive",
-            "suggestion": "Replace 'comprehensive' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboard?tab=bugbot) for c",
-            "suggestion": "Goal without test: '> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboa...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
           "No I/O contracts \u2014 AI will invent API shapes",
           "No side effects listed \u2014 AI may miss integrations",
           "No error contract \u2014 AI will invent error shapes per function",
@@ -23643,92 +23047,6 @@
         ]
       },
       {
-        "pr_number": 10085,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 95,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 44,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 16,
-            "type": "ambiguity",
-            "term": "better",
-            "suggestion": "Replace 'better' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "gpt-4.5-preview (deprecated July 2025)",
-            "suggestion": "Goal without test: 'gpt-4.5-preview (deprecated July 2025)' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "o1-preview, o1-mini (deprecated July/October 2025)",
-            "suggestion": "Goal without test: 'o1-preview, o1-mini (deprecated July/October 2025)' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "gpt-4-vision-preview (shut down December 2024)",
-            "suggestion": "Goal without test: 'gpt-4-vision-preview (shut down December 2024)' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Dated GPT-3.5 and GPT-4 variants (consolidated into base versions)",
-            "suggestion": "Goal without test: 'Dated GPT-3.5 and GPT-4 variants (consolidated into base ver...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "GPT-5 series: gpt-5, gpt-5-mini, gpt-5-nano",
-            "suggestion": "Goal without test: 'GPT-5 series: gpt-5, gpt-5-mini, gpt-5-nano' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "o3/o4 reasoning models: o3, o4-mini, o3-pro, o3-mini",
-            "suggestion": "Goal without test: 'o3/o4 reasoning models: o3, o4-mini, o3-pro, o3-mini' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "GPT-4.1 series: gpt-4.1, gpt-4.1-mini, gpt-4.1-nano",
-            "suggestion": "Goal without test: 'GPT-4.1 series: gpt-4.1, gpt-4.1-mini, gpt-4.1-nano' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Reorganized list with newest models first for better discoverability.",
-            "suggestion": "Goal without test: 'Reorganized list with newest models first for better discove...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 10049,
         "format": "freeform",
         "completeness": 0,
@@ -23809,44 +23127,6 @@
             "type": "testability",
             "term": "[x] Local unit tests pass with my changes",
             "suggestion": "Goal without test: '[x] Local unit tests pass with my changes' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 9994,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "file filtering specifically for direct attachments",
-            "suggestion": "Goal without test: 'file filtering specifically for direct attachments' \u2014 add a Given/When/Then criterion"
           }
         ],
         "warnings": [
@@ -25061,11 +24341,11 @@
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.0291,
-    "unspecd_rework_rate": 0.0168,
-    "delta": 0.0123,
-    "specd_sample_size": 172,
-    "unspecd_sample_size": 596,
+    "specd_rework_rate": 0.0245,
+    "unspecd_rework_rate": 0.0182,
+    "delta": 0.0064,
+    "specd_sample_size": 163,
+    "unspecd_sample_size": 605,
     "significance": "significant",
     "signals": [
       {
@@ -25250,21 +24530,21 @@
     "by_complexity": {
       "small": {
         "specd_rework_rate": 0.0,
-        "unspecd_rework_rate": 0.0137,
-        "specd_count": 61,
-        "unspecd_count": 292
+        "unspecd_rework_rate": 0.0136,
+        "specd_count": 58,
+        "unspecd_count": 295
       },
       "medium": {
-        "specd_rework_rate": 0.0323,
-        "unspecd_rework_rate": 0.0058,
-        "specd_count": 62,
-        "unspecd_count": 173
+        "specd_rework_rate": 0.0333,
+        "unspecd_rework_rate": 0.0057,
+        "specd_count": 60,
+        "unspecd_count": 175
       },
       "large": {
-        "specd_rework_rate": 0.0612,
-        "unspecd_rework_rate": 0.0365,
-        "specd_count": 49,
-        "unspecd_count": 137
+        "specd_rework_rate": 0.0444,
+        "unspecd_rework_rate": 0.0426,
+        "specd_count": 45,
+        "unspecd_count": 141
       }
     }
   }

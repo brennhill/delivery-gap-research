@@ -3,9 +3,9 @@
   "lookback_days": 365,
   "rework_window_days": 30,
   "coverage": {
-    "coverage_pct": 95,
+    "coverage_pct": 94,
     "total_prs": 250,
-    "specd_prs": 237,
+    "specd_prs": 235,
     "prs": [
       {
         "number": 5978,
@@ -307,8 +307,8 @@
         "number": 5784,
         "sha": null,
         "title": "Fix security, performance, and reliability issues in dependency-check workflow",
-        "specd": true,
-        "spec_source": "https://github.com/openmrs/openmrs-core/issues/new?title=\u2728+Set+up+Copilot+instructions&body=Configure%20instructions%20for%20this%20repository%20as%20documented%20in%20%5BBest%20practices%20for%20Copilot%20coding%20agent%20in%20your%20repository%5D%28https://gh.io/copilot-coding-agent-tips%29%2E%0A%0A%3COnboard%20this%20repo%3E&assignees=copilot)",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-02-12T15:34:34+00:00"
       },
       {
@@ -347,8 +347,8 @@
         "number": 5769,
         "sha": null,
         "title": "Use return value of HibernateUtil.saveOrUpdate() in all DAO save methods",
-        "specd": true,
-        "spec_source": "https://openmrs.atlassian.net/browse/O3-5311",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-02-10T14:08:19+00:00"
       },
       {
@@ -2013,7 +2013,7 @@
     "mode": "heuristic",
     "average_score": 44,
     "verdicts": {
-      "REVIEW": 236,
+      "REVIEW": 234,
       "REWRITE": 1
     },
     "specs": [
@@ -3832,138 +3832,6 @@
         ]
       },
       {
-        "pr_number": 5784,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 96,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 44,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 17,
-            "type": "ambiguity",
-            "term": "clean",
-            "suggestion": "Replace 'clean' with a specific, measurable term"
-          },
-          {
-            "line": 30,
-            "type": "ambiguity",
-            "term": "clean",
-            "suggestion": "Replace 'clean' with a specific, measurable term"
-          },
-          {
-            "line": 64,
-            "type": "ambiguity",
-            "term": "clean",
-            "suggestion": "Replace 'clean' with a specific, measurable term"
-          },
-          {
-            "line": 64,
-            "type": "ambiguity",
-            "term": "clean",
-            "suggestion": "Replace 'clean' with a specific, measurable term"
-          },
-          {
-            "line": 110,
-            "type": "ambiguity",
-            "term": "clean",
-            "suggestion": "Replace 'clean' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Pin actions/upload-artifact@v4 (was @master - supply chain risk)",
-            "suggestion": "Goal without test: 'Pin actions/upload-artifact@v4 (was @master - supply chain r...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Remove continue-on-error: true - was masking --failOnCVSS 8 failures",
-            "suggestion": "Goal without test: 'Remove continue-on-error: true - was masking --failOnCVSS 8 ...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Add -DskipTests to Maven build - dependency check doesn't need test execution",
-            "suggestion": "Goal without test: 'Add -DskipTests to Maven build - dependency check doesn't ne...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Enable Maven dependency caching in setup-java step",
-            "suggestion": "Goal without test: 'Enable Maven dependency caching in setup-java step' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Change format from HTML to ALL - enables SARIF upload to Security tab",
-            "suggestion": "Goal without test: 'Change format from HTML to ALL - enables SARIF upload to Sec...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Add --nvdApiKey support - prevents NVD rate-limiting failures",
-            "suggestion": "Goal without test: 'Add --nvdApiKey support - prevents NVD rate-limiting failure...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "run: mvn clean install",
-            "suggestion": "Goal without test: 'run: mvn clean install' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "uses: dependency-check/Dependency-Check_Action@main",
-            "suggestion": "Goal without test: 'uses: dependency-check/Dependency-Check_Action@main' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "uses: actions/upload-artifact@master",
-            "suggestion": "Goal without test: 'uses: actions/upload-artifact@master' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "uses: actions/setup-java@v5",
-            "suggestion": "Goal without test: 'uses: actions/setup-java@v5' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "run: mvn clean install -DskipTests",
-            "suggestion": "Goal without test: 'run: mvn clean install -DskipTests' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "uses: actions/upload-artifact@v4",
-            "suggestion": "Goal without test: 'uses: actions/upload-artifact@v4' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 4917,
         "format": "freeform",
         "completeness": 0,
@@ -4154,73 +4022,6 @@
             "type": "testability",
             "term": "[ ] My pull request is based on the latest changes of the master branch.",
             "suggestion": "Goal without test: '[ ] My pull request is based on the latest changes of the ma...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 5769,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 99,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 57,
-            "type": "ambiguity",
-            "term": "appropriate",
-            "suggestion": "Replace 'appropriate' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "22 DAO files updated to propagate the managed entity returned by saveOrUpdate():",
-            "suggestion": "Goal without test: '22 DAO files updated to propagate the managed entity returne...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Direct return where save is the last operation",
-            "suggestion": "Goal without test: 'Direct return where save is the last operation' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Reassignment (entity = HibernateUtil.saveOrUpdate(...)) where the entity is used",
-            "suggestion": "Goal without test: 'Reassignment (entity = HibernateUtil.saveOrUpdate(...)) wher...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Void methods (e.g. credential saves in HibernateUserDAO, context updates) left u",
-            "suggestion": "Goal without test: 'Void methods (e.g. credential saves in HibernateUserDAO, con...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Fixed corrupted javadoc in HibernateConceptDAO.saveConcept (closing brace and co",
-            "suggestion": "Goal without test: 'Fixed corrupted javadoc in HibernateConceptDAO.saveConcept (...' \u2014 add a Given/When/Then criterion"
           }
         ],
         "warnings": [
@@ -18248,11 +18049,11 @@
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.0802,
-    "unspecd_rework_rate": 0.1538,
-    "delta": -0.0737,
-    "specd_sample_size": 237,
-    "unspecd_sample_size": 13,
+    "specd_rework_rate": 0.0766,
+    "unspecd_rework_rate": 0.2,
+    "delta": -0.1234,
+    "specd_sample_size": 235,
+    "unspecd_sample_size": 15,
     "significance": "limited",
     "signals": [
       {
@@ -18646,10 +18447,10 @@
     ],
     "by_complexity": {
       "small": {
-        "specd_rework_rate": 0.0692,
-        "unspecd_rework_rate": 0.0918,
-        "specd_count": 159,
-        "unspecd_count": 207
+        "specd_rework_rate": 0.0633,
+        "unspecd_rework_rate": 0.0962,
+        "specd_count": 158,
+        "unspecd_count": 208
       }
     }
   }

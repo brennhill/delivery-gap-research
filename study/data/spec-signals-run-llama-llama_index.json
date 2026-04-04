@@ -3,9 +3,9 @@
   "lookback_days": 365,
   "rework_window_days": 30,
   "coverage": {
-    "coverage_pct": 30,
+    "coverage_pct": 29,
     "total_prs": 1389,
-    "specd_prs": 414,
+    "specd_prs": 401,
     "prs": [
       {
         "number": 21149,
@@ -219,8 +219,8 @@
         "number": 20955,
         "sha": null,
         "title": "feat: add MiniMax LLM provider integration with M2.7 default",
-        "specd": true,
-        "spec_source": "AI-COMPATIBLE",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-03-18T11:46:34+00:00"
       },
       {
@@ -1163,8 +1163,8 @@
         "number": 20731,
         "sha": null,
         "title": "feat: Add ModelsLab LLM integration (llama-index-llms-modelslab)",
-        "specd": true,
-        "spec_source": "AI-COMPATIBLE",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-02-20T10:48:57+00:00"
       },
       {
@@ -1979,16 +1979,16 @@
         "number": 20537,
         "sha": null,
         "title": "feat: add openai-like server mode for VllmServer",
-        "specd": true,
-        "spec_source": "AI-COMPATIBLE",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-01-26T12:19:43+00:00"
       },
       {
         "number": 20538,
         "sha": null,
         "title": "OpenAI response fix",
-        "specd": true,
-        "spec_source": "GPT-5",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-01-26T12:06:36+00:00"
       },
       {
@@ -2003,8 +2003,8 @@
         "number": 20549,
         "sha": null,
         "title": "feat: Add support for gpt-5.2-chat model",
-        "specd": true,
-        "spec_source": "GPT-5",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-01-26T11:48:11+00:00"
       },
       {
@@ -2155,8 +2155,8 @@
         "number": 20487,
         "sha": null,
         "title": "feat(vertexaivectorsearch): add hybrid search support",
-        "specd": true,
-        "spec_source": "AI-POWERED",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-01-21T10:27:36+00:00"
       },
       {
@@ -2235,8 +2235,8 @@
         "number": 20436,
         "sha": null,
         "title": "Add Apertis LLM integration with example notebook",
-        "specd": true,
-        "spec_source": "AI-COMPATIBLE",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-01-13T12:18:22+00:00"
       },
       {
@@ -2675,8 +2675,8 @@
         "number": 20365,
         "sha": null,
         "title": "feat(llama-index-llms-aibadgr): Add AI Badgr OpenAI\u2011compatible LLM integration",
-        "specd": true,
-        "spec_source": "AI-STYLE",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-12-15T23:02:07+00:00"
       },
       {
@@ -3675,8 +3675,8 @@
         "number": 20020,
         "sha": null,
         "title": "Added Sglang llm integration ",
-        "specd": true,
-        "spec_source": "AI-COMPATIBLE",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-10-06T21:41:31+00:00"
       },
       {
@@ -3979,8 +3979,8 @@
         "number": 20045,
         "sha": null,
         "title": "Add support for GPT-5 models in utils.py (JSON_SCHEMA_MODELS)",
-        "specd": true,
-        "spec_source": "GPT-5",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-10-07T21:35:54+00:00"
       },
       {
@@ -5251,8 +5251,8 @@
         "number": 19793,
         "sha": null,
         "title": "feat: Add CometAPI LLM integration",
-        "specd": true,
-        "spec_source": "AI-COMPATIBLE",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-09-07T03:15:35+00:00"
       },
       {
@@ -9083,8 +9083,8 @@
         "number": 18841,
         "sha": null,
         "title": "feat: add Servam AI LLM integration with OpenAI-like interface",
-        "specd": true,
-        "spec_source": "AI-LIKE",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-05-26T15:41:51+00:00"
       },
       {
@@ -10331,8 +10331,8 @@
         "number": 18585,
         "sha": null,
         "title": "Support Llama-api as an LLM provider",
-        "specd": true,
-        "spec_source": "AI-COMPATIBLE",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-05-01T15:53:01+00:00"
       },
       {
@@ -11125,7 +11125,7 @@
     "mode": "heuristic",
     "average_score": 45,
     "verdicts": {
-      "REVIEW": 410,
+      "REVIEW": 397,
       "REWRITE": 4
     },
     "specs": [
@@ -11615,86 +11615,6 @@
             "type": "testability",
             "term": "Your pull-request will likely not be merged unless it is covered by some form of",
             "suggestion": "Goal without test: 'Your pull-request will likely not be merged unless it is cov...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 20955,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Add new llama-index-llms-minimax package under llama-index-integrations/llms/",
-            "suggestion": "Goal without test: 'Add new llama-index-llms-minimax package under llama-index-i...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Support MiniMax-M2.7 (default), MiniMax-M2.7-highspeed, MiniMax-M2.5, and MiniMa",
-            "suggestion": "Goal without test: 'Support MiniMax-M2.7 (default), MiniMax-M2.7-highspeed, Mini...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Function calling support for all models",
-            "suggestion": "Goal without test: 'Function calling support for all models' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Configurable base URL with global (api.minimax.io) and China (api.minimaxi.com) ",
-            "suggestion": "Goal without test: 'Configurable base URL with global (api.minimax.io) and China...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "MINIMAXAPIKEY environment variable support",
-            "suggestion": "Goal without test: 'MINIMAXAPIKEY environment variable support' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "7 unit tests covering model list, defaults, ordering, and backward compatibility",
-            "suggestion": "Goal without test: '7 unit tests covering model list, defaults, ordering, and ba...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "7 unit tests added and passing",
-            "suggestion": "Goal without test: '7 unit tests added and passing' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "All pre-commit hooks passing (ruff, mypy, prettier, codespell)",
-            "suggestion": "Goal without test: 'All pre-commit hooks passing (ruff, mypy, prettier, codespel...' \u2014 add a Given/When/Then criterion"
           }
         ],
         "warnings": [
@@ -16342,121 +16262,6 @@
         ]
       },
       {
-        "pr_number": 20731,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 96,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 44,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 51,
-            "type": "ambiguity",
-            "term": "simple",
-            "suggestion": "Replace 'simple' with a specific, measurable term"
-          },
-          {
-            "line": 65,
-            "type": "ambiguity",
-            "term": "fast",
-            "suggestion": "Replace 'fast' with a specific, measurable term"
-          },
-          {
-            "line": 82,
-            "type": "ambiguity",
-            "term": "correctly",
-            "suggestion": "Replace 'correctly' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Docs: https://docs.modelslab.com/uncensored-chat",
-            "suggestion": "Goal without test: 'Docs: https://docs.modelslab.com/uncensored-chat' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "API key: https://modelslab.com/dashboard",
-            "suggestion": "Goal without test: 'API key: https://modelslab.com/dashboard' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Subclasses OpenAILike (same as Together, Fireworks, Groq, etc.)",
-            "suggestion": "Goal without test: '[x] Subclasses OpenAILike (same as Together, Fireworks, Groq...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] MODELSLABAPIKEY env var support",
-            "suggestion": "Goal without test: '[x] MODELSLABAPIKEY env var support' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Raises ValueError with helpful message when key missing",
-            "suggestion": "Goal without test: '[x] Raises ValueError with helpful message when key missing' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] 128K context window set correctly",
-            "suggestion": "Goal without test: '[x] 128K context window set correctly' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] class_name() implemented",
-            "suggestion": "Goal without test: '[x] class_name() implemented' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] pyproject.toml with correct dependencies (llama-index-llms-openai-like)",
-            "suggestion": "Goal without test: '[x] pyproject.toml with correct dependencies (llama-index-ll...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] README with completion, chat, RAG, and streaming examples",
-            "suggestion": "Goal without test: '[x] README with completion, chat, RAG, and streaming example...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] 14 unit tests",
-            "suggestion": "Goal without test: '[x] 14 unit tests' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] No new dependencies beyond llama-index-llms-openai-like`",
-            "suggestion": "Goal without test: '[x] No new dependencies beyond llama-index-llms-openai-like`' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 20722,
         "format": "freeform",
         "completeness": 0,
@@ -18349,202 +18154,6 @@
         ]
       },
       {
-        "pr_number": 20537,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 92,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 43,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 7,
-            "type": "ambiguity",
-            "term": "Comprehensive",
-            "suggestion": "Replace 'Comprehensive' with a specific, measurable term"
-          },
-          {
-            "line": 14,
-            "type": "ambiguity",
-            "term": "comprehensive",
-            "suggestion": "Replace 'comprehensive' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Modified \\\base.py\\: Added OpenAI-like server mode support (110 additions, 15 del",
-            "suggestion": "Goal without test: 'Modified \\\base.py\\: Added OpenAI-like server mode support (1...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Modified \\utils.py\\: Added utility functions for OpenAI-like mode (72 additions,",
-            "suggestion": "Goal without test: 'Modified \\utils.py\\: Added utility functions for OpenAI-like...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Added \\\testvllmserver_modes.py\\: Comprehensive tests for the new server modes (8",
-            "suggestion": "Goal without test: 'Added \\\testvllmserver_modes.py\\: Comprehensive tests for the...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "\\c2de0c6\\ - fix: keep openai-like flags on VllmServer subclass",
-            "suggestion": "Goal without test: '\\c2de0c6\\ - fix: keep openai-like flags on VllmServer subcla...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "\\c0b48e7\\ - feat: add openai-like server mode for VllmServer",
-            "suggestion": "Goal without test: '\\c0b48e7\\ - feat: add openai-like server mode for VllmServer' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Includes new test file \\\testvllmserver_modes.py\\ with comprehensive test coverag",
-            "suggestion": "Goal without test: 'Includes new test file \\\testvllmserver_modes.py\\ with compre...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 20538,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Bug fix (non-breaking change which fixes an issue)",
-            "suggestion": "Goal without test: '[x] Bug fix (non-breaking change which fixes an issue)' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[ ] New feature (non-breaking change which adds functionality)",
-            "suggestion": "Goal without test: '[ ] New feature (non-breaking change which adds functionalit...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[ ] Breaking change (fix or feature that would cause existing functionality to n",
-            "suggestion": "Goal without test: '[ ] Breaking change (fix or feature that would cause existin...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[ ] This change requires a documentation update",
-            "suggestion": "Goal without test: '[ ] This change requires a documentation update' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] I added new unit tests to cover this change",
-            "suggestion": "Goal without test: '[x] I added new unit tests to cover this change' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[ ] I believe this change is already covered by existing unit tests",
-            "suggestion": "Goal without test: '[ ] I believe this change is already covered by existing uni...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] I have performed a self-review of my own code",
-            "suggestion": "Goal without test: '[x] I have performed a self-review of my own code' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] I have commented my code, particularly in hard-to-understand areas",
-            "suggestion": "Goal without test: '[x] I have commented my code, particularly in hard-to-unders...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[ ] I have made corresponding changes to the documentation",
-            "suggestion": "Goal without test: '[ ] I have made corresponding changes to the documentation' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[ ] I have added Google Colab support for the newly added notebooks.",
-            "suggestion": "Goal without test: '[ ] I have added Google Colab support for the newly added no...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] My changes generate no new warnings",
-            "suggestion": "Goal without test: '[x] My changes generate no new warnings' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] I have added tests that prove my fix is effective or that my feature works",
-            "suggestion": "Goal without test: '[x] I have added tests that prove my fix is effective or tha...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] New and existing unit tests pass locally with my changes",
-            "suggestion": "Goal without test: '[x] New and existing unit tests pass locally with my changes' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[ ] I ran uv run make format; uv run make lint` to appease the lint gods",
-            "suggestion": "Goal without test: '[ ] I ran uv run make format; uv run make lint` to appease t...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 20535,
         "format": "freeform",
         "completeness": 0,
@@ -18571,44 +18180,6 @@
             "type": "testability",
             "term": "Your pull-request will likely not be merged unless it is covered by some form of",
             "suggestion": "Goal without test: 'Your pull-request will likely not be merged unless it is cov...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 20549,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "(no goals found)",
-            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
           }
         ],
         "warnings": [
@@ -18847,44 +18418,6 @@
         ]
       },
       {
-        "pr_number": 20487,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Your pull-request will likely not be merged unless it is covered by some form of",
-            "suggestion": "Goal without test: 'Your pull-request will likely not be merged unless it is cov...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 20503,
         "format": "freeform",
         "completeness": 0,
@@ -19047,86 +18580,6 @@
             "type": "testability",
             "term": "Your pull-request will likely not be merged unless it is covered by some form of",
             "suggestion": "Goal without test: 'Your pull-request will likely not be merged unless it is cov...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 20436,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Add new LLM integration package llama-index-llms-apertis for Apertis API gateway",
-            "suggestion": "Goal without test: 'Add new LLM integration package llama-index-llms-apertis for...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Apertis provides unified access to multiple LLM providers (OpenAI, Anthropic, Go",
-            "suggestion": "Goal without test: 'Apertis provides unified access to multiple LLM providers (O...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Add example notebook and documentation",
-            "suggestion": "Goal without test: 'Add example notebook and documentation' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "llama-index-integrations/llms/llama-index-llms-apertis/ - Complete integration p",
-            "suggestion": "Goal without test: 'llama-index-integrations/llms/llama-index-llms-apertis/ - Co...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "docs/examples/llm/apertis.ipynb - Example notebook",
-            "suggestion": "Goal without test: 'docs/examples/llm/apertis.ipynb - Example notebook' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "docs/apireference/apireference/llms/apertis.md - API reference",
-            "suggestion": "Goal without test: 'docs/apireference/apireference/llms/apertis.md - API referen...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Unit tests pass (7 tests)",
-            "suggestion": "Goal without test: '[x] Unit tests pass (7 tests)' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[ ] Manual testing with Apertis API",
-            "suggestion": "Goal without test: '[ ] Manual testing with Apertis API' \u2014 add a Given/When/Then criterion"
           }
         ],
         "warnings": [
@@ -20216,85 +19669,6 @@
           "No side effects listed \u2014 AI may miss integrations",
           "No error contract \u2014 AI will invent error shapes per function",
           "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 20365,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 95,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 44,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 10,
-            "type": "ambiguity",
-            "term": "normal",
-            "suggestion": "Replace 'normal' with a specific, measurable term"
-          },
-          {
-            "line": 15,
-            "type": "ambiguity",
-            "term": "seamless",
-            "suggestion": "Replace 'seamless' with a specific, measurable term"
-          },
-          {
-            "line": 77,
-            "type": "ambiguity",
-            "term": "normal",
-            "suggestion": "Replace 'normal' with a specific, measurable term"
-          },
-          {
-            "line": 88,
-            "type": "ambiguity",
-            "term": "if applicable",
-            "suggestion": "Replace 'if applicable' with a specific, measurable term"
-          },
-          {
-            "line": 99,
-            "type": "ambiguity",
-            "term": "normal",
-            "suggestion": "Replace 'normal' with a specific, measurable term"
-          },
-          {
-            "line": 112,
-            "type": "ambiguity",
-            "term": "simple",
-            "suggestion": "Replace 'simple' with a specific, measurable term"
-          },
-          {
-            "line": 116,
-            "type": "ambiguity",
-            "term": "normal",
-            "suggestion": "Replace 'normal' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Your pull-request will likely not be merged unless it is covered by some form of",
-            "suggestion": "Goal without test: 'Your pull-request will likely not be merged unless it is cov...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
           "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
         ]
       },
@@ -22373,200 +21747,6 @@
         ]
       },
       {
-        "pr_number": 20020,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 97,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 44,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 3,
-            "type": "ambiguity",
-            "term": "efficient",
-            "suggestion": "Replace 'efficient' with a specific, measurable term"
-          },
-          {
-            "line": 5,
-            "type": "ambiguity",
-            "term": "fast",
-            "suggestion": "Replace 'fast' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Complete and streaming completions",
-            "suggestion": "Goal without test: 'Complete and streaming completions' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Chat interface with message history",
-            "suggestion": "Goal without test: 'Chat interface with message history' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "OpenAI-compatible API support",
-            "suggestion": "Goal without test: 'OpenAI-compatible API support' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Authentication via API keys",
-            "suggestion": "Goal without test: 'Authentication via API keys' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Customizable sampling parameters (temperature, topp, topk, etc.)",
-            "suggestion": "Goal without test: 'Customizable sampling parameters (temperature, topp, topk, e...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Support for constrained generation with regex patterns",
-            "suggestion": "Goal without test: 'Support for constrained generation with regex patterns' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Yes (Starting at v0.1.0 for new package)",
-            "suggestion": "Goal without test: '[x] Yes (Starting at v0.1.0 for new package)' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[ ] Bug fix (non-breaking change which fixes an issue)",
-            "suggestion": "Goal without test: '[ ] Bug fix (non-breaking change which fixes an issue)' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] New feature (non-breaking change which adds functionality)",
-            "suggestion": "Goal without test: '[x] New feature (non-breaking change which adds functionalit...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[ ] Breaking change (fix or feature that would cause existing functionality to n",
-            "suggestion": "Goal without test: '[ ] Breaking change (fix or feature that would cause existin...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] This change requires a documentation update",
-            "suggestion": "Goal without test: '[x] This change requires a documentation update' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] I added new unit tests to cover this change",
-            "suggestion": "Goal without test: '[x] I added new unit tests to cover this change' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[ ] I believe this change is already covered by existing unit tests",
-            "suggestion": "Goal without test: '[ ] I believe this change is already covered by existing uni...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Tested basic initialization and class inheritance",
-            "suggestion": "Goal without test: 'Tested basic initialization and class inheritance' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Tested against live SGLang server with DeepSeek-R1-Distill-Qwen-32B model",
-            "suggestion": "Goal without test: 'Tested against live SGLang server with DeepSeek-R1-Distill-Q...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Verified completions, chat, and streaming functionality",
-            "suggestion": "Goal without test: 'Verified completions, chat, and streaming functionality' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Tested with API key authentication",
-            "suggestion": "Goal without test: 'Tested with API key authentication' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] I have performed a self-review of my own code",
-            "suggestion": "Goal without test: '[x] I have performed a self-review of my own code' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] I have commented my code, particularly in hard-to-understand areas",
-            "suggestion": "Goal without test: '[x] I have commented my code, particularly in hard-to-unders...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] I have made corresponding changes to the documentation",
-            "suggestion": "Goal without test: '[x] I have made corresponding changes to the documentation' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[ ] I have added Google Colab support for the newly added notebooks.",
-            "suggestion": "Goal without test: '[ ] I have added Google Colab support for the newly added no...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] My changes generate no new warnings",
-            "suggestion": "Goal without test: '[x] My changes generate no new warnings' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] I have added tests that prove my fix is effective or that my feature works",
-            "suggestion": "Goal without test: '[x] I have added tests that prove my fix is effective or tha...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] New and existing unit tests pass locally with my changes",
-            "suggestion": "Goal without test: '[x] New and existing unit tests pass locally with my changes' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[ ] I ran uv run make format; uv run make lint to appease the lint gods",
-            "suggestion": "Goal without test: '[ ] I ran uv run make format; uv run make lint to appease th...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 20113,
         "format": "freeform",
         "completeness": 0,
@@ -23047,44 +22227,6 @@
             "type": "ambiguity",
             "term": "Comprehensive",
             "suggestion": "Replace 'Comprehensive' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Your pull-request will likely not be merged unless it is covered by some form of",
-            "suggestion": "Goal without test: 'Your pull-request will likely not be merged unless it is cov...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 20045,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
           },
           {
             "line": 0,
@@ -25167,62 +24309,6 @@
             "type": "testability",
             "term": "[x] I ran uv run make format; uv run make lint to appease the lint gods",
             "suggestion": "Goal without test: '[x] I ran uv run make format; uv run make lint to appease th...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 19793,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 97,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 44,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 10,
-            "type": "ambiguity",
-            "term": "comprehensive",
-            "suggestion": "Replace 'comprehensive' with a specific, measurable term"
-          },
-          {
-            "line": 11,
-            "type": "ambiguity",
-            "term": "comprehensive",
-            "suggestion": "Replace 'comprehensive' with a specific, measurable term"
-          },
-          {
-            "line": 34,
-            "type": "ambiguity",
-            "term": "comprehensive",
-            "suggestion": "Replace 'comprehensive' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Your pull-request will likely not be merged unless it is covered by some form of",
-            "suggestion": "Goal without test: 'Your pull-request will likely not be merged unless it is cov...' \u2014 add a Given/When/Then criterion"
           }
         ],
         "warnings": [
@@ -30654,158 +29740,6 @@
         ]
       },
       {
-        "pr_number": 18841,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 95,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 44,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 5,
-            "type": "ambiguity",
-            "term": "easy",
-            "suggestion": "Replace 'easy' with a specific, measurable term"
-          },
-          {
-            "line": 11,
-            "type": "ambiguity",
-            "term": "better",
-            "suggestion": "Replace 'better' with a specific, measurable term"
-          },
-          {
-            "line": 11,
-            "type": "ambiguity",
-            "term": "flexible",
-            "suggestion": "Replace 'flexible' with a specific, measurable term"
-          },
-          {
-            "line": 19,
-            "type": "ambiguity",
-            "term": "appropriate",
-            "suggestion": "Replace 'appropriate' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "No new external dependencies introduced.",
-            "suggestion": "Goal without test: 'No new external dependencies introduced.' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Only requires appropriate API access for Sarvam AI.",
-            "suggestion": "Goal without test: 'Only requires appropriate API access for Sarvam AI.' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[ ] Bug fix (non-breaking change which fixes an issue)",
-            "suggestion": "Goal without test: '[ ] Bug fix (non-breaking change which fixes an issue)' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] New feature (non-breaking change which adds functionality)",
-            "suggestion": "Goal without test: '[x] New feature (non-breaking change which adds functionalit...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[ ] Breaking change (fix or feature that would cause existing functionality to n",
-            "suggestion": "Goal without test: '[ ] Breaking change (fix or feature that would cause existin...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[ ] This change requires a documentation update",
-            "suggestion": "Goal without test: '[ ] This change requires a documentation update' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] I added new unit tests to cover this change",
-            "suggestion": "Goal without test: '[x] I added new unit tests to cover this change' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[ ] I believe this change is already covered by existing unit tests",
-            "suggestion": "Goal without test: '[ ] I believe this change is already covered by existing uni...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] I have performed a self-review of my own code",
-            "suggestion": "Goal without test: '[x] I have performed a self-review of my own code' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] I have commented my code, particularly in hard-to-understand areas",
-            "suggestion": "Goal without test: '[x] I have commented my code, particularly in hard-to-unders...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] I have made corresponding changes to the documentation",
-            "suggestion": "Goal without test: '[x] I have made corresponding changes to the documentation' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] I have added Google Colab support for the newly added notebooks",
-            "suggestion": "Goal without test: '[x] I have added Google Colab support for the newly added no...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] My changes generate no new warnings",
-            "suggestion": "Goal without test: '[x] My changes generate no new warnings' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] I have added tests that prove my fix is effective or that my feature works",
-            "suggestion": "Goal without test: '[x] I have added tests that prove my fix is effective or tha...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] New and existing unit tests pass locally with my changes",
-            "suggestion": "Goal without test: '[x] New and existing unit tests pass locally with my changes' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] I ran uv run make format; uv run make lint to appease the lint gods",
-            "suggestion": "Goal without test: '[x] I ran uv run make format; uv run make lint to appease th...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 18832,
         "format": "freeform",
         "completeness": 0,
@@ -32181,68 +31115,6 @@
         ]
       },
       {
-        "pr_number": 18585,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Built upon OpenAILike class using Llama's OpenAI-compatible endpoint (https://ap",
-            "suggestion": "Goal without test: 'Built upon OpenAILike class using Llama's OpenAI-compatible ...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Supports chat completion and streaming",
-            "suggestion": "Goal without test: 'Supports chat completion and streaming' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Implements structured output via the \"json_schema\" method",
-            "suggestion": "Goal without test: 'Implements structured output via the \"json_schema\" method' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Tool calling is not yet stable in the Llama API, so it's not supported in this i",
-            "suggestion": "Goal without test: 'Tool calling is not yet stable in the Llama API, so it's not...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Modified unit tests to only test the \"json_schema\" structured output format",
-            "suggestion": "Goal without test: 'Modified unit tests to only test the \"json_schema\" structure...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 18560,
         "format": "freeform",
         "completeness": 50,
@@ -33272,11 +32144,11 @@
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.1715,
-    "unspecd_rework_rate": 0.1713,
-    "delta": 0.0002,
-    "specd_sample_size": 414,
-    "unspecd_sample_size": 975,
+    "specd_rework_rate": 0.1696,
+    "unspecd_rework_rate": 0.1721,
+    "delta": -0.0025,
+    "specd_sample_size": 401,
+    "unspecd_sample_size": 988,
     "significance": "significant",
     "signals": [
       {
@@ -36249,22 +35121,22 @@
     ],
     "by_complexity": {
       "small": {
-        "specd_rework_rate": 0.164,
-        "unspecd_rework_rate": 0.1319,
-        "specd_count": 250,
-        "unspecd_count": 599
+        "specd_rework_rate": 0.1579,
+        "unspecd_rework_rate": 0.1346,
+        "specd_count": 247,
+        "unspecd_count": 602
       },
       "medium": {
-        "specd_rework_rate": 0.1895,
-        "unspecd_rework_rate": 0.2297,
-        "specd_count": 95,
-        "unspecd_count": 209
+        "specd_rework_rate": 0.1978,
+        "unspecd_rework_rate": 0.2254,
+        "specd_count": 91,
+        "unspecd_count": 213
       },
       "large": {
-        "specd_rework_rate": 0.1739,
-        "unspecd_rework_rate": 0.2049,
-        "specd_count": 69,
-        "unspecd_count": 244
+        "specd_rework_rate": 0.1746,
+        "unspecd_rework_rate": 0.204,
+        "specd_count": 63,
+        "unspecd_count": 250
       }
     }
   }

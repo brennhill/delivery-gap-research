@@ -3,9 +3,9 @@
   "lookback_days": 365,
   "rework_window_days": 30,
   "coverage": {
-    "coverage_pct": 61,
+    "coverage_pct": 60,
     "total_prs": 1189,
-    "specd_prs": 723,
+    "specd_prs": 717,
     "prs": [
       {
         "number": 24756,
@@ -532,7 +532,7 @@
         "sha": null,
         "title": "fix(model-prices): migrate 38 models from legacy max_tokens to max_input_tokens/max_output_tokens",
         "specd": true,
-        "spec_source": "GPT-4",
+        "spec_source": "https://github.com/BerriAI/litellm/issues/18967",
         "merged_at": "2026-03-23T16:23:44+00:00"
       },
       {
@@ -596,7 +596,7 @@
         "sha": null,
         "title": "fix(responses-api): apply GPT-5 temperature validation",
         "specd": true,
-        "spec_source": "GPT-5",
+        "spec_source": "https://github.com/berriAI/litellm/issues/16090",
         "merged_at": "2026-03-22T21:44:13+00:00"
       },
       {
@@ -827,8 +827,8 @@
         "number": 24963,
         "sha": null,
         "title": "feat(vertex_ai): propagate metadata labels to embedding, Imagen, rerank",
-        "specd": true,
-        "spec_source": "AI-STYLE",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-04-02T13:03:21+00:00"
       },
       {
@@ -1003,8 +1003,8 @@
         "number": 24905,
         "sha": null,
         "title": "[Infra] Pin All Docker Build Dependencies",
-        "specd": true,
-        "spec_source": "GHSA-R6PH",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-04-01T22:05:25+00:00"
       },
       {
@@ -4451,8 +4451,8 @@
         "number": 22981,
         "sha": null,
         "title": "feat(openai): normalize reasoning_effort dict to string for chat completion API",
-        "specd": true,
-        "spec_source": "GPT-5",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-03-06T19:07:07+00:00"
       },
       {
@@ -5515,16 +5515,16 @@
         "number": 22954,
         "sha": null,
         "title": "feat(openai): add gpt-5.4-pro to model map",
-        "specd": true,
-        "spec_source": "GPT-5",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-03-06T04:23:45+00:00"
       },
       {
         "number": 22953,
         "sha": null,
         "title": "feat(gpt-5): Add supports_none_reasoning_effort and supports_xhigh_reasoning_effort to model cost map",
-        "specd": true,
-        "spec_source": "GPT-5",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-03-06T12:46:29+00:00"
       },
       {
@@ -8419,8 +8419,8 @@
         "number": 22701,
         "sha": null,
         "title": "Fix Anthropic streaming sync and Azure GPT-5.1 logprobs tests",
-        "specd": true,
-        "spec_source": "GPT-5",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-03-03T22:36:44+00:00"
       },
       {
@@ -9525,7 +9525,7 @@
     "mode": "heuristic",
     "average_score": 45,
     "verdicts": {
-      "REVIEW": 723
+      "REVIEW": 717
     },
     "specs": [
       {
@@ -12970,56 +12970,6 @@
         ]
       },
       {
-        "pr_number": 24963,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Text embeddings (:predict): top-level labels on the request body; litellm_params",
-            "suggestion": "Goal without test: 'Text embeddings (:predict): top-level labels on the request ...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Imagen (:predict): top-level labels; labels popped from optional params before m",
-            "suggestion": "Goal without test: 'Imagen (:predict): top-level labels; labels popped from opti...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Discovery Engine rerank (:rank): userLabels per [RankRequest](https://cloud.goog",
-            "suggestion": "Goal without test: 'Discovery Engine rerank (:rank): userLabels per [RankRequest...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 24918,
         "format": "freeform",
         "completeness": 0,
@@ -14346,193 +14296,6 @@
           "No side effects listed \u2014 AI may miss integrations",
           "No error contract \u2014 AI will invent error shapes per function",
           "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 24905,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 99,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 7,
-            "type": "ambiguity",
-            "term": "good",
-            "suggestion": "Replace 'good' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Removed aioboto3==15.5.0 and its transitive deps (aioitertools, wrapt) from requ",
-            "suggestion": "Goal without test: 'Removed aioboto3==15.5.0 and its transitive deps (aioitertoo...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Removed grep -v '^aioboto3' + pip install --no-deps workarounds from all Dockerf",
-            "suggestion": "Goal without test: 'Removed grep -v '^aioboto3' + pip install --no-deps workarou...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Removed aioboto3, aioitertools, wrapt from liccheck.ini authorized licenses",
-            "suggestion": "Goal without test: 'Removed aioboto3, aioitertools, wrapt from liccheck.ini auth...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Simplified boto3 comment (no longer needs \"compatible with aioboto3\" note)",
-            "suggestion": "Goal without test: 'Simplified boto3 comment (no longer needs \"compatible with a...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "requirements.txt: All 84+ entries now use == exact pins, including transitive de",
-            "suggestion": "Goal without test: 'requirements.txt: All 84+ entries now use == exact pins, inc...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "pyproject.toml: All production and dev dependencies pinned to exact versions; cr",
-            "suggestion": "Goal without test: 'pyproject.toml: All production and dev dependencies pinned t...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Collapsed redundant grpcio python-version markers into single entry in both requ",
-            "suggestion": "Goal without test: 'Collapsed redundant grpcio python-version markers into singl...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "scripts/healthcheck/healthcheck_requirements.txt: Pinned to match main",
-            "suggestion": "Goal without test: 'scripts/healthcheck/healthcheck_requirements.txt: Pinned to ...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "docker/buildfrompip/requirements.txt: Pinned, updated from stale dev version",
-            "suggestion": "Goal without test: 'docker/buildfrompip/requirements.txt: Pinned, updated from s...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "cgr.dev/chainguard/wolfi-base (main, database, non_root)",
-            "suggestion": "Goal without test: 'cgr.dev/chainguard/wolfi-base (main, database, non_root)' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "python:3.13-slim (dev, health_check \u2014 upgraded from 3.11-slim to resolve critica",
-            "suggestion": "Goal without test: 'python:3.13-slim (dev, health_check \u2014 upgraded from 3.11-sli...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "python:3.11-alpine (alpine)",
-            "suggestion": "Goal without test: 'python:3.11-alpine (alpine)' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "python:3.13-alpine (buildfrompip)",
-            "suggestion": "Goal without test: 'python:3.13-alpine (buildfrompip)' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "ghcr.io/berriai/litellm:main-latest (deploy)",
-            "suggestion": "Goal without test: 'ghcr.io/berriai/litellm:main-latest (deploy)' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "npm@latest \u2192 npm@11.12.1 in all Dockerfiles",
-            "suggestion": "Goal without test: 'npm@latest \u2192 npm@11.12.1 in all Dockerfiles' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "pip install build \u2192 build==1.4.2 in all Dockerfiles",
-            "suggestion": "Goal without test: 'pip install build \u2192 build==1.4.2 in all Dockerfiles' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "pip install --upgrade pip \u2192 pip==26.0.1 in all Dockerfiles",
-            "suggestion": "Goal without test: 'pip install --upgrade pip \u2192 pip==26.0.1 in all Dockerfiles' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "aurelio-sdk install uses --no-deps to prevent transitive dep floating",
-            "suggestion": "Goal without test: 'aurelio-sdk install uses --no-deps to prevent transitive dep...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Dockerfile.non_root: Bypass .npmrc during UI build (min-release-age incompatible",
-            "suggestion": "Goal without test: 'Dockerfile.non_root: Bypass .npmrc during UI build (min-rele...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Dockerfile.custom_ui: Added --no-install-recommends to apt-get install",
-            "suggestion": "Goal without test: 'Dockerfile.custom_ui: Added --no-install-recommends to apt-g...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Dockerfile.health_check: Added non-root user, HEALTHCHECK instruction, upgraded ",
-            "suggestion": "Goal without test: 'Dockerfile.health_check: Added non-root user, HEALTHCHECK in...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Built all 3 production Docker images locally (litellm, database, non_root) \u2014 all",
-            "suggestion": "Goal without test: 'Built all 3 production Docker images locally (litellm, datab...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Confirmed zero imports of aioboto3 or aiobotocore in the Python source",
-            "suggestion": "Goal without test: 'Confirmed zero imports of aioboto3 or aiobotocore in the Pyt...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Extracted pip freeze from each image and diffed against v1.83.0-nightly baseline",
-            "suggestion": "Goal without test: 'Extracted pip freeze from each image and diffed against v1.8...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Result: zero version drift (only litellm wheel hash differs due to local build)",
-            "suggestion": "Goal without test: 'Result: zero version drift (only litellm wheel hash differs ...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
           "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
         ]
       },
@@ -34976,62 +34739,6 @@
         ]
       },
       {
-        "pr_number": 22981,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 95,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 44,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 2,
-            "type": "ambiguity",
-            "term": "simple",
-            "suggestion": "Replace 'simple' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Add normalizereasoningeffortforchatcompletion() helper to extract effort from di",
-            "suggestion": "Goal without test: 'Add normalizereasoningeffortforchatcompletion() helper to ex...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Apply normalization in GPT-5 and O-series mapopenaiparams before passing to API",
-            "suggestion": "Goal without test: 'Apply normalization in GPT-5 and O-series mapopenaiparams be...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Add tests for dict-to-string conversion in both nondefaultparams and optional_pa",
-            "suggestion": "Goal without test: 'Add tests for dict-to-string conversion in both nondefaultpa...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 22858,
         "format": "freeform",
         "completeness": 0,
@@ -42409,124 +42116,6 @@
           "No I/O contracts \u2014 AI will invent API shapes",
           "No side effects listed \u2014 AI may miss integrations",
           "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 22954,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "gpt-5.4-pro \u2013 main model",
-            "suggestion": "Goal without test: 'gpt-5.4-pro \u2013 main model' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "gpt-5.4-pro-2026-03-05 \u2013 snapshot",
-            "suggestion": "Goal without test: 'gpt-5.4-pro-2026-03-05 \u2013 snapshot' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 22953,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Model cost map: Add supportsnonereasoningeffort and supportsxhighreasoningeffort",
-            "suggestion": "Goal without test: 'Model cost map: Add supportsnonereasoningeffort and supports...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "OpenAI transformation: Replace ismodelgpt51model, ismodelgpt51codexmaxmodel with",
-            "suggestion": "Goal without test: 'OpenAI transformation: Replace ismodelgpt51model, ismodelgpt...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Azure transformation: Use supportsreasoningeffortlevel for reasoning_effort='non",
-            "suggestion": "Goal without test: 'Azure transformation: Use supportsreasoningeffortlevel for r...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Types: Add new fields to ProviderSpecificModelInfo in litellm/types/utils.py",
-            "suggestion": "Goal without test: 'Types: Add new fields to ProviderSpecificModelInfo in litell...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Tests: Update testgpt51modeldetection to assert model map lookup behavior",
-            "suggestion": "Goal without test: 'Tests: Update testgpt51modeldetection to assert model map lo...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "supportsnonereasoning_effort=true: gpt-5.1, gpt-5.1-2025-11-13, gpt-5.1-chat-lat",
-            "suggestion": "Goal without test: 'supportsnonereasoning_effort=true: gpt-5.1, gpt-5.1-2025-11-...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "supportsxhighreasoning_effort=true: gpt-5.1-codex-max, gpt-5.2, gpt-5.2-2025-12-",
-            "suggestion": "Goal without test: 'supportsxhighreasoning_effort=true: gpt-5.1-codex-max, gpt-5...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
           "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
         ]
       },
@@ -57986,67 +57575,6 @@
         ]
       },
       {
-        "pr_number": 22701,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Anthropic streaming _next fix: Refactored the sync next method to use the same c",
-            "suggestion": "Goal without test: 'Anthropic streaming _next fix: Refactored the sync next meth...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Azure GPT-5.1 logprobs fix: The base OpenAI class includes logprobs for gpt-5.1+",
-            "suggestion": "Goal without test: 'Azure GPT-5.1 logprobs fix: The base OpenAI class includes l...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] All 21 Anthropic streaming tests pass (tests/testlitellm/llms/anthropic/expe",
-            "suggestion": "Goal without test: '[x] All 21 Anthropic streaming tests pass (tests/testlitellm...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] All 23 Azure GPT-5 tests pass (tests/testlitellm/llms/azure/chat/testazuregp",
-            "suggestion": "Goal without test: '[x] All 23 Azure GPT-5 tests pass (tests/testlitellm/llms/az...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] No new lint errors in changed files",
-            "suggestion": "Goal without test: '[x] No new lint errors in changed files' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 21588,
         "format": "freeform",
         "completeness": 0,
@@ -60578,11 +60106,11 @@
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.2061,
-    "unspecd_rework_rate": 0.176,
-    "delta": 0.0301,
-    "specd_sample_size": 723,
-    "unspecd_sample_size": 466,
+    "specd_rework_rate": 0.205,
+    "unspecd_rework_rate": 0.178,
+    "delta": 0.0271,
+    "specd_sample_size": 717,
+    "unspecd_sample_size": 472,
     "significance": "significant",
     "signals": [
       {
@@ -63842,16 +63370,16 @@
         "unspecd_count": 252
       },
       "medium": {
-        "specd_rework_rate": 0.2,
-        "unspecd_rework_rate": 0.2,
-        "specd_count": 270,
-        "unspecd_count": 150
+        "specd_rework_rate": 0.1955,
+        "unspecd_rework_rate": 0.2078,
+        "specd_count": 266,
+        "unspecd_count": 154
       },
       "large": {
-        "specd_rework_rate": 0.338,
-        "unspecd_rework_rate": 0.1944,
-        "specd_count": 213,
-        "unspecd_count": 72
+        "specd_rework_rate": 0.3412,
+        "unspecd_rework_rate": 0.1892,
+        "specd_count": 211,
+        "unspecd_count": 74
       }
     }
   }

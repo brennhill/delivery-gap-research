@@ -5,7 +5,7 @@
   "coverage": {
     "coverage_pct": 12,
     "total_prs": 3186,
-    "specd_prs": 388,
+    "specd_prs": 382,
     "prs": [
       {
         "number": 33674,
@@ -803,8 +803,8 @@
         "number": 33306,
         "sha": null,
         "title": "Add erk workflow commands and configuration for AI-assisted development",
-        "specd": true,
-        "spec_source": "AI-ASSISTED",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-01-20T17:23:20+00:00"
       },
       {
@@ -8859,8 +8859,8 @@
         "number": 31845,
         "sha": null,
         "title": "Update /ai_update_pr to scale length and complexity of ai-generated diff summary with underlying change.",
-        "specd": true,
-        "spec_source": "AI-GENERATED",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-08-19T19:10:24+00:00"
       },
       {
@@ -9003,8 +9003,8 @@
         "number": 31779,
         "sha": null,
         "title": "[backfills] Frontend for backfill configuration",
-        "specd": true,
-        "spec_source": "AI-GENERATED",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-08-18T21:51:34+00:00"
       },
       {
@@ -9107,8 +9107,8 @@
         "number": 31824,
         "sha": null,
         "title": "Enhance AI-assisted PR workflow with optimized context management and user thesis integration",
-        "specd": true,
-        "spec_source": "AI-ASSISTED",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-08-18T13:49:36+00:00"
       },
       {
@@ -9275,8 +9275,8 @@
         "number": 31770,
         "sha": null,
         "title": "Add dagster-dev CLI for internal developer utilities",
-        "specd": true,
-        "spec_source": "AI-DRIVEN",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-08-14T19:47:52+00:00"
       },
       {
@@ -10163,8 +10163,8 @@
         "number": 31576,
         "sha": null,
         "title": "Add AI-powered PR summary generation command (/ai_update_pr)",
-        "specd": true,
-        "spec_source": "AI-POWERED",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-08-06T18:09:34+00:00"
       },
       {
@@ -25501,7 +25501,7 @@
     "mode": "heuristic",
     "average_score": 45,
     "verdicts": {
-      "REVIEW": 386,
+      "REVIEW": 380,
       "REWRITE": 1
     },
     "specs": [
@@ -26152,122 +26152,6 @@
             "type": "testability",
             "term": "[dg] improved dg list defs to adequately show labels for automation conditions",
             "suggestion": "Goal without test: '[dg] improved dg list defs to adequately show labels for aut...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 33306,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": ".claude/commands/erk/ - 14 workflow command documentation files",
-            "suggestion": "Goal without test: '.claude/commands/erk/ - 14 workflow command documentation fi...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": ".erk/config.toml - Worktree environment configuration template",
-            "suggestion": "Goal without test: '.erk/config.toml - Worktree environment configuration templa...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": ".erk/prompt-hooks/README.md - Prompt hook documentation",
-            "suggestion": "Goal without test: '.erk/prompt-hooks/README.md - Prompt hook documentation' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": ".erk/state.toml - Erk artifact versioning and metadata",
-            "suggestion": "Goal without test: '.erk/state.toml - Erk artifact versioning and metadata' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": ".erk/required-erk-uv-tool-version - Erk version requirement",
-            "suggestion": "Goal without test: '.erk/required-erk-uv-tool-version - Erk version requirement' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": ".claude/settings.json - Added erk bash command allowlist and Claude Code hooks",
-            "suggestion": "Goal without test: '.claude/settings.json - Added erk bash command allowlist and...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": ".gitignore - Ignore erk scratch, impl folders, and local config",
-            "suggestion": "Goal without test: '.gitignore - Ignore erk scratch, impl folders, and local con...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "pyproject.toml - Add erk dev dependency",
-            "suggestion": "Goal without test: 'pyproject.toml - Add erk dev dependency' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Workflow Commands: Added 14 erk commands enabling objective-driven development (",
-            "suggestion": "Goal without test: 'Workflow Commands: Added 14 erk commands enabling objective-...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Claude Integration: Configured user-prompt and exit-plan-mode hooks in Claude Co",
-            "suggestion": "Goal without test: 'Claude Integration: Configured user-prompt and exit-plan-mod...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Objective System: Multi-phase implementation planning with roadmap tracking and ",
-            "suggestion": "Goal without test: 'Objective System: Multi-phase implementation planning with r...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "PR Workflows: Git-only PR push, address review comments holistically, land PRs w",
-            "suggestion": "Goal without test: 'PR Workflows: Git-only PR push, address review comments holi...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Learning: Extract and document insights from implementation sessions into search",
-            "suggestion": "Goal without test: 'Learning: Extract and document insights from implementation ...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Diagnostic Tools: Git lock error diagnostics, merge conflict resolution, plan re",
-            "suggestion": "Goal without test: 'Diagnostic Tools: Git lock error diagnostics, merge conflict...' \u2014 add a Given/When/Then criterion"
           }
         ],
         "warnings": [
@@ -31775,56 +31659,6 @@
         ]
       },
       {
-        "pr_number": 31845,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 90,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 42,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 11,
-            "type": "ambiguity",
-            "term": "simple",
-            "suggestion": "Replace 'simple' with a specific, measurable term"
-          },
-          {
-            "line": 11,
-            "type": "ambiguity",
-            "term": "appropriate",
-            "suggestion": "Replace 'appropriate' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "(no goals found)",
-            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 31839,
         "format": "freeform",
         "completeness": 0,
@@ -31863,208 +31697,6 @@
         ]
       },
       {
-        "pr_number": 31779,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 96,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 44,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 12,
-            "type": "ambiguity",
-            "term": "better",
-            "suggestion": "Replace 'better' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "(no goals found)",
-            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 31824,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 90,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 42,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 5,
-            "type": "ambiguity",
-            "term": "better",
-            "suggestion": "Replace 'better' with a specific, measurable term"
-          },
-          {
-            "line": 11,
-            "type": "ambiguity",
-            "term": "comprehensive",
-            "suggestion": "Replace 'comprehensive' with a specific, measurable term"
-          },
-          {
-            "line": 14,
-            "type": "ambiguity",
-            "term": "efficient",
-            "suggestion": "Replace 'efficient' with a specific, measurable term"
-          },
-          {
-            "line": 15,
-            "type": "ambiguity",
-            "term": "optimize",
-            "suggestion": "Replace 'optimize' with a specific, measurable term"
-          },
-          {
-            "line": 17,
-            "type": "ambiguity",
-            "term": "Comprehensive",
-            "suggestion": "Replace 'Comprehensive' with a specific, measurable term"
-          },
-          {
-            "line": 17,
-            "type": "ambiguity",
-            "term": "comprehensive",
-            "suggestion": "Replace 'comprehensive' with a specific, measurable term"
-          },
-          {
-            "line": 23,
-            "type": "ambiguity",
-            "term": "Modular",
-            "suggestion": "Replace 'Modular' with a specific, measurable term"
-          },
-          {
-            "line": 47,
-            "type": "ambiguity",
-            "term": "seamless",
-            "suggestion": "Replace 'seamless' with a specific, measurable term"
-          },
-          {
-            "line": 53,
-            "type": "ambiguity",
-            "term": "Comprehensive",
-            "suggestion": "Replace 'Comprehensive' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "New AI Review Commands: Added , , , and  to provide structured, efficient reposi",
-            "suggestion": "Goal without test: 'New AI Review Commands: Added , , , and  to provide structur...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Smart Context Management: Implemented  and  to optimize token usage through inte",
-            "suggestion": "Goal without test: 'Smart Context Management: Implemented  and  to optimize toke...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Agent Architecture: Created  defining the specialized PR update workflow with cl",
-            "suggestion": "Goal without test: 'Agent Architecture: Created  defining the specialized PR upd...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Testing Infrastructure: Comprehensive test coverage including smoke tests, integ",
-            "suggestion": "Goal without test: 'Testing Infrastructure: Comprehensive test coverage includin...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Documentation Updates: Enhanced coding conventions and command documentation to ",
-            "suggestion": "Goal without test: 'Documentation Updates: Enhanced coding conventions and comma...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Token usage optimization through smart diff summarization reduces context overhe",
-            "suggestion": "Goal without test: 'Token usage optimization through smart diff summarization re...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Caching system enables faster repeat operations and improved developer experienc",
-            "suggestion": "Goal without test: 'Caching system enables faster repeat operations and improved...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Modular command structure allows for independent testing and maintenance of AI r",
-            "suggestion": "Goal without test: 'Modular command structure allows for independent testing and...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Clear separation of human thesis input from AI-generated analysis maintains cont",
-            "suggestion": "Goal without test: 'Clear separation of human thesis input from AI-generated ana...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Extends existing Usage: dagster-dev [OPTIONS] COMMAND [ARGS]...",
-            "suggestion": "Goal without test: 'Extends existing Usage: dagster-dev [OPTIONS] COMMAND [ARGS]...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Preserves existing GT stack operations while adding intelligent PR management",
-            "suggestion": "Goal without test: 'Preserves existing GT stack operations while adding intellig...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Maintains compatibility with current development workflows while enhancing autom",
-            "suggestion": "Goal without test: 'Maintains compatibility with current development workflows w...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 31771,
         "format": "freeform",
         "completeness": 0,
@@ -32091,74 +31723,6 @@
             "type": "testability",
             "term": "(no goals found)",
             "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 31770,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 95,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 44,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 5,
-            "type": "ambiguity",
-            "term": "easy",
-            "suggestion": "Replace 'easy' with a specific, measurable term"
-          },
-          {
-            "line": 7,
-            "type": "ambiguity",
-            "term": "easy",
-            "suggestion": "Replace 'easy' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Auto-discovery: Commands are automatically loaded from the commands/ directory",
-            "suggestion": "Goal without test: 'Auto-discovery: Commands are automatically loaded from the c...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Extensible: New commands can be added by simply creating Python files with click",
-            "suggestion": "Goal without test: 'Extensible: New commands can be added by simply creating Pyt...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Self-documenting: Includes a list command that shows all available commands with",
-            "suggestion": "Goal without test: 'Self-documenting: Includes a list command that shows all ava...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Example command: Includes a greet command demonstrating the pattern",
-            "suggestion": "Goal without test: 'Example command: Includes a greet command demonstrating the ...' \u2014 add a Given/When/Then criterion"
           }
         ],
         "warnings": [
@@ -32717,62 +32281,6 @@
             "type": "testability",
             "term": "(no goals found)",
             "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 31576,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Uses gt ls -s to determine the stack structure and find the base reference",
-            "suggestion": "Goal without test: 'Uses gt ls -s to determine the stack structure and find the ...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Analyzes changes with git diff and commit messages with git log",
-            "suggestion": "Goal without test: 'Analyzes changes with git diff and commit messages with git ...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Generates structured PR summaries with Summary & Motivation, testing approach, a",
-            "suggestion": "Goal without test: 'Generates structured PR summaries with Summary & Motivation,...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Automatically updates existing PRs with the generated content and descriptive ti",
-            "suggestion": "Goal without test: 'Automatically updates existing PRs with the generated conten...' \u2014 add a Given/When/Then criterion"
           }
         ],
         "warnings": [
@@ -42581,11 +42089,11 @@
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.0876,
-    "unspecd_rework_rate": 0.0683,
-    "delta": 0.0194,
-    "specd_sample_size": 388,
-    "unspecd_sample_size": 2798,
+    "specd_rework_rate": 0.0864,
+    "unspecd_rework_rate": 0.0685,
+    "delta": 0.0179,
+    "specd_sample_size": 382,
+    "unspecd_sample_size": 2804,
     "significance": "significant",
     "signals": [
       {
@@ -45406,22 +44914,22 @@
     ],
     "by_complexity": {
       "small": {
-        "specd_rework_rate": 0.0336,
+        "specd_rework_rate": 0.0339,
         "unspecd_rework_rate": 0.0424,
-        "specd_count": 238,
-        "unspecd_count": 1792
+        "specd_count": 236,
+        "unspecd_count": 1794
       },
       "medium": {
-        "specd_rework_rate": 0.1683,
-        "unspecd_rework_rate": 0.0889,
-        "specd_count": 101,
-        "unspecd_count": 709
+        "specd_rework_rate": 0.1616,
+        "unspecd_rework_rate": 0.09,
+        "specd_count": 99,
+        "unspecd_count": 711
       },
       "large": {
-        "specd_rework_rate": 0.1837,
-        "unspecd_rework_rate": 0.1536,
-        "specd_count": 49,
-        "unspecd_count": 345
+        "specd_rework_rate": 0.1915,
+        "unspecd_rework_rate": 0.1527,
+        "specd_count": 47,
+        "unspecd_count": 347
       }
     }
   }

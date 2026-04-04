@@ -3,9 +3,9 @@
   "lookback_days": 365,
   "rework_window_days": 30,
   "coverage": {
-    "coverage_pct": 8,
+    "coverage_pct": 6,
     "total_prs": 120,
-    "specd_prs": 10,
+    "specd_prs": 7,
     "prs": [
       {
         "number": 1009,
@@ -363,8 +363,8 @@
         "number": 957,
         "sha": null,
         "title": "Revert \"feat: add auto search logic\"",
-        "specd": true,
-        "spec_source": "AI-POWERED",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-01-23T12:15:27+00:00"
       },
       {
@@ -539,8 +539,8 @@
         "number": 933,
         "sha": null,
         "title": "feat: auto name lists for ai mode",
-        "specd": true,
-        "spec_source": "AI-GENERATED",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-01-04T12:40:57+00:00"
       },
       {
@@ -627,8 +627,8 @@
         "number": 921,
         "sha": null,
         "title": "feat: AI powered robot generation",
-        "specd": true,
-        "spec_source": "AI-POWERED",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-12-11T17:27:37+00:00"
       },
       {
@@ -973,7 +973,7 @@
     "mode": "heuristic",
     "average_score": 45,
     "verdicts": {
-      "REVIEW": 10
+      "REVIEW": 7
     },
     "specs": [
       {
@@ -1319,55 +1319,6 @@
         ]
       },
       {
-        "pr_number": 957,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "URL input field now available in the Extract tab, allowing users to directly spe",
-            "suggestion": "Goal without test: 'URL input field now available in the Extract tab, allowing u...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Loading indicator in the recordings table improved with animated spinner display",
-            "suggestion": "Goal without test: 'Loading indicator in the recordings table improved with anim...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "URL parameter is now mandatory for AI robot creation workflows; automatic URL de",
-            "suggestion": "Goal without test: 'URL parameter is now mandatory for AI robot creation workflo...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 938,
         "format": "freeform",
         "completeness": 0,
@@ -1429,43 +1380,6 @@
         ]
       },
       {
-        "pr_number": 933,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Workflow lists now automatically receive AI-generated contextual names based on ",
-            "suggestion": "Goal without test: 'Workflow lists now automatically receive AI-generated contex...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 924,
         "format": "freeform",
         "completeness": 0,
@@ -1516,79 +1430,6 @@
             "type": "testability",
             "term": "No user-facing behavior, UI changes, or public API signatures were altered.",
             "suggestion": "Goal without test: 'No user-facing behavior, UI changes, or public API signature...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 921,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 96,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 44,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 11,
-            "type": "ambiguity",
-            "term": "Real-time",
-            "suggestion": "Replace 'Real-time' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "AI-powered robot creation from URL + prompt with provider/model/API options and ",
-            "suggestion": "Goal without test: 'AI-powered robot creation from URL + prompt with provider/mo...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "AI mode (agent) and recorder mode in the create UI, with AI-specific fields and ",
-            "suggestion": "Goal without test: 'AI mode (agent) and recorder mode in the create UI, with AI-...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Real-time run updates and notifications via browser sockets.",
-            "suggestion": "Goal without test: 'Real-time run updates and notifications via browser sockets.' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Optimistic recording entries with loading indicators and rollback on failure.",
-            "suggestion": "Goal without test: 'Optimistic recording entries with loading indicators and rol...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Table headers restored and loading-row visuals improved.",
-            "suggestion": "Goal without test: 'Table headers restored and loading-row visuals improved.' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Main page editor now syncs when initial content changes.",
-            "suggestion": "Goal without test: 'Main page editor now syncs when initial content changes.' \u2014 add a Given/When/Then criterion"
           }
         ],
         "warnings": [
@@ -1779,12 +1620,12 @@
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.2,
-    "unspecd_rework_rate": 0.1636,
-    "delta": 0.0364,
-    "specd_sample_size": 10,
-    "unspecd_sample_size": 110,
-    "significance": "limited",
+    "specd_rework_rate": 0.2857,
+    "unspecd_rework_rate": 0.1593,
+    "delta": 0.1264,
+    "specd_sample_size": 7,
+    "unspecd_sample_size": 113,
+    "significance": "insufficient",
     "signals": [
       {
         "type": "bug-fix",
@@ -2195,13 +2036,6 @@
         ]
       }
     ],
-    "by_complexity": {
-      "large": {
-        "specd_rework_rate": 0.2,
-        "unspecd_rework_rate": 0.5238,
-        "specd_count": 5,
-        "unspecd_count": 21
-      }
-    }
+    "by_complexity": {}
   }
 }

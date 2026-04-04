@@ -3,9 +3,9 @@
   "lookback_days": 365,
   "rework_window_days": 30,
   "coverage": {
-    "coverage_pct": 16,
+    "coverage_pct": 14,
     "total_prs": 495,
-    "specd_prs": 79,
+    "specd_prs": 69,
     "prs": [
       {
         "number": 14946,
@@ -275,8 +275,8 @@
         "number": 14770,
         "sha": null,
         "title": "Optimize BITOP operations with AVX512",
-        "specd": true,
-        "spec_source": "AVX-512",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-03-11T14:17:51+00:00"
       },
       {
@@ -331,8 +331,8 @@
         "number": 14878,
         "sha": null,
         "title": "Fix listpack memory leak in zipmap-to-hash conversion on error path",
-        "specd": true,
-        "spec_source": "RDB-LOAD",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-03-16T06:12:03+00:00"
       },
       {
@@ -355,8 +355,8 @@
         "number": 14851,
         "sha": null,
         "title": "No checksum performed on diskless replication",
-        "specd": true,
-        "spec_source": "RDB-CHANNEL",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-03-12T09:10:43+00:00"
       },
       {
@@ -491,8 +491,8 @@
         "number": 14608,
         "sha": null,
         "title": "Reply Copy Avoidance",
-        "specd": true,
-        "spec_source": "IO-DEFERRED",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-01-19T03:09:17+00:00"
       },
       {
@@ -747,16 +747,16 @@
         "number": 14750,
         "sha": null,
         "title": "Support SFLUSH to flush slots partially",
-        "specd": true,
-        "spec_source": "SYNC-AS",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-02-12T08:20:14+00:00"
       },
       {
         "number": 14555,
         "sha": null,
         "title": "Use kqueue as the backend of AE on DragonFlyBSD",
-        "specd": true,
-        "spec_source": "OS-SPECIFIC",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-02-12T03:44:39+00:00"
       },
       {
@@ -851,8 +851,8 @@
         "number": 14492,
         "sha": null,
         "title": "Vectorize binary quantization path for vectorsets distance calculation",
-        "specd": true,
-        "spec_source": "AVX-512",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-01-29T11:59:48+00:00"
       },
       {
@@ -979,8 +979,8 @@
         "number": 14738,
         "sha": null,
         "title": "Fix deferring free object that refcount is more than 1",
-        "specd": true,
-        "spec_source": "IO-THREAD",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-01-25T10:41:16+00:00"
       },
       {
@@ -1067,8 +1067,8 @@
         "number": 14709,
         "sha": null,
         "title": "Modify the condition for adding CLIENT_IO_CLOSE_ASAP flag",
-        "specd": true,
-        "spec_source": "IO-THREAD",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-01-21T11:39:15+00:00"
       },
       {
@@ -3963,8 +3963,8 @@
         "number": 14927,
         "sha": null,
         "title": "Fix sds unit test and improve unittest output formatting",
-        "specd": true,
-        "spec_source": "ANSI-COLORED",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-03-31T08:05:35+00:00"
       }
     ]
@@ -3973,7 +3973,7 @@
     "mode": "heuristic",
     "average_score": 45,
     "verdicts": {
-      "REVIEW": 79
+      "REVIEW": 69
     },
     "specs": [
       {
@@ -4302,49 +4302,6 @@
         ]
       },
       {
-        "pr_number": 14770,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 98,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 44,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 20,
-            "type": "ambiguity",
-            "term": "fast",
-            "suggestion": "Replace 'fast' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboard?tab=bugbot) for c",
-            "suggestion": "Goal without test: '> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboa...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 14371,
         "format": "freeform",
         "completeness": 0,
@@ -4414,86 +4371,6 @@
             "type": "ambiguity",
             "term": "simple",
             "suggestion": "Replace 'simple' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboard?tab=bugbot) for c",
-            "suggestion": "Goal without test: '> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboa...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 14878,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Without the fix, running the added test ./runtest --single integration/corrupt-d",
-            "suggestion": "Goal without test: 'Without the fix, running the added test ./runtest --single i...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboard?tab=bugbot) for c",
-            "suggestion": "Goal without test: '> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboa...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 14851,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
           },
           {
             "line": 0,
@@ -5043,49 +4920,6 @@
         ]
       },
       {
-        "pr_number": 14608,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "starting certain number of threads. So it will be enabled only starting",
-            "suggestion": "Goal without test: 'starting certain number of threads. So it will be enabled on...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboard?tab=bugbot) for c",
-            "suggestion": "Goal without test: '> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboa...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 14790,
         "format": "freeform",
         "completeness": 0,
@@ -5398,92 +5232,6 @@
         ]
       },
       {
-        "pr_number": 14750,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "NOTE: Redis will reply -TRYAGAIN Slot is being trimmed error if clients send wri",
-            "suggestion": "Goal without test: 'NOTE: Redis will reply -TRYAGAIN Slot is being trimmed error...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboard?tab=bugbot) for c",
-            "suggestion": "Goal without test: '> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboa...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 14555,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "> DragonFlyBSD builds will now define HAVEKQUEUE, causing ae.c to compile the kq",
-            "suggestion": "Goal without test: '> DragonFlyBSD builds will now define HAVEKQUEUE, causing ae...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboard?tab=bugbot) for c",
-            "suggestion": "Goal without test: '> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboa...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 14729,
         "format": "freeform",
         "completeness": 0,
@@ -5527,86 +5275,6 @@
         ]
       },
       {
-        "pr_number": 14492,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 97,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 44,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 2,
-            "type": "ambiguity",
-            "term": "good",
-            "suggestion": "Replace 'good' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboard?tab=bugbot) for c",
-            "suggestion": "Goal without test: '> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboa...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 14738,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboard?tab=bugbot) for c",
-            "suggestion": "Goal without test: '> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboa...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 14713,
         "format": "freeform",
         "completeness": 0,
@@ -5633,43 +5301,6 @@
             "type": "ambiguity",
             "term": "simple",
             "suggestion": "Replace 'simple' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboard?tab=bugbot) for c",
-            "suggestion": "Goal without test: '> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboa...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 14709,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
           },
           {
             "line": 0,
@@ -8098,52 +7729,15 @@
           "No state transitions \u2014 AI may allow invalid transitions",
           "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
         ]
-      },
-      {
-        "pr_number": 14927,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboard?tab=bugbot) for c",
-            "suggestion": "Goal without test: '> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboa...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
       }
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.2658,
-    "unspecd_rework_rate": 0.1923,
-    "delta": 0.0735,
-    "specd_sample_size": 79,
-    "unspecd_sample_size": 416,
+    "specd_rework_rate": 0.2609,
+    "unspecd_rework_rate": 0.1948,
+    "delta": 0.066,
+    "specd_sample_size": 69,
+    "unspecd_sample_size": 426,
     "significance": "significant",
     "signals": [
       {
@@ -9674,21 +9268,21 @@
     "by_complexity": {
       "small": {
         "specd_rework_rate": 0.1667,
-        "unspecd_rework_rate": 0.1401,
-        "specd_count": 60,
-        "unspecd_count": 314
+        "unspecd_rework_rate": 0.1406,
+        "specd_count": 54,
+        "unspecd_count": 320
       },
       "medium": {
-        "specd_rework_rate": 0.3846,
-        "unspecd_rework_rate": 0.2297,
-        "specd_count": 13,
-        "unspecd_count": 74
+        "specd_rework_rate": 0.4,
+        "unspecd_rework_rate": 0.2338,
+        "specd_count": 10,
+        "unspecd_count": 77
       },
       "large": {
         "specd_rework_rate": 1.0,
-        "unspecd_rework_rate": 0.6364,
-        "specd_count": 6,
-        "unspecd_count": 33
+        "unspecd_rework_rate": 0.6471,
+        "specd_count": 5,
+        "unspecd_count": 34
       }
     }
   }

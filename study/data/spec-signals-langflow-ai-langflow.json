@@ -3,16 +3,16 @@
   "lookback_days": 365,
   "rework_window_days": 30,
   "coverage": {
-    "coverage_pct": 19,
+    "coverage_pct": 17,
     "total_prs": 90,
-    "specd_prs": 17,
+    "specd_prs": 15,
     "prs": [
       {
         "number": 12202,
         "sha": null,
         "title": "fix: enforce message ownership in monitor endpoints",
         "specd": true,
-        "spec_source": "GHSA-9",
+        "spec_source": "LE-593",
         "merged_at": "2026-03-30T20:11:36+00:00"
       },
       {
@@ -68,7 +68,7 @@
         "sha": null,
         "title": "fix: enforce ownership check in build_flow endpoint (GHSA-qj98-rhf8-v93f)",
         "specd": true,
-        "spec_source": "GHSA-QJ98",
+        "spec_source": "LE-700",
         "merged_at": "2026-03-27T22:17:15+00:00"
       },
       {
@@ -84,7 +84,7 @@
         "sha": null,
         "title": "fix: prevent MCP command injection via allowlist validation (CWE-78)",
         "specd": true,
-        "spec_source": "GHSA-W794",
+        "spec_source": "LE-536",
         "merged_at": "2026-03-27T03:02:57+00:00"
       },
       {
@@ -116,7 +116,7 @@
         "sha": null,
         "title": "fix: prevent path traversal in knowledge base create endpoint ",
         "specd": true,
-        "spec_source": "GHSA-9",
+        "spec_source": "LE-711",
         "merged_at": "2026-03-26T18:42:20+00:00"
       },
       {
@@ -212,7 +212,7 @@
         "sha": null,
         "title": "fix: prevent path traversal in knowledge base bulk delete",
         "specd": true,
-        "spec_source": "GHSA-9",
+        "spec_source": "LE-634",
         "merged_at": "2026-03-25T18:52:56+00:00"
       },
       {
@@ -251,8 +251,8 @@
         "number": 12304,
         "sha": null,
         "title": "feat(models): Add latest OpenAI GPT-5.3 and GPT-5.4 model families                                                                                   ",
-        "specd": true,
-        "spec_source": "GPT-5",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-03-25T12:51:37+00:00"
       },
       {
@@ -371,8 +371,8 @@
         "number": 12234,
         "sha": null,
         "title": "fix: protect image downloads by flow ownership",
-        "specd": true,
-        "spec_source": "GHSA-7",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-03-20T15:10:12+00:00"
       },
       {
@@ -733,7 +733,7 @@
     "mode": "heuristic",
     "average_score": 47,
     "verdicts": {
-      "REVIEW": 17
+      "REVIEW": 15
     },
     "specs": [
       {
@@ -1233,62 +1233,6 @@
         ]
       },
       {
-        "pr_number": 12304,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Add GPT-5.4 (base, mini, pro) and GPT-5.3 (base, instant, codex) to OpenAI model",
-            "suggestion": "Goal without test: 'Add GPT-5.4 (base, mini, pro) and GPT-5.3 (base, instant, co...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Add new models to CometAPI and component index model lists",
-            "suggestion": "Goal without test: 'Add new models to CometAPI and component index model lists' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Update default OpenAI model from gpt-5.2 to gpt-5.4 in provider service",
-            "suggestion": "Goal without test: 'Update default OpenAI model from gpt-5.2 to gpt-5.4 in provi...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Update Nvidia Remix starter project to use gpt-5.4",
-            "suggestion": "Goal without test: 'Update Nvidia Remix starter project to use gpt-5.4' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 12286,
         "format": "freeform",
         "completeness": 0,
@@ -1538,60 +1482,6 @@
           "No context anchors \u2014 AI will invent its own architecture",
           "No I/O contracts \u2014 AI will invent API shapes",
           "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 12234,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 43,
-        "consistency": 100,
-        "overall": 56,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Require authentication for image downloads",
-            "suggestion": "Goal without test: 'Require authentication for image downloads' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Enforce flow ownership on /api/v1/files/images/{flowid}/{filename}",
-            "suggestion": "Goal without test: 'Enforce flow ownership on /api/v1/files/images/{flowid}/{fil...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Reuse existing get_flow authorization logic",
-            "suggestion": "Goal without test: 'Reuse existing get_flow authorization logic' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Update tests to cover:",
-            "suggestion": "Goal without test: 'Update tests to cover:' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
           "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
         ]
       },
@@ -2493,11 +2383,11 @@
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.3529,
-    "unspecd_rework_rate": 0.2192,
-    "delta": 0.1338,
-    "specd_sample_size": 17,
-    "unspecd_sample_size": 73,
+    "specd_rework_rate": 0.2667,
+    "unspecd_rework_rate": 0.24,
+    "delta": 0.0267,
+    "specd_sample_size": 15,
+    "unspecd_sample_size": 75,
     "significance": "limited",
     "signals": [
       {
@@ -2807,10 +2697,10 @@
     ],
     "by_complexity": {
       "medium": {
-        "specd_rework_rate": 0.5,
-        "unspecd_rework_rate": 0.125,
-        "specd_count": 8,
-        "unspecd_count": 16
+        "specd_rework_rate": 0.3333,
+        "unspecd_rework_rate": 0.2222,
+        "specd_count": 6,
+        "unspecd_count": 18
       },
       "large": {
         "specd_rework_rate": 0.1429,

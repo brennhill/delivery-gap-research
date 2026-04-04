@@ -5,7 +5,7 @@
   "coverage": {
     "coverage_pct": 14,
     "total_prs": 4892,
-    "specd_prs": 707,
+    "specd_prs": 706,
     "prs": [
       {
         "number": 106373,
@@ -29300,7 +29300,7 @@
         "sha": null,
         "title": "drivers: flash: mcux-flexspi-nor: Support octal mode",
         "specd": true,
-        "spec_source": "AI-ASSISTED",
+        "spec_source": "https://github.com/zephyrproject-rtos/zephyr/issues/99496",
         "merged_at": "2025-12-24T17:49:47+00:00"
       },
       {
@@ -38275,8 +38275,8 @@
         "number": 59863,
         "sha": null,
         "title": "[RFC] tools: Integrate DTSh, a shell-like interface to Devicetree, as an optional module project (v2)",
-        "specd": true,
-        "spec_source": "POSIX-LIKE",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-11-21T08:11:14+00:00"
       },
       {
@@ -39149,7 +39149,7 @@
     "mode": "heuristic",
     "average_score": 45,
     "verdicts": {
-      "REVIEW": 699,
+      "REVIEW": 698,
       "REWRITE": 8
     },
     "specs": [
@@ -69148,158 +69148,6 @@
         ]
       },
       {
-        "pr_number": 59863,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 97,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 44,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 19,
-            "type": "ambiguity",
-            "term": "easy",
-            "suggestion": "Replace 'easy' with a specific, measurable term"
-          },
-          {
-            "line": 24,
-            "type": "ambiguity",
-            "term": "simple",
-            "suggestion": "Replace 'simple' with a specific, measurable term"
-          },
-          {
-            "line": 202,
-            "type": "ambiguity",
-            "term": "reasonable",
-            "suggestion": "Replace 'reasonable' with a specific, measurable term"
-          },
-          {
-            "line": 207,
-            "type": "ambiguity",
-            "term": "appropriate",
-            "suggestion": "Replace 'appropriate' with a specific, measurable term"
-          },
-          {
-            "line": 249,
-            "type": "ambiguity",
-            "term": "appropriate",
-            "suggestion": "Replace 'appropriate' with a specific, measurable term"
-          },
-          {
-            "line": 262,
-            "type": "ambiguity",
-            "term": "simple",
-            "suggestion": "Replace 'simple' with a specific, measurable term"
-          },
-          {
-            "line": 262,
-            "type": "ambiguity",
-            "term": "fast",
-            "suggestion": "Replace 'fast' with a specific, measurable term"
-          },
-          {
-            "line": 262,
-            "type": "ambiguity",
-            "term": "easy",
-            "suggestion": "Replace 'easy' with a specific, measurable term"
-          },
-          {
-            "line": 263,
-            "type": "ambiguity",
-            "term": "user-friendly",
-            "suggestion": "Replace 'user-friendly' with a specific, measurable term"
-          },
-          {
-            "line": 272,
-            "type": "ambiguity",
-            "term": "simple",
-            "suggestion": "Replace 'simple' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "west dtsh: called without argument, the command will open the DTS file build/zep",
-            "suggestion": "Goal without test: 'west dtsh: called without argument, the command will open th...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "find is with no surprise a shell command that will search for devices, bindings,",
-            "suggestion": "Goal without test: 'find is with no surprise a shell command that will search fo...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "here -E --also-known-as (image|storage).* will match nodes with a label or alias",
-            "suggestion": "Goal without test: 'here -E --also-known-as (image|storage).* will match nodes w...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "the descriptions, e.g. \"Flash node\", are actually hyperlinks that, when clicked,",
-            "suggestion": "Goal without test: 'the descriptions, e.g. \"Flash node\", are actually hyperlinks...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "These dependencies will be installed as module requirements with:",
-            "suggestion": "Goal without test: 'These dependencies will be installed as module requirements ...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "> On POSIX-like systems, the underlying Readline library API may be implemented ",
-            "suggestion": "Goal without test: '> On POSIX-like systems, the underlying Readline library API...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "> In a nutshell, although the situation is improving (Python 3.13 for MS Windows",
-            "suggestion": "Goal without test: '> In a nutshell, although the situation is improving (Python...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "users of west dtsh should first report issues to the module repository, they wil",
-            "suggestion": "Goal without test: 'users of west dtsh should first report issues to the module ...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "by default dtsh will not override user files, excepted when appending a redirect",
-            "suggestion": "Goal without test: 'by default dtsh will not override user files, excepted when ...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "at the end of the day, I'm not sure a full GUI will be more user-friendly or inf",
-            "suggestion": "Goal without test: 'at the end of the day, I'm not sure a full GUI will be more ...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 99602,
         "format": "freeform",
         "completeness": 0,
@@ -70077,11 +69925,11 @@
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.0636,
+    "specd_rework_rate": 0.0637,
     "unspecd_rework_rate": 0.0755,
-    "delta": -0.0119,
-    "specd_sample_size": 707,
-    "unspecd_sample_size": 4185,
+    "delta": -0.0118,
+    "specd_sample_size": 706,
+    "unspecd_sample_size": 4186,
     "significance": "significant",
     "signals": [
       {
@@ -73858,10 +73706,10 @@
         "unspecd_count": 2990
       },
       "medium": {
-        "specd_rework_rate": 0.1136,
-        "unspecd_rework_rate": 0.1322,
-        "specd_count": 132,
-        "unspecd_count": 779
+        "specd_rework_rate": 0.1145,
+        "unspecd_rework_rate": 0.1321,
+        "specd_count": 131,
+        "unspecd_count": 780
       },
       "large": {
         "specd_rework_rate": 0.1071,

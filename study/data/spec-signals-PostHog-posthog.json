@@ -5,7 +5,7 @@
   "coverage": {
     "coverage_pct": 6,
     "total_prs": 1005,
-    "specd_prs": 60,
+    "specd_prs": 56,
     "prs": [
       {
         "number": 52221,
@@ -4443,8 +4443,8 @@
         "number": 52244,
         "sha": null,
         "title": "feat: Add new SLO dashboard based on our SLo package",
-        "specd": true,
-        "spec_source": "AI-POWERED",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-03-25T13:44:45+00:00"
       },
       {
@@ -4507,8 +4507,8 @@
         "number": 50987,
         "sha": null,
         "title": "chore: remove failed onboarding-ai-product-recommendations experiment",
-        "specd": true,
-        "spec_source": "AI-SPECIFIC",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-03-25T13:02:31+00:00"
       },
       {
@@ -5459,8 +5459,8 @@
         "number": 52095,
         "sha": null,
         "title": "perf(dashboard): avoid spurious edit mode when clicking text card markdown",
-        "specd": true,
-        "spec_source": "GPU-HEAVY",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-03-24T14:52:18+00:00"
       },
       {
@@ -7843,8 +7843,8 @@
         "number": 52950,
         "sha": null,
         "title": "feat(dashboard): add AI-generated dashboard title and description",
-        "specd": true,
-        "spec_source": "AI-GENERATED",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-04-01T17:08:25+00:00"
       },
       {
@@ -8053,7 +8053,7 @@
     "mode": "heuristic",
     "average_score": 45,
     "verdicts": {
-      "REVIEW": 60
+      "REVIEW": 56
     },
     "specs": [
       {
@@ -9878,202 +9878,6 @@
         ]
       },
       {
-        "pr_number": 52244,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 98,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 44,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 7,
-            "type": "ambiguity",
-            "term": "appropriate",
-            "suggestion": "Replace 'appropriate' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Worked with the MCP in order to generate a \"as close as automaitcally possible\" ",
-            "suggestion": "Goal without test: 'Worked with the MCP in order to generate a \"as close as auto...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 50987,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Removed ONBOARDINGAIPRODUCT_RECOMMENDATIONS feature flag from constants",
-            "suggestion": "Goal without test: 'Removed ONBOARDINGAIPRODUCT_RECOMMENDATIONS feature flag fro...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Removed the chat variant: deleted OnboardingMax.tsx component and the conditiona",
-            "suggestion": "Goal without test: 'Removed the chat variant: deleted OnboardingMax.tsx componen...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Removed the test variant: AI text input, AI recommendation loading states, AI er",
-            "suggestion": "Goal without test: 'Removed the test variant: AI text input, AI recommendation l...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Cleaned up productSelectionLogic.ts: removed AI actions, reducers, loaders, sele",
-            "suggestion": "Goal without test: 'Cleaned up productSelectionLogic.ts: removed AI actions, red...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Removed mapAIProductsToProductKeys from browsingHistoryMapping.ts",
-            "suggestion": "Goal without test: 'Removed mapAIProductsToProductKeys from browsingHistoryMappi...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Removed onboarding.recommendProducts API method and request builder from api.ts",
-            "suggestion": "Goal without test: 'Removed onboarding.recommendProducts API method and request ...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Cleaned up Storybook stories (removed AI-specific stories)",
-            "suggestion": "Goal without test: 'Cleaned up Storybook stories (removed AI-specific stories)' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Deleted posthog/api/onboarding.py (OnboardingViewSet with recommend_products end",
-            "suggestion": "Goal without test: 'Deleted posthog/api/onboarding.py (OnboardingViewSet with re...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Removed route registration from posthog/api/init.py",
-            "suggestion": "Goal without test: 'Removed route registration from posthog/api/init.py' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Deleted ee/hogai/tools/recommend_products.py (RecommendProductsTool)",
-            "suggestion": "Goal without test: 'Deleted ee/hogai/tools/recommend_products.py (RecommendProdu...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Deleted ee/hogai/core/agentmodes/presets/onboarding.py, onboardingprompts.py, on",
-            "suggestion": "Goal without test: 'Deleted ee/hogai/core/agentmodes/presets/onboarding.py, onbo...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Removed AgentMode.ONBOARDING from posthog/schema.py and AssistantTool.RECOMMEND_",
-            "suggestion": "Goal without test: 'Removed AgentMode.ONBOARDING from posthog/schema.py and Assi...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Cleaned up mode_manager.py onboarding references",
-            "suggestion": "Goal without test: 'Cleaned up mode_manager.py onboarding references' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Removed recommend_products tool definition and AgentMode.Onboarding mode from ma",
-            "suggestion": "Goal without test: 'Removed recommend_products tool definition and AgentMode.Onb...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Updated generated schema files (schema.json, schema-assistant-messages.ts)",
-            "suggestion": "Goal without test: 'Updated generated schema files (schema.json, schema-assistan...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Removed OnboardingIPThrottle from rate_limit.py",
-            "suggestion": "Goal without test: 'Removed OnboardingIPThrottle from rate_limit.py' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Removed from test assertions in ee/hogai/test/test_tool.py",
-            "suggestion": "Goal without test: 'Removed from test assertions in ee/hogai/test/test_tool.py' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Verified no remaining references to experiment code across the entire codebase",
-            "suggestion": "Goal without test: 'Verified no remaining references to experiment code across t...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "All pre-commit hooks passed (linting, formatting)",
-            "suggestion": "Goal without test: 'All pre-commit hooks passed (linting, formatting)' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Manually testing onboarding",
-            "suggestion": "Goal without test: 'Manually testing onboarding' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 52154,
         "format": "freeform",
         "completeness": 0,
@@ -10683,44 +10487,6 @@
             "type": "testability",
             "term": "Snapshot format unchanged (custom serializer preserves string representation)",
             "suggestion": "Goal without test: 'Snapshot format unchanged (custom serializer preserves strin...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 52095,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Extend the closest() selector in DashboardItems.tsx to include .ProseMirror and ",
-            "suggestion": "Goal without test: 'Extend the closest() selector in DashboardItems.tsx to inclu...' \u2014 add a Given/When/Then criterion"
           }
         ],
         "warnings": [
@@ -11891,50 +11657,6 @@
         ]
       },
       {
-        "pr_number": 52950,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 96,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 44,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 16,
-            "type": "ambiguity",
-            "term": "better",
-            "suggestion": "Replace 'better' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "(no goals found)",
-            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 53058,
         "format": "freeform",
         "completeness": 0,
@@ -12080,11 +11802,11 @@
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.1833,
-    "unspecd_rework_rate": 0.182,
-    "delta": 0.0013,
-    "specd_sample_size": 60,
-    "unspecd_sample_size": 945,
+    "specd_rework_rate": 0.1607,
+    "unspecd_rework_rate": 0.1834,
+    "delta": -0.0226,
+    "specd_sample_size": 56,
+    "unspecd_sample_size": 949,
     "significance": "significant",
     "signals": [
       {
@@ -14320,22 +14042,22 @@
     ],
     "by_complexity": {
       "small": {
-        "specd_rework_rate": 0.1333,
-        "unspecd_rework_rate": 0.1362,
-        "specd_count": 30,
-        "unspecd_count": 602
+        "specd_rework_rate": 0.1379,
+        "unspecd_rework_rate": 0.136,
+        "specd_count": 29,
+        "unspecd_count": 603
       },
       "medium": {
-        "specd_rework_rate": 0.2273,
-        "unspecd_rework_rate": 0.2398,
-        "specd_count": 22,
-        "unspecd_count": 246
+        "specd_rework_rate": 0.1905,
+        "unspecd_rework_rate": 0.2429,
+        "specd_count": 21,
+        "unspecd_count": 247
       },
       "large": {
-        "specd_rework_rate": 0.25,
-        "unspecd_rework_rate": 0.3028,
-        "specd_count": 8,
-        "unspecd_count": 109
+        "specd_rework_rate": 0.1667,
+        "unspecd_rework_rate": 0.3063,
+        "specd_count": 6,
+        "unspecd_count": 111
       }
     }
   }

@@ -1,4 +1,4 @@
-Analysis run: 2026-04-04T18:40:37.947077+00:00
+Analysis run: 2026-04-04T21:22:21.517665+00:00
 Script: /Users/brenn/dev/ai-augmented-dev/research/study/scripts/pipeline/primary-with-jit-controls.py
 
 PURPOSE: Does adding JIT features change the spec coefficient?
@@ -12,8 +12,8 @@ Bot exclusion: 12,195 bot PRs removed, 88,052 remaining
 
 PRs in SZZ repos: 77,814
 SZZ buggy PRs:    9,754
-Spec'd PRs:       7,514
-Reworked PRs:     3,334
+Spec'd PRs:       21,758
+Reworked PRs:     10,407
 
 ======================================================================
 H1: SPECS → SZZ BUGS (within-author LPM)
@@ -23,19 +23,19 @@ JIT features selected for H1: ['ns', 'nd', 'nf', 'entropy', 'la', 'ld', 'lt', 'f
 Skipped: ['sexp (nunique=1, zero variance)']
 
 -- H1 baseline (size controls only) --
-  N=72,046, authors=4,328 (894 with treatment variation)
-  specd_int: coef=+0.0171  95%CI [+0.0026, +0.0317]  p=0.0209  [p<0.05]
+  N=72,046, authors=4,328 (2,181 with treatment variation)
+  specd_int: coef=+0.0142  95%CI [+0.0050, +0.0235]  p=0.0026  [p<0.05]
   Controls: log_add, log_del, log_files
 
 -- H1 + JIT controls --
-  N=56,519, authors=4,013 (786 with treatment variation)
-  specd_int: coef=+0.0031  95%CI [-0.0137, +0.0199]  p=0.7215  [p≥0.05]
+  N=56,519, authors=4,013 (1,832 with treatment variation)
+  specd_int: coef=+0.0064  95%CI [-0.0040, +0.0168]  p=0.2294  [p≥0.05]
   Controls: log_add, log_del, log_files, ns, nd, nf, entropy, la, ld, lt, fix, ndev, age, nuc, exp, rexp
 
   --- H1 (specs → SZZ bugs): Comparison ---
-  Baseline (size only): coef=+0.0171  p<0.05
-  + JIT controls:       coef=+0.0031  p≥0.05
-  Change in coef:       -82.2%
+  Baseline (size only): coef=+0.0142  p<0.05
+  + JIT controls:       coef=+0.0064  p≥0.05
+  Change in coef:       -55.2%
   *** LARGE CHANGE: JIT features explain >50% of spec effect.
   *** Reviewer concern is SUPPORTED for this outcome.
   *** SIGNIFICANCE LOST after adding JIT controls.
@@ -50,35 +50,34 @@ Skipped: ['sexp (nunique=1, zero variance)']
 All PRs (H2 not restricted to SZZ repos): 88,052
 
 -- H2 baseline (size controls only) --
-  N=81,647, authors=4,892 (985 with treatment variation)
-  specd_int: coef=+0.0488  95%CI [+0.0360, +0.0617]  p=0.0000  [p<0.05]
+  N=81,647, authors=4,892 (2,524 with treatment variation)
+  specd_int: coef=+0.0116  95%CI [+0.0046, +0.0186]  p=0.0012  [p<0.05]
   Controls: log_add, log_del, log_files
 
 -- H2 + JIT controls --
-  N=63,991, authors=4,531 (876 with treatment variation)
-  specd_int: coef=+0.0330  95%CI [+0.0183, +0.0476]  p=0.0000  [p<0.05]
+  N=63,991, authors=4,531 (2,130 with treatment variation)
+  specd_int: coef=+0.0089  95%CI [+0.0012, +0.0167]  p=0.0244  [p<0.05]
   Controls: log_add, log_del, log_files, ns, nd, nf, entropy, la, ld, lt, fix, ndev, age, nuc, exp, rexp
 
   --- H2 (specs → rework): Comparison ---
-  Baseline (size only): coef=+0.0488  p<0.05
-  + JIT controls:       coef=+0.0330  p<0.05
-  Change in coef:       -32.5%
-  ** MODERATE CHANGE: JIT features explain 25-50% of spec effect.
-  ** Partial confounding — worth disclosing.
+  Baseline (size only): coef=+0.0116  p<0.05
+  + JIT controls:       coef=+0.0089  p<0.05
+  Change in coef:       -22.8%
+  Spec coef is STABLE (<25% change). JIT features do not explain away the effect.
 
 ======================================================================
 SUMMARY: JIT CONTROL ROBUSTNESS CHECK
 ======================================================================
 
 H1 (specs → SZZ bugs):
-  Coef (size only):  +0.0171  [p<0.05]
-  Coef (+ JIT):      +0.0031  [p≥0.05]
-  Change:            -82.2%
+  Coef (size only):  +0.0142  [p<0.05]
+  Coef (+ JIT):      +0.0064  [p≥0.05]
+  Change:            -55.2%
 
 H2 (specs → rework):
-  Coef (size only):  +0.0488  [p<0.05]
-  Coef (+ JIT):      +0.0330  [p<0.05]
-  Change:            -32.5%
+  Coef (size only):  +0.0116  [p<0.05]
+  Coef (+ JIT):      +0.0089  [p<0.05]
+  Change:            -22.8%
 
 Interpretation guide:
   <25% coef change  → JIT controls do not materially confound spec effect

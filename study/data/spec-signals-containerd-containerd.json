@@ -3,9 +3,9 @@
   "lookback_days": 365,
   "rework_window_days": 30,
   "coverage": {
-    "coverage_pct": 15,
+    "coverage_pct": 14,
     "total_prs": 654,
-    "specd_prs": 99,
+    "specd_prs": 93,
     "prs": [
       {
         "number": 12518,
@@ -779,8 +779,8 @@
         "number": 12961,
         "sha": null,
         "title": "Fix TOCTOU race bug in tar extraction",
-        "specd": true,
-        "spec_source": "GHSA-WW5G",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-03-04T01:03:47+00:00"
       },
       {
@@ -1651,8 +1651,8 @@
         "number": 12486,
         "sha": null,
         "title": "[release/1.7] Prepare release notes for v1.7.29",
-        "specd": true,
-        "spec_source": "GHSA-9493",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-11-05T21:49:05+00:00"
       },
       {
@@ -1747,8 +1747,8 @@
         "number": 12660,
         "sha": null,
         "title": "[release/1.7] script/setup/install-cni: install CNI plugins v1.9.0",
-        "specd": true,
-        "spec_source": "GHSA-JV3W",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-12-11T14:33:16+00:00"
       },
       {
@@ -2243,8 +2243,8 @@
         "number": 12483,
         "sha": null,
         "title": "[release/2.1] Prepare release notes for v2.1.5",
-        "specd": true,
-        "spec_source": "GHSA-9493",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-11-06T00:44:27+00:00"
       },
       {
@@ -2267,8 +2267,8 @@
         "number": 12482,
         "sha": null,
         "title": "[release/2.0] Prepare release notes for v2.0.7",
-        "specd": true,
-        "spec_source": "GHSA-9493",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-11-06T00:04:34+00:00"
       },
       {
@@ -2467,8 +2467,8 @@
         "number": 12475,
         "sha": null,
         "title": "runc: Update runc binary to v1.3.3 to fix cve",
-        "specd": true,
-        "spec_source": "GHSA-9493",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-11-05T14:23:58+00:00"
       },
       {
@@ -5245,7 +5245,7 @@
     "mode": "heuristic",
     "average_score": 45,
     "verdicts": {
-      "REVIEW": 98,
+      "REVIEW": 92,
       "REWRITE": 1
     },
     "specs": [
@@ -5804,44 +5804,6 @@
             "type": "testability",
             "term": "Nothing is preventing containerd from migrating to a newer AppArmor ABI; note, h",
             "suggestion": "Goal without test: 'Nothing is preventing containerd from migrating to a newer A...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 12961,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "(no goals found)",
-            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
           }
         ],
         "warnings": [
@@ -6433,284 +6395,6 @@
         ]
       },
       {
-        "pr_number": 12486,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[GHSA-qw9x-cqr3-wc7r](https://github.com/opencontainers/runc/security/advisories",
-            "suggestion": "Goal without test: '[GHSA-qw9x-cqr3-wc7r](https://github.com/opencontainers/runc...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[GHSA-cgrx-mc8f-2prm](https://github.com/opencontainers/runc/security/advisories",
-            "suggestion": "Goal without test: '[GHSA-cgrx-mc8f-2prm](https://github.com/opencontainers/runc...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[GHSA-9493-h29p-rfm2](https://github.com/opencontainers/runc/security/advisories",
-            "suggestion": "Goal without test: '[GHSA-9493-h29p-rfm2](https://github.com/opencontainers/runc...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[GHSA-pwhc-rpq9-4c8w](https://github.com/containerd/containerd/security/advisori",
-            "suggestion": "Goal without test: '[GHSA-pwhc-rpq9-4c8w](https://github.com/containerd/containe...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[GHSA-m6hq-p25p-ffr2](https://github.com/containerd/containerd/security/advisori",
-            "suggestion": "Goal without test: '[GHSA-m6hq-p25p-ffr2](https://github.com/containerd/containe...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Update differ to handle zstd media types ([#12018](https://github.com/containerd",
-            "suggestion": "Goal without test: 'Update differ to handle zstd media types ([#12018](https://g...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Update runc binary to v1.3.3 ([#12480](https://github.com/containerd/containerd/",
-            "suggestion": "Goal without test: 'Update runc binary to v1.3.3 ([#12480](https://github.com/co...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Fix lost container logs from quickly closing io ([#12375](https://github.com/con",
-            "suggestion": "Goal without test: 'Fix lost container logs from quickly closing io ([#12375](ht...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Sebastiaan van Stijn",
-            "suggestion": "Goal without test: 'Sebastiaan van Stijn' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Maksym Pavlenko",
-            "suggestion": "Goal without test: 'Maksym Pavlenko' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "StepSecurity Bot",
-            "suggestion": "Goal without test: 'StepSecurity Bot' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[9e420781d](https://github.com/containerd/containerd/commit/9e420781d1cbe9b5b8d2",
-            "suggestion": "Goal without test: '[9e420781d](https://github.com/containerd/containerd/commit/...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[3f5f9f872](https://github.com/containerd/containerd/commit/3f5f9f872707a743563d",
-            "suggestion": "Goal without test: '[3f5f9f872](https://github.com/containerd/containerd/commit/...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Update GHA images and bump Go 1.24.9; 1.25.3 ([#12471](https://github.com/contai",
-            "suggestion": "Goal without test: 'Update GHA images and bump Go 1.24.9; 1.25.3 ([#12471](https...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[667409fb6](https://github.com/containerd/containerd/commit/667409fb63098cb80280",
-            "suggestion": "Goal without test: '[667409fb6](https://github.com/containerd/containerd/commit/...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[294f8c027](https://github.com/containerd/containerd/commit/294f8c027b607c4450b3",
-            "suggestion": "Goal without test: '[294f8c027](https://github.com/containerd/containerd/commit/...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[cf66b4141](https://github.com/containerd/containerd/commit/cf66b4141defb757dee0",
-            "suggestion": "Goal without test: '[cf66b4141](https://github.com/containerd/containerd/commit/...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[fa3e6fa18](https://github.com/containerd/containerd/commit/fa3e6fa18aa8dc7e6994",
-            "suggestion": "Goal without test: '[fa3e6fa18](https://github.com/containerd/containerd/commit/...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[ac334bffc](https://github.com/containerd/containerd/commit/ac334bffc4e759f188af",
-            "suggestion": "Goal without test: '[ac334bffc](https://github.com/containerd/containerd/commit/...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[d04b8721f](https://github.com/containerd/containerd/commit/d04b8721fc5bff2677be",
-            "suggestion": "Goal without test: '[d04b8721f](https://github.com/containerd/containerd/commit/...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "CI: update Fedora to 43 ([#12450](https://github.com/containerd/containerd/pull/",
-            "suggestion": "Goal without test: 'CI: update Fedora to 43 ([#12450](https://github.com/contain...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[5cfedbf52](https://github.com/containerd/containerd/commit/5cfedbf52300d09f77a5",
-            "suggestion": "Goal without test: '[5cfedbf52](https://github.com/containerd/containerd/commit/...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "CI: skip ubuntu-24.04-arm on private repos ([#12429](https://github.com/containe",
-            "suggestion": "Goal without test: 'CI: skip ubuntu-24.04-arm on private repos ([#12429](https:/...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[cf99a012d](https://github.com/containerd/containerd/commit/cf99a012d6f7fcb51afd",
-            "suggestion": "Goal without test: '[cf99a012d](https://github.com/containerd/containerd/commit/...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "runc:Update runc binary to v1.3.1 ([#12276](https://github.com/containerd/contai",
-            "suggestion": "Goal without test: 'runc:Update runc binary to v1.3.1 ([#12276](https://github.c...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[4c77b8d07](https://github.com/containerd/containerd/commit/4c77b8d078a65a5e99e4",
-            "suggestion": "Goal without test: '[4c77b8d07](https://github.com/containerd/containerd/commit/...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[d30024db2](https://github.com/containerd/containerd/commit/d30024db25590e6ec74b",
-            "suggestion": "Goal without test: '[d30024db2](https://github.com/containerd/containerd/commit/...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "ci: bump Go 1.24.8 ([#12362](https://github.com/containerd/containerd/pull/12362",
-            "suggestion": "Goal without test: 'ci: bump Go 1.24.8 ([#12362](https://github.com/containerd/c...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[f4b3d96f3](https://github.com/containerd/containerd/commit/f4b3d96f3d83a0ac7bde",
-            "suggestion": "Goal without test: '[f4b3d96f3](https://github.com/containerd/containerd/commit/...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[334fd8e4b](https://github.com/containerd/containerd/commit/334fd8e4b974d88ebea4",
-            "suggestion": "Goal without test: '[334fd8e4b](https://github.com/containerd/containerd/commit/...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[8a67abc4c](https://github.com/containerd/containerd/commit/8a67abc4cac67bf806da",
-            "suggestion": "Goal without test: '[8a67abc4c](https://github.com/containerd/containerd/commit/...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[e4dbf08f0](https://github.com/containerd/containerd/commit/e4dbf08f0ff3dc9f6b2a",
-            "suggestion": "Goal without test: '[e4dbf08f0](https://github.com/containerd/containerd/commit/...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[d7db2ba06](https://github.com/containerd/containerd/commit/d7db2ba063385d06132e",
-            "suggestion": "Goal without test: '[d7db2ba06](https://github.com/containerd/containerd/commit/...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[d7182888f](https://github.com/containerd/containerd/commit/d7182888f0071cce86d4",
-            "suggestion": "Goal without test: '[d7182888f](https://github.com/containerd/containerd/commit/...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[4be6c7e3b](https://github.com/containerd/containerd/commit/4be6c7e3b5d5da7be8c1",
-            "suggestion": "Goal without test: '[4be6c7e3b](https://github.com/containerd/containerd/commit/...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[a2e097e86](https://github.com/containerd/containerd/commit/a2e097e865887382c2fc",
-            "suggestion": "Goal without test: '[a2e097e86](https://github.com/containerd/containerd/commit/...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[6de404d11](https://github.com/containerd/containerd/commit/6de404d11b8e237a7867",
-            "suggestion": "Goal without test: '[6de404d11](https://github.com/containerd/containerd/commit/...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[038a25584](https://github.com/containerd/containerd/commit/038a25584e7f66272114",
-            "suggestion": "Goal without test: '[038a25584](https://github.com/containerd/containerd/commit/...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[eaeb4b6ac](https://github.com/containerd/containerd/commit/eaeb4b6ac581c0704bed",
-            "suggestion": "Goal without test: '[eaeb4b6ac](https://github.com/containerd/containerd/commit/...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "ci: bump Go 1.23.12, 1.24.6 ([#12188](https://github.com/containerd/containerd/p",
-            "suggestion": "Goal without test: 'ci: bump Go 1.23.12, 1.24.6 ([#12188](https://github.com/con...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[83c535339](https://github.com/containerd/containerd/commit/83c535339bbe253ce9e7",
-            "suggestion": "Goal without test: '[83c535339](https://github.com/containerd/containerd/commit/...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 12301,
         "format": "freeform",
         "completeness": 0,
@@ -6811,44 +6495,6 @@
             "type": "testability",
             "term": "9d357f5b9867910f82ebf8643791cb2d28966617 (clean cherry pick)",
             "suggestion": "Goal without test: '9d357f5b9867910f82ebf8643791cb2d28966617 (clean cherry pick)' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 12660,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "(no goals found)",
-            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
           }
         ],
         "warnings": [
@@ -7164,50 +6810,6 @@
         ]
       },
       {
-        "pr_number": 12483,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 99,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 91,
-            "type": "ambiguity",
-            "term": "Properly",
-            "suggestion": "Replace 'Properly' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "In addition to containerd, typically you will have to install [runc](https://git",
-            "suggestion": "Goal without test: 'In addition to containerd, typically you will have to instal...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 12242,
         "format": "freeform",
         "completeness": 0,
@@ -7234,50 +6836,6 @@
             "type": "testability",
             "term": "(no goals found)",
             "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 12482,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 99,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 85,
-            "type": "ambiguity",
-            "term": "Properly",
-            "suggestion": "Replace 'Properly' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "In addition to containerd, typically you will have to install [runc](https://git",
-            "suggestion": "Goal without test: 'In addition to containerd, typically you will have to instal...' \u2014 add a Given/When/Then criterion"
           }
         ],
         "warnings": [
@@ -7378,44 +6936,6 @@
             "type": "testability",
             "term": "ListMetricsDescriptors: Discover available metrics and their descriptions",
             "suggestion": "Goal without test: 'ListMetricsDescriptors: Discover available metrics and their...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 12475,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "(no goals found)",
-            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
           }
         ],
         "warnings": [
@@ -9984,11 +9504,11 @@
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.1616,
-    "unspecd_rework_rate": 0.0991,
-    "delta": 0.0625,
-    "specd_sample_size": 99,
-    "unspecd_sample_size": 555,
+    "specd_rework_rate": 0.1613,
+    "unspecd_rework_rate": 0.0998,
+    "delta": 0.0615,
+    "specd_sample_size": 93,
+    "unspecd_sample_size": 561,
     "significance": "significant",
     "signals": [
       {
@@ -11660,10 +11180,10 @@
     ],
     "by_complexity": {
       "small": {
-        "specd_rework_rate": 0.1525,
-        "unspecd_rework_rate": 0.1158,
-        "specd_count": 59,
-        "unspecd_count": 570
+        "specd_rework_rate": 0.1509,
+        "unspecd_rework_rate": 0.1163,
+        "specd_count": 53,
+        "unspecd_count": 576
       },
       "medium": {
         "specd_rework_rate": 0.0455,

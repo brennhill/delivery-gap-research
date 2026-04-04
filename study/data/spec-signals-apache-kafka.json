@@ -3,9 +3,9 @@
   "lookback_days": 365,
   "rework_window_days": 30,
   "coverage": {
-    "coverage_pct": 69,
+    "coverage_pct": 68,
     "total_prs": 451,
-    "specd_prs": 309,
+    "specd_prs": 307,
     "prs": [
       {
         "number": 21854,
@@ -892,7 +892,7 @@
         "sha": null,
         "title": "KAFKA-20168: Upgrade Jetty from 12.0.22 to 12.0.32 to fix CVE-2025-5115",
         "specd": true,
-        "spec_source": "GHSA-MMXM",
+        "spec_source": "KAFKA-20168",
         "merged_at": "2026-02-12T19:52:16+00:00"
       },
       {
@@ -1564,7 +1564,7 @@
         "sha": null,
         "title": "KAFKA-20241: Bump jackson to 2.21.1",
         "specd": true,
-        "spec_source": "GHSA-72",
+        "spec_source": "KAFKA-20241",
         "merged_at": "2026-03-04T14:12:49+00:00"
       },
       {
@@ -1691,8 +1691,8 @@
         "number": 21614,
         "sha": null,
         "title": "MINOR: Update jackson due to CVE",
-        "specd": true,
-        "spec_source": "GHSA-72",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-03-02T17:16:53+00:00"
       },
       {
@@ -1955,8 +1955,8 @@
         "number": 21395,
         "sha": null,
         "title": "MINOR: Upgrade jersey libraries to address CVE-2025-12383",
-        "specd": true,
-        "spec_source": "GHSA-7",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-02-06T00:02:42+00:00"
       },
       {
@@ -2172,7 +2172,7 @@
         "sha": null,
         "title": "KAFKA-20168: Upgrade Jetty from 9.4.57 to 9.4.58 to fix CVE-2025-5115 (3.9)",
         "specd": true,
-        "spec_source": "GHSA-MMXM",
+        "spec_source": "KAFKA-20168",
         "merged_at": "2026-02-18T13:35:50+00:00"
       },
       {
@@ -2364,7 +2364,7 @@
         "sha": null,
         "title": "KAFKA-20168: Upgrade Jetty from 12.0.22 to 12.0.32 to fix CVE-2025-5115 (4.0)",
         "specd": true,
-        "spec_source": "GHSA-MMXM",
+        "spec_source": "KAFKA-20168",
         "merged_at": "2026-02-12T16:51:16+00:00"
       },
       {
@@ -2372,7 +2372,7 @@
         "sha": null,
         "title": "KAFKA-20168: Upgrade Jetty from 12.0.22 to 12.0.32 to fix CVE-2025-5115 (4.1)",
         "specd": true,
-        "spec_source": "GHSA-MMXM",
+        "spec_source": "KAFKA-20168",
         "merged_at": "2026-02-12T19:56:36+00:00"
       },
       {
@@ -3621,7 +3621,7 @@
     "mode": "heuristic",
     "average_score": 45,
     "verdicts": {
-      "REVIEW": 307,
+      "REVIEW": 305,
       "REWRITE": 2
     },
     "specs": [
@@ -10279,44 +10279,6 @@
         ]
       },
       {
-        "pr_number": 21614,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "(no goals found)",
-            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 21573,
         "format": "freeform",
         "completeness": 0,
@@ -10912,44 +10874,6 @@
       },
       {
         "pr_number": 21493,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "(no goals found)",
-            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 21395,
         "format": "freeform",
         "completeness": 0,
         "ambiguity": 100,
@@ -16737,11 +16661,11 @@
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.0809,
-    "unspecd_rework_rate": 0.0282,
-    "delta": 0.0527,
-    "specd_sample_size": 309,
-    "unspecd_sample_size": 142,
+    "specd_rework_rate": 0.0782,
+    "unspecd_rework_rate": 0.0347,
+    "delta": 0.0435,
+    "specd_sample_size": 307,
+    "unspecd_sample_size": 144,
     "significance": "significant",
     "signals": [
       {
@@ -17089,10 +17013,10 @@
     ],
     "by_complexity": {
       "small": {
-        "specd_rework_rate": 0.0619,
-        "unspecd_rework_rate": 0.0187,
-        "specd_count": 113,
-        "unspecd_count": 107
+        "specd_rework_rate": 0.0541,
+        "unspecd_rework_rate": 0.0275,
+        "specd_count": 111,
+        "unspecd_count": 109
       },
       "medium": {
         "specd_rework_rate": 0.0806,

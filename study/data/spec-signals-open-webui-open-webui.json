@@ -5,7 +5,7 @@
   "coverage": {
     "coverage_pct": 11,
     "total_prs": 1513,
-    "specd_prs": 166,
+    "specd_prs": 160,
     "prs": [
       {
         "number": 23200,
@@ -411,8 +411,8 @@
         "number": 22576,
         "sha": null,
         "title": "feat: add ruff linter & formatter",
-        "specd": true,
-        "spec_source": "AI-GENERATED",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-03-15T22:22:27+00:00"
       },
       {
@@ -427,8 +427,8 @@
         "number": 22547,
         "sha": null,
         "title": "fix: prevent user groups overflow in profile preview",
-        "specd": true,
-        "spec_source": "CSS-ONLY",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-03-12T22:04:13+00:00"
       },
       {
@@ -556,7 +556,7 @@
         "sha": null,
         "title": "fix: migration streaming/batching",
         "specd": true,
-        "spec_source": "AI-FORMAT",
+        "spec_source": "https://github.com/open-webui/open-webui/issues/21347",
         "merged_at": "2026-03-08T00:08:11+00:00"
       },
       {
@@ -1755,8 +1755,8 @@
         "number": 21706,
         "sha": null,
         "title": "fix(a11y): improve model selector accessibility with proper listbox/option pattern",
-        "specd": true,
-        "spec_source": "GPT-4",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-02-21T22:14:09+00:00"
       },
       {
@@ -2419,8 +2419,8 @@
         "number": 21234,
         "sha": null,
         "title": "i18n: Add Latvian translation",
-        "specd": true,
-        "spec_source": "AI-GENERATED",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-02-07T23:33:35+00:00"
       },
       {
@@ -6660,7 +6660,7 @@
         "sha": null,
         "title": "chore: Changelog 0.6.27 - New Changelog Style",
         "specd": true,
-        "spec_source": "AI-COMPATIBLE",
+        "spec_source": "PKCE-BASED",
         "merged_at": "2025-09-09T12:43:22+00:00"
       },
       {
@@ -7659,8 +7659,8 @@
         "number": 16397,
         "sha": null,
         "title": "fix: added gpt-5 to reasoning model payload handler",
-        "specd": true,
-        "spec_source": "GPT-5",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-08-08T20:22:30+00:00"
       },
       {
@@ -9307,8 +9307,8 @@
         "number": 14787,
         "sha": null,
         "title": "feat: Customize Docling's \"Describe Pictures\" feature",
-        "specd": true,
-        "spec_source": "AI-LIKE",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-06-08T15:02:37+00:00"
       },
       {
@@ -12117,7 +12117,7 @@
     "mode": "heuristic",
     "average_score": 45,
     "verdicts": {
-      "REVIEW": 166
+      "REVIEW": 160
     },
     "specs": [
       {
@@ -12445,123 +12445,6 @@
             "type": "testability",
             "term": "[x] Target branch: Verify that the pull request targets the dev branch. PRs targ",
             "suggestion": "Goal without test: '[x] Target branch: Verify that the pull request targets the ...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 22576,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Rule set is intentionally minimal. More rules (B, SIM, PERF, RUF, etc.) will be ",
-            "suggestion": "Goal without test: 'Rule set is intentionally minimal. More rules (B, SIM, PERF,...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 22547,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 98,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 44,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 26,
-            "type": "ambiguity",
-            "term": "Clean",
-            "suggestion": "Replace 'Clean' with a specific, measurable term"
-          },
-          {
-            "line": 37,
-            "type": "ambiguity",
-            "term": "better",
-            "suggestion": "Replace 'better' with a specific, measurable term"
-          },
-          {
-            "line": 51,
-            "type": "ambiguity",
-            "term": "properly",
-            "suggestion": "Replace 'properly' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "1. Target the dev branch. PRs targeting main will be automatically closed.",
-            "suggestion": "Goal without test: '1. Target the dev branch. PRs targeting main will be automat...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Target branch: Verify that the pull request targets the dev branch. PRs targ",
-            "suggestion": "Goal without test: '[x] Target branch: Verify that the pull request targets the ...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Deleting it will trigger the CLA-Bot to INVALIDATE your PR.",
-            "suggestion": "Goal without test: 'Deleting it will trigger the CLA-Bot to INVALIDATE your PR.' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Your PR will NOT be reviewed or merged until you check the box below confirming ",
-            "suggestion": "Goal without test: 'Your PR will NOT be reviewed or merged until you check the b...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "> Deleting the CLA section will lead to immediate closure of your PR and it will",
-            "suggestion": "Goal without test: '> Deleting the CLA section will lead to immediate closure of...' \u2014 add a Given/When/Then criterion"
           }
         ],
         "warnings": [
@@ -13193,55 +13076,6 @@
             "type": "testability",
             "term": "TBD I need to review the existing docs to see whether adding this feature requir",
             "suggestion": "Goal without test: 'TBD I need to review the existing docs to see whether adding...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Deleting it will trigger the CLA-Bot to INVALIDATE your PR.",
-            "suggestion": "Goal without test: 'Deleting it will trigger the CLA-Bot to INVALIDATE your PR.' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "> Deleting the CLA section will lead to immediate closure of your PR and it will",
-            "suggestion": "Goal without test: '> Deleting the CLA section will lead to immediate closure of...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 21706,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 98,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 44,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 5,
-            "type": "ambiguity",
-            "term": "correctly",
-            "suggestion": "Replace 'correctly' with a specific, measurable term"
           },
           {
             "line": 0,
@@ -13924,116 +13758,6 @@
             "type": "testability",
             "term": "\u2705 All refresh() calls now use keyword arguments",
             "suggestion": "Goal without test: '\u2705 All refresh() calls now use keyword arguments' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 21234,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Target branch: Targeting dev branch.",
-            "suggestion": "Goal without test: '[x] Target branch: Targeting dev branch.' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Description: Added Latvian language translation.",
-            "suggestion": "Goal without test: '[x] Description: Added Latvian language translation.' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Changelog: See below.",
-            "suggestion": "Goal without test: '[x] Changelog: See below.' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Documentation: Not applicable.",
-            "suggestion": "Goal without test: '[x] Documentation: Not applicable.' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Dependencies: No new dependencies.",
-            "suggestion": "Goal without test: '[x] Dependencies: No new dependencies.' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Testing: Verified translation file structure matches existing locales.",
-            "suggestion": "Goal without test: '[x] Testing: Verified translation file structure matches exi...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Agentic AI Code: Human-written translation, not AI-generated.",
-            "suggestion": "Goal without test: '[x] Agentic AI Code: Human-written translation, not AI-gener...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Code review: Self-reviewed.",
-            "suggestion": "Goal without test: '[x] Code review: Self-reviewed.' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Title Prefix: i18n",
-            "suggestion": "Goal without test: '[x] Title Prefix: i18n' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Added Latvian (lv-LV) language translation",
-            "suggestion": "Goal without test: 'Added Latvian (lv-LV) language translation' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Latvian (Latvie\u0161u) language translation files",
-            "suggestion": "Goal without test: 'Latvian (Latvie\u0161u) language translation files' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Latvian language option in language selector",
-            "suggestion": "Goal without test: 'Latvian language option in language selector' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Language code: lv-LV",
-            "suggestion": "Goal without test: 'Language code: lv-LV' \u2014 add a Given/When/Then criterion"
           }
         ],
         "warnings": [
@@ -22481,194 +22205,6 @@
         ]
       },
       {
-        "pr_number": 16397,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 96,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 44,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 12,
-            "type": "ambiguity",
-            "term": "sufficient",
-            "suggestion": "Replace 'sufficient' with a specific, measurable term"
-          },
-          {
-            "line": 24,
-            "type": "ambiguity",
-            "term": "better",
-            "suggestion": "Replace 'better' with a specific, measurable term"
-          },
-          {
-            "line": 38,
-            "type": "ambiguity",
-            "term": "correctly",
-            "suggestion": "Replace 'correctly' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Target branch: Please verify that the pull request targets the dev branch.",
-            "suggestion": "Goal without test: '[x] Target branch: Please verify that the pull request targe...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Description: Provide a concise description of the changes made in this pull ",
-            "suggestion": "Goal without test: '[x] Description: Provide a concise description of the change...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Changelog: Ensure a changelog entry following the format of [Keep a Changelo",
-            "suggestion": "Goal without test: '[x] Changelog: Ensure a changelog entry following the format...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Documentation: Have you updated relevant documentation [Open WebUI Docs](htt",
-            "suggestion": "Goal without test: '[x] Documentation: Have you updated relevant documentation [...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Dependencies: Are there any new dependencies? Have you updated the dependenc",
-            "suggestion": "Goal without test: '[x] Dependencies: Are there any new dependencies? Have you u...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Testing: Have you written and run sufficient tests to validate the changes?",
-            "suggestion": "Goal without test: '[x] Testing: Have you written and run sufficient tests to va...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Code review: Have you performed a self-review of your code, addressing any c",
-            "suggestion": "Goal without test: '[x] Code review: Have you performed a self-review of your co...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Prefix: To clearly categorize this pull request, prefix the pull request tit",
-            "suggestion": "Goal without test: '[x] Prefix: To clearly categorize this pull request, prefix ...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "BREAKING CHANGE: Significant changes that may affect compatibility",
-            "suggestion": "Goal without test: 'BREAKING CHANGE: Significant changes that may affect compati...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "build: Changes that affect the build system or external dependencies",
-            "suggestion": "Goal without test: 'build: Changes that affect the build system or external depe...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "ci: Changes to our continuous integration processes or workflows",
-            "suggestion": "Goal without test: 'ci: Changes to our continuous integration processes or workf...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "chore: Refactor, cleanup, or other non-functional code changes",
-            "suggestion": "Goal without test: 'chore: Refactor, cleanup, or other non-functional code chang...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "docs: Documentation update or addition",
-            "suggestion": "Goal without test: 'docs: Documentation update or addition' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "feat: Introduces a new feature or enhancement to the codebase",
-            "suggestion": "Goal without test: 'feat: Introduces a new feature or enhancement to the codebas...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "fix: Bug fix or error correction",
-            "suggestion": "Goal without test: 'fix: Bug fix or error correction' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "i18n: Internationalization or localization changes",
-            "suggestion": "Goal without test: 'i18n: Internationalization or localization changes' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "perf: Performance improvement",
-            "suggestion": "Goal without test: 'perf: Performance improvement' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "refactor: Code restructuring for better maintainability, readability, or scalabi",
-            "suggestion": "Goal without test: 'refactor: Code restructuring for better maintainability, rea...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "style: Changes that do not affect the meaning of the code (white space, formatti",
-            "suggestion": "Goal without test: 'style: Changes that do not affect the meaning of the code (w...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "test: Adding missing tests or correcting existing tests",
-            "suggestion": "Goal without test: 'test: Adding missing tests or correcting existing tests' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "WIP: Work in progress, a temporary label for incomplete or ongoing work",
-            "suggestion": "Goal without test: 'WIP: Work in progress, a temporary label for incomplete or o...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Title Generation now works with GPT-5 models",
-            "suggestion": "Goal without test: 'Title Generation now works with GPT-5 models' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Max tokens handled correctly with GPT-5 models",
-            "suggestion": "Goal without test: 'Max tokens handled correctly with GPT-5 models' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 15694,
         "format": "freeform",
         "completeness": 0,
@@ -25759,44 +25295,6 @@
         ]
       },
       {
-        "pr_number": 14787,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "(no goals found)",
-            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 14781,
         "format": "freeform",
         "completeness": 0,
@@ -28653,11 +28151,11 @@
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.0964,
-    "unspecd_rework_rate": 0.1232,
-    "delta": -0.0269,
-    "specd_sample_size": 166,
-    "unspecd_sample_size": 1347,
+    "specd_rework_rate": 0.1,
+    "unspecd_rework_rate": 0.1227,
+    "delta": -0.0227,
+    "specd_sample_size": 160,
+    "unspecd_sample_size": 1353,
     "significance": "significant",
     "signals": [
       {
@@ -33433,22 +32931,16 @@
     ],
     "by_complexity": {
       "small": {
-        "specd_rework_rate": 0.0872,
-        "unspecd_rework_rate": 0.1087,
-        "specd_count": 149,
-        "unspecd_count": 1095
+        "specd_rework_rate": 0.0897,
+        "unspecd_rework_rate": 0.1083,
+        "specd_count": 145,
+        "unspecd_count": 1099
       },
       "medium": {
-        "specd_rework_rate": 0.1667,
-        "unspecd_rework_rate": 0.0896,
-        "specd_count": 12,
-        "unspecd_count": 201
-      },
-      "large": {
-        "specd_rework_rate": 0.2,
-        "unspecd_rework_rate": 0.4746,
-        "specd_count": 5,
-        "unspecd_count": 118
+        "specd_rework_rate": 0.1818,
+        "unspecd_rework_rate": 0.0891,
+        "specd_count": 11,
+        "unspecd_count": 202
       }
     }
   }

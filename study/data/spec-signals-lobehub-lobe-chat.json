@@ -3,9 +3,9 @@
   "lookback_days": 365,
   "rework_window_days": 30,
   "coverage": {
-    "coverage_pct": 28,
+    "coverage_pct": 26,
     "total_prs": 381,
-    "specd_prs": 108,
+    "specd_prs": 100,
     "prs": [
       {
         "number": 13246,
@@ -380,7 +380,7 @@
         "sha": null,
         "title": "\ud83d\ude80 release: 20260320",
         "specd": true,
-        "spec_source": "GPT-5",
+        "spec_source": "ONLY-YOURS",
         "merged_at": "2026-03-20T10:37:09+00:00"
       },
       {
@@ -547,8 +547,8 @@
         "number": 13123,
         "sha": null,
         "title": "\ud83d\udc84 style: add `mimo-v2-pro` & `mimo-v2-omni` support",
-        "specd": true,
-        "spec_source": "AI-STYLE",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-03-19T14:14:20+00:00"
       },
       {
@@ -667,8 +667,8 @@
         "number": 13094,
         "sha": null,
         "title": "\ud83d\udc84 style: add GPT-5.4 mini and nano models",
-        "specd": true,
-        "spec_source": "GPT-5",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-03-18T04:34:32+00:00"
       },
       {
@@ -739,8 +739,8 @@
         "number": 13067,
         "sha": null,
         "title": "\ud83d\udc1b fix(model-runtime): filter internal thinking content in openai-compatible payloads",
-        "specd": true,
-        "spec_source": "AI-COMPATIBLE",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-03-17T14:28:08+00:00"
       },
       {
@@ -1643,16 +1643,16 @@
         "number": 9833,
         "sha": null,
         "title": "\ud83d\udc84 style: add pricing info for Azure GPT-5 series models",
-        "specd": true,
-        "spec_source": "GPT-5",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-10-30T17:02:48+00:00"
       },
       {
         "number": 12654,
         "sha": null,
         "title": "\ud83d\udc84 style: Add new GPT-5.4 model",
-        "specd": true,
-        "spec_source": "GPT-5",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-03-10T01:59:14+00:00"
       },
       {
@@ -1755,8 +1755,8 @@
         "number": 12603,
         "sha": null,
         "title": "\u2728 feat: add LongCat(\u7f8e\u56e2) provider support",
-        "specd": true,
-        "spec_source": "AI-COMPATIBLE",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-03-09T08:59:30+00:00"
       },
       {
@@ -1932,7 +1932,7 @@
         "sha": null,
         "title": "\ud83d\udc1b fix: detect exceeded context window errors from message text",
         "specd": true,
-        "spec_source": "AI-COMPATIBLE",
+        "spec_source": "LOBE-5745",
         "merged_at": "2026-03-07T15:26:57+00:00"
       },
       {
@@ -1963,8 +1963,8 @@
         "number": 12757,
         "sha": null,
         "title": "\ud83d\ude80 release: 20260306",
-        "specd": true,
-        "spec_source": "GPT-5",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-03-06T13:41:07+00:00"
       },
       {
@@ -2036,7 +2036,7 @@
         "sha": null,
         "title": "\u2728 feat: add GPT-5.4 model support",
         "specd": true,
-        "spec_source": "AI-BASED",
+        "spec_source": "LOBE-5735",
         "merged_at": "2026-03-06T05:47:31+00:00"
       },
       {
@@ -2731,8 +2731,8 @@
         "number": 13296,
         "sha": null,
         "title": "feat: add unified messaging tool for cross-platform communication",
-        "specd": true,
-        "spec_source": "AI-FRIENDLY",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-03-30T16:26:33+00:00"
       },
       {
@@ -3061,7 +3061,7 @@
     "mode": "heuristic",
     "average_score": 45,
     "verdicts": {
-      "REVIEW": 108
+      "REVIEW": 100
     },
     "specs": [
       {
@@ -4129,97 +4129,6 @@
         ]
       },
       {
-        "pr_number": 13123,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[ ] \u267b\ufe0f refactor",
-            "suggestion": "Goal without test: '[ ] \u267b\ufe0f refactor' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[ ] Tested locally",
-            "suggestion": "Goal without test: '[ ] Tested locally' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[ ] Added/updated tests",
-            "suggestion": "Goal without test: '[ ] Added/updated tests' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[ ] No tests needed",
-            "suggestion": "Goal without test: '[ ] No tests needed' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Introduce configuration for the mimo-v2-pro chat model with long-context and rea",
-            "suggestion": "Goal without test: 'Introduce configuration for the mimo-v2-pro chat model with ...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Introduce configuration for the multimodal mimo-v2-omni chat model with vision, ",
-            "suggestion": "Goal without test: 'Introduce configuration for the multimodal mimo-v2-omni chat...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Expose Xiaomi MiMo V2 Pro, V2 Omni, and V2 Flash chat models in the model bank w",
-            "suggestion": "Goal without test: 'Expose Xiaomi MiMo V2 Pro, V2 Omni, and V2 Flash chat models...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Support Xiaomi MiMo web search as a toggleable tool within chat payloads and map",
-            "suggestion": "Goal without test: 'Support Xiaomi MiMo web search as a toggleable tool within c...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Adjust OpenAI-style streaming transform to track chunk order and emit Xiaomi MiM",
-            "suggestion": "Goal without test: 'Adjust OpenAI-style streaming transform to track chunk order...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Extend Xiaomi MiMo provider tests to cover reasoning-content transformation, mod",
-            "suggestion": "Goal without test: 'Extend Xiaomi MiMo provider tests to cover reasoning-content...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 13103,
         "format": "freeform",
         "completeness": 0,
@@ -4271,80 +4180,6 @@
           "No I/O contracts \u2014 AI will invent API shapes",
           "No side effects listed \u2014 AI may miss integrations",
           "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 13094,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Add GPT-5.4 mini and GPT-5.4 nano model cards to both LobeHub and OpenAI provide",
-            "suggestion": "Goal without test: 'Add GPT-5.4 mini and GPT-5.4 nano model cards to both LobeHu...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Add gpt-5.4-mini and gpt-5.4-nano to responsesAPIModels set",
-            "suggestion": "Goal without test: 'Add gpt-5.4-mini and gpt-5.4-nano to responsesAPIModels set' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Add textVerbosity to GPT-5.4 Pro extendParams for consistency with the GPT-5.4 f",
-            "suggestion": "Goal without test: 'Add textVerbosity to GPT-5.4 Pro extendParams for consistenc...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Add searchImpl: 'params' to GPT-5.4 and GPT-5.4 Pro (lobehub provider) for built",
-            "suggestion": "Goal without test: 'Add searchImpl: 'params' to GPT-5.4 and GPT-5.4 Pro (lobehub...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] No tests needed",
-            "suggestion": "Goal without test: '[x] No tests needed' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Introduce GPT-5.4 mini and GPT-5.4 nano chat model cards for both LobeHub and Op",
-            "suggestion": "Goal without test: 'Introduce GPT-5.4 mini and GPT-5.4 nano chat model cards for...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Enable built-in search parameter handling for GPT-5.4 and GPT-5.4 Pro models acr",
-            "suggestion": "Goal without test: 'Enable built-in search parameter handling for GPT-5.4 and GP...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
           "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
         ]
       },
@@ -4406,103 +4241,6 @@
           "No I/O contracts \u2014 AI will invent API shapes",
           "No side effects listed \u2014 AI may miss integrations",
           "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 13067,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[ ] \u267b\ufe0f refactor",
-            "suggestion": "Goal without test: '[ ] \u267b\ufe0f refactor' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Filter internal thinking content parts before sending OpenAI-compatible chat pay",
-            "suggestion": "Goal without test: 'Filter internal thinking content parts before sending OpenAI...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Preserve provider-compatible reasoning fields such as reasoning_content while re",
-            "suggestion": "Goal without test: 'Preserve provider-compatible reasoning fields such as reason...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Prevent DeepSeek official API requests from failing when assistant history conta",
-            "suggestion": "Goal without test: 'Prevent DeepSeek official API requests from failing when ass...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Run bunx vitest run --silent='passed-only' 'src/core/contextBuilders/openai.test",
-            "suggestion": "Goal without test: 'Run bunx vitest run --silent='passed-only' 'src/core/context...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Run bunx vitest run --silent='passed-only' 'src/providers/deepseek/index.test.ts",
-            "suggestion": "Goal without test: 'Run bunx vitest run --silent='passed-only' 'src/providers/de...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Tested locally",
-            "suggestion": "Goal without test: '[x] Tested locally' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[ ] Added/updated tests",
-            "suggestion": "Goal without test: '[ ] Added/updated tests' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] No tests needed",
-            "suggestion": "Goal without test: '[x] No tests needed' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "It fixes provider compatibility without changing displayed reasoning behavior in",
-            "suggestion": "Goal without test: 'It fixes provider compatibility without changing displayed r...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Exclude internal 'thinking' content parts from user and assistant message histor",
-            "suggestion": "Goal without test: 'Exclude internal 'thinking' content parts from user and assi...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
           "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
         ]
       },
@@ -7627,187 +7365,6 @@
         ]
       },
       {
-        "pr_number": 9833,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 98,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 44,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 17,
-            "type": "ambiguity",
-            "term": "comprehensive",
-            "suggestion": "Replace 'comprehensive' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[ ] \u267b\ufe0f refactor",
-            "suggestion": "Goal without test: '[ ] \u267b\ufe0f refactor' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "GPT-5 Pro: $15/$120 per million tokens (input/output)",
-            "suggestion": "Goal without test: 'GPT-5 Pro: $15/$120 per million tokens (input/output)' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "GPT-5 Codex: $1.25/$10 per million tokens with cache support",
-            "suggestion": "Goal without test: 'GPT-5 Codex: $1.25/$10 per million tokens with cache support' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "GPT-5: $1.25/$10 per million tokens with cache support",
-            "suggestion": "Goal without test: 'GPT-5: $1.25/$10 per million tokens with cache support' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "GPT-5 Mini: $0.25/$2 per million tokens with cache support",
-            "suggestion": "Goal without test: 'GPT-5 Mini: $0.25/$2 per million tokens with cache support' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "GPT-5 Nano: $0.05/$0.4 per million tokens with cache support",
-            "suggestion": "Goal without test: 'GPT-5 Nano: $0.05/$0.4 per million tokens with cache support' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "GPT-5 Chat: $1.25/$10 per million tokens with cache support",
-            "suggestion": "Goal without test: 'GPT-5 Chat: $1.25/$10 per million tokens with cache support' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Added GPT-5 Pro, GPT-5 Codex to responses API models list",
-            "suggestion": "Goal without test: 'Added GPT-5 Pro, GPT-5 Codex to responses API models list' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Updated system message role mapping for GPT-5 models",
-            "suggestion": "Goal without test: 'Updated system message role mapping for GPT-5 models' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 12654,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[ ] \u267b\ufe0f refactor",
-            "suggestion": "Goal without test: '[ ] \u267b\ufe0f refactor' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[ ] Tested locally",
-            "suggestion": "Goal without test: '[ ] Tested locally' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[ ] Added/updated tests",
-            "suggestion": "Goal without test: '[ ] Added/updated tests' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[ ] No tests needed",
-            "suggestion": "Goal without test: '[ ] No tests needed' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Register GPT-5.4, GPT-5.4 pro, GPT-5.3 Chat, GPT-5.3 Codex, GPT-5.2 Codex, and G",
-            "suggestion": "Goal without test: 'Register GPT-5.4, GPT-5.4 pro, GPT-5.3 Chat, GPT-5.3 Codex, ...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Add new Qwen3.5 siliconcloud chat models and update Qwen3.5 flash deployment for",
-            "suggestion": "Goal without test: 'Add new Qwen3.5 siliconcloud chat models and update Qwen3.5 ...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Introduce a Codex Max reasoning effort slider and extend-parameter option for co",
-            "suggestion": "Goal without test: 'Introduce a Codex Max reasoning effort slider and extend-par...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Expose new Codex models and GPT-5.4 pro in the Responses API model allowlist.",
-            "suggestion": "Goal without test: 'Expose new Codex models and GPT-5.4 pro in the Responses API...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Extend agent chat config types, validation schemas, and model param resolution t",
-            "suggestion": "Goal without test: 'Extend agent chat config types, validation schemas, and mode...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Update extend-parameters metadata, previews, and i18n hints so Codex reasoning e",
-            "suggestion": "Goal without test: 'Update extend-parameters metadata, previews, and i18n hints ...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 12704,
         "format": "freeform",
         "completeness": 0,
@@ -8523,85 +8080,6 @@
           "No side effects listed \u2014 AI may miss integrations",
           "No error contract \u2014 AI will invent error shapes per function",
           "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 12603,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 99,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 64,
-            "type": "ambiguity",
-            "term": "simple",
-            "suggestion": "Replace 'simple' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[ ] \u267b\ufe0f refactor",
-            "suggestion": "Goal without test: '[ ] \u267b\ufe0f refactor' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[ ] Tested locally",
-            "suggestion": "Goal without test: '[ ] Tested locally' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[ ] Added/updated tests",
-            "suggestion": "Goal without test: '[ ] Added/updated tests' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[ ] No tests needed",
-            "suggestion": "Goal without test: '[ ] No tests needed' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Introduce LongCat model definitions and provider card for use via the model bank",
-            "suggestion": "Goal without test: 'Introduce LongCat model definitions and provider card for us...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Expose a LongCat runtime implementation mapped through the generic OpenAI-compat",
-            "suggestion": "Goal without test: 'Expose a LongCat runtime implementation mapped through the g...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Add environment configuration flags and API key wiring to enable or disable the ",
-            "suggestion": "Goal without test: 'Add environment configuration flags and API key wiring to en...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
           "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
         ]
       },
@@ -9669,182 +9147,6 @@
           "No I/O contracts \u2014 AI will invent API shapes",
           "No side effects listed \u2014 AI may miss integrations",
           "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 12757,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 98,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 44,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 9,
-            "type": "ambiguity",
-            "term": "better",
-            "suggestion": "Replace 'better' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Added Telegram bot access support.",
-            "suggestion": "Goal without test: 'Added Telegram bot access support.' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Added electron page tabs functionality for desktop.",
-            "suggestion": "Goal without test: 'Added electron page tabs functionality for desktop.' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Added device code auth flow for authentication.",
-            "suggestion": "Goal without test: 'Added device code auth flow for authentication.' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Added GPT-5.4 model support.",
-            "suggestion": "Goal without test: 'Added GPT-5.4 model support.' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Show last used auth provider on sign-in page for better UX.",
-            "suggestion": "Goal without test: 'Show last used auth provider on sign-in page for better UX.' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Support clearing hotkey bindings in desktop ShortcutManager.",
-            "suggestion": "Goal without test: 'Support clearing hotkey bindings in desktop ShortcutManager.' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Added Gemini 3.1 Flash Lite Preview model and thinkingLevel5 extend param.",
-            "suggestion": "Goal without test: 'Added Gemini 3.1 Flash Lite Preview model and thinkingLevel5...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Added auto aspect ratio and image search support for Nano Banana 2.",
-            "suggestion": "Goal without test: 'Added auto aspect ratio and image search support for Nano Ba...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "User memories now default to inject user persona instead of identities.",
-            "suggestion": "Goal without test: 'User memories now default to inject user persona instead of ...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Unified update channel switching with S3 distribution.",
-            "suggestion": "Goal without test: 'Unified update channel switching with S3 distribution.' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Added S3 publish for canary/nightly and S3 cleanup (keep latest 15).",
-            "suggestion": "Goal without test: 'Added S3 publish for canary/nightly and S3 cleanup (keep lat...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Added electron page tabs functionality.",
-            "suggestion": "Goal without test: 'Added electron page tabs functionality.' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Fixed agents fork not working in community deploy.",
-            "suggestion": "Goal without test: 'Fixed agents fork not working in community deploy.' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Fixed animation for single-line messages between reasoning and tool calls.",
-            "suggestion": "Goal without test: 'Fixed animation for single-line messages between reasoning a...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Fixed Discord bot conflict with keyPrefix.",
-            "suggestion": "Goal without test: 'Fixed Discord bot conflict with keyPrefix.' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Fixed skew plugin issue.",
-            "suggestion": "Goal without test: 'Fixed skew plugin issue.' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Fixed userMemories database failure on extra structure mismatch.",
-            "suggestion": "Goal without test: 'Fixed userMemories database failure on extra structure misma...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Fixed old LobeHub plugins update issue.",
-            "suggestion": "Goal without test: 'Fixed old LobeHub plugins update issue.' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Fixed context-engine tool type recovery from manifest when models strip suffixes",
-            "suggestion": "Goal without test: 'Fixed context-engine tool type recovery from manifest when m...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Added await to handleResponseAPIMode for proper error handling.",
-            "suggestion": "Goal without test: 'Added await to handleResponseAPIMode for proper error handli...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Fixed M2M token for community agents/MCP/skill list.",
-            "suggestion": "Goal without test: 'Fixed M2M token for community agents/MCP/skill list.' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Fixed scripts to support Win32.",
-            "suggestion": "Goal without test: 'Fixed scripts to support Win32.' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Improved gateway and device gateway CI.",
-            "suggestion": "Goal without test: 'Improved gateway and device gateway CI.' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
           "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
         ]
       },
@@ -12341,54 +11643,6 @@
         ]
       },
       {
-        "pr_number": 13296,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 99,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 25,
-            "type": "ambiguity",
-            "term": "comprehensive",
-            "suggestion": "Replace 'comprehensive' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "The implementation provides a complete interface definition and stub service. Pl",
-            "suggestion": "Goal without test: 'The implementation provides a complete interface definition ...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "This is a foundational PR that establishes the messaging tool infrastructure. Ac",
-            "suggestion": "Goal without test: 'This is a foundational PR that establishes the messaging too...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 11603,
         "format": "freeform",
         "completeness": 0,
@@ -13366,11 +12620,11 @@
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.0185,
-    "unspecd_rework_rate": 0.0183,
-    "delta": 0.0002,
-    "specd_sample_size": 108,
-    "unspecd_sample_size": 273,
+    "specd_rework_rate": 0.02,
+    "unspecd_rework_rate": 0.0178,
+    "delta": 0.0022,
+    "specd_sample_size": 100,
+    "unspecd_sample_size": 281,
     "significance": "significant",
     "signals": [
       {
@@ -13471,21 +12725,21 @@
     "by_complexity": {
       "small": {
         "specd_rework_rate": 0.0,
-        "unspecd_rework_rate": 0.0244,
-        "specd_count": 31,
-        "unspecd_count": 123
+        "unspecd_rework_rate": 0.0242,
+        "specd_count": 30,
+        "unspecd_count": 124
       },
       "medium": {
         "specd_rework_rate": 0.0,
-        "unspecd_rework_rate": 0.0127,
-        "specd_count": 36,
-        "unspecd_count": 79
+        "unspecd_rework_rate": 0.012,
+        "specd_count": 32,
+        "unspecd_count": 83
       },
       "large": {
-        "specd_rework_rate": 0.0488,
-        "unspecd_rework_rate": 0.0141,
-        "specd_count": 41,
-        "unspecd_count": 71
+        "specd_rework_rate": 0.0526,
+        "unspecd_rework_rate": 0.0135,
+        "specd_count": 38,
+        "unspecd_count": 74
       }
     }
   }

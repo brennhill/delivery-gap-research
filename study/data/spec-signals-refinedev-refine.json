@@ -5,7 +5,7 @@
   "coverage": {
     "coverage_pct": 22,
     "total_prs": 357,
-    "specd_prs": 80,
+    "specd_prs": 78,
     "prs": [
       {
         "number": 7365,
@@ -2819,16 +2819,16 @@
         "number": 6727,
         "sha": null,
         "title": "ci(changesets): refine registry version packages",
-        "specd": true,
-        "spec_source": "GHSA-F82V",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-03-31T13:26:18+00:00"
       },
       {
         "number": 6725,
         "sha": null,
         "title": "chore: update nextjs for security patches",
-        "specd": true,
-        "spec_source": "GHSA-F82V",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-03-31T09:10:34+00:00"
       },
       {
@@ -2869,7 +2869,7 @@
     "mode": "heuristic",
     "average_score": 45,
     "verdicts": {
-      "REVIEW": 80
+      "REVIEW": 78
     },
     "specs": [
       {
@@ -7634,115 +7634,15 @@
           "No state transitions \u2014 AI may allow invalid transitions",
           "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
         ]
-      },
-      {
-        "pr_number": 6727,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "This PR was opened by the [Changesets release](https://github.com/changesets/act",
-            "suggestion": "Goal without test: 'This PR was opened by the [Changesets release](https://githu...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 6725,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] The commit message follows our guidelines: https://refine.dev/docs/guides-co",
-            "suggestion": "Goal without test: '[x] The commit message follows our guidelines: https://refin...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[ ] Related issue(s) linked",
-            "suggestion": "Goal without test: '[ ] Related issue(s) linked' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[ ] Tests for the changes have been added",
-            "suggestion": "Goal without test: '[ ] Tests for the changes have been added' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[ ] Docs have been added / updated",
-            "suggestion": "Goal without test: '[ ] Docs have been added / updated' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[x] Changesets have been added https://refine.dev/docs/guides-concepts/contribut",
-            "suggestion": "Goal without test: '[x] Changesets have been added https://refine.dev/docs/guide...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
       }
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.15,
-    "unspecd_rework_rate": 0.1336,
-    "delta": 0.0164,
-    "specd_sample_size": 80,
-    "unspecd_sample_size": 277,
+    "specd_rework_rate": 0.1538,
+    "unspecd_rework_rate": 0.1326,
+    "delta": 0.0212,
+    "specd_sample_size": 78,
+    "unspecd_sample_size": 279,
     "significance": "significant",
     "signals": [
       {
@@ -8630,16 +8530,16 @@
         "unspecd_count": 151
       },
       "medium": {
-        "specd_rework_rate": 0.36,
-        "unspecd_rework_rate": 0.1216,
-        "specd_count": 25,
-        "unspecd_count": 74
+        "specd_rework_rate": 0.375,
+        "unspecd_rework_rate": 0.12,
+        "specd_count": 24,
+        "unspecd_count": 75
       },
       "large": {
-        "specd_rework_rate": 0.0952,
-        "unspecd_rework_rate": 0.3208,
-        "specd_count": 21,
-        "unspecd_count": 53
+        "specd_rework_rate": 0.1,
+        "unspecd_rework_rate": 0.3148,
+        "specd_count": 20,
+        "unspecd_count": 54
       }
     }
   }

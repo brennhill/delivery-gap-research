@@ -3,9 +3,9 @@
   "lookback_days": 365,
   "rework_window_days": 30,
   "coverage": {
-    "coverage_pct": 42,
+    "coverage_pct": 35,
     "total_prs": 124,
-    "specd_prs": 52,
+    "specd_prs": 44,
     "prs": [
       {
         "number": 144911,
@@ -131,8 +131,8 @@
         "number": 144832,
         "sha": null,
         "title": "[ESQL] Add Parquet filter pushdown with bloom filter, statistics, and dictionary row-group skipping",
-        "specd": true,
-        "spec_source": "AI-ASSISTED",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-03-24T20:38:36+00:00"
       },
       {
@@ -171,8 +171,8 @@
         "number": 144806,
         "sha": null,
         "title": "[ESQL] Stats pushdown past EVAL/RENAME for external sources",
-        "specd": true,
-        "spec_source": "AI-ASSISTED",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-03-24T16:51:42+00:00"
       },
       {
@@ -323,8 +323,8 @@
         "number": 144734,
         "sha": null,
         "title": "[ESQL] Add cloud API rate limiting for external sources",
-        "specd": true,
-        "spec_source": "AI-ASSISTED",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-03-23T19:55:20+00:00"
       },
       {
@@ -332,7 +332,7 @@
         "sha": null,
         "title": "[ESQL] GCS native async I/O via ReadChannel",
         "specd": true,
-        "spec_source": "AI-ASSISTED",
+        "spec_source": "API-READINESS",
         "merged_at": "2026-03-23T19:38:38+00:00"
       },
       {
@@ -436,15 +436,15 @@
         "sha": null,
         "title": "ESQL: Add LZ4, Snappy, and Brotli decompression codecs",
         "specd": true,
-        "spec_source": "AI-ASSISTED",
+        "spec_source": "CRC-32",
         "merged_at": "2026-03-23T15:03:55+00:00"
       },
       {
         "number": 144686,
         "sha": null,
         "title": "ESQL: Add ORC predicate pushdown via SearchArgument",
-        "specd": true,
-        "spec_source": "AI-ASSISTED",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-03-23T20:57:36+00:00"
       },
       {
@@ -731,8 +731,8 @@
         "number": 144596,
         "sha": null,
         "title": "[ESQL] ESQL: Route external source I/O through esql_worker pool",
-        "specd": true,
-        "spec_source": "AI-ASSISTED",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-03-20T10:08:36+00:00"
       },
       {
@@ -859,8 +859,8 @@
         "number": 145579,
         "sha": null,
         "title": "[ESQL] Propagate per-split statistics through FileSplit",
-        "specd": true,
-        "spec_source": "AI-ASSISTED",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-04-02T21:05:29+00:00"
       },
       {
@@ -923,16 +923,16 @@
         "number": 145602,
         "sha": null,
         "title": "[ESQL] Enable cross-node text file splitting",
-        "specd": true,
-        "spec_source": "AI-ASSISTED",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-04-02T19:15:39+00:00"
       },
       {
         "number": 145608,
         "sha": null,
         "title": "[ESQL] Implement RangeAwareFormatReader for ORC",
-        "specd": true,
-        "spec_source": "AI-ASSISTED",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-04-02T19:14:33+00:00"
       },
       {
@@ -1005,7 +1005,7 @@
     "mode": "heuristic",
     "average_score": 45,
     "verdicts": {
-      "REVIEW": 50,
+      "REVIEW": 42,
       "REWRITE": 1
     },
     "specs": [
@@ -1085,44 +1085,6 @@
         ]
       },
       {
-        "pr_number": 144832,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "(no goals found)",
-            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 144816,
         "format": "freeform",
         "completeness": 0,
@@ -1155,44 +1117,6 @@
             "type": "testability",
             "term": "Delete SocketAccess (wrapper around AccessController.doPrivileged for socket ope",
             "suggestion": "Goal without test: 'Delete SocketAccess (wrapper around AccessController.doPrivi...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 144806,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "(no goals found)",
-            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
           }
         ],
         "warnings": [
@@ -1577,50 +1501,6 @@
         ]
       },
       {
-        "pr_number": 144734,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "esql.external.maxconcurrentrequests (default 50, 0=disabled)",
-            "suggestion": "Goal without test: 'esql.external.maxconcurrentrequests (default 50, 0=disabled)' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "esql.external.throttlemaxretry_duration (default 30s, 0=disabled)",
-            "suggestion": "Goal without test: 'esql.external.throttlemaxretry_duration (default 30s, 0=disa...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 144733,
         "format": "freeform",
         "completeness": 0,
@@ -1835,44 +1715,6 @@
       },
       {
         "pr_number": 144688,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "(no goals found)",
-            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 144686,
         "format": "freeform",
         "completeness": 0,
         "ambiguity": 100,
@@ -2489,44 +2331,6 @@
         ]
       },
       {
-        "pr_number": 144596,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "(no goals found)",
-            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 144588,
         "format": "freeform",
         "completeness": 0,
@@ -2760,127 +2564,7 @@
         ]
       },
       {
-        "pr_number": 145579,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "(no goals found)",
-            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 145619,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "(no goals found)",
-            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 145602,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "targetsplitsize: override split size (e.g. \"64mb\")",
-            "suggestion": "Goal without test: 'targetsplitsize: override split size (e.g. \"64mb\")' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "schemasamplesize: override CSV inference sample (e.g. 500)",
-            "suggestion": "Goal without test: 'schemasamplesize: override CSV inference sample (e.g. 500)' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 145608,
         "format": "freeform",
         "completeness": 0,
         "ambiguity": 100,
@@ -3084,11 +2768,11 @@
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.1154,
-    "unspecd_rework_rate": 0.0556,
-    "delta": 0.0598,
-    "specd_sample_size": 52,
-    "unspecd_sample_size": 72,
+    "specd_rework_rate": 0.1364,
+    "unspecd_rework_rate": 0.05,
+    "delta": 0.0864,
+    "specd_sample_size": 44,
+    "unspecd_sample_size": 80,
     "significance": "significant",
     "signals": [
       {
@@ -3196,22 +2880,22 @@
     ],
     "by_complexity": {
       "small": {
-        "specd_rework_rate": 0.1429,
-        "unspecd_rework_rate": 0.0435,
-        "specd_count": 28,
-        "unspecd_count": 46
+        "specd_rework_rate": 0.1481,
+        "unspecd_rework_rate": 0.0426,
+        "specd_count": 27,
+        "unspecd_count": 47
       },
       "medium": {
-        "specd_rework_rate": 0.1538,
-        "unspecd_rework_rate": 0.0952,
-        "specd_count": 13,
-        "unspecd_count": 21
+        "specd_rework_rate": 0.2,
+        "unspecd_rework_rate": 0.0833,
+        "specd_count": 10,
+        "unspecd_count": 24
       },
       "large": {
         "specd_rework_rate": 0.0,
         "unspecd_rework_rate": 0.0,
-        "specd_count": 11,
-        "unspecd_count": 6
+        "specd_count": 7,
+        "unspecd_count": 10
       }
     }
   }

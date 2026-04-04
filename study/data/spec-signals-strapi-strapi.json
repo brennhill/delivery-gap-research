@@ -3,9 +3,9 @@
   "lookback_days": 365,
   "rework_window_days": 30,
   "coverage": {
-    "coverage_pct": 40,
+    "coverage_pct": 39,
     "total_prs": 488,
-    "specd_prs": 194,
+    "specd_prs": 189,
     "prs": [
       {
         "number": 25846,
@@ -100,7 +100,7 @@
         "sha": null,
         "title": "fix(content-type-builder): default draftAndPublish to true in AI CTB",
         "specd": true,
-        "spec_source": "AI-CREATED",
+        "spec_source": "CMS-369",
         "merged_at": "2026-03-23T09:53:03+00:00"
       },
       {
@@ -739,8 +739,8 @@
         "number": 25506,
         "sha": null,
         "title": "security(deps): upgrade multiple dependencies",
-        "specd": true,
-        "spec_source": "GHSA-2",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-02-24T08:17:25+00:00"
       },
       {
@@ -883,8 +883,8 @@
         "number": 25427,
         "sha": null,
         "title": "security(deps): upgrade axios from v1.12.2 to v1.13.5",
-        "specd": true,
-        "spec_source": "GHSA-43",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-02-16T12:29:35+00:00"
       },
       {
@@ -1268,7 +1268,7 @@
         "sha": null,
         "title": "fix(i18n): ai translation losing unsupported fields",
         "specd": true,
-        "spec_source": "AI-TRANSLATED",
+        "spec_source": "CMS-221",
         "merged_at": "2026-01-27T14:56:14+00:00"
       },
       {
@@ -3267,8 +3267,8 @@
         "number": 23730,
         "sha": null,
         "title": "feat(ai): AI Chat for Schema Creation",
-        "specd": true,
-        "spec_source": "AI-POWERED",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-10-02T11:13:48+00:00"
       },
       {
@@ -3443,8 +3443,8 @@
         "number": 24365,
         "sha": null,
         "title": "future(upload): generate image metadata on file upload",
-        "specd": true,
-        "spec_source": "AI-GENERATED",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-09-19T12:26:44+00:00"
       },
       {
@@ -3491,8 +3491,8 @@
         "number": 24389,
         "sha": null,
         "title": "security(deps): update form-data, axios, and sha.js",
-        "specd": true,
-        "spec_source": "GHSA-4",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-09-16T12:49:27+00:00"
       },
       {
@@ -3917,7 +3917,7 @@
     "mode": "heuristic",
     "average_score": 45,
     "verdicts": {
-      "REVIEW": 194
+      "REVIEW": 189
     },
     "specs": [
       {
@@ -6814,62 +6814,6 @@
         ]
       },
       {
-        "pr_number": 25506,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 95,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 44,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 6,
-            "type": "ambiguity",
-            "term": "fast",
-            "suggestion": "Replace 'fast' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "minimatch to 10.2.1",
-            "suggestion": "Goal without test: 'minimatch to 10.2.1' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "elliptic to 6.6.1",
-            "suggestion": "Goal without test: 'elliptic to 6.6.1' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "@aws-sdk/* to resolve some instances of fast-xml-parser (the rest are held back ",
-            "suggestion": "Goal without test: '@aws-sdk/* to resolve some instances of fast-xml-parser (the...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 25504,
         "format": "freeform",
         "completeness": 0,
@@ -7286,44 +7230,6 @@
       },
       {
         "pr_number": 23855,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "(no goals found)",
-            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 25427,
         "format": "freeform",
         "completeness": 0,
         "ambiguity": 100,
@@ -14522,50 +14428,6 @@
         ]
       },
       {
-        "pr_number": 23730,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 98,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 44,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 14,
-            "type": "ambiguity",
-            "term": "Simple",
-            "suggestion": "Replace 'Simple' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "A Growth license or Growth trial license are required for access to all Strapi A",
-            "suggestion": "Goal without test: 'A Growth license or Growth trial license are required for ac...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 24486,
         "format": "freeform",
         "completeness": 0,
@@ -15102,109 +14964,6 @@
         ]
       },
       {
-        "pr_number": 24365,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Create or update the tests",
-            "suggestion": "Goal without test: 'Create or update the tests' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Create or update the documentation at https://github.com/strapi/documentation",
-            "suggestion": "Goal without test: 'Create or update the documentation at https://github.com/str...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Refer to the issue you are closing in the PR description: Fix #issue",
-            "suggestion": "Goal without test: 'Refer to the issue you are closing in the PR description: Fi...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Specify if the PR is ready to be merged or work in progress (by opening a draft ",
-            "suggestion": "Goal without test: 'Specify if the PR is ready to be merged or work in progress ...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "moves the admin's getAiToken into a service (so we can retrieve the token from t",
-            "suggestion": "Goal without test: 'moves the admin's getAiToken into a service (so we can retri...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "create an aiMetadata service on the upload plugin with:",
-            "suggestion": "Goal without test: 'create an aiMetadata service on the upload plugin with:' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "isEnabled method: check if feature should be on",
-            "suggestion": "Goal without test: 'isEnabled method: check if feature should be on' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "processFiles method: takes files, sends them to the ai server, returns the metad",
-            "suggestion": "Goal without test: 'processFiles method: takes files, sends them to the ai serve...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "hooks the upload controller to this processFiles method.",
-            "suggestion": "Goal without test: 'hooks the upload controller to this processFiles method.' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Check that getAiToken is not broken. For this, clear session storage, refresh an",
-            "suggestion": "Goal without test: 'Check that getAiToken is not broken. For this, clear session...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Upload an image from the media library page. Then click on the pen icon to edit ",
-            "suggestion": "Goal without test: 'Upload an image from the media library page. Then click on t...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Upload multiple files at once. Some that are images, some that are not. Only the",
-            "suggestion": "Goal without test: 'Upload multiple files at once. Some that are images, some th...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 24310,
         "format": "freeform",
         "completeness": 0,
@@ -15237,56 +14996,6 @@
           "No I/O contracts \u2014 AI will invent API shapes",
           "No side effects listed \u2014 AI may miss integrations",
           "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 24389,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 94,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 43,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 24,
-            "type": "ambiguity",
-            "term": "better",
-            "suggestion": "Replace 'better' with a specific, measurable term"
-          },
-          {
-            "line": 34,
-            "type": "ambiguity",
-            "term": "should work",
-            "suggestion": "Replace 'should work' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "(no goals found)",
-            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
           "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
         ]
       },
@@ -16289,11 +15998,11 @@
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.1598,
-    "unspecd_rework_rate": 0.1803,
-    "delta": -0.0205,
-    "specd_sample_size": 194,
-    "unspecd_sample_size": 294,
+    "specd_rework_rate": 0.1587,
+    "unspecd_rework_rate": 0.1806,
+    "delta": -0.0219,
+    "specd_sample_size": 189,
+    "unspecd_sample_size": 299,
     "significance": "significant",
     "signals": [
       {
@@ -17842,22 +17551,22 @@
     ],
     "by_complexity": {
       "small": {
-        "specd_rework_rate": 0.1124,
-        "unspecd_rework_rate": 0.1319,
-        "specd_count": 89,
-        "unspecd_count": 182
+        "specd_rework_rate": 0.1136,
+        "unspecd_rework_rate": 0.1311,
+        "specd_count": 88,
+        "unspecd_count": 183
       },
       "medium": {
-        "specd_rework_rate": 0.1765,
-        "unspecd_rework_rate": 0.1176,
-        "specd_count": 68,
-        "unspecd_count": 68
+        "specd_rework_rate": 0.1791,
+        "unspecd_rework_rate": 0.1159,
+        "specd_count": 67,
+        "unspecd_count": 69
       },
       "large": {
-        "specd_rework_rate": 0.2432,
-        "unspecd_rework_rate": 0.3889,
-        "specd_count": 37,
-        "unspecd_count": 90
+        "specd_rework_rate": 0.2353,
+        "unspecd_rework_rate": 0.3871,
+        "specd_count": 34,
+        "unspecd_count": 93
       }
     }
   }

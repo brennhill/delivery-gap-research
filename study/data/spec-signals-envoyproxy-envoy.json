@@ -3,9 +3,9 @@
   "lookback_days": 365,
   "rework_window_days": 30,
   "coverage": {
-    "coverage_pct": 15,
+    "coverage_pct": 13,
     "total_prs": 550,
-    "specd_prs": 85,
+    "specd_prs": 74,
     "prs": [
       {
         "number": 44115,
@@ -667,8 +667,8 @@
         "number": 43894,
         "sha": null,
         "title": "[release/v1.37] repo: Release v1.37.1",
-        "specd": true,
-        "spec_source": "GHSA-3",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-03-11T01:23:03+00:00"
       },
       {
@@ -715,16 +715,16 @@
         "number": 43888,
         "sha": null,
         "title": "[release/v1.36] repo: Release v1.36.5",
-        "specd": true,
-        "spec_source": "GHSA-3",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-03-11T00:05:21+00:00"
       },
       {
         "number": 43887,
         "sha": null,
         "title": "[release/v1.35] repo: Release v1.35.9",
-        "specd": true,
-        "spec_source": "GHSA-3",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-03-10T23:06:05+00:00"
       },
       {
@@ -747,8 +747,8 @@
         "number": 43882,
         "sha": null,
         "title": "[release/v1.34] repo: Release v1.34.13",
-        "specd": true,
-        "spec_source": "GHSA-3",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-03-10T17:59:05+00:00"
       },
       {
@@ -787,8 +787,8 @@
         "number": 43877,
         "sha": null,
         "title": "[IMPORTANT] Security patches",
-        "specd": true,
-        "spec_source": "GHSA-3",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-03-10T17:51:53+00:00"
       },
       {
@@ -2563,8 +2563,8 @@
         "number": 43489,
         "sha": null,
         "title": "happy eyeballs: support interleaving of non-IP addresses",
-        "specd": true,
-        "spec_source": "GHSA-MFQP",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-02-19T03:10:42+00:00"
       },
       {
@@ -3027,8 +3027,8 @@
         "number": 43392,
         "sha": null,
         "title": "srds: fix init_manager to use listener scope instead of server scope",
-        "specd": true,
-        "spec_source": "AI-ASSISTED",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-02-27T22:44:28+00:00"
       },
       {
@@ -3907,32 +3907,32 @@
         "number": 42537,
         "sha": null,
         "title": "[release/v1.36] repo: Release v1.36.4",
-        "specd": true,
-        "spec_source": "GHSA-FG9G",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-12-10T13:43:47+00:00"
       },
       {
         "number": 42528,
         "sha": null,
         "title": "[release/v1.35] repo: Release v1.35.8",
-        "specd": true,
-        "spec_source": "GHSA-FG9G",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-12-10T12:14:30+00:00"
       },
       {
         "number": 42524,
         "sha": null,
         "title": "[release/v1.34] repo: Release v1.34.12",
-        "specd": true,
-        "spec_source": "GHSA-FG9G",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-12-10T10:38:33+00:00"
       },
       {
         "number": 42509,
         "sha": null,
         "title": "[release/v1.33] repo: Release v1.33.14",
-        "specd": true,
-        "spec_source": "GHSA-FG9G",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2025-12-10T00:40:48+00:00"
       },
       {
@@ -4413,7 +4413,7 @@
     "mode": "heuristic",
     "average_score": 45,
     "verdicts": {
-      "REVIEW": 85
+      "REVIEW": 74
     },
     "specs": [
       {
@@ -5021,496 +5021,6 @@
             "type": "testability",
             "term": "This PR add an optional stats matcher as constructor parameter of Scope. If the ",
             "suggestion": "Goal without test: 'This PR add an optional stats matcher as constructor paramet...' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 43894,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 98,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 44,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 17,
-            "type": "ambiguity",
-            "term": "properly",
-            "suggestion": "Replace 'properly' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Security fixes:",
-            "suggestion": "Goal without test: 'Security fixes:' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[CVE-2026-26330](https://github.com/envoyproxy/envoy/security/advisories/GHSA-c2",
-            "suggestion": "Goal without test: '[CVE-2026-26330](https://github.com/envoyproxy/envoy/securit...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[CVE-2026-26308](https://github.com/envoyproxy/envoy/security/advisories/GHSA-gh",
-            "suggestion": "Goal without test: '[CVE-2026-26308](https://github.com/envoyproxy/envoy/securit...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[CVE-2026-26310](https://github.com/envoyproxy/envoy/security/advisories/GHSA-3c",
-            "suggestion": "Goal without test: '[CVE-2026-26310](https://github.com/envoyproxy/envoy/securit...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[CVE-2026-26309](https://github.com/envoyproxy/envoy/security/advisories/GHSA-56",
-            "suggestion": "Goal without test: '[CVE-2026-26309](https://github.com/envoyproxy/envoy/securit...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[CVE-2026-26311](https://github.com/envoyproxy/envoy/security/advisories/GHSA-84",
-            "suggestion": "Goal without test: '[CVE-2026-26311](https://github.com/envoyproxy/envoy/securit...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "oauth2: Fixed OAuth2 refresh requests so host rewriting no longer overrides the ",
-            "suggestion": "Goal without test: 'oauth2: Fixed OAuth2 refresh requests so host rewriting no l...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "extproc: Fixed a bug to support two extproc filters configured in the chain.",
-            "suggestion": "Goal without test: 'extproc: Fixed a bug to support two extproc filters configur...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "ext_proc: Fixed message-valued CEL attribute serialization to use protobuf text ",
-            "suggestion": "Goal without test: 'ext_proc: Fixed message-valued CEL attribute serialization t...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "ext_authz: Fixed headers from denied authorization responses (non-200) not being",
-            "suggestion": "Goal without test: 'ext_authz: Fixed headers from denied authorization responses...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "extauthz: Fixed the HTTP extauthz client to respect statusonerror configuration ",
-            "suggestion": "Goal without test: 'extauthz: Fixed the HTTP extauthz client to respect statuson...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "access_log: Fixed a crash on listener removal with a process-level access log ra",
-            "suggestion": "Goal without test: 'access_log: Fixed a crash on listener removal with a process...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "release: Published contrib binaries now include the -contrib suffix in their ver",
-            "suggestion": "Goal without test: 'release: Published contrib binaries now include the -contrib...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "dynamic modules: Introduced extended ABI forward compatibility mechanism for dyn",
-            "suggestion": "Goal without test: 'dynamic modules: Introduced extended ABI forward compatibili...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Dependency updates:",
-            "suggestion": "Goal without test: 'Dependency updates:' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Migrated googleurl source to GitHub (google/gurl).",
-            "suggestion": "Goal without test: 'Migrated googleurl source to GitHub (google/gurl).' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Updated Kafka test binary to 3.9.2.",
-            "suggestion": "Goal without test: 'Updated Kafka test binary to 3.9.2.' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Updated Docker base images.",
-            "suggestion": "Goal without test: 'Updated Docker base images.' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 43888,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Security fixes:",
-            "suggestion": "Goal without test: 'Security fixes:' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[CVE-2026-26330](https://github.com/envoyproxy/envoy/security/advisories/GHSA-c2",
-            "suggestion": "Goal without test: '[CVE-2026-26330](https://github.com/envoyproxy/envoy/securit...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[CVE-2026-26308](https://github.com/envoyproxy/envoy/security/advisories/GHSA-gh",
-            "suggestion": "Goal without test: '[CVE-2026-26308](https://github.com/envoyproxy/envoy/securit...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[CVE-2026-26310](https://github.com/envoyproxy/envoy/security/advisories/GHSA-3c",
-            "suggestion": "Goal without test: '[CVE-2026-26310](https://github.com/envoyproxy/envoy/securit...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[CVE-2026-26309](https://github.com/envoyproxy/envoy/security/advisories/GHSA-56",
-            "suggestion": "Goal without test: '[CVE-2026-26309](https://github.com/envoyproxy/envoy/securit...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[CVE-2026-26311](https://github.com/envoyproxy/envoy/security/advisories/GHSA-84",
-            "suggestion": "Goal without test: '[CVE-2026-26311](https://github.com/envoyproxy/envoy/securit...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Fixed OAuth2 refresh requests so host rewriting no longer overrides the original",
-            "suggestion": "Goal without test: 'Fixed OAuth2 refresh requests so host rewriting no longer ov...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Dependency updates:",
-            "suggestion": "Goal without test: 'Dependency updates:' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Migrated googleurl source to GitHub (google/gurl).",
-            "suggestion": "Goal without test: 'Migrated googleurl source to GitHub (google/gurl).' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Updated Kafka test binary to 3.9.2.",
-            "suggestion": "Goal without test: 'Updated Kafka test binary to 3.9.2.' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Updated Docker base images.",
-            "suggestion": "Goal without test: 'Updated Docker base images.' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 43887,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Security fixes:",
-            "suggestion": "Goal without test: 'Security fixes:' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[CVE-2026-26308](https://github.com/envoyproxy/envoy/security/advisories/GHSA-gh",
-            "suggestion": "Goal without test: '[CVE-2026-26308](https://github.com/envoyproxy/envoy/securit...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[CVE-2026-26310](https://github.com/envoyproxy/envoy/security/advisories/GHSA-3c",
-            "suggestion": "Goal without test: '[CVE-2026-26310](https://github.com/envoyproxy/envoy/securit...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[CVE-2026-26309](https://github.com/envoyproxy/envoy/security/advisories/GHSA-56",
-            "suggestion": "Goal without test: '[CVE-2026-26309](https://github.com/envoyproxy/envoy/securit...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[CVE-2026-26311](https://github.com/envoyproxy/envoy/security/advisories/GHSA-84",
-            "suggestion": "Goal without test: '[CVE-2026-26311](https://github.com/envoyproxy/envoy/securit...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Fixed OAuth2 refresh requests so host rewriting no longer overrides the original",
-            "suggestion": "Goal without test: 'Fixed OAuth2 refresh requests so host rewriting no longer ov...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Dependency updates:",
-            "suggestion": "Goal without test: 'Dependency updates:' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Migrated googleurl source to GitHub (google/gurl).",
-            "suggestion": "Goal without test: 'Migrated googleurl source to GitHub (google/gurl).' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Updated Kafka test binary to 3.9.2.",
-            "suggestion": "Goal without test: 'Updated Kafka test binary to 3.9.2.' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Updated Docker base images.",
-            "suggestion": "Goal without test: 'Updated Docker base images.' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 43882,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Security fixes:",
-            "suggestion": "Goal without test: 'Security fixes:' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[CVE-2026-26308](https://github.com/envoyproxy/envoy/security/advisories/GHSA-gh",
-            "suggestion": "Goal without test: '[CVE-2026-26308](https://github.com/envoyproxy/envoy/securit...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[CVE-2026-26310](https://github.com/envoyproxy/envoy/security/advisories/GHSA-3c",
-            "suggestion": "Goal without test: '[CVE-2026-26310](https://github.com/envoyproxy/envoy/securit...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[CVE-2026-26309](https://github.com/envoyproxy/envoy/security/advisories/GHSA-56",
-            "suggestion": "Goal without test: '[CVE-2026-26309](https://github.com/envoyproxy/envoy/securit...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[CVE-2026-26311](https://github.com/envoyproxy/envoy/security/advisories/GHSA-84",
-            "suggestion": "Goal without test: '[CVE-2026-26311](https://github.com/envoyproxy/envoy/securit...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Fixed OAuth2 refresh requests so host rewriting no longer overrides the original",
-            "suggestion": "Goal without test: 'Fixed OAuth2 refresh requests so host rewriting no longer ov...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Dependency updates:",
-            "suggestion": "Goal without test: 'Dependency updates:' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Migrated googleurl source to GitHub (google/gurl).",
-            "suggestion": "Goal without test: 'Migrated googleurl source to GitHub (google/gurl).' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Updated Kafka test binary to 3.9.2.",
-            "suggestion": "Goal without test: 'Updated Kafka test binary to 3.9.2.' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Updated Docker base images.",
-            "suggestion": "Goal without test: 'Updated Docker base images.' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 43877,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[CVE-2026-26330](https://github.com/envoyproxy/envoy/security/advisories/GHSA-c2",
-            "suggestion": "Goal without test: '[CVE-2026-26330](https://github.com/envoyproxy/envoy/securit...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[CVE-2026-26308](https://github.com/envoyproxy/envoy/security/advisories/GHSA-gh",
-            "suggestion": "Goal without test: '[CVE-2026-26308](https://github.com/envoyproxy/envoy/securit...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[CVE-2026-26310](https://github.com/envoyproxy/envoy/security/advisories/GHSA-3c",
-            "suggestion": "Goal without test: '[CVE-2026-26310](https://github.com/envoyproxy/envoy/securit...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[CVE-2026-26309](https://github.com/envoyproxy/envoy/security/advisories/GHSA-56",
-            "suggestion": "Goal without test: '[CVE-2026-26309](https://github.com/envoyproxy/envoy/securit...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "[CVE-2026-26311](https://github.com/envoyproxy/envoy/security/advisories/GHSA-84",
-            "suggestion": "Goal without test: '[CVE-2026-26311](https://github.com/envoyproxy/envoy/securit...' \u2014 add a Given/When/Then criterion"
           }
         ],
         "warnings": [
@@ -6457,56 +5967,6 @@
         ]
       },
       {
-        "pr_number": 43489,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 96,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 44,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 5,
-            "type": "ambiguity",
-            "term": "fast",
-            "suggestion": "Replace 'fast' with a specific, measurable term"
-          },
-          {
-            "line": 5,
-            "type": "ambiguity",
-            "term": "reasonable",
-            "suggestion": "Replace 'reasonable' with a specific, measurable term"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "(no goals found)",
-            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 43473,
         "format": "freeform",
         "completeness": 0,
@@ -6984,62 +6444,6 @@
             "type": "testability",
             "term": "(no goals found)",
             "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 43392,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "//test/common/router:scopedrdstest PASSED",
-            "suggestion": "Goal without test: '//test/common/router:scopedrdstest PASSED' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "//test/extensions/filters/network/httpconnectionmanager:config_test PASSED",
-            "suggestion": "Goal without test: '//test/extensions/filters/network/httpconnectionmanager:conf...' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "//test/integration:scopedrdsintegration_test PASSED",
-            "suggestion": "Goal without test: '//test/integration:scopedrdsintegration_test PASSED' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Higress kind cluster integration test with Delta xDS + SRDS PASSED",
-            "suggestion": "Goal without test: 'Higress kind cluster integration test with Delta xDS + SRDS ...' \u2014 add a Given/When/Then criterion"
           }
         ],
         "warnings": [
@@ -8002,182 +7406,6 @@
         ]
       },
       {
-        "pr_number": 42537,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Security updates:",
-            "suggestion": "Goal without test: 'Security updates:' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "c-ares/CVE-2025-0913:",
-            "suggestion": "Goal without test: 'c-ares/CVE-2025-0913:' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 42528,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Security updates:",
-            "suggestion": "Goal without test: 'Security updates:' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "c-ares/CVE-2025-0913:",
-            "suggestion": "Goal without test: 'c-ares/CVE-2025-0913:' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 42524,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Security updates:",
-            "suggestion": "Goal without test: 'Security updates:' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "c-ares/CVE-2025-0913:",
-            "suggestion": "Goal without test: 'c-ares/CVE-2025-0913:' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
-        "pr_number": 42509,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "Security updates:",
-            "suggestion": "Goal without test: 'Security updates:' \u2014 add a Given/When/Then criterion"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "c-ares/CVE-2025-0913:",
-            "suggestion": "Goal without test: 'c-ares/CVE-2025-0913:' \u2014 add a Given/When/Then criterion"
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No state transitions \u2014 AI may allow invalid transitions",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 42024,
         "format": "freeform",
         "completeness": 0,
@@ -8702,11 +7930,11 @@
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.1059,
-    "unspecd_rework_rate": 0.0968,
-    "delta": 0.0091,
-    "specd_sample_size": 85,
-    "unspecd_sample_size": 465,
+    "specd_rework_rate": 0.1081,
+    "unspecd_rework_rate": 0.0966,
+    "delta": 0.0115,
+    "specd_sample_size": 74,
+    "unspecd_sample_size": 476,
     "significance": "significant",
     "signals": [
       {
@@ -9422,22 +8650,22 @@
     ],
     "by_complexity": {
       "small": {
-        "specd_rework_rate": 0.0732,
-        "unspecd_rework_rate": 0.0586,
-        "specd_count": 41,
-        "unspecd_count": 256
+        "specd_rework_rate": 0.0909,
+        "unspecd_rework_rate": 0.0568,
+        "specd_count": 33,
+        "unspecd_count": 264
       },
       "medium": {
-        "specd_rework_rate": 0.087,
-        "unspecd_rework_rate": 0.1081,
-        "specd_count": 23,
-        "unspecd_count": 111
+        "specd_rework_rate": 0.0476,
+        "unspecd_rework_rate": 0.115,
+        "specd_count": 21,
+        "unspecd_count": 113
       },
       "large": {
-        "specd_rework_rate": 0.1905,
-        "unspecd_rework_rate": 0.1765,
-        "specd_count": 21,
-        "unspecd_count": 102
+        "specd_rework_rate": 0.2,
+        "unspecd_rework_rate": 0.1748,
+        "specd_count": 20,
+        "unspecd_count": 103
       }
     }
   }

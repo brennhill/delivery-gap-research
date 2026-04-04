@@ -3,9 +3,9 @@
   "lookback_days": 365,
   "rework_window_days": 30,
   "coverage": {
-    "coverage_pct": 56,
+    "coverage_pct": 54,
     "total_prs": 41,
-    "specd_prs": 23,
+    "specd_prs": 22,
     "prs": [
       {
         "number": 21621,
@@ -195,8 +195,8 @@
         "number": 21575,
         "sha": null,
         "title": "ci: move torch-tensorrt to GPU-only test requirements",
-        "specd": true,
-        "spec_source": "GPU-ONLY",
+        "specd": false,
+        "spec_source": null,
         "merged_at": "2026-03-09T16:18:56+00:00"
       },
       {
@@ -341,7 +341,7 @@
     "mode": "heuristic",
     "average_score": 45,
     "verdicts": {
-      "REVIEW": 23
+      "REVIEW": 22
     },
     "specs": [
       {
@@ -1022,43 +1022,6 @@
         ]
       },
       {
-        "pr_number": 21575,
-        "format": "freeform",
-        "completeness": 0,
-        "ambiguity": 100,
-        "testability": 0,
-        "consistency": 100,
-        "overall": 45,
-        "verdict": "REVIEW",
-        "issues": [
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "acceptance criteria",
-            "suggestion": "Missing expected section: acceptance criteria"
-          },
-          {
-            "line": 0,
-            "type": "completeness",
-            "term": "scope",
-            "suggestion": "Missing expected section: scope"
-          },
-          {
-            "line": 0,
-            "type": "testability",
-            "term": "(no goals found)",
-            "suggestion": "No goals, requirements, or MUST statements found. Testability cannot be scored."
-          }
-        ],
-        "warnings": [
-          "No context anchors \u2014 AI will invent its own architecture",
-          "No I/O contracts \u2014 AI will invent API shapes",
-          "No side effects listed \u2014 AI may miss integrations",
-          "No error contract \u2014 AI will invent error shapes per function",
-          "No style/architecture rules \u2014 AI may violate module boundaries or conventions"
-        ]
-      },
-      {
         "pr_number": 21559,
         "format": "freeform",
         "completeness": 0,
@@ -1650,11 +1613,11 @@
     ]
   },
   "effectiveness": {
-    "specd_rework_rate": 0.3478,
-    "unspecd_rework_rate": 0.2222,
-    "delta": 0.1256,
-    "specd_sample_size": 23,
-    "unspecd_sample_size": 18,
+    "specd_rework_rate": 0.3182,
+    "unspecd_rework_rate": 0.2632,
+    "delta": 0.055,
+    "specd_sample_size": 22,
+    "unspecd_sample_size": 19,
     "significance": "limited",
     "signals": [
       {
@@ -1890,10 +1853,10 @@
     ],
     "by_complexity": {
       "small": {
-        "specd_rework_rate": 0.3889,
-        "unspecd_rework_rate": 0.3111,
-        "specd_count": 18,
-        "unspecd_count": 45
+        "specd_rework_rate": 0.3529,
+        "unspecd_rework_rate": 0.3261,
+        "specd_count": 17,
+        "unspecd_count": 46
       }
     }
   }
