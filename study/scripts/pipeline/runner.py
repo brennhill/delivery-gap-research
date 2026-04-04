@@ -595,37 +595,32 @@ def run_tool(
     json_path: Path,
     dry_run: bool = False,
 ) -> tuple[bool, str]:
-    """Run a single tool with --from-prs. Returns (success, message)."""
-    cmd = [tool, subcmd, "--from-prs", str(prs_path), "--json", str(json_path)]
+    """Run spec-signals or catchrate analysis. Returns (success, message)."""
+    # Add study/ to path for tools.* imports
+    study_dir = Path(__file__).resolve().parent.parent.parent
+    if str(study_dir) not in sys.path:
+        sys.path.insert(0, str(study_dir))
 
     if dry_run:
-        msg = f"[dry-run] {' '.join(cmd)}"
+        msg = f"[dry-run] {tool} {subcmd} {prs_path} -> {json_path}"
         print(msg)
         return True, msg
 
-    print(f"  Running: {' '.join(cmd)}")
+    print(f"  Running: {tool} {subcmd} on {prs_path.name}")
     try:
-        result = subprocess.run(
-            cmd,
-            capture_output=True,
-            text=True,
-            timeout=600,  # 10 minutes per tool per repo
-        )
-        if result.returncode == 0:
-            print(f"  -> OK")
-            return True, "success"
+        if tool == "catchrate":
+            from tools.run_catchrate import run as run_cr
+            run_cr(str(prs_path), str(json_path))
+        elif tool == "upfront":
+            from tools.run_spec_signals import run as run_spec
+            run_spec(str(prs_path), str(json_path))
         else:
-            stderr = result.stderr.strip()[:200] if result.stderr else "(no stderr)"
-            print(f"  -> FAILED (exit {result.returncode}): {stderr}")
-            return False, f"exit {result.returncode}: {stderr}"
-    except subprocess.TimeoutExpired:
-        print(f"  -> TIMEOUT (600s)")
-        return False, "timeout after 600s"
-    except FileNotFoundError:
-        print(f"  -> TOOL NOT FOUND: {tool}")
-        return False, f"tool not found: {tool}"
+            return False, f"unknown tool: {tool}"
+        print(f"  -> OK")
+        return True, "success"
     except Exception as e:
-        print(f"  -> ERROR: {e}")
+        print(f"  -> FAILED: {e}")
+        return False, str(e)
         return False, str(e)
 
 

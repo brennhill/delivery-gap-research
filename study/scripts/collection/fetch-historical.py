@@ -105,31 +105,37 @@ def fetch_repo(repo: str, since: datetime, until: datetime, data_dir: Path) -> i
 
 
 def run_tools(repo: str, data_dir: Path) -> None:
-    """Run UPFRONT and CatchRate on fetched data."""
+    """Run spec-signals and catchrate analysis on fetched data."""
+    # Add study/ to path for tools.* imports
+    study_dir = Path(__file__).resolve().parent.parent.parent
+    if str(study_dir) not in sys.path:
+        sys.path.insert(0, str(study_dir))
+
     slug = repo.replace("/", "-")
     prs_path = data_dir / f"prs-{slug}.json"
 
     if not prs_path.exists():
         return
 
-    for tool, subcmd, out_name in [
-        ("upfront", "report", f"spec-signals-{slug}.json"),
-        ("catchrate", "check", f"catchrate-{slug}.json"),
-    ]:
-        out_path = data_dir / out_name
-        if out_path.exists():
-            continue
+    # Spec signals (replaces: upfront report --from-prs FILE --json OUTPUT)
+    spec_out = data_dir / f"spec-signals-{slug}.json"
+    if not spec_out.exists():
         try:
-            result = subprocess.run(
-                [tool, subcmd, "--from-prs", str(prs_path), "--json", str(out_path)],
-                capture_output=True, text=True, timeout=300,
-            )
-            if result.returncode == 0:
-                print(f"    {tool}: OK", flush=True)
-            else:
-                print(f"    {tool}: FAILED", flush=True)
+            from tools.run_spec_signals import run as run_spec
+            run_spec(str(prs_path), str(spec_out))
+            print(f"    spec-signals: OK", flush=True)
         except Exception as e:
-            print(f"    {tool}: ERROR {e}", flush=True)
+            print(f"    spec-signals: FAILED {e}", flush=True)
+
+    # Catchrate (replaces: catchrate check --from-prs FILE --json OUTPUT)
+    cr_out = data_dir / f"catchrate-{slug}.json"
+    if not cr_out.exists():
+        try:
+            from tools.run_catchrate import run as run_cr
+            run_cr(str(prs_path), str(cr_out))
+            print(f"    catchrate: OK", flush=True)
+        except Exception as e:
+            print(f"    catchrate: FAILED {e}", flush=True)
 
 
 def main():
@@ -138,7 +144,7 @@ def main():
                         help="Time period to fetch")
     parser.add_argument("--repo", help="Fetch a single repo instead of all comparison repos")
     parser.add_argument("--fetch-only", action="store_true",
-                        help="Skip UPFRONT/CatchRate, just fetch PRs")
+                        help="Skip spec-signals/catchrate analysis, just fetch PRs")
     args = parser.parse_args()
 
     since, until = PERIODS[args.period]
@@ -164,7 +170,7 @@ def main():
         if not args.fetch_only and n > 0:
             run_tools(repo, data_dir)
 
-        # Auto-commit
+        # Auto-commit (still uses subprocess for git)
         try:
             subprocess.run(
                 ["git", "add", str(data_dir)],
