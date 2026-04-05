@@ -175,7 +175,7 @@ def fetch_repo_issues(repo_slug: str, dry_run: bool = False) -> dict:
         except RateLimitError as e:
             # Save progress, wait, then retry with backoff
             _save_atomic(out_path, existing)
-            for wait in [60, 120, 300]:
+            for wait in [900, 900, 900, 900]:
                 print(f"    RATE LIMITED — saved progress, waiting {wait}s... ({e})", flush=True)
                 time.sleep(wait)
                 try:

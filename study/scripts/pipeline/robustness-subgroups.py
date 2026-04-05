@@ -192,12 +192,22 @@ def run_battery(subset, label):
     if len(scored) > 50:
         print(f"\n  Spec quality → SZZ bugs (N={len(scored):,} scored):")
         r_q = within_author_lpm(scored, "q_overall", "szz_buggy",
-                                label=f"{label}-quality")
+                                label=f"{label}-quality-bugs")
     else:
         print(f"\n  Spec quality → SZZ bugs: SKIPPED ({len(scored)} scored PRs)")
         r_q = None
 
-    return {"bugs": r_bug, "rework": r_rw, "quality": r_q}
+    # Spec quality → rework (scored subset)
+    scored_all = subset[subset["q_overall"].notna()].copy()
+    if len(scored_all) > 50:
+        print(f"\n  Spec quality → rework (N={len(scored_all):,} scored):")
+        r_q_rw = within_author_lpm(scored_all, "q_overall", "reworked",
+                                   label=f"{label}-quality-rework")
+    else:
+        print(f"\n  Spec quality → rework: SKIPPED ({len(scored_all)} scored PRs)")
+        r_q_rw = None
+
+    return {"bugs": r_bug, "rework": r_rw, "quality_bugs": r_q, "quality_rework": r_q_rw}
 
 
 # ════════════════════════════════════════════════════════════════════
@@ -270,6 +280,47 @@ r_all_nonbot = run_battery(nonbot, "All non-bot PRs")
 
 
 # ════════════════════════════════════════════════════════════════════
+# SUBGROUP 5: SPEC QUALITY × AI INTERACTION
+# ════════════════════════════════════════════════════════════════════
+print("\n" + "=" * 70)
+print("SUBGROUP 5: DOES SPEC QUALITY MATTER MORE FOR AI CODE?")
+print("=" * 70)
+
+# Test whether spec quality has a different effect on defects/rework
+# for AI-tagged PRs vs human PRs, using an interaction term.
+scored_nonbot = nonbot[nonbot["q_overall"].notna()].copy()
+scored_nonbot_szz = scored_nonbot[scored_nonbot["in_szz"]].copy()
+
+print(f"\nScored PRs (non-bot): {len(scored_nonbot):,}")
+print(f"  AI-tagged: {scored_nonbot['ai_tagged'].sum():,}")
+print(f"  Human: {(~scored_nonbot['ai_tagged']).sum():,}")
+print(f"  In SZZ repos: {len(scored_nonbot_szz):,}")
+
+if len(scored_nonbot_szz) > 200 and scored_nonbot_szz["ai_tagged"].sum() > 20:
+    scored_nonbot_szz["ai_int"] = scored_nonbot_szz["ai_tagged"].astype(int)
+    scored_nonbot_szz["quality_x_ai"] = scored_nonbot_szz["q_overall"] * scored_nonbot_szz["ai_int"]
+
+    print(f"\n  Quality × AI interaction → SZZ bugs:")
+    r_qai_bugs = within_author_lpm(
+        scored_nonbot_szz, "quality_x_ai", "szz_buggy",
+        controls=["q_overall", "ai_int"] + SIZE_CONTROLS,
+        label="quality-x-ai-bugs")
+
+    print(f"\n  Quality × AI interaction → rework:")
+    scored_nonbot_rw = scored_nonbot.copy()
+    scored_nonbot_rw["ai_int"] = scored_nonbot_rw["ai_tagged"].astype(int)
+    scored_nonbot_rw["quality_x_ai"] = scored_nonbot_rw["q_overall"] * scored_nonbot_rw["ai_int"]
+    r_qai_rework = within_author_lpm(
+        scored_nonbot_rw, "quality_x_ai", "reworked",
+        controls=["q_overall", "ai_int"] + SIZE_CONTROLS,
+        label="quality-x-ai-rework")
+else:
+    print("  SKIPPED (too few AI-tagged scored PRs)")
+    r_qai_bugs = None
+    r_qai_rework = None
+
+
+# ════════════════════════════════════════════════════════════════════
 # SUMMARY TABLE
 # ════════════════════════════════════════════════════════════════════
 print("\n" + "=" * 70)
@@ -286,6 +337,7 @@ def fmt_result(r, key):
         return f"{d['coef']:+.4f}", f"{d['p']:.4f}"
     return "—", "—"
 
+print("\n  Spec presence → outcomes:")
 for label, r in [("All non-bot PRs", r_all_nonbot),
                  ("Human-only (no AI)", r_human),
                  ("AI-tagged (non-bot)", r_ai),
@@ -296,11 +348,28 @@ for label, r in [("All non-bot PRs", r_all_nonbot),
     rc, rp = fmt_result(r, "rework")
     print(f"{label:>30s}  {bc:>12s}  {bp:>8s}  {rc:>14s}  {rp:>8s}")
 
+print(f"\n  Spec quality → outcomes:")
+for label, r in [("All non-bot PRs", r_all_nonbot),
+                 ("Human-only (no AI)", r_human),
+                 ("AI-tagged (non-bot)", r_ai)]:
+    bc, bp = fmt_result(r, "quality_bugs")
+    rc, rp = fmt_result(r, "quality_rework")
+    print(f"{label:>30s}  {bc:>12s}  {bp:>8s}  {rc:>14s}  {rp:>8s}")
+
+if r_qai_bugs or r_qai_rework:
+    print(f"\n  Quality × AI interaction:")
+    bc = f"{r_qai_bugs['coef']:+.4f}" if r_qai_bugs else "—"
+    bp = f"{r_qai_bugs['p']:.4f}" if r_qai_bugs else "—"
+    rc = f"{r_qai_rework['coef']:+.4f}" if r_qai_rework else "—"
+    rp = f"{r_qai_rework['p']:.4f}" if r_qai_rework else "—"
+    print(f"{'Quality×AI interaction':>30s}  {bc:>12s}  {bp:>8s}  {rc:>14s}  {rp:>8s}")
+
 print(f"""
 Interpretation:
-  If SDD claims held, we would see NEGATIVE coefficients (specs reduce bugs/rework).
-  Positive coefficients = confounding by indication (harder tasks get specs).
-  The null result should hold across all subgroups.
+  Spec presence: positive coef = confounding by indication.
+  Spec quality: negative coef = higher quality → fewer defects (SDD prediction).
+  Quality×AI: tests whether quality matters MORE for AI code than human code.
+  If positive: quality helps AI more. If null: same effect for both.
 """)
 
 print(f"Results saved to: {OUT_FILE}")

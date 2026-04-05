@@ -1,0 +1,433 @@
+{
+  "emilkowalski/sonner#168": {
+    "body": "I have a multi step registration form , each step has its own page, i have a context to store data for each step and share it.\r\nfor a better user experience i want to make sure in each step the context has a validate data from previous setp if NOT i shoud send user back to previous step and alert him for not having complete or valid data.\r\n\r\nthis is a snapshot of the code i have\r\n\r\nbtw it works when i put it inside a setTimeout \r\n\r\n![toast](https://github.com/emilkowalski/sonner/assets/100439355/10f8d978-a776-45f0-bdd5-c880686fc2ad)\r\n\r\n",
+    "html_url": "https://github.com/emilkowalski/sonner/issues/168",
+    "labels": [],
+    "state": "closed",
+    "title": "toast does not work in useEffect or useLayoutEffect "
+  },
+  "shadcn-ui/ui#3333": {
+    "body": "### Describe the bug\n\nCheckbox icon is not centered when the checkbox is checked. \r\n\r\nFor example,\r\n<img width=\"317\" alt=\"checkbox-before\" src=\"https://github.com/shadcn-ui/ui/assets/59118406/d0522ddb-cc12-4567-96d9-c37ae317b0ac\">\r\n\n\n### Affected component/components\n\nCheckbox\n\n### How to reproduce\n\n1. Create a checkbox component\r\n2. Click on it\n\n### Codesandbox/StackBlitz link\n\n_No response_\n\n### Logs\n\n_No response_\n\n### System Info\n\n```bash\nSafari, Chromium\n```\n\n\n### Before submitting\n\n- [X] I've made research efforts and searched the documentation\n- [X] I've searched for existing issues",
+    "html_url": "https://github.com/shadcn-ui/ui/issues/3333",
+    "labels": [
+      "bug",
+      "stale?"
+    ],
+    "state": "closed",
+    "title": "[bug]: checkbox icon is not centered when checked"
+  },
+  "shadcn-ui/ui#6890": {
+    "body": "### Describe the bug\n\nWhen I execute `deno run -A npm:shadcn@latest init`, it throws me the next error that is caused by the missed npm: specifier when dependencies are installed:\n\n![Image](https://github.com/user-attachments/assets/f77b9660-a221-4255-8238-5000660fd0ba)\n\n### Affected component/components\n\nN/A\n\n### How to reproduce\n\n1. Execute `deno run -A npm:shadcn@latest init`\n\n### Codesandbox/StackBlitz link\n\n_No response_\n\n### Logs\n```bash\n\u221a Preflight checks.\n\u221a Verifying framework. Found Astro.\n\u221a Validating Tailwind CSS config. Found v4.\n\u221a Validating import alias.\n\u221a Which color would you like to use as the base color? \u00bb Neutral\n\u221a Writing components.json.\n\u221a Checking registry.\n\u221a Updating src\\styles\\global.css\n/ Installing dependencies.\nSomething went wrong. Please check the error below for more details.\nIf the problem persists, please open an issue on GitHub.\n\nCommand failed with exit code 1: deno add tailwindcss-animate class-variance-authority lucide-react clsx tailwind-merge\nerror: tailwindcss-animate is missing a prefix. Did you mean `deno add npm:tailwindcss-animate`?\n```\n\n### System Info\n\nWindows 11\ndeno 2.2.2 (stable, release, x86_64-pc-windows-msvc)\nv8 13.4.114.9-rusty\ntypescript 5.7.3\n\n### Before submitting\n\n- [x] I've made research efforts and searched the documentation\n- [x] I've searched for existing issues",
+    "html_url": "https://github.com/shadcn-ui/ui/issues/6890",
+    "labels": [
+      "bug"
+    ],
+    "state": "closed",
+    "title": "[bug]: Add npm: specifier when shadcn cli installs dependencies with Deno (2.0)"
+  },
+  "shadcn-ui/ui#7166": {
+    "body": "### Describe the bug\n\n[https://github.com/shadcn-ui/ui/blob/main/apps/v4/registry/new-york-v4/ui/tooltip.tsx](url)\n\nThe documentation for Tooltips is as follows:\n\n```\nimport {\n  Tooltip,\n  TooltipContent,\n  TooltipProvider,\n  TooltipTrigger,\n} from \"@/components/ui/tooltip\"\n```\n\n```\n<TooltipProvider>\n  <Tooltip>\n    <TooltipTrigger>Hover</TooltipTrigger>\n    <TooltipContent>\n      <p>Add to library</p>\n    </TooltipContent>\n  </Tooltip>\n</TooltipProvider>\n```\n\nHowever, the implementation of `Tooltip` has a redundant `TooltipProvider` implemented if you follow the documentation.\n\n```\nfunction Tooltip({\n  ...props\n}: React.ComponentProps<typeof TooltipPrimitive.Root>) {\n  return (\n    <TooltipProvider>\n      <TooltipPrimitive.Root data-slot=\"tooltip\" {...props} />\n    </TooltipProvider>\n  )\n}\n```\n\n\nThis caused a significant performance hit in my application which was fixed by removing the duplicate `TooltipProvider` implementation on every `Tooltip` instance. \n\n### Affected component/components\n\nTooltip\n\n### How to reproduce\n\nImplement 60 `Tooltip` components in a canvas application.\n\n### Codesandbox/StackBlitz link\n\n_No response_\n\n### Logs\n\n```bash\n\n```\n\n### System Info\n\n```bash\nAny system (macOS). It is in the source code itself.\n```\n\n### Before submitting\n\n- [x] I've made research efforts and searched the documentation\n- [x] I've searched for existing issues",
+    "html_url": "https://github.com/shadcn-ui/ui/issues/7166",
+    "labels": [
+      "bug"
+    ],
+    "state": "closed",
+    "title": "[bug]: Tooltip has redundant TooltipProvider based on documentation."
+  },
+  "shadcn-ui/ui#7348": {
+    "body": "### Describe the bug\n\n\n\nWhen I add a new shadcn component, I want the import { cn } that the component uses to be at a different location. I try to set my component.json to the following:\n\n```json:components.json\n//components.json\n{\n  \"aliases\": {\n    \"utils\": \"src/utils\",\n    \"components\": \"src/components\",\n    \"ui\": \"src/ui\",\n    \"hooks\": \"src/hooks\"\n  }\n}\n```\n\nBut my new component always shows up (in the right ui folder though) with the wrong utils import:\n\nimport { cn } from \"src/lib/utils\"\n\n### Affected component/components\n\ncomponent.json\n\n### How to reproduce\n\n1. I'm using a turbo repo mono repo with create-t3-stack at https://github.com/t3-oss/create-t3-turbo so you could clone this\n\n2. Cd into the root folder\n\n3. Cd into packages/ui\n\n4. Try to modify the components.json similar to the above (with \"utils\": \"src/utils\")\n\n5. Try to add any new shadcn component - you will see it defaults imports { cn } from \"src/lib/utils\"\n\n### Codesandbox/StackBlitz link\n\n_No response_\n\n### Logs\n\n```bash\n\n```\n\n### System Info\n\n```bash\nCursor, Macbook Air M4 latest OS\n```\n\n### Before submitting\n\n- [x] I've made research efforts and searched the documentation\n- [x] I've searched for existing issues",
+    "html_url": "https://github.com/shadcn-ui/ui/issues/7348",
+    "labels": [
+      "bug"
+    ],
+    "state": "closed",
+    "title": "[bug]: Adding new components default import { cn } from \"src/lib/utils\" even though component.json specify differently"
+  },
+  "shadcn-ui/ui#7482": {
+    "body": "### Describe the bug\n\nIn the docs it says the files type can be a registry:style \n\nhttps://ui.shadcn.com/docs/registry/registry-item-json#files\n\nbut when I'm trying to do it the IDE complains because it's not in the schema \n\n![Image](https://github.com/user-attachments/assets/93a05d8c-dae2-469d-b570-548501aa1f78)\n\n\n![Image](https://github.com/user-attachments/assets/67eff12f-0e5a-4837-b3eb-0c5bfe939fd2)\n\n### Affected component/components\n\nregistry-item \n\n### How to reproduce\n\ncreate a reigstry item with a file type registry:style\n\n### Codesandbox/StackBlitz link\n\n_No response_\n\n### Logs\n\n```bash\n\n```\n\n### System Info\n\n```bash\nosX\n```\n\n### Before submitting\n\n- [x] I've made research efforts and searched the documentation\n- [x] I've searched for existing issues",
+    "html_url": "https://github.com/shadcn-ui/ui/issues/7482",
+    "labels": [
+      "bug"
+    ],
+    "state": "closed",
+    "title": "[bug]: Shadcn Item registry schema is not working as expected"
+  },
+  "shadcn-ui/ui#7561": {
+    "body": "### Describe the bug\n\nA label in the new calendar docs points to the wrong example. Mismatch between \u201cfor\u201d and \u201cid\u201d attribute.\n\n### Affected component/components\n\nCalendar - Date time\n\n### How to reproduce\n\n1. Go to https://ui.shadcn.com/docs/components/calendar#date-and-time-picker\n2. Click the date label\n3. You end up on the previous example\n\n\n### Codesandbox/StackBlitz link\n\n_No response_\n\n### Logs\n\n```bash\n/\n```\n\n### System Info\n\n```bash\n/\n```\n\n### Before submitting\n\n- [x] I've made research efforts and searched the documentation\n- [x] I've searched for existing issues",
+    "html_url": "https://github.com/shadcn-ui/ui/issues/7561",
+    "labels": [
+      "bug"
+    ],
+    "state": "closed",
+    "title": "[bug]: label points to wrong example in date time example"
+  },
+  "shadcn-ui/ui#7583": {
+    "body": "### Describe the bug\n\n**Bug Description**\nDate picker dropdown values are not visible when the application is in dark mode, making it impossible for users to select dates.\n**Expected Behavior**\nDate picker dropdown should display all selectable dates/values with proper contrast and visibility in dark mode, similar to how they appear in light mode.\n**Actual Behavior**\nDate picker dropdown values are not visible in dark mode - they appear to be rendered but with insufficient contrast or incorrect color styling.\n\n**Steps to Reproduce**\n\nSwitch application to dark mode\nOpen/click on the date picker component\nObserve that dropdown values are not visible\n\n**Environment**\n\nBrowser: Chrome\nOS: Linux Ubuntu\n\n**Additional Context**\nThis appears to be a CSS styling issue where the dark mode theme is not properly applied to the date picker dropdown elements, or the text/background colors have an insufficient contrast ratio.\n\n### Affected component/components\n\nhttps://ui.shadcn.com/docs/components/date-picker\n\n### How to reproduce\n\nSwitch application to dark mode\nOpen/click on the date picker component\nObserve that dropdown values are not visible\n\n### Codesandbox/StackBlitz link\n\n_No response_\n\n### Logs\n\n```bash\nBrowser: Chrome\nOS: Linux Ubuntu\n```\n\n### System Info\n\n```bash\nBrowser: Chrome\nOS: Linux Ubuntu\n```\n\n### Before submitting\n\n- [x] I've made research efforts and searched the documentation\n- [x] I've searched for existing issues",
+    "html_url": "https://github.com/shadcn-ui/ui/issues/7583",
+    "labels": [
+      "bug"
+    ],
+    "state": "closed",
+    "title": "[bug]: Date Picker Dropdown values not visible in the Dark Mode"
+  },
+  "shadcn-ui/ui#7669": {
+    "body": "### Describe the bug\n\nhttps://github.com/recharts/recharts/releases\n\n### Affected component/components\n\nCharts\n\n### How to reproduce\n\nClone the chart.tsx components which throw several errors.\n\n### Codesandbox/StackBlitz link\n\n_No response_\n\n### Logs\n\n```bash\n\n```\n\n### System Info\n\n```bash\n-\n```\n\n### Before submitting\n\n- [x] I've made research efforts and searched the documentation\n- [x] I've searched for existing issues",
+    "html_url": "https://github.com/shadcn-ui/ui/issues/7669",
+    "labels": [
+      "area: roadmap",
+      "component: chart"
+    ],
+    "state": "closed",
+    "title": "Support Recharts v3"
+  },
+  "shadcn-ui/ui#7695": {
+    "body": "### Describe the bug\n\nHi,\n\nWhen I try to create a new monorepo project using shadcn with Bun, I encounter the following error:\n\nCommand: bunx --bun shadcn@canary init\n\nSteps:\n\t\u2022\tThe CLI prompts me to select a project type, and I choose \u201cNext.js (Monorepo)\u201d\n\t\u2022\tI enter a project name (e.g., Monoapp)\n\t\u2022\tThe process fails with the error message below\n\n```\nError output:\u2716 Something went wrong creating a new Next.js monorepo.\nSomething went wrong. Please check the error below for more details.\nIf the problem persists, please open an issue on GitHub.\n\nCommand failed with exit code 1: bun install\nResolving dependencies\nResolved, downloaded and extracted [2]\nerror: Workspace dependency \"@workspace/eslint-config\" not found\n\nSearched in \"./*\"\n\nWorkspace documentation: https://bun.sh/docs/install/workspaces\n\nerror: Workspace dependency \"@workspace/typescript-config\" not found\n\nSearched in \"./*\"\n\nWorkspace documentation: https://bun.sh/docs/install/workspaces\n\nerror: @workspace/eslint-config@workspace:* failed to resolve\nerror: @workspace/typescript-config@workspace:* failed to resolve\nbun install v1.2.4 (fd9a5ea6)\n```\n\nIs there a workaround or something I might be missing in the setup? Thank you for your help!\n\n### Affected component/components\n\nProject\n\n### How to reproduce\n\n1. bunx --bun shadcn@canary init\n2. Name your project\n\n### Codesandbox/StackBlitz link\n\n_No response_\n\n### Logs\n\n```bash\n\n```\n\n### System Info\n\n```bash\n\u2022 OS: macOS\n\u2022 Bun version: 1.2.4\n\u2022 shadcn version: canary\n```\n\n### Before submitting\n\n- [x] I've made research efforts and searched the documentation\n- [x] I've searched for existing issues",
+    "html_url": "https://github.com/shadcn-ui/ui/issues/7695",
+    "labels": [
+      "bug"
+    ],
+    "state": "closed",
+    "title": "[bug]: Error initializing Next.js monorepo with Bun: workspace dependencies not found"
+  },
+  "shadcn-ui/ui#7964": {
+    "body": "### Describe the bug\n\nhttps://ui.shadcn.com/themes\n\nI've selected a theme color here: blue, and copied the color code into my project. However, the result isn't the same as the demo site. In dark mode, the blue button's color looks very strange.\n\n<img width=\"2078\" height=\"1320\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/9a2044bc-381b-4f43-a5e6-70d80f756b8a\" />\n\n### Affected component/components\n\nthemes\n\n### How to reproduce\n\n1. open https://ui.shadcn.com/themes\n2. select color: blue\n3. copy code\n4. paste into project\n\n### Codesandbox/StackBlitz link\n\n_No response_\n\n### Logs\n\n```bash\n\n```\n\n### System Info\n\n```bash\nnext.js+shadcn ui latest + drak mode\n```\n\n### Before submitting\n\n- [x] I've made research efforts and searched the documentation\n- [x] I've searched for existing issues",
+    "html_url": "https://github.com/shadcn-ui/ui/issues/7964",
+    "labels": [
+      "bug"
+    ],
+    "state": "closed",
+    "title": "[bug]: theme code bug"
+  },
+  "shadcn-ui/ui#8367": {
+    "body": "### Describe the bug\n\nIn the official docs the structure of the Empty component is shown as\n\n```\n<Empty>\n  <EmptyHeader>\n    <EmptyMedia variant=\"icon\">\n      <Icon />\n    </EmptyMedia>\n  </EmptyHeader>\n  <EmptyTitle>No data</EmptyTitle>\n  <EmptyDescription>No data found</EmptyDescription>\n  <EmptyContent>\n    <Button>Add data</Button>\n  </EmptyContent>\n</Empty>\n\n```\nwhen it should include the Title and Description in the Header to achieve the same Spacing as in the Examples.\n\n```\n<Empty>\n  <EmptyHeader>\n    <EmptyMedia variant=\"icon\">\n      <Icon />\n    </EmptyMedia>\n  <EmptyTitle>No data</EmptyTitle>\n  <EmptyDescription>No data found</EmptyDescription>\n  </EmptyHeader>\n  <EmptyContent>\n    <Button>Add data</Button>\n  </EmptyContent>\n</Empty>\n```\n\n### Affected component/components\n\nEmpty\n\n### How to reproduce\n\nGo on the official Website https://ui.shadcn.com/docs/components/empty\n\n### Codesandbox/StackBlitz link\n\n_No response_\n\n### Logs\n\n```bash\n\n```\n\n### System Info\n\n```bash\nChrome\n```\n\n### Before submitting\n\n- [x] I've made research efforts and searched the documentation\n- [x] I've searched for existing issues",
+    "html_url": "https://github.com/shadcn-ui/ui/issues/8367",
+    "labels": [
+      "bug"
+    ],
+    "state": "closed",
+    "title": "[bug]: In the docs the description of the Empty Component is wrongly structured"
+  },
+  "shadcn-ui/ui#8369": {
+    "body": "### Describe the bug\n\nThe `FieldError` component remains rendered even when an empty array is passed to the `errors` prop, resulting in unintended spacing when there are no errors.\n\n```tsx\n<Field>\n  <FieldLabel>Name</FieldLabel>\n  <Input />\n  <FieldError errors={[]} />\n</Field>\n```\n\n<img width=\"1438\" height=\"653\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/b68a3526-b1f1-4983-994e-04e1d92334c4\" />\n\n### Affected component/components\n\nFieldError\n\n### How to reproduce\n\n1. Pass an empty array as a value of `errors` prop of `FieldError` component.\n```tsx\n<Field>\n  <FieldLabel>Name</FieldLabel>\n  <Input />\n  <FieldError errors={[]} />\n</Field>\n```\n2. \n\n### Codesandbox/StackBlitz link\n\nhttps://stackblitz.com/edit/vitejs-vite-712or6zd?file=src%2FApp.tsx\n\n### Logs\n\n```bash\n\n```\n\n### System Info\n\n```bash\nIt can be reproduced on any browsers.\n```\n\n### Before submitting\n\n- [x] I've made research efforts and searched the documentation\n- [x] I've searched for existing issues",
+    "html_url": "https://github.com/shadcn-ui/ui/issues/8369",
+    "labels": [
+      "bug"
+    ],
+    "state": "closed",
+    "title": "[bug]: FieldError component is still rendered an element when empty array is passed to errors prop"
+  },
+  "shadcn-ui/ui#8425": {
+    "body": "### Describe the bug\n\n## Issue\n- the import statement for the `Link` is incorrect in the snippet that explains how to add Link in the Button.\n- [Snippet Link](https://ui.shadcn.com/docs/components/button#link-1) \n\nSo this creates an error when the snippet is copied and used\n\n## Solution\n- replace the import statement with `import Link from \"next/link\"`\n\n### Affected component/components\n\nButton\n\n### How to reproduce\n\n1. Go to [snippet link ](https://ui.shadcn.com/docs/components/button#link-1)\n2. copy the snippet\n3. Paste it in a nextjs project\n4 You will be prompted with an error `Module '\"next/link\"' has no exported member 'Link'. Did you mean to use 'import Link from \"next/link\"' instead?`\n\n### Codesandbox/StackBlitz link\n\n_No response_\n\n### Logs\n\n```bash\n\n```\n\n### System Info\n\n```bash\nChrome (version - 141.0.7390.76)\nNextjs (version - 15)\n```\n\n### Before submitting\n\n- [x] I've made research efforts and searched the documentation\n- [x] I've searched for existing issues",
+    "html_url": "https://github.com/shadcn-ui/ui/issues/8425",
+    "labels": [
+      "bug"
+    ],
+    "state": "closed",
+    "title": "[bug]: import statement for Link is incorrect in a snippet of button component docs"
+  },
+  "shadcn-ui/ui#8432": {
+    "body": "### Describe the bug\n\nI'm trying to open my registry for some useful files, but without framework detection & components.json\n`'use client'` directive is removed from tsx , assuming rsc is false. \n\nMy registry.json\n```json\n {\n      \"name\": \"color-picker\",\n      \"type\": \"registry:item\",\n      \"title\": \"Color Picker\",\n      \"description\": \"A customizable color picker field for PayloadCMS.\",\n      \"files\": [\n        {\n          \"path\": \"registry/fields/color-picker/field.ts\",\n          \"type\": \"registry:file\",\n          \"target\": \"~/src/fields/color-picker/field.ts\"\n        },\n         {\n          \"path\": \"registry/fields/color-picker/index.tsx\",\n          \"type\": \"registry:file\",\n          \"target\": \"~/src/fields/color-picker/index.tsx\"\n        },\n         {\n          \"path\": \"registry/fields/color-picker/style.scss\",\n          \"type\": \"registry:file\",\n          \"target\": \"~/src/fields/color-picker/style.scss\"\n        },\n         {\n          \"path\": \"registry/fields/color-picker/types.ts\",\n          \"type\": \"registry:file\",\n          \"target\": \"~/src/fields/color-picker/types.ts\"\n        }\n      ]\n    }\n```\nGoing into URL manually i can see `use client`, but adding files from this registry removes it.\n\n\n\n\n### Affected component/components\n\nCLI\n\n### How to reproduce\n\n1.Try to add components from this registry - https://payload.veiag.dev/r/color-picker.json\n2.`index.tsx` content saved without `'use client'`\n\nJSON:\n<img width=\"430\" height=\"90\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/14eed3bf-8506-45e9-ac47-6dda2bf62b86\" />\nSaved file:\n\n<img width=\"469\" height=\"52\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/c0c7251e-57b6-470a-8bd8-c44aa62034a9\" />\n\n### Codesandbox/StackBlitz link\n\n_No response_\n\n### Logs\n\n```bash\n\n```\n\n### System Info\n\n```bash\nNode v22.16.0\nlatest shadcn package\n```\n\n### Before submitting\n\n- [x] I've made research efforts and searched the documentation\n- [x] I've searched for existing issues",
+    "html_url": "https://github.com/shadcn-ui/ui/issues/8432",
+    "labels": [
+      "bug"
+    ],
+    "state": "closed",
+    "title": "[bug]: CLI Registry universal items still removes 'use client' from tsx files"
+  },
+  "shadcn-ui/ui#8450": {
+    "body": "### Describe the bug\n\nWhen a registry item has an at-property rule, the `npx shadcn@latest add` command throws the following error:\n\n```\nError parsing rule content: syntax \"<number>\" CssSyntaxError: <css input>:1:7: Unknown word \"<number>\"\n    at Input.error (/.npm/_npx/d66c5096c7023bfb/node_modules/postcss/lib/input.js:135:16)\n    at Parser.unknownWord (/.npm/_npx/d66c5096c7023bfb/node_modules/postcss/lib/parser.js:595:22)\n    at Parser.other (/.npm/_npx/d66c5096c7023bfb/node_modules/postcss/lib/parser.js:437:12)\n    at Parser.parse (/.npm/_npx/d66c5096c7023bfb/node_modules/postcss/lib/parser.js:472:16)\n    at Function.parse (/.npm/_npx/d66c5096c7023bfb/node_modules/postcss/lib/parse.js:11:12)\n    at re (file:///.npm/_npx/d66c5096c7023bfb/node_modules/shadcn/dist/index.js:20:241)\n    at Mt (file:///.npm/_npx/d66c5096c7023bfb/node_modules/shadcn/dist/index.js:15:220)\n    at Object.Once (file:///.npm/_npx/d66c5096c7023bfb/node_modules/shadcn/dist/index.js:14:65)\n    at LazyResult.runOnRoot (/.npm/_npx/d66c5096c7023bfb/node_modules/postcss/lib/lazy-result.js:359:23)\n    at LazyResult.runAsync (/.npm/_npx/d66c5096c7023bfb/node_modules/postcss/lib/lazy-result.js:290:26) {\n  reason: 'Unknown word \"<number>\"',\n  source: '.temp{\"<number>\"}',\n  line: 1,\n  column: 7,\n  endLine: 1,\n  endColumn: 17,\n  input: {\n    column: 7,\n    endColumn: 17,\n    endLine: 1,\n    endOffset: 16,\n    line: 1,\n    offset: 6,\n    source: '.temp{\"<number>\"}'\n  }\n}\n\n\nSomething went wrong. Please check the error below for more details.\nIf the problem persists, please open an issue on GitHub.\n\nupdate-css: <css input>:1:7: Unknown word \"<number>\"\n```\n\n### Affected component/components\n\nadd command\n\n### How to reproduce\n\n1. Create an `example-at-property.json` file:\n\n    ```json\n    {\n      \"$schema\": \"https://ui.shadcn.com/schema/registry-item.json\",\n      \"name\": \"example-at-property\",\n      \"type\": \"registry:style\",\n      \"css\": {\n        \"@property --foo\": {\n          \"syntax\": \"'<number>'\",\n          \"inherits\": \"false\",\n          \"initial-value\": \"0\"\n        }\n      }\n    }\n    ```\n\n2. Run `npx shadcn@latest add example-at-property.json --yes` in a project\n\n3. See error\n\n### Codesandbox/StackBlitz link\n\n_No response_\n\n### Logs\n\n```bash\n\n```\n\n### System Info\n\n```bash\nmacOS 26, Node 22\n```\n\n### Before submitting\n\n- [x] I've made research efforts and searched the documentation\n- [x] I've searched for existing issues",
+    "html_url": "https://github.com/shadcn-ui/ui/issues/8450",
+    "labels": [
+      "bug"
+    ],
+    "state": "closed",
+    "title": "[bug]: shadcn add at-property rule"
+  },
+  "shadcn-ui/ui#8689": {
+    "body": "### Name\n\n@shadcnui-blocks\n\n### URL\n\nhttps://www.shadcnui-blocks.com/r/{name}\n\n### Homepage\n\nhttps://www.shadcnui-blocks.com/\n\n### Description\n\nA collection of premium, production-ready shadcn/ui blocks, components and templates.\n\n### Logo\n\n![Image](https://github.com/user-attachments/assets/0bef0dae-ee5c-4c7b-b593-88503ceee537)\n\n### Checklist\n\n- [x] The registry must be open source and publicly accessible.\n- [x] The registry must be a valid JSON file that conforms to the [registry schema](https://ui.shadcn.com/docs/registry/registry-json) specification.\n- [x] The `files` array, if present on your registry items, must NOT include a `content` property.\n- [x] I've attached a square SVG logo to this issue",
+    "html_url": "https://github.com/shadcn-ui/ui/issues/8689",
+    "labels": [],
+    "state": "closed",
+    "title": "[Registry Directory]: Shadcn UI Blocks"
+  },
+  "shadcn-ui/ui#8705": {
+    "body": "On macOS, two-finger swipe navigation (back/forward) doesn\u2019t work when using the following global CSS rule\n`overscroll-behavior: none;` defined in [apps/v4/styles/globals.css](https://github.com/shadcn-ui/ui/blob/86c494c452c0e4a923832de9135e45c83f55b33f/apps/v4/styles/globals.css#L153)\ufffc.\n\nHere's a suggestion\n```\noverscroll-y-none\n```\n",
+    "html_url": "https://github.com/shadcn-ui/ui/issues/8705",
+    "labels": [],
+    "state": "closed",
+    "title": "[bug]: two-finger navigation broken on macOS"
+  },
+  "shadcn-ui/ui#8762": {
+    "body": "### Name\n\nSmoothUI\n\n### URL\n\nhttps://smoothui.dev/r/registry.json\n\n### Homepage\n\nhttps://smoothui.dev\n\n### Description\n\nA collection of beautifully crafted motion components built with React, Framer Motion, and TailwindCSS. Designed to elevate microinteractions, each component focuses on smooth animations, subtle feedback, and delightful UX. Perfect for designers and developers who want to add refined motion to their interfaces \u2014 copy, paste, and make your UI come alive.\n\n### Logo\n\n![Image](https://github.com/user-attachments/assets/a6a9b6ff-5ec3-444f-828a-758c8f4ec7b0)\n\n![Image](https://github.com/user-attachments/assets/94a85bd3-6d02-4907-a92c-c89f2dc638a0)\n\n### Checklist\n\n- [x] The registry must be open source and publicly accessible.\n- [x] The registry must be a valid JSON file that conforms to the [registry schema](https://ui.shadcn.com/docs/registry/registry-json) specification.\n- [x] The `files` array, if present on your registry items, must NOT include a `content` property.\n- [x] I've attached a square SVG logo to this issue",
+    "html_url": "https://github.com/shadcn-ui/ui/issues/8762",
+    "labels": [],
+    "state": "closed",
+    "title": "[Registry Directory]: Smoothui"
+  },
+  "shadcn-ui/ui#8807": {
+    "body": "### Name\n\n@uicapsule\n\n### URL\n\nhttps://www.uicapsule.com/r/registry.json\n\n### Homepage\n\nhttps://www.uicapsule.com/\n\n### Description\n\nA curated collection of components that spark joy. Featuring interactive concepts, design experiments, and components in the intersection of AI/UI\n\n### Logo\n\n![Image](https://github.com/user-attachments/assets/658c0778-8fa3-4e73-84a3-85dcdd246c0a)\n\n### Checklist\n\n- [x] The registry must be open source and publicly accessible.\n- [x] The registry must be a valid JSON file that conforms to the [registry schema](https://ui.shadcn.com/docs/registry/registry-json) specification.\n- [x] The `files` array, if present on your registry items, must NOT include a `content` property.\n- [x] I've attached a square SVG logo to this issue",
+    "html_url": "https://github.com/shadcn-ui/ui/issues/8807",
+    "labels": [],
+    "state": "closed",
+    "title": "[Registry Directory]: UICapsule"
+  },
+  "shadcn-ui/ui#8826": {
+    "body": "### Name\n\n@shadcn-map\n\n### URL\n\nhttp://shadcn-map.vercel.app/r/{name}.json\n\n### Homepage\n\nhttps://shadcn-map.vercel.app\n\n### Description\n\nA map component for shadcn/ui. Built with Leaflet and React Leaflet.\n\n### Logo\n\n<img width=\"256\" height=\"256\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/09ef741a-0b95-42cd-bf3b-2622cf658d3d\" />\n\n### Checklist\n\n- [x] The registry must be open source and publicly accessible.\n- [x] The registry must be a valid JSON file that conforms to the [registry schema](https://ui.shadcn.com/docs/registry/registry-json) specification.\n- [x] The `files` array, if present on your registry items, must NOT include a `content` property.\n- [x] I've attached a square SVG logo to this issue",
+    "html_url": "https://github.com/shadcn-ui/ui/issues/8826",
+    "labels": [],
+    "state": "closed",
+    "title": "[Registry Directory]: shadcn-map"
+  },
+  "shadcn-ui/ui#8857": {
+    "body": "### Name\n\n@abui\n\n### URL\n\nhttps://abui.io/r/{name}.json\n\n### Homepage\n\nhttps://abui.io\n\n### Description\n\nRegistry of components, blocks, and utilities following a structured architecture based on Vercel's [components.build](https://www.components.build/) specification.\n\n### Logo\n\n<svg width=\"40\" height=\"40\" viewBox=\"0 0 40 40\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M20 0C31.0457 0 40 8.95431 40 20C40 31.0457 31.0457 40 20 40C8.95431 40 0 31.0457 0 20C0 8.95431 8.95431 0 20 0ZM6.09277 25.4707H18.7158L20.4707 28.251H23.5479L13.9424 11.8867L6.09277 25.4707ZM16.3711 11.8867L25.9766 28.251L33.8262 14.667H21.2041L19.4482 11.8867H16.3711ZM29.4346 17.4727L25.9766 23.249L22.5586 17.4727H29.4346ZM17.3604 22.665H10.4844L13.9424 16.8896L17.3604 22.665Z\" fill=\"var(--foreground)\"/>\n</svg>\n\n\n### Checklist\n\n- [x] The registry must be open source and publicly accessible.\n- [x] The registry must be a valid JSON file that conforms to the [registry schema](https://ui.shadcn.com/docs/registry/registry-json) specification.\n- [x] The `files` array, if present on your registry items, must NOT include a `content` property.\n- [x] I've attached a square SVG logo to this issue",
+    "html_url": "https://github.com/shadcn-ui/ui/issues/8857",
+    "labels": [],
+    "state": "closed",
+    "title": "[Registry Directory]: ABUI"
+  },
+  "shadcn-ui/ui#8892": {
+    "body": "### Name\n\n@coderabbit\n\n### URL\n\nhttps://coderabbit-shadcn-registry.vercel.app/r/{name}.json\n\n### Homepage\n\nhttps://ramonclaudio.com/registries/coderabbit\n\n### Description\n\nModular shadcn registry for CodeRabbit API integration. Includes a framework-agnostic API client, pluggable storage adapters (LocalStorage, Convex, Supabase, PostgreSQL, MySQL), and React components for generating developer activity reports. Supports multiple storage backends with built-in TypeScript types and zero runtime dependencies for the core client.\n\n### Logo\n\n![Image](https://github.com/user-attachments/assets/11af0034-314f-4b55-9777-772fd4812257)\n\n### Checklist\n\n- [x] The registry must be open source and publicly accessible.\n- [x] The registry must be a valid JSON file that conforms to the [registry schema](https://ui.shadcn.com/docs/registry/registry-json) specification.\n- [x] The `files` array, if present on your registry items, must NOT include a `content` property.\n- [x] I've attached a square SVG logo to this issue\n\n---\n\n**PR:** #9331",
+    "html_url": "https://github.com/shadcn-ui/ui/issues/8892",
+    "labels": [],
+    "state": "closed",
+    "title": "[Registry Directory]: CodeRabbit"
+  },
+  "shadcn-ui/ui#8898": {
+    "body": "### Name\n\n@animbits\n\n### URL\n\nhttps://animbits.dev/r/{name}.json\n\n### Homepage\n\nhttps://www.animbits.dev/\n\n### Description\n\nAnimBits is a collection of over 50 animated UI components for React that use Framer Motion. The components provided include buttons, cards, text, icons, lists, loaders, and page transitions, animation hooks  all of which have general-purpose effects that are not flashy and easy on the eyes, making them easy to use.\n\n### Logo\n\n<img width=\"1536\" height=\"1536\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/77aaeffb-2ac7-4677-bd2c-504eaa0be6b3\" />\n\n### Checklist\n\n- [x] The registry must be open source and publicly accessible.\n- [x] The registry must be a valid JSON file that conforms to the [registry schema](https://ui.shadcn.com/docs/registry/registry-json) specification.\n- [x] The `files` array, if present on your registry items, must NOT include a `content` property.\n- [x] I've attached a square SVG logo to this issue",
+    "html_url": "https://github.com/shadcn-ui/ui/issues/8898",
+    "labels": [],
+    "state": "closed",
+    "title": "[Registry Directory]: Animbits"
+  },
+  "shadcn-ui/ui#9025": {
+    "body": "### Describe the bug\n\na client-side exception has occurred while loading\n\n<img width=\"2101\" height=\"1278\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/aeb4478e-443e-4de9-aef5-224eb0dfb21d\" />\n\n### Affected component/components\n\n/create page pagination demo\n\n### How to reproduce\n\n1. go to /create\n2. click the pagination demo\n\n### Codesandbox/StackBlitz link\n\n_No response_\n\n### Logs\n\n```bash\n\n```\n\n### System Info\n\n```bash\nfirefox/win11\n```\n\n### Before submitting\n\n- [x] I've made research efforts and searched the documentation\n- [x] I've searched for existing issues",
+    "html_url": "https://github.com/shadcn-ui/ui/issues/9025",
+    "labels": [
+      "bug"
+    ],
+    "state": "closed",
+    "title": "[bug]: /create pagination - a client-side exception has occurred while loading"
+  },
+  "shadcn-ui/ui#9029": {
+    "body": "### Describe the bug\n\nSelecting Mira + dark mode gives you transparent backgrounds in comboboxes, making them unreadable depending on the background.\n\n<img width=\"1315\" height=\"1110\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/a29872a3-cd11-430b-9c88-70393668c59d\" />\n\n### Affected component/components\n\nCombobox\n\n### How to reproduce\n\n1. Go to https://ui.shadcn.com/create?style=mira\n2. Make sure you are in dark mode\n3. Click any combobox ( for more comboboxes look at https://ui.shadcn.com/create?style=mira&item=combobox-example )\n\n### Codesandbox/StackBlitz link\n\n_No response_\n\n### Logs\n\n```bash\n\n```\n\n### System Info\n\n```bash\nOn Zen Browser, linux, reproduces on Android + Chromium, as well as windows + MS Edge.\n```\n\n### Before submitting\n\n- [x] I've made research efforts and searched the documentation\n- [x] I've searched for existing issues",
+    "html_url": "https://github.com/shadcn-ui/ui/issues/9029",
+    "labels": [
+      "bug"
+    ],
+    "state": "closed",
+    "title": "[bug]: Mira + Dark mode breaks comboboxes"
+  },
+  "shadcn-ui/ui#9118": {
+    "body": "### Describe the bug\n\nHi Everyone : D\n\nAfter updating dependencies, the shadcn/ui Resizable component seems to behave incorrectly.\n\nIt looks related to an update in the underlying library (react-resizable-panels).\nBefore the update, the same layout worked as expected.\n\nI created a minimal reproduction to demonstrate the issue.\n\nThanks for the great project!\n\n\n### Affected component/components\n\nResizable\n\n### How to reproduce\n\nSteps to reproduce:\n\n1. Add the Resizable component from the shadcn/ui documentation.\n2. Use the Resizable component with a basic example\n3. App crashes\n\nExpected behavior:\nResizable panels behave correctly as before.\n\nActual behavior:\nThe app stops working due to not found components\n\n\n### Codesandbox/StackBlitz link\n\nhttps://codesandbox.io/p/devbox/3s558d\n\n### Logs\n\n```bash\n## Error Type\nBuild Error\n\n## Error Message\nExport PanelGroup doesn't exist in target module\n\n## Build Output\n./components/ui/resizable.tsx:4:1\nExport PanelGroup doesn't exist in target module\n  2 |\n  3 | import { GripVertical } from \"lucide-react\"\n> 4 | import * as ResizablePrimitive from \"react-resizable-panels\"\n    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  5 |\n  6 | import { cn } from \"@/lib/utils\"\n  7 |\n\nThe export PanelGroup was not found in module [project]/node_modules/.pnpm/react-resizable-panels@4.0.1_react-dom@19.0.0_react@19.0.0/node_modules/react-resizable-panels/dist/react-resizable-panels.js [app-client] (ecmascript).\nDid you mean to import Panel?\nAll exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.\n\nImport trace:\n  Server Component:\n    ./components/ui/resizable.tsx\n    ./components/resizableDemo.tsx\n    ./app/page.tsx\n\nNext.js version: 15.5.7 (Turbopack)\n```\n\n### System Info\n\n```bash\nOS : Windows 11\nBrowser : Microsoft Edge\nFront : Next.Js\n```\n\n### Before submitting\n\n- [x] I've made research efforts and searched the documentation\n- [x] I've searched for existing issues",
+    "html_url": "https://github.com/shadcn-ui/ui/issues/9118",
+    "labels": [
+      "bug"
+    ],
+    "state": "closed",
+    "title": "[bug]: Resizable component Broken"
+  },
+  "shadcn-ui/ui#9144": {
+    "body": "### Name\n\nicons-animated\n\n### URL\n\nhttps://icons.lndev.me/r/{name}.json\n\n### Homepage\n\nhttps://icons.lndev.me\n\n### Description\n\nMeticulously crafted animated icons\n\nPR Related https://github.com/shadcn-ui/ui/pull/9143\n\n### Logo\n\n![Image](https://github.com/user-attachments/assets/b01e0ae6-bdcb-4f95-8294-784278b187ec)\n\n### Checklist\n\n- [x] The registry must be open source and publicly accessible.\n- [x] The registry must be a valid JSON file that conforms to the [registry schema](https://ui.shadcn.com/docs/registry/registry-json) specification.\n- [x] The `files` array, if present on your registry items, must NOT include a `content` property.\n- [x] I've attached a square SVG logo to this issue",
+    "html_url": "https://github.com/shadcn-ui/ui/issues/9144",
+    "labels": [],
+    "state": "open",
+    "title": "[Registry Directory]: Animated Icons"
+  },
+  "shadcn-ui/ui#9160": {
+    "body": "### Describe the bug\nWhen creating a new project using `npx shadcn@latest create`, the process fails if the project name contains uppercase letters (e.g. `Website`).\n\nThe CLI allows entering uppercase characters, but does not validate or normalize the project name before attempting to create the Next.js app. This results in a generic error message:\n\n> Something went wrong creating a new Next.js project. Please try again.\n\nUsing the same command with a lowercase project name (e.g. `website`) works correctly.\n\nThis behavior is confusing because:\n- the CLI accepts uppercase letters without warning\n- the error message does not explain the actual cause\n\n---\n\n\n### Affected component/components\n\nNone\n\n### How to reproduce\n\n1. Open a terminal\n2. Run: ``npx shadcn@latest create --preset \"https://ui.shadcn.com/init?base=radix&style=vega&baseColor=stone&theme=lime&iconLibrary=lucide&font=figtree&menuAccent=subtle&menuColor=inverted&radius=none&template=next\" --template next``\n3. When prompted for the project name, enter a name containing uppercase letters (e.g. `Project`)\n4. Press Enter\n5. The CLI fails with the message:\n   \"Something went wrong creating a new Next.js project. Please try again.\"\n6. Run the same command again\n7. Enter a lowercase project name (e.g. `project`)\n8. The project is created successfully\n\n\n### Codesandbox/StackBlitz link\n\n_No response_\n\n### Logs\n\n```bash\n\u221a What is your project named? ... Website\n| Creating a new Next.js project. This may take a few minutes.\nSomething went wrong creating a new Next.js project. Please try again\n\n\u221a What is your project named? ... website\n\u221a Creating a new Next.js project.\n\u221a Writing components.json.\n\u221a Checking registry.\n\u221a Updating CSS variables in app\\globals.css\n\u221a Updating app\\globals.css\n\u221a Installing dependencies.\n\u221a Updating fonts.\n\u221a Created 1 file:\n  - lib\\utils.ts\n\nSuccess! Project initialization completed.\n```\n\n### System Info\n\n```bash\nNode Version: v25.1.0\nNPM Version: 11.6.2\nOS: Windows 11\n```\n\n### Before submitting\n\n- [x] I've made research efforts and searched the documentation\n- [x] I've searched for existing issues",
+    "html_url": "https://github.com/shadcn-ui/ui/issues/9160",
+    "labels": [
+      "bug"
+    ],
+    "state": "closed",
+    "title": "[bug]: Project creation fails when project name contains uppercase letters"
+  },
+  "shadcn-ui/ui#9222": {
+    "body": "### Describe the bug\n\nThe Bug Report Form example in the TanStack Form docs (https://ui.shadcn.com/docs/forms/tanstack-form) has noticeable input lag when typing in the description textarea field.\n\n## Root Cause\n\nThe form is configured with `validators: { onSubmit: formSchema }` at the form level, which causes Zod to validate the entire form schema on every keystroke. Combined with reading `field.state.meta` properties (`isTouched`, `isValid`, `errors`) in the render function, this creates expensive validation + re-render cycles for each character typed.\n\n## Performance Impact\n\n- Users experience visible delay when typing in the description textarea\n- The lag becomes more noticeable as the field value grows\n- This creates a poor user experience and doesn't reflect best practices for form performance\n\n## Suggested Fix\n\nChange validation strategy to one of:\n\n1. Use `onBlur` validation instead of real-time for the description field:\n```tsx\nvalidators: {\n  onSubmit: formSchema,\n  onBlur: formSchema,\n}\n```\n\n2. Or use field-level validators for better granularity:\n```tsx\n<form.Field\n  name=\"description\"\n  validators={{\n    onBlur: ({ value }) => {\n      const result = formSchema.shape.description.safeParse(value)\n      return result.error?.errors?.[0]?.message\n    },\n  }}TanStack Form docs example\n>\n```\n\nThis would make the example both more performant and demonstrate better practices for handling expensive validations.\n\n### Affected component/components\n\nTanStack Form docs example\n\n### How to reproduce\n\n1. Visit https://ui.shadcn.com/docs/forms/tanstack-form\n2. Scroll to the \"Bug Report Form\" example\n3. Click on the \"Description\" textarea field\n4. Start typing continuously (e.g., \"This is a test of the textarea performance...\")\n5. Observe noticeable input lag/delay between keystrokes, especially as the text length grows\n\n**Expected behavior:** Typing should feel instant and responsive with no lag\n\n**Actual behavior:** Each keystroke has a visible delay as Zod validates the entire form schema on every character input\n\n### Codesandbox/StackBlitz link\n\n_No response_\n\n### Logs\n\n```bash\n\n```\n\n### System Info\n\n```bash\nSystem: macOS\nBrowser: Chrome\nNode: N/A (browser-based issue)\n\nThis performance issue is reproducible in any modern browser when using the TanStack Form example from the docs.\n```\n\n### Before submitting\n\n- [x] I've made research efforts and searched the documentation\n- [x] I've searched for existing issues",
+    "html_url": "https://github.com/shadcn-ui/ui/issues/9222",
+    "labels": [
+      "bug"
+    ],
+    "state": "closed",
+    "title": "[bug]: TanStack Form example has poor performance - textarea input lag due to real-time validation"
+  },
+  "shadcn-ui/ui#9266": {
+    "body": "### Name\n\n@heroicons-animated\n\n### URL\n\nhttps://www.heroicons-animated.com/r/{name}.json\n\n### Homepage\n\nhttps://www.heroicons-animated.com/\n\n### Description\n\nAn open-source collection of 316 beautifully animated heroicons for your projects.\n\n### Logo\n\n```\n<svg fill=\"none\" viewBox=\"0 0 156 166\" xmlns=\"http://www.w3.org/2000/svg\">\n  <path clipRule=\"evenodd\" d=\"m78.091 0 5.967 5.676c15.038 14.306 35.323 23.067 57.663 23.067.356 0 .711-.002 1.065-.006l6.363-.08 1.988 6.072a102.026 102.026 0 0 1 5.045 31.782c0 47.391-32.269 87.19-75.928 98.477l-2.163.559-2.163-.559C32.27 153.701 0 113.902 0 66.511c0-11.085 1.769-21.772 5.045-31.782l1.988-6.072 6.363.08c.354.004.71.006 1.065.006 22.34 0 42.625-8.761 57.664-23.067L78.09 0Z\" fill=\"#8b5cf6\" fillRule=\"evenodd\"/>\n  <circle cx=\"58\" cy=\"78\" fill=\"white\" r=\"14\"/>\n  <circle cx=\"98\" cy=\"78\" fill=\"white\" r=\"14\"/>\n  <circle cx=\"61\" cy=\"82\" fill=\"black\" r=\"5.5\"/>\n  <circle cx=\"95\" cy=\"82\" fill=\"black\" r=\"5.5\"/>\n</svg>\n```\n![Image](https://github.com/user-attachments/assets/caac1520-c99d-4732-9c3d-29f2dae71889)\n\n### Checklist\n\n- [x] The registry must be open source and publicly accessible.\n- [x] The registry must be a valid JSON file that conforms to the [registry schema](https://ui.shadcn.com/docs/registry/registry-json) specification.\n- [x] The `files` array, if present on your registry items, must NOT include a `content` property.\n- [x] I've attached a square SVG logo to this issue",
+    "html_url": "https://github.com/shadcn-ui/ui/issues/9266",
+    "labels": [],
+    "state": "closed",
+    "title": "[Registry Directory]: heroicons-animated"
+  },
+  "shadcn-ui/ui#9278": {
+    "body": "### Describe the bug\n\nI'm guessing `elative` is supposed to be `relative`?\n\nhttps://github.com/shadcn-ui/ui/blob/b6d845f8a6655cd83e624b7fa9a71ea924437cc1/apps/v4/registry/bases/base/ui/calendar.tsx#L110\n\n### Affected component/components\n\nCalendar\n\n### How to reproduce\n\nJust look at the code\n\n### Codesandbox/StackBlitz link\n\n_No response_\n\n### Logs\n\nN/A\n\n### System Info\n\nN/A\n\n### Before submitting\n\n- [x] I've made research efforts and searched the documentation\n- [x] I've searched for existing issues",
+    "html_url": "https://github.com/shadcn-ui/ui/issues/9278",
+    "labels": [
+      "bug"
+    ],
+    "state": "closed",
+    "title": "[bug]: \"elative\" is not a class in calendar component"
+  },
+  "shadcn-ui/ui#9288": {
+    "body": "### Name\n\n@darx\n\n### URL\n\nhttps://darshitdev.in/r/{name}.json\n\n### Homepage\n\nhttps://darshitdev.in/arts\n\n### Description\n\n[Magic 3D Tabs](https://darshitdev.in/arts/components/magic-3d-tabs#magic-3d-tabs)\nA beautiful 3D tabs component with perspective effects.\n\nFeatures:-\nMouse-interactive 3D rotation for content card\nDynamic tab scaling and lifting based on active tab proximity\nFloating particles background effect\nAnimated radial gradient backgrounds for content\n3D content layers with translateZ for depth\nSubtle 3D edge highlights for depth perception\nPerspective container for immersive 3D experience\nSmooth spring animations for all interactions\nFully customizable with className props\nAccessible with proper ARIA roles and keyboard navigation\n\n**But I am getting the error **\nSomething went wrong. Please check the error below for more details.\nIf the problem persists, please open an issue on GitHub.\n\nMessage:\nUnknown registry \"@darx\". Make sure it is defined in components.json as follows:\n{\n  \"registries\": {\n    \"@darx\": \"[URL_TO_REGISTRY]\"\n  }\n}\n\nSuggestion:\nAdd the registry configuration to your components.json file. Consult the registry documentation for the correct format.\n\nbut it is working fine when i add it through url\n\n### Logo\n\n` <svg\n      width=\"75\"\n      height=\"43\"\n      viewBox=\"0 0 75 43\"\n      fill=\"none\"\n      xmlns=\"http://www.w3.org/2000/svg\"\n      suppressHydrationWarning\n      {...props}\n    >\n      <path d=\"M0 5H6.23601V37H0V5Z\" fill={fillColor}/>\n      <rect x=\"6.23602\" y=\"37\" width=\"23.1623\" height=\"5\" fill={fillColor}/>\n      <rect x=\"6.23602\" width=\"23.1623\" height=\"5\" fill={fillColor}/>\n      <rect width=\"4.8923\" height=\"17.1299\" transform=\"matrix(0.932438 -0.361329 0.293952 0.95582 29.4029 4.76758)\" fill={fillColor}/>\n      <rect width=\"4.88783\" height=\"17.1429\" transform=\"matrix(0.937045 0.349208 -0.283616 0.958938 34.2604 21)\" fill={fillColor}/>\n      <rect x=\"49\" width=\"22\" height=\"5\" fill={fillColor}/>\n      <rect x=\"44\" y=\"5\" width=\"5\" height=\"17\" fill={fillColor}/>\n      <path d=\"M49 22H71V27H49V22Z\" fill={fillColor}/>\n      <rect x=\"71\" y=\"25\" width=\"4\" height=\"13\" fill={fillColor}/>\n      <rect x=\"49\" y=\"38\" width=\"22\" height=\"5\" fill={fillColor}/>\n    </svg>`\n\n### Checklist\n\n- [x] The registry must be open source and publicly accessible.\n- [x] The registry must be a valid JSON file that conforms to the [registry schema](https://ui.shadcn.com/docs/registry/registry-json) specification.\n- [x] The `files` array, if present on your registry items, must NOT include a `content` property.\n- [x] I've attached a square SVG logo to this issue",
+    "html_url": "https://github.com/shadcn-ui/ui/issues/9288",
+    "labels": [],
+    "state": "closed",
+    "title": "[Registry Directory]: Please Approve And Add my registry namespace"
+  },
+  "shadcn-ui/ui#9328": {
+    "body": "### Name\n\n`@launchui`\n\n### URL\n\nhttps://www.launchuicomponents.com/r/{name}.json\n\n### Homepage\n\nhttps://www.launchuicomponents.com/\n\n### Description\n\nCarefully crafted landing page components and templates built with React, Shadcn/ui and Tailwind.\n\n### Logo\n\n```\n<svg\n  width=\"24\"\n  height=\"24\"\n  viewBox=\"0 0 24 24\"\n  fill=\"none\"\n  xmlns=\"http://www.w3.org/2000/svg\"\n>\n  <path\n    d=\"M10.5 12.75H3L6 9.75H9L15.75 3H20.25L10.5 12.75Z\"\n    fill=\"currentColor\"\n  />\n  <path d=\"M11.25 15V13.5L21 3.75V5.25L11.25 15Z\" fill=\"currentColor\" />\n  <path d=\"M11.25 18V16.5L21 6.75V8.25L11.25 18Z\" fill=\"currentColor\" />\n  <path d=\"M11.25 21V19.5L15 15.75V17.25L11.25 21Z\" fill=\"currentColor\" />\n</svg>\n```\n\n### Checklist\n\n- [x] The registry must be open source and publicly accessible.\n- [x] The registry must be a valid JSON file that conforms to the [registry schema](https://ui.shadcn.com/docs/registry/registry-json) specification.\n- [x] The `files` array, if present on your registry items, must NOT include a `content` property.\n- [x] I've attached a square SVG logo to this issue",
+    "html_url": "https://github.com/shadcn-ui/ui/issues/9328",
+    "labels": [],
+    "state": "closed",
+    "title": "[Registry Directory]: Launch UI"
+  },
+  "shadcn-ui/ui#9337": {
+    "body": "TLDR: `destructive-foreground` seems to be missing from the [Theming](https://ui.shadcn.com/docs/theming)#List of variables section.\r\n\r\n-----\r\n\r\nThis is the variable list copied from [manual installation guide](https://ui.shadcn.com/docs/installation/manual)#Configure styles section:\r\n\r\n```css\r\n:root {\r\n  --background: oklch(1 0 0);\r\n  --foreground: oklch(0.145 0 0);\r\n  --card: oklch(1 0 0);\r\n  --card-foreground: oklch(0.145 0 0);\r\n  --popover: oklch(1 0 0);\r\n  --popover-foreground: oklch(0.145 0 0);\r\n  --primary: oklch(0.205 0 0);\r\n  --primary-foreground: oklch(0.985 0 0);\r\n  --secondary: oklch(0.97 0 0);\r\n  --secondary-foreground: oklch(0.205 0 0);\r\n  --muted: oklch(0.97 0 0);\r\n  --muted-foreground: oklch(0.556 0 0);\r\n  --accent: oklch(0.97 0 0);\r\n  --accent-foreground: oklch(0.205 0 0);\r\n  --destructive: oklch(0.577 0.245 27.325);\r\n  --destructive-foreground: oklch(0.577 0.245 27.325);\r\n  --border: oklch(0.922 0 0);\r\n  --input: oklch(0.922 0 0);\r\n  --ring: oklch(0.708 0 0);\r\n  --chart-1: oklch(0.646 0.222 41.116);\r\n  --chart-2: oklch(0.6 0.118 184.704);\r\n  --chart-3: oklch(0.398 0.07 227.392);\r\n  --chart-4: oklch(0.828 0.189 84.429);\r\n  --chart-5: oklch(0.769 0.188 70.08);\r\n  --radius: 0.625rem;\r\n  --sidebar: oklch(0.985 0 0);\r\n  --sidebar-foreground: oklch(0.145 0 0);\r\n  --sidebar-primary: oklch(0.205 0 0);\r\n  --sidebar-primary-foreground: oklch(0.985 0 0);\r\n  --sidebar-accent: oklch(0.97 0 0);\r\n  --sidebar-accent-foreground: oklch(0.205 0 0);\r\n  --sidebar-border: oklch(0.922 0 0);\r\n  --sidebar-ring: oklch(0.708 0 0);\r\n}\r\n```\r\n\r\nThis one is from [Theming](https://ui.shadcn.com/docs/theming)#List of variables, the `destructive-foreground` is missing.\r\n\r\n```diff\r\n  :root {\r\n    --radius: 0.625rem;\r\n    --background: oklch(1 0 0);\r\n    --foreground: oklch(0.145 0 0);\r\n    --card: oklch(1 0 0);\r\n    --card-foreground: oklch(0.145 0 0);\r\n    --popover: oklch(1 0 0);\r\n    --popover-foreground: oklch(0.145 0 0);\r\n    --primary: oklch(0.205 0 0);\r\n    --primary-foreground: oklch(0.985 0 0);\r\n    --secondary: oklch(0.97 0 0);\r\n    --secondary-foreground: oklch(0.205 0 0);\r\n    --muted: oklch(0.97 0 0);\r\n    --muted-foreground: oklch(0.556 0 0);\r\n    --accent: oklch(0.97 0 0);\r\n    --accent-foreground: oklch(0.205 0 0);\r\n    --destructive: oklch(0.577 0.245 27.325);\r\n-   --destructive-foreground: ???\r\n    --border: oklch(0.922 0 0);\r\n    --input: oklch(0.922 0 0);\r\n    --ring: oklch(0.708 0 0);\r\n    --chart-1: oklch(0.646 0.222 41.116);\r\n    --chart-2: oklch(0.6 0.118 184.704);\r\n    --chart-3: oklch(0.398 0.07 227.392);\r\n    --chart-4: oklch(0.828 0.189 84.429);\r\n    --chart-5: oklch(0.769 0.188 70.08);\r\n    --sidebar: oklch(0.985 0 0);\r\n    --sidebar-foreground: oklch(0.145 0 0);\r\n    --sidebar-primary: oklch(0.205 0 0);\r\n    --sidebar-primary-foreground: oklch(0.985 0 0);\r\n    --sidebar-accent: oklch(0.97 0 0);\r\n    --sidebar-accent-foreground: oklch(0.205 0 0);\r\n    --sidebar-border: oklch(0.922 0 0);\r\n    --sidebar-ring: oklch(0.708 0 0);\r\n  }\r\n```\r\nI didn't find any usage of `destructive-foreground`. I wonder is it used somewhere? Or it is reserved for later use? Is it safe to omit in configuration, or the theming article should be updated?\r\n\r\n_Originally posted by @fenprace in https://github.com/shadcn-ui/ui/discussions/9123_",
+    "html_url": "https://github.com/shadcn-ui/ui/issues/9337",
+    "labels": [],
+    "state": "closed",
+    "title": "[bug]: `destructive-foreground` is missing in the Theming guide"
+  },
+  "shadcn-ui/ui#9370": {
+    "body": "### Describe the bug\n\nThe `@motion-primitives` registry entry in the shadcn registry directory uses `https://motion-primitives.com/c/registry.json` which is missing the required `{name}` placeholder. This causes the CLI to fail validation when resolving components that have `@motion-primitives/*` as a `registryDependency`.\n\n**Additional context:**\n\nThe registry was added via Issue #8588 with URL `https://motion-primitives.com/c/registry.json`.\n\n### Affected component/components\n\nRegistry Directory / CLI namespace resolution\n\n### How to reproduce\n\n1. Create a component with `@motion-primitives/text-effect` as a `registryDependency`\n2. Run `pnpm dlx shadcn@latest add your-component`\n3. CLI fails with: `Validation failed: - registries: Registry URL must include {name} placeholder`\n\nor \n\n1. Run `pnpm dlx shadcn@latest add @motion-primitives/text-effect`\n\n### Codesandbox/StackBlitz link\n\nN/A - This is a registry directory configuration issue, not a code issue. The bug is in the stored URL for `@motion-primitives` in the registry directory.\n\n### Logs\n\n```bash\npnpm dlx shadcn@latest add @tailark-pro/dark-landing-one\n\nSomething went wrong. Please check the error below for more details.\nIf the problem persists, please open an issue on GitHub.\n\nValidation failed:\n- registries: Registry URL must include {name} placeholder\n```\n\n### System Info\n\n```bash\n- shadcn CLI version: 3.7.0\n- Node: v20.x\n- OS: macOS\n```\n\n### Before submitting\n\n- [x] I've made research efforts and searched the documentation\n- [x] I've searched for existing issues",
+    "html_url": "https://github.com/shadcn-ui/ui/issues/9370",
+    "labels": [
+      "bug"
+    ],
+    "state": "closed",
+    "title": "[bug]: @motion-primitives registry URL missing {name} placeholder causes CLI validation failure"
+  },
+  "shadcn-ui/ui#9403": {
+    "body": "### Describe the bug\n\nTrying to access the codes on the website but the buttons do not work. Happened recently.\n\n### Affected component/components\n\nall\n\n### How to reproduce\n\nVisit the documentation page https://ui.shadcn.com/docs/components/radix/input-group#dropdown\n\n### Codesandbox/StackBlitz link\n\n_No response_\n\n### Logs\n\n```bash\n\n```\n\n### System Info\n\n```bash\nGoogle chrome Version 143.0.7499.193 (Official Build) (arm64)\n```\n\n### Before submitting\n\n- [x] I've made research efforts and searched the documentation\n- [x] I've searched for existing issues",
+    "html_url": "https://github.com/shadcn-ui/ui/issues/9403",
+    "labels": [
+      "bug"
+    ],
+    "state": "closed",
+    "title": "[bug]: None of the buttons work on documentation"
+  },
+  "shadcn-ui/ui#9424": {
+    "body": "### Describe the bug\n\nThe Sonner component documentation page contains a broken link that navigates to the wrong page in the Sonner documentation.\n\n\n### Affected component/components\n\nSonner component documentation\n\n### How to reproduce\n\n1. Go to https://ui.shadcn.com/docs/components/base/sonner\n2. Click on the link that should navigate to the Sonner documentation\n3. Observe that it navigates to https://sonner.emilkowal.ski/api instead of the correct \"getting started\" page (https://sonner.emilkowal.ski/getting-started)\n\n\n**Expected behavior**\nThe link should navigate to https://sonner.emilkowal.ski/getting-started (the proper getting started page)\n\n**Current behavior**\nThe link incorrectly navigates to https://sonner.emilkowal.ski/api (API documentation page) which display a 500 error page\n\n**Note**\nHi! I'd be happy to submit a PR to fix this link if that would be helpful. \nIt looks like a simple documentation update. Let me know if you'd prefer \nsomeone else to handle it or if there are any specific guidelines I should follow.\n\n\n### Codesandbox/StackBlitz link\n\n_No response_\n\n### Logs\n\n```bash\n\n```\n\n### System Info\n\n```bash\n- OS: macOS 26.2\n- Browser: Chrome 143.0.7499.193\n- Device: MacBook Pro\n```\n\n### Before submitting\n\n- [x] I've made research efforts and searched the documentation\n- [x] I've searched for existing issues",
+    "html_url": "https://github.com/shadcn-ui/ui/issues/9424",
+    "labels": [
+      "bug"
+    ],
+    "state": "closed",
+    "title": "[bug]:  Incorrect link in Sonner component documentation"
+  },
+  "shadcn-ui/ui#9446": {
+    "body": "### Describe the bug\n\nthe scroll events from code snippets are not bubbling up, i think the native behaviour where the scroll events are bubbled up once the end of the scrollarea is reached should be standard. \n\naxis locking is the issue\n\n### Affected component/components\n\nDocs\n\n### How to reproduce\n\nhttps://ui.shadcn.com/docs/forms/tanstack-form\n\nscroll in that snippet to understand the issue\n\n<img width=\"1044\" height=\"861\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/e2aefc0c-3352-4221-a1b1-fc303a51c7ed\" />\n\n### Codesandbox/StackBlitz link\n\n_No response_\n\n### Logs\n\n```bash\n\n```\n\n### System Info\n\n```bash\nApple M4 Pro (15.7.3 (24G419))\nreproducible in both chromium and webkit\n```\n\n### Before submitting\n\n- [x] I've made research efforts and searched the documentation\n- [x] I've searched for existing issues",
+    "html_url": "https://github.com/shadcn-ui/ui/issues/9446",
+    "labels": [
+      "bug"
+    ],
+    "state": "closed",
+    "title": "[bug]: In docs the scroll events from code snippets are not bubbling up"
+  },
+  "shadcn-ui/ui#9463": {
+    "body": "### Describe the bug\n\nRunning `npx shadcn@latest registry add @ai-elements`\n\nResults in: \n```bash\n\u2819 Fetching registries.\n\nSomething went wrong. Please check the error below for more details.\nIf the problem persists, please open an issue on GitHub.\n\nUnexpected token ']', ...\"LI.\"\n  },\n]\n\" is not valid JSON\n```\n\nI've confirmed this is an issue with others on my team\n\n### Affected component/components\n\nNone\n\n### How to reproduce\n\nNavigated to the root of your new project, and if you haven\u2019t set up shadcn run:\n\n```bash\nnpx shadcn@latest init\n```\n\nThen add the AI elements registry with: (though this happens with any registry)\n\n```bash\nnpx shadcn@latest registry add @ai-elements\n```\n\n### Codesandbox/StackBlitz link\n\n_No response_\n\n### Logs\n\n```bash\n\u2819 Fetching registries.\n\nSomething went wrong. Please check the error below for more details.\nIf the problem persists, please open an issue on GitHub.\n\nUnexpected token ']', ...\"LI.\"\n  },\n]\n\" is not valid JSON\n```\n\n### System Info\n\n```bash\nMac OS latest, pnpm/npx\n```\n\n### Before submitting\n\n- [x] I've made research efforts and searched the documentation\n- [x] I've searched for existing issues",
+    "html_url": "https://github.com/shadcn-ui/ui/issues/9463",
+    "labels": [
+      "bug"
+    ],
+    "state": "closed",
+    "title": "[bug]:"
+  },
+  "shadcn-ui/ui#9515": {
+    "body": "### Describe the bug\n\nThe link \"Forgot your password?\" isn't correctly flipped in RTL. The margin should be flipped for RTL (`margin-left: auto` for LTR and `margin-right: auto` for RTL), or the logical `margin-inline-start: auto`.\n\nBefore:\n<img width=\"707\" height=\"580\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/3f56dfe4-b726-413f-9d17-4b598f361338\" />\n\nAfter:\n<img width=\"712\" height=\"546\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/6866b298-2e4b-4166-97e4-bf98a34dd8a3\" />\n\n### Affected component/components\n\nForm label\n\n### How to reproduce\n\n1. Go to https://ui.shadcn.com/docs/rtl\n2. Check how the password link look in English/LTR\n3. See how it's not flipped correctly in RTL\n\n### Codesandbox/StackBlitz link\n\n_No response_\n\n### Logs\n\n```bash\n\n```\n\n### System Info\n\n```bash\nN/A\n```\n\n### Before submitting\n\n- [x] I've made research efforts and searched the documentation\n- [x] I've searched for existing issues",
+    "html_url": "https://github.com/shadcn-ui/ui/issues/9515",
+    "labels": [
+      "bug"
+    ],
+    "state": "closed",
+    "title": "[bug]: RTL docs: Login form \u201cPassword reset\u201d link isn\u2019t flipped"
+  },
+  "shadcn-ui/ui#9595": {
+    "body": "### Describe the bug\n\nNavigating to https://ui.shadcn.com/blocks/calendar returns a 404. \n\n### Affected component/components\n\nshadcn website\n\n### How to reproduce\n\nNavigate to https://ui.shadcn.com/blocks/calendar \n\n### Codesandbox/StackBlitz link\n\n_No response_\n\n### Logs\n\n```bash\n\n```\n\n### System Info\n\n```bash\nShould happen on any browser.\n```\n\n### Before submitting\n\n- [x] I've made research efforts and searched the documentation\n- [x] I've searched for existing issues",
+    "html_url": "https://github.com/shadcn-ui/ui/issues/9595",
+    "labels": [
+      "bug"
+    ],
+    "state": "closed",
+    "title": "[bug]: Calendar blocks site page returning a 404"
+  },
+  "shadcn-ui/ui#9614": {
+    "body": "### Describe the bug\n\nI first reported this as an issue in Base UI, but this is expected behaviour on their side.\nhttps://github.com/mui/base-ui/issues/4021\n\nThey'll likely show a warning about this in a future release:\nhttps://github.com/mui/base-ui/pull/3423\n\n### Affected component/components\n\nButton\n\n### How to reproduce\n\nYou can inspect the Button here and see the role is \"button\", even though it's semantically a link.\nhttps://ui.shadcn.com/docs/components/base/button#link-1\n\n### Codesandbox/StackBlitz link\n\nN/A\n\n### Logs\n\nN/A\n\n### System Info\n\nN/A\n\n### Before submitting\n\n- [x] I've made research efforts and searched the documentation\n- [x] I've searched for existing issues",
+    "html_url": "https://github.com/shadcn-ui/ui/issues/9614",
+    "labels": [
+      "bug"
+    ],
+    "state": "closed",
+    "title": "[bug]: Base UI Button as link has wrong role"
+  },
+  "shadcn-ui/ui#9635": {
+    "body": "### Describe the bug\n\nCould you please reorder the className and variant props in the Badge component? Right now, user-provided classes are always being overridden, which causes them to lose precedence. Reordering these should allow user classes to take priority and resolve the issue.\nit is in base-ui\nhttps://github.com/shadcn-ui/ui/blob/2ef58bd75d6d9300e155908062c8504c40017a78/apps/v4/registry/bases/base/ui/badge.tsx#L36\n### Affected component/components\n\nBadge\n\n### How to reproduce\n\n**How to reproduce**\n\n1. Create a Badge using the existing component.\n2. Pass a custom class such as `rounded-sm` through the `className` prop.\n3. Notice that the style does not apply \u2014 the default styles from the component override it.\n4. The custom class only works if you force it with `rounded-sm!`.\n\nAfter checking the component implementation, I found this line:\n\n```ts\nclassName: cn(badgeVariants({ className, variant })),\n```\n\nBecause `className` is passed before `variant`, the generated variant styles take precedence over user-provided classes.\n\nNormally, it should be ordered like this:\n\n```ts\nclassName: cn(badgeVariants({ variant, className })),\n```\n\nThis way, user classes are applied last and can properly override the defaults.\n\n\n### Codesandbox/StackBlitz link\n\n_No response_\n\n### Logs\n\n```bash\n\n```\n\n### System Info\n\n```bash\nreact base-ui\n```\n\n### Before submitting\n\n- [x] I've made research efforts and searched the documentation\n- [x] I've searched for existing issues",
+    "html_url": "https://github.com/shadcn-ui/ui/issues/9635",
+    "labels": [
+      "bug"
+    ],
+    "state": "closed",
+    "title": "[bug]:Badge classes order"
+  },
+  "shadcn-ui/ui#9651": {
+    "body": "### Describe the bug\n\nUsing the `<Accordion />` with \"base-ui\" and the `disabled` props on `<AccordionItem />` doesn't apply style for the trigger/button.\n\nIt's because actually the classes on `<AccordionTrigger>` are `disabled:pointer-events-none disabled:opacity-50` but base-ui only apply an `aria-disabled` attribute (not directly the `disabled` attr on the button).\n\nThe solution is to also add `aria-disabled:pointer-events-none aria-disabled:opacity-50` on the style on `<AccordionTrigger />`\n\n### Affected component/components\n\nAccordion\n\n### How to reproduce\n\nExample from create with radix: https://ui.shadcn.com/create?item=accordion-example&iconLibrary=hugeicons&font=geist\n<img width=\"1200\" height=\"739\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/dd7199ee-7207-4e70-80b6-af9300135681\" />\n\nExample from create with base: https://ui.shadcn.com/create?item=accordion-example&iconLibrary=hugeicons&font=geist&base=base\n\n<img width=\"1179\" height=\"747\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/f21e5b9c-5fe2-4cd8-be55-078a82d5f543\" />\n\n### Codesandbox/StackBlitz link\n\n_No response_\n\n### Logs\n\n```bash\n\n```\n\n### System Info\n\n```bash\nSystem:\n  OS: macOS 15.5\n  CPU: (14) arm64 Apple M4 Pro\n  Memory: 178.59 MB / 24.00 GB\n  Shell: 5.9 - /bin/zsh\nBinaries:\n  Node: 22.14.0 - /Users/xxxxx/.volta/tools/image/node/22.14.0/bin/node\n  npm: 10.9.2 - /Users/xxxxx/.volta/tools/image/node/22.14.0/bin/npm\nBrowsers:\n  Chrome: 145.0.7632.76\n  Firefox: 147.0\n  Firefox Developer Edition: 148.0\n```\n\n### Before submitting\n\n- [x] I've made research efforts and searched the documentation\n- [x] I've searched for existing issues",
+    "html_url": "https://github.com/shadcn-ui/ui/issues/9651",
+    "labels": [
+      "bug"
+    ],
+    "state": "closed",
+    "title": "[bug]: missing disabled style for Accordion with base-ui"
+  },
+  "shadcn-ui/ui#9657": {
+    "body": "### Describe the bug\n\nHello, @shadcn \n\nI am using the manual installation method of shadcn/ui because I\u2019m working with React + Vite + WXT, which is not natively supported by the CLI.\n\nIn the documentation (Step 4 of Manual Installation):\n[](https://ui.shadcn.com/docs/installation/manual)\n\nThe src/styles/globals.css file includes the following imports:\n```\n@import \"tailwindcss\";\n@import \"tw-animate-css\";\n@import \"shadcn/tailwind.css\";\n```\n\nHowever, with Tailwind CSS v4, adding all three imports throws an error.\nIn v4, only the following is required:\n`@import \"tailwindcss\";`\n\nThe other imports are no longer needed and cause conflicts.\n\nSuggested Fix:\nPlease update the documentation to reflect Tailwind v4 compatibility and clarify that only:\n`@import \"tailwindcss\";`\n\nThank you!\n\n### Affected component/components\n\nManual installation Document\n\n### How to reproduce\n\n1) Go to https://ui.shadcn.com/docs/installation/manual\n2) In this link see **step-4** Configure styles\n\n### Codesandbox/StackBlitz link\n\n_No response_\n\n### Logs\n\n```bash\n\n```\n\n### System Info\n\n```bash\nAll Browsers\n```\n\n### Before submitting\n\n- [x] I've made research efforts and searched the documentation\n- [x] I've searched for existing issues",
+    "html_url": "https://github.com/shadcn-ui/ui/issues/9657",
+    "labels": [
+      "bug"
+    ],
+    "state": "closed",
+    "title": "[bug]:Need to Update the Manual installation Document. "
+  },
+  "shadcn-ui/ui#9914": {
+    "body": "### Describe the bug\n\nwhen attempting to change preset using the skill in Claude Code, it attempts to change from base-ui to radix because the preset maps to radix (i was using base-ui)\n\n```\nClaude: This is a significant change since it switches from Base UI to Radix primitives. Let me now update the config, CSS, and smart-merge each component.\n\nMe: --preset aJMi5Dc is supposed to be base-vega not radix\n```\nmy response is i guess false, since it shouldn't map to either?\n\n```\nClaude: The CLI resolved preset aJMi5Dc to radix-vega, not base-vega. The preset code determines the exact style \u2014 it seems this code maps to radix-vega in the shadcn registry.\n```\n\n### Affected component/components\n\nCLI, presets, skills\n\n### How to reproduce\n\ncreate a project using base-ui as Base (i used a monorepo), ask agent to change to a different preset\n\n### Codesandbox/StackBlitz link\n\n_No response_\n\n### Logs\n\n```bash\n\u23fa The preset aJMi5Dc changes several things:\n  - Style: base-nova \u2192 radix-vega\n  - Base: base \u2192 radix (different primitive library)\n  - Icon library: lucide \u2192 phosphor\n  - Font: Geist \u2192 Public Sans\n  - Base color: neutral \u2192 zinc\n  - New color scheme: teal/cyan primary colors\n\n  This is a significant change since it switches from Base UI to Radix primitives. Let me now update the config, CSS, and smart-merge each component.\n\n\u23fa Read(packages/ui/src/styles/globals.css)\n  \u23bf \u00a0Read 129 lines\n\n\u23fa Read(/tmp/shadcn-preset-test/test-app/src/components/ui/button.tsx)\n  \u23bf \u00a0Read 68 lines\n\n\u23fa Read(/tmp/shadcn-preset-test/test-app/src/lib/utils.ts)\n  \u23bf \u00a0Read 7 lines\n\n                                                                                                                                                       04:45 PM claude-opus-4-6\n\u23fa Now let me get the upstream versions of all 6 installed components for the new radix-vega style, so I can smart-merge them.\n\n\u23fa Bash(cd /tmp/shadcn-preset-test/test-app && pnpm dlx shadcn@latest add card field input label separator --yes 2>&1)\n  \u23bf \u00a0Interrupted \u00b7 What should Claude do instead?\n\n\u276f  --preset aJMi5Dc is supposed to be base-vega not radix\n\n                                                                                                                                                       04:47 PM claude-opus-4-6\n\u23fa Let me re-create the temp project with the correct interpretation. The preset should use base (Base UI) not radix.\n\n\u23fa Bash(rm -rf /tmp/shadcn-preset-test && mkdir -p /tmp/shadcn-preset-test && cd /tmp/shadcn-preset-test && pnpm dlx shadcn@latest init --preset aJMi5Dc --template vite --name test-app\n       --yes 2>&1 | tail -20)\n  \u23bf \u00a0Error: Permission to use Bash with command rm -rf /tmp/shadcn-preset-test && mkdir -p /tmp/shadcn-preset-test && cd /tmp/shadcn-preset-test && pnpm dlx shadcn@latest init\n     --preset aJMi5Dc --template vite --name test-app --yes 2>&1 has been denied.\n\n\u23fa Bash(cd /tmp/shadcn-preset-test/test-app && cat components.json)\n  \u23bf \u00a0{\n       \"$schema\": \"https://ui.shadcn.com/schema.json\",\n       \"style\": \"radix-vega\",\n       \"rsc\": false,\n       \"tsx\": true,\n       \"tailwind\": {\n         \"config\": \"\",\n         \"css\": \"src/index.css\",\n         \"baseColor\": \"zinc\",\n         \"cssVariables\": true,\n         \"prefix\": \"\"\n       },\n       \"iconLibrary\": \"phosphor\",\n       \"rtl\": false,\n       \"aliases\": {\n         \"components\": \"@/components\",\n         \"utils\": \"@/lib/utils\",\n         \"ui\": \"@/components/ui\",\n         \"lib\": \"@/lib\",\n         \"hooks\": \"@/hooks\"\n       },\n       \"menuColor\": \"default\",\n       \"menuAccent\": \"subtle\",\n       \"registries\": {}\n     }\n  \u23bf \u00a0Shell cwd was reset to /Users/davidsoards/Projects/soardscn-cli4\n\n                                                                                                                                                       04:47 PM claude-opus-4-6\n\u23fa The CLI resolved preset aJMi5Dc to radix-vega, not base-vega. The preset code determines the exact style \u2014 it seems this code maps to radix-vega in the shadcn registry.\n\n  Are you sure the code aJMi5Dc is correct? If you want base-vega specifically, you may need a different preset code, or we could manually set the style to base-vega instead of using\n  the preset code. What would you prefer?\n```\n\n### System Info\n\n```bash\nMac OS 15.7.4\n```\n\n### Before submitting\n\n- [x] I've made research efforts and searched the documentation\n- [x] I've searched for existing issues",
+    "html_url": "https://github.com/shadcn-ui/ui/issues/9914",
+    "labels": [
+      "bug"
+    ],
+    "state": "closed",
+    "title": "[bug]: --presets map to radix"
+  },
+  "shadcn-ui/ui#9969": {
+    "body": "### Describe the bug\n\nLLMS.TXT https://ui.shadcn.com/llms.txt\n\nLists Link to - [Forms - Next.js](https://ui.shadcn.com/docs/forms/next): Building forms in Next.js with Server Actions.\n\nDocumentation has error:\n\nComponent form-next-demo not found in registry.\n\n### Affected component/components\n\nForms\n\n### How to reproduce\n\nGo to - https://ui.shadcn.com/docs/forms/next\n\nComponent form-next-demo not found in registry.\n\n### Codesandbox/StackBlitz link\n\n_No response_\n\n### Logs\n\n```bash\n\n```\n\n### System Info\n\n```bash\nChrome\n```\n\n### Before submitting\n\n- [x] I've made research efforts and searched the documentation\n- [x] I've searched for existing issues",
+    "html_url": "https://github.com/shadcn-ui/ui/issues/9969",
+    "labels": [
+      "bug"
+    ],
+    "state": "closed",
+    "title": "[bug]: Docs - - [Forms - Next.js](https://ui.shadcn.com/docs/forms/next): Building forms in Next.js with Server Actions."
+  },
+  "shadcn-ui/ui#10028": {
+    "body": "### Describe the bug\n\nnode:internal/modules/esm/resolve:275\n    throw new ERR_MODULE_NOT_FOUND(\n          ^\n\nError [ERR_MODULE_NOT_FOUND]: Cannot find module '/Users/*/node_modules/tinyexec/dist/main.js' imported from /Users/*/node_modules/@antfu/ni/dist/index.mjs\n    at finalizeResolution (node:internal/modules/esm/resolve:275:11)\n    at moduleResolve (node:internal/modules/esm/resolve:860:10)\n    at defaultResolve (node:internal/modules/esm/resolve:984:11)\n    at ModuleLoader.defaultResolve (node:internal/modules/esm/loader:780:12)\n    at #cachedDefaultResolve (node:internal/modules/esm/loader:704:25)\n    at ModuleLoader.resolve (node:internal/modules/esm/loader:687:38)\n    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:305:38)\n    at ModuleJob._link (node:internal/modules/esm/module_job:137:49) {\n  code: 'ERR_MODULE_NOT_FOUND',\n  url: 'file:///Users/*/node_modules/tinyexec/dist/main.js'\n}\n\n### Affected component/components\n\nall\n\n### How to reproduce\n\n1. `npx shadcn@latest init --preset a0 --template vite`\n2. `npx shadcn@latest add button`\n3. command failed\n\n### Codesandbox/StackBlitz link\n\n_No response_\n\n### Logs\n\n```bash\n\n```\n\n### System Info\n\n```bash\nmacos\n```\n\n### Before submitting\n\n- [x] I've made research efforts and searched the documentation\n- [x] I've searched for existing issues",
+    "html_url": "https://github.com/shadcn-ui/ui/issues/10028",
+    "labels": [
+      "bug"
+    ],
+    "state": "closed",
+    "title": "[bug]: Setup does not work"
+  },
+  "shadcn-ui/ui#10072": {
+    "body": "### Describe the bug\n\nThe shadcn skill installed via `npx skills add shadcn/ui` fails to load in Claude Code with this error:\n\n```\nBash command permission check failed for pattern \"!`npx shadcn@latest info --json 2>/dev/null || echo '{\"error\": \"No shadcn project found. Run shadcn init first.\"}'`\": This Bash command contains multiple operations. The following part requires approval: npx shadcn@latest info --json\n```\n\nThe inline bash command on line 16 of `SKILL.md` uses `2>/dev/null || echo '...'` which Claude Code treats as \"multiple operations\" and blocks without showing an approval prompt to the user.\n\nThe command `npx shadcn@latest info --json` works perfectly when run directly in the terminal.\n\n### Expected behavior\n\nThe skill should load successfully. Either:\n- Claude Code should show an approval prompt for the inline command (like it does for regular bash commands)\n- Or the SKILL.md should include `allowed-tools: Bash(npx shadcn@latest *)` in the frontmatter to pre-authorize the command\n\n### Environment\n\n- Claude Code: 2.1.76\n- OS: macOS (Darwin 25.2.0)\n- Node: v24.11.1\n- Permission mode: default (not acceptEdits or bypassPermissions)\n- Skill installed at project level via `npx skills add shadcn/ui`\n\n### How to reproduce\n\n1. Install the skill: `npx skills add shadcn/ui`\n2. Open Claude Code in default permission mode\n3. Invoke the skill (either directly or by working with shadcn components)\n4. Error appears, skill fails to load\n\n### Additional context\n\nThe `SKILL.md` frontmatter does not include `allowed-tools`. According to Claude Code docs, skills that use inline `!` bash commands should declare `allowed-tools` in frontmatter to authorize those commands.",
+    "html_url": "https://github.com/shadcn-ui/ui/issues/10072",
+    "labels": [],
+    "state": "closed",
+    "title": "[bug]: shadcn skill fails to load in Claude Code \u2014 inline bash command blocked by permission check"
+  },
+  "vercel/turborepo#11047": {
+    "body": "### Verify canary release\n\n- [x] I verified that the issue exists in the latest Turborepo canary release.\n\n### Link to code that reproduces this issue\n\nbunx --bun shadcn@latest init\n\n### Which canary version will you have in your reproduction?\n\n2.6.0 \n\n\n### Expected behavior\n\nThis issue might not be directly related to Turbo, but it\u2019s connected to how Bun handles isolated installs.\n\nThe project builds successfully with pnpm workspaces, but not with Bun, specifically when using isolated installs.\n\nHere\u2019s what\u2019s happening:\n\nThe @tailwind/postcss plugin is installed only inside packages/ui, and that package exports the PostCSS config directly.\n\nSince we are explicitly exporting the PostCSS config from ui, we shouldn\u2019t need to install @tailwind/postcss (or related deps) again in web.\n\nThis approach keeps all Tailwind/PostCSS-related dependencies inside packages/ui \u2014 where the components actually live \u2014 instead of duplicating them in multiple places.\n\nHowever, with Bun\u2019s isolated install mode, it doesn\u2019t work that way.\nBun requires the same packages (postcss, tailwindcss, and @tailwind/postcss) to also be installed inside web, or else the build fails.\n\nWith pnpm, everything works as expected \n\n\nHaving Tailwind/PostCSS only inside ui makes it:\n\nEasier to manage versions (single source of truth)\n\nCleaner for dependency management\n\nEasier to maintain the shared UI package without extra installs\n\nIn the official example repo using TailwindCSS, you install the PostCSS/Tailwind packages in both:\n\npackages/tailwindconfig\n\nand again in apps/web\n\nYou even end up installing postcss inside both packages.\n\nThat setup technically works, but it adds unnecessary duplication.\nIf the PostCSS config is exported from one place, it should be reusable without needing to install those same packages again everywhere else.\n\nThis approach (keeping it in ui) also ensures all external package versions stay consistent, since there\u2019s just one source of truth.\n\n\n\n### Actual behavior\n\n\n> Build error occurred\nError: Turbopack build failed with 1 errors:\n./packages/ui/src/styles/globals.css\nError evaluating Node.js code\nError: Cannot find module '@tailwindcss/postcss'\nRequire stack:\n\n\n\nImport trace:\n  Client Component Browser:\n    ./packages/ui/src/styles/globals.css [Client Component Browser]\n    ./apps/web/app/layout.tsx [Server Component]\n\n\n    at ignore-listed frames\n\u2009ELIFECYCLE\u2009 Command failed with exit code 1.\n\n\n### To Reproduce\n```\nbun install\nbun run build\n```\n\n### Additional context\n\n_No response_",
+    "html_url": "https://github.com/vercel/turborepo/issues/11047",
+    "labels": [
+      "kind: bug"
+    ],
+    "state": "closed",
+    "title": "bun isolated installs are not stable with shadcn ui template"
+  }
+}

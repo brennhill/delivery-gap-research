@@ -1,0 +1,132 @@
+{
+  "rust-lang/cargo#16357": {
+    "body": "*[View all comments](https://triagebot.infra.rust-lang.org/gh-comments/rust-lang/cargo/issues/16357)*\n\n### Problem\n\nAll of my CI jobs that use nightly Rust on FreeBSD began to fail on about 4-December with this error:\n```\ncargo +$VERSION test\n    Updating crates.io index\nerror: failed to get `mio` as a dependency of package `mio-aio v1.0.0 (/tmp/cirrus-ci-build)`\nCaused by:\n  download of config.json failed\nCaused by:\n  failed to download from `https://index.crates.io/config.json`\nCaused by:\n  [60] SSL peer certificate or SSH remote key was not OK (SSL certificate OpenSSL verify result: unable to get local issuer certificate (20))\nExit status: 101\n```\nThe CI environment has not changed, I don't see this problem on stable Rust, and I don't see this problem on Linux.  Nor have I yet been able to reproduce the problem on a local FreeBSD VM.\n\nLinks to some failed builds:\nhttps://cirrus-ci.com/task/5129181652058112\nhttps://cirrus-ci.com/task/6459889154785280\nhttps://cirrus-ci.com/task/5444677467373568\nhttps://cirrus-ci.com/task/6421169420632064\n\n\n### Steps\n\n1. On a fresh FreeBSD 13.5 and 14.3 VM (15.0 not affected), install nightly Rust toolchain\n2. Run virtually any cargo command on any repository.\n\n### Possible Solution(s)\n\n_No response_\n\n### Notes\n\n_No response_\n\n### Version\n\n```text\ncargo version --verbose\ncargo 1.94.0-nightly (2c283a9a5 2025-12-04)\nrelease: 1.94.0-nightly\ncommit-hash: 2c283a9a5c5968eeb9a8f12313f04feb1ff8dfac\ncommit-date: 2025-12-04\nhost: x86_64-unknown-freebsd\nlibgit2: 1.9.1 (sys:0.20.2 vendored)\nlibcurl: 8.17.0-DEV (sys:0.4.84+curl-8.17.0 vendored ssl:OpenSSL/3.5.4)\nssl: OpenSSL 3.5.4 30 Sep 2025\nos: FreeBSD 14.3-RELEASE [64-bit]\n```",
+    "html_url": "https://github.com/rust-lang/cargo/issues/16357",
+    "labels": [
+      "C-bug",
+      "A-networking",
+      "regression-from-stable-to-beta",
+      "regression-from-stable-to-stable",
+      "O-freebsd"
+    ],
+    "state": "closed",
+    "title": "\"SSL peer certificate or SSH remote key was not OK\" error on FreeBSD"
+  },
+  "rust-lang/rust#135867": {
+    "body": "### Update (2025-02-13): GitHub has changed the new large runners to Neoverse N1 CPUs. The underlying issue is not fixed, but GHA large aarch64 runners should now work fine with Ubuntu 24.\n\n### ~~If you are reading this issue because you are seeing mysterious crashes on the new aarch64 GitHub Actions runners, try using the image `ubuntu-22.04-arm`. All software seems to be unstable to some extent on the `ubuntu-24.04-arm` image, though crashes in rustc seem more frequent.~~\n\nI (@saethlin, the compiler maintainer editing this) will try to keep this message up-to-date as this problem is debugged. Original issue text is below.\n\n----\n\n### Code\n\n```sh\ngit clone https://github.com/sgrif/pq-sys\ncd pq-sys\ngit checkout 4e4f24c8f35abec47927ba20d144b7a8172f1f98\ncargo check --no-default-features --features \"bundled\"\n```\n\nThis happened once on a github CI runner, I nevertheless fill this as report as the output asked for it. It might be an hardware issue, as it went away with a rebuild.\n\nCI LOG: https://github.com/sgrif/pq-sys/actions/runs/12903477183/job/35978791282?pr=73#step:14:26\n\n### Meta\n<!--\nIf you're using the stable version of the compiler, you should also check if the\nbug also exists in the beta or nightly versions.\n-->\n\n`rustc --version --verbose`:\n```\nrustc 1.84.0 (9fc6b4312 2025-01-07)\nbinary: rustc\ncommit-hash: 9fc6b43126469e3858e2fe86cafb4f0fd5068869\ncommit-date: 2025-01-07\nhost: aarch64-unknown-linux-gnu\nrelease: 1.84.0\nLLVM version: 19.1.5\n```\n\n### Error output\n\n```\nerror: rustc interrupted by SIGSEGV, printing backtrace\n\n/home/runner/.rustup/toolchains/stable-aarch64-unknown-linux-gnu/bin/../lib/librustc_driver-bedc4a794a543ce8.so(+0xbf78ec)[0xff0bdc5f78ec]\nlinux-vdso.so.1(__kernel_rt_sigreturn+0x0)[0xff0be59597e0]\n\nnote: we would appreciate a report at https://github.com/rust-lang/rust\nhelp: you can increase rustc's stack size by setting RUST_MIN_STACK=16777216\nerror: could not compile `vcpkg` (lib)\n```",
+    "html_url": "https://github.com/rust-lang/rust/issues/135867",
+    "labels": [
+      "I-crash",
+      "I-ICE",
+      "O-AArch64",
+      "C-external-bug"
+    ],
+    "state": "open",
+    "title": "Compiler crashes/ICEs on new aarch64 GHA runners/Azure Cobalt 100 (Neoverse N2) CPUs"
+  },
+  "rust-lang/rust#153486": {
+    "body": "This is a regression from stable to stable that affects Tokio's test suite: https://github.com/tokio-rs/tokio/pull/7955\n\n### Code\n\nI tried this code:\n\n```rust\nuse std::os::windows::fs::OpenOptionsExt;\n\npub struct MyCustomOptions {\n    // Placeholder for actual options logic\n    pub access: u32,\n    pub share: u32,\n}\n\nimpl OpenOptionsExt for MyCustomOptions {\n    fn access_mode(&mut self, access: u32) -> &mut Self {\n        self.access = access; // Minimal side effect for testing\n        self\n    }\n\n    fn share_mode(&mut self, val: u32) -> &mut Self {\n        self.share = val;\n        self\n    }\n\n    fn custom_flags(&mut self, _flags: u32) -> &mut Self {\n        self\n    }\n\n    fn attributes(&mut self, _val: u32) -> &mut Self {\n        self\n    }\n\n    fn security_qos_flags(&mut self, _flags: u32) -> &mut Self {\n        self\n    }\n}\n\nfn main() {\n    println!(\"Hello, world!\");\n}\n```\n\nI expected to see this happen: Since this builds successfully on 1.90.0, it should also build successfully on 1.94.0\n\nInstead, this happened: Build failed on 1.94.0.\n\n```\naliceryhl@aliceryhl4:/tmp/foo$ cargo check --target x86_64-pc-windows-msvc\n    Checking foo v0.1.0 (/tmp/foo)\nerror[E0046]: not all trait items implemented, missing: `freeze_last_access_time`, `freeze_last_write_time`\n --> src/main.rs:9:1\n  |\n9 | impl OpenOptionsExt for MyCustomOptions {\n  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ missing `freeze_last_access_time`, `freeze_last_write_time` in implementation\n  |\n  = help: implement the missing item: `fn freeze_last_access_time(&mut self, _: bool) -> &mut Self { todo!() }`\n  = help: implement the missing item: `fn freeze_last_write_time(&mut self, _: bool) -> &mut Self { todo!() }`\n```\nBe aware that it's impossible to implement these methods as they are unstable. The breaking change effectively makes the trait sealed.\n\n### Version it worked on\n\nI carried out this test locally on 1.90.0, but I believe it worked until 1.93.0.\n\n### Version with regression\n\n`rustc --version --verbose`:\n```\naliceryhl@aliceryhl4:/tmp/foo$ rustc --version --verbose\nrustc 1.94.0 (4a4ef493e 2026-03-02)\nbinary: rustc\ncommit-hash: 4a4ef493e3a1488c6e321570238084b38948f6db\ncommit-date: 2026-03-02\nhost: x86_64-unknown-linux-gnu\nrelease: 1.94.0\nLLVM version: 21.1.8\n```\n\n### Additional details\n\nThis was caused by: https://github.com/rust-lang/rust/pull/149718\n\nAs far as I can tell, crates affected by this have no way to fix this build error without a breaking change because it's impossible to provide an implementation of the unstable method `freeze_last_access_time`.\n\n@rustbot modify labels: +regression-from-stable-to-stable -regression-untriaged\n",
+    "html_url": "https://github.com/rust-lang/rust/issues/153486",
+    "labels": [
+      "O-windows",
+      "P-high",
+      "T-libs-api",
+      "regression-from-stable-to-stable",
+      "C-bug",
+      "T-libs"
+    ],
+    "state": "closed",
+    "title": "Breaking change in `std::os::windows::fs::OpenOptionsExt` affecting 1.94.0"
+  },
+  "tokio-rs/tokio#3679": {
+    "body": "In https://github.com/tokio-rs/tokio/pull/3678 we added `AsyncWriteExt::write_vectored`. It would be nice to also provide `AsyncWriteExt::write_all_vectored` that writes all the data similarly to [`std::io::Write::write_all_vectored`](https://doc.rust-lang.org/stable/std/io/trait.Write.html#method.write_all_vectored).",
+    "html_url": "https://github.com/tokio-rs/tokio/issues/3679",
+    "labels": [
+      "A-tokio",
+      "M-io",
+      "S-blocked"
+    ],
+    "state": "closed",
+    "title": "Add `AsyncWriteExt::write_all_vectored`"
+  },
+  "tokio-rs/tokio#5545": {
+    "body": "**Is your feature request related to a problem? Please describe.**\r\n\r\nIn certain circumstances, it would be useful for introspection of Tokio if it was possible to identify a runtime.\r\n\r\nThis would unlock new features and analyses in `tokio-console` (some described in [console#130](https://github.com/tokio-rs/console/issues/130), and another in [console#229](https://github.com/tokio-rs/console/issues/229)).\r\n\r\nI believe it would also add value to `tokio-metrics`.\r\n\r\nThere are two different forms of identification that would be useful:\r\n1. **Identifier**: unique identifier for the runtime per process. Ideally for the lifetime of the process (although guaranteed to be unique for all concurrently existing runtimes would be better than nothing).\r\n2. **Name**: human readable (and probably human created) string which describes the runtime. No need for uniqueness.\r\n\r\nIn a sense these are two features, but to me it made more sense to present them together.\r\n\r\n**Describe the solution you'd like**\r\n\r\nFoe the identifier, an opaque struct that can produce a `Sized` value would be ideal for the public API.\r\n\r\nInternally a (thread-safe) counter could be used. Each new runtime is assigned the next value. A `u64` will provide more values than can be used during the lifetime of a process (or ever). This aligns with the task Id currently available in unstable.\r\n\r\nThe identifier would be available from the runtime `Handle`.\r\n\r\nThe runtime name could be optionally provided to the runtime builder.\r\n\r\nIt would then be available on the `Handle`.\r\n\r\n**Describe alternatives you've considered**\r\n\r\nFoe the `tokio-console` use-case alone, the `console-subscriber` could keep track of runtime creation and assign each an Id. However linking this back to the tasks executing on the runtime and the resources associated with the runtime would be much more complicated (maybe not possible?).\r\n\r\nIf an identifier is available in the tokio API, bit no name, then the `console-subscriber` or `tokio-console` could apply the mapping based on user input. However unless the runtime identifier would be stable, this mapping would need to be provided on every run of the final application.\r\n\r\n\r\n**Additional context**\r\n\r\nBoth `tokio-console` (really `console-subscriber`) and `tokio-metrics` already require that tokio be built with the `tokio_unstable` cfg option set, as such it would be sense to put this feature in unstable as well, especially initially.\r\n\r\nAs well as use in `tokio-console` and `tokio-metrics`, a name or a way to distinguish Runtimes could be useful in other contexts.\r\n\r\nAny application which runs multiple Runtimes, or frequently creates new runtimes (from memory `reqwest` does this for the sync API) may like to be able to distinguish between them at execution time.\r\n",
+    "html_url": "https://github.com/tokio-rs/tokio/issues/5545",
+    "labels": [
+      "A-tokio",
+      "M-runtime",
+      "C-feature-request"
+    ],
+    "state": "closed",
+    "title": "Runtime identifier and name"
+  },
+  "tokio-rs/tokio#6053": {
+    "body": "Current phrasing in [tutorial](https://tokio.rs/tokio/tutorial/channels):\r\n\r\n> When every Sender has gone out of scope or has otherwise been dropped, it is no longer possible to send more messages into the channel. At this point, the recv call on the Receiver will return None, which means that all senders are gone and the channel is closed.\r\n\r\nThe second statement is blatantly wrong because `recv` can still receive messages sent before senders drop.\r\n\r\n```rust\r\nuse std::time::Duration;\r\nuse tokio::sync::mpsc;\r\nuse tokio::time::sleep;\r\n\r\n#[tokio::main]\r\nasync fn main() {\r\n    let (tx, mut rx) = mpsc::channel(32);\r\n    let tx2 = tx.clone();\r\n\r\n    tokio::spawn(async move {\r\n        tx.send(\"sending from first handle\").await.unwrap();\r\n        drop(tx);\r\n        println!(\"tx droppped\");\r\n    });\r\n\r\n    tokio::spawn(async move {\r\n        tx2.send(\"sending from second handle\").await.unwrap();\r\n        drop(tx2);\r\n        println!(\"tx2 droppped\");\r\n    });\r\n\r\n    sleep(Duration::from_secs(2)).await;\r\n\r\n    while let Some(message) = rx.recv().await {\r\n        println!(\"GOT = {}\", message);\r\n    }\r\n}\r\n```\r\n\r\nIn [docs](https://docs.rs/tokio/latest/tokio/sync/mpsc/index.html#disconnection):\r\n\r\n> When all [Sender](https://docs.rs/tokio/latest/tokio/sync/mpsc/struct.Sender.html) handles have been dropped, it is no longer possible to send values into the channel. This is considered the termination event of the stream. As such, Receiver::poll returns Ok(Ready(None)).\r\n\r\nThis looks more correct but I have never tested with `Receiver::poll`.\r\n\r\n\r\n\r\n",
+    "html_url": "https://github.com/tokio-rs/tokio/issues/6053",
+    "labels": [
+      "C-bug",
+      "T-docs",
+      "A-tokio",
+      "M-sync"
+    ],
+    "state": "closed",
+    "title": "docs: `tokio::sync::mpsc` can still be read when all senders are dropped"
+  },
+  "tokio-rs/tokio#6439": {
+    "body": "**Version**\r\nTokio v1.37.0\r\n\r\n**Description**\r\n`BlockingPool num_idle_threads` is doubly increased, when shutting down before the `condvar wait_timeout`.\r\n\r\nThe whole code is:\r\nhttps://github.com/tokio-rs/tokio/blob/9c337ca1a306be38e3474082be14bdef4bcb45b5/tokio/src/runtime/blocking/pool.rs#L519-L564\r\n\r\nWhen `BlockingPool` is shutting down, \r\nthe `num_idle_threads` will be increased at first in \r\nhttps://github.com/tokio-rs/tokio/blob/9c337ca1a306be38e3474082be14bdef4bcb45b5/tokio/src/runtime/blocking/pool.rs#L519\r\n\r\nand then it will doubly be increased in this\r\nhttps://github.com/tokio-rs/tokio/blob/9c337ca1a306be38e3474082be14bdef4bcb45b5/tokio/src/runtime/blocking/pool.rs#L564\r\n",
+    "html_url": "https://github.com/tokio-rs/tokio/issues/6439",
+    "labels": [
+      "C-bug",
+      "A-tokio",
+      "M-runtime",
+      "M-metrics"
+    ],
+    "state": "closed",
+    "title": "BlockingPool num_idle_threads is wrongly double-increased when shutting down"
+  },
+  "tokio-rs/tokio#6901": {
+    "body": "The RwLock documentation [links to](https://github.com/tokio-rs/tokio/blob/512e9decfb683d22f4a145459142542caa0894c9/tokio/src/sync/rwlock.rs#L87) this Wikipedia section: https://en.wikipedia.org/wiki/Readers%E2%80%93writer_lock#Priority_policies.\r\nWhich says:\r\n> Write-preferring RW locks avoid the problem of writer starvation by preventing any new readers from acquiring the lock if there is a writer queued and waiting for the lock\r\n\r\nHowever, the Tokio documentation [says](https://github.com/tokio-rs/tokio/blob/512e9decfb683d22f4a145459142542caa0894c9/tokio/src/sync/rwlock.rs#L41-L48):\r\n> Fairness is ensured using a first-in, first-out queue for the tasks awaiting the lock; if a task that wishes to acquire the write lock is at the head of the queue, read locks will not be given out until the write lock has been released.\r\n\r\nIf I am not mistaken, the difference is that Wikipedia says that if there is a writer _anywhere_ in the queue no new readers can acquire the lock, while the Tokio documentation seems to say that only when the writer is at the _head_ of the queue no new readers can acquire the lock.",
+    "html_url": "https://github.com/tokio-rs/tokio/issues/6901",
+    "labels": [
+      "C-bug",
+      "T-docs",
+      "A-tokio",
+      "M-sync"
+    ],
+    "state": "closed",
+    "title": "Wikipedia link to write-preferring in RwLock documentation is inconsistent with Tokio's definition"
+  },
+  "tokio-rs/tokio#7928": {
+    "body": "**Version**\n`v1.49.0`\n\n**Platform**\nAny\n\n**Description**\n\nThe definition of `tokio::select!` contains local `use` declarations that shadow `Future`, `Pin`, `Ready`, and `Pending`. The first two aren't a big deal in practice, but `Ready` and `Pending` are generic names that have a good chance of showing up in user code.\n\n```rust\nenum Ready { A }                                                                                     \nenum RReady { A }                                                                                    \n                                                                                                     \nasync fn foo(x: impl Future<Output = Ready>, y: impl Future<Output = RReady>) {                      \n   tokio::select! {                                                                                                                                                                                                                           \n      x = x => match x {                                                                             \n         Ready::A => (), // failed to resolve: `Ready` is a variant, not a module\n      },                                                                                             \n      y = y => match y {                                                                             \n         RReady::A => (),                                                                            \n      },                                                                                             \n   }                                                                                                 \n}\n```\n\nI expected to see this happen: my code working.\n\nInstead, this happened: I got a mildly confusing error message and then remembered that I've hit this issue before.",
+    "html_url": "https://github.com/tokio-rs/tokio/issues/7928",
+    "labels": [
+      "C-bug",
+      "A-tokio",
+      "M-macros"
+    ],
+    "state": "closed",
+    "title": "`tokio::select!` shadows useful names"
+  },
+  "tokio-rs/tokio#7976": {
+    "body": "In our docs, for example the `tokio::runtime::Builder`, I sometimes see this:\n\n<img width=\"384\" height=\"240\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/2d859c97-557a-4307-92cd-2645aae93126\" />\n\nThe loom configuration is an internal implementation detail. It should not be mentioned in docs.",
+    "html_url": "https://github.com/tokio-rs/tokio/issues/7976",
+    "labels": [
+      "T-docs",
+      "A-tokio",
+      "M-runtime"
+    ],
+    "state": "closed",
+    "title": "\"Available on non-loom\" only in docs"
+  },
+  "tokio-rs/tokio#7990": {
+    "body": "**Version**\n1.50.0 / `master` at `a8435c0`\n\n**Platform**\n`Linux antigravity 6.19.7-1-default #1 SMP PREEMPT_DYNAMIC Thu Mar 12 11:27:25 UTC 2026 (7f7ff04) x86_64 x86_64 x86_64 GNU/Linux`\n\n**Description**\n\nAs [described in `#tokio-internals`](https://discord.com/channels/500028886025895936/1479686902339735583), `tokio::mpsc::Chan::recv_many` makes incorrect assumptions about the provided buffer when exiting through the post-loop `rx_fields.rx_closed && self.inner.semaphore.is_idle()` code path.\n\n`assert!(buffer.is_empty());` asserts the incorrect precondition, it should `assert_eq!(buffer.len(), initial_length);` instead.\n\nThe following tests trigger the faulty assertion for bounded and unbounded channels:\n\n```rust\n#[should_panic]\n#[maybe_tokio_test]\nasync fn recv_many_with_non_empty_buffer_bounded_rx_closed_and_idle() {\n    let (_tx, mut rx) = mpsc::channel::<i32>(1);\n\n    let mut buffer: Vec<i32> = vec![1];\n\n    rx.close();\n\n    // Panics, incorrectly expecting an empty buffer.\n    rx.recv_many(&mut buffer, 1).await;\n}\n\n#[should_panic]\n#[maybe_tokio_test]\nasync fn recv_many_with_non_empty_buffer_unbounded_rx_closed_and_idle() {\n    let (_tx, mut rx) = mpsc::unbounded_channel::<i32>();\n\n    let mut buffer: Vec<i32> = vec![1];\n\n    rx.close();\n\n    // Panics, incorrectly expecting an empty buffer.\n    rx.recv_many(&mut buffer, 1).await;\n}\n```\n\nI will provide a PR.\n",
+    "html_url": "https://github.com/tokio-rs/tokio/issues/7990",
+    "labels": [
+      "C-bug",
+      "A-tokio",
+      "M-sync"
+    ],
+    "state": "closed",
+    "title": "`mpsc::Chan::recv_many` panics due to faulty assertion when called with a non-empty buffer after receiver closed"
+  }
+}

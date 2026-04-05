@@ -2013,5 +2013,78 @@
     "labels": [],
     "state": "closed",
     "title": "Attempt to cleanup stale subscriptions upon hitting user WebSocket sub max limit"
+  },
+  "medplum/medplum#8662": {
+    "body": "We've done a lot of work around garbage collection on the server side but a lot of the cleanup assumes that a user's client will either:\n1) Unbind an unused subscription\n2) Close the WebSocket, which when detected server-side will clean up all WebSocket subscriptions associated with that WebSocket connection\n\nIt seems like some of the particular patterns that emerge from React component lifecycles may make some race conditions possible which may untrack subscriptions in the `SubscriptionManager` without actually sending an unbind message. This means that a subscription will not be cleaned up until a user closes their WebSocket connection, which may not happen frequently enough to free up unused subscriptions from the perspective of the `SubscriptionManager`\n\n",
+    "html_url": "https://github.com/medplum/medplum/issues/8662",
+    "labels": [],
+    "state": "closed",
+    "title": "Investigate `SubscriptionManager` keeping untracked subscriptions bound to WebSocket"
+  },
+  "medplum/medplum#8745": {
+    "body": "The Project Membership Resource has an invited_by field. It should be populated in all cases, regardless of which method the project membership was created. ",
+    "html_url": "https://github.com/medplum/medplum/issues/8745",
+    "labels": [
+      "auth"
+    ],
+    "state": "closed",
+    "title": "Invited by should be propagated in all methods of invitation for project membership creation"
+  },
+  "medplum/medplum#8763": {
+    "body": "The `$book` operation creates both an Appointment and Slot(s) in a single transaction, but the returned Appointment has no `slot` references to the created Slots.\n\n## Current behavior\n\n  `POST /fhir/R4/Appointment/$book` with a slot parameter returns a Bundle where the Appointment has no `slot` field:\n\n  ```json\n  {\n    \"resourceType\": \"Bundle\",\n    \"type\": \"searchset\",\n    \"entry\": [\n      {\n        \"resource\": {\n          \"resourceType\": \"Appointment\",\n          \"status\": \"booked\",\n          \"start\": \"2026-03-25T20:15:00.000Z\",\n          \"end\": \"2026-03-25T21:15:00.000Z\",\n          \"participant\": [...]\n          // no \"slot\" field\n        }\n      },\n      {\n        \"resource\": {\n          \"resourceType\": \"Slot\",\n          \"status\": \"busy\",\n          \"id\": \"743eef88-...\",\n          ...\n        }\n      }\n    ]\n  }\n```\n\n##  Expected behavior\n\n  The Appointment should include slot references to the Slots created in the same transaction:\n\n```json\n  {\n    \"resourceType\": \"Appointment\",\n    \"status\": \"booked\",\n    \"slot\": [{\"reference\": \"Slot/743eef88-...\"}],\n    ...\n  }\n```\n\nThis matches the original spec in #7690 which shows slot references in the expected response, and aligns with the FHIR Appointment resource definition where slot is the standard way to link Appointments to Slots.\n\n##  Impact\n\nClients using $find + $book as the scheduling API surface have no way to establish the Appointment to Slot link, without a separate PUT call after booking, which defeats the purpose of $book being a self-contained operation.",
+    "html_url": "https://github.com/medplum/medplum/issues/8763",
+    "labels": [],
+    "state": "closed",
+    "title": "Appointment/$book API does not populate Appointment.slot with references to created Slots"
+  },
+  "medplum/medplum#8781": {
+    "body": "Currently we have an error of severity \"warning\" which is emitted by an `Hl7Connection` whenever an unknown message control ID is encountered. This causes issues in the Medplum Agent HL7 client pool because on error we close the connection, which is probably overly aggressive for that error. Instead, we should add a \"warning\" event type for the `Hl7Connection` and just emit an actual warning there which should not close a connection in the agent connection pool.",
+    "html_url": "https://github.com/medplum/medplum/issues/8781",
+    "labels": [
+      "integration"
+    ],
+    "state": "closed",
+    "title": "[Hl7Connection] Warn instead of error on unknown message control ID"
+  },
+  "medplum/medplum#8788": {
+    "body": "We noticed some 500 errors a few days ago in the context of `processUpdateBundlePutEntry` where it looks like `contentBundle` was `undefined` in the current context. Theoretically it should only be possible to issue a `DiagnosticReport-update` in the context of a DiagnosticReport but it looks like we were not previously verifying that we were currently in a `DiagnosticReport` context.",
+    "html_url": "https://github.com/medplum/medplum/issues/8788",
+    "labels": [],
+    "state": "closed",
+    "title": "[FHIRcast] Content bundle in context can be undefined during `DiagnosticReport-update`"
+  },
+  "microsoft/tsdoc#171": {
+    "body": "In https://github.com/microsoft/tsdoc/issues/8#issuecomment-510733311 @bookmoons said:\r\n\r\n> I vote for `@throws`, or some other way to document exceptions. Really useful when coding against a procedure to know which kind of errors I should be handling.\r\n\r\nI've opened this issue so we can have a more focused discussion.",
+    "html_url": "https://github.com/microsoft/tsdoc/issues/171",
+    "labels": [],
+    "state": "open",
+    "title": "RFC: @throws tag for documenting exceptions"
+  },
+  "npm/cli#7072": {
+    "body": "### Is there an existing issue for this?\n\n- [X] I have searched the existing issues\n\n### This issue exists in the latest npm version\n\n- [X] I am using the latest npm\n\n### Current Behavior\n\nMy project needs around 2000 packages. When running \"npm install\" it starts out by opening 2000 connections and then when all the connections are open it downloads 1 package on each connection.\r\n\r\nIs this intended?, because it causes a quite high load on our package proxy. Is there a way to limit the number of connections?\r\n\r\nWith npm 9.9 it only uses 18/20 connections.\n\n### Expected Behavior\n\n\"npm install\" only opens a few connetions to the package server.\n\n### Steps To Reproduce\n\n1. Clear cache\r\n2. npm install or npm ci\r\n\n\n### Environment\n\n- npm: 10.2.5\r\n- Node.js: 18.19.0\r\n- OS Name: Windows 11\r\n- System Model Name:\r\n- npm config:\r\n```ini\r\nregistry = \"http://fosspackages/npm/default-npm/\"\r\nsave-exact = true\r\nsave-prefix = \"\"\r\n\r\n; node bin location = C:\\Users\\lj\\.nvm\\versions\\node\\v18.19.0\\bin\\node.exe\r\n; node version = v18.19.0\r\n; npm local prefix = C:\\work\\Dexter\\web-client\r\n; npm version = 10.2.5\r\n; cwd = C:\\work\\Dexter\\web-client\r\n; HOME = C:\\Users\\lj\r\n; Run `npm config ls -l` to show all defaults.\r\n```\r\n",
+    "html_url": "https://github.com/npm/cli/issues/7072",
+    "labels": [
+      "Bug",
+      "Priority 0",
+      "Release 10.x"
+    ],
+    "state": "closed",
+    "title": "[BUG] Npm opens many connections when installing"
+  },
+  "remix-run/react-router#12460": {
+    "body": "### Describe what's incorrect/missing in the documentation\n\nAs previous [issue](https://github.com/remix-run/react-router/issues/12267) that was closed explained that there is issue with the docs on how to upgrade from v6 to v7, I'm opening issue again to hopefully get more clarification on how to upgrade. \r\n\r\nDocs state:\r\n```jsx\r\n<Routes>\r\n  <Route path=\"/\" element={<Home />} />\r\n-  <Route path=\"dashboard/*\" element={<Dashboard />} />\r\n+  <Route path=\"dashboard\">\r\n+    <Route path=\"*\" element={<Dashboard />} />\r\n+  </Route>\r\n</Routes>\r\n\r\n// or\r\ncreateBrowserRouter([\r\n  { path: \"/\", element: <Home /> },\r\n  {\r\n-    path: \"dashboard/*\",\r\n-    element: <Dashboard />,\r\n+    path: \"dashboard\",\r\n+    children: [{ path: \"*\", element: <Dashboard /> }],\r\n  },\r\n]);\r\n```\r\nThis simply does not work for me and reading from previous issues it does not work for a lot of guys. \r\n[Codesandbox](https://codesandbox.io/p/sandbox/3m5vcx) (thanks to @imjordanxd)\r\n",
+    "html_url": "https://github.com/remix-run/react-router/issues/12460",
+    "labels": [
+      "docs"
+    ],
+    "state": "closed",
+    "title": "[Docs]: Wildcard path segments not matching when upgrading from v6 to v7"
+  },
+  "swc-project/swc#11129": {
+    "body": "# Investigation\n\n## `v1.13.21` segfaults on\n\n - AWS t4g.small - ARM64 Graviton (https://github.com/swc-project/swc/issues/11177)\n - ubuntu-latest-arm on Github (https://github.com/swc-project/swc/issues/11177#issuecomment-3442454032)\n - core-darwin-arm64 (https://github.com/swc-project/swc/issues/11178)",
+    "html_url": "https://github.com/swc-project/swc/issues/11129",
+    "labels": [],
+    "state": "closed",
+    "title": "`v1.13.5` is the `latest` on npm because v1.13.21 is broken"
   }
 }

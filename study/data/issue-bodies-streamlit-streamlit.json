@@ -1,0 +1,871 @@
+{
+  "pypa/build#1004": {
+    "body": "```\n    raise CalledProcessError(retcode, process.args,\nsubprocess.CalledProcessError: Command '['/Users/xxx/Documents/customer-console-api-backend/.venv/bin/python3', '-m', 'pip', '--python', '/private/var/folders/c6/4p4l_zhd6cd0wjxfjr1sf6lr0000gn/T/build-env-gege4t9f/bin/python', 'install', '--use-pep517', '--no-warn-script-location', '--no-compile', '-r', '/var/folders/c6/4p4l_zhd6cd0wjxfjr1sf6lr0000gn/T/build-requirements-2pqqg8fp.txt']' returned non-zero exit status 1.\n```\n\n\nbuild call args with python3 -m pip, the correct method should be python3 -m pip3\n\nV1.4.0 is  ok.",
+    "html_url": "https://github.com/pypa/build/issues/1004",
+    "labels": [],
+    "state": "closed",
+    "title": "V1.4.1 build failed"
+  },
+  "streamlit/streamlit#1301": {
+    "body": "### Problem\n\n*As a user:* I want to format my number as I do with Python. \n\nFor example:\n```python\nx = 1000000\nprint(f\"{x:,}\")\n# 1,000,000\n```\n\n### Additional context\n\nhttps://discuss.streamlit.io/t/format-integer-with-comma-using-python-printf/2344\n\n---\n\nCommunity voting on feature requests enables the Streamlit team to understand which features are most important to our users.\n\n**If you'd like the Streamlit team to prioritize this feature request, please use the \ud83d\udc4d (thumbs up emoji) reaction in response to the initial post.**\n\n![Views](https://api.views-badge.org/badge/st-issue-1301)",
+    "html_url": "https://github.com/streamlit/streamlit/issues/1301",
+    "labels": [
+      "type:enhancement",
+      "feature:st.number_input",
+      "feature:st.slider",
+      "feature:st.column_config",
+      "upstream"
+    ],
+    "state": "closed",
+    "title": "Improve our format parameter to support thousand separator"
+  },
+  "streamlit/streamlit#4714": {
+    "body": "### Problem\n\nI have about twenty options of several `st.multiselect`, and sometimes I need all options except only one.  I want to first select all then remove one of them.\n\n### Solution\n\n**MVP:** Maybe create one `st.multiselect` means \"selected\", another means \"exclued\", but really stupid.\n\n---\n\nCommunity voting on feature requests enables the Streamlit team to understand which features are most important to our users.\n\n**If you'd like the Streamlit team to prioritize this feature request, please use the \ud83d\udc4d (thumbs up emoji) reaction in response to the initial post.**\n\n![Views](https://api.views-badge.org/badge/st-issue-4714)",
+    "html_url": "https://github.com/streamlit/streamlit/issues/4714",
+    "labels": [
+      "type:enhancement",
+      "good first issue",
+      "feature:st.multiselect"
+    ],
+    "state": "closed",
+    "title": "Add select all shortcut or button for multiselect"
+  },
+  "streamlit/streamlit#5552": {
+    "body": "### Summary\n\nIf you have too many tabs, or even a couple with long titles, and their total width exceeds the main area with, the latter ones become inaccessible.\n\nThere should be an ability to scroll through them, perhaps just some small arrows at each end.\n\n### Steps to reproduce\n\n[![Open in Streamlit Cloud](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://issues.streamlitapp.com/?issue=gh-5552)\n\nCode snippet:\n\n```\ntab_names = []\nfor i in range(100):\n  tab_names.append(str(i)*4)\n\ntabs = st.tabs(tab_names)\n```\n\n**Expected behavior:**\n\nShould be able to scroll the tab bar when tabs exceed the screen width, hiding them is bad UX.\n\n**Actual behavior:**\n\nMy tabs are inaccessible.\n\n### Is this a regression?\n\nno\n\n### Debug info\n\n- Streamlit version: streamlit share\n- Python version: 3.10\n- Browser version: Chrome latest\n\n### Voting for feature requests\nCommunity voting on feature requests enables the Streamlit team to understand which features are most important to our users.\n**If you'd like the Streamlit team to prioritize this feature request, please use the \ud83d\udc4d (thumbs up emoji) reaction in response to the initial post.**\n\n![Views](https://api.views-badge.org/badge/st-issue-5552)\n",
+    "html_url": "https://github.com/streamlit/streamlit/issues/5552",
+    "labels": [
+      "type:enhancement",
+      "good first issue",
+      "feature:st.tabs"
+    ],
+    "state": "closed",
+    "title": "Tabs hidden when titles exceed the content area width (no ability to scroll)"
+  },
+  "streamlit/streamlit#6160": {
+    "body": "### Problem\n\n`st.selectbox` is one of the most widely used Streamlit widgets, as it allows the user to select one option from a list of options. \n\nThe current implementation allows **text searching**, which for some use cases makes sense (e.g., a long list of countries), but for others it makes the widget feel buggy (e.g., a selectbox with very few options, such as \"Yes, No\").\n\n### Solution\n\n**MVP:** An example on how to use the CSS st.markdown trick to disable text search in `st.selectbox`.\n\n**Preferred solution:** A parameter that allows enabling/disabling the text search behavior in `st.selectbox`.\n\n### Additional context\n\nThis is one of several UX issues detected for st.selectbox. Others are:\n\n- #4671 \n- #4901 \n- #5240 \n\n---\n\nCommunity voting on feature requests enables the Streamlit team to understand which features are most important to our users.\n\n**If you'd like the Streamlit team to prioritize this feature request, please use the \ud83d\udc4d (thumbs up emoji) reaction in response to the initial post.**\n\n![Views](https://api.views-badge.org/badge/st-issue-6160)\n",
+    "html_url": "https://github.com/streamlit/streamlit/issues/6160",
+    "labels": [
+      "type:enhancement",
+      "feature:st.selectbox"
+    ],
+    "state": "closed",
+    "title": "Add parameter to enable/disable text search in `st.selectbox`"
+  },
+  "streamlit/streamlit#6389": {
+    "body": "### Problem\n\nThe list of **allowed-message-origins** is currently hard-coded, which means that in order to change it we have to manually alter the Streamlit library file `streamlit/web/server/routes.py`.\n\n### Solution\n\n**Preferred solution:** Enable **allowedMessageOrigins** as an option in the `.streamlit/config.toml` file.\n\n### Additional information\n\nNext to the hard-coded list in the `streamlit/web/server/routes.py` file, there is already a comment mentioning that in the long run the above solution is probably the way to go :)\n\n---\n\nCommunity voting on feature requests enables the Streamlit team to understand which features are most important to our users.\n\n**If you'd like the Streamlit team to prioritize this feature request, please use the \ud83d\udc4d (thumbs up emoji) reaction in response to the initial post.**\n\n![Views](https://api.views-badge.org/badge/st-issue-6389)",
+    "html_url": "https://github.com/streamlit/streamlit/issues/6389",
+    "labels": [
+      "type:enhancement",
+      "feature:config"
+    ],
+    "state": "closed",
+    "title": "Make \"allowed message origins\" a config option instead of hard-coded list"
+  },
+  "streamlit/streamlit#6454": {
+    "body": "Hi, \n\n1. For the File_uploader widget in streamlit, I would like to display the browsed files using the scroll bar. But seems that the file elements are being tied to \"streamlit-paginator\" which has \"Showing page 1 of 2\" and \"Showing 2 of 2\". \n\nSo if we have the options to handle this scenario from streamlit, it would be great \n\n2. In the same scenario, I made an attempt to display 5 browsed files per page (By default we have 3 per page). This feature again seems to be missed. May be you guys can add this feature, so that it helps everyone. \n<img width=\"598\" alt=\"image\" src=\"https://user-images.githubusercontent.com/82448892/230613212-fd13fa23-9bf2-460a-98ce-b93ee86da697.png\">\n\n![Views](https://api.views-badge.org/badge/st-issue-6454)",
+    "html_url": "https://github.com/streamlit/streamlit/issues/6454",
+    "labels": [
+      "type:enhancement",
+      "feature:st.file_uploader"
+    ],
+    "state": "closed",
+    "title": "Improve display of many files in `st.file_uploader`"
+  },
+  "streamlit/streamlit#7359": {
+    "body": "### Checklist\r\n\r\n- [X] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar issues.\r\n- [X] I added a very descriptive title to this issue.\r\n- [X] I have provided sufficient information below to help reproduce this issue.\r\n\r\n### Summary\r\n\r\nIf you do `st.button(\"+\")` or `st.button(\"-\")` in a Streamlit app, it creates a button with no label. If you use a single letter though, it works. Didn't test if there are also other digits that are affected, probably worth doing a quick check. \r\n\r\n**UPDATE**: Transitioning to request for enhancement - better handling of empty button / widget labels (in this case the disallowed markdown is unwrapped and leaves no characters causing an empty button label)\r\n\r\n### Reproducible Code Example\r\n\r\n[![Open in Streamlit Cloud](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://issues.streamlitapp.com/?issue=gh-7359)\r\n\r\n```Python\r\nst.button(\"+\")\r\nst.button(\"-\")\r\nst.button(\"a\")\r\n```\r\n\r\n\r\n### Steps To Reproduce\r\n\r\n_No response_\r\n\r\n### Expected Behavior\r\n\r\nJust normal buttons with a + and - sign. \r\n\r\n### Current Behavior\r\n\r\n![CleanShot 2023-09-18 at 21 10 23](https://github.com/streamlit/streamlit/assets/5103165/652aabf0-f30f-4e0d-8fd1-9c20500401ac)\r\n\r\n\r\n### Is this a regression?\r\n\r\n- [ ] Yes, this used to work in a previous version.\r\n\r\n### Debug info\r\n\r\n- Streamlit version: 1.26.0\r\n- Python version: 3.9\r\n- Operating System: Mac\r\n- Browser: Chrome\r\n\r\n\r\n### Additional Information\r\n\r\n_No response_",
+    "html_url": "https://github.com/streamlit/streamlit/issues/7359",
+    "labels": [
+      "type:enhancement",
+      "good first issue",
+      "area:widgets",
+      "feature:st.button"
+    ],
+    "state": "closed",
+    "title": "`st.button(\"+\")` or `st.button(\"-\")` results in empty button"
+  },
+  "streamlit/streamlit#7453": {
+    "body": "### Checklist\r\n\r\n- [X] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar feature requests.\r\n- [X] I added a descriptive title and summary to this issue.\r\n\r\n### Summary\r\n\r\nWe have a use case where we would like to take action on the server when the user clicks a hyperlink, which in this case would be rendered as a `st.link_button`. Would it be possible to add an `on_click` parameter similar to that in `st.button` and `st.download_button`?\r\n\r\n### Why?\r\n\r\nIn our case, we want to mark a result as having been read by the user whenever they access it via hyperlink. Our Streamlit application highlights already read results.\r\n\r\n### How?\r\n\r\nAdd an `on_click` parameter to `st.link_button` that is given a function to call when the widget is clicked, similar to what `st.button` and `st.download_button` already have.\r\n\r\n### Additional Context\r\n\r\n_No response_",
+    "html_url": "https://github.com/streamlit/streamlit/issues/7453",
+    "labels": [
+      "type:enhancement",
+      "feature:st.link_button"
+    ],
+    "state": "closed",
+    "title": "Add an on_click parameter to st.link_button "
+  },
+  "streamlit/streamlit#7808": {
+    "body": "### Checklist\r\n\r\n- [X] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar feature requests.\r\n- [X] I added a descriptive title and summary to this issue.\r\n\r\n### Summary\r\n\r\nCurrently, we can only use the `:color[text to be colored]` syntax to change the color of text. For example, using the syntax `:hex[#FF5733][text to be colored]` would enable users to specify the exact color they want.\r\n\r\n### Why?\r\n\r\nIt would give developers more flexibility and control over the text color if we can pass in hexadecimal value. So far only these colors are supported:  [blue, green, orange, red, violet, gray/grey, rainbow](https://docs.streamlit.io/library/api-reference/text/st.markdown). I want to be able to change the text colors to meet accessibility requirements for our users.\r\n\r\n### How?\r\n\r\n_No response_\r\n\r\n### Additional Context\r\n\r\n_No response_",
+    "html_url": "https://github.com/streamlit/streamlit/issues/7808",
+    "labels": [
+      "type:enhancement",
+      "feature:markdown"
+    ],
+    "state": "closed",
+    "title": "Support :hex[text to be colored] for colored text in addition to having :color[text to be colored]"
+  },
+  "streamlit/streamlit#8093": {
+    "body": "### Checklist\n\n- [X] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar feature requests.\n- [X] I added a descriptive title and summary to this issue.\n\n### Summary\n\nRequesting support for the file_upload widget in AppTest\n\n### Why?\n\nIt blocks testing the rest of the app as its logic depends on the uploaded file\n\n### How?\n\nAdd support for the file_upload widget in AppTest\n\n### Additional Context\n\n_No response_",
+    "html_url": "https://github.com/streamlit/streamlit/issues/8093",
+    "labels": [
+      "type:enhancement",
+      "feature:app-testing"
+    ],
+    "state": "closed",
+    "title": "[AppTest] Add file_upload widget"
+  },
+  "streamlit/streamlit#8239": {
+    "body": "### Summary\r\n\r\nImprove the management/heuristics used to handle rendering the frontend `st.tabs` & `st.expander` React components.\r\n\r\nScenarios such as conditionally rendering elements before `st.tabs` or `st.expander` causes the unmount/remount of the component, therefore losing its FE state/selected tab. This is expected behavior based on the components in their current implementation, but it can be improved. \r\n\r\nWhen we refactor `st.tabs`, we should also examine the heuristic we used to assess the selected tab:\r\n>  When the number or names of the tabs change, we're now looking for the name of the active tab in the list of new tabs, and activating that one. This has the advantage that you can insert tabs and still keep the current tab active. But it comes at the cost of tabs switching when you simply rename them\r\n\r\n### Additional Context\r\n\r\nSee related issues: \r\n* #6257 \r\n* #7435 \r\n* #2360\r\n\r\nMore expansive feature request for FE/BE communication of tab state: \r\n* #6004 \r\nMore expansive feature request for FE/BE communication of expander state: \r\n* #2399 ",
+    "html_url": "https://github.com/streamlit/streamlit/issues/8239",
+    "labels": [
+      "type:enhancement",
+      "feature:st.expander",
+      "feature:st.tabs"
+    ],
+    "state": "closed",
+    "title": "`st.tabs` & `st.expander` - Improve handling of frontend state/mount"
+  },
+  "streamlit/streamlit#8345": {
+    "body": "### Checklist\n\n- [X] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar feature requests.\n- [X] I added a descriptive title and summary to this issue.\n\n### Summary\n\nThe st column_config is really a simple and straight forward way to visualize data.\r\nJust wishing if it is possible to add st.audio and st.video inside column_config.\n\n### Why?\n\nShowing video or audio that is related to the value in the rows.\n\n### How?\n\nJust like image, the same thing seems okay\r\n\r\n```\r\nst.data_editor(\r\n    data_df,\r\n    column_config={\r\n        \"audios\": st.column_config.AudioColumn(\r\n            \"Preview Audio\", help=\"Streamlit app preview audios\"\r\n        ),\r\n        \"videoss\": st.column_config.VideoColumn(\r\n            \"Preview Video\", help=\"Streamlit app preview videos\"\r\n        )\r\n    },\r\n    hide_index=True,\r\n)\r\n```\n\n### Additional Context\n\n_No response_",
+    "html_url": "https://github.com/streamlit/streamlit/issues/8345",
+    "labels": [
+      "type:enhancement",
+      "feature:st.dataframe",
+      "feature:st.column_config"
+    ],
+    "state": "closed",
+    "title": "Support for audio and video via column config for `st.dataframe`"
+  },
+  "streamlit/streamlit#8643": {
+    "body": "### Checklist\r\n\r\n- [X] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar feature requests.\r\n- [X] I added a descriptive title and summary to this issue.\r\n\r\n### Summary\r\n\r\nWe're soon going to add chart selections for Altair in Streamlit, via `st.altair_chart(..., on_select=\"rerun\")`. However, this only works with simple charts and not with [multi-view / composite charts](https://vega.github.io/vega-lite/docs/composition.html) - e.g. `vconcat`, `hconcat`, `layered`, and `repeat`. There are many edge cases to handle selections on these charts correctly, so we're disallowing them for now.\r\n\r\nIf you'd like us to implement support for selections on multi-view charts, please upvote this issue with a \ud83d\udc4d and let us know in the comments below what types of chart composition types you would like to use. ",
+    "html_url": "https://github.com/streamlit/streamlit/issues/8643",
+    "labels": [
+      "type:enhancement",
+      "feature:st.altair_chart",
+      "feature:st.vega_lite_chart",
+      "area:events"
+    ],
+    "state": "closed",
+    "title": "Support chart selections for multi-view vega-lite & altair charts"
+  },
+  "streamlit/streamlit#8836": {
+    "body": "### Checklist\r\n\r\n- [X] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar feature requests.\r\n- [X] I added a descriptive title and summary to this issue.\r\n\r\n### Summary\r\n\r\nThe new feature [write_stream() 7](https://docs.streamlit.io/library/api-reference/write-magic/st.write_stream) in [streamlit 1.31.0](https://discuss.streamlit.io/t/version-1-31-0/61247) works well with my app. The text output from a chess engine is correctly streamed in the ui. I wrap the write_stream() in a [container()](https://docs.streamlit.io/library/api-reference/layout/st.container) and set container\u2019s height to 200. Since the output is long and with a given height, a veritcal scrollbar is shown. This scrollbar goes up as more data are streamed. I would like to request a feature to add an option in the container for the scrollbar to go to the bottom because the engine\u2019s latest output including the bestmove are at the bottom.\r\n\r\n![image](https://github.com/streamlit/streamlit/assets/58384570/b1c33e7b-63dd-4a8c-8b80-d212755dc0ca)\r\n\r\n\r\n### Why?\r\n\r\n_No response_\r\n\r\n### How?\r\n\r\n_No response_\r\n\r\n### Additional Context\r\n\r\n_No response_",
+    "html_url": "https://github.com/streamlit/streamlit/issues/8836",
+    "labels": [
+      "type:enhancement",
+      "feature:st.container",
+      "feature:st.chat_input",
+      "feature:st.write_stream"
+    ],
+    "state": "closed",
+    "title": "Add \u201cbottom\u201d scroll behavior to container"
+  },
+  "streamlit/streamlit#9001": {
+    "body": "### Checklist\r\n\r\n- [X] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar issues.\r\n- [X] I added a very descriptive title to this issue.\r\n- [X] I have provided sufficient information below to help reproduce this issue.\r\n\r\n### Summary\r\n\r\nI have played around with the [new capabilities to retrieve data from interactions in plotly figures](https://github.com/streamlit/streamlit/issues/455), but noticed that it doesn't seem to work for Plotly Treemaps. The returned event dict remains empty despite furious clicking and dragging in the figure. \r\n\r\n### Reproducible Code Example\r\n\r\n[![Open in Streamlit Cloud](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://issues.streamlitapp.com/?issue=gh-9001)\r\n\r\n```Python\r\nimport streamlit as st\r\nimport plotly.express as px\r\n\r\ndf = px.data.gapminder().query(\"year == 2007\")\r\n\r\nfig = px.treemap(\r\n    df,\r\n    path=[\"continent\", \"country\"],\r\n    values=\"pop\",\r\n)\r\n\r\nevent_dict = st.plotly_chart(fig, on_select=\"rerun\")\r\n\r\nst.write(event_dict)\r\n```\r\n\r\n\r\n### Steps To Reproduce\r\n\r\n1. Click around in the plot\r\n2. Notice that nothing changes in the displayed empty dictionary below the plot.\r\n\r\n### Expected Behavior\r\n\r\nThe displayed `event_dict` should get populated with some values when interacting with the plot.\r\n\r\n### Current Behavior\r\n\r\nThe displayed `event_dict` remains empty:\r\n\r\n```\r\n{\r\n    \"selection\": {\r\n        \"points\": [],\r\n        \"point_indices\": [],\r\n        \"box\": [],\r\n        \"lasso\": []\r\n    }\r\n}\r\n```\r\n\r\n### Is this a regression?\r\n\r\n- [ ] Yes, this used to work in a previous version.\r\n\r\n### Debug info\r\n\r\n- Streamlit version: 1.36.0\r\n- Python version: 3.11.5\r\n- Operating System: MacOS 14.5 (23F79)\r\n- Browser: Firefox, Safari\r\n\r\n\r\n### Additional Information\r\n\r\n_No response_",
+    "html_url": "https://github.com/streamlit/streamlit/issues/9001",
+    "labels": [
+      "type:enhancement",
+      "feature:st.plotly_chart",
+      "area:events"
+    ],
+    "state": "closed",
+    "title": "Returning data from plot interactions doesn't work with Plotly Treemaps"
+  },
+  "streamlit/streamlit#9025": {
+    "body": "### Checklist\r\n\r\n- [X] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar feature requests.\r\n- [X] I added a descriptive title and summary to this issue.\r\n\r\n### Summary\r\n\r\nI want to add a link to an **external** web page at the top of the sidebar navigation created by `st.navigation`. I tried using a `st.page_link` but it ends up below the navigation menu.\r\n\r\n### Why?\r\n\r\nI need this to redirect my users to the homepage of the project (which isn't a Streamlit app)\r\n\r\n### How?\r\n\r\nThis can be solved in different ways :\r\n\r\n- allow the `st.Page` widget to target external pages\r\n- create a `st.ExternalPage` widget which can be fed into the `st.navigation` widget.\r\n- allow the user to add custom content inside the sidebar navigation created by `st.navigation`\r\n\r\n### Additional Context\r\n\r\nMinimal working example :\r\n```python\r\n# -*- coding: utf-8 -*-\r\n\r\nimport streamlit as st\r\n\r\n\r\ndef main():\r\n    st.sidebar.page_link(\r\n        page=\"https://mywebsite.com/home/\",\r\n        label=\"**Home**\",\r\n        icon=\"\ud83c\udfe0\",\r\n    )\r\n\r\n    def page1():\r\n        st.write(\"This is page 1\")\r\n\r\n    def page2():\r\n        st.write(\"This is page 2\")\r\n\r\n    pages = {\r\n        \"Section 1\": [\r\n            st.Page(page1, title=\"Page 1\", icon=\"\ud83d\udd10\"),\r\n        ],\r\n        \"Section 2\": [\r\n            st.Page(page2, title=\"Page 2\", icon=\"\ud83d\udcda\"),\r\n        ],\r\n    }\r\n\r\n    pg = st.navigation(pages)\r\n    pg.run()\r\n\r\n\r\nif __name__ == \"__main__\":\r\n    main()\r\n```\r\n\r\nWhich looks like:\r\n\r\n![image](https://github.com/streamlit/streamlit/assets/1893270/766ac2ce-a8aa-473c-8fa4-0b047da01b05)\r\n\r\nIdeally the `\ud83c\udfe0 Home` button would be above the navigation menu.",
+    "html_url": "https://github.com/streamlit/streamlit/issues/9025",
+    "labels": [
+      "type:enhancement",
+      "feature:multipage-apps",
+      "feature:st.navigation"
+    ],
+    "state": "closed",
+    "title": "Allow links to external web pages in the new navigation sidebar"
+  },
+  "streamlit/streamlit#9251": {
+    "body": "### Checklist\n\n- [X] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar feature requests.\n- [X] I added a descriptive title and summary to this issue.\n\n### Summary\n\nneed Static tables hide index\n\n### Why?\n\nI am a perfectionist, and I will collapse when I see useless indexes\n\n### How?\n\nst.table(df,hide_index=True)\n\n### Additional Context\n\n_No response_",
+    "html_url": "https://github.com/streamlit/streamlit/issues/9251",
+    "labels": [
+      "type:enhancement",
+      "feature:st.table"
+    ],
+    "state": "closed",
+    "title": "Add `hide_index` to `st.table`"
+  },
+  "streamlit/streamlit#9253": {
+    "body": "### Checklist\r\n\r\n- [X] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar feature requests.\r\n- [X] I added a descriptive title and summary to this issue.\r\n\r\n### Summary\r\n\r\nI applaud the Streamlit team for adding st.dataframe select options and responding to users wanting this for years.\r\n\r\nUnfortunately, unlike a radio button as I (and many in the original request) hope for, the selection defaults to no selection, and the user can unselect. \r\n\r\n\r\n\r\n### Why?\r\n\r\nIn my example, which can't be too uncommon, I want the user to be able to select from the dataframe to trigger which chart is displayed -- these are distinct measures so an 'all' option (which could take place of no rows selected) makes no sense. \r\n\r\nI went as far as using pandas styler to colour the top row when no rows are selected, but this ended up pretty slow and clunky. \r\n\r\nA minor quip: It's also pretty slow, I guess due to the mandatory on_select=\"rerun\" parameter -- \"ignore\" just makes the select column not appear at all.\r\n\r\n<img width=\"1015\" alt=\"Screenshot 2024-08-12 at 3 26 13\u202fPM\" src=\"https://github.com/user-attachments/assets/ee41cf68-1c50-4a1b-99f8-f95725f2a920\">\r\n\r\n\r\n### How?\r\n\r\nI'd suggest another selection_mode such as 'single_row_radio,' perhaps..\r\nI guess, like st.radio, it would also need a default index selection (though this will be 0, 95% of the time for users)\r\n\r\nI'd say this is *not* necessary for column selections\r\n\r\n### Additional Context\r\n\r\n_No response_",
+    "html_url": "https://github.com/streamlit/streamlit/issues/9253",
+    "labels": [
+      "type:enhancement",
+      "feature:st.dataframe"
+    ],
+    "state": "closed",
+    "title": "allow st.dataframe single-row selection to force a selection (per radio button behaviour)"
+  },
+  "streamlit/streamlit#9446": {
+    "body": "### Checklist\n\n- [X] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar issues.\n- [X] I added a very descriptive title to this issue.\n- [X] I have provided sufficient information below to help reproduce this issue.\n\n### Summary\n\nWe recently decided to implement the new st.Page and st.navigation in our existing app https://docs.streamlit.io/develop/concepts/multipage-apps/page-and-navigation\r\n\r\nWe use the built in AppTest to test our apps\r\n\r\nWe were able to make the changes to the app and we thought everything was looking good. Unfortunately the tests fail.\r\n\r\nWhat seems to be happening is that any content included directly in the startup file is rendered correctly, but none of the content from is being rendered\r\n\r\n```\r\npg = st.navigation(pages)\r\npg.run()\r\n``` \r\n\r\nThere is forum thread on this topic here -- https://discuss.streamlit.io/t/writing-test-with-an-app-that-uses-navigation/74796/2\r\n\r\nI pulled down the streamlit project and was ability to reproduce the test failures by creating a new test_data_navigation app:\r\n[testing.zip](https://github.com/user-attachments/files/16971054/testing.zip)\n\n### Reproducible Code Example\n\n_No response_\n\n### Steps To Reproduce\n\n1. Download the zip\r\n2. Run the tests using pytest\r\n3. The two new tests `test_app_with_navigation` and `test_switch_page_with_navigation` both fail\n\n### Expected Behavior\n\nThe tests should both pass\n\n### Current Behavior\n\n_No response_\n\n### Is this a regression?\n\n- [ ] Yes, this used to work in a previous version.\n\n### Debug info\n\n- Streamlit version: 1.38.0\r\n- Python version: 3.11.1\r\n- Operating System: MacOs 14.6.1\r\n- Browser: Chrome\r\n\n\n### Additional Information\n\n_No response_",
+    "html_url": "https://github.com/streamlit/streamlit/issues/9446",
+    "labels": [
+      "type:bug",
+      "status:confirmed",
+      "priority:P3",
+      "feature:app-testing"
+    ],
+    "state": "closed",
+    "title": "AppTest does not render content for pages in apps using st.navigation"
+  },
+  "streamlit/streamlit#9579": {
+    "body": "### Checklist\n\n- [X] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar feature requests.\n- [X] I added a descriptive title and summary to this issue.\n\n### Summary\n\nhi,\r\nsince v1.38 \"deploy\" button is by default in the app.\r\n\r\nI honestly thing this is very bad design.\r\n\r\n\n\n### Why?\n\nAll type of users, high lvl non tech included, will see that, and get  confused by that.\r\n\r\nI get the idea to get a simple option to deploy. But that's a desing of streamlit only for developers.\r\nAnd st is a framework to build apps.\r\n\r\nApps are made by developers. But used by everyone.\r\n\r\nAlso, forces to be connected with streamlit cloud. And, if st is open sources, other clouds (azure, aws, etc.) should be allowed. And stetics be in line.\n\n### How?\n\nadd an option in config.toml to disable the deploy.\r\n\r\ni would say, the same for \"stop\". But i'm not so sure about that one\n\n### Additional Context\n\nI get streamlit is linked to a private org. And that private org needs to push for it's profit.\r\nBut that should never go against the open source mission of st.\r\n\r\nIs like having a \"Google cloud deploy\" in each kubernetes ui extension",
+    "html_url": "https://github.com/streamlit/streamlit/issues/9579",
+    "labels": [
+      "type:enhancement",
+      "area:deployment"
+    ],
+    "state": "closed",
+    "title": "Config option to hide the deploy button"
+  },
+  "streamlit/streamlit#9646": {
+    "body": "### Checklist\r\n\r\n- [X] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar feature requests.\r\n- [X] I added a descriptive title and summary to this issue.\r\n\r\n### Summary\r\n\r\nI have an app replacing a PowerBI and there are many tabs which we want to organise neatly.\r\n\r\n### Why?\r\n\r\nI have an app replacing a PowerBI and there are many tabs which we want to organise neatly. Currently the tabs would just go under \"View X more\", without considering active choices by the user or grouping of more important things. \r\n\r\n### How?\r\n\r\nHaving additional options for controlling the look of the navigation bar, e.g.\r\n- Configuring how many of the page links that are visible before the \"View X more\"\r\n- Having several collapsibles, i.e. a \"View X more\" for each group of pages and not only for the total\r\n\r\n### Additional Context\r\n\r\n_No response_",
+    "html_url": "https://github.com/streamlit/streamlit/issues/9646",
+    "labels": [
+      "type:enhancement",
+      "feature:st.navigation"
+    ],
+    "state": "closed",
+    "title": "Configure \"View X more\" in page navigation"
+  },
+  "streamlit/streamlit#9836": {
+    "body": "### Checklist\r\n\r\n- [X] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar feature requests.\r\n- [X] I added a descriptive title and summary to this issue.\r\n\r\n### Summary\r\n\r\nThe the link embedding can be done currently but a very lengthy approach. \r\nIt would be great if there's directly a attribute in img tag to whther embedding link or not.\r\n\r\n### Why?\r\n\r\nWhen i want to add image with clickable link in streamlit it makes a long procedure for this. It would a better to have a built-in attribute with streamlit image tag to whether embed link.\r\n\r\n### How?\r\n\r\n_No response_\r\n\r\n### Additional Context\r\n\r\n_No response_\n```[tasklist]\n### Tasks\n```\n",
+    "html_url": "https://github.com/streamlit/streamlit/issues/9836",
+    "labels": [
+      "type:enhancement",
+      "good first issue",
+      "feature:st.image"
+    ],
+    "state": "closed",
+    "title": "Add a link to an image"
+  },
+  "streamlit/streamlit#9870": {
+    "body": "### Checklist\r\n\r\n- [X] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar feature requests.\r\n- [X] I added a descriptive title and summary to this issue.\r\n\r\n### Summary\r\n\r\nHi all,\r\n\r\nThe `segmented_control` component is a fantastic new component that I think will be used a lot by Streamlit users.\r\n\r\nHowever, I currently miss 1 option, that is to require a value. For example, now it is possible to provide a default value which can be unclicked.\r\n\r\n### Why?\r\n\r\nIn many use cases where segmented_control will be used in a single mode, the developer might want to force the user to select something. \r\n\r\n### How?\r\n\r\nI propose to expand the `segmented_control` (and `pills`) API by adding an extra parameter 'required' . If `required` is True, a value must always be selected.\r\n\r\n```py\r\noptions = [\"North\", \"East\", \"South\", \"West\"]\r\nselection = st.segmented_control(\r\n    \"Directions\",\r\n    options,\r\n    selection_mode=\"single\",\r\n    required=True,\r\n    default=\"South\",\r\n)\r\n```\r\n",
+    "html_url": "https://github.com/streamlit/streamlit/issues/9870",
+    "labels": [
+      "type:enhancement",
+      "feature:st.segmented_control",
+      "feature:st.pills"
+    ],
+    "state": "closed",
+    "title": "pills and segmented_control with a required value"
+  },
+  "streamlit/streamlit#10128": {
+    "body": "### Checklist\n\n- [X] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar feature requests.\n- [X] I added a descriptive title and summary to this issue.\n\n### Summary\n\nIs there any way to set selection on dataframe or data_editor ?\n\n### Why?\n\n_No response_\n\n### How?\n\n_No response_\n\n### Additional Context\n\n_No response_",
+    "html_url": "https://github.com/streamlit/streamlit/issues/10128",
+    "labels": [
+      "type:enhancement",
+      "feature:st.dataframe"
+    ],
+    "state": "closed",
+    "title": "Pre set selections for `st.dataframe`"
+  },
+  "streamlit/streamlit#10649": {
+    "body": "### Checklist\n\n- [x] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar feature requests.\n- [x] I added a descriptive title and summary to this issue.\n\n### Summary\n\nThanks to #10264 we can hide/unhide columns directly from the UI but I have two concerns (one subjective and one that could affect all users) :\n\n1- I expected the \"Visibility\" icon to always be present in the UI (of course after hovering over the table), even if no columns have been hidden yet (whether via [`st.column_config.Column`](https://docs.streamlit.io/develop/api-reference/data/st.column_config/st.column_config.column) or directly in the UI)\n\n![Image](https://github.com/user-attachments/assets/97da341d-9497-417a-a049-f93b07a1e9c6)\n\n2- In my use case, I load a table from the database (_see code below_) and some columns shouldn\u2019t be exposed to the end user. That\u2019s why I tweak the columns configuration under the hood. But with the new feature, it becomes useless since the column (name + content) can be made visible again from the UI\n\n<details>\n  <summary>Show code</summary>\n\n  ```python\nimport pandas as pd\nimport streamlit as st\n\n\n@st.cache_data\ndef load_data() -> pd.DataFrame:\n    \"\"\"Load the data.\"\"\"\n    return pd.DataFrame(\n        {\n            \"col1\": [1, 2, 3],\n            \"col2\": [4, 5, 6],\n            \"col3\": [7, 8, 9],\n            \"confidential\": [\"a\", \"b\", \"c\"],\n        },\n    )\n\n\nst.dataframe(load_data(), column_config={\"confidential\": {\"hidden\": True}})\n  ```\n  \n</details>\n\n![Image](https://github.com/user-attachments/assets/c129bbdf-7c3f-4dcc-89a9-1dd7e5801bb6)\n",
+    "html_url": "https://github.com/streamlit/streamlit/issues/10649",
+    "labels": [
+      "type:enhancement",
+      "feature:st.dataframe",
+      "feature:st.data_editor",
+      "feature:st.column_config"
+    ],
+    "state": "closed",
+    "title": "Preserve `st.column_config.Column` visibility restrictions in the UI"
+  },
+  "streamlit/streamlit#10724": {
+    "body": "### Checklist\n\n- [x] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar feature requests.\n- [x] I added a descriptive title and summary to this issue.\n\n### Summary\n\nAdd a `height` parameter to `st.chat_input` that allows configuring the minimum & initial height of the chat input field.\n\n### Why?\n\nIt allows the developer to mimic a look & feel that is similar to most of the big LLM-powered apps, e.g. chatgpt:\n\n![Image](https://github.com/user-attachments/assets/8fc72f48-70f9-4ef0-a365-efa91ebcfccb)\n\n### How?\n\n>  You can test this feature in [this prototype](https://fullscreen-llm-chat.streamlit.app/). \n\n\n```python\nst.chat_input(..., height: int | None = None)\n```\n\n- `height`: Desired minimum height of the UI element expressed in pixels. If this is\u00a0`None`\u00a0(default), uses the default single-line widget height. The height must be at least 40 pixels, which fits one lines. The chat input automatically expands to up to `6.5` lines to accommodate the text value.\n\n### Additional Context\n\n_No response_",
+    "html_url": "https://github.com/streamlit/streamlit/issues/10724",
+    "labels": [
+      "type:enhancement",
+      "feature:st.chat_input"
+    ],
+    "state": "closed",
+    "title": "Configure the initial height of `st.chat_input`"
+  },
+  "streamlit/streamlit#10738": {
+    "body": "### Checklist\n\n- [x] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar feature requests.\n- [x] I added a descriptive title and summary to this issue.\n\n### Summary\n\nAdd a way for users to add a page (i.e. make it accessible at `app_url/my_page`) but not show it in the page navigation in the sidebar.\n\n### Why?\n\nCreate hidden pages that are only accesible via the URL path or linked manually within an app via `st.page_link`\n\n### How?\n\n_No response_\n\n### Additional Context\n\n_No response_",
+    "html_url": "https://github.com/streamlit/streamlit/issues/10738",
+    "labels": [
+      "type:enhancement",
+      "feature:multipage-apps",
+      "feature:st.navigation"
+    ],
+    "state": "closed",
+    "title": "Add a page without showing it in the navigation menu"
+  },
+  "streamlit/streamlit#10775": {
+    "body": "### Checklist\n\n- [x] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar feature requests.\n- [x] I added a descriptive title and summary to this issue.\n\n### Summary\n\nI would like to have the option `st.table(df, use_container_width=False)`.\n\n### Why?\n\nI appreciate the `width=\"content\"` in `st.dataframe()`, and I would like to have the option in `st.table()`.\n\n### Additional Context\n\nIn the meantime, here is a workaround:\n```py\nimport pandas as pd\nimport streamlit as st\n\nst.html(\"\"\"\n<style>\n    div.st-key-width-content div[data-testid=\"stTable\"] {\n        max-width: fit-content;\n    }\n</style>\n\"\"\")\n\ndf = pd.DataFrame({\"x\": [0.1, 0.2, 0.3], \"y\": [0.4, 0.5, 0.6]})\n\nst.code(\"st.table()\")\nst.table(df)\nst.container(key=\"width-content\").table(df)  # Equivalent of width=\"content\" done with the CSS above.\nst.divider()\nst.code(\"st.dataframe()\")\nst.dataframe(df)\nst.dataframe(df, width=\"content\")\n```\n\n![Image](https://github.com/user-attachments/assets/99e9cc73-46b3-4082-a890-59fe8b1b840b)",
+    "html_url": "https://github.com/streamlit/streamlit/issues/10775",
+    "labels": [
+      "type:enhancement",
+      "feature:st.table"
+    ],
+    "state": "closed",
+    "title": "Support `width=\"content\"` in `st.table()`"
+  },
+  "streamlit/streamlit#10892": {
+    "body": "### Checklist\n\n- [x] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar feature requests.\n- [x] I added a descriptive title and summary to this issue.\n\n### Summary\n\nIn some elements (e.g. `st.pills`) we recognize an icon at the beginning of the text/label and visualize it in a nice way. But for `st.warning` and other callout boxes, we don't do that. If you add an emoji at the beginning of the callout text, it shows up like this:\n\n![Image](https://github.com/user-attachments/assets/91ea6868-3472-4fc7-b651-d9bccf812713)\n\nWhile if I pass the emoji to the `icon` parameter, it gets formatted more nicely:\n\n![Image](https://github.com/user-attachments/assets/aedea72e-1788-4a1c-9cf0-82e4afc4a47d)\n\nWe should format both cases in the same, nice way. \n\n### Why?\n\n_No response_\n\n### How?\n\n_No response_\n\n### Additional Context\n\n_No response_",
+    "html_url": "https://github.com/streamlit/streamlit/issues/10892",
+    "labels": [
+      "type:enhancement",
+      "good first issue",
+      "feature:st.info",
+      "feature:st.success",
+      "feature:st.warning"
+    ],
+    "state": "closed",
+    "title": "Make `st.warning` etc pick up icons at the beginning of the text"
+  },
+  "streamlit/streamlit#11277": {
+    "body": "### Checklist\n\n- [x] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar feature requests.\n- [x] I added a descriptive title and summary to this issue.\n\n### Summary\n\nIf you change any parameter of a widget in Streamlit (e.g. the label or the default value), Streamlit will treat it as a new widget and reset its state. That\u2019s necessary because we determine which widget state belongs to which widget based on the parameters. (Note that there are a few exceptions to this rule, e.g. changing the `disabled` parameter will not reset the widget). \n\nBut we still do this when you manually set `key`! Even though in that case, we can easily associate the widget state with the widget based on the `key`. We should change that and always preserve the widget identity if `key` is set. \n\n### Why?\n\nThis (potentially) fixes lots of small issues such as:\n\n- https://github.com/streamlit/streamlit/issues/1532\n- https://github.com/streamlit/streamlit/issues/4854\n- https://github.com/streamlit/streamlit/issues/6352\n- https://github.com/streamlit/streamlit/issues/7054\n- https://github.com/streamlit/streamlit/issues/7749\n- https://github.com/streamlit/streamlit/issues/7855\n- https://github.com/streamlit/streamlit/issues/8410\n- https://github.com/streamlit/streamlit/issues/8496\n- https://github.com/streamlit/streamlit/issues/8882\n- https://github.com/streamlit/streamlit/issues/9402\n- https://github.com/streamlit/streamlit/issues/9415\n- https://github.com/streamlit/streamlit/issues/9657\n- https://github.com/streamlit/streamlit/issues/10181\n- https://github.com/streamlit/streamlit/issues/10843\n- https://github.com/streamlit/streamlit/issues/11268\n- https://github.com/streamlit/streamlit/issues/12165\n- https://github.com/streamlit/streamlit/issues/9527\n- https://github.com/streamlit/streamlit/issues/12392\n- With zoom events on charts/maps, this could unblock use cases where you dynamically want to load data while zooming in.\n\n### How?\n\nWe need to be careful here since this *might* break apps. Probably needs a bit of investigation. \n\n### Additional Context\n\n_No response_",
+    "html_url": "https://github.com/streamlit/streamlit/issues/11277",
+    "labels": [
+      "type:enhancement",
+      "area:widgets"
+    ],
+    "state": "closed",
+    "title": "Persist widget identity when key is set, even if the parameters change"
+  },
+  "streamlit/streamlit#11308": {
+    "body": "### Checklist\n\n- [x] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar issues.\n- [x] I added a very descriptive title to this issue.\n- [x] I have provided sufficient information below to help reproduce this issue.\n\n### Summary\n\nWe are passing in 0 when running streamlit in order to generate a dynamic port. While streamlit does correctly assign a port number, the console showsLocal URL: http://localhost:0.\n\n### Reproducible Code Example\n\n```Python\n\n```\n\n### Steps To Reproduce\n\n1. Run \"python -m streamlit run _panel_name.py_ --server.port 0 --server.headless true\"\n2. Read the output data to see Local URL: http://localhost:0\n\n### Expected Behavior\n\nThe dynamically generated port should be written to the console.\n\n### Current Behavior\n\n_No response_\n\n### Is this a regression?\n\n- [ ] Yes, this used to work in a previous version.\n\n### Debug info\n\n- Streamlit version: 1.45.0\n- Python version: 3.12.10\n- Operating System: Windows 11\n- Browser: N/A\n\n\n### Additional Information\n\n_No response_",
+    "html_url": "https://github.com/streamlit/streamlit/issues/11308",
+    "labels": [
+      "type:bug",
+      "status:confirmed",
+      "priority:P3",
+      "feature:cli"
+    ],
+    "state": "closed",
+    "title": "Passing 0 to specific a dynamic port incorrectly prints Local URL: http://localhost:0 to the console"
+  },
+  "streamlit/streamlit#11409": {
+    "body": "### Checklist\n\n- [x] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar feature requests.\n- [x] I added a descriptive title and summary to this issue.\n\n### Summary\n\nAdd a [dropdown button](https://component.gallery/components/dropdown-menu/) widget that provides triggering multiple options:\n\n<img width=\"353\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/68b8b597-30f4-4fa7-bdd5-0a3d04c3eead\" />\n\nAlternative name: `dropdown_menu`, `menu_button`\n\n### Why?\n\n_No response_\n\n### How?\n\n```python\naction = st.dropdown_button(\"Open Menu\", options=[\"Item One\", \"Item Two\", \"Item Three\"])\nif action == \"Item One\":\n   # Do something\n```\n\nShould support all relevant widget parameter from button (label with markdown, key, help, on_click, type, icon, disabled, width, but not shortcut): https://docs.streamlit.io/develop/api-reference/widgets/st.button options should support markdown as well.\n\n### Additional Context\n\n- Dropdown menu in [components gallery](https://component.gallery/components/dropdown-menu/)\n- In comparison with selectbox, this is a trigger rerun, not a selection, meaning that it would only return the clicked option one time, similar to a button. And selecting the option wouldn't change the button label.",
+    "html_url": "https://github.com/streamlit/streamlit/issues/11409",
+    "labels": [
+      "type:enhancement",
+      "area:widgets",
+      "feature:st.button"
+    ],
+    "state": "closed",
+    "title": "Add a menu / dropdown button widget"
+  },
+  "streamlit/streamlit#11771": {
+    "body": "### Checklist\n\n- [x] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar feature requests.\n- [x] I added a descriptive title and summary to this issue.\n\n### Summary\n\nSupport markdown in the `title` parameter of `st.Page`, e.g. for display in the sidebar or top navigation bar. \n\n### Why?\n\n_No response_\n\n### How?\n\n_No response_\n\n### Additional Context\n\n_No response_",
+    "html_url": "https://github.com/streamlit/streamlit/issues/11771",
+    "labels": [
+      "type:enhancement",
+      "feature:markdown",
+      "feature:multipage-apps"
+    ],
+    "state": "closed",
+    "title": "Support Markdown in the title of `st.Page`"
+  },
+  "streamlit/streamlit#12104": {
+    "body": "### Checklist\n\n- [x] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar feature requests.\n- [x] I added a descriptive title and summary to this issue.\n\n### Summary\n\nStreamlit supports static image serving with https://docs.streamlit.io/develop/concepts/configuration/serving-static-files but using the static path does not work for:\n- st.image\n- st.chat_message(avatar)\n- st.set_page_config(page_icon)\n\nAnd I guess every other API does accept AtomicImage.\n\n### Why?\n\nServing images over static path is way more efficient than as it is today in st.image under the hud system that will read the file, try to understand what it is, resize it, and then keep a local copy. All this work is not necessary for static images.\n\nOn the other side, being able to provide a static image without knowing where the server is running is essential to reduce complexity. As of now, the only workaround is to build a valid URL to the app/static path.\n\n```python\ncurent_url = get_current_url_somehow()\nst.chat_message(..., avatar = f\"{curent_url}/app/static/my_image.png\")\n```\n\n### How?\n\nThe static path is well-known, so it would be easy to add in the processing of AtomicImage a check for it before continuing.\n\n### Additional Context\n\n_No response_",
+    "html_url": "https://github.com/streamlit/streamlit/issues/12104",
+    "labels": [
+      "type:enhancement",
+      "feature:st.image",
+      "feature:st.audio",
+      "feature:st.video",
+      "feature:st.set_page_config",
+      "feature:st.chat_message"
+    ],
+    "state": "closed",
+    "title": "static images served by streamlit should work on all image compatible features"
+  },
+  "streamlit/streamlit#12106": {
+    "body": "### Checklist\n\n- [x] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar feature requests.\n- [x] I added a descriptive title and summary to this issue.\n\n### Summary\n\nIt would be great if we could specify `text-align` in the pandas styler and have that control left/right/center alignment of the DataFrame cell.\n\n\n\n### Why?\n\nWe want to have explicit control over the text alignment in our data table cells\n\n### How?\n\nIt looks like Glide Grid supports alignment control through the [`contentAlign` property](https://github.com/glideapps/glide-data-grid/blob/main/packages/core/src/docs/examples/content-alignment.stories.tsx#L34-L64)\n\n\n### Additional Context\n\n\n#6706 seems related, but not 100% this is what they're asking for\n\n#6958 could be semi-related but appears to be more about headers. I'm looking for the actual data cells.",
+    "html_url": "https://github.com/streamlit/streamlit/issues/12106",
+    "labels": [
+      "type:enhancement",
+      "feature:st.dataframe",
+      "feature:st.data_editor",
+      "feature:st.column_config"
+    ],
+    "state": "closed",
+    "title": "Support text/content align in st.dataframe"
+  },
+  "streamlit/streamlit#12144": {
+    "body": "### Checklist\n\n- [x] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar issues.\n- [x] I added a very descriptive title to this issue.\n- [x] I have provided sufficient information below to help reproduce this issue.\n\n### Summary\n\nUsing Cognito OIDC, when the logout() function is called, it seems to redirect to a broken end_session_endpoint.\n\nI got a popup with this error \n\n'''\nAn error was encountered with the requested page.\n\nRequired String parameter 'client_id' is not present\n'''\n\nMaybe the client_id in secrets.toml wasn't provided?\n\n### Reproducible Code Example\n\n```Python\n\n```\n\n### Steps To Reproduce\n\n_No response_\n\n### Expected Behavior\n\nUser get redirected to the login page gracefully\n\n### Current Behavior\n\nError message from Cognito popup:\n'''\nAn error was encountered with the requested page.\n\nRequired String parameter 'client_id' is not present\n'''\n\n### Is this a regression?\n\n- [ ] Yes, this used to work in a previous version.\n\n### Debug info\n\n- Streamlit version: 1.48.0\n- Python version: 3.11\n- Operating System: MacOS Sequoia 15.5\n- Browser: Safari\n\n\n### Additional Information\n\nIt seems like the end session endpoint from st.logout() was in the wrong format,\n\nI got \n\nhttps://{cognito-domain}/login?post_logout_redirect_uri={logout_uri}\n\ninstead of\n\nhttps://{cognito-domain}/logout?client_id={client_id}&logout_uri={logout_uri}\n\nref. https://docs.aws.amazon.com/cognito/latest/developerguide/logout-endpoint.html\n\n_No response_",
+    "html_url": "https://github.com/streamlit/streamlit/issues/12144",
+    "labels": [
+      "type:bug",
+      "priority:P1",
+      "feature:authentication"
+    ],
+    "state": "closed",
+    "title": "st.logout() doesn't redirect to correct Cognito ESE"
+  },
+  "streamlit/streamlit#12300": {
+    "body": "### Checklist\n\n- [x] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar feature requests.\n- [x] I added a descriptive title and summary to this issue.\n\n### Summary\n\nThe value of `st.metric` uses a larger font size, which isn't available through theming today. It would be great to add this!\n\n### Why?\n\nMany BI dashboards use specific styles for metrics and it's important we can replicate that, e.g. like in here:\n\n<img width=\"842\" height=\"92\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/eac82c33-8828-456e-97b7-0c1c23e11905\" />\n\n### How?\n\nAdd two new theming parameters:\n\n- `metricValueFontSize`\n- `metricValueFontWeight`\n\nThese should take the same values as other font size/weight parameters. I don't think it's worth adding that for the delta values right now but we should keep that option open for the future. \n\nNote that one other solution could be to tie the design of the metric value to some header level (e.g. h3). But I don't think that works for every kind of theme. \n\n### Additional Context\n\n_No response_",
+    "html_url": "https://github.com/streamlit/streamlit/issues/12300",
+    "labels": [
+      "type:enhancement",
+      "good first issue",
+      "feature:theming",
+      "feature:st.metric"
+    ],
+    "state": "closed",
+    "title": "Change `st.metric` font size and weight through theming"
+  },
+  "streamlit/streamlit#12345": {
+    "body": "## Describe your changes\r\n\r\nRefactor the `st.toggle` e2e test to use label based access instead of index based access.\r\n\r\n---\r\n\r\n**Contribution License Agreement**\r\n\r\nBy submitting this pull request you agree that all contributions to this project are made under the Apache 2.0 license.\r\n",
+    "html_url": "https://github.com/streamlit/streamlit/pull/12345",
+    "labels": [
+      "impact:internal",
+      "change:refactor"
+    ],
+    "state": "closed",
+    "title": "Refactor `st.toggle` e2e test"
+  },
+  "streamlit/streamlit#12434": {
+    "body": "### Checklist\n\n- [x] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar feature requests.\n- [x] I added a descriptive title and summary to this issue.\n\n### Summary\n\nDue to the padding above/below titles and headers, they don't align well with other elements if used in a horizontal container:\n\n```python\nimport streamlit as st\n\nwith st.container(horizontal=True, vertical_alignment=\"center\"):\n    st.title(\"This is a title\")\n    st.button(\"This is not aligned\")\n```\n\n<img width=\"1476\" height=\"200\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/77eabf61-12c0-4475-b4b7-8fe30c1b1de8\" />\n\nWould be great to improve that!\n\n### Why?\n\nLooks better if it's aligned. \n\n### How?\n\nMaybe we automatically get rid of the padding above/below if used in a horizontal container? Or some other solution?\n\n### Additional Context\n\n_No response_",
+    "html_url": "https://github.com/streamlit/streamlit/issues/12434",
+    "labels": [
+      "type:enhancement",
+      "area:layout",
+      "feature:st.container",
+      "feature:st.header",
+      "feature:st.title"
+    ],
+    "state": "closed",
+    "title": "Make titles/headers align better in horizontal container"
+  },
+  "streamlit/streamlit#12802": {
+    "body": "### Checklist\n\n- [x] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar issues.\n- [x] I added a very descriptive title to this issue.\n- [x] I have provided sufficient information below to help reproduce this issue.\n\n### Summary\n\n(Filing a bug for a feature that I implemented myself, sorry! \ud83d\ude13 )\n\nWhen hovering over `st.segmented_control`, the border on the left side of the segment becomes darker/lighter than the other borders: \n\n<img width=\"628\" height=\"168\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/1dc9b880-f810-49d7-9c41-026b6ee95a6a\" />\n\n### Reproducible Code Example\n\n```Python\nimport streamlit as st\n\noptions = [\"North\", \"East\", \"South\", \"West\"]\nselection = st.segmented_control(\n    \"Directions\", options, selection_mode=\"multi\"\n)\n```\n\n### Steps To Reproduce\n\nRun the app, hover over one segment. \n\n### Expected Behavior\n\nAll borders stay the same color. \n\n### Current Behavior\n\nLeft border of the hovered segment becomes darker (in light mode) or lighter (in dark mode). \n\n### Is this a regression?\n\n- [ ] Yes, this used to work in a previous version.\n\n### Debug info\n\n- Streamlit version: 1.50\n- Python version:\n- Operating System:\n- Browser:\n\n\n### Additional Information\n\nThis happens because the border color and background color both have transparency and overlap. I already tried the following things in the past, but wasn't able to fix it:\n\n- Only having a right border on each button instead of left and right border. But this breaks active/selected buttons and there\u2019s not really a good way around it.\n- Setting the background with a box shadow instead of the background color property. Then it doesn\u2019t interfere with the border color. This works well but impacts performance since the box shadow on hover causes a lot of rerenders.\n- Creating an inner div to which we apply the background color on hover. Border stays on the outer div and isn\u2019t affected. This would be a clean solution but in the code it\u2019s a bit messy since we\u2019re using the generic `BaseButton` component here.\n- Using `background-clip: padding-box;`. This didn\u2019t have an effect somehow.",
+    "html_url": "https://github.com/streamlit/streamlit/issues/12802",
+    "labels": [
+      "type:bug",
+      "status:confirmed",
+      "priority:P3",
+      "feature:st.segmented_control"
+    ],
+    "state": "closed",
+    "title": "On hover, the border for `st.segmented_control` changes color"
+  },
+  "streamlit/streamlit#12870": {
+    "body": "### Checklist\n\n- [x] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar issues.\n- [x] I added a very descriptive title to this issue.\n- [x] I have provided sufficient information below to help reproduce this issue.\n\n### Summary\n\nWhen you make an `st.exception` small (e.g. `width=100`), the links below overflow:\n\n<img width=\"224\" height=\"185\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/7c1321d3-f9d7-4de4-9626-f09e7e30612a\" />\n\nMaybe we simply put the links below each other if there\u2019s not enough space?\n\n### Reproducible Code Example\n\n```Python\n\n```\n\n### Steps To Reproduce\n\n_No response_\n\n### Expected Behavior\n\n_No response_\n\n### Current Behavior\n\n_No response_\n\n### Is this a regression?\n\n- [ ] Yes, this used to work in a previous version.\n\n### Debug info\n\n- Streamlit version:\n- Python version:\n- Operating System:\n- Browser:\n\n\n### Additional Information\n\n_No response_",
+    "html_url": "https://github.com/streamlit/streamlit/issues/12870",
+    "labels": [
+      "type:bug",
+      "status:confirmed",
+      "priority:P3",
+      "feature:st.exception"
+    ],
+    "state": "closed",
+    "title": "`st.exception` lacks responsiveness at small widths"
+  },
+  "streamlit/streamlit#12956": {
+    "body": "### Checklist\n\n- [x] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar feature requests.\n- [x] I added a descriptive title and summary to this issue.\n\n### Summary\n\nOur dropdown menus currently look like below, e.g. for `st.selectbox`:\n\n<img width=\"769\" height=\"302\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/e212a342-e914-4ed8-8fd6-d5bd36748415\" />\n\nBut we want them to look like the new style we added for page sections in top navigation (i.e. if `st.navigation(..., position=\"top\")` is set): \n\n<img width=\"169\" height=\"223\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/0d5f5ae3-dfad-4810-8457-e9a6127956b9\" />\n\n### Why?\n\nLooks more modern. \n\n### How?\n\nNeed to go through all our dropdowns and update. \n\n### Additional Context\n\nRelated: #12954",
+    "html_url": "https://github.com/streamlit/streamlit/issues/12956",
+    "labels": [
+      "type:enhancement",
+      "good first issue",
+      "feature:st.dataframe",
+      "feature:app-menu",
+      "feature:st.selectbox",
+      "feature:st.time_input",
+      "feature:st.multiselect"
+    ],
+    "state": "closed",
+    "title": "Update design of dropdown menus to align with top nav"
+  },
+  "streamlit/streamlit#12958": {
+    "body": "### Checklist\n\n- [x] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar issues.\n- [x] I added a very descriptive title to this issue.\n- [x] I have provided sufficient information below to help reproduce this issue.\n\n### Summary\n\nHi,I have a st.code that has a long value that overlaps with the copy button (see attached picture) \n\n<img width=\"299\" height=\"72\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/518cae0b-1080-4952-810d-87b1bf99a291\" />\n\nAny ideas? :-)\n\nBest Regards\nAlex\n\n### Reproducible Code Example\n\n```Python\n\n```\n\n### Steps To Reproduce\n\n_No response_\n\n### Expected Behavior\n\n_No response_\n\n### Current Behavior\n\n_No response_\n\n### Is this a regression?\n\n- [ ] Yes, this used to work in a previous version.\n\n### Debug info\n\n- Streamlit version:\n- Python version:\n- Operating System:\n- Browser:\n\n\n### Additional Information\n\n_No response_",
+    "html_url": "https://github.com/streamlit/streamlit/issues/12958",
+    "labels": [
+      "type:bug",
+      "status:confirmed",
+      "priority:P3",
+      "feature:st.code"
+    ],
+    "state": "closed",
+    "title": "Copy to clipboard button not visible in st.code"
+  },
+  "streamlit/streamlit#12977": {
+    "body": "### Checklist\n\n- [x] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar feature requests.\n- [x] I added a descriptive title and summary to this issue.\n\n### Summary\n\nWe currently have a command to show something in an `iframe` as part of `st.components.v1.iframe`. Since we just released custom components v2, we want to move away from the v1 API. I think it makes sense to add an `st.iframe` command directly into the `st` namespace. \n\n### Why?\n\n- Easier to discover. \n- Let's us move out of the `st.components.v1` API. \n- `st.components.v1.iframe` has some weird settings and does not allow rendering PDFs\n\n### How?\n\n_No response_\n\n### Additional Context\n\n- Related https://github.com/streamlit/streamlit/issues/4659",
+    "html_url": "https://github.com/streamlit/streamlit/issues/12977",
+    "labels": [
+      "type:enhancement",
+      "feature:custom-components"
+    ],
+    "state": "closed",
+    "title": "Add `st.iframe` command"
+  },
+  "streamlit/streamlit#13211": {
+    "body": "### Checklist\n\n- [x] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar feature requests.\n- [x] I added a descriptive title and summary to this issue.\n\n### Summary\n\nPandas has just announced [the first release candidate for version 3.0.0](https://github.com/pandas-dev/pandas/releases/tag/v3.0.0rc0), with a stable release expected in a few weeks. It would be really cool if Streamlit could support this major version alongside the official release.\n\n### Why?\n\n_No response_\n\n### How?\n\n_No response_\n\n### Additional Context\n\n_No response_",
+    "html_url": "https://github.com/streamlit/streamlit/issues/13211",
+    "labels": [
+      "type:enhancement",
+      "area:arrow"
+    ],
+    "state": "closed",
+    "title": "Support Pandas 3"
+  },
+  "streamlit/streamlit#13317": {
+    "body": "### Checklist\n\n- [x] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar feature requests.\n- [x] I added a descriptive title and summary to this issue.\n\n### Summary\n\nIf you unselect an item in `st.multiselect`, the multiselect always scrolls to the bottom. This is very annoying if you want to unselect multiple items in a long list of options:\n\nhttps://github.com/user-attachments/assets/5a8ec8f4-0e2b-4615-b393-bbb19d5792eb\n\n### Why?\n\n_No response_\n\n### How?\n\n_No response_\n\n### Additional Context\n\n_No response_",
+    "html_url": "https://github.com/streamlit/streamlit/issues/13317",
+    "labels": [
+      "type:enhancement",
+      "feature:st.multiselect"
+    ],
+    "state": "closed",
+    "title": "Keep scroll position in `st.multiselect` when unselecting an item"
+  },
+  "streamlit/streamlit#13634": {
+    "body": "### Checklist\n\n- [x] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar issues.\n- [x] I added a very descriptive title to this issue.\n- [x] I have provided sufficient information below to help reproduce this issue.\n\n### Summary\n\nWhen using the decorator `@st.cache_resource` to deal with calls from a `@st.fragment` function, the first widget will be changed to a `div.stEmpty` element.\n\n<img width=\"500\" height=\"300\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/1aae230f-afdb-4771-9a2b-19bd1d1f892d\" />\n<img width=\"500\" height=\"300\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/a48b4ee5-9681-41d6-b8b9-c449a579cabe\" />\n\n### Reproducible Code Example\n\n```Python\nfrom random import randint\n\nimport streamlit as st\n\n\n@st.cache_resource\ndef get_data(number):\n    pass\n\n\n@st.fragment\ndef main():\n    st.button(\n        label=\"call get_data()\",\n        on_click=get_data,\n        args=[randint(0, 10)],\n    )\n\nst.write(\"First widget (*Changes to .stEmpty)\")\nst.write(\"Second widget (*Rendered)\")\nmain()\nst.write(\"Third widget (*Rendered)\")\nst.write(\"Fourth widget (*Rendered)\")\n```\n\n### Steps To Reproduce\n\n1. Create a `@st.cache_resource` decorated function\n2. Add widgets above and below a `@st.fragmented` function call\n3. Create a fragmented function containing a call to the `@cache_resource` decorated function\n4. Trigger the `@st.cache_resource` function \n5. Observe that the first widget (any) above the function with `@st.fragment` disappears\n6. *This does not affect widgets below the called `@st.fragment` function\n\n### Expected Behavior\n\nAll widgets should be rendered, regardless of the order in code after a call to the `@st.cache_resource`\n\n### Current Behavior\n\nThe first widget above a `@st.fragment` function that calls for a `@st.cache_resource` function will be replaced for a `div.stEmpty`\n\nThis only affects the first widget above the `@st.fragment` function that calls a `@st.cache_resource` function (*when a new value is parsed) \nIf the first widget is below said function, its rendered normally.\n\n### Is this a regression?\n\n- [ ] Yes, this used to work in a previous version.\n\n### Debug info\n\n- Streamlit version: 1.52.1\n- Python version: 3.12.10\n- Operating System: Windows 11 24H2\uff08Build 26100.7462\uff09\n- Browser: Edge\n\n\n### Additional Information\n\n_No response_",
+    "html_url": "https://github.com/streamlit/streamlit/issues/13634",
+    "labels": [
+      "type:bug",
+      "feature:cache",
+      "status:awaiting-user-response",
+      "feature:st.fragment"
+    ],
+    "state": "closed",
+    "title": "First streamlit widget vanish when used above a @st.fragment that calls a @st.cache_resource function"
+  },
+  "streamlit/streamlit#13690": {
+    "body": "### Checklist\n\n- [x] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar feature requests.\n- [x] I added a descriptive title and summary to this issue.\n\n### Summary\n\nThe `delta` parameter of `st.metric` is a great way to show changes in the metric, but it lacks a good way to show over which timeframe the change occurred (e.g. \"month over month\", or \"vs. last quarter\"). While you can include that text in the delta itself, that often looks odd:\n\n<img width=\"856\" height=\"468\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/b296d0a8-70a0-4bff-97ec-ef9af30690b0\" />\n\nIt might be nice to add a `delta_description` parameter that shows some text next to the delta in small gray font (similar to `st.caption`). \n\n### Why?\n\n_No response_\n\n### How?\n\n_No response_\n\n### Additional Context\n\n_No response_",
+    "html_url": "https://github.com/streamlit/streamlit/issues/13690",
+    "labels": [
+      "type:enhancement",
+      "feature:st.metric"
+    ],
+    "state": "closed",
+    "title": "Add delta description for `st.metric`"
+  },
+  "streamlit/streamlit#13785": {
+    "body": "### Checklist\n\n- [x] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar issues.\n- [x] I added a very descriptive title to this issue.\n- [x] I have provided sufficient information below to help reproduce this issue.\n\n### Summary\n\nWhen using st.metric with sparklines (chart_data) inside st.container(horizontal=True), the metrics sometimes wrap to take up full rows instead of staying side-by-side. The behavior is non-deterministic and seems related to the interaction between chart sizing and flex layout.\n\n### Reproducible Code Example\n\n```Python\nimport streamlit as st\n\nwith st.container(horizontal=True):\n    st.metric(\"Revenue\", \"$1.2M\", \"+12%\", border=True, chart_data=[1,2,3,4,5,6,7], chart_type=\"line\")\n    st.metric(\"Orders\", \"11k\", \"+8%\", border=True, chart_data=[3,1,4,1,5,9,2], chart_type=\"bar\")\n    st.metric(\"Customers\", \"8.5k\", \"+15%\", border=True, chart_data=[2,3,2,4,3,5,4], chart_type=\"line\")\n    st.metric(\"AOV\", \"$132\", \"+3%\", border=True)\n```\n\n### Steps To Reproduce\n\n_No response_\n\n### Expected Behavior\n\nAll metrics stay in a single row.\n\n<img width=\"3056\" height=\"1536\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/1beb97e4-95d7-4371-bfc7-e5826237a21d\" />\n\n### Current Behavior\n\nMetrics wrap to full-width rows (second screenshot). Behavior varies on page load/resize.\n\n<img width=\"3418\" height=\"1598\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/ac3addfd-e2dd-4a7a-a1f6-c9cd6ff10c79\" />\n\n### Is this a regression?\n\n- [x] Yes, this used to work in a previous version.\n\n### Debug info\n\n- Streamlit version: 1.53.1\n- Python version:\n- Operating System: Apple\n- Browser: Chrome\n\n\n### Additional Information\n\n_No response_",
+    "html_url": "https://github.com/streamlit/streamlit/issues/13785",
+    "labels": [
+      "type:bug",
+      "status:confirmed",
+      "priority:P2",
+      "feature:st.container",
+      "feature:st.metric"
+    ],
+    "state": "closed",
+    "title": "st.metric with chart_data wraps unexpectedly in horizontal containers"
+  },
+  "streamlit/streamlit#13801": {
+    "body": "### Checklist\n\n- [x] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar feature requests.\n- [x] I added a descriptive title and summary to this issue.\n\n### Summary\n\nsupport cachetools 7.x\n\n### Why?\n\n_No response_\n\n### How?\n\n_No response_\n\n### Additional Context\n\n_No response_",
+    "html_url": "https://github.com/streamlit/streamlit/issues/13801",
+    "labels": [
+      "type:enhancement"
+    ],
+    "state": "closed",
+    "title": "support cachetools 7.x"
+  },
+  "streamlit/streamlit#13831": {
+    "body": "### Checklist\n\n- [x] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar issues.\n- [x] I added a very descriptive title to this issue.\n- [x] I have provided sufficient information below to help reproduce this issue.\n\n### Summary\n\n# Bug report: Console warnings for deprecated theme color fields\n\n## Summary\n\nThe frontend logs \"Invalid color passed for \u2026 in theme\" warnings for deprecated proto theme fields (`widgetBackgroundColor`, `widgetBorderColor`, `skeletonBackgroundColor`) even when the user has not set them. The backend still sends these deprecated fields (often as empty strings), and the frontend calls `parseColor` on every theme key, so empty/invalid values trigger the warning.  Issue solely causes a noisy console and does not appear to interfere with any functionality\n\n\n## Root cause\n\n- **Proto:** `NewSession.proto` still defines `widget_background_color`, `widget_border_color`, and `skeleton_background_color` as deprecated fields; they can be sent (e.g. as `\"\"`).\n- **Frontend:** In `frontend/lib/src/theme/utils.ts`, `createEmotionTheme` builds `parsedColors` from all keys in the theme input and runs `parseColor` on every color key. Deprecated keys are never used for theming but are still validated, so empty values produce warnings.\n\n## Suggested fix\n\nSkip deprecated theme colour keys when building `parsedColors` so `parseColor` is never called on them. \nI have a diff that I can apply that works locally.  \n\n\n\n\n\n### Reproducible Code Example\n\n```Python\n\n```\n\n### Steps To Reproduce\n\n1. Create a `.streamlit/config.toml` with only supported theme options, e.g.:\n   ```toml\n[theme]\nprimaryColor = \"#0063a3\"\nbackgroundColor = \"#ffffff\"\nsecondaryBackgroundColor = \"#f1f1f6\"\n   ```\n2. Run a Streamlit app and open the browser console in Chrome.\n3. Observe warnings such as:\n   - `Invalid color passed for widgetBackgroundColor in theme: \"\"`\n   - `Invalid color passed for widgetBorderColor in theme: \"\"`\n   - `Invalid color passed for skeletonBackgroundColor in theme: \"\"\n\n### Expected Behavior\n\nThe error should appear as the backgroundColor value should satisfy the test.  These fields are marked as deprecated (proto/streamlit/proto/NewSession.proto line 148\u2013169 ).   \n\n### Current Behavior\n\nThe frontend iterates over all theme input keys (including deprecated ones from the proto) and calls `parseColor()` on each. When the backend sends empty string for deprecated fields, `parseColor` fails and logs a warning.\n\n\n### Is this a regression?\n\n- [ ] Yes, this used to work in a previous version.\n\n### Debug info\n\n- Streamlit version:1.54.0\n- Python version:3.13.7\n- Operating System:Windows\n- Browser: Chrome Version 144.0.7559.112\n\n\n### Additional Information\n\nThere is a case on https://discuss.streamlit.io/t/invalid-color-passed-errors/120652/3.   I am new to StreamLit and do not know when this was introduced.  I was unable to find an open issue for this in the repo\n\nThe issue appears to be in utils.ts, and I have created a patch to resolve this for myself.   \n",
+    "html_url": "https://github.com/streamlit/streamlit/issues/13831",
+    "labels": [
+      "type:bug",
+      "area:frontend",
+      "status:confirmed",
+      "priority:P4",
+      "feature:theming"
+    ],
+    "state": "closed",
+    "title": "Console warnings for deprecated theme color fields for (`widgetBackgroundColor`, `widgetBorderColor`, `skeletonBackgroundColor`)"
+  },
+  "streamlit/streamlit#13832": {
+    "body": "### Checklist\n\n- [x] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar issues.\n- [x] I added a very descriptive title to this issue.\n- [x] I have provided sufficient information below to help reproduce this issue.\n\n### Summary\n\nMy app uses a select slide with custom `format_func`, to format numeric values as percentages.  And the testing of my app regressed with streamlit 1.54.\n\nIt seems that it's trying to format already reformated values?\n\n### Reproducible Code Example\n\n```Python\nfrom streamlit.testing.v1 import AppTest\n\nscript = '''\nimport streamlit as st\nst.select_slider(\"Percentage\", value=0.40, options=(0.00, 0.20, 0.40, 0.45), format_func='{:.0%}'.format)\n'''\n\nat = AppTest.from_string(script)\nat.run() # OK\nat.run() # Not OK\n```\n\n### Steps To Reproduce\n\n1. Save the sample code above as `bug.py\n2. Run as `python bug.py`\n\n### Expected Behavior\n\nNo error.\n\n### Current Behavior\n\nError message:\n```\nTraceback (most recent call last):\n  File \".../bug.py\", line 13, in <module>\n    at.run() # Not OK\n    ^^^^^^^^\n  File \".../.venv/lib/python3.12/site-packages/streamlit/testing/v1/app_test.py\", line 397, in run\n    return self._tree.run(timeout=timeout)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \".../.venv/lib/python3.12/site-packages/streamlit/testing/v1/element_tree.py\", line 1996, in run\n    widget_states = self.get_widget_states()\n                    ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \".../.venv/lib/python3.12/site-packages/streamlit/testing/v1/element_tree.py\", line 1979, in get_widget_states\n    w = get_widget_state(node)\n        ^^^^^^^^^^^^^^^^^^^^^^\n  File \".../.venv/lib/python3.12/site-packages/streamlit/testing/v1/element_tree.py\", line 1923, in get_widget_state\n    return node._widget_state\n           ^^^^^^^^^^^^^^^^^^\n  File \".../.venv/lib/python3.12/site-packages/streamlit/testing/v1/element_tree.py\", line 1100, in _widget_state\n    format_func(opt): idx for idx, opt in enumerate(self.options)\n    ^^^^^^^^^^^^^^^^\nValueError: Unknown format code '%' for object of type 'str'\n```\n\n### Is this a regression?\n\n- [x] Yes, this used to work in a previous version.\n\n### Debug info\n\n- Streamlit version: 1.54\n- Python version: 3.12.3\n- Operating System: Ubuntu 24.04.3\n- Browser: N/A\n\n\n### Additional Information\n\n_No response_",
+    "html_url": "https://github.com/streamlit/streamlit/issues/13832",
+    "labels": [
+      "type:bug",
+      "type:regression",
+      "status:confirmed",
+      "priority:P2"
+    ],
+    "state": "closed",
+    "title": "0.54 regression with testing of select slider with custom format function"
+  },
+  "streamlit/streamlit#13915": {
+    "body": "### Checklist\n\n- [x] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar issues.\n- [x] I added a very descriptive title to this issue.\n- [x] I have provided sufficient information below to help reproduce this issue.\n\n### Summary\n\nAdding rows to data_editor and then clicking \"show/hide columns\" and then selecting \"(index)\" causes \"This error should never happen.  Please report this bug. No cell found for an added row: col=0; row=0\"\n\n### Reproducible Code Example\n\n```Python\nimport streamlit as st\nimport pandas as pd\n\ndf = pd.DataFrame(columns=['foo1', 'foo2', 'foo3'])\nedited_Foobar = st.data_editor(\n    df,\n    num_rows='dynamic'\n)\n```\n\n### Steps To Reproduce\n\n1. run the app.\n2. add one or more rows to the table by clicking the \"+\" sign in any cell\n3. click the show/hide columns eyeball above the top right corner of the table\n4. select \"(Index)\"\n\n\n### Expected Behavior\n\nA new column appears with the header \"Index\", the cells of which have the correctly assigned indices as represented in the dataframe returned by the data_editor widget.\n\n### Current Behavior\n\nA new column appears with a blank header and the contents of the cells of which read \"Error during cell creation\" with the tooltip \"This error should never happen.  Please report this bug. No cell found for an added row: col=0; row=0\"\n\n### Is this a regression?\n\n- [ ] Yes, this used to work in a previous version.\n\n### Debug info\n\n- Streamlit version: 1.53.1\n- Python version: 3.14.2\n- Operating System: Windows 11 Pro 24H2\n- Browser: Chrome\n\n\n### Additional Information\n\n<img width=\"899\" height=\"244\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/521860fa-a71f-464e-828f-997a94765f64\" />\n\n<img width=\"715\" height=\"188\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/59dd43a9-1a87-402f-803d-7cbd895fd695\" />\n\n<img width=\"707\" height=\"179\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/8a687b49-1f5a-44e1-9625-08c1fdfe6fe4\" />",
+    "html_url": "https://github.com/streamlit/streamlit/issues/13915",
+    "labels": [
+      "type:bug",
+      "status:confirmed",
+      "priority:P3",
+      "feature:st.data_editor"
+    ],
+    "state": "closed",
+    "title": "Adding rows to data_editor and then clicking \"show/hide columns\" and then selecting \"(index)\" causes \"This error should never happen.  Please report this bug. No cell found for an added row: col=0; row=0\""
+  },
+  "streamlit/streamlit#13952": {
+    "body": "### Checklist\n\n- [x] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar issues.\n- [x] I added a very descriptive title to this issue.\n- [x] I have provided sufficient information below to help reproduce this issue.\n\n### Summary\n\n`st.Page(my_func, title=\"Test\", url_path=\"///\")` does not raise an exception for internal pages. The empty string check at line 316 uses `strip()` (whitespace\n  only), so `\"///\"` passes. Then `strip(\"/\")` at line 321 reduces it to `\"\"`, resulting in a silently empty url_path that could cause routing issues.\n\n### Reproducible Code Example\n\n```Python\nimport streamlit as st\n\n  def my_page():\n      st.write(\"Hello\")\n\n  def home():\n      st.write(\"Home\")\n\n  # Expected: raises StreamlitAPIException\n  # Actual: no error, page.url_path becomes \"\"\n  pages = [\n      st.Page(home, title=\"Home\", default=True),\n      st.Page(my_page, title=\"Test\", url_path=\"///\"),\n  ]\n  pg = st.navigation(pages)\n  pg.run()\n```\n\n### Steps To Reproduce\n\n1. Create a st.Page with url_path=\"///\"\n2. Run the app\n3. No exception is raised\n4. The page's url_path is an empty string\n\n### Expected Behavior\n\nst.Page should raise a StreamlitAPIException when url_path resolves to an empty string after stripping slashes, consistent with the behavior for url_path=\"\".\n\n### Current Behavior\n\nNo exception is raised. url_path silently becomes an empty string.\n\n  In lib/streamlit/navigation/page.py (lines 316-321):\n\n      if url_path.strip() == \"\" and not default:    # \"///\" is not whitespace-empty, passes\n          raise StreamlitAPIException(...)\n      self._url_path = url_path.strip(\"/\")          # becomes \"\" \u2014 no further check\n\n### Is this a regression?\n\n- [ ] Yes, this used to work in a previous version.\n\n### Debug info\n\n  - Streamlit version: develop branch (HEAD)\n  - Python version: 3.10\n  - Operating System: Ubuntu\n  - Browser: N/A (code-level issue)\n\n\n### Additional Information\n\nFound while reviewing #13691. The external URL code path added in that PR already handles this correctly by applying strip(\"/\") before the empty check (lines\n  260-261).\n\n  A possible fix:\n\n      self._url_path = url_path.strip(\"/\")\n      if self._url_path == \"\" and not default:\n          raise StreamlitAPIException(\n              \"The URL path cannot be an empty string unless the page is the default page.\"\n          )",
+    "html_url": "https://github.com/streamlit/streamlit/issues/13952",
+    "labels": [
+      "type:bug",
+      "status:confirmed",
+      "priority:P4",
+      "feature:multipage-apps",
+      "feature:st.navigation"
+    ],
+    "state": "closed",
+    "title": "`st.Page` accepts slash-only `url_path` (e.g. \"///\") without raising an exception"
+  },
+  "streamlit/streamlit#13954": {
+    "body": "On Windows, Streamlit frequently detects a file change (displaying the \"File change.\" header) even when no modifications have been made to the source files. This happens even when the source file is not open in any IDE or text editor. Unfortunately, I cannot provide a deterministic way to reproduce this, it happens sporadically.\n\n<img width=\"484\" height=\"123\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/b35f3ce7-dd12-4456-8364-6d25170fd2cf\" />\n\n### Debug info\n\n- Streamlit version: 1.54.0\n- Python version: 3.14.2\n- Operating System: Windows 11\n- Browser: Chrome",
+    "html_url": "https://github.com/streamlit/streamlit/issues/13954",
+    "labels": [
+      "type:bug",
+      "area:windows",
+      "status:confirmed",
+      "priority:P4",
+      "feature:file-watcher"
+    ],
+    "state": "closed",
+    "title": "False \"File change\" detection on Windows with no actual file modifications"
+  },
+  "streamlit/streamlit#13965": {
+    "body": "### Checklist\n\n- [x] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar issues.\n- [x] I added a very descriptive title to this issue.\n- [x] I have provided sufficient information below to help reproduce this issue.\n\n### Summary\n\nWe don't validate that `max_selections` is greater than zero. As a results, if `0` is passed, a multiselect will present the user with all options and then raise `streamlit.errors.StreamlitSelectionCountExceedsMaxError` when something is selected.\n\n### Reproducible Code Example\n\n```Python\nimport streamlit as st\n\nst.multiselect(\"Max is zero\", options=[\"a\",\"b\",\"c\"], max_selections=0)\n```\n\n### Steps To Reproduce\n\n1. Select the multiselect, and observe all the options are displayed.\n2. Select an option.\n3. Observe `streamlit.errors.StreamlitSelectionCountExceedsMaxError`.\n\n### Expected Behavior\n\n`0` should not be an acceptable max and should raise an error when using the widget command. If users want a zero max, they should disable the widget instead.\n\nIt would be confusing UX to update the drop down to tell users they can't select anything when in the usual case they are told to remove an item before selecting something else.\n\n### Current Behavior\n\nWe allow a zero max and the frontend gets confuses it for `max_selections=None` while the backend tries to apply the numerical limit.\n\n### Is this a regression?\n\n- [ ] Yes, this used to work in a previous version.\n\n### Debug info\n\n- Streamlit version:\n- Python version:\n- Operating System:\n- Browser:\n\n\n### Additional Information\n\n_No response_",
+    "html_url": "https://github.com/streamlit/streamlit/issues/13965",
+    "labels": [
+      "type:bug",
+      "status:confirmed",
+      "priority:P3",
+      "feature:st.multiselect"
+    ],
+    "state": "closed",
+    "title": "`st.multiselect` accepts `max_selections=0` and then raises an exception on first selection"
+  },
+  "streamlit/streamlit#13974": {
+    "body": "### Checklist\n\n- [x] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar issues.\n- [x] I added a very descriptive title to this issue.\n- [x] I have provided sufficient information below to help reproduce this issue.\n\n### Summary\n\nPR #13423 introduces a regression where `alt.vconcat` . The PR was made to address issue #13410. This introduced a breaking change when I upgrade Streamlit from version 1.52.2 to 1.53.0 (and up). \n\nBefore upgrading, my use case involved having a bar chart with text layered on top of it be the top element of a VConcat, along with another bar chart at the bottom. I discovered that using `autosize=\"fit-x\"` helped align the widths of the two charts along its width. \n\nAfter the upgrade, I noticed that chart stopped rendering. Because I manually included `autosize` in my chart using `alt.vconcat.properties`, the code introduced by PR #13423 did not change that aspect of the vega-lite spec produced. However, when comparing the `view source code` of the charts using the different versions of Streamlit (1.52.2 vs 1.53.0), I noticed that the \"width\" key of the broken spec reverted to a fixed width that I specified in the chart properties, while the bottom didn't. When using the `Vega Editor` to change the width of the top (layered) chart and make it equal to the bottom chart, a render would re-appear. \n\nAnalysing PR #13423, I believed it was lines 161-168 in `frontend/lib/src/components/elements/ArrowVegaLiteChart/useVegaElementPreprocessor.ts` that broke my chart. This code appears to prevent the setting of the width of a `child` to that of the container width (when using `st.altair_chart(chart, width=\"stretch\"`) when that child is one of \"hconcat\", \"vconcat\", \"concat\", \"layer\".\n\nWhat I don't understand is why exactly this code was inserted. When I build Streamlit from source, comment out those lines, I have fixed the regression that I experienced. At the same time, I don't see any difference in how the example provided by @connortann in issue #13410 is rendered. Is more testing required?\n\n### Reproducible Code Example\n\n```Python\n# saved as ~/test.py\n\nimport altair as alt\nimport streamlit as st\nimport pandas as pd\nfrom numpy.random import default_rng\n\ndf = pd.DataFrame(default_rng(0).standard_normal((60, 2)), columns=[\"a\", \"b\"])\nbase = alt.Chart(df).mark_circle().encode(x=\"a\", y=\"b\").properties(width=400, height=200)\ntext = base.mark_text(dy=-10).encode(text=alt.Text(\"b:Q\", format=\".1f\"))\n\nwith st.echo():\n    st.header('original issue #13410 (VConcat & HConcat)')\n    st.caption('With lines 161-168 commented out, it renders exactly the same as is')\n    chart = base & (base | base)\n    st.altair_chart(chart, width='stretch')\n\nwith st.echo():\n    # PR #13423 ensures that vega-lite spec defaults to\n    #\u00a0\"autosize\": {\"type\": \"pad\", \"contains\": \"padding\"}.\n    #\u00a0The overrun issue persists...\n    st.header('My issue (Layered & VConcat) without autosize=fit-x')\n    st.caption('As is, the top (layered) chart reverts to 400 width and the bottom chart flows out the container')\n    st.caption('With lines 161-168 commented out, it renders but the charts flow out of the container')\n    chart = (base + text) & base\n    st.altair_chart(chart, width='stretch')\n\nwith st.echo():\n    # Manually controlling the \"autosize\" spec produced the desired behavior up\n    # until streamlit version 1.52.2 (until PR #13423 was introduced).\n    #\u00a0Commenting out lines 161-168 in\n    # `frontend/lib/src/components/elements/ArrowVegaLiteChart/useVegaElementPreprocessor.ts`\n    #\u00a0Fixes this issue when I build `streamlit` on my system runing the React development server\n    st.header('My issue (Layered & VConcat) with autosize=fit-x')\n    st.caption('As is, the chart does not render')\n    st.caption('With lines 161-168 commented out, it produces the desired chart')\n    chart = (base + text) & base\n    chart = chart.properties(autosize='fit-x')\n    st.altair_chart(chart, width='stretch')\n```\n\n### Steps To Reproduce\n\n1. Build Streamlit from source\n2. Run React development server\n3. Save reproducible code example to home directory\n4. In another terminal window, run `uv run streamlit run ~/test.py`\n5. Note how the third chart does not render\n6. Comment out the following lines (161-168) from  `frontend/lib/src/components/elements/ArrowVegaLiteChart/useVegaElementPreprocessor.ts`:\n  ```\n  if (\n      \"hconcat\" in child ||\n      \"vconcat\" in child ||\n      \"concat\" in child ||\n      \"layer\" in child\n  ) {\n      return\n  }\n  ```\n\n### Expected Behavior\n\nThe running streamlit application hot-reloads and the third chart renders as expected.\n\n### Current Behavior\n\nWithout commenting out the lines in `frontend/lib/src/components/elements/ArrowVegaLiteChart/useVegaElementPreprocessor.ts`, the third chart does not render\n\n### Is this a regression?\n\n- [x] Yes, this used to work in a previous version.\n\n### Debug info\n\n- Streamlit version: 1.53.0\n- Python version: 3.13\n- Operating System: MacOS 15.7.3\n- Browser: Safari\n\n\n### Additional Information\n\n_No response_",
+    "html_url": "https://github.com/streamlit/streamlit/issues/13974",
+    "labels": [
+      "type:bug",
+      "type:regression",
+      "feature:charts",
+      "status:confirmed",
+      "priority:P3",
+      "feature:st.altair_chart",
+      "feature:st.vega_lite_chart"
+    ],
+    "state": "closed",
+    "title": "Altair chart width regression for Layered component inside VConcat"
+  },
+  "streamlit/streamlit#14018": {
+    "body": "### Checklist\n\n- [x] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar issues.\n- [x] I added a very descriptive title to this issue.\n- [x] I have provided sufficient information below to help reproduce this issue.\n\n### Summary\n\nWhen a `st.spinner` is placed at the top of a page, then subsequent widgets placed outside the spinner context and inside other containers like tabs do not work correctly. \n\nAs shown in the screencast below, when the widgets in the tabs are interacted with, the page \"resets\" and jumps back to the first tab.\n\nThis used to work fine in 1.52, but this seems to be broken in 1.53 and 1.54.\n\nPossibly related: #13658, #13659\n\n### Reproducible Code Example\n\n[![Open in Streamlit Cloud](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://issues.streamlitapp.com/?issue=gh-14018)\n\n```Python\nimport streamlit as st\n\nst.title(\"Widget flicker issue\")\nst.write(st.__version__)\n\nwith st.spinner(\"Starting up...\"):\n    # In this minimal example, do nothing here.\n    # In a real app, one might import any large packages within this spinner context.\n    pass\n\nfoo, bar = st.tabs([\"tab_one\", \"tab_two\"])\nwith bar:\n    st.number_input(\"number\")\n```\n\nhttps://github.com/user-attachments/assets/b9cc6d2f-ab31-42a0-a235-d24ed8689b6d\n\n### Steps To Reproduce\n\n1. Run the app with streamlit v1.53 or v1.54\n2. Select \"tab_two\"\n3. Interact with the \"number\" widget, by clicking the plus icon\n\n### Expected Behavior\n\nThe number widget should operate normally and \"tab_two\" should remain active.\n\n### Current Behavior\n\nWhen the number widget it touched, the app switches to \"tab_one\".\n\n### Is this a regression?\n\n- [x] Yes, this used to work in a previous version.\n\n### Debug info\n\n- Streamlit version: Issue occurs on v1.54 and v1.53, but does not occur on v1.52.\n- Python version: 3.10\n- Operating System: Linux\n- Browser: Chrome\n\n### Additional information\n\nOn a hunch that the issue was relating to the container layout being recreated, I tried placing the spinner in a `st.empty` context:\n\n```python\nempty = st.empty()\nwith empty.spinner(\"Starting up...\"):\n    ...\n```\n\nThis seems to work as a workaround for now.\n",
+    "html_url": "https://github.com/streamlit/streamlit/issues/14018",
+    "labels": [
+      "type:bug",
+      "type:regression",
+      "area:frontend",
+      "status:confirmed",
+      "priority:P2",
+      "feature:st.tabs",
+      "feature:st.spinner"
+    ],
+    "state": "closed",
+    "title": "Widgets in tabs are destroyed/refreshed if placed after a Spinner, as of v1.53"
+  },
+  "streamlit/streamlit#14050": {
+    "body": "### Checklist\n\n- [x] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar issues.\n- [x] I added a very descriptive title to this issue.\n- [x] I have provided sufficient information below to help reproduce this issue.\n\n### Summary\n\nI had created the issues under vega/altair charts here as my earlier observation was that the underlying chart package is causing the issue.\nhttps://github.com/vega/altair/issues/3945\n\nBut I recently tried using a similar chart on a marimo notebook, and the chart rendered without any issues.\n\n\n### Reproducible Code Example\n\n[![Open in Streamlit Cloud](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://issues.streamlitapp.com/?issue=gh-14050)\n\n```Python\nimport altair as alt\nimport pandas as pd\nimport streamlit as st\nimport numpy as np\n\nst.set_page_config(page_title=\"Test vconcat with repeat\", layout=\"wide\")\nst.title(\"Testing vconcat with repeated charts\")\n\n# Generate sample data similar to your use case\nnp.random.seed(42)\n\n# Create a dataframe with similar structure to your data\ndata = []\ncategories = [\"config_A\", \"config_B\", \"config_C\"]\nbins = [30, 50, 70]\n\nfor category in categories:\n    for bin_val in bins:\n        for i in range(10):\n            bw = 50 + i * 10 + np.random.uniform(-5, 5)\n            data.append({\n                \"category\": category,\n                \"bins\": bin_val,\n                \"abw\": bw,\n                \"arl\": 100 + (bw - 50) * 0.5 + np.random.uniform(-10, 10),\n                \"aob\": 20 + (bw - 50) * 0.3 + np.random.uniform(-5, 5),\n                \"tmp\": 10 + (bw - 50) * 0.1 + np.random.uniform(-2, 2),\n                \"selected\": i == 5  # Mark one point as selected\n            })\n\ndf = pd.DataFrame(data)\n\nst.write(\"### Sample Data\")\nst.dataframe(df)\n\n# Define common elements\ntooltip_list = [\n    \"category\",\n    \"bins\",\n    \"abw\",\n    \"arl\",\n    \"aob\",\n    \"tmp\",\n]\ncustom_tooltip = alt.Tooltip(tooltip_list)\n\nchart_legend = alt.Legend(\n    orient=\"right\",\n    title=\"Category\",\n    titleColor=\"black\",\n    labelColor=\"black\",\n)\n\nst.write(\"## Approach 1: Using vconcat with separate faceted charts\")\n\n# Create individual charts with faceting\nchart_arl = (\n    alt.Chart(df)\n    .mark_line(point=True)\n    .encode(\n        x=alt.X(\n            \"abw\",\n            scale=alt.Scale(zero=False),\n            axis=alt.Axis(title=\"ABW\"),\n        ),\n        y=alt.Y(\n            \"arl\",\n            scale=alt.Scale(zero=False),\n            axis=alt.Axis(title=\"ARL\"),\n        ),\n        color=alt.Color(\"category:N\", legend=chart_legend),\n        tooltip=custom_tooltip,\n    )\n)\n\nchart_arl_sel = (\n    alt.Chart(df)\n    .mark_point(shape=\"diamond\", color=\"purple\", filled=True, size=100)\n    .encode(\n        x=alt.X(\"abw\", type=\"quantitative\"),\n        y=alt.Y(\"arl\", type=\"quantitative\"),\n        tooltip=custom_tooltip,\n    )\n    .transform_filter(alt.datum.selected == True)\n)\n\nchart_arl_combined = alt.layer(chart_arl, chart_arl_sel).facet(\n    column=alt.Column(\n        \"bins:N\",\n        title=\"Bins\",\n    )\n)\n\nchart_ob = (\n    alt.Chart(df)\n    .mark_line(point=True)\n    .encode(\n        x=alt.X(\n            \"abw\",\n            scale=alt.Scale(zero=False),\n            axis=alt.Axis(title=\"ABW\"),\n        ),\n        y=alt.Y(\n            \"aob\",\n            scale=alt.Scale(zero=False),\n            axis=alt.Axis(title=\"AOB\"),\n        ),\n        color=alt.Color(\"category:N\", legend=chart_legend),\n        tooltip=custom_tooltip,\n    )\n)\n\nchart_ob_sel = (\n    alt.Chart(df)\n    .mark_point(shape=\"diamond\", color=\"purple\", filled=True, size=100)\n    .encode(\n        x=alt.X(\"abw\", type=\"quantitative\"),\n        y=alt.Y(\"aob\", type=\"quantitative\"),\n        tooltip=custom_tooltip,\n    )\n    .transform_filter(alt.datum.selected == True)\n)\n\nchart_ob_combined = alt.layer(chart_ob, chart_ob_sel).facet(\n    column=alt.Column(\n        \"bins:N\",\n        title=\"Bins\",\n    )\n)\n\nchart_tmp = (\n    alt.Chart(df)\n    .mark_line(point=True)\n    .encode(\n        x=alt.X(\n            \"abw\",\n            scale=alt.Scale(zero=False),\n            axis=alt.Axis(title=\"ABW\"),\n        ),\n        y=alt.Y(\n            \"tmp\",\n            scale=alt.Scale(zero=False),\n            axis=alt.Axis(title=\"TMP\"),\n        ),\n        color=alt.Color(\"category:N\", legend=chart_legend),\n        tooltip=custom_tooltip,\n    )\n)\n\nchart_tmp_sel = (\n    alt.Chart(df)\n    .mark_point(shape=\"diamond\", color=\"purple\", filled=True, size=100)\n    .encode(\n        x=alt.X(\"abw\", type=\"quantitative\"),\n        y=alt.Y(\"tmp\", type=\"quantitative\"),\n        tooltip=custom_tooltip,\n    )\n    .transform_filter(alt.datum.selected == True)\n)\n\nchart_tmp_combined = alt.layer(chart_tmp, chart_tmp_sel).facet(\n    column=alt.Column(\n        \"bins:N\",\n        title=\"Bins\",\n    )\n)\n\n# Combine with vconcat\nvconcat_chart = (\n    alt.vconcat(\n        chart_arl_combined,\n        chart_ob_combined,\n        chart_tmp_combined,\n    )\n    .resolve_scale(x=\"independent\", y=\"independent\")\n    .properties(\n        title=alt.TitleParams(\n            text=\"Metrics vs ABW (vconcat approach)\",\n            anchor=\"middle\",\n            fontSize=16,\n        )\n    )\n)\n\nst.altair_chart(vconcat_chart, width='stretch')\n\nst.write(\"## Approach 2: Using repeat with facet\")\n\n# Create base chart with repeat\nbase_chart = (\n    alt.Chart()\n    .mark_line(point=True, clip=True)\n    .encode(\n        x=alt.X(\n            alt.repeat(\"column\"),\n            type=\"quantitative\",\n            scale=alt.Scale(zero=False),\n            axis=alt.Axis(\n                title=\"ABW\",\n                titleFontSize=14,\n            ),\n        ),\n        y=alt.Y(\n            alt.repeat(\"row\"),\n            type=\"quantitative\",\n            scale=alt.Scale(zero=False),\n            axis=alt.Axis(\n                titleFontSize=14,\n            ),\n        ),\n        color=alt.Color(\"category:N\", legend=chart_legend),\n        tooltip=custom_tooltip,\n    )\n)\n\nselected_chart = (\n    alt.Chart()\n    .mark_point(shape=\"diamond\", color=\"purple\", filled=True, size=100, clip=True)\n    .encode(\n        x=alt.X(alt.repeat(\"column\"), type=\"quantitative\"),\n        y=alt.Y(alt.repeat(\"row\"), type=\"quantitative\"),\n        tooltip=custom_tooltip,\n    )\n    .transform_filter(alt.datum.selected == True)\n)\n\nrepeat_chart = (\n    alt.layer(base_chart, selected_chart, data=df)\n    .facet(\n        column=alt.Column(\n            \"bins:N\",\n            title=\"Bins\",\n        )\n    )\n    .repeat(\n        row=[\n            \"arl\",\n            \"aob\",\n            \"tmp\",\n        ],\n        column=[\"abw\"],\n    )\n    .resolve_scale(x=\"independent\", y=\"independent\")\n    .properties(\n        title=alt.TitleParams(\n            text=\"Metrics vs ABW (repeat approach)\",\n            anchor=\"middle\",\n            fontSize=16,\n        )\n    )\n)\n\nst.altair_chart(repeat_chart, width='stretch')\n\nst.write(\"## Comparison\")\nst.write(\"\"\"\n**Approach 1 (vconcat):**\n- Creates separate charts for each metric\n- Each chart is faceted by bins\n- Charts are stacked vertically\n- More control over individual chart properties\n- But **Does not** render any charts\n\n**Approach 2 (repeat with facet):**\n- Uses repeat to create multiple rows\n- Facets by bins for each repeated row\n- More compact specification\n- May have issues with facet + repeat interaction\n- This **does** render charts but unable to label the y-axis\n\"\"\")\n```\n\n### Steps To Reproduce\n\n1. Run the `reproducer` script with streamlit\n    ```sh\n    streamlit run <reproducer_script.py>\n    ```\n2. For Approach 1 no chart is rendered on the Browser.\n3. Using repeated faceted chart does render without any issues but has limited capability to customize charts.\n\n### Expected Behavior\n\nvconcat chart should render without any issues.\n\n### Current Behavior\n\n* **Approach 1**: Using vconcat'ed layered faceted chart which does not render on the browser.\n\n<img width=\"1903\" height=\"929\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/c1fb67a9-0adf-489b-9eaa-3fe7e0f54ef3\" />\n\n* **Approach 2**: Using repeated faceted chart does work but has limitations\n\n<img width=\"1903\" height=\"929\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/cdc39c5a-0a2e-4d38-a232-f8822945b3b4\" />\n\n### Is this a regression?\n\n- [ ] Yes, this used to work in a previous version.\n\n### Debug info\n\n- Streamlit version: **1.54.0**\n- Python version: **Python 3.14.2**\n- Operating System: **Fedora 43**\n- Browser: **Firefox/Chrome**\n\n\n### Additional Information\n\n_No response_",
+    "html_url": "https://github.com/streamlit/streamlit/issues/14050",
+    "labels": [
+      "type:bug",
+      "type:regression",
+      "status:confirmed",
+      "priority:P3",
+      "feature:st.altair_chart",
+      "feature:st.vega_lite_chart"
+    ],
+    "state": "closed",
+    "title": "`vconcat` with separate faceted charts does not render chart while repeat with faceted charts does work."
+  },
+  "streamlit/streamlit#14052": {
+    "body": "### Checklist\n\n- [x] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar issues.\n- [x] I added a very descriptive title to this issue.\n- [x] I have provided sufficient information below to help reproduce this issue.\n\n### Summary\n\nWhen `st.date_input` is used inside a form with `clear_on_submit=True` and has a **non-None default value**, validation error UI (red border, error tooltip) persists after form submission even though the value resets to the default.\n\nThis does **not** occur when the default is `None` \u2014 in that case the error clears correctly.\n\n### Reproducible Code Example\n\n[![Open in Streamlit Cloud](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://issues.streamlitapp.com/?issue=gh-14052)\n\n```python\nimport datetime\nimport streamlit as st\n\nwith st.form(\"my_form\", clear_on_submit=True):\n    date_val = st.date_input(\n        \"Pick a date (min=2026-01-01)\",\n        value=datetime.date(2026, 1, 15),\n        min_value=datetime.date(2026, 1, 1),\n        max_value=datetime.date(2026, 12, 31),\n    )\n    submitted = st.form_submit_button(\"Submit\")\n\nif submitted:\n    st.success(f\"Submitted: {date_val}\")\n```\n\n### Steps To Reproduce\n\n1. Run the code above\n2. Manually type an out-of-range date (e.g., `2025/12/01`) to trigger a validation error\n3. Click \"Submit\"\n\n**Expected**: The value resets to the default (`2026-01-15`) and the error state clears.\n**Actual**: The value resets to the default, but the **error UI (red border, error tooltip) remains**.\n\n### Root Cause\n\n`DateInput.tsx` relies on `handleChange` to clear the error state (`setError(null)` at the top of `handleChange`). However, when the form is cleared, the value is reset via `useBasicWidgetState` \u2014 and if the reset value equals the previous default, `handleChange` is **not triggered**, so `setError(null)` is never called.\n\nWhen `value=None`, the reset goes through a different code path that does trigger `handleChange`, which is why the error clears in that case.\n\nFor comparison, `st.number_input` was recently updated (PR #13747) to explicitly call `setError(null)` in its `onFormCleared` callback, which correctly handles both cases.\n\n### Expected Behavior\n\nAfter form submission with `clear_on_submit=True`, all validation error states should be cleared regardless of whether the default value is `None` or a specific value.\n\n### Current Behavior\n\n- **Default = `None`**: Error clears \u2705\n- **Default = specific value** (e.g., `datetime.date(2026, 1, 15)`): Error persists \u274c\n\n### Is this a regression?\n\nUnknown. This may have existed since `st.date_input` validation was introduced.\n\n### Debug info\n\n- Streamlit version: latest develop branch\n- Python version: 3.11\n- OS: Ubuntu 22.04\n\n### Additional Information\n\nDiscovered while investigating `st.number_input` form clear behavior for PR #13747. The fix would likely involve registering an `onFormCleared` callback in `DateInput.tsx` (similar to what was done for `NumberInput.tsx` in #13747) to explicitly call `setError(null)`.",
+    "html_url": "https://github.com/streamlit/streamlit/issues/14052",
+    "labels": [
+      "type:bug",
+      "status:confirmed",
+      "priority:P3",
+      "feature:st.date_input",
+      "feature:st.form"
+    ],
+    "state": "closed",
+    "title": "st.date_input: error state persists after form submit with clear_on_submit=True (non-None default)"
+  },
+  "streamlit/streamlit#14077": {
+    "body": "### Checklist\n\n- [x] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar issues.\n- [x] I added a very descriptive title to this issue.\n- [x] I have provided sufficient information below to help reproduce this issue.\n\n### Summary\n\n`SqlConnection` [uses the field `self._connection_name` as the \"per instance\" portion of a cache key](https://github.com/streamlit/streamlit/blob/7fb32187b54bd7d0cc181dadae85aea3780a98ee/lib/streamlit/connections/sql_connection.py#L342). However, the connection factory allows overriding any connection parameters when creating - which means that you can have multiple connections with different settings sharing a cache key.\n\n`SqlConnection` should likely add a dummy `self`-like argument to [the inner query function](https://github.com/streamlit/streamlit/blob/7fb32187b54bd7d0cc181dadae85aea3780a98ee/lib/streamlit/connections/sql_connection.py#L313) to ensure each instance has its own cache.\n\n### Reproducible Code Example\n\n```Python\n\n```\n\n### Steps To Reproduce\n\n_No response_\n\n### Expected Behavior\n\n_No response_\n\n### Current Behavior\n\n_No response_\n\n### Is this a regression?\n\n- [ ] Yes, this used to work in a previous version.\n\n### Debug info\n\n- Streamlit version:\n- Python version:\n- Operating System:\n- Browser:\n\n\n### Additional Information\n\n_No response_",
+    "html_url": "https://github.com/streamlit/streamlit/issues/14077",
+    "labels": [
+      "type:bug",
+      "feature:cache",
+      "status:confirmed",
+      "priority:P3",
+      "feature:connections"
+    ],
+    "state": "closed",
+    "title": "SqlConnection.query caches at the class level, not the instance level"
+  },
+  "streamlit/streamlit#14109": {
+    "body": "### Checklist\n\n- [x] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar issues.\n- [x] I added a very descriptive title to this issue.\n- [x] I have provided sufficient information below to help reproduce this issue.\n\n### Summary\n\nWhen a date input widget is created with the following code, a TypeError is raised for validation of current value and min/max values set. This issue was mentioned here, with fix. https://github.com/streamlit/streamlit/issues/13658#issuecomment-3843792403\nhttps://github.com/streamlit/streamlit/pull/13677\n\n### Reproducible Code Example\n\n```Python\nimport datetime as dt\n\nimport streamlit as st\n\n\ndef update_session_state(variable):\n    st.session_state[variable] = st.session_state[\"_\" + variable]\n\n\nst.session_state[\"date\"] = dt.datetime.now()\nst.session_state[\"_\" + \"date\"] = st.session_state[\"date\"]\nst.date_input(\n    key=\"_date\",\n    label=\" \",\n    min_value=\"2025-08-01\",\n    on_change=update_session_state,\n    args=[\"date\"],\n)\n```\n\n### Steps To Reproduce\n\nStart app with above code, when apps runs, the widget throws a TypeError\n\n### Expected Behavior\n\n_No response_\n\n### Current Behavior\n\nTypeError: '<' not supported between instances of 'datetime.datetime' and 'datetime.date'\n\n\n### Is this a regression?\n\n- [x] Yes, this used to work in a previous version.\n\n### Debug info\n\n- Streamlit version: 1.54.0\n- Python version: 3.13.7\n- Operating System: Windows 11\n- Browser: Chrome\n\n\n### Additional Information\n\n_No response_",
+    "html_url": "https://github.com/streamlit/streamlit/issues/14109",
+    "labels": [
+      "type:bug",
+      "type:regression",
+      "status:confirmed",
+      "priority:P3",
+      "feature:st.date_input"
+    ],
+    "state": "closed",
+    "title": "Date input fails date value validation"
+  },
+  "streamlit/streamlit#14155": {
+    "body": "### Checklist\n\n- [x] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar issues.\n- [x] I added a very descriptive title to this issue.\n- [x] I have provided sufficient information below to help reproduce this issue.\n\n### Summary\n\nRunning a Streamlit application, or the module itself with PYTHONOPTIMIZE=2 results in a runtime error. \n\n### Reproducible Code Example\n\n```Python\npython -OO -m streamlit --help\n```\n\n### Steps To Reproduce\n\n_No response_\n\n### Expected Behavior\n\n_No response_\n\n### Current Behavior\n\nError message:\n```\nTraceback (most recent call last):\n  File \"<frozen runpy>\", line 189, in _run_module_as_main\n  File \"<frozen runpy>\", line 148, in _get_module_details\n  File \"<frozen runpy>\", line 112, in _get_module_details\n  File \".venv/lib64/python3.14/site-packages/streamlit/__init__.py\", line 62, in <module>\n    from streamlit import config as _config\n  File \".venv/lib64/python3.14/site-packages/streamlit/config.py\", line 415, in <module>\n    @_create_option(\"global.developmentMode\", visibility=\"hidden\", type_=bool)\n     ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \".venv/lib64/python3.14/site-packages/streamlit/config_option.py\", line 230, in __call__\n    raise RuntimeError(\n        \"Complex config options require doc strings for their description.\"\n    )\nRuntimeError: Complex config options require doc strings for their description.\n```\n\n### Is this a regression?\n\n- [ ] Yes, this used to work in a previous version.\n\n### Debug info\n\n- Streamlit version: 1.53.1\n- Python version: 3.14\n- Operating System:\n- Browser:\n\n\n### Additional Information\n\n_No response_",
+    "html_url": "https://github.com/streamlit/streamlit/issues/14155",
+    "labels": [
+      "type:bug",
+      "status:confirmed",
+      "priority:P4",
+      "feature:config",
+      "area:backend"
+    ],
+    "state": "closed",
+    "title": "PYTHONOPTIMIZE=2 results in a runtime error about missing docstrings."
+  },
+  "streamlit/streamlit#14222": {
+    "body": "Hi,\n\nI have the impression that `height=\"content\"` no longer works since the latest version. Here is an example.\n\n[![Open in Streamlit Cloud](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://issues.streamlitapp.com/?issue=gh-14222)\n\n```python\nimport streamlit as st\n\nuser_query = st.text_area(\n    \"Lorem ipsum dolor sit amet, consectetur adipiscing elit \ud83d\udc15 !\",\n    value=\"\"\"Lorem ipsum dolor sit amet, consectetur adipiscing elit :\n    - Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ;\n    - Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris ;\n    - Duis aute irure dolor in reprehenderit in voluptate velit esse ;\n    - Excepteur sint occaecat cupidatat non proident, sunt in culpa qui.\"\"\",\n    height=\"content\",\n)\n```\n\n## v1.55.0\n\n<img width=\"716\" height=\"141\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/4701bb21-2202-4b19-8db0-b9837b76129d\" />\n\n## v1.54.0\n\n<img width=\"714\" height=\"176\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/edf9bbda-89cf-433e-be26-571a46a1ee66\" />\n\n### Is this a regression?\n\n- [x] Yes, this used to work in a previous version.",
+    "html_url": "https://github.com/streamlit/streamlit/issues/14222",
+    "labels": [
+      "type:bug",
+      "type:regression",
+      "status:confirmed",
+      "priority:P2",
+      "feature:st.text_area"
+    ],
+    "state": "closed",
+    "title": "`height=\"content\"` in `text_area` not working after v1.55.0"
+  },
+  "streamlit/streamlit#14249": {
+    "body": "### Checklist\n\n- [x] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar issues.\n- [x] I added a very descriptive title to this issue.\n- [x] I have provided sufficient information below to help reproduce this issue.\n\n### Summary\n\nHi,\n\nSince upgrading to v1.55.0, I\u2019ve noticed that some UI elements are appearing unexpectedly. This behavior seems to occur when a cached function is executed between the declaration of a tab and its content usage.\n\nHere is a minimal reproducible example:\n\n### Reproducible Code Example\n\n[![Open in Streamlit Cloud](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://issues.streamlitapp.com/?issue=gh-14249)\n\n```Python\nimport time\n\nimport streamlit as st\n\n\n@st.cache_data\ndef foo():\n    time.sleep(2)\n\n\nsection = st.segmented_control(\"Section\", [\"S1\", \"S2\"])\n\nif section == \"S1\":\n    st.markdown(\"- S1.1\")\n    st.markdown(\"- S1.2\")\nelif section == \"S2\":\n    (tab,) = st.tabs([\"S2.Tab\"])\n    foo()\n    tab.markdown(\"S2 Lorem\")\n```\n\n### Steps To Reproduce\n\n1. Click on the \"S1\" button\n2. Click on the \"S2\" button\n\n<img width=\"1093\" height=\"276\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/6d8ef4d7-cd44-43a6-b80f-2627af638c24\" />\n\n<img width=\"1092\" height=\"354\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/2c2c735d-ae6c-4908-bd58-5a880064a042\" />\n\n### Expected Behavior\n\nThe element \"- S1.2\" should remain hidden.\n\n### Current Behavior\n\nThe element \"- S1.2\" is displayed, even though it should not be visible in this context.\n\n### Is this a regression?\n\n- [x] Yes, this used to work in a previous version.\n\n### Debug info\n\n- Streamlit version: 1.55.0\n- Python version: 3.14.3\n- Operating System: Windows 11\n- Browser: Chrome\n\n\n### Additional Information\n\n_No response_",
+    "html_url": "https://github.com/streamlit/streamlit/issues/14249",
+    "labels": [
+      "type:bug",
+      "feature:cache",
+      "type:regression",
+      "area:frontend",
+      "status:confirmed",
+      "priority:P2",
+      "feature:st.tabs"
+    ],
+    "state": "closed",
+    "title": "UI element appearing unexpectedly since v1.55.0"
+  },
+  "streamlit/streamlit#14274": {
+    "body": "### Checklist\n\n- [x] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar issues.\n- [x] I added a very descriptive title to this issue.\n- [x] I have provided sufficient information below to help reproduce this issue.\n\n### Summary\n\nReproducer:\n\n```python\n# my_component.py\nfrom streamlit.components.v2 import component\n\n_my_component = component(\n    \"my_component\",\n    html='<div id=\"root\">hello</div>',\n)\n\ndef my_component(text: str, key: str | None = None):\n    return _my_component(key=key, data={\"text\": text})\n```\n\n```python\n# app.py\nimport streamlit as st\nfrom my_component import my_component\n\nst.title(\"Test\")\nmy_component(\"hello\", key=\"test\")\n```\n\n```python\n# test_app.py\nfrom streamlit.testing.v1 import AppTest\n\ndef test_v2_component():\n    app = AppTest.from_file(\"app.py\", default_timeout=10)\n    app.run()\n    assert not app.exception, [e.message for e in app.exception]\n```\n\n```bash\n$ pytest test_app.py\n======================================== test session starts ========================================\nplatform darwin -- Python 3.10.15, pytest-9.0.2, pluggy-1.6.0\nrootdir: /Users/dion/codes/tesseract-streamlit\nconfigfile: pyproject.toml\ncollected 1 item\n\nreproducer/test_app.py F                                                                      [100%]\n\n============================================= FAILURES ==============================================\n_________________________________________ test_v2_component _________________________________________\n\n    def test_v2_component():\n        app = AppTest.from_file(\"app.py\", default_timeout=10)\n        app.run()\n>       assert not app.exception, [e.message for e in app.exception]\nE       AssertionError: ['bad argument type for built-in operation']\nE       assert not ElementList(_list=[Exception(message='bad argument type for built-in operation', stack_trace=['File \"/Users/dion/codes...onent/main.py\", line 388, in _bidi_component\\n    bidi_component_proto.js_content = component_def.js_content or \"\"'])])\nE        +  where ElementList(_list=[Exception(message='bad argument type for built-in operation', stack_trace=['File \"/Users/dion/codes...onent/main.py\", line 388, in _bidi_component\\n    bidi_component_proto.js_content = component_def.js_content or \"\"'])]) = AppTest(\\n    _script_path='/Users/dion/codes/tesseract-streamlit/reproducer/app.py',\\n    default_timeout=10,\\n    sessi...SpecialBlock(\\n            type='sidebar'\\n        ),\\n        2: SpecialBlock(\\n            type='event'\\n        )\\n    }\\n).exception\n\nreproducer/test_app.py:7: AssertionError\n--------------------------------------- Captured stderr call ----------------------------------------\n2026-03-09 11:59:52.090 WARNING streamlit.runtime.scriptrunner_utils.script_run_context: Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n2026-03-09 11:59:52.126 Uncaught app execution\nTraceback (most recent call last):\n  File \"/Users/dion/.virtualenvs/tempenv-1c6539247da2/lib/python3.10/site-packages/streamlit/runtime/scriptrunner/exec_code.py\", line 129, in exec_func_with_error_handling\n    result = func()\n  File \"/Users/dion/.virtualenvs/tempenv-1c6539247da2/lib/python3.10/site-packages/streamlit/runtime/scriptrunner/script_runner.py\", line 689, in code_to_exec\n    exec(code, module.__dict__)  # noqa: S102\n  File \"/Users/dion/codes/tesseract-streamlit/reproducer/app.py\", line 5, in <module>\n    my_component(\"hello\", key=\"test\")\n  File \"/Users/dion/codes/tesseract-streamlit/reproducer/my_component.py\", line 10, in my_component\n    return _my_component(key=key, data={\"text\": text})\n  File \"/Users/dion/.virtualenvs/tempenv-1c6539247da2/lib/python3.10/site-packages/streamlit/components/v2/__init__.py\", line 193, in _mount_component\n    return st._bidi_component(\n  File \"/Users/dion/.virtualenvs/tempenv-1c6539247da2/lib/python3.10/site-packages/streamlit/runtime/metrics_util.py\", line 532, in wrapped_func\n    result = non_optional_func(*args, **kwargs)\n  File \"/Users/dion/.virtualenvs/tempenv-1c6539247da2/lib/python3.10/site-packages/streamlit/components/v2/bidi_component/main.py\", line 388, in _bidi_component\n    bidi_component_proto.js_content = component_def.js_content or \"\"\nTypeError: bad argument type for built-in operation\n====================================== short test summary info ======================================\nFAILED reproducer/test_app.py::test_v2_component - AssertionError: ['bad argument type for built-in operation']\n========================================= 1 failed in 0.21s =========================================\n```\n\n\n\n### Reproducible Code Example\n\n```Python\n\n```\n\n### Steps To Reproduce\n\n_No response_\n\n### Expected Behavior\n\n_No response_\n\n### Current Behavior\n\n_No response_\n\n### Is this a regression?\n\n- [ ] Yes, this used to work in a previous version.\n\n### Debug info\n\n- Streamlit version: 1.55.0\n- Python version: 3.12\n- Operating System: OSX\n- Browser: n/a\n\n\n### Additional Information\n\n_No response_",
+    "html_url": "https://github.com/streamlit/streamlit/issues/14274",
+    "labels": [
+      "type:bug",
+      "feature:custom-components",
+      "status:confirmed",
+      "priority:P4",
+      "feature:app-testing"
+    ],
+    "state": "closed",
+    "title": "`AppTest` crashes with `TypeError` when running apps that use `st.components.v2` custom components"
+  },
+  "streamlit/streamlit#14324": {
+    "body": "## Checklist\n\n- [x] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar issues.\n- [x] I added a very descriptive title to this issue.\n- [x] I have provided sufficient information below to help reproduce this issue.\n\n## Summary\n\nOn Python 3.14, `@st.cache_data` (and likely `@st.cache_resource`) crashes with a `NameError` when a decorated function uses type annotations that reference types imported under `if TYPE_CHECKING:`. This is caused by Python 3.14's PEP 649 (deferred evaluation of annotations), which changes how `inspect.signature()` resolves annotations. Streamlit's caching internals call `inspect.signature()` to determine parameter names, and on Python 3.14 this now triggers lazy annotation evaluation, which fails when the referenced types are not available at runtime.\n\n## Reproducible Code Example\n\n```python\nfrom typing import TYPE_CHECKING\n\nimport streamlit as st\n\nif TYPE_CHECKING:\n    from collections.abc import Sequence\n\n@st.cache_data\ndef my_func(items: \"Sequence[str]\" = None) -> None:\n    return None\n\n# Calling the function triggers the crash\nmy_func([\"a\", \"b\"])\n```\n\n## Steps To Reproduce\n\n1. Install Python 3.14.x (e.g., 3.14.2)\n2. Install Streamlit (`pip install streamlit`)\n3. Create a file with the code above\n4. Run `streamlit run app.py`\n5. Observe the crash\n\n## Expected Behavior\n\n`@st.cache_data` should work correctly with functions whose annotations reference types imported under `if TYPE_CHECKING:`, just as it does on Python <= 3.13. The decorator only needs parameter *names* (not types) for cache key computation, so annotation resolution should not be required.\n\n## Current Behavior\n\nThe app crashes immediately with:\n\n```\nNameError: (\"name 'Sequence' is not defined\", '')\n```\n\nFull traceback (abbreviated):\n\n```\nFile \".../streamlit/runtime/caching/cache_utils.py\", line 440, in _make_value_key\n    arg_name = _get_positional_arg_name(func, arg_idx)\nFile \".../streamlit/runtime/caching/cache_utils.py\", line 535, in _get_positional_arg_name\n    params: list[inspect.Parameter] = list(inspect.signature(func).parameters.values())\nFile \".../lib/python3.14/inspect.py\", line 3321, in signature\n    return Signature.from_callable(obj, follow_wrapped=follow_wrapped, ...)\n...\nFile \".../lib/python3.14/annotationlib.py\", line 1137, in _get_dunder_annotations\n    ann = getattr(obj, \"__annotations__\", None)\nNameError: (\"name 'Sequence' is not defined\", '')\n```\n\n### Root cause\n\nIn `cache_utils.py`, the function `_get_positional_arg_name` calls `inspect.signature(func)`. On Python <= 3.13, this did not eagerly evaluate annotations. On Python 3.14 (PEP 649), annotations are evaluated lazily via `__annotate__`, and `inspect.signature()` now triggers that evaluation \u2014 causing a `NameError` for any type that is only imported under `TYPE_CHECKING`.\n\n### Suggested fix\n\nSince `_get_positional_arg_name` only accesses `.name` and `.kind` on the parameters (never `.annotation`), the fix could be to call `inspect.signature(func, eval_str=False)` or to use `inspect.get_annotations(func, format=inspect.Format.FORWARDREF)` (Python 3.14+) to avoid triggering annotation evaluation. Alternatively, wrapping the `inspect.signature()` call to catch `NameError` and falling back to a non-evaluating approach would also work.\n\n- [x] Yes, this used to work in a previous version.\n\n## Debug info\n\n- Streamlit version: 1.52.2 (likely affects all versions including 1.55.0)\n- Python version: 3.14.2\n- Operating System: Windows 11\n- Browser: N/A (crashes before rendering)\n\n## Additional Information\n\n- PEP 649: https://peps.python.org/pep-0649/\n- The `if TYPE_CHECKING:` pattern is the standard Python practice (recommended by ruff's TC rules) for avoiding circular imports and keeping runtime import overhead minimal. It is widely used across the Python ecosystem.\n- Streamlit's own codebase uses `from __future__ import annotations` in `cache_utils.py` and `hashing.py`, which currently shields its internal code from this issue \u2014 but user code that follows the `TYPE_CHECKING` pattern (without `from __future__ import annotations`) is affected.\n- **Workaround**: Move the affected imports out of the `TYPE_CHECKING` block so they are available at runtime. This requires adding `noqa` comments for ruff's TC rules.",
+    "html_url": "https://github.com/streamlit/streamlit/issues/14324",
+    "labels": [
+      "type:bug",
+      "feature:cache",
+      "status:confirmed",
+      "priority:P2"
+    ],
+    "state": "closed",
+    "title": "@st.cache_data crashes with NameError on Python 3.14 when annotations use TYPE_CHECKING imports (PEP 649)"
+  },
+  "streamlit/streamlit#14350": {
+    "body": "### Checklist\n\n- [x] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar feature requests.\n- [x] I added a descriptive title and summary to this issue.\n\n### Summary\n\nCurrently the feature to bind query params make working with URLs much simpler, however, when added with page switching and widget value persisting, the collapse makes it hard to work with.\n\nEssentially, when I switch page to a page I want the widgets to fill the URL when binded (which it doesn't now) so I set the query_params myself as well as the widget value via session state (to have their previous value persisted). However the persisted value is seen as the default and is collapsed and it can't be shared anymore, example is shared below.\n\n### Why?\n\n_No response_\n\n### How?\n\nperhaps a different accepted value to the bind parameter that indicates that the default shouldn't be collapsed\n\n### Additional Context\n\n```python\n\nimport datetime as dt\n\nimport streamlit as st\n\n# function that saves the widget value to the persistent session state value\ndef persist():\n    st.session_state[\"persist_across_page\"] = st.session_state[\"widget\"]\n\n# mock page for switching\ndef other_page():\n    pass\n\n# main page\ndef main_page():\n    # default date that is applied if no persistent session state value\n    default_date = dt.date(2026, 1, 1)\n    if \"persist_across_page\" not in st.session_state:\n        st.session_state[\"persist_across_page\"] = default_date\n\n    # check whether coming back from a page swap (in which case, widget has never been initialized\n    initial_load = \"widget\" not in st.session_state\n\n    # add value to widget (either default OR what the session state orginally had\n    st.session_state[\"widget\"] = st.session_state[\"persist_across_page\"]\n    # populate query params (URL) if necessary\n    if initial_load:\n        st.query_params[\"widget\"] = st.session_state[\"widget\"]\n    with st.form(key=\"form\"):\n        # create widget without bind initially as we've updated query params manually\n        # then create with bind so URL updates as user updates\n        st.date_input(\n            key=\"widget\",\n            label=\"date\",\n            bind=\"query-params\" if not initial_load else None,\n        )\n        submit = st.form_submit_button(label=\"Submit\", on_click=persist)\n    if submit:\n        # mock form submit\n        st.write(st.session_state[\"widget\"])\n    if initial_load:\n        # re reun page if needed to regenerate bound widget\n        st.rerun()\n\n\nst.navigation(\n    [st.Page(other_page),\n    st.Page(main_page)]\n).run()\n```",
+    "html_url": "https://github.com/streamlit/streamlit/issues/14350",
+    "labels": [
+      "type:bug",
+      "priority:P2",
+      "feature:query-params"
+    ],
+    "state": "closed",
+    "title": "Keep query params from `bind` when switching pages"
+  },
+  "streamlit/streamlit#14351": {
+    "body": "### Checklist\n\n- [x] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar issues.\n- [x] I added a very descriptive title to this issue.\n- [x] I have provided sufficient information below to help reproduce this issue.\n\n### Summary\n\nUntil streamlit 1.54.0 there was a tooltip shown when you hover with the mouse over a selected option. This was especially helpful when the option was a very long text and was truncated. The tooltip was very helpful in these cases.\nWith streamlit 1.55.0 these tooltips are gone. I had to roll back to 1.54.\n\n### Reproducible Code Example\n\n```Python\nimport streamlit as st\n\n\ndef render_multiselect():\n    options = st.multiselect(\n            \"What are your favorite colors?\",\n            [\"Green\", \"Yellow\", \"Red\", \"Blue\"],\n            default=[\"Yellow\", \"Red\"],\n    )\n\n    st.write(\"You selected:\", options)\n\n\ndef main():\n    render_multiselect()\n\n\nif __name__ == \"__main__\":\n    main()\n```\n\n### Steps To Reproduce\n\n1. Run the script above with streamlit 1.54.0\n2. Hover with your mouse over either \"Yellow\" or \"Red\". You will see little tooltops with \"Yellow\" or \"Red\"\n3. Configure your project with streamlit 1.55.0\n4. Run the script again\n5. Hover with your mouse over either \"Yellow\" or \"Red\". No tooltip will show up.\n\n### Expected Behavior\n\nExpected behaviour is like 1.54.0 or you give me a hint how I can show the full text without truncation in the multiselect.\n\n### Current Behavior\n\nSee above\n\n### Is this a regression?\n\n- [x] Yes, this used to work in a previous version.\n\n### Debug info\n\n- Streamlit version: 1.55.0\n- Python version: 3.14.3\n- Operating System: macOS 26.3.1\n- Browser: Microsoft Edge for ARM Version 145.0.3800.97, Safari 26.3.1\n\n\n### Additional Information\n\n_No response_",
+    "html_url": "https://github.com/streamlit/streamlit/issues/14351",
+    "labels": [
+      "type:bug",
+      "type:regression",
+      "status:needs-triage",
+      "feature:st.multiselect",
+      "feature:tooltip"
+    ],
+    "state": "closed",
+    "title": "streamlit 1.55.0 st.multiselect no tooltip shown on selected options"
+  },
+  "streamlit/streamlit#14352": {
+    "body": "### Checklist\n\n- [x] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar issues.\n- [x] I added a very descriptive title to this issue.\n- [x] I have provided sufficient information below to help reproduce this issue.\n\n### Summary\n\nWhen trying to open Dev Container in VS code, I get an error message due to unsupported Node version.\n\n### Steps To Reproduce\n\nClicked \"Reopen in Container\" to setup Dev Container.\n\n### Expected Behavior\n\nDev Container should open in VS code without error messages.\n\n### Current Behavior\n\nError message from log:\n\n```\n[2026-03-12T14:36:47.059Z] Error: Unsupported Node.js version v22.22.1.\nExpected Node.js major version v24 from .nvmrc.\nPlease switch Node versions (e.g. via 'nvm use').\nmake: *** [Makefile:209: frontend-init] Error 1\n```\n\n### Debug info\n\n- VS code version: 1.111.0\n- Operating System: WSL2/Ubuntu 24.04.4 LTS",
+    "html_url": "https://github.com/streamlit/streamlit/issues/14352",
+    "labels": [
+      "type:bug",
+      "status:confirmed",
+      "priority:P3",
+      "area:contribution"
+    ],
+    "state": "closed",
+    "title": "Error when setting up Dev Container in VS Code"
+  },
+  "streamlit/streamlit#14380": {
+    "body": "## Describe your changes\n\nMigrates JSON viewer component from the unmaintained `react-json-view` to `@microlink/react-json-view` (v1.31.8), its actively maintained fork.\n\n- Updates import statements in 3 files (drop-in replacement)\n- Updates NOTICES file with new license attribution\n- Sets `showComma={false}` for cleaner display (removes trailing commas)\n- Removes `reactJsonViewCompat.ts` shim (no longer needed with the maintained fork)\n- Updates E2E test to use hover-based interaction (per review feedback)\n\n## GitHub Issue Link (if applicable)\n\nN/A\n\n## Testing Plan\n\n- No additional tests needed - existing frontend unit tests validate the component behaves identically\n- `lib/src/components/elements/Json/Json.test.tsx` \u2014 JSON rendering and theme tests\n- `lib/src/components/elements/Json/useJsonTooltip.test.ts` \u2014 Tooltip functionality tests\n- `lib/src/components/widgets/DataFrame/columns/cells/JsonViewer.test.tsx` \u2014 DataFrame JSON cell tests\n- E2E test `st_dialog_test.py::test_dialog_copy_buttons_work` \u2014 Dialog copy button validation\n\n---\n\n**Contribution License Agreement**\n\nBy submitting this pull request you agree that all contributions to this project are made under the Apache 2.0 license.",
+    "html_url": "https://github.com/streamlit/streamlit/pull/14380",
+    "labels": [
+      "impact:internal",
+      "change:chore"
+    ],
+    "state": "closed",
+    "title": "[chore] Migrate from unmaintained `react-json-view` to `@microlink/react-json-view`"
+  },
+  "streamlit/streamlit#14432": {
+    "body": "### Checklist\n\n- [x] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar issues.\n- [x] I added a very descriptive title to this issue.\n- [x] I have provided sufficient information below to help reproduce this issue.\n\n### Summary\n\nError from prometheus when scraping /_stcore/metrics:\nError scraping target: unit \"seconds\" not a suffix of metrics \"session_duration_seconds_total\"\n\nI believe the unit seconds should be at the end:\n\"session_duration_total_seconds\" \n\n### Reproducible Code Example\n\n```Python\n\n```\n\n### Steps To Reproduce\n\n1. Scrape /_stcore/metrics endpoint with prometheus\n2. Check the error in prometheus > Status > Target health \n\n### Expected Behavior\n\nTarget health status in prometheus up. \n\n### Current Behavior\n\nTarget health status in prometheus down. Error scraping target: unit \"seconds\" not a suffix of metrics \"session_duration_seconds_total\" \n\n### Is this a regression?\n\n- [ ] Yes, this used to work in a previous version.\n\n### Debug info\n\n- Streamlit version: 1.55.0\n- Python version: 3.13\n- Operating System: linux\n- Browser: chrome \n\n\n### Additional Information\n\n_No response_",
+    "html_url": "https://github.com/streamlit/streamlit/issues/14432",
+    "labels": [
+      "type:bug",
+      "status:confirmed",
+      "priority:P3",
+      "area:backend"
+    ],
+    "state": "closed",
+    "title": "Error from prometheus when scraping /_stcore/metrics"
+  },
+  "streamlit/streamlit#14454": {
+    "body": "### Checklist\n\n- [x] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar issues.\n- [x] I added a very descriptive title to this issue.\n- [x] I have provided sufficient information below to help reproduce this issue.\n\n### Summary\n\nI'm testing nightly and updating docstrings. When I apply state saved from dataframe output, the value is accepted but Streamlit still generates an `AttributeError`. If I assign a selection state from a manually created dict, the state fails to apply and I still get the `AttributeError`.\n\n### Reproducible Code Example\n\n```Python\nimport pandas as pd\nimport streamlit as st\nfrom numpy.random import default_rng as rng\n\ndf = pd.DataFrame(\n    rng(0).standard_normal((12, 5)), columns=[\"a\", \"b\", \"c\", \"d\", \"e\"]\n)\n\nif st.button(\"Select the first cell of column a (short)\"):\n    st.session_state.data = {\"selection\": {\"cells\": [0, \"a\"]}}\nif st.button(\"Select the first cell of column a (long)\"):\n    st.session_state.data = {\"selection\": {\"rows\": [], \"columns\": [], \"cells\": [0, \"a\"]}}\nif st.button(\"Select from last save\"):\n    st.session_state.data = st.session_state.save\n\nevent = st.dataframe(\n    df,\n    key=\"data\",\n    on_select=\"rerun\",\n    selection_mode=[\"single-cell\"],\n)\n\nevent.selection\n\nif st.button(\"Save\"):\n    st.session_state.save = event\n\nst.session_state.data\nst.session_state.save if \"save\" in st.session_state else \"\"\n```\n\n### Steps To Reproduce\n\n1. Run the app\n2. Select the first cell in column e, and then select the save button.\n3. Select the first cell in column c.\n4. Select the \"Select from last save\" button.\n5. [Observe] The cell selection updates, but also reports an `AttributeError`/\n6. Select the \"Select the first cell of column a (short)\" button.\n7. [Observe] No selection and still an attribute error.\n8. ...same for the \"... (long)\" button.\n\n### Expected Behavior\n\n_No response_\n\n### Current Behavior\n\n_No response_\n\n### Is this a regression?\n\n- [ ] Yes, this used to work in a previous version.\n\n### Debug info\n\n- Streamlit version: Nightly 1.55.1.dev20260319\n- Python version: 3.13\n- Operating System: Windows\n- Browser: Chrome\n\n\n### Additional Information\n\n_No response_",
+    "html_url": "https://github.com/streamlit/streamlit/issues/14454",
+    "labels": [
+      "type:bug",
+      "feature:st.dataframe",
+      "status:confirmed",
+      "priority:P3"
+    ],
+    "state": "closed",
+    "title": "[Nightly] Programmatic dataframe selections don't recognize \"selection\""
+  },
+  "streamlit/streamlit#14460": {
+    "body": "### Checklist\n\n- [x] I have searched the [existing issues](https://github.com/streamlit/streamlit/issues) for similar issues.\n- [x] I added a very descriptive title to this issue.\n- [x] I have provided sufficient information below to help reproduce this issue.\n\n### Summary\n\nWhen using Streamlit's color directives, combined with Markdown completion in `st.write_stream`, `(streamdown:incomplete-link)` is visible. Additionally, nested directives aren't completed correctly.\n\n### Reproducible Code Example\n\n```Python\nimport streamlit as st\nimport time\n\noptions = {\n  \"italic\": \"This is a *Foo bar and baz bat*\",\n  \"bold\": \"This is a **Foo bar and baz bat**\",\n  \"bold_italic\": \"This is a ***Foo bar and baz bat***\",\n  \"color\": \"This is a :red[Foo bar and baz bat]\",\n  \"highlight\": \"This is a :red-background[Foo bar and baz bat]\",\n  \"color_highlight\": \"This is a :red-background[:rainbow[Foo bar and baz bat]]\",\n  \"color_custom\": \"This is a :color[Foo bar and baz bat]{foreground='rgb(0, 100, 200)'}\",\n  \"small\": \"This is a :small[Foo bar and baz bat]\"\n}\n\nx = st.selectbox(\"text\", options.keys())\n\ndef gen():\n    for token in options[x].split(\" \"):\n        time.sleep(.5)\n        yield token + \" \"\n\nst.write_stream(gen)\n```\n\n### Steps To Reproduce\n\nRun the app and try each option. Italic, bold, and bold-italic are fine by themselves, but the others have trailing artifacts and don't complete correctly when nested.\n\n\n### Expected Behavior\n\n_No response_\n\n### Current Behavior\n\nhttps://github.com/user-attachments/assets/14130d55-ae7e-4aab-94f9-ea2a6bdd032b\n\n### Is this a regression?\n\n- [ ] Yes, this used to work in a previous version.\n\n### Debug info\n\n- Streamlit version: Nightly 1.55.1.dev20260321\n- Python version: 3.11\n- Operating System: Windows\n- Browser: Chrome\n\n\n### Additional Information\n\n_No response_",
+    "html_url": "https://github.com/streamlit/streamlit/issues/14460",
+    "labels": [
+      "type:bug",
+      "status:confirmed",
+      "priority:P2",
+      "feature:st.write_stream"
+    ],
+    "state": "closed",
+    "title": "[Nightly] Streaming Markdown completion displays `(streamdown:incomplete-link)`"
+  }
+}

@@ -302,6 +302,80 @@ else:
 
 
 # ════════════════════════════════════════════════════════════════════
+# SPEC QUALITY × AI INTERACTION (RECENT WINDOW)
+# ════════════════════════════════════════════════════════════════════
+print(f"\n\n{'=' * 70}")
+print("SPEC QUALITY × AI INTERACTION (RECENT WINDOW)")
+print("=" * 70)
+print("Does spec quality matter MORE for AI-generated code in the SDD era?")
+
+recent_scored_all = recent[recent["q_overall"].notna()].copy()
+recent_scored_szz2 = recent_szz[recent_szz["q_overall"].notna()].copy()
+
+print(f"\nScored PRs (recent): {len(recent_scored_all):,}")
+print(f"  AI-tagged + scored: {recent_scored_all['ai_tagged'].sum():,}")
+print(f"  Human + scored: {(~recent_scored_all['ai_tagged']).sum():,}")
+
+# Quality → bugs: AI vs human (recent)
+ai_scored_szz = recent_scored_szz2[recent_scored_szz2["ai_tagged"]].copy()
+human_scored_szz = recent_scored_szz2[~recent_scored_szz2["ai_tagged"]].copy()
+
+if len(ai_scored_szz) > 50:
+    print(f"\n  Quality → bugs (AI-only, recent, N={len(ai_scored_szz):,}):")
+    r_q_ai_bugs = within_author_lpm(ai_scored_szz, "q_overall", "szz_buggy",
+                                     label="recent-quality-ai-bugs")
+else:
+    print(f"\n  Quality → bugs (AI-only): SKIPPED ({len(ai_scored_szz)} PRs)")
+    r_q_ai_bugs = None
+
+if len(human_scored_szz) > 50:
+    print(f"\n  Quality → bugs (human-only, recent, N={len(human_scored_szz):,}):")
+    r_q_human_bugs = within_author_lpm(human_scored_szz, "q_overall", "szz_buggy",
+                                        label="recent-quality-human-bugs")
+else:
+    print(f"\n  Quality → bugs (human-only): SKIPPED ({len(human_scored_szz)} PRs)")
+    r_q_human_bugs = None
+
+# Quality × AI interaction (recent)
+if len(recent_scored_szz2) > 200 and recent_scored_szz2["ai_tagged"].sum() > 20:
+    recent_scored_szz2["ai_int"] = recent_scored_szz2["ai_tagged"].astype(int)
+    recent_scored_szz2["quality_x_ai"] = recent_scored_szz2["q_overall"] * recent_scored_szz2["ai_int"]
+
+    print(f"\n  Quality × AI interaction → bugs (recent):")
+    r_qai_recent_bugs = within_author_lpm(
+        recent_scored_szz2, "quality_x_ai", "szz_buggy",
+        controls=["q_overall", "ai_int"] + SIZE_CONTROLS,
+        label="recent-quality-x-ai-bugs")
+
+    recent_scored_all["ai_int"] = recent_scored_all["ai_tagged"].astype(int)
+    recent_scored_all["quality_x_ai"] = recent_scored_all["q_overall"] * recent_scored_all["ai_int"]
+
+    print(f"\n  Quality × AI interaction → rework (recent):")
+    r_qai_recent_rework = within_author_lpm(
+        recent_scored_all, "quality_x_ai", "reworked",
+        controls=["q_overall", "ai_int"] + SIZE_CONTROLS,
+        label="recent-quality-x-ai-rework")
+else:
+    print(f"\n  Quality × AI interaction: SKIPPED (too few AI scored PRs)")
+    r_qai_recent_bugs = None
+    r_qai_recent_rework = None
+
+# Quality → rework: AI vs human (recent)
+ai_scored_all = recent_scored_all[recent_scored_all["ai_tagged"]].copy()
+human_scored_all = recent_scored_all[~recent_scored_all["ai_tagged"]].copy()
+
+if len(ai_scored_all) > 50:
+    print(f"\n  Quality → rework (AI-only, recent, N={len(ai_scored_all):,}):")
+    within_author_lpm(ai_scored_all, "q_overall", "reworked",
+                      label="recent-quality-ai-rework")
+
+if len(human_scored_all) > 50:
+    print(f"\n  Quality → rework (human-only, recent, N={len(human_scored_all):,}):")
+    within_author_lpm(human_scored_all, "q_overall", "reworked",
+                      label="recent-quality-human-rework")
+
+
+# ════════════════════════════════════════════════════════════════════
 # ALTERNATIVE OUTCOMES ON RECENT WINDOW
 # ════════════════════════════════════════════════════════════════════
 print(f"\n\n{'=' * 70}")
@@ -351,9 +425,8 @@ print("SUMMARY: DOES THE SDD ERA LOOK DIFFERENT?")
 print(f"{'=' * 70}")
 
 print(f"""
-Specification adoption rose from near zero to 14% between Sep 2025 and
-Mar 2026, coinciding with the release of Spec Kit and Kiro. If SDD tools
-are improving outcomes, the effect should appear in the most recent data.
+If SDD tools are improving outcomes, the effect should appear in the
+most recent data — the period closest to production SDD usage.
 
   {'Test':>40s}  {'Recent coef':>12s}  {'p':>8s}  {'Full coef':>12s}  {'p':>8s}
   {'─'*40}  {'─'*12}  {'─'*8}  {'─'*12}  {'─'*8}""")

@@ -1,0 +1,106 @@
+{
+  "supabase/supabase#34392": {
+    "body": "# Improve documentation\n\n## Link \n\nhttps://supabase.com/docs/guides/getting-started/tutorials/with-angular\n\n## Describe the problem\n\nThe Angular tutorial's Auth component implementation contains a TypeScript error. The code example shows FormBuilder being used before initialization, which will cause compilation errors for developers following the tutorial.\n\n## Describe the improvement\n\nThe code example should be updated to initialize the form group in the constructor. This follows Angular's best practices and prevents the TypeScript initialization error.\n\nBefore:\n```typescript\nexport class AuthComponent {\n  loading = false\n  signInForm = this.formBuilder.group({\n    email: '',\n  })\n  constructor(\n    private readonly supabase: SupabaseService,\n    private readonly formBuilder: FormBuilder\n  ) {}\n```\n\nAfter:\n```typescript\nexport class AuthComponent {\n  loading = false;\n  signInForm;\n\n  constructor(\n    private readonly supabase: SupabaseService,\n    private readonly formBuilder: FormBuilder\n  ) {\n    this.signInForm = this.formBuilder.group({\n      email: '',\n    });\n  }\n```\n## Additional context\nWhen following the current tutorial, developers will encounter this TypeScript error:\n> Property 'formBuilder' is used before being initialized.\n\nIf there are any mistakes in the code after the improvement, please tell me!",
+    "html_url": "https://github.com/supabase/supabase/issues/34392",
+    "labels": [
+      "documentation",
+      "pr-opened",
+      "external-issue"
+    ],
+    "state": "closed",
+    "title": "FormBuilder initialization error in Build a User Management App with Angular"
+  },
+  "supabase/supabase#42176": {
+    "body": "# Bug report\n\n<!-- \n\n\u26a0\ufe0f We receive a lot of bug reports which have already been solved or discussed. If you are looking for help, please try these first:\n\n- Docs: https://docs.supabase.com\n- Discussions: https://github.com/supabase/supabase/discussions\n- Discord: https://discord.supabase.com\n\nBefore opening a bug report, please verify the following: \n\n-->\n\n- [x] I confirm this is a bug with Supabase, not with my own application. \n- [x] I confirm I have searched the [Docs](https://docs.supabase.com), GitHub [Discussions](https://github.com/supabase/supabase/discussions), and [Discord](https://discord.supabase.com). \n\n### Describe the bug\n\n  The Cron integration dashboard in Supabase Studio fails to parse cron schedules that use pg_cron's `$` syntax (representing \"last day of month\"). Jobs with schedules like `0 0 $ * *` display \"Unable to parse next run for job\" in the \"Next run\" column, even though these are valid pg_cron schedules that execute correctly.\n\n### To Reproduce\n\n1. Go to **Integrations > Cron > Jobs** in Studio\n2. Create a cron job with schedule `0 0 $ * *` (or any schedule using `$`)\n3. Observe the \"Next run\" column shows \"Unable to parse next run for job\"\n\n### Expected behavior\n\nThe dashboard should:\n1. Recognize `$` as valid pg_cron syntax for \"last day of month\"\n2. Calculate and display the correct next run time\n\n### Screenshots\n\n![pg_cron $ syntax not supported](https://github.com/user-attachments/assets/0b20b21e-5d16-4235-a4a4-59c00d7080f6)\n\n*Jobs with `$` in schedule show \"Unable to parse next run for job\" while standard cron syntax works correctly*\n\n### System information\n\n- **OS:** macOS\n- **Browser:** Chrome\n- **Studio version:** Latest (supabase.com/dashboard)\n\n### Additional context\n\nThe `$` syntax is a pg_cron-specific extension that represents \"last day of the month\". It's documented in [pg_cron](https://github.com/citusdata/pg_cron#cron-syntax).\n\n**Root cause:** The frontend uses `cron-parser` library which supports `L` for \"last day of month\", but pg_cron uses `$` instead. The `$` character causes parsing to fail.\n\n**Proposed fix:** Normalize pg_cron's `$` syntax to `cron-parser`'s `L` syntax before parsing. Both represent \"last day of month\" - it's just a syntax difference between the two systems.",
+    "html_url": "https://github.com/supabase/supabase/issues/42176",
+    "labels": [
+      "bug",
+      "frontend",
+      "pr-opened",
+      "external-issue"
+    ],
+    "state": "closed",
+    "title": "[Studio] pg_cron dashboard doesn't support `$` (last day of month) syntax in schedule parsing"
+  },
+  "supabase/supabase#43258": {
+    "body": "# Bug report\n\n<!-- \n\n\u26a0\ufe0f We receive a lot of bug reports which have already been solved or discussed. If you are looking for help, please try these first:\n\n- Docs: https://docs.supabase.com\n- Discussions: https://github.com/supabase/supabase/discussions\n- Discord: https://discord.supabase.com\n\nBefore opening a bug report, please verify the following: \n\n-->\n\n- [x] I confirm this is a bug with Supabase, not with my own application. \n- [x] I confirm I have searched the [Docs](https://docs.supabase.com), GitHub [Discussions](https://github.com/supabase/supabase/discussions), and [Discord](https://discord.supabase.com). \n\n## Describe the bug\n\nIt's not currently possible to import a CSV file in Supabase Studio with a genuine empty string value, which is not the same as a NULL value. It treats empty cells as null, but it also treats NULL as null, so there's two ways to enter a null value and no way to enter an empty string.\n\n## To Reproduce\n\nSteps to reproduce the behavior, please provide code snippets or a repository:\n\n1. Go to Supabase Studio.\n2. Open the table editor with some table.\n3. Insert -> import CSV and import a file with some empty cells.\n4. See that the imported data has empty cells set to NULL (even in the preview).\n\n## Expected behavior\n\nIt should treat empty cells as empty strings or at least treat EMPTY as empty strings (which is how they're displayed in the table editor). But in the latter case you'd have to have a way to escape that to actually enter the value \"EMPTY\".",
+    "html_url": "https://github.com/supabase/supabase/issues/43258",
+    "labels": [
+      "bug",
+      "frontend",
+      "pr-opened",
+      "external-issue"
+    ],
+    "state": "closed",
+    "title": "It's not possible to import CSV with empty string value"
+  },
+  "supabase/supabase#44024": {
+    "body": "## Describe the bug\n\nStudio's table editor can generate invalid SQL when using `Copy as SQL` or `Export as SQL`.\n\nI hit this on `storage.buckets`, where the generated output included values like:\n\n```sql\n'true'\n'false'\n'10485760'\nARRAY[\"image/*\"]\n```\n\nThose are not correct PostgreSQL literals for this case.\n\n## Expected behavior\n\nThe generated SQL should emit proper Postgres literals, e.g.:\n\n```sql\ntrue\nfalse\n10485760\nARRAY['image/*']\n```\n\n## Actual behavior\n\nThe SQL exporter currently wraps booleans and numbers as string literals, and emits text array elements with double quotes inside `ARRAY[...]`.\n\n## Reproduction\n\n1. Open Studio table editor\n2. Pick a table with boolean, numeric, or `text[]` columns\n3. Select one or more rows\n4. Use `Copy as SQL` or `Export as SQL`\n5. Run the generated SQL in Postgres\n\n## Likely source\n\nThis appears to come from the shared formatter in:\n\n- `apps/studio/components/interfaces/TableGridEditor/TableEntity.utils.ts`\n\nThat formatter is used by both row copy and full row export paths.\n\n## Notes\n\nA small fix here would be to:\n- emit booleans and numbers as raw literals\n- emit `text[]` members as SQL string literals inside `ARRAY[...]`\n",
+    "html_url": "https://github.com/supabase/supabase/issues/44024",
+    "labels": [
+      "bug",
+      "frontend",
+      "pr-opened",
+      "external-issue"
+    ],
+    "state": "closed",
+    "title": "Studio \"Copy as SQL\" / \"Export as SQL\" emits invalid PostgreSQL literals"
+  },
+  "supabase/supabase#44099": {
+    "body": "I am experiencing an issue with webhooks in Supabase. I had an existing (old) webhook configured in my project. When I try to edit the webhook and change only the `URL`; I click **Save** and Supabase shows that the webhook is saved successfully. However, when I open the webhook again, the `URL` has reverted to a different/old value instead of the one I just saved.\n\nThis caused issues in production because the webhook was still sending requests to the old `URL` even though the dashboard showed that my `URL` change was saved.\n\n### To Reproduce\n1. Go to Supabase Dashboard \u2192 Database \u2192 Webhooks\n2. Open an existing webhook\n3. Change the webhook `URL`\n4. Click Save\n5. Reopen the webhook\n\nThe `URL` is different from the one that was saved (reverted to old `URL`)\n\n### Expected behavior\nThe webhook `URL` should remain the same as the one entered after clicking Save.\n\n### Actual behavior\nThe webhook `URL` changes back to a previous/incorrect `URL` after saving.\n\n### Workaround\nDeleting the webhook and creating a new one with the correct `URL` works. The issue only happens when editing an existing webhook.\n\nPlease let me know if you need any logs or additional information.",
+    "html_url": "https://github.com/supabase/supabase/issues/44099",
+    "labels": [
+      "bug",
+      "frontend",
+      "webhook/pg_net",
+      "pr-opened",
+      "awaiting-details"
+    ],
+    "state": "closed",
+    "title": "Webhook URL not saving correctly \u2013 reverts to incomplete URL after saving"
+  },
+  "supabase/supabase#44146": {
+    "body": "# \ud83d\udc1b Bug report\n\n- [x] I confirm this is a bug with Supabase, not with my own application.  \n- [x] I confirm I have searched the Docs, GitHub Discussions, and Discord.  \n\n## Problem\n\nThe cron job creation form in the Database Functions section has UI inconsistencies.\n\nSpecifically, scrolling does not behave correctly within the form (like the index/create form earlier), \nmaking it difficult to access all fields when the content overflows the viewport.\n\n## To Reproduce\n\n1. Open the Supabase Dashboard  \n2. Navigate to Integration\n3. Create a new cron job  \n4. Attempt to scroll within the form  \n\n## Expected behavior\n\nThe form should allow smooth scrolling similar to other form, ensuring all fields are accessible.\n\n## Screenshots\n\nN/A\n\n## System information\n\n- OS: Tested on multiple environments  \n- Browser: Chrome / others  \n\n## Additional context\nSame like the index form",
+    "html_url": "https://github.com/supabase/supabase/issues/44146",
+    "labels": [
+      "bug",
+      "frontend",
+      "integrations",
+      "pr-opened",
+      "external-issue"
+    ],
+    "state": "closed",
+    "title": "new cron job form issue"
+  },
+  "supabase/supabase#44375": {
+    "body": "## Bug report\n\n### Describe the bug\n\nSeveral files in `apps/studio/data/database-queues/` construct SQL queries by directly interpolating user-controlled values into template literals instead of using parameterized queries. While `queueName` is validated via regex (`isQueueNameValid`), other values like `payload` in the send mutation and `afterTimestamp` in the pagination query are interpolated without sanitization.\n\n### Affected files\n\n- `database-queue-messages-infinite-query.ts` \u2014 `afterTimestamp` is interpolated directly:\n  ```ts\n  query += ` WHERE enqueued_at > '${afterTimestamp}'`\n  ```\n- `database-queue-messages-send-mutation.ts` \u2014 `payload` is interpolated directly:\n  ```ts\n  sql: `select * from pgmq.send( '${queueName}', '${payload}', ${delay})`\n  ```\n- `database-queue-messages-delete-mutation.ts` \u2014 `messageId` (number type, lower risk but still not parameterized)\n- `database-queue-messages-archive-mutation.ts` \u2014 same pattern with `messageId`\n\n### Impact\n\nThe `payload` field in the send mutation is the most concerning since it accepts arbitrary user-provided JSON content. A payload containing a single quote (`'`) will at minimum break the query; a crafted payload could potentially execute arbitrary SQL. The `afterTimestamp` comes from `enqueued_at` values returned by previous queries, which is lower risk but still not safe to interpolate.\n\nEven though `executeSql` runs through the project's SQL execution pipeline (which may use a service role connection), the defense-in-depth principle still applies \u2014 these should use parameterized queries or at minimum escape the interpolated values.\n\n### Expected behavior\n\nSQL parameters should be passed through parameterized query mechanisms rather than string interpolation. For the `pgmq` function calls, this could look like:\n```ts\nsql: `SELECT * FROM pgmq.send($1, $2::jsonb, $3)`,\nparams: [queueName, payload, delay]\n```\n\nOr at minimum, the values should be escaped before interpolation using a function like `pg-meta`'s `ident()` or a dedicated escape utility.\n\n### System information\n\n- Affected area: Studio Dashboard \u2014 Queues feature\n- All files under: `apps/studio/data/database-queues/`",
+    "html_url": "https://github.com/supabase/supabase/issues/44375",
+    "labels": [
+      "bug",
+      "frontend",
+      "pr-opened",
+      "external-issue"
+    ],
+    "state": "closed",
+    "title": "Dashboard: Queue Messages queries use string interpolation for SQL parameters"
+  },
+  "vercel/ai#10060": {
+    "body": "### Description\n\nMessages received from OpenAI models include `itemId`s in `providerOptions` for message content parts. For Zero Data Retention organizations, OpenAI will error when receiving `itemId` in messages. It's reasonable for us to handle filtered these out in messages sent to future model calls, but it would be nice to have some way to have the library do this for us.\n\nNote the example tries to result in a tool call, but the tool isn't actually used and tool calls aren't necessary to reproduce the error.\n\n```ts\nimport { openai } from \"@ai-sdk/openai\";\nimport { generateText, tool } from \"ai\";\nimport { z } from \"zod\";\n\nasync function main() {\n  const model = openai('gpt-5');\n\n  console.log('Asking for tool call...');\n  const { response } = await generateText({\n    model,\n    prompt: 'Call `main_tool`',\n    tools: {\n        main_tool: tool({\n            description: 'Main tool',\n            inputSchema: z.object({\n                name: z.string(),\n            }),\n            execute: async ({ name }) => {\n                return `Hello, ${name}!`;\n            },\n        }),\n    }\n  });\n  console.log('Response messages:');\n  console.log(JSON.stringify(response.messages, null, 2));\n\n  console.log('Generating second response...');\n  const { response: secondResponse } = await generateText({\n    model,\n    messages: response.messages,\n  });\n  console.log('Second response messages:');\n  console.log(JSON.stringify(secondResponse.messages, null, 2));\n}\n\nmain().catch(console.error);\n```\n\nError\n```\nAsking for tool call...\nResponse messages:\n[\n  {\n    \"role\": \"assistant\",\n    \"content\": [\n      {\n        \"type\": \"reasoning\",\n        \"text\": \"\",\n        \"providerOptions\": {\n          \"openai\": {\n            \"itemId\": \"rs_...\",\n            \"reasoningEncryptedContent\": null\n          }\n        }\n      },\n      {\n        \"type\": \"text\",\n        \"text\": \"main_tool requires a name parameter. What name should I pass?\",\n        \"providerOptions\": {\n          \"openai\": {\n            \"itemId\": \"msg_...\"\n          }\n        }\n      }\n    ]\n  }\n]\nGenerating second response...\nAPICallError [AI_APICallError]: Item with id 'rs_...' not found. Items are not persisted for Zero Data Retention organizations. Remove this item from your input and try again.\n    at /Users/user/dev/app/node_modules/.pnpm/@ai-sdk+provider-utils@3.0.16_zod@4.1.12/node_modules/@ai-sdk/provider-utils/dist/index.js:972:14\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async postToApi (/Users/user/dev/app/node_modules/.pnpm/@ai-sdk+provider-utils@3.0.16_zod@4.1.12/node_modules/@ai-sdk/provider-utils/dist/index.js:817:28)\n    at async OpenAIResponsesLanguageModel.doGenerate (/Users/user/dev/app/node_modules/.pnpm/@ai-sdk+openai@2.0.62_zod@4.1.12/node_modules/@ai-sdk/openai/dist/index.js:3294:9)\n    at async fn (/Users/user/dev/app/node_modules/.pnpm/ai@5.0.87_zod@4.1.12/node_modules/ai/dist/index.js:2348:34)\n    at async /Users/user/dev/app/node_modules/.pnpm/ai@5.0.87_zod@4.1.12/node_modules/ai/dist/index.js:1631:22\n    at async _retryWithExponentialBackoff (/Users/user/dev/app/node_modules/.pnpm/ai@5.0.87_zod@4.1.12/node_modules/ai/dist/index.js:1782:12)\n    at async fn (/Users/user/dev/app/node_modules/.pnpm/ai@5.0.87_zod@4.1.12/node_modules/ai/dist/index.js:2306:34)\n    at async /Users/user/dev/app/node_modules/.pnpm/ai@5.0.87_zod@4.1.12/node_modules/ai/dist/index.js:1631:22\n    at async generateText (/Users/user/dev/app/node_modules/.pnpm/ai@5.0.87_zod@4.1.12/node_modules/ai/dist/index.js:2251:12) {\n  cause: undefined,\n  url: 'https://api.openai.com/v1/responses',\n  requestBodyValues: {\n    model: 'gpt-5',\n    input: [ [Object], [Object] ],\n    temperature: undefined,\n    top_p: undefined,\n    max_output_tokens: undefined,\n    max_tool_calls: undefined,\n    metadata: undefined,\n    parallel_tool_calls: undefined,\n    previous_response_id: undefined,\n    store: undefined,\n    user: undefined,\n    instructions: undefined,\n    service_tier: undefined,\n    include: undefined,\n    prompt_cache_key: undefined,\n    safety_identifier: undefined,\n    top_logprobs: undefined,\n    truncation: undefined,\n    tools: undefined,\n    tool_choice: undefined\n  },\n  statusCode: 404,\n  ....\n  [Symbol(vercel.ai.error)]: true,\n  [Symbol(vercel.ai.error.AI_APICallError)]: true\n}\n```\n\n### AI SDK Version\n\n- ai: 5.0.87\n- @ai-sdk/openai: 2.0.62\n\n### Code of Conduct\n\n- [x] I agree to follow this project's Code of Conduct",
+    "html_url": "https://github.com/vercel/ai/issues/10060",
+    "labels": [
+      "ai/provider",
+      "support"
+    ],
+    "state": "closed",
+    "title": "OpenAI optional setting to not pass through `itemId`s in `providerOptions`"
+  },
+  "vercel/next.js#80852": {
+    "body": "### Link to the code that reproduces this issue\n\nhttps://github.com/Dan6erbond/revline/blob/a608ed5646019682456d65a42bd4abc3562d224e/client/src/components/performance/drag-sessions/create.tsx#L48\n\n### To Reproduce\n\n1. Set a `BASE_PATH` in `.env` like `/app`\n2. Build and run the app\n3. Create a car & drag session\n\n### Current vs. Expected behavior\n\nThe app will redirect to `/app/app/cars/...` instead of `/app/cars/...`\n\n### Provide environment information\n\n```bash\nyarn run v1.22.5\n$ C:\\Users\\morav\\Documents\\Projects\\revline\\client\\node_modules\\.bin\\next info\n\nOperating System:\n  Platform: win32\n  Arch: x64\n  Version: Windows 11 Home\n  Available memory (MB): 64630\n  Available CPU cores: 16\nBinaries:\n  Node: 22.14.0\n  npm: 10.9.2\n  Yarn: 1.22.5\n  pnpm: 10.8.0\nRelevant Packages:\n  next: 15.3.4 // Latest available version is detected (15.3.4).\n  eslint-config-next: 15.3.0\n  react: 19.1.0\n  react-dom: 19.1.0\n  typescript: 5.8.3\nNext.js Config:\n  output: standalone\nDone in 5.01s.\n```\n\n### Which area(s) are affected? (Select all that apply)\n\nPages Router\n\n### Which stage(s) are affected? (Select all that apply)\n\nnext build (local), Other (Deployed), next start (local)\n\n### Additional context\n\n_No response_",
+    "html_url": "https://github.com/vercel/next.js/issues/80852",
+    "labels": [
+      "Pages Router"
+    ],
+    "state": "open",
+    "title": "`Router.push` with `basePath` Results in `basePath` being Repeated Twice"
+  }
+}
