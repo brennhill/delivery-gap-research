@@ -1,4 +1,4 @@
-Analysis run: 2026-04-05T15:25:12.007130+00:00
+Analysis run: 2026-04-05T17:56:04.889269+00:00
 Script: /Users/brenn/dev/ai-augmented-dev/research/study/scripts/pipeline/full-szz-analysis.py
 
 Dataset: 100,247 PRs, 119 repos
@@ -9,7 +9,7 @@ PRs in SZZ repos: 77,814
 SZZ buggy PRs: 9,754
 AI-tagged PRs: 5,989
 Spec'd PRs: 24,298
-Spec quality scored PRs: 14,910
+Spec quality scored PRs: 25,209
 
 ======================================================================
 ANALYSIS 1: DO SPECS REDUCE REAL BUGS (SZZ)?
@@ -37,22 +37,22 @@ Within-author (LPM, clustered SEs):
 ANALYSIS 2: DOES SPEC QUALITY REDUCE REAL BUGS (SZZ)?
 ======================================================================
 
-Scored PRs in SZZ repos: 13,569
-  NOTE: Only 17.4% of PRs have quality scores.
+Scored PRs in SZZ repos: 22,672
+  NOTE: Only 29.1% of PRs have quality scores.
   Selection: only spec'd PRs with substantial descriptions were scored.
   Results may not generalize to unscored PRs.
 
 Controlled (logistic regression + repo FE):
   [quality-szz] Logit failed: Singular matrix
   [quality-szz] Retrying without repo FE...
-  q_overall: coef=0.0010, p=0.488634
+  q_overall: coef=-0.0020, p=0.079998
   (size controls only — repo FE caused singular matrix)
 
 Within-author (LPM, clustered SEs):
-  Within-author LPM: N=11,880, authors=1,245 (1,231 with treatment variation)
-  q_overall: coef=-0.0002, p=0.340165
-  95% CI: [-0.0007, +0.0002]
-  Interpretation: -0.0002 pp change in P(szz_buggy)
+  Within-author LPM: N=19,688, authors=2,050 (2,030 with treatment variation)
+  q_overall: coef=-0.0003, p=0.164356
+  95% CI: [-0.0007, +0.0001]
+  Interpretation: -0.0003 pp change in P(szz_buggy)
   -> DECREASES (not significant)
 
 ======================================================================
@@ -153,19 +153,19 @@ Within-author (LPM, clustered SEs):
 ANALYSIS 7: DOES SPEC QUALITY REDUCE REWORK?
 ======================================================================
 
-Scored PRs: 14,910
-  NOTE: 16.9% of all PRs — selection bias caveat applies.
+Scored PRs: 25,209
+  NOTE: 28.6% of all PRs — selection bias caveat applies.
 
 Controlled (logistic regression + repo FE):
-  q_overall: coef=-0.0019, p=0.244770
-  (with 88 repo dummies + size controls)
+  q_overall: coef=-0.0001, p=0.919857
+  (with 111 repo dummies + size controls)
 
 Within-author (LPM, clustered SEs):
-  Within-author LPM: N=12,992, authors=1,407 (1,391 with treatment variation)
-  q_overall: coef=-0.0004, p=0.122276
-  95% CI: [-0.0008, +0.0001]
-  Interpretation: -0.0004 pp change in P(reworked)
-  -> DECREASES (not significant)
+  Within-author LPM: N=21,881, authors=2,319 (2,297 with treatment variation)
+  q_overall: coef=0.0000, p=0.860260
+  95% CI: [-0.0003, +0.0004]
+  Interpretation: +0.0000 pp change in P(reworked)
+  -> INCREASES (not significant)
 
 ======================================================================
 ANALYSIS 8: JIT FEATURES vs SZZ BUGS
@@ -235,11 +235,11 @@ improve prediction? (Incremental validity test)
   specd_int in Model 2:    coef=0.0816, p=0.0025
   ΔPseudo R²:              0.000187
 
-  On scored subset (11,824 PRs):
-  Model 1b (JIT only):     Pseudo R² = 0.1049
-  Model 3 (JIT + quality): Pseudo R² = 0.1056
-  q_overall in Model 3:    coef=0.0039, p=0.0170
-  ΔPseudo R²:              0.000632
+  On scored subset (19,969 PRs):
+  Model 1b (JIT only):     Pseudo R² = 0.0815
+  Model 3 (JIT + quality): Pseudo R² = 0.0816
+  q_overall in Model 3:    coef=-0.0018, p=0.1419
+  ΔPseudo R²:              0.000137
 
 ======================================================================
 ROBUSTNESS 3: INDIVIDUAL SPEC QUALITY DIMENSIONS
@@ -249,83 +249,83 @@ Do any of the 7 quality dimensions independently predict fewer bugs or rework?
 
                   Dimension    → SZZ bugs         p      → rework         p
   -------------------------  ------------  --------  ------------  --------
-  Within-author LPM: N=11,880, authors=1,245 (1,137 with treatment variation)
-  q_outcome_clarity: coef=-0.0002, p=0.373307
-  95% CI: [-0.0006, +0.0002]
-  Interpretation: -0.0002 pp change in P(szz_buggy)
-  -> DECREASES (not significant)
-  Within-author LPM: N=12,992, authors=1,407 (1,281 with treatment variation)
-  q_outcome_clarity: coef=-0.0004, p=0.041053
-  95% CI: [-0.0007, -0.0000]
-  Interpretation: -0.0004 pp change in P(reworked)
-  -> DECREASES (SIGNIFICANT)
-          q_outcome_clarity       -0.0002    0.3733       -0.0004    0.0411
-  Within-author LPM: N=11,880, authors=1,245 (1,069 with treatment variation)
-  q_error_states: coef=-0.0003, p=0.078090
-  95% CI: [-0.0006, +0.0000]
+  Within-author LPM: N=19,688, authors=2,050 (1,867 with treatment variation)
+  q_outcome_clarity: coef=-0.0003, p=0.102944
+  95% CI: [-0.0006, +0.0001]
   Interpretation: -0.0003 pp change in P(szz_buggy)
   -> DECREASES (not significant)
-  Within-author LPM: N=12,992, authors=1,407 (1,210 with treatment variation)
-  q_error_states: coef=-0.0000, p=0.813297
-  95% CI: [-0.0004, +0.0003]
+  Within-author LPM: N=21,881, authors=2,319 (2,111 with treatment variation)
+  q_outcome_clarity: coef=-0.0000, p=0.791788
+  95% CI: [-0.0003, +0.0002]
   Interpretation: -0.0000 pp change in P(reworked)
   -> DECREASES (not significant)
-             q_error_states       -0.0003    0.0781       -0.0000    0.8133
-  Within-author LPM: N=11,880, authors=1,245 (1,185 with treatment variation)
-  q_scope_boundaries: coef=-0.0002, p=0.299894
-  95% CI: [-0.0007, +0.0002]
+          q_outcome_clarity       -0.0003    0.1029       -0.0000    0.7918
+  Within-author LPM: N=19,688, authors=2,050 (1,801 with treatment variation)
+  q_error_states: coef=-0.0002, p=0.262013
+  95% CI: [-0.0004, +0.0001]
   Interpretation: -0.0002 pp change in P(szz_buggy)
   -> DECREASES (not significant)
-  Within-author LPM: N=12,992, authors=1,407 (1,335 with treatment variation)
-  q_scope_boundaries: coef=-0.0005, p=0.009088
-  95% CI: [-0.0010, -0.0001]
-  Interpretation: -0.0005 pp change in P(reworked)
-  -> DECREASES (SIGNIFICANT)
-         q_scope_boundaries       -0.0002    0.2999       -0.0005    0.0091
-  Within-author LPM: N=11,880, authors=1,245 (1,173 with treatment variation)
-  q_acceptance_criteria: coef=-0.0002, p=0.439446
-  95% CI: [-0.0006, +0.0003]
-  Interpretation: -0.0002 pp change in P(szz_buggy)
-  -> DECREASES (not significant)
-  Within-author LPM: N=12,992, authors=1,407 (1,329 with treatment variation)
-  q_acceptance_criteria: coef=-0.0004, p=0.065470
-  95% CI: [-0.0008, +0.0000]
-  Interpretation: -0.0004 pp change in P(reworked)
-  -> DECREASES (not significant)
-      q_acceptance_criteria       -0.0002    0.4394       -0.0004    0.0655
-  Within-author LPM: N=11,874, authors=1,245 (992 with treatment variation)
-  q_data_contracts: coef=-0.0001, p=0.594463
-  95% CI: [-0.0004, +0.0002]
-  Interpretation: -0.0001 pp change in P(szz_buggy)
-  -> DECREASES (not significant)
-  Within-author LPM: N=12,986, authors=1,407 (1,117 with treatment variation)
-  q_data_contracts: coef=-0.0001, p=0.590211
-  95% CI: [-0.0004, +0.0002]
-  Interpretation: -0.0001 pp change in P(reworked)
-  -> DECREASES (not significant)
-           q_data_contracts       -0.0001    0.5945       -0.0001    0.5902
-  Within-author LPM: N=11,880, authors=1,245 (1,198 with treatment variation)
-  q_dependency_context: coef=0.0002, p=0.415235
-  95% CI: [-0.0002, +0.0006]
-  Interpretation: +0.0002 pp change in P(szz_buggy)
-  -> INCREASES (not significant)
-  Within-author LPM: N=12,992, authors=1,407 (1,352 with treatment variation)
-  q_dependency_context: coef=0.0001, p=0.501903
-  95% CI: [-0.0002, +0.0005]
+  Within-author LPM: N=21,881, authors=2,319 (2,037 with treatment variation)
+  q_error_states: coef=0.0001, p=0.307450
+  95% CI: [-0.0001, +0.0004]
   Interpretation: +0.0001 pp change in P(reworked)
   -> INCREASES (not significant)
-       q_dependency_context       +0.0002    0.4152       +0.0001    0.5019
-  Within-author LPM: N=11,880, authors=1,245 (1,202 with treatment variation)
-  q_behavioral_specificity: coef=-0.0002, p=0.191923
+             q_error_states       -0.0002    0.2620       +0.0001    0.3075
+  Within-author LPM: N=19,688, authors=2,050 (1,947 with treatment variation)
+  q_scope_boundaries: coef=-0.0003, p=0.052878
+  95% CI: [-0.0007, +0.0000]
+  Interpretation: -0.0003 pp change in P(szz_buggy)
+  -> DECREASES (not significant)
+  Within-author LPM: N=21,881, authors=2,319 (2,202 with treatment variation)
+  q_scope_boundaries: coef=-0.0002, p=0.219843
+  95% CI: [-0.0005, +0.0001]
+  Interpretation: -0.0002 pp change in P(reworked)
+  -> DECREASES (not significant)
+         q_scope_boundaries       -0.0003    0.0529       -0.0002    0.2198
+  Within-author LPM: N=19,688, authors=2,050 (1,939 with treatment variation)
+  q_acceptance_criteria: coef=-0.0002, p=0.164664
   95% CI: [-0.0006, +0.0001]
   Interpretation: -0.0002 pp change in P(szz_buggy)
   -> DECREASES (not significant)
-  Within-author LPM: N=12,992, authors=1,407 (1,359 with treatment variation)
-  q_behavioral_specificity: coef=-0.0003, p=0.084416
-  95% CI: [-0.0006, +0.0000]
-  Interpretation: -0.0003 pp change in P(reworked)
+  Within-author LPM: N=21,881, authors=2,319 (2,195 with treatment variation)
+  q_acceptance_criteria: coef=-0.0001, p=0.454221
+  95% CI: [-0.0004, +0.0002]
+  Interpretation: -0.0001 pp change in P(reworked)
   -> DECREASES (not significant)
-   q_behavioral_specificity       -0.0002    0.1919       -0.0003    0.0844
+      q_acceptance_criteria       -0.0002    0.1647       -0.0001    0.4542
+  Within-author LPM: N=19,682, authors=2,050 (1,669 with treatment variation)
+  q_data_contracts: coef=-0.0001, p=0.489248
+  95% CI: [-0.0003, +0.0002]
+  Interpretation: -0.0001 pp change in P(szz_buggy)
+  -> DECREASES (not significant)
+  Within-author LPM: N=21,875, authors=2,319 (1,878 with treatment variation)
+  q_data_contracts: coef=0.0001, p=0.603467
+  95% CI: [-0.0002, +0.0003]
+  Interpretation: +0.0001 pp change in P(reworked)
+  -> INCREASES (not significant)
+           q_data_contracts       -0.0001    0.4892       +0.0001    0.6035
+  Within-author LPM: N=19,688, authors=2,050 (1,972 with treatment variation)
+  q_dependency_context: coef=0.0001, p=0.640300
+  95% CI: [-0.0002, +0.0004]
+  Interpretation: +0.0001 pp change in P(szz_buggy)
+  -> INCREASES (not significant)
+  Within-author LPM: N=21,881, authors=2,319 (2,229 with treatment variation)
+  q_dependency_context: coef=0.0002, p=0.139717
+  95% CI: [-0.0001, +0.0005]
+  Interpretation: +0.0002 pp change in P(reworked)
+  -> INCREASES (not significant)
+       q_dependency_context       +0.0001    0.6403       +0.0002    0.1397
+  Within-author LPM: N=19,688, authors=2,050 (1,979 with treatment variation)
+  q_behavioral_specificity: coef=-0.0003, p=0.083142
+  95% CI: [-0.0005, +0.0000]
+  Interpretation: -0.0003 pp change in P(szz_buggy)
+  -> DECREASES (not significant)
+  Within-author LPM: N=21,881, authors=2,319 (2,242 with treatment variation)
+  q_behavioral_specificity: coef=0.0000, p=0.822117
+  95% CI: [-0.0002, +0.0003]
+  Interpretation: +0.0000 pp change in P(reworked)
+  -> INCREASES (not significant)
+   q_behavioral_specificity       -0.0003    0.0831       +0.0000    0.8221
 
 ======================================================================
 ROBUSTNESS 4: REPO-LEVEL ANALYSIS
@@ -367,8 +367,8 @@ Within-author results (the most credible estimates):
     coef=+0.0142 pp, p=0.0026 — INCREASES (SIGNIFICANT)
     Identified from 2181 authors with treatment variation
   2. Spec quality -> SZZ bugs:
-    coef=-0.0002 pp, p=0.3402 — DECREASES (not significant)
-    Identified from 1231 authors with treatment variation
+    coef=-0.0003 pp, p=0.1644 — DECREASES (not significant)
+    Identified from 2030 authors with treatment variation
   3. Review engagement -> SZZ bugs:
     coef=+0.0000 pp, p=0.2943 — INCREASES (not significant)
     Identified from 4320 authors with treatment variation
@@ -379,8 +379,8 @@ Within-author results (the most credible estimates):
     coef=+0.0116 pp, p=0.0012 — INCREASES (SIGNIFICANT)
     Identified from 2524 authors with treatment variation
   7. Spec quality -> rework:
-    coef=-0.0004 pp, p=0.1223 — DECREASES (not significant)
-    Identified from 1391 authors with treatment variation
+    coef=+0.0000 pp, p=0.8603 — INCREASES (not significant)
+    Identified from 2297 authors with treatment variation
 
   5. Scope constraint (AI PRs, spec -> log_churn):
     AI: coef=+0.1201, p=0.0297 — INCREASES (SIGNIFICANT)
@@ -390,7 +390,7 @@ Within-author results (the most credible estimates):
   8. JIT features: see detailed results above.
 
 Caveats:
-  - Spec quality scored on 14,910/88,052 PRs (16.9%) — selection bias
+  - Spec quality scored on 25,209/88,052 PRs (28.6%) — selection bias
   - AI detection uses co-author tags (voluntary) — unknown false negative rate
   - Convenience sample of 119 repos — cannot generalize
   - Within-author identification requires authors with variation in treatment

@@ -1,4 +1,4 @@
-Temporal robustness run: 2026-04-05T15:25:34.011013+00:00
+Temporal robustness run: 2026-04-05T17:56:30.468794+00:00
 Script: /Users/brenn/dev/ai-augmented-dev/research/study/scripts/pipeline/robustness-temporal.py
 
 ======================================================================
@@ -46,15 +46,15 @@ H2: Specs → rework (recent, within-author)
 
 ──────────────────────────────────────────────────
 H3: Spec quality → SZZ bugs (recent, within-author)
-  Scored PRs in SZZ repos (recent): 8,009
-  [recent-H3] N=6,948, authors=908 (898 with variation)
-  coef=+0.0001, p=0.7599 
+  Scored PRs in SZZ repos (recent): 12,202
+  [recent-H3] N=10,453, authors=1,411 (1,394 with variation)
+  coef=+0.0001, p=0.8121 
 
 ──────────────────────────────────────────────────
 H4: Spec quality → rework (recent, within-author)
-  Scored PRs (recent): 8,721
-  [recent-H4] N=7,501, authors=1,014 (1,003 with variation)
-  coef=-0.0002, p=0.4155 
+  Scored PRs (recent): 13,312
+  [recent-H4] N=11,324, authors=1,569 (1,551 with variation)
+  coef=-0.0000, p=0.9073 
 
 ──────────────────────────────────────────────────
 H5: Specs constrain AI scope (recent, within-author)
@@ -96,20 +96,20 @@ AI-tagged PRs (recent): 3,794
 HIGH-QUALITY SPECS (RECENT WINDOW)
 ======================================================================
   Quality distribution (recent): median=51, p75=60, p90=68
-  High-quality spec'd (recent SZZ): 2,114
+  High-quality spec'd (recent SZZ): 3,314
 
   Top-quartile specs → SZZ bugs (recent, within-author):
-  [recent-hq-bugs] N=36,085, authors=2,879 (569 with variation)
-  coef=+0.0031, p=0.6737 
+  [recent-hq-bugs] N=36,085, authors=2,879 (863 with variation)
+  coef=-0.0034, p=0.6215 
 
   Top-quartile specs → rework (recent, within-author):
-  [recent-hq-rework] N=39,732, authors=3,251 (631 with variation)
-  coef=+0.0018, p=0.8622 
+  [recent-hq-rework] N=39,732, authors=3,251 (948 with variation)
+  coef=+0.0053, p=0.5044 
 
   High-quality vs NO spec → bugs (recent, within-author):
-  (29,388 PRs, low-quality excluded)
-  [recent-hq-vs-none] N=27,016, authors=2,218 (441 with variation)
-  coef=+0.0004, p=0.9619 
+  (30,588 PRs, low-quality excluded)
+  [recent-hq-vs-none] N=27,984, authors=2,330 (665 with variation)
+  coef=-0.0057, p=0.4771 
 
 
 ======================================================================
@@ -117,33 +117,33 @@ SPEC QUALITY × AI INTERACTION (RECENT WINDOW)
 ======================================================================
 Does spec quality matter MORE for AI-generated code in the SDD era?
 
-Scored PRs (recent): 8,721
-  AI-tagged + scored: 887
-  Human + scored: 7,834
+Scored PRs (recent): 13,312
+  AI-tagged + scored: 1,412
+  Human + scored: 11,900
 
-  Quality → bugs (AI-only, recent, N=867):
-  [recent-quality-ai-bugs] N=730, authors=95 (94 with variation)
-  coef=-0.0009, p=0.4856 
+  Quality → bugs (AI-only, recent, N=1,388):
+  [recent-quality-ai-bugs] N=1,180, authors=157 (155 with variation)
+  coef=+0.0006, p=0.5346 
 
-  Quality → bugs (human-only, recent, N=7,142):
-  [recent-quality-human-bugs] N=6,115, authors=835 (824 with variation)
-  coef=+0.0003, p=0.3067 
+  Quality → bugs (human-only, recent, N=10,814):
+  [recent-quality-human-bugs] N=9,102, authors=1,294 (1,276 with variation)
+  coef=+0.0001, p=0.7434 
 
   Quality × AI interaction → bugs (recent):
-  [recent-quality-x-ai-bugs] N=6,948, authors=908 (161 with variation)
-  coef=-0.0004, p=0.6789 
+  [recent-quality-x-ai-bugs] N=10,453, authors=1,411 (260 with variation)
+  coef=+0.0008, p=0.3110 
 
   Quality × AI interaction → rework (recent):
-  [recent-quality-x-ai-rework] N=7,501, authors=1,014 (168 with variation)
-  coef=-0.0006, p=0.5763 
+  [recent-quality-x-ai-rework] N=11,324, authors=1,569 (270 with variation)
+  coef=+0.0002, p=0.8418 
 
-  Quality → rework (AI-only, recent, N=887):
-  [recent-quality-ai-rework] N=739, authors=98 (97 with variation)
-  coef=-0.0011, p=0.4378 
+  Quality → rework (AI-only, recent, N=1,412):
+  [recent-quality-ai-rework] N=1,191, authors=161 (159 with variation)
+  coef=-0.0005, p=0.5923 
 
-  Quality → rework (human-only, recent, N=7,834):
-  [recent-quality-human-rework] N=6,653, authors=939 (927 with variation)
-  coef=-0.0002, p=0.4489 
+  Quality → rework (human-only, recent, N=11,900):
+  [recent-quality-human-rework] N=9,954, authors=1,450 (1,431 with variation)
+  coef=-0.0001, p=0.7007 
 
 
 ======================================================================
@@ -187,8 +187,8 @@ most recent data — the period closest to production SDD usage.
   ────────────────────────────────────────  ────────────  ────────  ────────────  ────────
                       H1: Specs → SZZ bugs       +0.0043    0.4349       +0.0142    0.0026
                         H2: Specs → rework       +0.0164    0.0009       +0.0116    0.0012
-                   H3: Spec quality → bugs       +0.0001    0.7599           ---       ---
-                 H4: Spec quality → rework       -0.0002    0.4155           ---       ---
+                   H3: Spec quality → bugs       +0.0001    0.8121           ---       ---
+                 H4: Spec quality → rework       -0.0000    0.9073           ---       ---
                 H5: AI scope (interaction)       +0.0114    0.8611       -0.0210    0.6550
                          AI + specs → bugs       +0.0030    0.8218           ---       ---
                        AI + specs → rework       +0.0160    0.2115           ---       ---
