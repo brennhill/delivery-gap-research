@@ -79,6 +79,21 @@ def main():
         report.write(f"Generated: {__import__('datetime').datetime.now().isoformat()}\n")
         report.write("=" * 70 + "\n\n")
 
+        report.write("DATA NOTES\n")
+        report.write("-" * 70 + "\n\n")
+        report.write("SZZ blame links vs JIT features:\n\n")
+        report.write("  SZZ traces fix commits back to the commits that introduced the\n")
+        report.write("  bug via git blame. It only produces rows for PRs that introduced\n")
+        report.write("  a bug that was LATER FIXED. The ~65K SZZ rows are blame links\n")
+        report.write("  (fix → bug-introducing commit), not PR counts. Many PRs never\n")
+        report.write("  introduced a traced bug, so they have no SZZ rows.\n\n")
+        report.write("  JIT features (lines added, entropy, developer experience, etc.)\n")
+        report.write("  are computed from diff metadata and can be calculated for ANY PR.\n")
+        report.write("  The ~109K JIT rows cover nearly all PRs in the dataset.\n\n")
+        report.write("  16 of 119 repos have zero SZZ coverage because their squash-merge\n")
+        report.write("  workflows cause GitHub's merge SHAs to be garbage-collected,\n")
+        report.write("  making them unreachable via git blame.\n\n")
+
         for fname in result_files:
             fpath = results_dir / fname
             if fpath.exists():
