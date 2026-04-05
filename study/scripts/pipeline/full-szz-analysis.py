@@ -713,6 +713,43 @@ for dim in q_dims:
 
 
 # ════════════════════════════════════════════════════════════════════
+# ROBUSTNESS: VALIDATED vs UNVALIDATED QUALITY COMPOSITES
+# ════════════════════════════════════════════════════════════════════
+print("\n" + "=" * 70)
+print("ROBUSTNESS 3b: VALIDATED vs UNVALIDATED QUALITY COMPOSITES")
+print("=" * 70)
+print("\nHuman-LLM validation (N=38) found 4 validated dimensions (rho > 0.35, p < 0.05):")
+print("  behavioral_specificity, scope_boundaries, dependency_context, outcome_clarity")
+print("And 3 unvalidated: error_states, acceptance_criteria, data_contracts")
+
+validated_dims = ["q_behavioral_specificity", "q_scope_boundaries",
+                  "q_dependency_context", "q_outcome_clarity"]
+unvalidated_dims = ["q_error_states", "q_acceptance_criteria", "q_data_contracts"]
+
+scored_szz["q_validated"] = scored_szz[validated_dims].astype(float).mean(axis=1)
+scored_szz["q_unvalidated"] = scored_szz[unvalidated_dims].astype(float).mean(axis=1)
+scored_all2["q_validated"] = scored_all2[validated_dims].astype(float).mean(axis=1)
+scored_all2["q_unvalidated"] = scored_all2[unvalidated_dims].astype(float).mean(axis=1)
+
+print(f"\n  Validated SD: {scored_szz['q_validated'].std():.1f}, "
+      f"Unvalidated SD: {scored_szz['q_unvalidated'].std():.1f}")
+
+print(f"\n  {'Composite':>25s}  {'→ bugs coef':>12s}  {'p':>8s}  {'→ rework coef':>14s}  {'p':>8s}")
+print(f"  {'-'*25}  {'-'*12}  {'-'*8}  {'-'*14}  {'-'*8}")
+
+for label, col in [("All 7 dimensions", "q_overall"),
+                    ("4 validated", "q_validated"),
+                    ("3 unvalidated", "q_unvalidated")]:
+    r_bug = within_author_lpm(scored_szz, col, "szz_buggy", label=f"{label}-bug")
+    r_rw = within_author_lpm(scored_all2, col, "reworked", label=f"{label}-rw")
+    bc = f"{r_bug['coef']:+.4f}" if r_bug else "FAIL"
+    bp = f"{r_bug['p']:.4f}" if r_bug else ""
+    rc = f"{r_rw['coef']:+.4f}" if r_rw else "FAIL"
+    rp = f"{r_rw['p']:.4f}" if r_rw else ""
+    print(f"  {label:>25s}  {bc:>12s}  {bp:>8s}  {rc:>14s}  {rp:>8s}")
+
+
+# ════════════════════════════════════════════════════════════════════
 # ROBUSTNESS: REPO-LEVEL AGGREGATION
 # ════════════════════════════════════════════════════════════════════
 print("\n" + "=" * 70)
