@@ -1,12 +1,21 @@
 #!/usr/bin/env python3
 """
-Robustness check: Do ISSUE-LINKED specs reduce defects?
+Robustness check: Issue-linked specs — every cut.
 
-Addresses the objection: "PR descriptions aren't real specs. Linked GitHub
-issues are the closest thing to pre-implementation specifications."
+Tests whether linked GitHub issues (the closest proxy for pre-implementation
+specifications) reduce defects or rework across every meaningful subgroup:
 
-Tests H1-H4 using only PRs with linked GitHub issues (#NNN or github.com
-issue URLs) as the treatment group, excluding ticket IDs and template sections.
+  1. Issue-linked vs no spec (cleanest comparison)
+  2. Issue-linked vs everything else
+  3. AI + issue-linked
+  4. Human + issue-linked
+  5. Issue-linked on top-20% complexity tasks
+  6. Issue-linked quality → bugs/rework
+  7. Top-20% quality issue-linked vs no spec
+  8. Issue-linked vs ticket-only specs
+  9. Recent 3 months: issue-linked
+  10. Recent 3 months: AI + issue-linked
+  11. Dose-response: quality tiers within issue-linked
 
 Uses within-author LPM with full demeaning + clustered SEs.
 """
@@ -59,10 +68,12 @@ df["ai_tagged"] = df["f_ai_tagged"].fillna(False).astype(bool)
 df["is_bot"] = df["f_is_bot_author"].fillna(False).astype(bool)
 df = df[~df["is_bot"]].copy()
 df["reworked"] = df["reworked"].astype(int)
+df["merged_at"] = pd.to_datetime(df["merged_at"], utc=True, errors="coerce")
 
 df["log_add"] = np.log1p(df["additions"].astype(float))
 df["log_del"] = np.log1p(df["deletions"].astype(float))
 df["log_files"] = np.log1p(df["files_count"].astype(float))
+df["total_churn"] = df["additions"].fillna(0) + df["deletions"].fillna(0)
 
 szz_repo_set = set(szz["repo"].unique())
 df["in_szz"] = df["repo"].isin(szz_repo_set)
@@ -72,6 +83,7 @@ SIZE_CONTROLS = ["log_add", "log_del", "log_files"]
 # ── Identify issue-linked PRs ────────────────────────────────────────
 
 issue_linked = set()
+ticket_only = set()
 for p in sorted(DATA_DIR.glob("spec-signals-*.json")):
     with open(p) as f:
         data = json.load(f)
@@ -82,21 +94,19 @@ for p in sorted(DATA_DIR.glob("spec-signals-*.json")):
         src = str(pr.get("spec_source", "") or "")
         if re.match(r"#\d+$", src) or ("github.com" in src and "/issues/" in src):
             issue_linked.add((repo, int(pr["number"])))
+        elif "-" in src and src.split("-")[0].isupper() and not src.startswith("#"):
+            ticket_only.add((repo, int(pr["number"])))
 
-df["has_github_issue"] = df.apply(
-    lambda r: (r["repo"], r["pr_number"]) in issue_linked, axis=1
-)
+df["has_issue"] = df.apply(lambda r: (r["repo"], r["pr_number"]) in issue_linked, axis=1)
+df["has_ticket"] = df.apply(lambda r: (r["repo"], r["pr_number"]) in ticket_only, axis=1)
 
-n_total = len(df)
-n_issue = df["has_github_issue"].sum()
-n_specd = df["specd"].sum()
-n_no_spec = (~df["specd"]).sum()
-
-print(f"\nDataset: {n_total:,} PRs (non-bot)")
-print(f"  With linked GitHub issue: {n_issue:,} ({n_issue/n_total*100:.1f}%)")
-print(f"  Spec'd (any source): {n_specd:,} ({n_specd/n_total*100:.1f}%)")
-print(f"  No spec: {n_no_spec:,} ({n_no_spec/n_total*100:.1f}%)")
-print(f"  Spec'd but no issue link: {n_specd - n_issue:,}")
+print(f"\nDataset: {len(df):,} PRs (non-bot)")
+print(f"  Issue-linked: {df['has_issue'].sum():,}")
+print(f"  Ticket-only: {df['has_ticket'].sum():,}")
+print(f"  Spec'd (any): {df['specd'].sum():,}")
+print(f"  No spec: {(~df['specd']).sum():,}")
+print(f"  Quality scored: {df['q_overall'].notna().sum():,}")
+print(f"  AI-tagged: {df['ai_tagged'].sum():,}")
 
 
 # ── Within-author LPM ────────────────────────────────────────────────
@@ -153,145 +163,322 @@ def within_author_lpm(data, treatment_col, outcome_col, controls=None,
             "n_authors": n_authors, "n_with_var": n_with_var}
 
 
-# ════════════════════════════════════════════════════════════════════
-# TEST 1: ISSUE-LINKED vs NO SPEC (cleanest comparison)
-# ════════════════════════════════════════════════════════════════════
-print("\n" + "=" * 70)
-print("TEST 1: GITHUB ISSUE-LINKED vs NO SPEC")
-print("=" * 70)
-print("Excludes ticket-ID and template-section specs.")
-print("This is the cleanest pre-implementation spec vs no spec comparison.")
+def run_test(subset, treatment, label, run_quality=True):
+    """Run bugs + rework + quality tests on a subset."""
+    subset = subset.copy()
+    szz_sub = subset[subset["in_szz"]].copy()
+    n = len(subset)
+    if n == 0:
+        print(f"  EMPTY — skipping")
+        return {}
 
-subset = df[df["has_github_issue"] | ~df["specd"]].copy()
-subset["has_issue"] = subset["has_github_issue"].astype(int)
-szz_sub = subset[subset["in_szz"]].copy()
-
-print(f"\n  Issue-linked: {subset['has_issue'].sum():,}")
-print(f"  No spec: {(~subset['specd']).sum():,}")
-
-for grp, label in [(szz_sub[szz_sub["has_issue"] == 1], "issue"),
-                    (szz_sub[szz_sub["has_issue"] == 0], "no spec")]:
-    print(f"  Bug rate ({label}): {grp['szz_buggy'].mean():.1%}  "
-          f"Rework rate: {subset[subset['has_issue'] == (1 if label == 'issue' else 0)]['reworked'].mean():.1%}")
-
-print(f"\n  H1: Issue-linked → bugs:")
-r_h1 = within_author_lpm(szz_sub, "has_issue", "szz_buggy", label="issue-H1")
-
-print(f"\n  H2: Issue-linked → rework:")
-r_h2 = within_author_lpm(subset, "has_issue", "reworked", label="issue-H2")
-
-# Quality on issue-linked subset
-scored_szz = szz_sub[szz_sub["q_overall"].notna() & (szz_sub["has_issue"] == 1)].copy()
-if len(scored_szz) > 50:
-    print(f"\n  H3: Quality → bugs (issue-linked only, N={len(scored_szz):,}):")
-    r_h3 = within_author_lpm(scored_szz, "q_overall", "szz_buggy", label="issue-H3")
-else:
-    print(f"\n  H3: SKIPPED ({len(scored_szz)} scored issue-linked PRs)")
-    r_h3 = None
-
-scored_all = subset[subset["q_overall"].notna() & (subset["has_issue"] == 1)].copy()
-if len(scored_all) > 50:
-    print(f"\n  H4: Quality → rework (issue-linked only, N={len(scored_all):,}):")
-    r_h4 = within_author_lpm(scored_all, "q_overall", "reworked", label="issue-H4")
-else:
-    print(f"\n  H4: SKIPPED ({len(scored_all)} scored issue-linked PRs)")
-    r_h4 = None
-
-
-# ════════════════════════════════════════════════════════════════════
-# TEST 2: AI + ISSUE-LINKED
-# ════════════════════════════════════════════════════════════════════
-print("\n" + "=" * 70)
-print("TEST 2: AI-TAGGED + ISSUE-LINKED (closest to agentic SDD)")
-print("=" * 70)
-
-ai_issue = df[df["ai_tagged"] & df["has_github_issue"]]
-ai_no_spec = df[df["ai_tagged"] & ~df["specd"]]
-ai_subset = df[df["ai_tagged"] & (df["has_github_issue"] | ~df["specd"])].copy()
-ai_subset["has_issue"] = ai_subset["has_github_issue"].astype(int)
-ai_szz = ai_subset[ai_subset["in_szz"]].copy()
-
-print(f"\n  AI + issue-linked: {len(ai_issue):,}")
-print(f"  AI + no spec: {len(ai_no_spec):,}")
-
-if len(ai_szz) > 100 and ai_szz["has_issue"].sum() > 10:
-    print(f"\n  AI + issue-linked → bugs:")
-    within_author_lpm(ai_szz, "has_issue", "szz_buggy", label="ai-issue-bugs")
-
-    print(f"\n  AI + issue-linked → rework:")
-    within_author_lpm(ai_subset, "has_issue", "reworked", label="ai-issue-rework")
-else:
-    print("  SKIPPED (too few AI + issue-linked PRs)")
-
-
-# ════════════════════════════════════════════════════════════════════
-# TEST 3: ISSUE-LINKED vs TICKET-ID ONLY (spec type comparison)
-# ════════════════════════════════════════════════════════════════════
-print("\n" + "=" * 70)
-print("TEST 3: ISSUE-LINKED vs TICKET-ID SPECS")
-print("=" * 70)
-print("Do PRs with GitHub issues have different outcomes than PRs with")
-print("just a PROJ-123 ticket reference? Both are 'spec'd' but the issue")
-print("content is visible to us while the ticket content is not.")
-
-ticket_only = set()
-for p in sorted(DATA_DIR.glob("spec-signals-*.json")):
-    with open(p) as f:
-        data = json.load(f)
-    repo = data.get("repo", "")
-    for pr in data["coverage"]["prs"]:
-        if not pr.get("specd"):
-            continue
-        src = str(pr.get("spec_source", "") or "")
-        if "-" in src and src.split("-")[0].isupper() and not src.startswith("#"):
-            if (repo, int(pr["number"])) not in issue_linked:
-                ticket_only.add((repo, int(pr["number"])))
-
-df["has_ticket_only"] = df.apply(
-    lambda r: (r["repo"], r["pr_number"]) in ticket_only, axis=1
-)
-
-print(f"\n  Issue-linked: {df['has_github_issue'].sum():,}")
-print(f"  Ticket-only: {df['has_ticket_only'].sum():,}")
-
-spec_compare = df[df["has_github_issue"] | df["has_ticket_only"]].copy()
-spec_compare["is_issue"] = spec_compare["has_github_issue"].astype(int)
-spec_szz = spec_compare[spec_compare["in_szz"]].copy()
-
-if len(spec_szz) > 200:
-    print(f"\n  Issue vs ticket → bugs (within-author):")
-    within_author_lpm(spec_szz, "is_issue", "szz_buggy", label="issue-vs-ticket-bugs")
-
-    print(f"\n  Issue vs ticket → rework (within-author):")
-    within_author_lpm(spec_compare, "is_issue", "reworked", label="issue-vs-ticket-rework")
+    n_treat = subset[treatment].sum()
+    results = {}
 
     # Raw rates
-    issue_bug = spec_szz[spec_szz["is_issue"] == 1]["szz_buggy"].mean()
-    ticket_bug = spec_szz[spec_szz["is_issue"] == 0]["szz_buggy"].mean()
-    issue_rw = spec_compare[spec_compare["is_issue"] == 1]["reworked"].mean()
-    ticket_rw = spec_compare[spec_compare["is_issue"] == 0]["reworked"].mean()
-    print(f"\n  Raw rates:")
-    print(f"    Issue-linked: bugs={issue_bug:.1%}, rework={issue_rw:.1%}")
-    print(f"    Ticket-only:  bugs={ticket_bug:.1%}, rework={ticket_rw:.1%}")
+    treat_szz = szz_sub[szz_sub[treatment] == 1]
+    ctrl_szz = szz_sub[szz_sub[treatment] == 0]
+    treat_all = subset[subset[treatment] == 1]
+    ctrl_all = subset[subset[treatment] == 0]
+    if len(treat_szz) > 0 and len(ctrl_szz) > 0:
+        print(f"  Raw rates: bugs {treat_szz['szz_buggy'].mean():.1%} vs {ctrl_szz['szz_buggy'].mean():.1%} | "
+              f"rework {treat_all['reworked'].mean():.1%} vs {ctrl_all['reworked'].mean():.1%}")
+
+    # Bugs
+    if len(szz_sub) > 100 and szz_sub[treatment].sum() > 10:
+        print(f"\n  → bugs:")
+        results["bugs"] = within_author_lpm(szz_sub, treatment, "szz_buggy",
+                                            label=f"{label}-bugs")
+    else:
+        print(f"\n  → bugs: SKIPPED")
+        results["bugs"] = None
+
+    # Rework
+    if n_treat > 10:
+        print(f"  → rework:")
+        results["rework"] = within_author_lpm(subset, treatment, "reworked",
+                                              label=f"{label}-rework")
+    else:
+        results["rework"] = None
+
+    # Quality → bugs/rework (within treated subset)
+    if run_quality:
+        scored_szz = szz_sub[szz_sub["q_overall"].notna() & (szz_sub[treatment] == 1)].copy()
+        if len(scored_szz) > 50:
+            print(f"  → quality → bugs (N={len(scored_szz):,} scored):")
+            results["q_bugs"] = within_author_lpm(scored_szz, "q_overall", "szz_buggy",
+                                                  label=f"{label}-q-bugs")
+        else:
+            results["q_bugs"] = None
+
+        scored_all = subset[subset["q_overall"].notna() & (subset[treatment] == 1)].copy()
+        if len(scored_all) > 50:
+            print(f"  → quality → rework (N={len(scored_all):,} scored):")
+            results["q_rework"] = within_author_lpm(scored_all, "q_overall", "reworked",
+                                                    label=f"{label}-q-rework")
+        else:
+            results["q_rework"] = None
+
+    return results
 
 
 # ════════════════════════════════════════════════════════════════════
-# SUMMARY
+# TEST 1: ISSUE-LINKED vs NO SPEC
 # ════════════════════════════════════════════════════════════════════
 print("\n" + "=" * 70)
-print("SUMMARY")
+print("TEST 1: ISSUE-LINKED vs NO SPEC (cleanest comparison)")
 print("=" * 70)
 
-print(f"""
-Issue-linked GitHub issues are the closest available proxy for
-pre-implementation specifications. If any spec type should show
-a protective effect, it is this one.
+t1 = df[df["has_issue"] | ~df["specd"]].copy()
+t1["treat"] = t1["has_issue"].astype(int)
+print(f"  Treated: {t1['treat'].sum():,} | Control: {(t1['treat']==0).sum():,}")
+r1 = run_test(t1, "treat", "issue-vs-none")
 
-Results:
-  H1 (issue → bugs):    {'coef=' + f"{r_h1['coef']:+.4f}, p={r_h1['p']:.4f}" if r_h1 else 'SKIPPED'}
-  H2 (issue → rework):  {'coef=' + f"{r_h2['coef']:+.4f}, p={r_h2['p']:.4f}" if r_h2 else 'SKIPPED'}
-  H3 (quality → bugs):  {'coef=' + f"{r_h3['coef']:+.4f}, p={r_h3['p']:.4f}" if r_h3 else 'SKIPPED'}
-  H4 (quality → rework): {'coef=' + f"{r_h4['coef']:+.4f}, p={r_h4['p']:.4f}" if r_h4 else 'SKIPPED'}
+
+# ════════════════════════════════════════════════════════════════════
+# TEST 2: ISSUE-LINKED vs EVERYTHING ELSE
+# ════════════════════════════════════════════════════════════════════
+print("\n" + "=" * 70)
+print("TEST 2: ISSUE-LINKED vs EVERYTHING ELSE")
+print("=" * 70)
+
+df["issue_int"] = df["has_issue"].astype(int)
+print(f"  Treated: {df['issue_int'].sum():,} | Control: {(df['issue_int']==0).sum():,}")
+r2 = run_test(df, "issue_int", "issue-vs-all")
+
+
+# ════════════════════════════════════════════════════════════════════
+# TEST 3: AI + ISSUE-LINKED vs AI + NO SPEC
+# ════════════════════════════════════════════════════════════════════
+print("\n" + "=" * 70)
+print("TEST 3: AI-TAGGED + ISSUE-LINKED vs AI + NO SPEC")
+print("=" * 70)
+
+ai = df[df["ai_tagged"]].copy()
+ai_test = ai[ai["has_issue"] | ~ai["specd"]].copy()
+ai_test["treat"] = ai_test["has_issue"].astype(int)
+print(f"  AI + issue: {ai_test['treat'].sum():,} | AI + no spec: {(ai_test['treat']==0).sum():,}")
+r3 = run_test(ai_test, "treat", "ai-issue-vs-none")
+
+
+# ════════════════════════════════════════════════════════════════════
+# TEST 4: HUMAN + ISSUE-LINKED vs HUMAN + NO SPEC
+# ════════════════════════════════════════════════════════════════════
+print("\n" + "=" * 70)
+print("TEST 4: HUMAN-ONLY + ISSUE-LINKED vs HUMAN + NO SPEC")
+print("=" * 70)
+
+human = df[~df["ai_tagged"]].copy()
+human_test = human[human["has_issue"] | ~human["specd"]].copy()
+human_test["treat"] = human_test["has_issue"].astype(int)
+print(f"  Human + issue: {human_test['treat'].sum():,} | Human + no spec: {(human_test['treat']==0).sum():,}")
+r4 = run_test(human_test, "treat", "human-issue-vs-none")
+
+
+# ════════════════════════════════════════════════════════════════════
+# TEST 5: ISSUE-LINKED ON TOP-20% COMPLEXITY
+# ════════════════════════════════════════════════════════════════════
+print("\n" + "=" * 70)
+print("TEST 5: ISSUE-LINKED ON TOP-20% COMPLEXITY (by churn)")
+print("=" * 70)
+
+p80_churn = df["total_churn"].quantile(0.80)
+hard = df[df["total_churn"] >= p80_churn].copy()
+hard_test = hard[hard["has_issue"] | ~hard["specd"]].copy()
+hard_test["treat"] = hard_test["has_issue"].astype(int)
+print(f"  P80 churn threshold: {p80_churn:.0f}")
+print(f"  Hard + issue: {hard_test['treat'].sum():,} | Hard + no spec: {(hard_test['treat']==0).sum():,}")
+r5 = run_test(hard_test, "treat", "hard-issue-vs-none")
+
+
+# ════════════════════════════════════════════════════════════════════
+# TEST 6: TOP-20% QUALITY ISSUE-LINKED vs NO SPEC
+# ════════════════════════════════════════════════════════════════════
+print("\n" + "=" * 70)
+print("TEST 6: TOP-20% QUALITY ISSUE-LINKED vs NO SPEC")
+print("=" * 70)
+
+issue_scored = df[df["has_issue"] & df["q_overall"].notna()]
+if len(issue_scored) > 100:
+    p80_q = issue_scored["q_overall"].quantile(0.80)
+    print(f"  Quality P80 threshold: {p80_q:.0f}")
+    print(f"  Quality distribution: median={issue_scored['q_overall'].median():.0f}, "
+          f"p80={p80_q:.0f}, p90={issue_scored['q_overall'].quantile(0.90):.0f}")
+
+    t6 = df[(df["has_issue"] & df["q_overall"].notna() & (df["q_overall"] >= p80_q)) |
+            ~df["specd"]].copy()
+    t6["treat"] = (t6["has_issue"] & t6["q_overall"].notna() & (t6["q_overall"] >= p80_q)).astype(int)
+    print(f"  Top-20% issue: {t6['treat'].sum():,} | No spec: {(~t6['specd']).sum():,}")
+    r6 = run_test(t6, "treat", "top20q-issue-vs-none", run_quality=False)
+
+    # Also top 10%
+    p90_q = issue_scored["q_overall"].quantile(0.90)
+    t6b = df[(df["has_issue"] & df["q_overall"].notna() & (df["q_overall"] >= p90_q)) |
+             ~df["specd"]].copy()
+    t6b["treat"] = (t6b["has_issue"] & t6b["q_overall"].notna() & (t6b["q_overall"] >= p90_q)).astype(int)
+    print(f"\n  Top-10% issue (threshold={p90_q:.0f}): {t6b['treat'].sum():,}")
+    r6b = run_test(t6b, "treat", "top10q-issue-vs-none", run_quality=False)
+else:
+    print("  SKIPPED (too few scored issue-linked PRs)")
+    r6 = {}
+
+
+# ════════════════════════════════════════════════════════════════════
+# TEST 7: ISSUE-LINKED vs TICKET-ONLY
+# ════════════════════════════════════════════════════════════════════
+print("\n" + "=" * 70)
+print("TEST 7: ISSUE-LINKED vs TICKET-ONLY SPECS")
+print("=" * 70)
+
+spec_compare = df[df["has_issue"] | df["has_ticket"]].copy()
+spec_compare["is_issue"] = spec_compare["has_issue"].astype(int)
+print(f"  Issue-linked: {spec_compare['is_issue'].sum():,} | "
+      f"Ticket-only: {(spec_compare['is_issue']==0).sum():,}")
+r7 = run_test(spec_compare, "is_issue", "issue-vs-ticket", run_quality=False)
+
+
+# ════════════════════════════════════════════════════════════════════
+# TEST 8: RECENT 3 MONTHS — ISSUE-LINKED
+# ════════════════════════════════════════════════════════════════════
+print("\n" + "=" * 70)
+print("TEST 8: RECENT 3 MONTHS — ISSUE-LINKED vs NO SPEC")
+print("=" * 70)
+
+last_date = df["merged_at"].max()
+if pd.notna(last_date):
+    cutoff = (last_date.replace(day=1) - pd.DateOffset(months=3)).replace(day=1)
+    recent = df[df["merged_at"] >= cutoff].copy()
+    recent_test = recent[recent["has_issue"] | ~recent["specd"]].copy()
+    recent_test["treat"] = recent_test["has_issue"].astype(int)
+    print(f"  Window: {cutoff.date()} to {last_date.date()}")
+    print(f"  Recent PRs: {len(recent):,}")
+    print(f"  Recent + issue: {recent_test['treat'].sum():,} | "
+          f"Recent + no spec: {(recent_test['treat']==0).sum():,}")
+    r8 = run_test(recent_test, "treat", "recent-issue-vs-none")
+else:
+    print("  SKIPPED (no valid dates)")
+    r8 = {}
+
+
+# ════════════════════════════════════════════════════════════════════
+# TEST 9: RECENT 3 MONTHS — AI + ISSUE-LINKED
+# ════════════════════════════════════════════════════════════════════
+print("\n" + "=" * 70)
+print("TEST 9: RECENT 3 MONTHS — AI + ISSUE-LINKED vs AI + NO SPEC")
+print("=" * 70)
+
+if pd.notna(last_date):
+    recent_ai = recent[recent["ai_tagged"]].copy()
+    recent_ai_test = recent_ai[recent_ai["has_issue"] | ~recent_ai["specd"]].copy()
+    recent_ai_test["treat"] = recent_ai_test["has_issue"].astype(int)
+    print(f"  Recent AI + issue: {recent_ai_test['treat'].sum():,} | "
+          f"Recent AI + no spec: {(recent_ai_test['treat']==0).sum():,}")
+    r9 = run_test(recent_ai_test, "treat", "recent-ai-issue", run_quality=False)
+else:
+    r9 = {}
+
+
+# ════════════════════════════════════════════════════════════════════
+# TEST 10: RECENT 3 MONTHS — HUMAN + ISSUE-LINKED
+# ════════════════════════════════════════════════════════════════════
+print("\n" + "=" * 70)
+print("TEST 10: RECENT 3 MONTHS — HUMAN + ISSUE-LINKED vs HUMAN + NO SPEC")
+print("=" * 70)
+
+if pd.notna(last_date):
+    recent_human = recent[~recent["ai_tagged"]].copy()
+    recent_human_test = recent_human[recent_human["has_issue"] | ~recent_human["specd"]].copy()
+    recent_human_test["treat"] = recent_human_test["has_issue"].astype(int)
+    print(f"  Recent human + issue: {recent_human_test['treat'].sum():,} | "
+          f"Recent human + no spec: {(recent_human_test['treat']==0).sum():,}")
+    r10 = run_test(recent_human_test, "treat", "recent-human-issue", run_quality=False)
+else:
+    r10 = {}
+
+
+# ════════════════════════════════════════════════════════════════════
+# TEST 11: DOSE-RESPONSE WITHIN ISSUE-LINKED
+# ════════════════════════════════════════════════════════════════════
+print("\n" + "=" * 70)
+print("TEST 11: DOSE-RESPONSE — QUALITY TIERS WITHIN ISSUE-LINKED")
+print("=" * 70)
+
+if len(issue_scored) > 100:
+    quartiles = issue_scored["q_overall"].quantile([0.25, 0.50, 0.75, 0.90])
+    print(f"  Quality quartiles: p25={quartiles[0.25]:.0f}, p50={quartiles[0.50]:.0f}, "
+          f"p75={quartiles[0.75]:.0f}, p90={quartiles[0.90]:.0f}")
+
+    # Each tier vs no spec — shows gradient (or lack thereof)
+    for threshold, label in [(quartiles[0.25], "Bottom quartile (≤p25)"),
+                              (quartiles[0.50], "Below median (≤p50)"),
+                              (quartiles[0.75], "Top quartile (≥p75)"),
+                              (quartiles[0.90], "Top decile (≥p90)")]:
+        if "Top" in label:
+            treat_mask = df["has_issue"] & df["q_overall"].notna() & (df["q_overall"] >= threshold)
+        else:
+            treat_mask = df["has_issue"] & df["q_overall"].notna() & (df["q_overall"] <= threshold)
+
+        tier = df[treat_mask | ~df["specd"]].copy()
+        tier["treat"] = treat_mask[tier.index].fillna(False).astype(int)
+
+        n_treat = tier["treat"].sum()
+        tier_szz = tier[tier["in_szz"]].copy()
+        print(f"\n  {label} (N={n_treat:,}, threshold={threshold:.0f}) vs no spec:")
+
+        if len(tier_szz) > 100 and tier_szz["treat"].sum() > 10:
+            within_author_lpm(tier_szz, "treat", "szz_buggy",
+                              label=f"dose-{label[:8]}-bugs")
+        else:
+            print(f"    bugs: SKIPPED")
+
+        if n_treat > 10:
+            within_author_lpm(tier, "treat", "reworked",
+                              label=f"dose-{label[:8]}-rework")
+else:
+    print("  SKIPPED")
+
+
+# ════════════════════════════════════════════════════════════════════
+# SUMMARY TABLE
+# ════════════════════════════════════════════════════════════════════
+print("\n\n" + "=" * 70)
+print("SUMMARY: ISSUE-LINKED SPECS — EVERY CUT")
+print("=" * 70)
+
+def fmt(r, key):
+    d = r.get(key) if r else None
+    if d:
+        sig = "***" if d["p"] < 0.001 else "**" if d["p"] < 0.01 else "*" if d["p"] < 0.05 else ""
+        return f"{d['coef']:+.4f}", f"{d['p']:.4f}{sig}"
+    return "—", "—"
+
+print(f"\n{'Test':>45s}  {'→ Bugs':>10s}  {'p':>10s}  {'→ Rework':>10s}  {'p':>10s}")
+print(f"{'─'*45}  {'─'*10}  {'─'*10}  {'─'*10}  {'─'*10}")
+
+for label, r in [
+    ("Issue vs no spec", r1),
+    ("Issue vs everything", r2),
+    ("AI + issue vs AI + no spec", r3),
+    ("Human + issue vs human + no spec", r4),
+    ("Hard tasks (top 20% churn) + issue", r5),
+    ("Top-20% quality issue vs no spec", r6),
+    ("Issue vs ticket-only", r7),
+    ("Recent 3mo: issue vs no spec", r8),
+    ("Recent 3mo: AI + issue", r9),
+    ("Recent 3mo: human + issue", r10),
+]:
+    bc, bp = fmt(r, "bugs")
+    rc, rp = fmt(r, "rework")
+    print(f"{label:>45s}  {bc:>10s}  {bp:>10s}  {rc:>10s}  {rp:>10s}")
+
+print(f"""
+Interpretation:
+  If linked GitHub issues (pre-implementation specs) prevent defects,
+  we should see NEGATIVE bug coefficients in at least some cuts.
+
+  Positive coefficients = confounding by indication.
+  Null across all cuts = specs do not prevent defects regardless of
+  how they are operationalized.
 """)
 
 print(f"Results saved to: {OUT_FILE}")

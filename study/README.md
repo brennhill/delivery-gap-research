@@ -82,16 +82,11 @@ The within-author analysis uses a linear probability model (LPM) with full Frisc
 # Prerequisites: Python 3.10+, pandas, numpy, statsmodels, scipy
 pip install pandas numpy statsmodels scipy
 
-# From the study/ directory:
-bash scripts/pipeline/run-all-analysis.sh
+# From the study/ directory — single command, runs everything:
+python3 replicate-results.py
 ```
 
-This runs steps 1--7 above. The additional robustness scripts (JIT controls, PSM) are run separately:
-
-```bash
-python3 scripts/pipeline/primary-with-jit-controls.py
-python3 scripts/pipeline/propensity-score-matching.py
-```
+This runs the full 11-step pipeline: data merging, main analysis (H1-H5), and all robustness checks (subgroups, high-quality specs, temporal, complexity stratification, issue-linked specs, JIT controls, propensity score matching). All results are written to `results/*.txt`.
 
 Source data in `data/` (prs-*.json, szz-checkpoint-*.json, spec-quality-*.json, etc.) is never modified by the analysis pipeline. Derived files (unified-prs.csv, master-prs.csv, szz-results-merged.csv) are regenerated from source on each run.
 
