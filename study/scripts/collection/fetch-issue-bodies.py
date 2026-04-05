@@ -64,12 +64,18 @@ def _parse_issue_ref(spec_source: str, repo: str) -> tuple[str, int] | None:
 class RateLimitError(Exception):
     pass
 
+# Sentinel for confirmed 404s (distinct from None which means transient error)
+NOT_FOUND = object()
 
-def _fetch_issue(owner_repo: str, issue_number: int) -> dict | None:
+
+def _fetch_issue(owner_repo: str, issue_number: int) -> dict | object | None:
     """Fetch a single issue via gh CLI.
 
-    Returns {title, body, labels, state} on success, None if 404,
-    raises RateLimitError on 403/429.
+    Returns:
+      - dict with {title, body, ...} on success
+      - NOT_FOUND sentinel for confirmed 404 (permanent, don't retry)
+      - None for transient errors (retry next run)
+      - raises RateLimitError on 403/429
     """
     try:
         result = subprocess.run(
@@ -82,15 +88,15 @@ def _fetch_issue(owner_repo: str, issue_number: int) -> dict | None:
             if "403" in stderr or "429" in stderr or "rate limit" in stderr or "secondary rate" in stderr:
                 raise RateLimitError(result.stderr.strip()[:200])
             if "404" in stderr:
-                return None  # genuinely doesn't exist
+                return NOT_FOUND
             print(f"      API error {owner_repo}#{issue_number}: {result.stderr[:200]}", flush=True)
-            return None
+            return None  # transient
         return json.loads(result.stdout)
     except RateLimitError:
         raise
     except (subprocess.TimeoutExpired, json.JSONDecodeError, Exception) as e:
         print(f"      Error fetching {owner_repo}#{issue_number}: {e}", flush=True)
-        return None
+        return None  # transient
 
 
 def fetch_repo_issues(repo_slug: str, dry_run: bool = False) -> dict:
@@ -143,11 +149,14 @@ def fetch_repo_issues(repo_slug: str, dry_run: bool = False) -> dict:
     if out_path.exists():
         try:
             loaded = json.loads(out_path.read_text())
-            # Only keep successful fetches — retry not-found and errors
-            existing = {k: v for k, v in loaded.items() if not v.get("_not_found")}
+            # Keep successful fetches and confirmed 404s. Retry transient errors.
+            existing = {k: v for k, v in loaded.items()
+                        if not v.get("_transient_error")}
             dropped = len(loaded) - len(existing)
-            print(f"  Resuming: {len(existing)} already fetched" +
-                  (f", {dropped} not-found will be retried" if dropped else ""), flush=True)
+            n_ok = sum(1 for v in existing.values() if v.get("body"))
+            n_404 = sum(1 for v in existing.values() if v.get("_not_found"))
+            print(f"  Resuming: {n_ok} fetched, {n_404} confirmed 404" +
+                  (f", {dropped} transient errors retrying" if dropped else ""), flush=True)
         except Exception as e:
             print(f"  Warning: could not load existing: {e}", flush=True)
 
@@ -178,14 +187,17 @@ def fetch_repo_issues(repo_slug: str, dry_run: bool = False) -> dict:
                 print(f"    Rate limit not cleared after 3 retries — stopping repo", flush=True)
                 break
 
-        if issue:
+        if issue is NOT_FOUND:
+            existing[key] = {"_not_found": True}
+            failed_count += 1
+        elif issue is None:
+            existing[key] = {"_transient_error": True}
+            failed_count += 1
+        else:
             existing[key] = issue
             fetched_count += 1
             body_len = len(issue.get("body") or "")
             print(f"    {key}: {body_len} chars", flush=True)
-        else:
-            existing[key] = {"_not_found": True}
-            failed_count += 1
 
         # Save every 50
         if (fetched_count + failed_count) % 50 == 0:
