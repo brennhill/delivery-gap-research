@@ -1,4 +1,4 @@
-Analysis run: 2026-04-05T18:16:44.843534+00:00
+Analysis run: 2026-04-05T19:09:42.734520+00:00
 Script: /Users/brenn/dev/ai-augmented-dev/research/study/scripts/pipeline/full-szz-analysis.py
 
 Dataset: 100,247 PRs, 119 repos
@@ -326,6 +326,52 @@ Do any of the 7 quality dimensions independently predict fewer bugs or rework?
   Interpretation: +0.0000 pp change in P(reworked)
   -> INCREASES (not significant)
    q_behavioral_specificity       -0.0003    0.0831       +0.0000    0.8221
+
+======================================================================
+ROBUSTNESS 3b: VALIDATED vs UNVALIDATED QUALITY COMPOSITES
+======================================================================
+
+Human-LLM validation (N=38) found 4 validated dimensions (rho > 0.35, p < 0.05):
+  behavioral_specificity, scope_boundaries, dependency_context, outcome_clarity
+And 3 unvalidated: error_states, acceptance_criteria, data_contracts
+
+  Validated SD: 19.6, Unvalidated SD: 17.9
+
+                  Composite   → bugs coef         p   → rework coef         p
+  -------------------------  ------------  --------  --------------  --------
+  Within-author LPM: N=19,688, authors=2,050 (2,030 with treatment variation)
+  q_overall: coef=-0.0003, p=0.164356
+  95% CI: [-0.0007, +0.0001]
+  Interpretation: -0.0003 pp change in P(szz_buggy)
+  -> DECREASES (not significant)
+  Within-author LPM: N=21,881, authors=2,319 (2,297 with treatment variation)
+  q_overall: coef=0.0000, p=0.860260
+  95% CI: [-0.0003, +0.0004]
+  Interpretation: +0.0000 pp change in P(reworked)
+  -> INCREASES (not significant)
+           All 7 dimensions       -0.0003    0.1644         +0.0000    0.8603
+  Within-author LPM: N=19,688, authors=2,050 (2,033 with treatment variation)
+  q_validated: coef=-0.0002, p=0.184034
+  95% CI: [-0.0006, +0.0001]
+  Interpretation: -0.0002 pp change in P(szz_buggy)
+  -> DECREASES (not significant)
+  Within-author LPM: N=21,881, authors=2,319 (2,299 with treatment variation)
+  q_validated: coef=0.0000, p=0.912686
+  95% CI: [-0.0003, +0.0003]
+  Interpretation: +0.0000 pp change in P(reworked)
+  -> INCREASES (not significant)
+                4 validated       -0.0002    0.1840         +0.0000    0.9127
+  Within-author LPM: N=19,688, authors=2,050 (2,012 with treatment variation)
+  q_unvalidated: coef=-0.0003, p=0.157922
+  95% CI: [-0.0007, +0.0001]
+  Interpretation: -0.0003 pp change in P(szz_buggy)
+  -> DECREASES (not significant)
+  Within-author LPM: N=21,881, authors=2,319 (2,277 with treatment variation)
+  q_unvalidated: coef=0.0001, p=0.662861
+  95% CI: [-0.0003, +0.0005]
+  Interpretation: +0.0001 pp change in P(reworked)
+  -> INCREASES (not significant)
+              3 unvalidated       -0.0003    0.1579         +0.0001    0.6629
 
 ======================================================================
 ROBUSTNESS 4: REPO-LEVEL ANALYSIS

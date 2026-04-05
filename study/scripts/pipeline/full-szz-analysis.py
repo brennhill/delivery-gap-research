@@ -862,6 +862,45 @@ if r5i:
 
 print(f"\n  8. JIT features: see detailed results above.")
 
+print("\n" + "=" * 70)
+print("JIT FEATURE PROFILE: SPEC'D vs UNSPEC'D PRs")
+print("=" * 70)
+
+# Merge JIT features for this comparison
+jit_path = Path("data/jit-features-merged.csv")
+if jit_path.exists():
+    jit_raw = pd.read_csv(jit_path)
+    jit_merged = df.merge(jit_raw, on=["repo", "pr_number"], how="inner", suffixes=("", "_jit"))
+    print(f"\nJIT-matched PRs: {len(jit_merged):,}")
+    print("Median JIT feature values for spec'd vs unspec'd PRs:")
+    jit_cols = ['la', 'ld', 'nf', 'entropy', 'age', 'ndev', 'exp']
+    jit_labels = {'la': 'lines added', 'ld': 'lines deleted', 'nf': 'files changed',
+                  'entropy': 'change entropy', 'age': 'file age (months)',
+                  'ndev': 'prior developers', 'exp': 'developer experience'}
+    for col in jit_cols:
+        if col in jit_merged.columns:
+            s_med = jit_merged[jit_merged['specd'] == True][col].median()
+            u_med = jit_merged[jit_merged['specd'] == False][col].median()
+            ratio = s_med / u_med if u_med > 0 else float('inf')
+            print(f"  {jit_labels.get(col, col):>25s}: specd={s_med:.1f}, unspecd={u_med:.1f}, ratio={ratio:.2f}x")
+else:
+    print("  JIT features file not found, skipping")
+
+print(f"\nMerge time (non-bot):")
+s_med = df[df['specd'] == True]['time_to_merge_hours'].median()
+u_med = df[df['specd'] == False]['time_to_merge_hours'].median()
+print(f"  Spec'd median: {s_med:.1f}h, Unspec'd median: {u_med:.1f}h, ratio: {s_med/u_med:.1f}x")
+
+print(f"\nQuality comparison by spec source (issue-linked vs description-only):")
+scored = df[df['q_overall'].notna()]
+refs = scored[scored['f_any_issue_refs'] == True]
+norefs = scored[scored['f_any_issue_refs'] == False]
+from scipy.stats import mannwhitneyu
+u_stat, p_val = mannwhitneyu(refs['q_overall'].dropna(), norefs['q_overall'].dropna())
+print(f"  Issue-linked: N={len(refs):,}, median quality={refs['q_overall'].median():.0f}")
+print(f"  Description-only: N={len(norefs):,}, median quality={norefs['q_overall'].median():.0f}")
+print(f"  Mann-Whitney p={p_val:.4f}")
+
 print(f"""
 Caveats:
   - Spec quality scored on {df['q_overall'].notna().sum():,}/{len(df):,} PRs ({df['q_overall'].notna().sum()/len(df)*100:.1f}%) — selection bias

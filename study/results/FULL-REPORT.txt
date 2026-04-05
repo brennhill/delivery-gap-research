@@ -1,15 +1,34 @@
 ======================================================================
 FULL REPLICATION REPORT
 Does Spec-Driven Development Reduce Defects?
-Generated: 2026-04-05T20:17:50.054593
+Generated: 2026-04-05T21:10:49.015901
 ======================================================================
+
+DATA NOTES
+----------------------------------------------------------------------
+
+SZZ blame links vs JIT features:
+
+  SZZ traces fix commits back to the commits that introduced the
+  bug via git blame. It only produces rows for PRs that introduced
+  a bug that was LATER FIXED. The ~65K SZZ rows are blame links
+  (fix → bug-introducing commit), not PR counts. Many PRs never
+  introduced a traced bug, so they have no SZZ rows.
+
+  JIT features (lines added, entropy, developer experience, etc.)
+  are computed from diff metadata and can be calculated for ANY PR.
+  The ~109K JIT rows cover nearly all PRs in the dataset.
+
+  16 of 119 repos have zero SZZ coverage because their squash-merge
+  workflows cause GitHub's merge SHAs to be garbage-collected,
+  making them unreachable via git blame.
 
 
 ######################################################################
 # analysis-results.txt
 ######################################################################
 
-Analysis run: 2026-04-05T18:16:44.843534+00:00
+Analysis run: 2026-04-05T19:09:42.734520+00:00
 Script: /Users/brenn/dev/ai-augmented-dev/research/study/scripts/pipeline/full-szz-analysis.py
 
 Dataset: 100,247 PRs, 119 repos
@@ -339,6 +358,52 @@ Do any of the 7 quality dimensions independently predict fewer bugs or rework?
    q_behavioral_specificity       -0.0003    0.0831       +0.0000    0.8221
 
 ======================================================================
+ROBUSTNESS 3b: VALIDATED vs UNVALIDATED QUALITY COMPOSITES
+======================================================================
+
+Human-LLM validation (N=38) found 4 validated dimensions (rho > 0.35, p < 0.05):
+  behavioral_specificity, scope_boundaries, dependency_context, outcome_clarity
+And 3 unvalidated: error_states, acceptance_criteria, data_contracts
+
+  Validated SD: 19.6, Unvalidated SD: 17.9
+
+                  Composite   → bugs coef         p   → rework coef         p
+  -------------------------  ------------  --------  --------------  --------
+  Within-author LPM: N=19,688, authors=2,050 (2,030 with treatment variation)
+  q_overall: coef=-0.0003, p=0.164356
+  95% CI: [-0.0007, +0.0001]
+  Interpretation: -0.0003 pp change in P(szz_buggy)
+  -> DECREASES (not significant)
+  Within-author LPM: N=21,881, authors=2,319 (2,297 with treatment variation)
+  q_overall: coef=0.0000, p=0.860260
+  95% CI: [-0.0003, +0.0004]
+  Interpretation: +0.0000 pp change in P(reworked)
+  -> INCREASES (not significant)
+           All 7 dimensions       -0.0003    0.1644         +0.0000    0.8603
+  Within-author LPM: N=19,688, authors=2,050 (2,033 with treatment variation)
+  q_validated: coef=-0.0002, p=0.184034
+  95% CI: [-0.0006, +0.0001]
+  Interpretation: -0.0002 pp change in P(szz_buggy)
+  -> DECREASES (not significant)
+  Within-author LPM: N=21,881, authors=2,319 (2,299 with treatment variation)
+  q_validated: coef=0.0000, p=0.912686
+  95% CI: [-0.0003, +0.0003]
+  Interpretation: +0.0000 pp change in P(reworked)
+  -> INCREASES (not significant)
+                4 validated       -0.0002    0.1840         +0.0000    0.9127
+  Within-author LPM: N=19,688, authors=2,050 (2,012 with treatment variation)
+  q_unvalidated: coef=-0.0003, p=0.157922
+  95% CI: [-0.0007, +0.0001]
+  Interpretation: -0.0003 pp change in P(szz_buggy)
+  -> DECREASES (not significant)
+  Within-author LPM: N=21,881, authors=2,319 (2,277 with treatment variation)
+  q_unvalidated: coef=0.0001, p=0.662861
+  95% CI: [-0.0003, +0.0005]
+  Interpretation: +0.0001 pp change in P(reworked)
+  -> INCREASES (not significant)
+              3 unvalidated       -0.0003    0.1579         +0.0001    0.6629
+
+======================================================================
 ROBUSTNESS 4: REPO-LEVEL ANALYSIS
 ======================================================================
 
@@ -413,7 +478,7 @@ Results saved to: /Users/brenn/dev/ai-augmented-dev/research/study/results/analy
 # robustness-subgroups.txt
 ######################################################################
 
-Subgroup robustness run: 2026-04-05T18:17:00.663440+00:00
+Subgroup robustness run: 2026-04-05T19:09:59.223139+00:00
 Script: /Users/brenn/dev/ai-augmented-dev/research/study/scripts/pipeline/robustness-subgroups.py
 
 Bot exclusion:
@@ -634,7 +699,7 @@ Results saved to: /Users/brenn/dev/ai-augmented-dev/research/study/results/robus
 # robustness-highquality.txt
 ######################################################################
 
-High-quality robustness run: 2026-04-05T18:17:04.848715+00:00
+High-quality robustness run: 2026-04-05T19:10:03.261297+00:00
 Script: /Users/brenn/dev/ai-augmented-dev/research/study/scripts/pipeline/robustness-highquality.py
 
 Dataset (bots excluded): 88,052 PRs
@@ -734,7 +799,7 @@ Results saved to: /Users/brenn/dev/ai-augmented-dev/research/study/results/robus
 # robustness-temporal.txt
 ######################################################################
 
-Temporal robustness run: 2026-04-05T18:17:08.701161+00:00
+Temporal robustness run: 2026-04-05T19:10:07.075527+00:00
 Script: /Users/brenn/dev/ai-augmented-dev/research/study/scripts/pipeline/robustness-temporal.py
 
 ======================================================================
@@ -941,7 +1006,7 @@ Results saved to: /Users/brenn/dev/ai-augmented-dev/research/study/results/robus
 # robustness-complexity.txt
 ######################################################################
 
-Complexity stratification run: 2026-04-05T18:17:13.151275+00:00
+Complexity stratification run: 2026-04-05T19:10:11.894853+00:00
 Script: /Users/brenn/dev/ai-augmented-dev/research/study/scripts/pipeline/robustness-complexity.py
 
 Dataset: 88,052 PRs (non-bot), 77,814 in SZZ repos
@@ -1217,7 +1282,7 @@ Results saved to: /Users/brenn/dev/ai-augmented-dev/research/study/results/robus
 # robustness-issue-linked.txt
 ######################################################################
 
-Issue-linked robustness run: 2026-04-05T18:17:18.141887+00:00
+Issue-linked robustness run: 2026-04-05T19:10:18.101243+00:00
 Script: /Users/brenn/dev/ai-augmented-dev/research/study/scripts/pipeline/robustness-issue-linked.py
 
 Dataset: 88,052 PRs (non-bot)
@@ -1471,7 +1536,7 @@ Results saved to: /Users/brenn/dev/ai-augmented-dev/research/study/results/robus
 # primary-with-jit-controls.txt
 ######################################################################
 
-Analysis run: 2026-04-05T18:17:26.000546+00:00
+Analysis run: 2026-04-05T19:10:25.644606+00:00
 Script: /Users/brenn/dev/ai-augmented-dev/research/study/scripts/pipeline/primary-with-jit-controls.py
 
 PURPOSE: Does adding JIT features change the spec coefficient?
@@ -1565,7 +1630,7 @@ Done. Output written to: /Users/brenn/dev/ai-augmented-dev/research/study/result
 # propensity-score-matching.txt
 ######################################################################
 
-Analysis run: 2026-04-05T18:17:29.369333+00:00
+Analysis run: 2026-04-05T19:10:28.786265+00:00
 Script: /Users/brenn/dev/ai-augmented-dev/research/study/scripts/pipeline/propensity-score-matching.py
 
 PURPOSE: Match spec'd and unspec'd PRs on JIT risk profile,
