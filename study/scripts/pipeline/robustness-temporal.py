@@ -2,10 +2,8 @@
 """
 Robustness check: Does the SDD era look different?
 
-Specification adoption rose from near zero to 14% between Sep 2025 and Mar 2026,
-coinciding with the release of Spec Kit and Kiro. If SDD tools are driving
-adoption and those specs improve outcomes, the effect should be visible in the
-most recent data.
+If SDD tools are improving outcomes, the effect should appear in the most
+recent data — the period closest to production SDD usage.
 
 Tests within-author LPM on the last 3 months of the observation window
 (highest spec and AI adoption rates) and compares to the full dataset.
@@ -259,9 +257,9 @@ print(f"  AI spec rate: {ai_recent_all['specd'].mean():.1%}")
 print(f"  AI bug rate: {ai_recent_szz2['szz_buggy'].mean():.1%}" if len(ai_recent_szz2) > 0 else "")
 print(f"  AI rework rate: {ai_recent_all['reworked'].mean():.1%}")
 print("  Specs → bugs (AI-only, recent):")
-within_author_lpm(ai_recent_szz2, "specd", "szz_buggy", label="recent-ai-bugs")
+r_ai_bugs = within_author_lpm(ai_recent_szz2, "specd", "szz_buggy", label="recent-ai-bugs")
 print("  Specs → rework (AI-only, recent):")
-within_author_lpm(ai_recent_all, "specd", "reworked", label="recent-ai-rework")
+r_ai_rework = within_author_lpm(ai_recent_all, "specd", "reworked", label="recent-ai-rework")
 
 
 # ════════════════════════════════════════════════════════════════════
@@ -310,7 +308,8 @@ print("=" * 70)
 print("Does spec quality matter MORE for AI-generated code in the SDD era?")
 
 recent_scored_all = recent[recent["q_overall"].notna()].copy()
-recent_scored_szz2 = recent_szz[recent_szz["q_overall"].notna()].copy()
+# Reuse recent_scored_szz from H3 section above (same filter, same data)
+recent_scored_szz2 = recent_scored_szz.copy()
 
 print(f"\nScored PRs (recent): {len(recent_scored_all):,}")
 print(f"  AI-tagged + scored: {recent_scored_all['ai_tagged'].sum():,}")
@@ -437,8 +436,8 @@ tests = [
     ("H3: Spec quality → bugs", r_q_bugs, None),
     ("H4: Spec quality → rework", r_q_rework, None),
     ("H5: AI scope (interaction)", r_interaction, f_interaction),
-    ("AI + specs → bugs", within_author_lpm(ai_recent_szz2, "specd", "szz_buggy", label="summary-ai-bugs") if len(ai_recent_szz2) > 50 else None, None),
-    ("AI + specs → rework", within_author_lpm(ai_recent_all, "specd", "reworked", label="summary-ai-rework") if len(ai_recent_all) > 50 else None, None),
+    ("AI + specs → bugs", r_ai_bugs, None),
+    ("AI + specs → rework", r_ai_rework, None),
 ]
 
 for label, recent_r, full_r in tests:

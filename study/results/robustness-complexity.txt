@@ -1,0 +1,270 @@
+Complexity stratification run: 2026-04-05T15:25:38.699351+00:00
+Script: /Users/brenn/dev/ai-augmented-dev/research/study/scripts/pipeline/robustness-complexity.py
+
+Dataset: 88,052 PRs (non-bot), 77,814 in SZZ repos
+Spec'd: 24,298 (27.6%)
+Quality scored: 14,910
+
+======================================================================
+STRATUM 1: TOP 20% BY CODE CHURN (additions + deletions)
+======================================================================
+  P80 threshold: 307
+
+────────────────────────────────────────────────────────────
+  Top 20% churn
+────────────────────────────────────────────────────────────
+  PRs: 17,633 | Spec'd: 5,342 (30.3%) | In SZZ: 15,832 | Quality scored: 3,752
+
+  H1: Specs → bugs:
+  [Top 20% churn-H1] N=14,233, authors=1,493 (734 with variation)
+  coef=+0.0396, p=0.0005 ***
+
+  H2: Specs → rework:
+  [Top 20% churn-H2] N=15,863, authors=1,666 (824 with variation)
+  coef=+0.0513, p=0.0000 ***
+
+  H3: Spec quality → bugs (N=3,533 scored):
+  [Top 20% churn-H3] N=2,864, authors=467 (460 with variation)
+  coef=-0.0007, p=0.2889 
+
+  H4: Spec quality → rework (N=3,752 scored):
+  [Top 20% churn-H4] N=3,005, authors=506 (498 with variation)
+  coef=-0.0001, p=0.8864 
+
+────────────────────────────────────────────────────────────
+  Bottom 80% churn
+────────────────────────────────────────────────────────────
+  PRs: 70,419 | Spec'd: 18,956 (26.9%) | In SZZ: 61,982 | Quality scored: 11,158
+
+  H1: Specs → bugs:
+  [Bottom 80% churn-H1] N=56,609, authors=3,877 (1,890 with variation)
+  coef=+0.0073, p=0.1141 
+
+  H2: Specs → rework:
+  [Bottom 80% churn-H2] N=64,424, authors=4,386 (2,193 with variation)
+  coef=+0.0045, p=0.2376 
+
+  H3: Spec quality → bugs (N=10,036 scored):
+  [Bottom 80% churn-H3] N=8,560, authors=1,027 (1,011 with variation)
+  coef=-0.0002, p=0.5577 
+
+  H4: Spec quality → rework (N=11,158 scored):
+  [Bottom 80% churn-H4] N=9,476, authors=1,168 (1,150 with variation)
+  coef=-0.0003, p=0.2232 
+
+======================================================================
+STRATUM 2: TOP 20% BY LINES ADDED
+======================================================================
+  P80 threshold: 219
+
+────────────────────────────────────────────────────────────
+  Top 20% additions
+────────────────────────────────────────────────────────────
+  PRs: 17,669 | Spec'd: 5,638 (31.9%) | In SZZ: 15,925 | Quality scored: 3,944
+
+  H1: Specs → bugs:
+  [Top 20% additions-H1] N=14,230, authors=1,521 (753 with variation)
+  coef=+0.0422, p=0.0001 ***
+
+  H2: Specs → rework:
+  [Top 20% additions-H2] N=15,785, authors=1,689 (843 with variation)
+  coef=+0.0437, p=0.0000 ***
+
+  H3: Spec quality → bugs (N=3,726 scored):
+  [Top 20% additions-H3] N=3,016, authors=484 (479 with variation)
+  coef=-0.0002, p=0.7608 
+
+  H4: Spec quality → rework (N=3,944 scored):
+  [Top 20% additions-H4] N=3,151, authors=523 (518 with variation)
+  coef=-0.0000, p=0.9517 
+
+────────────────────────────────────────────────────────────
+  Bottom 80% additions
+────────────────────────────────────────────────────────────
+  PRs: 70,383 | Spec'd: 18,660 (26.5%) | In SZZ: 61,889 | Quality scored: 10,966
+
+  H1: Specs → bugs:
+  [Bottom 80% additions-H1] N=56,564, authors=3,839 (1,868 with variation)
+  coef=+0.0077, p=0.0908 
+
+  H2: Specs → rework:
+  [Bottom 80% additions-H2] N=64,452, authors=4,351 (2,172 with variation)
+  coef=+0.0055, p=0.1471 
+
+  H3: Spec quality → bugs (N=9,843 scored):
+  [Bottom 80% additions-H3] N=8,403, authors=1,016 (1,000 with variation)
+  coef=-0.0002, p=0.4472 
+
+  H4: Spec quality → rework (N=10,966 scored):
+  [Bottom 80% additions-H4] N=9,322, authors=1,157 (1,140 with variation)
+  coef=-0.0003, p=0.1677 
+
+======================================================================
+STRATUM 3: TOP 20% BY FILES CHANGED
+======================================================================
+  P80 threshold: 8
+
+────────────────────────────────────────────────────────────
+  Top 20% files
+────────────────────────────────────────────────────────────
+  PRs: 19,568 | Spec'd: 5,594 (28.6%) | In SZZ: 17,125 | Quality scored: 3,803
+
+  H1: Specs → bugs:
+  [Top 20% files-H1] N=15,661, authors=1,527 (762 with variation)
+  coef=+0.0390, p=0.0004 ***
+
+  H2: Specs → rework:
+  [Top 20% files-H2] N=17,908, authors=1,731 (877 with variation)
+  coef=+0.0425, p=0.0000 ***
+
+  H3: Spec quality → bugs (N=3,536 scored):
+  [Top 20% files-H3] N=2,896, authors=488 (482 with variation)
+  coef=-0.0004, p=0.4696 
+
+  H4: Spec quality → rework (N=3,803 scored):
+  [Top 20% files-H4] N=3,086, authors=533 (526 with variation)
+  coef=-0.0001, p=0.7910 
+
+────────────────────────────────────────────────────────────
+  Bottom 80% files
+────────────────────────────────────────────────────────────
+  PRs: 68,484 | Spec'd: 18,704 (27.3%) | In SZZ: 60,689 | Quality scored: 11,107
+
+  H1: Specs → bugs:
+  [Bottom 80% files-H1] N=55,251, authors=3,900 (1,890 with variation)
+  coef=+0.0041, p=0.3392 
+
+  H2: Specs → rework:
+  [Bottom 80% files-H2] N=62,434, authors=4,394 (2,178 with variation)
+  coef=+0.0059, p=0.1257 
+
+  H3: Spec quality → bugs (N=10,033 scored):
+  [Bottom 80% files-H3] N=8,559, authors=1,035 (1,022 with variation)
+  coef=-0.0003, p=0.2763 
+
+  H4: Spec quality → rework (N=11,107 scored):
+  [Bottom 80% files-H4] N=9,429, authors=1,173 (1,157 with variation)
+  coef=-0.0001, p=0.5553 
+
+======================================================================
+STRATUM 4: TOP 20% BY CHANGE ENTROPY
+======================================================================
+  P80 threshold: 2.12 (N with entropy: 69,237)
+
+────────────────────────────────────────────────────────────
+  Top 20% entropy
+────────────────────────────────────────────────────────────
+  PRs: 13,848 | Spec'd: 4,270 (30.8%) | In SZZ: 12,030 | Quality scored: 2,811
+
+  H1: Specs → bugs:
+  [Top 20% entropy-H1] N=10,772, authors=1,208 (597 with variation)
+  coef=+0.0238, p=0.0568 
+
+  H2: Specs → rework:
+  [Top 20% entropy-H2] N=12,406, authors=1,384 (706 with variation)
+  coef=+0.0394, p=0.0003 ***
+
+  H3: Spec quality → bugs (N=2,590 scored):
+  [Top 20% entropy-H3] N=2,010, authors=375 (372 with variation)
+  coef=-0.0006, p=0.3658 
+
+  H4: Spec quality → rework (N=2,811 scored):
+  [Top 20% entropy-H4] N=2,164, authors=409 (405 with variation)
+  coef=+0.0008, p=0.1621 
+
+────────────────────────────────────────────────────────────
+  Bottom 80% entropy
+────────────────────────────────────────────────────────────
+  PRs: 55,389 | Spec'd: 15,543 (28.1%) | In SZZ: 49,162 | Quality scored: 9,063
+
+  H1: Specs → bugs:
+  [Bottom 80% entropy-H1] N=44,462, authors=3,380 (1,626 with variation)
+  coef=+0.0001, p=0.9863 
+
+  H2: Specs → rework:
+  [Bottom 80% entropy-H2] N=50,116, authors=3,810 (1,876 with variation)
+  coef=+0.0053, p=0.2008 
+
+  H3: Spec quality → bugs (N=8,144 scored):
+  [Bottom 80% entropy-H3] N=6,818, authors=850 (836 with variation)
+  coef=-0.0002, p=0.4634 
+
+  H4: Spec quality → rework (N=9,063 scored):
+  [Bottom 80% entropy-H4] N=7,548, authors=976 (960 with variation)
+  coef=-0.0001, p=0.6970 
+
+======================================================================
+STRATUM 5: TOP 20% BY COMPOSITE JIT RISK
+======================================================================
+  P80 threshold: 0.714 (N with JIT: 69,237)
+
+────────────────────────────────────────────────────────────
+  Top 20% JIT risk
+────────────────────────────────────────────────────────────
+  PRs: 13,848 | Spec'd: 4,364 (31.5%) | In SZZ: 12,401 | Quality scored: 2,906
+
+  H1: Specs → bugs:
+  [Top 20% JIT risk-H1] N=11,119, authors=1,272 (623 with variation)
+  coef=+0.0278, p=0.0278 *
+
+  H2: Specs → rework:
+  [Top 20% JIT risk-H2] N=12,403, authors=1,436 (718 with variation)
+  coef=+0.0390, p=0.0004 ***
+
+  H3: Spec quality → bugs (N=2,714 scored):
+  [Top 20% JIT risk-H3] N=2,115, authors=375 (367 with variation)
+  coef=-0.0006, p=0.3305 
+
+  H4: Spec quality → rework (N=2,906 scored):
+  [Top 20% JIT risk-H4] N=2,238, authors=407 (399 with variation)
+  coef=+0.0002, p=0.8004 
+
+────────────────────────────────────────────────────────────
+  Bottom 80% JIT risk
+────────────────────────────────────────────────────────────
+  PRs: 55,389 | Spec'd: 15,449 (27.9%) | In SZZ: 48,791 | Quality scored: 8,968
+
+  H1: Specs → bugs:
+  [Bottom 80% JIT risk-H1] N=44,109, authors=3,351 (1,602 with variation)
+  coef=+0.0019, p=0.7133 
+
+  H2: Specs → rework:
+  [Bottom 80% JIT risk-H2] N=50,139, authors=3,795 (1,859 with variation)
+  coef=+0.0080, p=0.0589 
+
+  H3: Spec quality → bugs (N=8,020 scored):
+  [Bottom 80% JIT risk-H3] N=6,704, authors=832 (819 with variation)
+  coef=-0.0002, p=0.4357 
+
+  H4: Spec quality → rework (N=8,968 scored):
+  [Bottom 80% JIT risk-H4] N=7,471, authors=962 (946 with variation)
+  coef=+0.0001, p=0.6674 
+
+
+======================================================================
+SUMMARY: DO SPECS HELP ON THE HARDEST TASKS?
+======================================================================
+
+If specs have value, they should show it on complex tasks where
+ambiguity is highest and the cost of getting it wrong is greatest.
+
+                  Stratum     H1 bugs         p   H2 rework         p    H3 q→bug         p    H4 q→rwk         p
+─────────────────────────  ──────────  ────────  ──────────  ────────  ──────────  ────────  ──────────  ────────
+            Top 20% churn     +0.0396    0.0005     +0.0513    0.0000     -0.0007    0.2889     -0.0001    0.8864
+         Bottom 80% churn     +0.0073    0.1141     +0.0045    0.2376     -0.0002    0.5577     -0.0003    0.2232
+        Top 20% additions     +0.0422    0.0001     +0.0437    0.0000     -0.0002    0.7608     -0.0000    0.9517
+     Bottom 80% additions     +0.0077    0.0908     +0.0055    0.1471     -0.0002    0.4472     -0.0003    0.1677
+            Top 20% files     +0.0390    0.0004     +0.0425    0.0000     -0.0004    0.4696     -0.0001    0.7910
+         Bottom 80% files     +0.0041    0.3392     +0.0059    0.1257     -0.0003    0.2763     -0.0001    0.5553
+          Top 20% entropy     +0.0238    0.0568     +0.0394    0.0003     -0.0006    0.3658     +0.0008    0.1621
+       Bottom 80% entropy     +0.0001    0.9863     +0.0053    0.2008     -0.0002    0.4634     -0.0001    0.6970
+         Top 20% JIT risk     +0.0278    0.0278     +0.0390    0.0004     -0.0006    0.3305     +0.0002    0.8004
+      Bottom 80% JIT risk     +0.0019    0.7133     +0.0080    0.0589     -0.0002    0.4357     +0.0001    0.6674
+
+Interpretation:
+  If specs help on hard tasks, the top-20% strata should show NEGATIVE
+  coefficients (specs reduce bugs/rework) even if the full dataset doesn't.
+  If the top-20% shows the same null or reversed pattern, complexity
+  stratification does not rescue the SDD claims.
+
+Results saved to: /Users/brenn/dev/ai-augmented-dev/research/study/results/robustness-complexity.txt

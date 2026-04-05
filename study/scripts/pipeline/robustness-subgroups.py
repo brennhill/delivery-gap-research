@@ -47,7 +47,8 @@ df = pd.read_csv(DATA_DIR / "master-prs.csv", low_memory=False)
 szz = pd.read_csv(DATA_DIR / "szz-results-merged.csv")
 
 for col in ["reworked", "escaped", "strict_escaped", "specd"]:
-    df[col] = df[col].fillna(False).astype(bool)
+    if col in df.columns:
+        df[col] = df[col].fillna(False).astype(bool)
 
 # Mark bug-introducing PRs from SZZ
 bug_prs = szz[["repo", "bug_pr_number"]].drop_duplicates()
@@ -156,6 +157,9 @@ def run_battery(subset, label):
     subset["specd_int"] = subset["specd"].astype(int)
 
     n = len(subset)
+    if n == 0:
+        print(f"  EMPTY subgroup — skipping")
+        return {"bugs": None, "rework": None, "quality_bugs": None, "quality_rework": None}
     n_szz = subset["in_szz"].sum()
     n_specd = subset["specd"].sum()
     n_buggy = subset[subset["in_szz"]]["szz_buggy"].sum() if n_szz > 0 else 0
@@ -165,7 +169,7 @@ def run_battery(subset, label):
           f"In SZZ: {n_szz:,}")
     print(f"  Bug rate: {n_buggy/n_szz*100:.1f}% | " if n_szz > 0 else f"  Bug rate: N/A (no SZZ repos) | ",
           end="")
-    print(f"Rework rate: {n_reworked/n*100:.1f}%" if n > 0 else "Rework rate: N/A")
+    print(f"Rework rate: {n_reworked/n*100:.1f}%")
 
     # Specs → SZZ bugs (SZZ repos only)
     szz_sub = subset[subset["in_szz"]].copy()
@@ -306,14 +310,18 @@ if len(scored_nonbot_szz) > 200 and scored_nonbot_szz["ai_tagged"].sum() > 20:
         controls=["q_overall", "ai_int"] + SIZE_CONTROLS,
         label="quality-x-ai-bugs")
 
-    print(f"\n  Quality × AI interaction → rework:")
     scored_nonbot_rw = scored_nonbot.copy()
-    scored_nonbot_rw["ai_int"] = scored_nonbot_rw["ai_tagged"].astype(int)
-    scored_nonbot_rw["quality_x_ai"] = scored_nonbot_rw["q_overall"] * scored_nonbot_rw["ai_int"]
-    r_qai_rework = within_author_lpm(
-        scored_nonbot_rw, "quality_x_ai", "reworked",
-        controls=["q_overall", "ai_int"] + SIZE_CONTROLS,
-        label="quality-x-ai-rework")
+    if len(scored_nonbot_rw) > 200 and scored_nonbot_rw["ai_tagged"].sum() > 20:
+        print(f"\n  Quality × AI interaction → rework:")
+        scored_nonbot_rw["ai_int"] = scored_nonbot_rw["ai_tagged"].astype(int)
+        scored_nonbot_rw["quality_x_ai"] = scored_nonbot_rw["q_overall"] * scored_nonbot_rw["ai_int"]
+        r_qai_rework = within_author_lpm(
+            scored_nonbot_rw, "quality_x_ai", "reworked",
+            controls=["q_overall", "ai_int"] + SIZE_CONTROLS,
+            label="quality-x-ai-rework")
+    else:
+        print(f"\n  Quality × AI interaction → rework: SKIPPED (too few AI scored PRs)")
+        r_qai_rework = None
 else:
     print("  SKIPPED (too few AI-tagged scored PRs)")
     r_qai_bugs = None

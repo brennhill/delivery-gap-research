@@ -1,4 +1,4 @@
-Subgroup robustness run: 2026-04-04T21:24:01.081014+00:00
+Subgroup robustness run: 2026-04-05T15:25:26.544482+00:00
 Script: /Users/brenn/dev/ai-augmented-dev/research/study/scripts/pipeline/robustness-subgroups.py
 
 Bot exclusion:
@@ -25,9 +25,13 @@ SUBGROUP 1: HUMAN-ONLY PRs (no bots, no AI tags)
   N=75,810, authors=4,728 (2,409 with variation)
   coef=+0.0109, p=0.0042 → INCREASES **
 
-  Spec quality → SZZ bugs (N=4,320 scored):
-  N=4,033, authors=331 (328 with variation)
-  coef=-0.0007, p=0.0756 → DECREASES 
+  Spec quality → SZZ bugs (N=12,258 scored):
+  N=10,630, authors=1,166 (1,152 with variation)
+  coef=-0.0001, p=0.6884 → DECREASES 
+
+  Spec quality → rework (N=13,408 scored):
+  N=11,557, authors=1,321 (1,305 with variation)
+  coef=-0.0005, p=0.0565 → DECREASES 
 
 ======================================================================
 SUBGROUP 2: AI-TAGGED PRs (excluding bots)
@@ -47,9 +51,13 @@ SUBGROUP 2: AI-TAGGED PRs (excluding bots)
   N=5,431, authors=447 (241 with variation)
   coef=+0.0097, p=0.3993 → INCREASES 
 
-  Spec quality → SZZ bugs (N=872 scored):
-  N=809, authors=78 (78 with variation)
-  coef=-0.0009, p=0.4066 → DECREASES 
+  Spec quality → SZZ bugs (N=1,311 scored):
+  N=1,115, authors=132 (131 with variation)
+  coef=-0.0018, p=0.1088 → DECREASES 
+
+  Spec quality → rework (N=1,502 scored):
+  N=1,289, authors=143 (142 with variation)
+  coef=-0.0004, p=0.6314 → DECREASES 
 
 ======================================================================
 SUBGROUP 3: REPOS BY AI ADOPTION RATE
@@ -76,7 +84,13 @@ Repo AI adoption (non-bot):
   N=3,206, authors=273 (111 with variation)
   coef=-0.0332, p=0.0144 → DECREASES *
 
-  Spec quality → SZZ bugs: SKIPPED (0 scored PRs)
+  Spec quality → SZZ bugs (N=390 scored):
+  N=319, authors=51 (51 with variation)
+  coef=-0.0000, p=0.9487 → DECREASES 
+
+  Spec quality → rework (N=417 scored):
+  N=335, authors=53 (53 with variation)
+  coef=-0.0002, p=0.8355 → DECREASES 
 
 ── Low-AI repos ──
 
@@ -94,9 +108,13 @@ Repo AI adoption (non-bot):
   N=47,548, authors=2,890 (1,421 with variation)
   coef=+0.0086, p=0.0612 → INCREASES 
 
-  Spec quality → SZZ bugs (N=1,232 scored):
-  N=1,135, authors=96 (95 with variation)
-  coef=+0.0001, p=0.8307 → INCREASES 
+  Spec quality → SZZ bugs (N=5,965 scored):
+  N=5,106, authors=575 (566 with variation)
+  coef=-0.0003, p=0.4698 → DECREASES 
+
+  Spec quality → rework (N=6,872 scored):
+  N=5,840, authors=690 (680 with variation)
+  coef=-0.0003, p=0.4473 → DECREASES 
 
 ── High-AI repos ──
 
@@ -114,9 +132,13 @@ Repo AI adoption (non-bot):
   N=30,670, authors=1,748 (973 with variation)
   coef=+0.0176, p=0.0025 → INCREASES **
 
-  Spec quality → SZZ bugs (N=3,960 scored):
-  N=3,763, authors=263 (261 with variation)
-  coef=-0.0010, p=0.0140 → DECREASES *
+  Spec quality → SZZ bugs (N=7,214 scored):
+  N=6,426, authors=624 (619 with variation)
+  coef=-0.0002, p=0.6122 → DECREASES 
+
+  Spec quality → rework (N=7,621 scored):
+  N=6,787, authors=669 (663 with variation)
+  coef=-0.0004, p=0.1773 → DECREASES 
 
 ======================================================================
 SUBGROUP 4: ALL PRs (bots excluded) — MAIN RESULT REPLICATION
@@ -136,9 +158,30 @@ SUBGROUP 4: ALL PRs (bots excluded) — MAIN RESULT REPLICATION
   N=81,647, authors=4,892 (2,524 with variation)
   coef=+0.0116, p=0.0012 → INCREASES **
 
-  Spec quality → SZZ bugs (N=5,192 scored):
-  N=4,901, authors=360 (357 with variation)
-  coef=-0.0008, p=0.0162 → DECREASES *
+  Spec quality → SZZ bugs (N=13,569 scored):
+  N=11,880, authors=1,245 (1,231 with variation)
+  coef=-0.0002, p=0.3402 → DECREASES 
+
+  Spec quality → rework (N=14,910 scored):
+  N=12,992, authors=1,407 (1,391 with variation)
+  coef=-0.0004, p=0.1223 → DECREASES 
+
+======================================================================
+SUBGROUP 5: DOES SPEC QUALITY MATTER MORE FOR AI CODE?
+======================================================================
+
+Scored PRs (non-bot): 14,910
+  AI-tagged: 1,502
+  Human: 13,408
+  In SZZ repos: 13,569
+
+  Quality × AI interaction → SZZ bugs:
+  N=11,880, authors=1,245 (226 with variation)
+  coef=-0.0014, p=0.2286 → DECREASES 
+
+  Quality × AI interaction → rework:
+  N=12,992, authors=1,407 (245 with variation)
+  coef=+0.0011, p=0.0636 → INCREASES 
 
 ======================================================================
 SUMMARY: SPEC EFFECTS ACROSS SUBGROUPS
@@ -146,6 +189,8 @@ SUMMARY: SPEC EFFECTS ACROSS SUBGROUPS
 
                       Subgroup   → Bugs coef         p   → Rework coef         p
 ──────────────────────────────  ────────────  ────────  ──────────────  ────────
+
+  Spec presence → outcomes:
                All non-bot PRs       +0.0142    0.0026         +0.0116    0.0012
             Human-only (no AI)       +0.0149    0.0026         +0.0109    0.0042
            AI-tagged (non-bot)       +0.0114    0.4239         +0.0097    0.3993
@@ -153,9 +198,18 @@ SUMMARY: SPEC EFFECTS ACROSS SUBGROUPS
                   Low-AI repos       +0.0191    0.0006         +0.0086    0.0612
                  High-AI repos       +0.0104    0.1853         +0.0176    0.0025
 
+  Spec quality → outcomes:
+               All non-bot PRs       -0.0002    0.3402         -0.0004    0.1223
+            Human-only (no AI)       -0.0001    0.6884         -0.0005    0.0565
+           AI-tagged (non-bot)       -0.0018    0.1088         -0.0004    0.6314
+
+  Quality × AI interaction:
+        Quality×AI interaction       -0.0014    0.2286         +0.0011    0.0636
+
 Interpretation:
-  If SDD claims held, we would see NEGATIVE coefficients (specs reduce bugs/rework).
-  Positive coefficients = confounding by indication (harder tasks get specs).
-  The null result should hold across all subgroups.
+  Spec presence: positive coef = confounding by indication.
+  Spec quality: negative coef = higher quality → fewer defects (SDD prediction).
+  Quality×AI: tests whether quality matters MORE for AI code than human code.
+  If positive: quality helps AI more. If null: same effect for both.
 
 Results saved to: /Users/brenn/dev/ai-augmented-dev/research/study/results/robustness-subgroups.txt

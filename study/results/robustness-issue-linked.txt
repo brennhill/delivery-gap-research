@@ -1,0 +1,88 @@
+Issue-linked robustness run: 2026-04-05T16:22:30.025495+00:00
+Script: /Users/brenn/dev/ai-augmented-dev/research/study/scripts/pipeline/robustness-issue-linked.py
+
+Dataset: 88,052 PRs (non-bot)
+  With linked GitHub issue: 18,600 (21.1%)
+  Spec'd (any source): 24,298 (27.6%)
+  No spec: 63,754 (72.4%)
+  Spec'd but no issue link: 5,698
+
+======================================================================
+TEST 1: GITHUB ISSUE-LINKED vs NO SPEC
+======================================================================
+Excludes ticket-ID and template-section specs.
+This is the cleanest pre-implementation spec vs no spec comparison.
+
+  Issue-linked: 18,600
+  No spec: 63,754
+  Bug rate (issue): 13.1%  Rework rate: 15.2%
+  Bug rate (no spec): 12.0%  Rework rate: 12.9%
+
+  H1: Issue-linked → bugs:
+  [issue-H1] N=66,761, authors=4,051 (1,815 with variation)
+  coef=+0.0111, p=0.0370, 95% CI [+0.0007, +0.0215] *
+
+  H2: Issue-linked → rework:
+  [issue-H2] N=76,104, authors=4,599 (2,124 with variation)
+  coef=+0.0140, p=0.0005, 95% CI [+0.0061, +0.0219] ***
+
+  H3: Quality → bugs (issue-linked only, N=7,181):
+  [issue-H3] N=6,053, authors=696 (685 with variation)
+  coef=-0.0005, p=0.1246, 95% CI [-0.0011, +0.0001] 
+
+  H4: Quality → rework (issue-linked only, N=8,268):
+  [issue-H4] N=6,944, authors=821 (809 with variation)
+  coef=-0.0003, p=0.3591, 95% CI [-0.0009, +0.0003] 
+
+======================================================================
+TEST 2: AI-TAGGED + ISSUE-LINKED (closest to agentic SDD)
+======================================================================
+
+  AI + issue-linked: 1,350
+  AI + no spec: 4,068
+
+  AI + issue-linked → bugs:
+  [ai-issue-bugs] N=4,287, authors=389 (151 with variation)
+  coef=+0.0141, p=0.4358, 95% CI [-0.0214, +0.0496] 
+
+  AI + issue-linked → rework:
+  [ai-issue-rework] N=4,881, authors=412 (166 with variation)
+  coef=+0.0171, p=0.1919, 95% CI [-0.0086, +0.0428] 
+
+======================================================================
+TEST 3: ISSUE-LINKED vs TICKET-ID SPECS
+======================================================================
+Do PRs with GitHub issues have different outcomes than PRs with
+just a PROJ-123 ticket reference? Both are 'spec'd' but the issue
+content is visible to us while the ticket content is not.
+
+  Issue-linked: 18,600
+  Ticket-only: 5,113
+
+  Issue vs ticket → bugs (within-author):
+  [issue-vs-ticket-bugs] N=18,305, authors=1,963 (458 with variation)
+  coef=+0.0066, p=0.6368, 95% CI [-0.0208, +0.0341] 
+
+  Issue vs ticket → rework (within-author):
+  [issue-vs-ticket-rework] N=20,482, authors=2,231 (525 with variation)
+  coef=+0.0263, p=0.0252, 95% CI [+0.0033, +0.0493] *
+
+  Raw rates:
+    Issue-linked: bugs=13.1%, rework=15.2%
+    Ticket-only:  bugs=17.4%, rework=13.0%
+
+======================================================================
+SUMMARY
+======================================================================
+
+Issue-linked GitHub issues are the closest available proxy for
+pre-implementation specifications. If any spec type should show
+a protective effect, it is this one.
+
+Results:
+  H1 (issue → bugs):    coef=+0.0111, p=0.0370
+  H2 (issue → rework):  coef=+0.0140, p=0.0005
+  H3 (quality → bugs):  coef=-0.0005, p=0.1246
+  H4 (quality → rework): coef=-0.0003, p=0.3591
+
+Results saved to: /Users/brenn/dev/ai-augmented-dev/research/study/results/robustness-issue-linked.txt

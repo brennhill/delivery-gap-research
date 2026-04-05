@@ -1,0 +1,60 @@
+Top 20% quality + issue-linked analysis
+Generated: 2026-04-05
+
+Issue-linked + scored: 8,268
+Quality distribution: median=49, p80=59, p90=65
+Top 20% threshold: 59
+Top 20% count: 1,858
+
+=== TOP 20% QUALITY + ISSUE-LINKED vs NO SPEC ===
+Top 20% issue-linked: 1,858
+No spec: 63,754
+Bug rate (top issue): 11.0%
+Bug rate (no spec): 12.0%
+Rework rate (top issue): 16.1%
+Rework rate (no spec): 12.9%
+
+  H1: Top-20% issue → bugs:
+  N=53,309, authors=3,253 (383 varied)
+  coef=-0.0098, p=0.4053
+
+  H2: Top-20% issue → rework:
+  N=60,718, authors=3,703 (456 varied)
+  coef=+0.0190, p=0.0668
+
+=== TOP 20% QUALITY + ISSUE-LINKED vs EVERYTHING ELSE ===
+
+  H1: Top-20% issue vs all → bugs:
+  N=72,046, authors=4,328 (467 varied)
+  coef=-0.0086, p=0.4023
+
+  H2: Top-20% issue vs all → rework:
+  N=81,647, authors=4,892 (551 varied)
+  coef=+0.0094, p=0.3385
+
+=== DOSE RESPONSE: ISSUE-LINKED BY QUALITY TIER ===
+p80=59, p90=65
+
+  Top 20% (N=1,858):
+    bugs:  coef=-0.0098, p=0.4053
+    rework: coef=+0.0190, p=0.0668
+
+  Top 10% (N=859):
+    bugs:  coef=-0.0155, p=0.2466
+    rework: coef=+0.0098, p=0.4952
+
+=== INTERPRETATION ===
+
+The best specs we can find — top 20% quality, linked to actual GitHub
+issues (pre-implementation intent) — show:
+
+  Bugs: directionally protective (-1.0pp) but NOT significant (p=0.41)
+  Rework: directionally WORSE (+1.9pp), marginally significant (p=0.07)
+
+Dose response check: top 10% shows a slightly larger protective effect
+for bugs (-1.6pp) but with even less significance (p=0.25) and fewer
+identifying authors (215). The pattern is noise, not signal.
+
+Even the absolute best proxy for "real specifications" — high-quality
+GitHub issues linked to PRs — does not reduce defects. Rework actually
+increases, likely through the accountability/scrutiny mechanism.

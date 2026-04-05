@@ -26,7 +26,7 @@ echo "Study dir: $STUDY_DIR"
 
 echo ""
 echo "=========================================="
-echo "Step 1/7: Merge SZZ/JIT checkpoints"
+echo "Step 1/9: Merge SZZ/JIT checkpoints"
 echo "=========================================="
 python3 -c "
 import json, pandas as pd
@@ -63,39 +63,52 @@ if len(jit_df) > 0:
 
 echo ""
 echo "=========================================="
-echo "Step 2/7: Build unified CSV"
+echo "Step 2/9: Build unified CSV"
 echo "=========================================="
 python3 scripts/pipeline/build-unified-csv.py
 
 echo ""
 echo "=========================================="
-echo "Step 3/7: Build master CSV"
+echo "Step 3/9: Build master CSV"
 echo "=========================================="
 python3 scripts/pipeline/build-master-csv.py
 
 echo ""
 echo "=========================================="
-echo "Step 4/7: Run main analysis"
+echo "Step 4/9: Run main analysis"
 echo "=========================================="
 python3 scripts/pipeline/full-szz-analysis.py
 
 echo ""
 echo "=========================================="
-echo "Step 5/7: Run subgroup robustness"
+echo "Step 5/9: Run subgroup robustness"
 echo "=========================================="
 python3 scripts/pipeline/robustness-subgroups.py
 
 echo ""
 echo "=========================================="
-echo "Step 6/7: Run high-quality spec robustness"
+echo "Step 6/9: Run high-quality spec robustness"
 echo "=========================================="
 python3 scripts/pipeline/robustness-highquality.py
 
 echo ""
 echo "=========================================="
-echo "Step 7/7: Run temporal robustness"
+echo "Step 7/9: Run temporal robustness"
 echo "=========================================="
 python3 scripts/pipeline/robustness-temporal.py
+
+echo ""
+echo "=========================================="
+echo "Step 8/9: Run complexity stratification"
+echo "=========================================="
+python3 scripts/pipeline/robustness-complexity.py
+
+echo ""
+echo "=========================================="
+echo "Step 9/9: Run JIT controls + PSM"
+echo "=========================================="
+python3 scripts/pipeline/primary-with-jit-controls.py
+python3 scripts/pipeline/propensity-score-matching.py
 
 echo ""
 echo "=========================================="
@@ -106,6 +119,8 @@ echo "  results/analysis-results.txt"
 echo "  results/robustness-subgroups.txt"
 echo "  results/robustness-highquality.txt"
 echo "  results/robustness-temporal.txt"
+echo "  results/robustness-complexity.txt"
+echo "  results/propensity-score-matching.txt"
 echo ""
 echo "Source data untouched:"
 echo "  prs-*.json: $(ls data/prs-*.json 2>/dev/null | wc -l | tr -d ' ') files"
