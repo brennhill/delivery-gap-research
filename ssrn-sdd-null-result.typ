@@ -124,7 +124,7 @@ Spec-driven development (SDD) tools --- GitHub's Spec Kit, Amazon's Kiro, and ot
 = Introduction
 
 #par(first-line-indent: 0pt)[
-The rise of AI-assisted software development has produced a new category of developer tooling: specification-driven development (SDD) frameworks. These tools --- including GitHub's Spec Kit #cite(<speckit2025>), Amazon's Kiro #cite(<kiro2025>), and Tessl --- claim that writing formal specifications before implementation leads to fewer defects, less rework, and higher-quality code, particularly when AI agents perform the implementation.
+The rise of AI-assisted software development has produced a new category of developer tooling: specification-driven development (SDD) frameworks. These tools --- including GitHub's Spec Kit #cite(<speckit2025>) and Amazon's Kiro #cite(<kiro2025>) --- claim that writing formal specifications before implementation leads to fewer defects, less rework, and higher-quality code, particularly when AI agents perform the implementation.
 ]
 
 Böckeler #cite(<fowler2025>) defines spec-driven development as "writing a 'spec' before writing code with AI" where "[t]he spec becomes the source of truth for the human and the AI." The GitHub Copilot Academy frames it more strongly: "Specifications don't serve code --- code serves specifications" #cite(<copilotacademy2025>). The movement gained momentum in 2025 with the release of GitHub's Spec Kit (open-source, v0.0.72 as of this writing) and Amazon's Kiro IDE. Böckeler examined three tools pursuing the approach #cite(<fowler2025>). SDD is positioned as an antidote to "vibe coding" --- iteratively prompting AI without formal requirements --- which practitioners associate with scope creep, rework, and defects.
@@ -286,6 +286,23 @@ We restrict within-author analysis to authors with ≥2 PRs and report the numbe
 
 We do not apply multiple-comparison corrections across the five hypotheses. At α = 0.05, approximately 0.25 false positives are expected by chance. We interpret all results with this in mind.
 
+Sample sizes vary across hypotheses because of SZZ coverage, quality scoring, and within-author filtering:
+
+#align(center)[
+  #table(
+    columns: (auto, auto, auto, auto),
+    align: (left, right, right, right),
+    table.header[Hypothesis][PRs (pre-filter)][Within-author _N_][Identifying authors],
+    [H1: specs → bugs], [77,814 (103 SZZ repos)], [72,046], [2,181],
+    [H2: specs → rework], [88,052 (all 119 repos)], [81,647], [2,524],
+    [H3: quality → bugs], [5,192 (scored subset)], [4,901], [357],
+    [H4: quality → rework], [5,192 (scored subset)], [4,901], [357],
+    [H5: spec × AI → churn], [88,052 (all 119 repos)], [71,932], [366],
+  )
+]
+
+#text(size: 9pt)[Within-author _N_ is after restricting to authors with ≥2 PRs and dropping rows with missing controls. Identifying authors are those with variation in both treatment and control conditions.]
+
 = Results
 
 == H1: Specifications Reduce Defects
@@ -308,9 +325,9 @@ We do not apply multiple-comparison corrections across the five hypotheses. At �
 
 Identified from 2,181 authors with treatment variation (out of 4,328 authors with ≥2 PRs).
 
-*H1 is not supported.* The table should be read bottom-up. The pooled comparison (top row) is the naive analysis: spec'd PRs have a 20.2% higher odds of introducing a bug than unspec'd PRs. But this comparison is confounded --- developers who write specs are different from those who don't, and the repos that encourage specs are different from those that don't. The controlled logistic regression (middle row) adds size controls and repository fixed effects, removing between-repo confounding. The effect persists.
+*H1 is not supported.* The pooled comparison (top row) is the naive analysis: spec'd PRs have a 20.2% higher odds of introducing a bug than unspec'd PRs. But this comparison is confounded --- developers who write specs are different from those who don't, and the repos that encourage specs are different from those that don't. The controlled logistic regression (middle row) adds size controls and repository fixed effects, removing between-repo confounding. The effect persists.
 
-The within-author estimate (bottom row) is the most credible. It compares the _same developer's_ spec'd PRs to their own unspec'd PRs, eliminating all time-invariant author-level confounding --- skill, experience, coding style, and organizational context are held constant because both the "treatment" and "control" come from the same person. The result: within-author, spec'd PRs are associated with a 1.4 percentage-point _increase_ in defect-introduction rates (_p_ = 0.003). The direction is opposite to the vendor claim at every level of analysis.
+The within-author estimate (bottom row) is the most credible. It compares the _same developer's_ spec'd PRs to their own unspec'd PRs, eliminating all time-invariant author-level confounding --- skill, experience, coding style, and organizational context are held constant because both the "treatment" and "control" come from the same person. The result: within-author, spec'd PRs are associated with a 1.4 percentage-point _increase_ in defect-introduction rates (_p_ = 0.003, OR = 1.13, Cohen's _d_ = 0.07). The direction is opposite to the vendor claim at every level of analysis.
 
 This is consistent with confounding by indication: harder, riskier tasks receive specifications _and_ introduce more defects. A developer rationally invests specification effort in proportion to task complexity. The spec does not cause the bugs --- the task difficulty that motivates the spec also produces the bugs. When JIT risk features are added as controls (Section~5.6), the within-author spec coefficient drops 55% and loses significance (_p_ = 0.229), confirming that measurable task complexity explains most of the association.
 
@@ -334,7 +351,7 @@ A plausible alternative explanation is detection bias: if spec'd PRs have better
 
 Identified from 2,524 authors with treatment variation (out of 4,892 with ≥2 PRs).
 
-*H2 is not supported.* The within-author effect is in the wrong direction: the same author's spec'd PRs have a 1.2 percentage-point higher rework rate than their unspec'd PRs (_p_ = 0.001). The pooled odds ratio (1.18×) is modest, and within-author the effect is small but significant. Specifications are associated with more rework, not less.
+*H2 is not supported.* The within-author effect is in the wrong direction: the same author's spec'd PRs have a 1.2 percentage-point higher rework rate than their unspec'd PRs (_p_ = 0.001, OR = 1.10, Cohen's _d_ = 0.05). The pooled odds ratio (1.18×) is modest, and within-author the effect is small but significant. Specifications are associated with more rework, not less.
 
 == H3: Specification Quality Reduces Defects
 
@@ -372,7 +389,7 @@ Identified from 357 authors with treatment variation.
   )
 ]
 
-Identified from 357 authors with treatment variation.
+Identified from 357 authors with treatment variation (same scored subsample as H3).
 
 *H4 is not supported.* Specification quality has no meaningful relationship with rework rates within-author. The coefficient is effectively zero, with _p_ = 0.827. The controlled logistic regression is also non-significant (_p_ = 0.195), consistent with the within-author finding (thorough specifications accompany difficult tasks that are more likely to be reworked).
 
@@ -586,7 +603,7 @@ The null result holds across every angle: four outcome measures, two predictive 
 
 == Confounding by Indication
 
-The pattern across all five hypotheses is identical: naive analysis suggests specifications accompany worse outcomes, but within-author analysis and propensity score matching reveal this as confounding by indication #cite(<salas1999>). Developers rationally invest specification effort in proportion to task complexity. Harder tasks receive specifications _and_ produce more defects --- the specification does not cause the bugs.
+The pattern across all five hypotheses is identical: naive analysis suggests specifications accompany worse outcomes, but within-author analysis reduces but does not eliminate the reversed association; propensity score matching on JIT features eliminates it entirely, confirming confounding by indication #cite(<salas1999>). Developers rationally invest specification effort in proportion to task complexity. Harder tasks receive specifications _and_ produce more defects --- the specification does not cause the bugs.
 
 JIT risk feature profiles confirm this directly. Spec'd PRs have significantly higher change entropy (1.3×), more lines added (1.6×), touch older files (1.8×), and involve more prior developers (1.2×) than unspec'd PRs (all _p_ < 0.001). Notably, spec'd PR authors have _less_ experience than unspec'd PR authors (median 62 vs. 121 prior commits, _p_ < 0.001) --- less experienced developers spec more, not less, consistent with specifications being a support mechanism for harder tasks.
 
@@ -602,9 +619,9 @@ SDD vendors conflate _directing_ the AI (telling it what to build) with _ensurin
 
 == Vendor Evidence
 
-No SDD tool vendor has published empirical evidence for the quality claims tested here. The evidence base consists of first-principles reasoning and developer testimonials. GitHub describes Spec Kit as "an experiment" #cite(<speckit2025>) and publishes no effectiveness data. Third-party evaluations are negative: Böckeler found Spec Kit's overhead "overkill for the size of the problem" #cite(<fowler2025>); Eberhardt found it roughly ten times slower than iterative development #cite(<scottlogic2025>).
+No SDD tool vendor has published empirical evidence for the quality claims tested here. The evidence base consists of first-principles reasoning and developer testimonials. GitHub describes Spec Kit as "an experiment" #cite(<speckit2025>) and publishes no effectiveness data. Third-party evaluations are negative: Böckeler found Spec Kit's overhead "overkill for the size of the problem" #cite(<fowler2025>); Eberhardt found it roughly ten times slower than iterative development #cite(<scottlogic2025>). Notably, no SDD tool appears in the 100,247 PRs in our dataset --- a text search for `.specify/`, `.speckit/`, `.kiro/`, and `spec-kit` returns zero matches. The vendors' own repositories do not use the tools they sell. GitHub, Amazon, and other SDD vendors have the data and engineering resources to conduct controlled evaluations of their products. That they have not done so, while making specific quality claims in marketing materials, is itself informative.
 
-Our specification artifacts are not generated by SDD tools --- a text search for `.specify/`, `.speckit/`, `.kiro/`, and `spec-kit` returns zero matches across 100,247 PRs. We measure the _kind_ of specification content that SDD tools claim to improve upon, scored on the same quality dimensions those tools prescribe. If the tool's format itself is the active ingredient --- something beyond the seven quality dimensions we measure --- that would be a testable claim that vendors have not tested.
+We measure the _kind_ of specification content that SDD tools claim to improve upon, scored on the same quality dimensions those tools prescribe. If the tool's format itself is the active ingredient --- something beyond the seven quality dimensions we measure --- that would be a testable claim that vendors have not tested.
 
 SDD tooling imposes real costs: specification-writing time, process overhead, organizational change. Teams adopting SDD on the basis of vendor claims are making investment decisions on unsubstantiated assertions. We do not argue that thinking about requirements is wasted effort. We argue that the _products_ claiming to reduce defects through specification artifacts have not demonstrated that they do.
 
