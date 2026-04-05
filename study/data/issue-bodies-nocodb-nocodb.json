@@ -1,0 +1,615 @@
+{
+  "actions/runner-images#11101": {
+    "body": "### Breaking changes\n\nWe will soon start the deprecation process for Ubuntu 20.04. While the image is being deprecated, you may experience longer queue times during peak usage hours. Deprecation will begin on **2025-02-01** and the image will be fully unsupported by **2025-04-15**.\n\nTo raise awareness of the upcoming removal, we will temporarily fail jobs using Ubuntu 20.04. Builds that are scheduled to run during the brownout periods will fail. The brownouts are scheduled for the following dates and times:\n\n**GitHub Actions\\Azure DevOps::**\n\n- March 4 14:00 UTC \u2013 22:00 UTC\n- March 11 13:00 UTC \u2013 21:00 UTC\n- March 18 13:00 UTC \u2013 21:00 UTC\n- March 25 13:00 UTC \u2013 21:00 UTC\n- April 1 13:00 UTC \u2013 21:00 UTC\n- April 8 13:00 UTC \u2013 21:00 UTC\n\n\n\n### Target date\n\n~2025-04-01~\n2025-04-15\n\n### The motivation for the changes\n\nWe maintain the latest two stable versions of any given OS version. Ubuntu 24.04 is going GA on 2025-02-01 so we start deprecating the oldest image at that time.\n\n### Possible impact\n\nWorkflows using the `ubuntu-20.04` image label should be updated to `ubuntu-latest`, `ubuntu-22.04`, `ubuntu-24.04` .\n\n### Platforms affected\n\n- [ ] Azure DevOps\n- [x] GitHub Actions\n\n### Runner images affected\n\n- [x] Ubuntu 20.04\n- [ ] Ubuntu 22.04\n- [ ] Ubuntu 24.04\n- [ ] macOS 12\n- [ ] macOS 13\n- [ ] macOS 13 Arm64\n- [ ] macOS 14\n- [ ] macOS 14 Arm64\n- [ ] macOS 15\n- [ ] macOS 15 Arm64\n- [ ] Windows Server 2019\n- [ ] Windows Server 2022\n\n### Mitigation ways\n\nN/A",
+    "html_url": "https://github.com/actions/runner-images/issues/11101",
+    "labels": [
+      "Announcement"
+    ],
+    "state": "closed",
+    "title": "The Ubuntu 20.04 Actions runner image will begin deprecation on 2025-02-01 and will be fully unsupported by 2025-04-15"
+  },
+  "nocodb/nocodb#4997": {
+    "body": "### Please confirm if bug report does NOT exists already ?\n\n- [X] I confirm there is no existing issue for this\n\n### Steps to reproduce ?\n\nI had created an account and then on sign in the following error appears: \"Illegal arguments: string, object\". This is depicted in an attachment.\r\n\r\n\n\n### Desired Behavior\n\nIt is desirable to fill out my e-mail address (the account was verified to be already created) and password, and to be able to successfully log in.\n\n### Project Details\n\nNocoDB version 0.104.2, running on Docker\r\n\n\n### Attachments\n\n![Screenshot 2023-02-02 at 10 10 23](https://user-images.githubusercontent.com/6137052/216299462-576e2001-e64c-44a3-b0ea-dc2cfcc0bed6.png)\r\n",
+    "html_url": "https://github.com/nocodb/nocodb/issues/4997",
+    "labels": [
+      "\ud83d\udc1b Type: Bug"
+    ],
+    "state": "closed",
+    "title": "\ud83d\udc1b Bug: Illegal arguments (string, object) on sign in"
+  },
+  "nocodb/nocodb#5337": {
+    "body": "CORS (Cross-origin resource sharing) are not activated by default. \r\nSo, we can't use the API with a browser, in javascript\r\n\r\nThe problem exists via an `npm` installation (but one can easily add them manually):\r\n\r\n```bash\r\ngit clone https://github.com/nocodb/nocodb-seed\r\ncd nocodb-seed\r\nnpm install\r\nnpm install cors  # ADD THIS\r\n```\r\nAnd modify index.js before `npm start`\r\n```js\r\n(async () => {\r\n    try {\r\n        const app = require(\"express\")();\r\n        const { Noco } = require(\"nocodb\");\r\n        const cors = require(\"cors\"); // ADD THIS\r\n        const httpServer = app.listen(process.env.PORT || 8080);\r\n        app.use(cors()); // ADD THIS\r\n        app.use(await Noco.init({}, httpServer, app));\r\n    } catch (e) {\r\n        console.log(e);\r\n    }\r\n})();\r\n```\r\nAlso with installations via the Binaries (and nothing can be done).\r\nFor Docker, not tried...\r\n\r\nFor Nococloud (yeah!!!) the problem also exists (see screenshot).\r\n\r\n![bug-cors](https://user-images.githubusercontent.com/5105581/226671355-646e9902-6ea2-49b4-8daa-fb412008c540.png)\r\n\r\nSuggestion: add the possibility to activate (or deactivate) the CORS from the admin (Teams & settings > Project Settings).\r\n\r\n![bug-cors-api](https://user-images.githubusercontent.com/5105581/226671555-5a17b831-b2ca-4eff-9629-2d1d0966c5d5.png)\r\n\r\nOr put them by default?",
+    "html_url": "https://github.com/nocodb/nocodb/issues/5337",
+    "labels": [],
+    "state": "closed",
+    "title": "\ud83d\udd26 Feature: Enable CORS by default (or via an option?)"
+  },
+  "nocodb/nocodb#7016": {
+    "body": "### Please confirm if bug report does NOT exists already ?\r\n\r\n- [X] I confirm there is no existing issue for this\r\n\r\n### Steps to reproduce ?\r\n\r\nI wanted to setup a simple Email notification from one of my databases to get notified if an issues changes. (Used in combination with a kanban view)\r\n\r\nWhen i setup the Webhook and use a simple handlebar like `{{data.table_name}}` and TEST the webhook i get the correct response via email. When i save the Webhook and actually change something in the Table i just get an empty mail with no content.\r\n\r\n\r\nHere is my sample payload \r\n```\r\n{\r\n  \"type\": \"records.after.update\",\r\n  \"id\": \"638e47a7-5738-4da8-9a47-c2e4d47dca77\",\r\n  \"data\": {\r\n    \"table_id\": \"modv10djbrjguy4\",\r\n    \"table_name\": \"Videoproduktion\",\r\n    \"view_id\": \"vwic6plxs8uwmssr\",\r\n    \"view_name\": \"Grid view\",\r\n    \"previous_rows\": [\r\n      {\r\n        \"Titel\": \"Sample Long text\",\r\n        \"Frame.io\": \"https://nocodb.com\",\r\n        \"Drive\": \"https://nocodb.com\",\r\n        \"Status\": \"01 Timing Cut\",\r\n        \"Zust\u00e4ndig\": \"Tobias\",\r\n        \"ncRecordId\": 1,\r\n        \"ncRecordHash\": \"Sample Text\",\r\n        \"CutterIn\": \"Tobias\"\r\n      }\r\n    ],\r\n    \"rows\": [\r\n      {\r\n        \"Titel\": \"Sample Long text\",\r\n        \"Frame.io\": \"https://nocodb.com\",\r\n        \"Drive\": \"https://nocodb.com\",\r\n        \"Status\": \"01 Timing Cut\",\r\n        \"Zust\u00e4ndig\": \"Tobias\",\r\n        \"ncRecordId\": 1,\r\n        \"ncRecordHash\": \"Sample Text\",\r\n        \"CutterIn\": \"Tobias\"\r\n      }\r\n    ]\r\n  }\r\n}\r\n```\r\n\r\n### Desired Behavior\r\n\r\nIf the Field `Status` changes i want to get an Email with the following content\r\n```\r\nNew Issue in {{data.table_name}}<br>\r\n\r\n{{data.rows.[0].Titel}} moved from {{data.previous_rows.[0].Status}} to {{data.rows.[0].Status}}\r\n```\r\n\r\nWhen i set the above syntax i get the following if i hit `Test Webhook` which seems like it is working.\r\n```\r\nNew Issue in Videoproduktion\r\nSample Long text moved from 01 Timing Cut to 01 Timing Cut\r\n``` \r\n\r\nBut if i save the webhook and move the issue around in the kanban i get \r\n```\r\nNew Issue in\r\nmoved from to\r\n```\r\n\r\n\r\n\r\n### Project Details\r\n\r\nBase Info\r\n```\r\nNode: **v18.17.1**\r\nArch: **x64**\r\nPlatform: **linux**\r\nDocker: **true**\r\nRootDB: **pg**\r\nPackageVersion: **0.202.5**\r\n```\r\n\r\n### Attachments\r\n\r\n_No response_\r\n\r\nEDIT: Fixed some syntax error that i had with `{{data.rows.[0].Status}}` now the test webhook is working, but the real live try is still blank",
+    "html_url": "https://github.com/nocodb/nocodb/issues/7016",
+    "labels": [],
+    "state": "closed",
+    "title": "\ud83d\udc1b Bug: Email Notification allways blank"
+  },
+  "nocodb/nocodb#9316": {
+    "body": "### Please confirm that the feature request does ***not*** already exist\n\n- [X] I confirm there is no existing issue for this feature request.\n\n### Use case\n\nThis is currently always user's browser timezone and in the database it defaults to UTC or DB's timezone.\n\n### Suggested solution\n\n.\n\n### Additional context\n\n_No response_",
+    "html_url": "https://github.com/nocodb/nocodb/issues/9316",
+    "labels": [
+      "\ud83d\udd26 Type: Feature"
+    ],
+    "state": "closed",
+    "title": "\ud83d\udd26 Feature: Show date / date time in a fixed time zone"
+  },
+  "nocodb/nocodb#10159": {
+    "body": "### Please confirm that the bug report does ***not*** already exist\n\n- [X] I confirm there is no existing issue for this bug.\n\n### Steps to reproduce\n\n* Install NocoDB using Auto Upstall\r\n* Observe NocoDB is running using web browser\r\n* Stop NocoDB using management panel\r\n* Exit management panel\r\n* Reinstall NocoDB using Auto Upstall without deleting the nocodb directory\r\n* Observe repeated authentication errors in database log using management panel\r\n* Observe 404 Not found or Bad Gateway using web browser\r\n\r\nVerify reinstall works if nocodb directory is deleted:\r\n* Stop NocoDB using management panel\r\n* Exit management panel\r\n* rm -r nocodb \r\n* Install NocoDB using Auto Upstall\r\n* Observe NocoDB is running using web browser\r\n\n\n### Desired Behavior\n\nSuccessfully reinstall NocoDB without deleting the nocodb directory, which may contain user content.  \n\n### Project Details\n\nNocoDB 0.258.11 installed using Auto Upstall 12/31/24.\n\n### Attachments\n\n_No response_",
+    "html_url": "https://github.com/nocodb/nocodb/issues/10159",
+    "labels": [],
+    "state": "closed",
+    "title": "\ud83d\udc1b Bug: Auto Upstall fails reinstall"
+  },
+  "nocodb/nocodb#10203": {
+    "body": "### Please confirm that the feature request does ***not*** already exist\n\n- [X] I confirm there is no existing issue for this feature request.\n\n### Use case\n\nHello,  \r\n\r\nI would like to suggest adding support for generating and displaying thumbnail previews of PDF files in NocoDB. This feature could significantly enhance the user experience when working with tables containing PDF attachments, as it would allow users to quickly identify and interact with their files visually.  \r\n\r\n### Use Cases:  \r\n- Users managing documents like invoices, contracts, or presentations would benefit greatly from this feature.  \r\n- It would streamline workflows and reduce the time needed to locate specific PDFs.  \n\n### Suggested solution\n\n### Current Behavior:  \r\nWhen a PDF file is attached to a table, it appears as a file icon without any preview. This lack of visual representation makes it challenging to differentiate between PDFs at a glance.  \r\n\r\n### Expected Behavior:  \r\nUsers should be able to see a small thumbnail preview of the first page of a PDF file directly within the table view or in a dedicated preview area.  \r\n\r\n### Suggested Implementation:  \r\n1. Utilize an open-source library like PDF.js or other solutions to generate a thumbnail image of the first page of the PDF file.  \r\n2. Display the generated thumbnail in the appropriate cell in the table.  \r\n3. Optionally allow users to expand the thumbnail to view a larger version or navigate through the pages of the PDF.  \n\n### Additional context\n\nIf this feature is currently supported in any way, I would appreciate guidance on how to enable or configure it.  \r\n\r\nThank you for considering this suggestion, and I look forward to your feedback!",
+    "html_url": "https://github.com/nocodb/nocodb/issues/10203",
+    "labels": [],
+    "state": "closed",
+    "title": "\ud83d\udd26 Feature: Support for Thumbnail Previews of PDF Files in NocoDB"
+  },
+  "nocodb/nocodb#10321": {
+    "body": "### Please confirm that the bug report does ***not*** already exist\n\n- [x] I confirm there is no existing issue for this bug.\n\n### Steps to reproduce\n\nIf I don't set the variable **NC_NON_ATTACHMENT_FIELD_SIZE** in the docker-compose.yml I can't upload image files bigger than 10 MB by the form. Everytime Error-Message: 'Field value too long'\n\n\n\n### Desired Behavior\n\nThe variable is NOT documented: \nhttps://docs.nocodb.com/getting-started/self-hosted/environment-variables/\nhttps://docs.nocodb.com/fields/field-types/custom-types/attachment/#environment-variables\n\nSee using of this variable:\nhttps://github.com/nocodb/nocodb/pull/9690/files#diff-72097147022cf45a3528dd21fa588dc20e5f54f7f08543e2465cadb200207dcbR4\n\nIt would be great to document this and explain what this variable is used for.\n\n### Project Details\n\nNC_NON_ATTACHMENT_FIELD_SIZE\n\n### Attachments\n\n_No response_",
+    "html_url": "https://github.com/nocodb/nocodb/issues/10321",
+    "labels": [],
+    "state": "closed",
+    "title": "\ud83d\udc1b Bug: Environment variable NC_NON_ATTACHMENT_FIELD_SIZE not documented"
+  },
+  "nocodb/nocodb#10726": {
+    "body": "### Please confirm that the bug report does ***not*** already exist\n\n- [x] I confirm there is no existing issue for this bug.\n\n### Steps to reproduce\n\nCreate two tables. 1 called Projects, another called Tasks. Project has column 'Tasks' that is a 'Has Many Relationship'. Todo has column called 'Status' that we filter with 'not Done'.\n\nUngrouped, when you change the Status to 'Done', row is filtered.\nGrouped, row is not filtered until refresh.\n\n### Desired Behavior\n\n'Row Filtered' should work the same across views.\n\n### Project Details\n\nNode: **v22.12.0**\nArch: **x64**\nPlatform: **linux**\nDocker: **false**\nRootDB: **sqlite3**\nPackageVersion: **0.262.1**\n\n(launched from current develop branch)\n\n### Attachments\n\nhttps://github.com/user-attachments/assets/cafaa318-dca3-4060-93b0-065ef69183ae",
+    "html_url": "https://github.com/nocodb/nocodb/issues/10726",
+    "labels": [
+      "Status: Reproducible"
+    ],
+    "state": "closed",
+    "title": "\ud83d\udc1b Bug: 'Row Filtered' broken when using Groups (Gridview)"
+  },
+  "nocodb/nocodb#10980": {
+    "body": "### Please confirm that the bug report does ***not*** already exist\n\n- [x] I confirm there is no existing issue for this bug.\n\n### Steps to reproduce\n\nBefore canvas grid, the column width can be reduced to a more smaller width compared to canvas one\n\n### Desired Behavior\n\nColumn width can be made smaller in canvas grid\n\n### Project Details\n\n-\n\n### Attachments\n\n_No response_",
+    "html_url": "https://github.com/nocodb/nocodb/issues/10980",
+    "labels": [
+      "Status: Reproducible"
+    ],
+    "state": "closed",
+    "title": "\ud83d\udc1b Bug: cannot reduce column width in canvas compared to before"
+  },
+  "nocodb/nocodb#10987": {
+    "body": "### Please confirm that the bug report does ***not*** already exist\n\n- [x] I confirm there is no existing issue for this bug.\n\n### Steps to reproduce\n\n* Click base on list at the left page\n* go to settings > visibility & data handling > check show NULL in cells\n* go to any tables create some empty rows\n* turn off infinite scrolling to compare with previous version\n\n### Desired Behavior\n\nNULL value is shown in cell\n\n### Project Details\n\n- \n\n### Attachments\n\n_No response_",
+    "html_url": "https://github.com/nocodb/nocodb/issues/10987",
+    "labels": [
+      "Status: Reproducible"
+    ],
+    "state": "closed",
+    "title": "\ud83d\udc1b Bug: 'Show NULL in cells' base-wide setting does not work in infinite scroll grid and canvas"
+  },
+  "nocodb/nocodb#11032": {
+    "body": "### Please confirm that the bug report does ***not*** already exist\n\n- [x] I confirm there is no existing issue for this bug.\n\n### Steps to reproduce\n\n**Setup**\n```\nTable \"IT - Customer networks\"\nName (Formula) | Location (linked field 1:m) | other fields\n```\nLocation links to the following table where the field Location is the \"1\" and the following table \"m\"\n\n```\nTable \"KUN - Locations\"\nName (Formula) | Address | Networks (m:1)\n```\n\nNetworks links to Location of the previous table where the field Networks is the \"m\"\n\nIn the table IT - Customer networks I want to generate the row \"Name\" using a formula. Currently it should be the value of the field \"Location\". Later on I will build some string. However, when referencing the field \"Location\" in the Formula of the field \"Name\" I get the following error:\n\nFormula error: Kunden\" as \"__nc_formula0\" where \"__nc_formula0\".\"id\" = \"__nc_formula0\".\"Kunden_id\"),'-' ),\"__nc_formula0\".\"Ort\"),' [' ),\"__nc_formula0\".\"StandortId\"),']' ) from \"public\".\"KUN\n\nI have recreated the row \"Location\" to exclude legacy issues but had the same behaviour.\n\n### Desired Behavior\n\nI should be able to reference to a linked field in a formula without issue.\n\n### Project Details\n\nNode: **v22.14.0**\nArch: **x64**\nPlatform: **linux**\nDocker: **true**\nRootDB: **pg**\nPackageVersion: **0.262.5**\n\n### Attachments\n\n_No response_",
+    "html_url": "https://github.com/nocodb/nocodb/issues/11032",
+    "labels": [],
+    "state": "closed",
+    "title": "\ud83d\udc1b Bug: Formula error when referencing a 1:m field"
+  },
+  "nocodb/nocodb#11049": {
+    "body": "### Please confirm that the feature request does ***not*** already exist\n\n- [x] I confirm there is no existing issue for this feature request.\n\n### Use case\n\nWhen there are no grouping options applied to a view, you get a symbol next to the record that indicates a comment was made on it. However, when you apply a grouping, that symbol is no longer present.\n\n![Image](https://github.com/user-attachments/assets/475a007c-e32b-4711-b230-21dc1b2df04b)\n\n![Image](https://github.com/user-attachments/assets/1cb95c62-d5d2-4bda-b62a-086fade1026c)\n\n### Suggested solution\n\nInclude the symbol.\n\n### Additional context\n\n_No response_",
+    "html_url": "https://github.com/nocodb/nocodb/issues/11049",
+    "labels": [
+      "Status: Reproducible"
+    ],
+    "state": "closed",
+    "title": "\ud83d\udd26 Feature: Show comments symbol when grouping view"
+  },
+  "nocodb/nocodb#11074": {
+    "body": "### Please confirm that the bug report does ***not*** already exist\n\n- [x] I confirm there is no existing issue for this bug.\n\n### Steps to reproduce\n\n1. Create a table with a field of type 'Currency'.\u200b\n2. Insert a record with the currency value set to 0.\u200b\n3. Observe that the cell appears empty.\n\nMost likely related to https://github.com/nocodb/nocodb/issues/5607\n\n### Desired Behavior\n\nThe cell should display '$0.00'.\n\n### Project Details\n\nNocoDB used as docker: true\nNocoDB version: 0.262.5\nDatabase used in NC_DB URL: pg\nOS on which NocoDB is running: Ubuntu\nDatabase version: 16.6\n\n### Attachments\n\n![Image](https://github.com/user-attachments/assets/dab93857-d2e9-4f5f-a59f-c6e1cb0eb091)",
+    "html_url": "https://github.com/nocodb/nocodb/issues/11074",
+    "labels": [
+      "Status: Reproducible"
+    ],
+    "state": "closed",
+    "title": "\ud83d\udc1b Bug: Currency fields with value 0 displayed as empty cells (Regression of #5607)"
+  },
+  "nocodb/nocodb#11094": {
+    "body": "### Please confirm that the bug report does ***not*** already exist\n\n- [x] I confirm there is no existing issue for this bug.\n\n### Steps to reproduce\n\nMark any field as hidden, and then check the dropdown for hidden fields. (Attaching video)\n\n### Desired Behavior\n\nIt should toggle and show `Show Field` if it's hidden\n\n### Project Details\n\nNode: **v22.12.0**\nArch: **arm64**\nPlatform: **darwin**\nDocker: **false**\nRootDB: **sqlite3**\nPackageVersion: **0.262.5**\n\n### Attachments\n\nhttps://github.com/user-attachments/assets/231e8011-8352-486d-bf12-b8e4b5027295",
+    "html_url": "https://github.com/nocodb/nocodb/issues/11094",
+    "labels": [],
+    "state": "closed",
+    "title": "\ud83d\udc1b Bug: Show field is not showing on hidden fields"
+  },
+  "nocodb/nocodb#11112": {
+    "body": "### Please confirm that the bug report does ***not*** already exist\n\n- [x] I confirm there is no existing issue for this bug.\n\n### Steps to reproduce\n\nNote that this database was recreated after importing a csv from airtable (because my rate was rediculusly abused so I could NOT use the api to do it automatically) so every value came out as a 'string' (except some int cells).\n\n When I set this column (Status) to be a single select; nocoDB beatifully recognized each unique string value to an option (though I obviously manually recreated the colors and order).\n\n After some days of succesfully using it I tried to add a NEW option FROM THE CELL DIRECTLY. Due to current's view filter on this column the row immediatelly dissapeared and when I removed the filter and the record reappeared nothing was inside the cell (in the Status column).\n So I then tried to add the option from the column dropdown menu like I would do in most cases. \n\nThe ui showed the new option; even let me set the color and name and reorder it. But when I hit 'Update Field' it gave me this error in the ui: Cannot read properties of undefined (reading 'map'). \nIN THE CONSOLE this came up\n\nPATCH https://mydomain.tld/api/v1/db/meta/columns/clyhby2i7mvjnkd 400 (Bad Request)           D8k-Za2R.js:119 \n\n\nand after some digging I realised that the payload that was sent to the database was \n{title: \"tset\", color: \"#cfdffe\", index: 7} for the new option which is probably the reason the server rejected it. \n\n[fullPayload.json](https://github.com/user-attachments/files/19760791/fullPayload.json)\n\n![Image](https://github.com/user-attachments/assets/032f88ca-f35e-41e0-85b8-6e51ff941a0e)\n\n### Desired Behavior\n\nUhh,,Like add the option? I guess\n\n### Project Details\n\nNode: **v22.14.0**\nArch: **x64**\nPlatform: **linux**\nDocker: **true**\nRootDB: **sqlite3**\nPackageVersion: **0.262.5**\n\n### Attachments\n\n_No response_",
+    "html_url": "https://github.com/nocodb/nocodb/issues/11112",
+    "labels": [],
+    "state": "closed",
+    "title": "\ud83d\udc1b Bug: Cannot read properties of undefined (reading 'map') When I tried to add a new option in a single select column"
+  },
+  "nocodb/nocodb#11140": {
+    "body": "### Please confirm that the bug report does ***not*** already exist\n\n- [x] I confirm there is no existing issue for this bug.\n\n### Steps to reproduce\n\nhttps://data-apis-v2.nocodb.com/#tag/Table-Records/operation/db-data-table-row-nested-list\n\nSuggests that the success response is an HTTP 200 status, but when self-hosting and attempting to link a row, it returns HTTP 201. \n\n### Desired Behavior\n\nReturn HTTP 200 on success\n\n### Project Details\n\nNode: **v22.14.0**\nArch: **x64**\nPlatform: **linux**\nDocker: **true**\nRootDB: **pg**\nPackageVersion: **0.262.2**\n\n### Attachments\n\n_No response_",
+    "html_url": "https://github.com/nocodb/nocodb/issues/11140",
+    "labels": [],
+    "state": "closed",
+    "title": "\ud83d\udc1b Bug: \"Link Record\" API call returns HTTP 201 instead of 200"
+  },
+  "nocodb/nocodb#11194": {
+    "body": "### Please confirm that the bug report does ***not*** already exist\n\n- [x] I confirm there is no existing issue for this bug.\n\n### Steps to reproduce\n\n1) look at a table with more than 1 page of data\n2) scroll down\n3) do a search which yields a small number of results (e.g. less than 1 page)\n\nthe results are not visible. it's as if there are no results.\nbut you have to scroll up to see them!\n\n### Desired Behavior\n\nautomatically reset scroll position (e.g. scroll to top) upon completing a search, so that you can immediately see all results\n\nor maybe don't always reset scroll position in all cases (e.g. it's not necessary if you only make minor changes to the query, and you get a similar number of results or you can still see a significant number of the results - in this case perhaps its desirable to keep the current scroll position)\n\n### Project Details\n\nNode: **v22.14.0**\nArch: **x64**\nPlatform: **linux**\nDocker: **true**\nRootDB: **sqlite3**\nPackageVersion: **0.262.5**\n\n### Attachments\n\n_No response_",
+    "html_url": "https://github.com/nocodb/nocodb/issues/11194",
+    "labels": [],
+    "state": "closed",
+    "title": "\ud83d\udc1b Bug: search results invisible due to scroll position"
+  },
+  "nocodb/nocodb#11201": {
+    "body": "### Please confirm that the bug report does ***not*** already exist\n\n- [x] I confirm there is no existing issue for this bug.\n\n### Steps to reproduce\n\n1. Create a trigger on any other type of webhook but manual\n2. Change to inactive\n3. Edit the type to manual trigger\n\nI get that the toggle must be disabled, but keeping it inactive doesn't show on the list that can be choose in the button field in the \"Run webhook\" mode\n\n### Desired Behavior\n\nThe most simple solution should be that the webhook should change to active when is updated to manual trigger.\n\nIf is expected that active status should also filter in the button list, then the active toggle should also be able to change for manual trigger, otherwise if shouldn't be a filter, the list shouldn't filter if the webhook was marked as unactive.\n\n### Project Details\n\nNode: **v22.14.0**\nArch: **x64**\nPlatform: **linux**\nDocker: **true**\nRootDB: **pg**\nPackageVersion: **0.262.5**\n\n### Attachments\n\n_No response_",
+    "html_url": "https://github.com/nocodb/nocodb/issues/11201",
+    "labels": [],
+    "state": "closed",
+    "title": "\ud83d\udc1b Bug: inactive trigger doesn't change to active."
+  },
+  "nocodb/nocodb#11225": {
+    "body": "### Please confirm that the bug report does ***not*** already exist\n\n- [x] I confirm there is no existing issue for this bug.\n\n### Steps to reproduce\n\nExample : April 27th 2025 is being marked as Monday. Refer screenshot attached\n\n<img width=\"1440\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/193d1c0b-4c0b-45c8-8605-846433bc1075\" />\n\n### Desired Behavior\n\nCreate appropriate mapping on the calendar view when in month mode.\n\n### Project Details\n\nprod\n\n### Attachments\n\n_No response_",
+    "html_url": "https://github.com/nocodb/nocodb/issues/11225",
+    "labels": [],
+    "state": "closed",
+    "title": "\ud83d\udc1b Bug: [cloud] calendar view in month mode displays incorrect date-day mapping"
+  },
+  "nocodb/nocodb#11231": {
+    "body": "### Please confirm that the bug report does ***not*** already exist\n\n- [x] I confirm there is no existing issue for this bug.\n\n### Steps to reproduce\n\nAfter clicking the Forgot Password button, when opening the link in the email, the message \"Password reset successful!\" is always displayed. The password change form should be displayed first, and this message should be fed back after successful submission.\n\n![Image](https://github.com/user-attachments/assets/0212dca3-19a9-4013-be23-03ec8588fc53)\n\n### Desired Behavior\n\n/\n\n### Project Details\n\n/\n\n### Attachments\n\n_No response_",
+    "html_url": "https://github.com/nocodb/nocodb/issues/11231",
+    "labels": [],
+    "state": "closed",
+    "title": "\ud83d\udc1b Bug: Forgot password always \"Password reset successful!\""
+  },
+  "nocodb/nocodb#11241": {
+    "body": "### Please confirm that the bug report does ***not*** already exist\n\n- [x] I confirm there is no existing issue for this bug.\n\n### Steps to reproduce\n\nWhen I was doing a Base copy, I checked the option to include views and records. I found that some tables' data could be copied completely, but some had no data at all. This seems to happen when the amount of table data exceeds one page.\n\n### Desired Behavior\n\nAll table data can be completely copied\n\n### Project Details\n\n/\n\n### Attachments\n\n_No response_",
+    "html_url": "https://github.com/nocodb/nocodb/issues/11241",
+    "labels": [],
+    "state": "closed",
+    "title": "\ud83d\udc1b Bug: When copy Base, some data can be completely copied, but some data is missing."
+  },
+  "nocodb/nocodb#11261": {
+    "body": "### Please confirm that the bug report does ***not*** already exist\n\n- [x] I confirm there is no existing issue for this bug.\n\n### Steps to reproduce\n\nCreate a json field use the api to fetch records with a where conditon f.e.  (JSONFIELD,is,null)\n\n### Desired Behavior\n\nthe is operator and isnot operator should be possible again on json fields as in the previous versions\n\n### Project Details\n\nOr manually fill in following info:\n\n```\nNocoDB used as docker : true\nNocoDB version : 0.263.0\n\n```\n\n\n### Attachments\n\nnocodb-1  | [Nest] 8  - 05/01/2025, 12:45:06 PM   ERROR [GlobalExceptionFilter] Unsupported comparison operator for JSON: is\nnocodb-1  | Error: Unsupported comparison operator for JSON: is\nnocodb-1  |     at QueryBuilder_PostgreSQL.<anonymous> (/usr/src/app/docker/main.js:260:19637)\nnocodb-1  |     at compileCallback (/usr/src/app/node_modules/knex/lib/formatter/formatterUtils.js:7:12)\nnocodb-1  |     at rawOrFn (/usr/src/app/node_modules/knex/lib/formatter/wrappingFormatter.js:225:7)\nnocodb-1  |     at QueryCompiler_PG.whereWrapped (/usr/src/app/node_modules/knex/lib/query/querycompiler.js:1095:17)\nnocodb-1  |     at QueryCompiler_PG.where (/usr/src/app/node_modules/knex/lib/query/querycompiler.js:584:34)\nnocodb-1  |     at QueryCompiler_PG.toSQL (/usr/src/app/node_modules/knex/lib/query/querycompiler.js:75:29)\nnocodb-1  |     at compileCallback (/usr/src/app/node_modules/knex/lib/formatter/formatterUtils.js:13:19)\nnocodb-1  |     at rawOrFn (/usr/src/app/node_modules/knex/lib/formatter/wrappingFormatter.js:225:7)\nnocodb-1  |     at QueryCompiler_PG.whereWrapped (/usr/src/app/node_modules/knex/lib/query/querycompiler.js:1095:17)\nnocodb-1  |     at QueryCompiler_PG.where (/usr/src/app/node_modules/knex/lib/query/querycompiler.js:584:34)\nnocodb-1  | [Nest] 8  - 05/01/2025, 12:45:06 PM   ERROR [DatasService] Error: Unsupported comparison operator for JSON: is \n",
+    "html_url": "https://github.com/nocodb/nocodb/issues/11261",
+    "labels": [],
+    "state": "closed",
+    "title": "\ud83d\udc1b Bug: Showstopper in the latest version is operator on json is no longer possible"
+  },
+  "nocodb/nocodb#11266": {
+    "body": "### Please confirm that the bug report does ***not*** already exist\n\n- [x] I confirm there is no existing issue for this bug.\n\n### Steps to reproduce\n\nWhen searching my grid view for the main column (formula field) using Filter or Ctrl + F nocodb renders the correct amount of rows as a skeleton loader but does not show the results. Instead I'm getting the error \"please check the server logs for more details\". See the following screenshot. Two rows are expected. Filter on the column \"Kunden\" works but not on \"Name\":\n\n![Image](https://github.com/user-attachments/assets/ce810564-deec-4400-abb9-b2bd629f5b63)\n\n### Desired Behavior\n\nWorking search as it was in the previous version.\n\n### Project Details\n\nNode: **v22.15.0**\nArch: **x64**\nPlatform: **linux**\nDocker: **true**\nRootDB: **pg**\nPackageVersion: **0.263.0**\n\n### Attachments\n\n_No response_",
+    "html_url": "https://github.com/nocodb/nocodb/issues/11266",
+    "labels": [
+      "\ud83d\udd0e Status: More Info Needed"
+    ],
+    "state": "closed",
+    "title": "\ud83d\udc1b Bug: Ctrl + F / Filter on formula field not working after Update to 0.263.0"
+  },
+  "nocodb/nocodb#11289": {
+    "body": "### Please confirm that the bug report does ***not*** already exist\n\n- [x] I confirm there is no existing issue for this bug.\n\n### Steps to reproduce\n\n1. Create lookup field\n2. Grouping by lookup field\n\n### Desired Behavior\n\n1. No titles on groups\n2. Sometimes impossible grouping by lookup field becouse \"Field of type {FieldName} (from {TableName}) not supported for grouping\"\n\n### Project Details\n\ndocker / 0.263.0 / pg\n\n### Attachments\n\n<img width=\"290\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/2b5b4b0d-df5e-4c01-bc23-bab84eb20861\" />\n<img width=\"266\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/6a003e17-0ec8-467a-b480-0ce9ddfef432\" />",
+    "html_url": "https://github.com/nocodb/nocodb/issues/11289",
+    "labels": [
+      "Status: Reproducible"
+    ],
+    "state": "closed",
+    "title": "\ud83d\udc1b Bug: Grouping by lookup field - no titles on group"
+  },
+  "nocodb/nocodb#11299": {
+    "body": "### Please confirm that the bug report does ***not*** already exist\n\n- [x] I confirm there is no existing issue for this bug.\n\n### Steps to reproduce\n\nHi, I have to downgrade my docker image of nocodb to 0.262.5 as for newer version some tables don\u2019t load. My base looks as **Attachments/base** \u2026the table \u201cKnihy\u201d (Books) loads correctly, but views for \u201cP\u0159e\u010dteno\u201d (readed) failed (for example calendar) with (`docker log`) error **Attachments/log**. All other errors seem similar (I can provide these on request). The column \u201cKdy (text)\u201d on \u201cP\u0159e\u010dteno\u201d is a formula (getting string from column \u201cKdy\u201d of date type) and it is set as display value field. That maybe that is the issue?\n\nPS: I also have to restore the previous version of `noco.db` database file, as the migrated version from 0.263.1 doesn\u2019t work on 0.262.5. If there doesn\u2019t suppose to be changes, there can be another are where the bug is?. \n\n### Desired Behavior\n\nWorking as for previous version(s), or provide migration information (e. g. \u2019key\u2019 should not be formula type).\n\n### Project Details\n\nNode: **v22.14.0**\nArch: **x64**\nPlatform: **linux**\nDocker: **true**\nRootDB: **sqlite3**\nPackageVersion: **0.263.1**\n\n### Attachments\n\n**base**:\n![Image](https://github.com/user-attachments/assets/99f1f619-3511-4cc4-b82a-b6bcf5dfc91a)\n\n**log**:\n\n```\n[Nest] 8  - 05/06/2025, 7:29:13 AM     LOG [BaseModelSqlv2] Error: Formula error: select * from (select COALESCE(SUBSTR((COALESCE(CASE \n        WHEN (CASE WHEN `nc_ry9l___Knihy`.`J_` = '\u2026' THEN true ELSE false END ) THEN 'todo' \n        ELSE 'p\u0159e\u010dteno'\n END, '') || COALESCE(CASE \n        WHEN (select GROUP_CONCAT((COALESCE(SUBSTR((`__nc_formula0`.`Kdy`),0,5), '') || COALESCE(', ','') ) , ',') from `nc_ry9l___P\u0159e\u010dteno` as `__nc_formula0` inner join `nc_ry9l___nc_m2m_vvx0qpowkb` as `__nc1` on `__nc1`.`table2_id` = `__nc_formula0`.`id` where `__nc1`.`table1_id` = `nc_ry9l___Knihy`.`ncRecordId`) THEN COALESCE(' \u2014 ', '') || COALESCE(REPLACE(REPLACE(SUBSTR((select GROUP_CONCAT((COALESCE(SUBSTR((`__nc_formula0`.`Kdy`),0,5), '') || COALESCE(', ','') ) , ',') from `nc_ry9l___P\u0159e\u010dteno` as `__nc_formula2` inner join `nc_ry9l___nc_m2m_vvx0qpowkb` as `__nc3` on `__nc3`.`table2_id` = `__nc_formula2`.`id` where `__nc3`.`table1_id` = `nc_ry9l___Knihy`.`ncRecordId`),1,LENGTH((select GROUP_CONCAT((COALESCE(SUBSTR((`__nc_formula0`.`Kdy`),0,5), '') || COALESCE(', ','') ) , ',') from `nc_ry9l___P\u0159e\u010dteno` as `__nc_formula4` inner join `nc_ry9l___nc_m2m_vvx0qpowkb` as `__nc5` on `__nc5`.`table2_id` = `__nc_formula4`.`id` where `__nc5`.`table1_id` = `nc_ry9l___Knihy`.`ncRecordId`)) - 2 ),'2018','2018-'),', ,',', '),'')  \n        ELSE ''\n END,'') ),1,1), '') || COALESCE(COALESCE(CASE \n        WHEN (SUBSTR(SUBSTR((select GROUP_CONCAT((COALESCE(SUBSTR((`__nc_formula0`.`Kdy`),0,5), '') || COALESCE(', ','') ) , ',') from `nc_ry9l___P\u0159e\u010dteno` as `__nc_formula6` inner join `nc_ry9l___nc_m2m_vvx0qpowkb` as `__nc7` on `__nc7`.`table2_id` = `__nc_formula6`.`id` where `__nc7`.`table1_id` = `nc_ry9l___Knihy`.`ncRecordId`),-(6)),1,4) - SUBSTR((select GROUP_CONCAT((COALESCE(SUBSTR((`__nc_formula0`.`Kdy`),0,5), '') || COALESCE(', ','') ) , ',') from `nc_ry9l___P\u0159e\u010dteno` as `__nc_formula8` inner join `nc_ry9l___nc_m2m_vvx0qpowkb` as `__nc9` on `__nc9`.`table2_id` = `__nc_formula8`.`id` where `__nc9`.`table1_id` = `nc_ry9l___Knihy`.`ncRecordId`),1,4) ) IS NOT NULL AND (SUBSTR(SUBSTR((select GROUP_CONCAT((COALESCE(SUBSTR((`__nc_formula0`.`Kdy`),0,5), '') || COALESCE(', ','') ) , ',') from `nc_ry9l___P\u0159e\u010dteno` as `__nc_formula6` inner join `nc_ry9l___nc_m2m_vvx0qpowkb` as `__nc7` on `__nc7`.`table2_id` = `__nc_formula6`.`id` where `__nc7`.`table1_id` = `nc_ry9l___Knihy`.`ncRecordId`),-(6)),1,4) - SUBSTR((select GROUP_CONCAT((COALESCE(SUBSTR((`__nc_formula0`.`Kdy`),0,5), '') || COALESCE(', ','') ) , ',') from `nc_ry9l___P\u0159e\u010dteno` as `__nc_formula8` inner join `nc_ry9l___nc_m2m_vvx0qpowkb` as `__nc9` on `__nc9`.`table2_id` = `__nc_formula8`.`id` where `__nc9`.`table1_id` = `nc_ry9l___Knihy`.`ncRecordId`),1,4) ) != 0 THEN CASE \n        WHEN (SUBSTR(SUBSTR((select GROUP_CONCAT((COALESCE(SUBSTR((`__nc_formula0`.`Kdy`),0,5), '') || COALESCE(', ','') ) , ',') from `nc_ry9l___P\u0159e\u010dteno` as `__nc_formula10` inner join `nc_ry9l___nc_m2m_vvx0qpowkb` as `__nc11` on `__nc11`.`table2_id` = `__nc_formula10`.`id` where `__nc11`.`table1_id` = `nc_ry9l___Knihy`.`ncRecordId`),-(6)),1,4) - SUBSTR((select GROUP_CONCAT((COALESCE(SUBSTR((`__nc_formula0`.`Kdy`),0,5), '') || COALESCE(', ','') ) , ',') from `nc_ry9l___P\u0159e\u010dteno` as `__nc_formula12` inner join `nc_ry9l___nc_m2m_vvx0qpowkb` as `__nc13` on `__nc13`.`table2_id` = `__nc_formula12`.`id` where `__nc13`.`table1_id` = `nc_ry9l___Knihy`.`ncRecordId`),1,4) ) < 0  THEN '' \n        ELSE SUBSTR((select GROUP_CONCAT((COALESCE(SUBSTR((`__nc_formula0`.`Kdy`),0,5), '') || COALESCE(', ','') ) , ',') from `nc_ry9l___P\u0159e\u010dteno` as `__nc_formula14` inner join `nc_ry9l___nc_m2m_vvx0qpowkb` as `__nc15` on `__nc15`.`table2_id` = `__nc_formula14`.`id` where `__nc15`.`table1_id` = `nc_ry9l___Knihy`.`ncRecordId`),-(6))\n END \n        ELSE ''\n END, '') || COALESCE((select GROUP_CONCAT((COALESCE(SUBSTR((`__nc_formula0`.`Kdy`),0,5), '') || COALESCE(', ','') ) , ',') from `nc_ry9l___P\u0159e\u010dteno` as `__nc_formula16` inner join `nc_ry9l___nc_m2m_vvx0qpowkb` as `__nc17` on `__nc17`.`table2_id` = `__nc_formula16`.`id` where `__nc17`.`table1_id` = `nc_ry9l___Knihy`.`ncRecordId`),'') ,'')  as `__dry_run_alias` from `nc_ry9l___Knihy`) __nc_alias - SQLITE_ERROR: no such column: __nc_formula0.Kdy\nError: Please check server log for more details\n    at NcError.internalServerError (/usr/src/app/docker/main.js:1539:45034)\n    at /usr/src/app/docker/main.js:1745:61508\n    at async Promise.all (index 1)\n    at async DatasService.getDataList (/usr/src/app/docker/main.js:1745:61086)\n    at async DatasService.dataList (/usr/src/app/docker/main.js:1745:58338)\n    at async DataAliasController.dataList (/usr/src/app/docker/main.js:184:58125)\n```",
+    "html_url": "https://github.com/nocodb/nocodb/issues/11299",
+    "labels": [],
+    "state": "closed",
+    "title": "\ud83d\udc1b Bug: SQLITE_ERROR: no such column for lookup cols on 0.263.*"
+  },
+  "nocodb/nocodb#11306": {
+    "body": "### Please confirm that the bug report does ***not*** already exist\n\n- [x] I confirm there is no existing issue for this bug.\n\n### Steps to reproduce\n\nhttps://community.nocodb.com/t/search-in-gallery-view-is-not-working/1858\n\n- Create a gallery view\n- Search(Ctrl+F) for any particular value \n\n_Nothing gets highlighted or filtered_\n\n### Desired Behavior\n\nFiltering of searched values in Gallery view\n\n### Project Details\n\nProduct\n\n### Attachments\n\nhttps://github.com/user-attachments/assets/1150f9c6-d91c-4cb9-bd18-73171a577732",
+    "html_url": "https://github.com/nocodb/nocodb/issues/11306",
+    "labels": [],
+    "state": "closed",
+    "title": "\ud83d\udc1b Bug: Search in Gallery view is broken"
+  },
+  "nocodb/nocodb#11309": {
+    "body": "### Please confirm that the bug report does ***not*** already exist\n\n- [x] I confirm there is no existing issue for this bug.\n\n### Steps to reproduce\n\nSome API v3 meta endpoints do not match the Swagger schema. In particular, they require the `base_id` be passed twice, which appears to be unintentional.\n\nCalling this endpoint returns a 404 Not Found:\n\n```\nGET /api/v3/meta/bases/{base_id}/tables\n```\n\nHowever, calling this endpoint returns 200 OK and a valid response body:\n\n```\nGET /api/v3/meta/bases/{base_id}/bases/{base_id}/tables\n```\n\nNote we have to include `/bases/{base_id}` twice.\n\nThe issue seems to be [here](https://github.com/nocodb/nocodb/blob/4506df0ce5c620a4d3ad128791b589c38e3bafa6/packages/nocodb/src/controllers/v3/tables-v3.controller.ts#L33), where `PREFIX_APIV3_METABASE` is `/api/v3/meta/bases/:baseId`. This causes the `/bases/:baseId` to be included in the endpoint path twice. Note that this is not the only endpoint this bug affects.\n\n### Desired Behavior\n\nI would expect that calling this endpoint returns 200 OK and a valid response body, as documented in the Swagger schema.\n\n```\nGET /api/v3/meta/bases/{base_id}/tables\n```\n\n### Project Details\n\nNode: **v22.15.0**\nArch: **x64**\nPlatform: **linux**\nDocker: **false**\nRootDB: **pg**\nPackageVersion: **0.263.0**\n\n### Attachments\n\n_No response_",
+    "html_url": "https://github.com/nocodb/nocodb/issues/11309",
+    "labels": [],
+    "state": "closed",
+    "title": "\ud83d\udc1b Bug: Some API v3 meta endpoints do not match the Swagger schema"
+  },
+  "nocodb/nocodb#11318": {
+    "body": "### Please confirm that the bug report does ***not*** already exist\n\n- [x] I confirm there is no existing issue for this bug.\n\n### Steps to reproduce\n\n![Image](https://github.com/user-attachments/assets/0c2bed55-42be-41a0-ac57-7d3d19edfe84)\n\nCreate field with User\uff0cthen create the view and add Group with this Field \u3002then that will Error with the info\uff1a\n\nC-lxOUHc.js:12 Error fetching group chunk at level 0\n\n![Image](https://github.com/user-attachments/assets/decca483-bc2e-4dbe-a412-15f0305ac0a5)\n\n### Desired Behavior\n\nGroup function work well \n\n### Project Details\n\nNode: **v18.5.0**\nArch: **x64**\nPlatform: **win32**\nDocker: **false**\nRootDB: **sqlite3**\nPackageVersion: **0.263.1**\n\n### Attachments\n\n_No response_",
+    "html_url": "https://github.com/nocodb/nocodb/issues/11318",
+    "labels": [],
+    "state": "closed",
+    "title": "\ud83d\udc1b Bug: Group function cannot work with user"
+  },
+  "nocodb/nocodb#11324": {
+    "body": "### Please confirm that the bug report does ***not*** already exist\n\n- [x] I confirm there is no existing issue for this bug.\n\n### Steps to reproduce\n\n1. create Table-1\n2. create Table-2\n3. In Table-1, add link column\n4. In Table-1, add last modified by column\n5. In Table-1, add last modified time column\n6. In Table-1, link a new record to the link column created in step 3\n\n### Desired Behavior\n\nlast modified by and last modified time column should be updated\n\n### Project Details\n\n```\nNocoDB used as docker: false\nNocoDB version: 0.263.1 (not sure how to check but the project was created on cloud 9 May 2025)\n```\n\n### Attachments\n\nTable-1\n![Image](https://github.com/user-attachments/assets/6cdc54cb-6d4c-4703-baf3-bc5743d18ca4)\n\nTable-2\n![Image](https://github.com/user-attachments/assets/17958364-0aac-44d2-b35a-f97c7de0cfde)\n\n\n![Image](https://github.com/user-attachments/assets/4de628ef-1a83-48a9-9b94-25232f55e3e0)",
+    "html_url": "https://github.com/nocodb/nocodb/issues/11324",
+    "labels": [
+      "Status: Reproducible"
+    ],
+    "state": "closed",
+    "title": "\ud83d\udc1b Bug: on create a new linked record, last modified of source record is not updated"
+  },
+  "nocodb/nocodb#11332": {
+    "body": "### Please confirm that the bug report does ***not*** already exist\n\n- [x] I confirm there is no existing issue for this bug.\n\n### Steps to reproduce\n\n```\n$ nix run github:nocodb/nocodb\nerror: hash mismatch in fixed-output derivation '/nix/store/vgmk8gixcs2ddcpnbb6kjk9g4mm4mf95-nocodb-pnpm-deps.drv':\n         specified: sha256-gVsLTZnz6f7VLI0cRHpiWYTK8l3azvfkSXfEtikfXvg=\n            got:    sha256-fXm6q0syEUGszFE2IeCa8BNrbp9UKYqK4mPUxAH5zqg=\nerror: 1 dependencies of derivation '/nix/store/l82iwhnvfc4d66wx3yrq6ys6fkqxz989-nocodb-331d002.drv' failed to build\n```\n\n### Desired Behavior\n\n`$ nix run github:nocodb/nocodb` should run without errors\n\n### Project Details\n\nUsed as docker: false\n\n### Attachments\n\n_No response_",
+    "html_url": "https://github.com/nocodb/nocodb/issues/11332",
+    "labels": [],
+    "state": "closed",
+    "title": "\ud83d\udc1b Bug: Nix run fails with \"hash mismatch\""
+  },
+  "nocodb/nocodb#11351": {
+    "body": "### Please confirm that the bug report does ***not*** already exist\n\n- [x] I confirm there is no existing issue for this bug.\n\n### Steps to reproduce\n\nHappen at least on sqlite3.\n\nWhen calling api with where clause, for user field with comparison of like or nlike will cause an error if there's 25 users in base.\n\n### Desired Behavior\n\nthe command executes successfully\n\n### Project Details\n\n-\n\n### Attachments\n\n_No response_",
+    "html_url": "https://github.com/nocodb/nocodb/issues/11351",
+    "labels": [],
+    "state": "closed",
+    "title": "\ud83d\udc1b Bug: filter user field with like or nlike with more than 25 users in base will cause error"
+  },
+  "nocodb/nocodb#11374": {
+    "body": "### Please confirm that the feature request does ***not*** already exist\n\n- [x] I confirm there is no existing issue for this feature request.\n\n### Use case\n\nIn a NocoDB view, I filter records using a single-select field, such as:\n\n- Project = A\u9879\u76ee\n\n- Status = \u8fdb\u884c\u4e2d\n\nThis filter limits the view to only relevant records. However, when I click \u201cAdd Record\u201d within the view, those single-select field filters are not used as default values in the new record form. I need to manually select them again.\n\nThis is repetitive and error-prone in workflows where I frequently add data under the same filtered condition.\n\n### Suggested solution\n\nWhen creating a new record within a filtered view:\n\n- If the filter involves single-select fields, use those selected values as default values in the add record form.\n\n- The values should still be editable by the user.\n\n- This should apply only to fields with filters in the current view.\n\nExample:\nIf the view filter is Project = A\u9879\u76ee (where \"Project\" is a single-select), then the \"Add Record\" form should pre-fill the \"Project\" field with \"A\u9879\u76ee\".\n\n### Additional context\n\nThis feature would streamline data entry in filtered contexts (e.g. adding tasks to a specific project or adding leads under a specific campaign).\nIt would also align with user expectations when working with filtered views \u2014 especially for single-select fields, where the selected option has a clear and unambiguous value.",
+    "html_url": "https://github.com/nocodb/nocodb/issues/11374",
+    "labels": [],
+    "state": "closed",
+    "title": "\ud83d\udd26 Feature: Use single-select filter values in views as default when adding new records"
+  },
+  "nocodb/nocodb#11405": {
+    "body": "### Please confirm that the bug report does ***not*** already exist\n\n- [x] I confirm there is no existing issue for this bug.\n\n### Steps to reproduce\n\nI noticed this morning after upgrading to the latest version of NocoDB that several of my records were missing values in a few specific columns (mostly short text columns).\n\nWhen navigating to some of the audit trails of a few of the impacted records, there is no recorded history of the cells being erased.\n\nI am certain these cells had values in the columns as a backup copy of the table I had taken yesterday shows the table cells as populated.\n\nI don't have any automated processes that would have changed them, and even if I did, I would expect any such changes to be recorded in NocoDB.\n\n### Desired Behavior\n\nIf a table cell is changed, it should be recorded in the audit history.\n\n### Project Details\n\nNode: **v22.15.1**\nArch: **x64**\nPlatform: **linux**\nDocker: **true**\nRootDB: **pg**\nPackageVersion: **0.263.3**\n\n### Attachments\n\n_No response_",
+    "html_url": "https://github.com/nocodb/nocodb/issues/11405",
+    "labels": [],
+    "state": "closed",
+    "title": "\ud83d\udc1b Bug: Table cells being wiped without entries in the 'Audits' display"
+  },
+  "nocodb/nocodb#11406": {
+    "body": "### Please confirm that the bug report does ***not*** already exist\n\n- [x] I confirm there is no existing issue for this bug.\n\n### Steps to reproduce\n\nWhen using a lookup field to reference an attachment field (such as an image/icon) from another table via a linked records field, the expected image thumbnails or cover images are not rendered. Instead, a blank/default file icon is shown in both the lookup field column and Gallery View cover image.\n\n1. Create two tables A and B in cloud.\n2. Link using links or LTAR \n3. Create an Attachment field and add a lookup to this field\n4. Create a Gallery View and choose the lookup (attachment field) as cover image.\n\n<img width=\"773\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/40e935dc-623a-4800-ae9e-df937693af71\" />\n\n<img width=\"1147\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/3b0fd36f-5c8f-4bfa-8cee-2d0d67a681b1\" />\n\n- Check the thumbnail in Grid and the cover image in Gallery view \n\n### Desired Behavior\n\nWorks just like OSS\n\n### Project Details\n\nReproducible in Cloud . Works correctly in OSS\n\n### Attachments\n\n### OSS Behavior\n\n<img width=\"673\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/8f1b889f-190b-48c9-8ff9-838a431394ef\" />\n\n<img width=\"995\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/8205c5b7-af57-43cf-bacb-1e7197cb7d8a\" />",
+    "html_url": "https://github.com/nocodb/nocodb/issues/11406",
+    "labels": [],
+    "state": "closed",
+    "title": "\ud83d\udc1b Bug:  Lookup Field Not Displaying Attachment Thumbnails in Grid View & Cover Images in Gallery View"
+  },
+  "nocodb/nocodb#11415": {
+    "body": "### Please confirm that the bug report does ***not*** already exist\n\n- [x] I confirm there is no existing issue for this bug.\n\n### Steps to reproduce\n\n* create a table, add a new SingleLineText column\n* add a new row, set the SingleLineText value to \"Hello\"\n* call api to set SingleLineText for Id 1 to null with batch update (array) `[{\"Id\": 1, \"SingleLineText\": null}]`\n* check audit log, the log for when setting to null is not recorded\n\nobservation:\n\nThis is probably caused because the newData that's passed to populate audit log is data fetched from `list`, thus having the field that's set to null, as `undefined`.\n\n### Desired Behavior\n\nshould log the audit correctly\n\n### Project Details\n\n-\n\n### Attachments\n\n_No response_",
+    "html_url": "https://github.com/nocodb/nocodb/issues/11415",
+    "labels": [],
+    "state": "closed",
+    "title": "\ud83d\udc1b Bug: batch update audit log not recorded when setting field to null"
+  },
+  "nocodb/nocodb#11423": {
+    "body": "### Please confirm that the bug report does ***not*** already exist\n\n- [x] I confirm there is no existing issue for this bug.\n\n### Steps to reproduce\n\n# Issue\nUse NocoDB with a SQLite database. On version 0.263.4. I have a table that uses JSON data type. When I query the table and JSON column for records using the `like` operator. i.e. (AlertGeocode,like,040109) i receive a 400 error. I believe this broke around the time 0.263.0 came out, as this worked previously. I found #10860 that is kind of similar to this issue, but my issue is not resolved.\n\n# Request\n```\ncurl -X 'GET' \\\n  'https://db.domain.com/api/v2/tables/tableID/records?viewId=vwfj8lyoclapi6fy&where=%28AlertGeocode%2Clike%2C840%29&limit=25&shuffle=0&offset=0' \\\n  -H 'accept: application/json' \\\n  -H 'xc-token: TOKEN'\n```\n\n# Response\n```json\n{\n  \"error\": \"DATABASE_ERROR\",\n  \"message\": \"near\",\n  \"code\": \"SQLITE_ERROR\"\n}\n```\n\n# Logs\n```\n[Nest] 8  - 05/20/2025, 1:25:09 AM   ERROR [DatasService] Error: select * from (select `nc_x7qa___Alerts`.`id` as `cwoep64o75hmh6m`, `nc_x7qa___Alerts`.`AlertID` as `c1s8p1e0wqmzvuy`, `nc_x7qa___Alerts`.`AlertData` as `ccy39c5hu1roxwr`, `nc_x7qa___Alerts`.`AlertSent` as `c1c10pt6z5h5dcq`, `nc_x7qa___Alerts`.`AlertSender` as `c7s673d9k7qm93t`, `nc_x7qa___Alerts`.`AlertGeocode` as `ce39fgngg99bnpr`, `nc_x7qa___Alerts`.`AlertPolygon` as `ckaynh6ppz5rnlf`, `nc_x7qa___Alerts`.`AlertReferences` as `cr1dvpch8v21yyy`, `nc_x7qa___Alerts`.`AlertThread` as `c5p4n4ad18ugi3m` from `nc_x7qa___Alerts` where ((((`AlertSent` >= '2025-05-19'))) and (((`AlertGeocode` ilike '%040109%')))) order by (`AlertSent`) desc, `nc_order` asc limit 2000) __nc_alias - SQLITE_ERROR: near \"ilike\": syntax error\n```\n\n### Desired Behavior\n\nThe Like operator on a JSON column should do a fuzzy search (similar to a SQL where column like '%value%')\n\n### Project Details\n\nNode: **v22.15.1**\nArch: **x64**\nPlatform: **linux**\nDocker: **true**\nRootDB: **sqlite3**\nPackageVersion: **0.263.4**\n\n### Attachments\n\n_No response_",
+    "html_url": "https://github.com/nocodb/nocodb/issues/11423",
+    "labels": [],
+    "state": "closed",
+    "title": "\ud83d\udc1b Bug: SQLite ilike Syntax Error on where clause"
+  },
+  "nocodb/nocodb#11531": {
+    "body": "### Please confirm that the bug report does ***not*** already exist\n\n- [x] I confirm there is no existing issue for this bug.\n\n### Steps to reproduce\n\nMaybe related to https://github.com/nocodb/nocodb/issues/8310, I can't tell.\n\nSharing a password-protected view with groups throws an \"Error while loading data\" (translation) message and there are 2 XHR 403 errors in the browser console logs.\n\nIt happens on 0.263.4, I don't know in which version it broke first.\n\nDisabling password restores correct behaviour.\n\n### Desired Behavior\n\nSharing a password protected view that uses groupings should display the view. \n\n### Project Details\n\nNocodb used as docker: true\nNode: **v22.15.1**\nArch: **x64**\nPlatform: **linux**\nDocker: **true**\nRootDB: **sqlite3**\nPackageVersion: **0.263.4**\n\n### Attachments\n\n_No response_",
+    "html_url": "https://github.com/nocodb/nocodb/issues/11531",
+    "labels": [
+      "Status: Reproducible"
+    ],
+    "state": "closed",
+    "title": "\ud83d\udc1b Bug: Group by shared view with password is broken (again)"
+  },
+  "nocodb/nocodb#11545": {
+    "body": "### Please confirm that the bug report does ***not*** already exist\n\n- [x] I confirm there is no existing issue for this bug.\n\n### Steps to reproduce\n\nWant to delete a record in the radio drop-down box, but nothing happens when I click the button.\n![Image](https://github.com/user-attachments/assets/b2a00f77-3f67-4477-8769-003f57191f50)\n\nWhen I added a new field and then went back to delete the record, it was normal again.\n![Image](https://github.com/user-attachments/assets/26b43b9a-ee82-4629-88ea-b697b6a9d5be)\n\n### Desired Behavior\n\nIt should be possible to delete normally\n\n### Project Details\n\nhttps://app.nocodb.com/#/w3oez0rl/px04ans9b3dfqpp/mqmh48wtebgt32y/vwyvn9f34y66oy63/field\n\n### Attachments\n\n_No response_",
+    "html_url": "https://github.com/nocodb/nocodb/issues/11545",
+    "labels": [],
+    "state": "closed",
+    "title": "\ud83d\udc1b Bug: Cannot delete record in single-select drop-down box"
+  },
+  "nocodb/nocodb#11591": {
+    "body": "### Please confirm that the feature request does ***not*** already exist\n\n- [x] I confirm there is no existing issue for this feature request.\n\n### Use case\n\nAs a user I want to quickly clear the search criteria and close the search box so I can see all my records\n\n\n\n### Suggested solution\n\nModify the Search component handler to clear and close the Search filter input when the user presses \"esc\".  \n\n### Additional context\n\nNote: the Search filter input currently closes only if it does not contain search text.  The user must manually select and delete search text to clear the search filter.  \n\n## Screenshots\n![Image](https://github.com/user-attachments/assets/7a72b088-3cb4-4ab5-a59b-d3741b0bdb2f)",
+    "html_url": "https://github.com/nocodb/nocodb/issues/11591",
+    "labels": [],
+    "state": "closed",
+    "title": "\ud83d\udd26 Feature: Always clear and close search box on esc"
+  },
+  "nocodb/nocodb#11614": {
+    "body": "### Please confirm that the bug report does ***not*** already exist\n\n- [x] I confirm there is no existing issue for this bug.\n\n### Steps to reproduce\n\n1. Setup Minio as Storage via WebUI of NocoDB\nmy config: \n\n> Minio Endpoint*: 192.168.1.49\n> Port* : 9000\n> Bucket Name* : nocodb\n> Access Key* : minioadmin\n> Access Secret*: ***\n> Use SSL: false\n\n2. Hit \"test\" button\n\n![Image](https://github.com/user-attachments/assets/0f61c700-8ff9-4ae7-813c-d0d0ad900842)\n\n### Desired Behavior\n\nI expect successful test because i completed all the tests via minio client from diffirent devices in my network. Here is logs from docker after clicking \"test\" button:\n\n> 2025-06-07T20:54:43.848Z ioredis:redis write command[172.18.0.2:6379]: 0 -> get([ 'nc:noco:user:something@gmail.com' ])\n> Sat, 07 Jun 2025 20:54:48 GMT express:router dispatching POST /api/v1/db/meta/plugins/test\n> Sat, 07 Jun 2025 20:54:48 GMT express:router query  : /api/v1/db/meta/plugins/test\n> Sat, 07 Jun 2025 20:54:48 GMT express:router expressInit  : /api/v1/db/meta/plugins/test\n> Sat, 07 Jun 2025 20:54:48 GMT express:router corsMiddleware  : /api/v1/db/meta/plugins/test\n> Sat, 07 Jun 2025 20:54:48 GMT express:router serveStatic  : /api/v1/db/meta/plugins/test\n> Sat, 07 Jun 2025 20:54:48 GMT express:router mounted_app  : /api/v1/db/meta/plugins/test\n> Sat, 07 Jun 2025 20:54:48 GMT express:router dispatching POST /api/v1/db/meta/plugins/test\n> Sat, 07 Jun 2025 20:54:48 GMT express:router query  : /api/v1/db/meta/plugins/test\n> Sat, 07 Jun 2025 20:54:48 GMT express:router expressInit  : /api/v1/db/meta/plugins/test\n> Sat, 07 Jun 2025 20:54:48 GMT express:router <anonymous>  : /api/v1/db/meta/plugins/test\n> Sat, 07 Jun 2025 20:54:48 GMT express:router cookieParser  : /api/v1/db/meta/plugins/test\n> Sat, 07 Jun 2025 20:54:48 GMT express:router trim prefix (/api/v1/db/meta/plugins/test) from url /api/v1/db/meta/plugins/test\n> Sat, 07 Jun 2025 20:54:48 GMT express:router <anonymous> /api/v1/db/meta/plugins/test : /api/v1/db/meta/plugins/test\n> Sat, 07 Jun 2025 20:54:48 GMT body-parser:json content-type \"application/json\"\n> Sat, 07 Jun 2025 20:54:48 GMT body-parser:json content-encoding \"identity\"\n> Sat, 07 Jun 2025 20:54:48 GMT body-parser:json read body\n> Sat, 07 Jun 2025 20:54:48 GMT body-parser:json parse body\n> Sat, 07 Jun 2025 20:54:48 GMT body-parser:json parse json\n> Sat, 07 Jun 2025 20:54:48 GMT express:router trim prefix (/api/v1/db/meta/plugins/test) from url /api/v1/db/meta/plugins/test\n> Sat, 07 Jun 2025 20:54:48 GMT express:router <anonymous> /api/v1/db/meta/plugins/test : /api/v1/db/meta/plugins/test\n> Sat, 07 Jun 2025 20:54:48 GMT body-parser:urlencoded body already parsed\n> 2025-06-07T20:54:48.768Z nc:cache RedisCacheMgr::getRaw: getting key nc:noco:user:something@gmail.com with type TYPE_OBJECT\n> 2025-06-07T20:54:48.771Z ioredis:redis write command[172.18.0.2:6379]: 0 -> get([ 'nc:noco:user:something@gmail.com' ])\n> [20:54:48.775][emittery:emit][undefined] Event Name: plugin.test\n>         data: Object with the following keys failed to stringify: testBody,req\n> [20:54:48.775][emittery:emit][undefined] Event Name: __nc_all_events__\n>         data: Object with the following keys failed to stringify: event,data\n\nAnd after this nocodb exiting with code 0 and container restarts. On webpage i see message \"Some internal error ...\".  Most likely similar issue is #11303 . But it's 100% related to NocoDB and Minio installed correctly.\n\n!NOTE\nSaving Minio as storage action is completed successfully. There is a problem only with \"test\" function. Saving works correctly.\n\n### Project Details\n\nSelf hosted with docker compose\nHost OS: Ubuntu 22.04\nInstalled via official install script\nDB: Postgres\nNo SSL, works via reverse proxy with ssl-term-on-proxy\n\n### Attachments\n\n_No response_",
+    "html_url": "https://github.com/nocodb/nocodb/issues/11614",
+    "labels": [],
+    "state": "closed",
+    "title": "\ud83d\udc1b Bug: Can't setup Minio as storage"
+  },
+  "nocodb/nocodb#11635": {
+    "body": "### Please confirm that the bug report does ***not*** already exist\n\n- [x] I confirm there is no existing issue for this bug.\n\n### Steps to reproduce\n\nI had the problem that when i tried to upload an attachment, it would upload it and at the end respond with : \n`400 (bad request)` \nAfter checking the logs i notice that the MinIO is reporting incompatibility with my CPU : \n```\nminio-1 exited with code 127\nminio-1       | Fatal glibc error: CPU does not support x86-64-v2\nminio-1       | Fatal glibc error: CPU does not support x86-64-v2\nminio-1 exited with code 127\n```\nwhich is a[ known issue](https://github.com/minio/minio/issues/18365) of the MinIO; it the latest image won't work on CPUs that don't support **x86-64-v2**.\n\n### Desired Behavior\n\nthe solution is to change the MinIO image in docker-compose.yml file or in a docker-compose.override.yml file with the latest v1 image ([like this](https://hub.docker.com/layers/minio/minio/RELEASE.2025-05-24T17-08-30Z-cpuv1/images/sha256-85e4092a0773b20fe7e3453b216de0fc820ee90463c5e045b66796da65d99ee0)) and rebuild it then start NocoDB using Auto-Upstall script.\n\nPlease add a [check](https://unix.stackexchange.com/questions/631217/how-do-i-check-if-my-cpu-supports-x86-64-v2) for older CPUs in script so if they don't support the x86-64-v2, it uses the latest v1 image for MinIO.\n\n### Project Details\n\ndocker : True\nversion : 263.4\ndb : pg\nproject : new Project\nOS : Linux - ubuntu 24.04 LTS\n\n### Attachments\n\n_No response_",
+    "html_url": "https://github.com/nocodb/nocodb/issues/11635",
+    "labels": [],
+    "state": "closed",
+    "title": "\ud83d\udc1b Bug: MinIO Latest Image doesn't support all CPUs"
+  },
+  "nocodb/nocodb#11667": {
+    "body": "### Please confirm that the bug report does ***not*** already exist\n\n- [x] I confirm there is no existing issue for this bug.\n\n### Steps to reproduce\n\n1. Create two records with empty field of type \"Date\" or \"Date time\"\n2. Fill any value in the first record\n3. Drag the fill handle (red circle in the bottom right corner of selected cell) onto the second record: field in the second record stays empty\n5. Fill any value in the second record\n6. Drag the fill handle onto the second record: field in the second record becomes empty\n\nFound after upgrading existing installation (docker) to 0.263.6, reproduced on fresh installation. Works on existing tables and new tables for fields with type \"Date\" and \"Date time\" regardless of field type in database. Does not happen on fields with type \"Time\" regardless of field type in database.\n\n### Desired Behavior\n\nFill handle working for \"Date\" and \"Date time\" fields as was previously\n\n### Project Details\n\nNode: **v22.16.0**\nArch: **x64**\nPlatform: **linux**\nDocker: **true**\nRootDB: **pg**\nPackageVersion: **0.263.6**\n\n### Attachments\n\n_No response_",
+    "html_url": "https://github.com/nocodb/nocodb/issues/11667",
+    "labels": [],
+    "state": "closed",
+    "title": "\ud83d\udc1b Bug: fill handle not working for \"Date\" and \"Date time\" fields in 0.263.6"
+  },
+  "nocodb/nocodb#11669": {
+    "body": "### Please confirm that the bug report does ***not*** already exist\n\n- [x] I confirm there is no existing issue for this bug.\n\n### Steps to reproduce\n\nThe search field is blocked when the view mode is locked.\nIn previous versions, even if the view mode was locked, the user could still choose a field to filter in the search field.\nI just updated to version 0.263.6 from version 0.262.4.\n\n### Desired Behavior\n\nThe expectation is that even if the view mode is locked, the user can still use the search field and choose which field to search by.\n\n### Project Details\n\nNode: **v22.16.0**\nArch: **x64**\nPlatform: **linux**\nDocker: **true**\nRootDB: **pg**\nPackageVersion: **0.263.6**\n\n### Attachments\n\n_No response_",
+    "html_url": "https://github.com/nocodb/nocodb/issues/11669",
+    "labels": [
+      "Status: Reproducible"
+    ],
+    "state": "closed",
+    "title": "\ud83d\udc1b Bug: The search field is blocked"
+  },
+  "nocodb/nocodb#11684": {
+    "body": "### Please confirm that the bug report does ***not*** already exist\n\n- [x] I confirm there is no existing issue for this bug.\n\n### Steps to reproduce\n\n- Create Decimal field. Edit field. Set default value to `0.5`. Save. Open edit field again, it ain't visible\n- Create Number field. Edit field. Set default value to 0. Save. Submit a record using form view. Default value is not captured\n\nhttps://discord.com/channels/661905455894888490/661905455894888493/1383731849636876546\n\n### Desired Behavior\n\nx\n\n### Project Details\n\n263.7\n\n### Attachments\n\n_No response_",
+    "html_url": "https://github.com/nocodb/nocodb/issues/11684",
+    "labels": [],
+    "state": "closed",
+    "title": "\ud83d\udc1b Bug: Default value for numerical field related"
+  },
+  "nocodb/nocodb#11696": {
+    "body": "### Please confirm that the bug report does ***not*** already exist\n\n- [x] I confirm there is no existing issue for this bug.\n\n### Steps to reproduce\n\nWe're trying to add a Lookup custom field to Table A (Backlink Websites) to Table B (Backlinks) to return the value of a Linked custom field of Table C (Clients).\n\n![Image](https://github.com/user-attachments/assets/b19575a5-f9c6-403e-9e04-5ac99551a11e)\n\nWe get a \"Cannot convert undefined or null to object\" error every time we try to add this Lookup custom field.\n\n![Image](https://github.com/user-attachments/assets/b8264d0c-2e85-4933-8b18-38fd24afc631)\n\nHowever I believe there's only certain records triggering this since the error goes away if we filter the table to just a few records. But I'm not sure which exact records are causing the bug.\n\n### Desired Behavior\n\nWe should be able to add a Lookup custom field to Table A (Backlink Websites) to Table B (Backlinks) to return the value of a Linked custom field of Table C (Clients) without any errors.\n\n### Project Details\n\nNocoDB Cloud (Chrome / Windows)\n\n### Attachments\n\nHere's a Loom video explaining the issue: https://www.loom.com/share/d1404ff4cd734ca6b08b9a2b0c72583a",
+    "html_url": "https://github.com/nocodb/nocodb/issues/11696",
+    "labels": [],
+    "state": "closed",
+    "title": "\ud83d\udc1b Bug: Cannot convert undefined or null to object ("
+  },
+  "nocodb/nocodb#11718": {
+    "body": "### Please confirm that the bug report does ***not*** already exist\n\n- [x] I confirm there is no existing issue for this bug.\n\n### Steps to reproduce\n\n<img width=\"1024\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/48e16872-3bab-4ede-b0af-e849778b79d7\" />\n\nWe are using cloud nocodb with Decimal columns, and using [openapi-generator-cli](https://github.com/OpenAPITools/openapi-generator-cli) to build autogenerated rust client crates. We use the following command to generate openapi.json for the data API.\n\n````\ncurl -H \"xc-token: <token>\" https://app.nocodb.com/api/v1/db/meta/projects/<project id>/swagger.json\n````\n\nI noticed that decimal columns in nocodb are getting labeled as string in openapi.json served from this endpoint. Unfortunately rust is very strict about types so this makes it so our autogenerated crates panic when trying to read rows from tables that have decimal columns, because they expect to de-serialize a string but find a floating point number instead. \n````\nExampleResponse\":{\n...\nExample column \":{\"type\":\"string\"}, \n...\n}\n````\n\nhttps://community.nocodb.com/t/bug-report-decimal-columns-labeled-as-string-in-openapi-json/1942\n\n### Desired Behavior\n\n,\n\n### Project Details\n\n,\n\n### Attachments\n\n_No response_",
+    "html_url": "https://github.com/nocodb/nocodb/issues/11718",
+    "labels": [],
+    "state": "closed",
+    "title": "\ud83d\udc1b Bug: Decimal columns labeled as string in openapi.json"
+  },
+  "nocodb/nocodb#11726": {
+    "body": "### Please confirm that the bug report does ***not*** already exist\n\n- [x] I confirm there is no existing issue for this bug.\n\n### Steps to reproduce\n\nHello team.\n\n1. Leave blank the search bar and apply a summary for every column except the main one on the left\n2. Use the search bar to filter something in the top right corner\n\n![Image](https://github.com/user-attachments/assets/606e459c-4904-452f-89b8-4fd7780002cb)\n\n3. Look at the bottom you summary is not refresh, click again on it and choose again the summary type you desire\n\n### Desired Behavior\n\nSearch bar need to trigger refresh for all summary like filter does.\n\n### Project Details\n\nNode: **v22.16.0**\nArch: **arm64**\nPlatform: **linux**\nDocker: **true**\nRootDB: **sqlite3**\nPackageVersion: **0.263.8**\n\n### Attachments\n\nNo search start :\n![Image](https://github.com/user-attachments/assets/ea8d9c28-c313-4b19-b650-a263eabcece7)\n\nSearch apply but it's not refresh :\n![Image](https://github.com/user-attachments/assets/d0e1f5d0-fafc-4661-b825-35923dcaeb9f)\n\nSearch apply and i force refresh manually :\n![Image](https://github.com/user-attachments/assets/a7c25d1e-9cb1-4f89-b6d4-420fbdf96e7d)",
+    "html_url": "https://github.com/nocodb/nocodb/issues/11726",
+    "labels": [],
+    "state": "closed",
+    "title": "\ud83d\udc1b Bug: Search bar do not trigger refresh for Summary"
+  },
+  "nocodb/nocodb#11775": {
+    "body": "### Please confirm that the bug report does ***not*** already exist\n\n- [x] I confirm there is no existing issue for this bug.\n\n### Steps to reproduce\n\nhttps://community.nocodb.com/t/import-from-airtable-contains-no-rows/1958/4\n\n### Desired Behavior\n\nSkip button field. Import for formula fields are not supported.\n\n### Project Details\n\nprod\n\n### Attachments\n\n_No response_",
+    "html_url": "https://github.com/nocodb/nocodb/issues/11775",
+    "labels": [],
+    "state": "closed",
+    "title": "\ud83d\udc1b Bug: Error importing button field from airtable"
+  },
+  "nocodb/nocodb#11787": {
+    "body": "### Please confirm that the bug report does ***not*** already exist\n\n- [x] I confirm there is no existing issue for this bug.\n\n### Steps to reproduce\n\nhttps://community.nocodb.com/t/currency-field-decimal/1968\n\n### Desired Behavior\n\nprecision configuration needed for decimal\n\n### Project Details\n\nv263\n\n### Attachments\n\n_No response_",
+    "html_url": "https://github.com/nocodb/nocodb/issues/11787",
+    "labels": [],
+    "state": "closed",
+    "title": "\ud83d\udc1b Bug: add support for precision configuration in currency field"
+  },
+  "nocodb/nocodb#11793": {
+    "body": "### Please confirm that the bug report does ***not*** already exist\n\n- [x] I confirm there is no existing issue for this bug.\n\n### Steps to reproduce\n\nWhen sharing a view with **\u201cEnable Public Viewing\u201d** and **\u201cRestrict access with password\u201d**, the view opens fine with the correct password, but clicking **Download** gives:\n\n**Invalid shared view password**\n\neven though **\u201cAllow Download\u201d** is enabled.\n\n**Steps:**\n1. Self-hosted NocoDB using Docker (`0.263.8`).\n2. Open a table \u2192 Share View \u2192 Enable Public Viewing.\n3. Enable **Restrict access with password** (e.g. `Marketing@company`).\n4. Enable **Allow Download**.\n5. Open the link \u2192 enter password \u2192 view data works fine.\n6. Click **Download** \u2192 error: **Invalid shared view password**.\n\n### Desired Behavior\n\nOnce the user has entered the correct password for the shared view, the **Download** button should work without showing an authentication error. The password should be passed correctly to the download endpoint.\n\n\n### Project Details\n\nNocoDB used as docker : true  \nNocoDB version : 0.263.8  \nDatabase used in NC_DB URL  : sqlite3 (default)  \nProject was created  by clicking : New Project  \nDatabase on which spreadsheet is created : sqlite3 (default)  \nOS on which NocoDB is running : Linux (Docker container)  \nNode.js version if running as node : (Docker default)\nDatabase version : SQLite (embedded)\n\n\n### Attachments\n\n![Image](https://github.com/user-attachments/assets/93b55106-053e-4d04-8c89-c9afae8b8de0)\n![Image](https://github.com/user-attachments/assets/a1d09e67-5954-4b33-98ba-5d0ac100dad9)",
+    "html_url": "https://github.com/nocodb/nocodb/issues/11793",
+    "labels": [],
+    "state": "closed",
+    "title": "\ud83d\udc1b Bug: Public shared view download returns \u201cInvalid shared view password\u201d"
+  },
+  "nocodb/nocodb#11854": {
+    "body": "### Please confirm that the bug report does ***not*** already exist\n\n- [x] I confirm there is no existing issue for this bug.\n\n### Steps to reproduce\n\nI have a data source that is an existing database, with schema and data editing disabled, and a few virtual columns to support lookups and filters. \n\nI goto the datasource > Meta Sync > and hit the Sync Now button. I get the response.\n\nGetting meta diff for 'datasource\nNo changes detected for 'table1'\nNo changes detected for 'table2'\nNo changes detected for 'table3'\nApplying changes for 'table4'\nApplying change: New relation added\nChanges applied for 'table4'\nNo changes detected for 'table5'\nNo changes detected for 'table6'\nNo changes detected for 'table7'\nProcessing virtual column changes\nCannot read properties of null (reading 'getColumns')\n\n### Desired Behavior\n\nI would like my data to sync, at the very least I would like a more specific error indication what the 'null' is and what it is associated with so I might have some possibility of fixing the issue. \n\n### Project Details\n\n[nocodb] [2025-07-09 13:54:04] stack: TypeError: Cannot read properties of null (reading 'getColumns')\n[nocodb] [2025-07-09 13:54:04]     at /usr/src/app/docker/main.js:1466:169032\n[nocodb] [2025-07-09 13:54:04]     at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n[nocodb] [2025-07-09 13:54:04]     at async /usr/src/app/docker/main.js:1466:308884\n[nocodb] [2025-07-09 13:54:04]     at async run (/usr/src/app/node_modules/p-queue/dist/index.js:163:29)\n\nNode: **v22.16.0**\nArch: **x64**\nPlatform: **linux**\nDocker: **false**\nRootDB: **pg**\nPackageVersion: **0.263.8**\n\n### Attachments\n\n_No response_",
+    "html_url": "https://github.com/nocodb/nocodb/issues/11854",
+    "labels": [],
+    "state": "closed",
+    "title": "\ud83d\udc1b Bug: Data Source Meta Sync fails with `Cannot read properties of null (reading 'getColumns')`"
+  },
+  "nocodb/nocodb#11860": {
+    "body": "### Please confirm that the bug report does ***not*** already exist\n\n- [x] I confirm there is no existing issue for this bug.\n\n### Steps to reproduce\n\nI have created a view that I filter using a column of type \"Link to another record\". When I want to edit anything in any row in this view - except for the column I'm filtering by, the entire row is marked as \"Filtered row\" and disappears when I click elsewhere. It reappears after leaving the view and returning again.\n\n### Desired Behavior\n\nEditing an item in a row that is not being filtered by should not trigger the \"Filtered row\" function.\n\n### Project Details\n\nNode: **v22.16.0**\nArch: **x64**\nPlatform: **linux**\nDocker: **true**\nRootDB: **pg**\nPackageVersion: **0.263.8**\n\n### Attachments\n\nhttps://www.loom.com/share/6b44fe88208c40f9b4f2a44a0759c420?sid=e5020ced-3f0b-4dcf-92ca-051d3b383ba9",
+    "html_url": "https://github.com/nocodb/nocodb/issues/11860",
+    "labels": [],
+    "state": "closed",
+    "title": "\ud83d\udc1b Bug: Filtered rows disappear when editing non-filtered columns"
+  },
+  "nocodb/nocodb#11993": {
+    "body": "### Please confirm that the bug report does ***not*** already exist\n\n- [x] I confirm there is no existing issue for this bug.\n\n### Steps to reproduce\n\nI am using the binary Windows install. I tried updating from 0.263.8 to 0.264.0. \n\nIt appears that after replacing the old binary, when I run the new binary, Nocodb initially starts up fine. After indicating that it is running (referring to visit at localhost), it then starts to update/migrate the database file.\n\nHowever, after running through a whole lot of data entries, it shows an error 'SQLITE_ERROR: too many terms in compound SELECT' and stops the process. Nocodb at that point is also no longer accessible via localhost.\n\nIs there any way to further diagnose the matter, and resolve it?\n\n\n### Desired Behavior\n\nMigration should run flawlessly - not sure what it means, though!\n\n### Project Details\n\nWindows Binary. Original 0.263.8, upgraded to 0.264.0. \n\n\n### Attachments\n\n_No response_",
+    "html_url": "https://github.com/nocodb/nocodb/issues/11993",
+    "labels": [],
+    "state": "closed",
+    "title": "\ud83d\udc1b Bug: [self-hosted] : 'SQLITE_ERROR: too many terms in compound SELECT' when upgrading to latest release"
+  },
+  "nocodb/nocodb#12031": {
+    "body": "### Please confirm that the bug report does ***not*** already exist\n\n- [x] I confirm there is no existing issue for this bug.\n\n### Steps to reproduce\n\nCreate a table with a composed primary key (key_1, key_2, key_3), edit one field, nocodb will generate this update:\n`update edited_table set edited_field = 'new_value' where key_1 = \"only_first_field_value\"`\n\n### Desired Behavior\n\nnocodb should error or support composed primary keys.\n\n### Project Details\n\nNode: **v20.15.1**\nArch: **x64**\nPlatform: **linux**\nDocker: **true**\nRootDB: **pg**\nPackageVersion: **0.264.0**\n\n### Attachments\n\n_No response_",
+    "html_url": "https://github.com/nocodb/nocodb/issues/12031",
+    "labels": [],
+    "state": "closed",
+    "title": "\ud83d\udc1b Bug: Composed primary key silent chaos, data integrity at risk"
+  },
+  "nocodb/nocodb#12070": {
+    "body": "### Please confirm that the feature request does ***not*** already exist\n\n- [x] I confirm there is no existing issue for this feature request.\n\n### Use case\n\nAs a user of Nocodb who works with 2 languages, I often switch languages on my keyboard from my native language to English and vice versa. And for this I use Shift + Alt shortcut (as default combination on Windows). But this shortcut also open/close Experimental Features window and every time I switch language I need to close this window manually, which is really annoying\n\n### Suggested solution\n\nMaybe should change this shortcut for something other combination which not often used by people\n\n### Additional context\n\n_No response_",
+    "html_url": "https://github.com/nocodb/nocodb/issues/12070",
+    "labels": [],
+    "state": "closed",
+    "title": "\ud83d\udd26 Feature: Change \"Experimental Features\" keyboard shortcut"
+  },
+  "nocodb/nocodb#12244": {
+    "body": "### Please confirm that the bug report does ***not*** already exist\n\n- [x] I confirm there is no existing issue for this bug.\n\n### Steps to reproduce\n\n1. GoTo https://nocodb.com/apis/v3/data\n2. See comment under 'where' for each section. Comment `You can also use other comparison operators like 'ne' (not equal), 'gt' (greater than), 'lt' (less than), and more, to create complex filtering rules.`\n3. Try to use `where=(field1,ne,value1)` . Get `Bad request - please check your parameters`\n\n### Desired Behavior\n\nFix to correct `neq`\n\n### Project Details\n\nNode: **v18.5.0**\nArch: **x64**\nPlatform: **linux**\nDocker: **true**\nRootDB: **pg**\nPackageVersion: **0.264.6**\n\n### Attachments\n\n_No response_",
+    "html_url": "https://github.com/nocodb/nocodb/issues/12244",
+    "labels": [],
+    "state": "closed",
+    "title": "\ud83d\udc1b Bug: v3 Documentation uses 'ne' where actually should be 'neq'"
+  },
+  "nocodb/nocodb#12245": {
+    "body": "### Please confirm that the bug report does ***not*** already exist\n\n- [x] I confirm there is no existing issue for this bug.\n\n### Steps to reproduce\n\n1. Try to pass Query param of `{\"sort\":{\"direction\":\"desc\",\"field\":\"Title\"}}` using new v3: eg https://app.nocodb.com/api/v3/data/{baseId}/{tableId}/links/{linkFieldId}/{recordId}\n2. Change direction back and forth `asc`, `desc`.\n3. See that `sort` is not acknowledged.\n\nOther fields like `where` and `fields` seem to work as intended.\n\n### Desired Behavior\n\n`sort` behavior works as intended.\n\nPlease let me know what more information you'd need to debug this one.\n\n### Project Details\n\nNode: **v18.5.0**\nArch: **x64**\nPlatform: **linux**\nDocker: **true**\nRootDB: **pg**\nPackageVersion: **0.264.6**\n\n### Attachments\n\n<img width=\"789\" height=\"161\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/3476e676-84c8-449d-84dc-cefbc3bd43e3\" />",
+    "html_url": "https://github.com/nocodb/nocodb/issues/12245",
+    "labels": [],
+    "state": "closed",
+    "title": "\ud83d\udc1b Bug: Can't get `sort` to work in v3 data api Links"
+  },
+  "nocodb/nocodb#12266": {
+    "body": "### Please confirm that the bug report does ***not*** already exist\n\n- [x] I confirm there is no existing issue for this bug.\n\n### Steps to reproduce\n\nsame as https://github.com/nocodb/nocodb/issues/10922 but for digitalocean spaces. the filename is getting urlencoded twice, so spaces are `%2520` instead of `%20`\n\n### Desired Behavior\n\nattachments should load\n\n### Project Details\n\nNode: **v22.14.0**\nArch: **x64**\nPlatform: **linux**\nDocker: **false**\nRootDB: **mysql2**\nPackageVersion: **0.262.5**\n\n### Attachments\n\n_No response_",
+    "html_url": "https://github.com/nocodb/nocodb/issues/12266",
+    "labels": [],
+    "state": "closed",
+    "title": "\ud83d\udc1b Bug: attachments don't load if there's whitespace in filename using digitalocean spaces"
+  },
+  "nocodb/nocodb#12377": {
+    "body": "### Please confirm that the bug report does ***not*** already exist\n\n- [x] I confirm there is no existing issue for this bug.\n\n### Steps to reproduce\n\nI am having an issue with a formula field that uses the 'JSON_EXTRACT' function. When I try to save the field, the system does not allow this and instead displays the following error: \"Formula error: unsupported Unicode escape sequence\".\n\nMy formula is quite simple:\n```\nJSON_EXTRACT({Metadata}, \".name\")\n```\n\nHere's the backend log output:\n\n```\nerror: select CASE WHEN ((\"p8ddrqb7p1oiybw\".\"mytable\".\"Metadata\")::text )::jsonb IS NOT NULL THEN jsonb_path_query_first(((\"p8ddrqb7p1oiybw\".\"mytable\".\"Metadata\")::text )::jsonb, CONCAT('$', '.name' )::jsonpath) ELSE NULL END as \"__dry_run_alias\" from \"p8ddrqb7p1oiybw\".\"mytable\" - unsupported Unicode escape sequence\nat Parser.parseErrorMessage (/usr/src/app/node_modules/pg-protocol/dist/parser.js:283:98)\nat Parser.handlePacket (/usr/src/app/node_modules/pg-protocol/dist/parser.js:122:29)\nat Parser.parse (/usr/src/app/node_modules/pg-protocol/dist/parser.js:35:38)\nat Socket.<anonymous> (/usr/src/app/node_modules/pg-protocol/dist/index.js:11:42)\nat Socket.emit (node:events:518:28)\nat Socket.emit (node:domain:489:12)\nat addChunk (node:internal/streams/readable:561:12)\nat readableAddChunkPushByteMode (node:internal/streams/readable:512:3)\nat Readable.push (node:internal/streams/readable:392:5)\nat TCP.onStreamRead (node:internal/stream_base_commons:189:23) {\nlength: 214,\nseverity: 'ERROR',\ncode: '22P05',\ndetail: '\\\\^@ cannot be converted to text.',\nhint: undefined,\nposition: undefined,\ninternalPosition: undefined,\ninternalQuery: undefined,\nwhere: 'JSON data, line 1: ...\"string\",\"default\":\"\",\"placeholder\":\"e.g., \\\\^@...',\nschema: undefined,\ntable: undefined,\ncolumn: undefined,\ndataType: undefined,\nconstraint: undefined,\nfile: 'jsonfuncs.c',\nline: '645',\nroutine: 'json_errsave_error'\n}\nNcBaseErrorv2: Formula error: unsupported Unicode escape sequence\nat NcError.formulaError (/usr/src/app/docker/main.js:1553:42460)\nat v (/usr/src/app/docker/main.js:272:30345)\nat process.processTicksAndRejections (node:internal/process/task_queues:105:5)\nat async ColumnsService.columnUpdate (/usr/src/app/docker/main.js:1752:379303)\nat async ColumnsController.columnUpdate (/usr/src/app/docker/main.js:184:38580) {\nerror: 'FORMULA_ERROR',\ncode: 400,\ndetails: undefined\n}\n```\n\nThe field is not new; it used to work. However, since a record containing that special character was added to the JSON content, the field has stopped working. Now, it fails to render values for all records at once because of this.\n\n### Desired Behavior\n\nThe unsupported characters should either be escaped or removed from the data before it is written to the database.\n\n### Project Details\n\nNode: **v22.14.0**\nArch: **x64**\nPlatform: **linux**\nDocker: **true**\nRootDB: **pg**\nPackageVersion: **0.262.5**\n\n### Attachments\n\n<img width=\"2017\" height=\"1144\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/2861dfea-f0a3-4699-b209-84dbd502ccf3\" />",
+    "html_url": "https://github.com/nocodb/nocodb/issues/12377",
+    "labels": [
+      "\ud83d\udc4b For : Community or Good First Issue"
+    ],
+    "state": "closed",
+    "title": "\ud83d\udc1b Bug: JSON_EXTRACT in formula with a special character fails"
+  },
+  "nocodb/nocodb#12400": {
+    "body": "### Please confirm that the bug report does ***not*** already exist\n\n- [x] I confirm there is no existing issue for this bug.\n\n### Steps to reproduce\n\n\n<img width=\"645\" height=\"196\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/cfabac2e-3463-4d32-a988-e1fb3df1822d\" />\n\n### Desired Behavior\n\n.\n\n### Project Details\n\n.\n\n### Attachments\n\n_No response_",
+    "html_url": "https://github.com/nocodb/nocodb/issues/12400",
+    "labels": [],
+    "state": "closed",
+    "title": "\ud83d\udc1b Bug: Copy pasting from excel leads to an error mention bulkDataUpsert is not possible for editor"
+  },
+  "nocodb/nocodb#12402": {
+    "body": "### Please confirm that the bug report does ***not*** already exist\n\n- [x] I confirm there is no existing issue for this bug.\n\n### Steps to reproduce\n\n\u26a0\ufe0f This bug is not consistently reproducible, but it occurs frequently under the following conditions:\n\n1. Have a table in NocoDB Plus Cloud with:\n\n- ~2,800 records\n- ~20 columns total\n- A Single Select column (RUTAS) containing a large number of options (300+ values).\n\n2. Use the table normally (no deletion actions performed manually).\n\n3. After some time, observe that:\n\n- Options from the Single Select column are suddenly missing.\n\n- Data that was previously populated disappears from cells.\n\n- The History view shows an entry under \u201cUser\u201d but the transaction is blank (no action recorded).\n\nCurrent Behavior\n\n- Single Select column options are deleted without any user action or API call.\n\n- History log shows a user associated with the change, but the transaction is blank (no details of the deletion).\n\n- Records lose previously assigned values because their options disappear from the column configuration.\n\n\n\n\n\n\n\n\n\n### Desired Behavior\n\nDesired Behavior\n\n- Single Select column options should never be deleted automatically without explicit user interaction or API request.\n\n- History should correctly log any modifications, including option deletions.\n\n- Large datasets (2,800+ records, 300+ options) should maintain data integrity and stability over time.\n\n### Project Details\n\nProject Details\n\nAccount Type: NocoDB Plus Edition (Cloud, Owner/Subscription holder)\n\nAffected Column: RUTAS (Single Select with 300+ options)\n\n### Attachments\n\nAttachments\n\n\ud83d\udcf8 Screenshot of History log showing blank transaction under \u201cUser.\u201d\n\nI selected CENTRO / RUTA 415 option changing it from CENTRO 1\nThen it appears user deleted it when it made nothing\nThen had to select again CENTRO / RUTA 415\n\n<img width=\"479\" height=\"333\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/8fbf0ca2-52a7-47e3-9ec5-a2c3cad284f9\" />\n",
+    "html_url": "https://github.com/nocodb/nocodb/issues/12402",
+    "labels": [
+      "\ud83d\udd0e Status: More Info Needed"
+    ],
+    "state": "closed",
+    "title": "\ud83d\udc1b Bug: Editing single-select issue. Remove an existing single-select value and add it back. Results in the removal of that value from records/"
+  },
+  "nocodb/nocodb#12569": {
+    "body": "### Please confirm that the bug report does ***not*** already exist\n\n- [x] I confirm there is no existing issue for this bug.\n\n### Steps to reproduce\n\nCreate a code128 barcode from a singleline text field, when viewed/downloaded the text is not displayed underneath as the examples in the documentation show that it should.\n\nI've attached the barcodetext and barcode field details as images to this bug report, along with a sample barcode that is produced from the base.\n\n### Desired Behavior\n\nThe barcode should display the textline\n\n### Project Details\n\nProject was created: Initial base was from airtable data import, but both the barcode field and the one used for the barcode data were newly created in nocodb\nOther info from base:\nNode: **v22.20.0**\nArch: **x64**\nPlatform: **linux**\nDocker: **true**\nRootDB: **sqlite3**\nPackageVersion: **0.265.1**\n\n### Attachments\n\n![Image](https://github.com/user-attachments/assets/d4d07ed4-6afc-493e-bcfb-429f655351d3)\n\n![Image](https://github.com/user-attachments/assets/cf6c15b4-87ef-4cd7-bb22-4b0547c56231)\n\n<img width=\"312\" height=\"100\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/3a48ddb0-41d3-44c9-9035-2e70f741bf9a\" />",
+    "html_url": "https://github.com/nocodb/nocodb/issues/12569",
+    "labels": [],
+    "state": "closed",
+    "title": "\ud83d\udc1b Bug: Barcode labels not displaying text underneath"
+  },
+  "nocodb/nocodb#12759": {
+    "body": "## Summary\n\nThe MultiSelect field still has a practical limit of approximately 500 options, despite the fix merged in PR #8907 (Feb 2025) which was supposed to remove this limitation.\n\n## Environment\n\n- **NocoDB Version**: 0.265.1\n- **Database**: PostgreSQL (external data source)\n- **Deployment**: Self-hosted (Docker)\n\n## Steps to Reproduce\n\n1. Create a MultiSelect field\n2. Try to add more than 500 options via API:\n\n```python\nimport requests\n\nurl = f'{NOCODB_URL}/api/v2/meta/columns/{COLUMN_ID}'\npayload = {\n    'colOptions': {\n        'options': [{'title': opt} for opt in options_list]  # 600+ options\n    }\n}\nresponse = requests.patch(url, headers=headers, json=payload)\n```\n\n## Expected Behavior\n\nShould be able to add 1000+ options to a MultiSelect field (as per the fix in #8907).\n\n## Actual Behavior\n\n- \u2705 500 options: Works\n- \u274c 600 options: Fails with `{\"error\":\"DATABASE_ERROR\",\"message\":\"too\",\"code\":\"SQLITE_ERROR\"}`\n\n## Use Case\n\nWe have a production notes system with 1,161 unique values that users need to select from. The current 500 limit forces us to either:\n1. Use \"Link to Another Record\" (worse UX - requires 2 steps to add new values)\n2. Limit options to 500 (incomplete data)\n\n## Workaround Attempted\n\nUsing \"Link to Another Record\" instead of MultiSelect, but this significantly degrades user experience:\n- MultiSelect: Search \u2192 Add instantly if not found\n- Link: Search \u2192 Not found \u2192 Go to options table \u2192 Add record \u2192 Return \u2192 Select\n\n## Request\n\nPlease fully remove the ~500 option limit for MultiSelect fields, or at minimum increase it to 2000+ options.\n\n## Related Issues\n\n- #8907 - Original fix that was supposed to remove this limit",
+    "html_url": "https://github.com/nocodb/nocodb/issues/12759",
+    "labels": [],
+    "state": "closed",
+    "title": "\ud83d\udc1b Bug: [Self Hosted][SQLite] MultiSelect field still limited to ~500 options despite fix in #8907"
+  },
+  "nocodb/nocodb#12775": {
+    "body": "Currently, the `README.md` is not available in Turkish. Adding a Turkish translation would significantly improve accessibility for the Turkish-speaking developer community.\n\n### Tasks\n- [ ] Translate `README.md` to Turkish\n- [ ] Add link to the translated file in the main README",
+    "html_url": "https://github.com/nocodb/nocodb/issues/12775",
+    "labels": [],
+    "state": "closed",
+    "title": "docs(i18n): add Turkish translation for README"
+  },
+  "nocodb/nocodb#12794": {
+    "body": "### Please confirm that the bug report does ***not*** already exist\n\n- [x] I confirm there is no existing issue for this bug.\n\n### Steps to reproduce\n\nImport a Airtable base in a Nocodb base, and the Airtable table must have a  \"List Single Select\" with at least one item containing an emoji. The import will work but the resulting table will not work (empty)\n\n```\nInvalid option(s) \"99 - Website Completed \ud83d\udc4c\" provided for column \"Status\". Valid options are \"1- To be started, 2- Archives and BL research Done, 3- Content Brief Done, 99 - Website Completed ?, 4- Content Ordered, 5- Wordpress ordered, nc_empty, WEBSITE SOLD, SIDE PROJECT\"^[[39m\n^[[31m[Nest] 9  - ^[[39m01/07/2026, 3:09:15 PM ^[[31m  ERROR^[[39m ^[[38;5;3m[at-import:readAndProcessData] ^[[39m^[[31mError: Invalid option(s) \"99 - Website Completed \ud83d\udc4c\" provided for column \"Status\". Valid options are \"1- To be started, 2- Archives and BL research Done, 3- Content Brief Done, 99 - Website Completed ?, 4- Content Ordered, 5- Wordpress ordered, nc_empty, WEBSITE SOLD, SIDE PROJECT\"^[[39m\n```\n\n\n### Desired Behavior\n\nCurrently the import is not working. Table is empty even though it says it worked, and when we try to show the table we have this console error : \n\n```\n\"BUm8Jv7Z.js:1 Uncaught (in promise) TypeError: Cannot read properties of null (reading 'children')\n    at Proxy.redoSplitters (BUm8Jv7Z.js:1:6520)\n    at Proxy.<anonymous> (BUm8Jv7Z.js:1:7596)\"\n```\n\n\n\n### Project Details\n\nNode: **v22.20.0**\nArch: **x64**\nPlatform: **linux**\nDocker: **true**\nRootDB: **mysql2**\nPackageVersion: **0.265.1**\n\n### Attachments\n\n_No response_",
+    "html_url": "https://github.com/nocodb/nocodb/issues/12794",
+    "labels": [],
+    "state": "closed",
+    "title": "\ud83d\udc1b Bug: Import table fails silently when there are emojis in \"List Single Select\" from Airtable"
+  },
+  "nocodb/nocodb#12796": {
+    "body": "### Please confirm that the bug report does ***not*** already exist\n\n- [x] I confirm there is no existing issue for this bug.\n\n### Steps to reproduce\n\nconnect postgres DB (not sure if this matters)\nattach cloudflare r2 bucket\ncreate a base with attachment (i'm using as receipt & expense tracker)\nadd attachment using your mobile...(attachment is viewable on web in nocodb as expected)\nexport base as csv.\n\nthe attachment field in the csv contains a cell with wrong info/url that gives an error and breaks.\n\n### Desired Behavior\n\nI should be able to share this CSV and others (like a bookkeeper) should be able to click the link and view the attachment (receipt).\n\n\n### Project Details\n\nNode: **v22.20.0**\nArch: **x64**\nPlatform: **linux**\nDocker: **true**\nRootDB: **sqlite3**\nPackageVersion: **0.265.1**\n\n### Attachments\n\n<img width=\"501\" height=\"94\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/25f92d3e-f066-4231-afc6-435d4ec8e355\" />\n\n<img width=\"673\" height=\"167\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/cc3c6b88-f40c-4581-92f7-2388c1532e0a\" />\n",
+    "html_url": "https://github.com/nocodb/nocodb/issues/12796",
+    "labels": [],
+    "state": "closed",
+    "title": "\ud83d\udc1b Bug: uri for attachment breaks on csv export."
+  },
+  "nocodb/nocodb#12831": {
+    "body": "### Please confirm that the bug report does ***not*** already exist\n\n- [x] I confirm there is no existing issue for this bug.\n\n### Steps to reproduce\n\n1. Create a table with LinkToAnotherRecord or Lookup fields\n  2. Set up a webhook with after.insert trigger\n  3. Insert a record using v3 API: POST /api/v3/tables/{tableId}/records\n  4. Check the webhook payload - link and lookup fields are missing or null\n\n\n  Root cause:\n  In packages/nocodb/src/db/BaseModelSqlv2/insert.ts line 392, readByPk is called without query parameters, so it doesn't fetch related fields. However, v3 API returns complete data to users via chunkList (line 684 in data-v3.service.ts), creating inconsistency.\n\n\n### Desired Behavior\n\nWebhook should receive the same complete data that the API returns to users, including:\n  - LinkToAnotherRecord fields\n  - Lookup fields\n  - All nested relations\n\n### Project Details\n\n\n  NocoDB used as docker: true\n  NocoDB version: latest\n  Database used in NC_DB URL: pg\n  Project was created by clicking: New Project by connecting to external database\n  Database on which spreadsheet is created: pg\n\n  Additional Notes\n\n  - This affects both v2 and v3 APIs\n  - Webhook filter conditions fail with Cannot read properties of null (reading '0') when referencing these missing fields\n  - Suggested fix: Use chunkList instead of readByPk in insert.ts line 392, similar to how v3 API fetches data\n\n\n### Attachments\n\n_No response_",
+    "html_url": "https://github.com/nocodb/nocodb/issues/12831",
+    "labels": [],
+    "state": "closed",
+    "title": "\ud83d\udc1b Bug: Webhook receives incomplete data (missing lookup and link fields) when using v3 API"
+  },
+  "nocodb/nocodb#12842": {
+    "body": "### Please confirm that the bug report does ***not*** already exist\n\n- [x] I confirm there is no existing issue for this bug.\n\n### Steps to reproduce\n\nJust trying this out on a test box, \"http://xxx.xxx.xxx.xxx:8080/dashboard/\".\nafter updating this morning it stopped working as expected:\n\nI have checked the docker logs and don't see any error, I do see one in the browser console window see below, it was working prior to the update, note I am new to this application I only installed it yesterday and noticed there was an update this morning.\n\n\nDDFdVqDc.js:242 Uncaught TypeError: crypto.randomUUID is not a function \n\n### Desired Behavior\n\nWindow should show something.\n\n### Project Details\n\nrunning the standard 2_pg/docker-compose.yaml script on a ubuntu linux machine \n\n### Attachments\n\n_No response_",
+    "html_url": "https://github.com/nocodb/nocodb/issues/12842",
+    "labels": [],
+    "state": "closed",
+    "title": "\ud83d\udc1b Bug: Main page comes up blank since updating this morning to the latest"
+  },
+  "nocodb/nocodb#12882": {
+    "body": "### Please confirm that the bug report does ***not*** already exist\n\n- [x] I confirm there is no existing issue for this bug.\n\n### Steps to reproduce\n\n## Bug Description\n\nAfter upgrading from NocoDB 0.260.2 to 0.301.1, a Super Admin user can no longer access bases through the web interface. The user receives a `403 Forbidden` error with the message \"Base is not accessible\".\n\nThe issue is specific to the **v1 API endpoints**. The v2 API endpoints correctly recognize the Super Admin role and return data successfully.\n\n## Steps to Reproduce\n\n1. Have a NocoDB instance running version 0.260.2 or earlier\n2. Create a Super Admin user with roles `org-level-creator,super`\n3. Verify the user can access all bases via the web interface\n4. Upgrade NocoDB to version 0.301.1\n5. Log in with the Super Admin user\n6. Attempt to access any base\n\n## Expected Behavior\n\nSuper Admin should have access to all bases regardless of base-level permissions, as documented in NocoDB's role hierarchy.\n\n## Actual Behavior\n\nSuper Admin receives `403 Forbidden` error when trying to access bases through the web interface.\n\n## Technical Analysis\n\n### API Endpoint Comparison\n\n**v2 API (working correctly):**\n```bash\ncurl -X GET \"https://nocodb.example.com/api/v2/meta/bases\" \\\n  -H \"xc-auth: <jwt_token>\"\n\n# Response: 200 OK - Returns list of all bases\n```\n\n**v1 API (failing):**\n```bash\ncurl -X GET \"https://nocodb.example.com/api/v1/db/meta/projects/<base_id>\" \\\n  -H \"xc-auth: <jwt_token>\"\n\n# Response: 403 Forbidden\n# Body: {\"msg\":\"Base is not accessible\"}\n```\n\n### User Verification\n\nThe user exists in `nc_users_v2` with correct roles:\n```sql\nSELECT id, email, roles FROM nc_users_v2 WHERE email = 'admin@example.com';\n\n-- Result:\n-- id: xxxxxxxxx\n-- email: admin@xxxxx.com\n-- roles: org-level-creator,super\n```\n\n### Root Cause Hypothesis\n\nThe ACL middleware for v1 API endpoints appears to only check base-level permissions in `nc_base_users_v2` and does not fall back to checking the org-level `super` role in `nc_users_v2.roles`.\n\nThe v2 API endpoints correctly implement this fallback, which is why they work.\n\n## Environment\n\n- **NocoDB Version:** 0.301.1 (Docker image: `nocodb/nocodb:0.301.1`)\n- **Previous Version:** 0.260.2 (working correctly)\n- **Database:** PostgreSQL 14\n- **Cache:** Redis (issue persists with Redis disabled)\n- **Deployment:** Docker Compose\n\n\n\n## Workaround\n\nAs a temporary workaround, the Super Admin user can be manually added as \"owner\" to each base in the `nc_base_users_v2` table:\n\n```sql\nINSERT INTO nc_base_users_v2 (base_id, fk_user_id, roles, created_at, updated_at)\nSELECT\n    b.id,\n    '<super_admin_user_id>',\n    'owner',\n    NOW(),\n    NOW()\nFROM nc_bases_v2 b\nWHERE NOT EXISTS (\n    SELECT 1 FROM nc_base_users_v2 bu\n    WHERE bu.base_id = b.id AND bu.fk_user_id = '<super_admin_user_id>'\n);\n```\n\nThis is not ideal because:\n- It must be done manually for every new base\n- It defeats the purpose of having a Super Admin role\n- It worked correctly in version 0.260.2\n\n## Additional Context\n\n### Debugging Steps Performed\n\n1. **Cleared Redis cache** - Issue persisted\n2. **Reset JWT token_version** - Issue persisted\n3. **Disabled Redis entirely** - Issue persisted (confirmed not a caching issue)\n4. **Attempted downgrade to 0.265.1** - Failed due to database schema migrations\n5. **Tested v1 vs v2 API endpoints** - Identified v1 as the problem\n\n### Downgrade Not Possible\n\nAttempting to downgrade results in migration errors:\n```\nThe migration directory is corrupt, the following files are missing: nc_092_composite_pk...\n```\n\nThis means users who upgrade to 0.301.1 cannot easily roll back if they encounter this issue.\n\n\n\n## Labels\n\n- bug\n- v1-api\n- acl\n- super-admin\n- regression\n\n\n`\n\n### Desired Behavior\n\n## Suggested Fix\n\nThe v1 API ACL middleware should check `nc_users_v2.roles` for the `super` role before returning 403, similar to how the v2 API endpoints handle authorization.\n\nRelevant code likely in:\n- `packages/nocodb/src/controllers/` - v1 API controllers\n- `packages/nocodb/src/guards/` - ACL guards\n- `packages/nocodb/src/middlewares/` - Authorization middleware\n\n### Project Details\n\n  NocoDB used as docker : true\n  NocoDB version : 0.301.1\n  Database used in NC_DB URL  : pg\n  Project was created  by clicking : New Project\n  Database on which spreadsheet is created : pg\n  OS on which NocoDB is running : Linux (Docker on Linux 6.8.0-90-generic)\n  Node.js version if running as node : 22.21.1 (inside Docker container)\n  Database version :  PG 17 (external)\n\n\n### Attachments\n\n_No response_",
+    "html_url": "https://github.com/nocodb/nocodb/issues/12882",
+    "labels": [],
+    "state": "closed",
+    "title": "\ud83d\udc1b Bug: Super Admin role not recognized by v1 API endpoints - 403 \"Base is not accessible\""
+  },
+  "nocodb/nocodb#12944": {
+    "body": "### Please confirm that the bug report does ***not*** already exist\n\n- [x] I confirm there is no existing issue for this bug.\n\n### Steps to reproduce\n\nThe description of the `queryRecords` tool in the MCP service regarding time is unclear, causing the LLM to be unable to correctly query time-related filter conditions\nI have tried using DeepSeek and Qwen models to call filtering statements for time queries, all of which failed, including but not limited to direct answers and thinking modes. I looked at the interface description for filtering statements, and it seems large models may not understand it well.\n\n### Desired Behavior\n\nAdd more detailed tool descriptions and examples regarding time filtering.\n\n### Project Details\n\nNode: **v22.22.0**\nArch: **x64**\nPlatform: **linux**\nDocker: **true**\nRootDB: **sqlite3**\nPackageVersion: **0.301.2**\n\n### Attachments\n\n_No response_",
+    "html_url": "https://github.com/nocodb/nocodb/issues/12944",
+    "labels": [],
+    "state": "closed",
+    "title": "\ud83d\udc1b Bug: The description of the `queryRecords` tool in the MCP service regarding time is unclear, causing the LLM to be unable to correctly query time-related filter conditions"
+  },
+  "nocodb/nocodb#12972": {
+    "body": "## Steps to reproduce\n\n```bash\ncurl -X PATCH \"https://your-nocodb-instance/api/v2/meta/columns/{checkbox_column_id}\" \\\n  -H \"xc-auth: {your_token}\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"title\": \"is_draft\", \"description\": \"Test description\"}'\n```\n\n**Result**: HTTP 500 Internal Server Error\n```json\n{\"msg\":\"Something didn't work as expected. Please try again. If the problem persists, contact support.\"}\n```\n\n## Desired Behavior\n\nThe API should successfully update the Checkbox column's description and return HTTP 200, as it does for other column types (Number, SingleLineText, Date, Decimal, etc.).\n\n## Root Cause Analysis\n\nI traced through the NocoDB source code and found the issue:\n\n1. When PATCHing a column, `getColumnPropsFromUIDT` is called which adds default properties for the column type\n2. For Checkbox columns, this sets `cdf = 'false'` ([PgUi.ts:1674-1677](https://github.com/nocodb/nocodb/blob/develop/packages/nocodb-sdk/src/lib/sqlUi/PgUi.ts#L1674-L1677))\n3. This triggers `updateMetaAndDatabase` to run ALTER TABLE operations\n4. These database operations fail for Checkbox columns, throwing an uncaught exception\n5. The global exception filter catches this and returns the generic HTTP 500\n\nThe issue is that even with a minimal payload (`{\"title\": \"...\", \"description\": \"...\"}`), NocoDB's internal processing adds extra properties that trigger unnecessary database schema changes.\n\n**Suggested fix**: Don't call `getColumnPropsFromUIDT` or `updateMetaAndDatabase` when only metadata fields (title/description) are being updated.\n\n## Project Details\n\n```\nNocoDB used as docker: true\nNocoDB version: 301.0.2\nDatabase used in NC_DB URL: pg\nProject was created by clicking: New Project by connecting to external database\nDatabase on which spreadsheet is created: pg (Neon)\nOS on which NocoDB is running: Linux (Docker)\n```\n\n## Additional Context\n\nThis was discovered while using the NocoDB R package to programmatically set column descriptions. Other column types (Number, SingleLineText, Date, Decimal, etc.) work correctly with the same minimal payload - only Checkbox fails.",
+    "html_url": "https://github.com/nocodb/nocodb/issues/12972",
+    "labels": [],
+    "state": "closed",
+    "title": "\ud83d\udc1b Bug: PATCH /api/v2/meta/columns/{columnId} returns HTTP 500 for Checkbox columns"
+  },
+  "nocodb/nocodb#13044": {
+    "body": "## Bug report\n\nThank you for maintaining NocoDB \u2013 we're big fans and rely on it heavily for our project. We recently reported #12972 (Checkbox PATCH HTTP 500), which was promptly fixed in PR #12974. We really appreciate the quick turnaround! This new issue appears to be the same class of bug, but affecting `colOptions` instead of `cdf`.\n\n### Steps to reproduce\n\n1. Create or have a SingleSelect column with dropdown options configured\n2. Send a PATCH request that only updates metadata (e.g. `description`):\n   ```bash\n   curl -X PATCH \\\n     'https://<nocodb>/api/v2/meta/columns/<column_id>' \\\n     -H 'xc-token: <token>' \\\n     -H 'Content-Type: application/json' \\\n     -d '{\"description\": \"some description\"}'\n   ```\n3. Check the column's `colOptions` \u2013 all dropdown options are gone\n\n### Expected behavior\n\nA PATCH that only sets `description` (or other metadata fields) should **not** affect `colOptions`. The existing dropdown options should be preserved.\n\n### Actual behavior\n\nAll `colOptions.options` are silently wiped. The column remains a SingleSelect but with an empty options list. No error is returned \u2013 the API responds with 200.\n\n### Likely root cause\n\nPR #12974 fixed the same class of issue for `cdf`: `getColumnPropsFromUIDT` was overwriting `cdf` with defaults even when the PATCH body didn't include it. The same pattern likely applies to `colOptions` \u2013 when the PATCH body doesn't include `colOptions`, the column update code path still processes (and clears) the existing options.\n\n### Environment\n\n| Key | Value |\n|---|---|\n| NocoDB version | 0.301.2 |\n| Hosting | Self-hosted on Fly.io |\n| Database | External PostgreSQL (Neon), connected as external data source |\n| API version | v2 (`/api/v2/meta/columns/{id}`) |\n\n### Additional context\n\n- The bug is reproducible with **any** PATCH payload on a SingleSelect column, not just `description`. Even `{\"title\": \"same_title\"}` wipes the options.\n- This does not seem to affect columns on the default SQLite data source \u2013 we only observed it on an external PostgreSQL data source (though we haven't tested exhaustively).\n- Related: #12972, PR #12974",
+    "html_url": "https://github.com/nocodb/nocodb/issues/13044",
+    "labels": [],
+    "state": "closed",
+    "title": "\ud83d\udc1b Bug: PATCH on SingleSelect column wipes colOptions even for metadata-only updates"
+  },
+  "nocodb/nocodb#13231": {
+    "body": "### Please confirm that the bug report does ***not*** already exist\n\n- [x] I confirm there is no existing issue for this bug.\n\n### Steps to reproduce\n\n1. Create a table with ~700 rows\n2. Add 2 Links columns (one m2m, one has-many) and 3 Lookup columns through those links\n3. Open the grid view with all columns visible, page size = 100\n4. Observe 13+ second load time\n5. Hide all Links/Lookup columns \u2192 loads in ~0.1s\n\nTimings measured inside the container (no network overhead):\n- Plain fields only: **0.1s**\n- With linked columns, limit=25: **3.3s**\n- With linked columns, limit=100: **13s**\n\nTime scales linearly with row count, consistent with N+1 query pattern \u2014 each row triggers separate queries per linked column rather than batch loading.\n\nTested on both SQLite and PostgreSQL 17.4 with identical results.\n\n### Desired Behavior\n\nLinked records for a page of rows should be fetched in batch using `WHERE id IN (...)` \u2014 O(link_columns) queries total, not O(rows \u00d7 link_columns). Loading 100 rows with a few linked columns should take <1 second.\n\n### Project Details\n\n```\nNocoDB used as docker: true\nNocoDB version: 0.301.3\nDatabase used in NC_DB URL: sqlite3 (also tested with pg)\nProject was created by clicking: New Project\nDatabase on which spreadsheet is created: sqlite3 / pg\nOS on which NocoDB is running: Ubuntu 24.04 (Hetzner CPX21)\nDatabase version: SQLite 3.45.1 / PostgreSQL 17.4\n```\n\n### Attachments\n\n_No response_",
+    "html_url": "https://github.com/nocodb/nocodb/issues/13231",
+    "labels": [],
+    "state": "closed",
+    "title": "\ud83d\udc1b Bug: [Self-hosted] Grid view with Links/Lookup columns is 100x slower than plain columns"
+  },
+  "nocodb/nocodb#13331": {
+    "body": "### Please confirm that the bug report does ***not*** already exist\n\n- [x] I confirm there is no existing issue for this bug.\n\n### Steps to reproduce\n\nHi, after updating from 0.301.3 to 0.301.5, insertion into the table stopped working. I'm using MySQL integration.\n\nHere is the table creation form:\n`zup_data_unoff | CREATE TABLE `zup_data_unoff` (\u00a0`id` varchar(36) NOT NULL DEFAULT (uuid()) COMMENT 'GUID',\u00a0`username` varchar(255) DEFAULT NULL COMMENT '\u0424\u0418\u041e',\u00a0`department` varchar(255) DEFAULT NULL COMMENT '\u041f\u043e\u0434\u0440\u0430\u0437\u0434\u0435\u043b\u0435\u043d\u0438\u0435',\u00a0`position` varchar(255) DEFAULT NULL COMMENT '\u0414\u043e\u043b\u0436\u043d\u043e\u0441\u0442\u044c',\u00a0`created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,\u00a0`updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,\u00a0PRIMARY KEY (`id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='\u0422\u0430\u0431\u043b\u0438\u0446\u0430 \u0434\u0430\u043d\u043d\u044b\u0445 \u043d\u0435\u043e\u0444\u0438\u0446\u0438\u0430\u043b\u044c\u043d\u044b\u0445 \u0441\u043e\u0442\u0440\u0443\u0434\u043d\u0438\u043a\u043e\u0432 (\u0438\u0441\u0442\u043e\u0447\u043d\u0438\u043a 5)'`\n\nHere's a request with SWAgger, and a direct request without swagger doesn't work either.\nCurl\n\n```\ncurl -X 'POST' \\\n  'https://nocodb/api/v3/data/.................../...................../records' \\\n  -H 'accept: application/json' \\\n  -H 'xc-token: ........................................................................' \\\n  -H 'Content-Type: application/json' \\\n  -d '{\n  \"fields\": {\n    \"username\": \"123123123123\",\n    \"department\": \"string\",\n    \"position\": \"string\"\n  }\n}'\n```\n\n```\n{\n  \"message\": \"Something didn't work as expected. Please try again. If the problem persists, contact support.\"\n}\nResponse headers\n access-control-allow-origin: * \n content-length: 108 \n content-type: application/json; charset=utf-8 \n date: Mon,23 Mar 2026 12:13:07 GMT \n etag: W/\"6c-LmK0BjPybPVollUCGCP8MsY3mVU\" \n server-timing: jVYYCDLZ;desc=\"eyJjdXJyZW50Ijp7ImJyb3dzZXIiOiJjaHJvbWUiLCJvcyI6IndpbmRvd3MiLCJ1c2VyQWdlbnQiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvMTMyLjAuNzE1Mi44NSBTYWZhcmkvNTM3LjM2IiwidmVyc2lvbiI6eyJicm93c2VyIjp7ImZ1bGwiOiIxMzIuMC43MTUyLjg1IiwibWFqb3IiOjEzMn19fSwiYnJhbmRzIjp7Im1ham9yIjpbeyJicmFuZCI6IihOb3QoQTpCcmFuZCIsInZlcnNpb24iOiI5OSJ9LHsiYnJhbmQiOiJHb29nbGUgQ2hyb21lIiwidmVyc2lvbiI6IjEzMiJ9LHsiYnJhbmQiOiJDaHJvbWl1bSIsInZlcnNpb24iOiIxMzIifV0sImZ1bGwiOlt7ImJyYW5kIjoiKE5vdChBOkJyYW5kIiwidmVyc2lvbiI6Ijk5LjAuMC4wIn0seyJicmFuZCI6Ikdvb2dsZSBDaHJvbWUiLCJ2ZXJzaW9uIjoiMTMyIn0seyJicmFuZCI6IkNocm9taXVtIiwidmVyc2lvbiI6IjEzMiJ9XX0sInBsYXRmb3JtIjoiV2luZG93cyIsImlzTW9iaWxlIjpmYWxzZX0_\" \n x-powered-by: Express \n x-request-id: B7EC8A32-4F48-4772-9F88-854F356968A6 \n```\n\nHere is the error in the container itself after executing the request via SWAGGER:\n\n```\nnocodb  | {\"level\":50,\"time\":1774267987291,\"pid\":13,\"hostname\":\"e26fd7e87866\",\"req\":{\"id\":\"B7EC8A32-4F48-4772-9F88-854F356968A6\",\"method\":\"POST\",\"url\":\"/api/v3/data/p97p0j5vsq21uo1/mzhqu4ouswruws0/records\"},\"context\":\"_0x5f44ec\",\"msg\":\"Cannot read properties of undefined (reading 'map')\",\"workspaceId\":\"w8i5teis\",\"projectId\":\"p97p0j5vsq21uo1\",\"ip\":\"192.168.100.101\",\"id\":\"us32mw82d4mjbudy\",\"path\":\"/api/v3/data/p97p0j5vsq21uo1/mzhqu4ouswruws0/records\",\"msg\":\"TypeError: Cannot read properties of undefined (reading 'map')\\n    at _0x4fa908 (/usr/src/app/docker/index.js:1:12778102)\\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\\n    at async _0x39aabf.bulkInsert (/usr/src/app/docker/index.js:1:12779154)\\n    at async _0x4d76be.dataInsert (/usr/src/app/docker/index.js:1:22091469)\\n    at async _0x3b886e.dataInsert (/usr/src/app/docker/index.js:1:22791507)\\n    at async _0x33bcbb.dataInsert (/usr/src/app/docker/index.js:1:10280887)\"}\nnocodb  | {\"level\":50,\"time\":1774267987293,\"pid\":13,\"hostname\":\"e26fd7e87866\",\"req\":{\"id\":\"B7EC8A32-4F48-4772-9F88-854F356968A6\",\"method\":\"POST\",\"url\":\"/api/v3/data/p97p0j5vsq21uo1/mzhqu4ouswruws0/records\"},\"context\":\"_0x3cd62e\",\"msg\":\"SNS is not configured\"}\n\n```\n\n### Desired Behavior\n\nIt should create a record and return the record id.\n\n### Project Details\n\n.\n\n### Attachments\n\n_No response_",
+    "html_url": "https://github.com/nocodb/nocodb/issues/13331",
+    "labels": [],
+    "state": "open",
+    "title": "\ud83d\udc1b Bug: Something didn't work as expected. Please try again. If the problem persists, contact support."
+  },
+  "nocodb/nocodb#13334": {
+    "body": "### Please confirm that the bug report does ***not*** already exist\n\n- [x] I confirm there is no existing issue for this bug.\n\n### Steps to reproduce\n\nI ve just tried to upgrade my nocodb version but my container failed to start. I upgrade from other version just before so I know that it goes well before. \nHere are my logs, I couldn't have more even by trying to start from inside my container directly : \n\n`\u2502 Skip sourcing /mnt/efs/master_config.env as file does not exists                                                                  \u2502\n\u2502 Skip sourcing /mnt/efs//cluster.env as file does not exists                                                                       \u2502\n\u2502 splitting NC_PROPERTIES_JSON into env variables                                                                                   \u2502\n\u2502 completed configure                                                                                                               \u2502\n\u2502 (node:13) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.           \u2502\n\u2502 (Use `node --trace-deprecation ...` to show where the warning was created)                                                        \u2502\n\u2502 (node:13) ExperimentalWarning: CommonJS module /usr/src/app/docker/index.js is loading ES Module /usr/src/app/node_modules/reques \u2502\n\u2502 Support for loading ES Module in require() is an experimental feature and might change at any time                                \u2502\n\u2502 {\"level\":30,\"time\":1774263009882,\"pid\":13,\"hostname\":\"nocodb-65f9b549d9-7d9pn\",\"context\":\"nc_202602270448_map_view_columns_add_so \u2502\n\u2502 {\"level\":50,\"time\":1774263040071,\"pid\":13,\"hostname\":\"nocodb-65f9b549d9-7d9pn\",\"context\":\"_0x5dab1b\",\"msg\":\"Failed to initialize  \u2502\n\u2502 `\n\n### Desired Behavior\n\nI can launch the new version with the migration on the first start.\n\n### Project Details\n\nNocodb used as docker : true\nNocodb version  0.301.5 \nDatabase used in NC_DB URL : pg - 18 \nPoject was created by clicking : New Project by connecting to external database\nDatabase on which spreadsheet is created : pg -18\nOS on which Nocodb is running : \nDatabase version : pg18\n\n### Attachments\n\n_No response_",
+    "html_url": "https://github.com/nocodb/nocodb/issues/13334",
+    "labels": [],
+    "state": "closed",
+    "title": "\ud83d\udc1b Bug: upgrade from 0.301.3 to 0.301.5 failed with \"Failed to initialize JobsService\""
+  },
+  "nocodb/nocohub#2429": {
+    "_not_found": true
+  },
+  "nocodb/nocohub#5112": {
+    "_not_found": true
+  },
+  "nocodb/nocohub#5119": {
+    "_not_found": true
+  },
+  "nocodb/nocohub#5185": {
+    "_not_found": true
+  },
+  "nocodb/nocohub#5202": {
+    "_not_found": true
+  },
+  "nocodb/nocohub#5454": {
+    "_not_found": true
+  },
+  "nocodb/nocohub#5526": {
+    "_not_found": true
+  },
+  "nocodb/nocohub#5574": {
+    "_not_found": true
+  },
+  "nocodb/nocohub#5599": {
+    "_not_found": true
+  },
+  "nocodb/nocohub#5985": {
+    "_not_found": true
+  },
+  "nocodb/nocohub#6119": {
+    "_not_found": true
+  },
+  "nocodb/nocohub#6556": {
+    "_not_found": true
+  },
+  "nocodb/nocohub#6562": {
+    "_not_found": true
+  },
+  "nocodb/nocohub#6632": {
+    "_not_found": true
+  },
+  "nocodb/nocohub#6897": {
+    "_not_found": true
+  },
+  "nocodb/nocohub#7085": {
+    "_not_found": true
+  },
+  "nocodb/nocohub#7095": {
+    "_not_found": true
+  }
+}

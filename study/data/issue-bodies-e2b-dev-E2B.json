@@ -1,0 +1,81 @@
+{
+  "e2b-dev/E2B#531": {
+    "body": "I got this error when running the code on Vercel edge:\n\n```\n\nSandboxError: 2: [unknown] Invalid redirect value, must be one of \"follow\" or \"manual\" (\"error\" won't be implemented since it does not make sense at the edge; use \"manual\" and check the response status code).\n    at (node_modules/e2b/dist/index.mjs:319:15)\n    at (node_modules/e2b/dist/index.mjs:1421:14)\n    at (node_modules/e2b/dist/index.mjs:32:29) {\n  name: 'SandboxError'\n}\n\n```\nWhen I run the code locally it works fine, no issues. The code is creating the Word docx file and then I am trying to download it.\n\nThe library version is 1.0.4.",
+    "html_url": "https://github.com/e2b-dev/E2B/issues/531",
+    "labels": [
+      "bug"
+    ],
+    "state": "closed",
+    "title": "Error running code on Vercel edge environment"
+  },
+  "e2b-dev/E2B#746": {
+    "body": "In packages/python-sdk/e2b/sandbox_async/main.py, line 293\nresponse = await SandboxApi.get_info(sandbox_id)\nshould be changed to:\nresponse = await SandboxApi.get_info(sandbox_id, api_key)\nor it will get an exception of AuthenticationException even if the api_key is passed to the \"connect\" function.",
+    "html_url": "https://github.com/e2b-dev/E2B/issues/746",
+    "labels": [],
+    "state": "closed",
+    "title": "api_key not fully working in sandbox_async connect"
+  },
+  "e2b-dev/E2B#776": {
+    "body": "When running into timeout issues, the error message suggests changing `timeoutMs`:\n\n```\ne2b.exceptions.TimeoutException: context deadline exceeded: This error is likely due to exceeding 'timeoutMs' \u2014 the total time a long running request (like process or directory watch) can be active. It can be modified by passing 'timeoutMs' when making the request. Use '0' to disable the timeout.\n```\n\nThe problem is that this happens both with the Python and Javascript SDK. In Python, the right argument to change is `timeout`. Two potential fixes:\n1) Show different error message depending on what SDK is being used\n2) Make sure the arg names are the same in both SDKs",
+    "html_url": "https://github.com/e2b-dev/E2B/issues/776",
+    "labels": [
+      "bug"
+    ],
+    "state": "closed",
+    "title": "Timeout error message has wrong arg name"
+  },
+  "e2b-dev/E2B#894": {
+    "body": "**Describe the bug**\nUpgrading to **v2.1.0/v2.1.1** causes a runtime error: `Error: require() of ES Module strip-ansi not supported`. The dependency `strip-ansi` is an ES Module, but `e2b/dist/index.js` is attempting to load it with `require()`, which breaks compatibility.\n\n**To Reproduce**\nSteps to reproduce the behavior:\n\n1. Upgrade package to `v2.1.0/v2.1.1`.\n2. Run any code that indirectly imports `strip-ansi` through `e2b`.\n3. Observe that the runtime fails immediately.\n\n**Expected behavior**\nThe package should work after upgrading without breaking due to CommonJS/ESM interop issues.\n\n**Browser console output**\nN/A (Node.js environment)\n\n**Terminal commands & output**\n\n```bash\nError: require() of ES Module /var/task/node_modules/strip-ansi/index.js from /var/task/node_modules/e2b/dist/index.js not supported.\nInstead change the require of strip-ansi to a dynamic import().\n```\n\n**Screenshots**\nN/A\n\n**Desktop (please complete the following information):**\n\n* OS: Linux (AWS Lambda runtime)\n* Node.js: v18.x\n* Package manager: Yarn v4.5.0\n\n**Smartphone (please complete the following information):**\nN/A\n\n**Additional context**\n\n* Issue is specific to `v2.1.0/v2.1.1` (previous version worked fine).\n* Likely caused by `strip-ansi` being ESM-only and still being required with `require()` instead of `import()`.\n* A potential fix is to switch to a dynamic `import(\"strip-ansi\")` in `e2b/dist/index.js`.\n",
+    "html_url": "https://github.com/e2b-dev/E2B/issues/894",
+    "labels": [
+      "bug"
+    ],
+    "state": "closed",
+    "title": "Upgrade to v2.1.0 / v2.1.1 causes require() of strip-ansi to fail"
+  },
+  "e2b-dev/E2B#1032": {
+    "body": "**Describe the bug**\nWhen you build a template with the new template builder 2.0, and you use a Dockerfile, so use the from Dockerfile function with the Dockerfile content, and you change the working directory within your Dockerfile at the end to be a specific working directory on your sandbox, the working directory default from EB2 template still overwrites the working directory that you set in your Dockerfile. \n\n**To Reproduce**\nCreate a simple Dockerfile that changes the working directory to something else. Use the code below to create the template and see how your working directory is not saved from the Dockerfile\n\n    template = (\n        Template()\n        .from_dockerfile(dockerfile_content)\n    )\n    \n    Template.build(\n        template,\n        alias=\"test\"\n    )\n\n**Expected behavior**\nI would expect the working directory and the user that is set within a Dockerfile to be saved and not be overwritten by the default from the template builder. \n",
+    "html_url": "https://github.com/e2b-dev/E2B/issues/1032",
+    "labels": [
+      "bug"
+    ],
+    "state": "closed",
+    "title": "Working directory set in Dockerfile is overwritten by default of Template Builder."
+  },
+  "e2b-dev/E2B#1045": {
+    "body": "**Describe the bug**\nThe `getCallerDirectory()` function fails when used in ESM modules because `CallSite.getFileName()` returns `file://` URLs in ESM context, but the function passes this directly to `path.dirname()` which doesn't handle URLs. This causes `Template().copy()` to fail with a `FileUploadError`.\n\n**To Reproduce**\n\n 1. Create an ESM project with \"type\": \"module\" in package.json\n 2. Install e2b: `npm install e2b`\n 3. Create template.ts:\n \n```\nimport { Template } from 'e2b';\n\nexport const template = Template()\n    .fromNodeImage('20')\n    .copy('src/', '/app/src/');\n```\n\n 4. Create build.ts:  \n \n```\nimport { Template } from 'e2b';\n\nimport { template } from './template';\n\nawait Template.build(template, { alias: 'my-template' });\n```\n\n 5. Create a src/ directory with any file\n 6. Run: npx tsx build.ts\n\n**Expected behavior**\nThe template should build successfully, copying files from `src/` to `/app/src/` in the sandbox.\n\n**Terminal commands & output**\n\n`npx tsx build.ts`\n\n```\nnode:internal/modules/run_main:105\n      triggerUncaughtException(\n\n      at <anonymous> (/path/to/project/template.ts:5:4)\n      ... {\n    name: 'FileUploadError'\n  }\n```\n\n**Screenshots**\nN/A\n\n**Desktop (please complete the following information):**\n\n- OS: macOS (Darwin 24.4.0) - likely affects all platforms\n- Node.js: 20.x, 24.x\n- e2b: 2.8.3\n\n**Additional context**\n I'm happy to submit a PR for this fix. [See my project](https://github.com/bxxf/vibecode-arena/blob/main/patches/E2B_ESM_FILE_URL_BUG.md) where I encountered the issue - I created there MD file documenting the issue and the patch that I'm using to fix it. Here is also [repository with the clear reproduction](https://github.com/bxxf/e2b-template-issue-repro).\n\n **Root cause:** `getCallerDirectory()` passes `file://` URLs from `getFileName()` directly to `path.dirname()`, which doesn't handle URL protocols.\n",
+    "html_url": "https://github.com/e2b-dev/E2B/issues/1045",
+    "labels": [
+      "bug"
+    ],
+    "state": "closed",
+    "title": "bug(js-sdk): Template().copy() fails in ESM modules"
+  },
+  "e2b-dev/E2B#1063": {
+    "body": "**Describe the bug**\n\nInconsistent typing for `timeout` parameter in `commands.run()`. The public API declares `timeout: Optional[float] = 60` but the internal implementation in `e2b_connect` expects an `int`. When a float is passed (e.g., `60.0`), it gets multiplied by 1000 and converted to string as `\"60000.0\"`, which causes the backend to fail parsing with `strconv.ParseInt`.\n\n**To Reproduce**\n\nSteps to reproduce the behavior:\n\n1. Go to the [function definition](https://github.com/e2b-dev/E2B/blob/ca556d8b426e9ffe6b130bf9732728471a8e01d0/packages/python-sdk/e2b/sandbox_sync/commands/command.py#L146) - note `timeout: Optional[float] = 60`\n\n2. Compare with [`_create_stream_timeout`](https://github.com/e2b-dev/E2B/blob/ca556d8b426e9ffe6b130bf9732728471a8e01d0/packages/python-sdk/e2b_connect/client.py#L308) in `e2b_connect/client.py`:\n   ```python\n   def _create_stream_timeout(self, timeout: Optional[int]):\n       if timeout:\n           return {\"connect-timeout-ms\": str(timeout * 1000)}\n       return {}\n   ```\n\n3. Call `sandbox.commands.run(\"echo hello\", timeout=60.0)`\n\n4. Observe error: `InvalidArgumentException: parse timeout: strconv.ParseInt: parsing \"60000.0\": invalid syntax`\n\n**Expected behavior**\n\nEither:\n- The public API type should be `int` to match internal expectations, OR\n- The internal `_create_stream_timeout` should cast to int: `str(int(timeout * 1000))`\n\n**Terminal commands & output**\n\n```\n[DEBUG] EXCEPTION in execute_code_with_pool: InvalidArgumentException: parse timeout: strconv.ParseInt: parsing \"60000.0\": invalid syntax\noutput: Execution failed: parse timeout: strconv.ParseInt: parsing \"60000.0\": invalid syntax\n```\n\n**Desktop (please complete the following information):**\n\n- OS: Linux 4.18.0-553.el8_10.x86_64\n- Python: 3.12/3.13\n- e2b version: latest (installed via pip)\n\n**Additional context**\n\nThe issue is in the type mismatch between:\n1. `e2b/sandbox_sync/commands/command.py` line 146: `timeout: Optional[float] = 60`\n2. `e2b_connect/client.py` line 308: `def _create_stream_timeout(self, timeout: Optional[int])`\n\nWhen `timeout=60.0` (float) is passed:\n- `60.0 * 1000 = 60000.0` (still a float)\n- `str(60000.0) = \"60000.0\"` (includes decimal point)\n- Go's `strconv.ParseInt(\"60000.0\")` fails because it can't parse floats\n\n**Workaround**\n\nCast timeout to int when calling:\n```python\nsandbox.commands.run(cmd, timeout=int(timeout))\n```\n\n",
+    "html_url": "https://github.com/e2b-dev/E2B/issues/1063",
+    "labels": [
+      "bug"
+    ],
+    "state": "closed",
+    "title": "Bug: Inconsistent typing for timeout causes the backend to fail"
+  },
+  "e2b-dev/E2B#1108": {
+    "body": "### Sandbox ID or Build ID\n\n_No response_\n\n### Environment\n\ne2b==2.13.0\nmacOS 26.2 Tahoe\n\n### Timestamp of the issue\n\n2026-01-29 (when git feature was introduced)\n\n### Frequency\n\nHappens every time\n\n### Expected behavior\n\nNot sure if this is on purpose - but I believe the git instance should work the same both for the Sync and Async sandboxes with all the functions.\n\n### Actual behavior\n\n`AsyncSandbox.git` is missing `reset()` and `restore()` methods that exist on Sandbox.git and in the TypeScript SDK. Calling either raises AttributeError.\n\n### Issue reproduction\n\nJust try to use `.git.reset()` or `.git.restore()` on AsyncSandbox instance.\n\n```python\nimport asyncio\nfrom e2b import AsyncSandbox\n\nasync def main():\n    sandbox = await AsyncSandbox.create()\n    await sandbox.git.clone(\"https://github.com/e2b-dev/E2B.git\", \"/home/user/E2B\")\n    await sandbox.files.write(\"/home/user/E2B/README.md\", \"changed\\n\")\n    await sandbox.git.reset(\"/home/user/E2B\", mode=\"hard\", target=\"HEAD\")\n    # AttributeError: 'Git' object has no attribute 'reset'\n    await sandbox.kill()\n\nasyncio.run(main())\n```\nError:\n```\nTraceback (most recent call last):\n  File \"example.py\", line 7, in main\n    await sandbox.git.reset(\"/home/user/E2B\", mode=\"hard\", target=\"HEAD\")\n          ^^^^^^^^^^^^^^^^^\nAttributeError: 'Git' object has no attribute 'reset'\n```\n\n### Additional context\n\nIf there's any additional details why this should not work this way, please lmk - I can provide a PR with the fix that I use locally. Parity check in unit tests for checking if any features are not missing could be helpful, or potentially some codegen / shared logic to prevent differences between sync/async env in the future:\n\n```python\nimport asyncio\nimport inspect\n\nfrom e2b.sandbox_async.git import Git as AsyncGit\nfrom e2b.sandbox_sync.git import Git as SyncGit\n\n\ndef _public_methods(cls):\n    return {\n        name: getattr(cls, name)\n        for name in sorted(dir(cls))\n        if not name.startswith(\"_\") and callable(getattr(cls, name))\n    }\n\n\ndef test_identical_method_signatures():\n    sync = _public_methods(SyncGit)\n    async_ = _public_methods(AsyncGit)\n\n    assert set(sync) == set(async_), (\n        f\"missing from async: {set(sync) - set(async_)}, \"\n        f\"missing from sync: {set(async_) - set(sync)}\"\n    )\n\n    for name in sync:\n        assert inspect.signature(sync[name]) == inspect.signature(async_[name]), (\n            f\"{name}: sync{inspect.signature(sync[name])} \"\n            f\"!= async{inspect.signature(async_[name])}\"\n        )\n\ndef test_async_methods_are_coroutines():\n    for name, method in _public_methods(AsyncGit).items():\n        assert asyncio.iscoroutinefunction(method), f\"AsyncGit.{name} is not async\"\n```",
+    "html_url": "https://github.com/e2b-dev/E2B/issues/1108",
+    "labels": [
+      "bug"
+    ],
+    "state": "closed",
+    "title": "[Bug]: (python-sdk) AsyncSandbox.git is missing reset and restore functions"
+  },
+  "e2b-dev/E2B#1158": {
+    "body": "### Sandbox ID or Build ID\n\n_No response_\n\n### Environment\n\nSelf hosted\n\n### Timestamp of the issue\n\n2026-02-24T 22:56 UTC\n\n### Frequency\n\nHappens every time\n\n### Expected behavior\n\nUsing\n```\nconst sandbox = await Sandbox.create();\nawait sandbox.files.write(\n```\n\nworks in self hosted environments\n\n### Actual behavior\n\nFails with:\n\n```\nreturn new SandboxError(`${res.response.status}: ${message}`);\nSandboxError: 500: Unexpected error when routing request: invalid sandbox port\n```\n\n### Issue reproduction\n\n1. Self host  e2b \n2. Probably use an exotic combination of `E2B_API_URL`, `E2B_DOMAIN`, `E2B_SANDBOX_URL`(I think that's the culprit.\n3. Run a sandbox that involves `sandbox.files.write`\n\n### Additional context\n\nThe sandbox headers:\nhttps://github.com/e2b-dev/E2B/blob/main/packages/js-sdk/src/sandbox/index.ts#L148:L151\n\nare passed to the `rpcTransport`, but not the EnvdApiClient.\n\nhttps://github.com/e2b-dev/E2B/blob/main/packages/js-sdk/src/sandbox/index.ts#L185L:L196\n\n This causes routing to fail.\nPassing these headers to `EnvdApiClient` fixed the issue.",
+    "html_url": "https://github.com/e2b-dev/E2B/issues/1158",
+    "labels": [
+      "bug"
+    ],
+    "state": "closed",
+    "title": "[Bug]: Client SDK should pass sandboxHeaders to EnvdApiClient"
+  }
+}

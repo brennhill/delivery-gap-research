@@ -1,0 +1,34 @@
+{
+  "juspay/hyperswitch#9375": {
+    "body": "### Feature Description/Summary\n\nTSYS (Total System Services) is a global payment processing platform that provides payment gateway services for merchants, payment facilitators, and acquirers. It enables businesses to accept credit and debit card payments securely across multiple channels (e-commerce, in-store, mobile, etc.). The gateway facilitates authorization, capture, settlement, and reporting while ensuring compliance with industry security standards such as PCI DSS.\n\n### Context\nWhile attempting to process payments across all available flows using the TSYS gateway, we are consistently running into the following error response from their API in our current Hyperswitch integration:\n\n```\nSaleResponse(ErrorResponse(TsysErrorResponse { status: Fail, response_code: \"F9901\", response_message: \"Invalid content was found starting with element 'orderNumber'. One of '{paymentFacilitatorIdentifier, paymentFacilitatorName, subMerchantIdentifier, subMerchantName, subMerchantCountryCode, subMerchantStateCode, subMerchantCity, subMerchantPostalCode, subMerchantEmailID, subMerchantPhone, isRecurring, isoIdentifier, registeredUserIndicator, laneID, authorizationIndicator, splitTenderPayment, splitTenderID, customerDetails, industryType, merchantCategoryCode, customFieldDetails, IVRMid, IVRVnumber, recipientDetails, acquirerInternalReferenceNumber, acceptorStreetAddress, serviceLocationCity, serviceLocationGeoCoordinates, skipDuplicateCheck}' is expected., \" }))\n```\n\n### Starter Tasks\n\n- Go ahead to the connector documentation and attempt to hit the connector's direct cURLs and make a happy case.\n- Identify the current integration issue in Hyperswitch by comparing the connector's request body and make relevant changes in the Hyperswitch codebase.\n\n### Implementation Hints\n\n- You can go to `crates/hyperswitch_connectors/src/connectors/tsys.rs` and `crates/hyperswitch_connectors/src/connectors/tsys/transformers.rs` and make relevant changes according to what's gone in the current integration. \n- Head to this documentation to get some clarity about the request and response schemas : [URL](https://www.google.com/url?q=https://developerportal.transit-pass.com/developerportal/resources/dist/%23/api-specs/.%252Fassets%252Fbuild%252Fapi%252FAPI3.0%252FCreditServices%252FAuth%252Findex.html%2523auth&sa=D&source=editors&ust=1757917256458963&usg=AOvVaw0Yt5vvn4-D6Z0T09ock1aK)\n\n### Acceptance Criteria\n\n- [ ] Request and Response body added for each of the flows where integrity check is applied.\n- [ ] All the required GitHub checks passing\n- [ ] Formatted the code using `cargo +nightly fmt --all`\n\n### How to Test it \n\n- Create a Merchant Account in local\n- Create an API Key\n- Add the connector - Tsys\n- Test out the flows\n\n### Mentor Contact\n\n- Tag @bsayak03 [Sayak Bhattacharya] in the comments if you have any doubts/queries\n\n### Resources \n\nHere is the connector documentation link : [URL](https://www.google.com/url?q=https://developerportal.transit-pass.com/developerportal/resources/dist/%23/api-specs/.%252Fassets%252Fbuild%252Fapi%252FAPI3.0%252FCreditServices%252FAuth%252Findex.html%2523auth&sa=D&source=editors&ust=1757917256458963&usg=AOvVaw0Yt5vvn4-D6Z0T09ock1aK)\n\n### Pre-Flight\n\n#### Have you spent some time checking if this feature request has been raised before?\n\n- [x] I checked and didn't find a similar issue\n\n#### Have you read the Contributing Guidelines?\n\n- [x] I have read the [Contributing Guidelines](https://github.com/juspay/hyperswitch/blob/main/docs/CONTRIBUTING.md)\n\n### Submission Process:\n- Ask the maintainers for assignment of the issue, you can request for assignment by commenting on the issue itself.\n- Once assigned, submit a pull request (PR).\n- Maintainers will review and provide feedback, if any. \n- Maintainers can unassign issues due to inactivity, [read more here](https://github.com/juspay/hyperswitch/wiki/Hacktoberfest-Contribution-Rules).\n\nRefer [here](https://github.com/juspay/hyperswitch/blob/main/docs/TERMS_OF_CONTEST.md) for Terms and conditions for the contest.",
+    "html_url": "https://github.com/juspay/hyperswitch/issues/9375",
+    "labels": [
+      "good first issue",
+      "Rust",
+      "hacktoberfest",
+      "hacktoberfest-accepted"
+    ],
+    "state": "closed",
+    "title": "[BUG]: [TSYS] Payments Failing Across All Flows"
+  },
+  "juspay/hyperswitch#11693": {
+    "body": "https://github.com/juspay/hyperswitch/pull/11583 introduced a new `payment_session` validation. We need to rename it to client_session as it is more closely concerned with maintaining consistency between the client (SDK) and the server. It can in the future also be used with authentication or other contexts, not limited to payments.",
+    "html_url": "https://github.com/juspay/hyperswitch/issues/11693",
+    "labels": [
+      "A-core",
+      "T-Core"
+    ],
+    "state": "closed",
+    "title": "fix: Rename payment_session to client_session"
+  },
+  "juspay/hyperswitch#11697": {
+    "body": "## Description\n\nIntroduces `EligibilityPaymentMethodData` as a dedicated type for blocklist and eligibility checks, decoupling it from the broader `PaymentMethodData` type.\n\n## Changes Required\n\n- Add `EligibilityCard` and `EligibilityPaymentMethodData` types where only `card_number` is required (no CVV), replacing the full `PaymentMethodData` in eligibility and blocklist check flows\n- Implement conversions from `CardWithOptionalCVC` and `CardWithNetworkTokenDetails` into `EligibilityCard`\n- Fix enum serialization strings for `GoldPlatinum`, `GoldPrem`, and `GeneralPurposeReLoadableCard` card subtypes\n\n## Related PR\n\nTracked in #11696 (hotfix for `hotfix-2026.04.01.0`)\nOriginal implementation: #11654",
+    "html_url": "https://github.com/juspay/hyperswitch/issues/11697",
+    "labels": [],
+    "state": "open",
+    "title": "feat(blocklist): introduce EligibilityPaymentMethodData for blocklist and eligibility checks"
+  },
+  "juspay/hyperswitch-cloud#15128": {
+    "_not_found": true
+  }
+}

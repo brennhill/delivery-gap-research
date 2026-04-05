@@ -2,7 +2,7 @@
 
 Replication package for: Hill, B. (2026). *Does Spec-Driven Development Reduce Defects? An Empirical Test of Industry Claims Across 119 Open-Source Repositories.*
 
-**Preprint:** https://doi.org/10.5281/zenodo.19415188
+**Preprint:** https://doi.org/10.5281/zenodo.19415187
 
 > We have tried to find all bugs in this analysis, but we're humans (even with artificial augmentation). If you think there is a bug, please open a GitHub issue. We take data quality seriously and will investigate.
 

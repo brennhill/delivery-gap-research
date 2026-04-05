@@ -1,0 +1,53 @@
+{
+  "anthropics/anthropic-cookbook#95": {
+    "body": "In your [blob post](https://www.anthropic.com/news/contextual-retrieval), you mention that your prepend the context to the actual chunk but in the guide notebook it's the opposite. It probably doesn't affect performances but for consistency I thought I would raise it.\r\n \r\nThe line in question is this one ([guide](https://github.com/anthropics/anthropic-cookbook/blob/main/skills/contextual-embeddings/guide.ipynb)):\r\nCurrent:\r\n```python\r\n'text_to_embed': f\"{chunk['content']}\\n\\n{contextualized_text}\"\r\n```\r\nCorrected:\r\n```python\r\n'text_to_embed': f\"{contextualized_text}\\n\\n{chunk['content']}\"\r\n```",
+    "html_url": "https://github.com/anthropics/claude-cookbooks/issues/95",
+    "labels": [
+      "bug"
+    ],
+    "state": "closed",
+    "title": "Nit: prepend contextual text instead of appending it to chunks in guide.ipynb"
+  },
+  "anthropics/anthropic-cookbook#124": {
+    "body": "Not sure if this is intentional, but the `=== WORKER RESULT (conversational) ===` output in https://github.com/anthropics/anthropic-cookbook/blob/main/patterns/agents/orchestrator_workers.ipynb is empty. ",
+    "html_url": "https://github.com/anthropics/claude-cookbooks/issues/124",
+    "labels": [],
+    "state": "closed",
+    "title": "`orchestrator_workers.ipynb` is missing the `WORKER RESULT (conversational)` output"
+  },
+  "anthropics/anthropic-cookbook#288": {
+    "body": "I'm trying to learn about prompt caching. Maybe I'm missing something, but in the `anthropic/claude-cookbooks/misc/data/prompt_caching.ipynb` example, the documentation in the notebook describes a prompt without a prompt_cache and other prompts with a prompt_cache.  The difference seems to be whether the pertinent function contains a \"cache_control\" entry or not.  \n\nLike this:  `\"cache_control\": {\"type\": \"ephemeral\"},`  \n\nBut all examples, whether using prompt-caching or not, contain the cache_control statement, and I don't seen any difference between the two methods.  Could someone who knows about this take a look at the notebook, and maybe add a comment in somewhere if the code is correct about what makes one have prompt caching and the other not have it, or conversely, if the code is incorrect, please provide a correction.\n\nHere is the URL to the notebook:  \n\n<https://github.com/anthropics/claude-cookbooks/blob/main/misc/prompt_caching.ipynb>   \n\nSeparately, a quick example of how one can use prompt caching in a conversation via an IDE, or even directly with your Claude.ai web interface would be something I would use with nearly every conversation.\n\nThanks,  \nRL",
+    "html_url": "https://github.com/anthropics/claude-cookbooks/issues/288",
+    "labels": [],
+    "state": "closed",
+    "title": "prompt_caching example code needs a look"
+  },
+  "anthropics/anthropic-cookbook#322": {
+    "body": "https://github.com/anthropics/claude-cookbooks/blob/cbcc709f1db0cdfdda1435bf9c0b4d2d1c86ee56/.claude/skills/cookbook-audit/validate_notebook.py#L330",
+    "html_url": "https://github.com/anthropics/claude-cookbooks/issues/322",
+    "labels": [],
+    "state": "closed",
+    "title": "add opus-4-5 to claude skill"
+  },
+  "anthropics/anthropic-cookbook#341": {
+    "body": "## Description\n\nA Google Sheets link in the classification evaluation documentation returns 404.\n\n## Location\n\n`capabilities/classification/evaluation/README.md`\n\n## Broken Link\n\n```\nhttps://docs.google.com/spreadsheets/d/1UwbrWCWsTFGVshyOfY2ywtf5BEt7pUcJEGYZDkfkufU/edit#gid=0\n```\n\n## Suggested Fix\n\nEither:\n1. Make the spreadsheet publicly accessible\n2. Remove the link if the spreadsheet is no longer relevant\n3. Replace with an alternative resource\n\n---\n\ud83e\udd16 Generated with [Claude Code](https://claude.com/claude-code)",
+    "html_url": "https://github.com/anthropics/claude-cookbooks/issues/341",
+    "labels": [],
+    "state": "closed",
+    "title": "docs: Broken Google Sheets link in classification evaluation README"
+  },
+  "anthropics/claude-cookbooks#303": {
+    "body": "## Community Resource Submission\n\n**Name:** Claude Agentic Patterns  \n**URL:** https://github.com/ThibautMelen/claude-agentic-patterns\n\n## Description\n\nI created a visual reference guide that compiles agentic patterns from Anthropic's official documentation into an accessible format.\n\n### Patterns Covered\n\n1. **Subagent Orchestration** - Task delegation to specialized subagents\n2. **Progressive Skills** - On-demand capability loading\n3. **Parallel Tool Calling** - Simultaneous tool execution optimization\n4. **Master-Clone Architecture** - Self-spawning agents with context inheritance\n5. **Multi-Window Context** - State persistence across context windows\n6. **Programmatic Orchestration** - Code-driven tool workflows\n7. **Wizard-Style Workflows** - Multi-step processes with confirmations\n\n### Features\n\n- 30+ colorful Mermaid diagrams (optimized for dark/light mode)\n- Python & TypeScript code examples\n- \"When to use / When not to use\" guidance for each pattern\n- Direct links to source documentation\n\n### Sources\n\nAll content derived from official Anthropic resources:\n- Claude 4.5 Best Practices\n- Anthropic Engineering Blog\n- Agent SDK Documentation\n- Claude Code Documentation\n\nCould potentially be referenced in the cookbook or linked as a community resource.\n\n**License:** MIT",
+    "html_url": "https://github.com/anthropics/claude-cookbooks/issues/303",
+    "labels": [],
+    "state": "closed",
+    "title": "Community Resource: Claude Agentic Patterns - Visual Pattern Guide"
+  },
+  "anthropics/claude-cookbooks#313": {
+    "body": "## Context\n\nI've submitted [PR #312](https://github.com/anthropics/claude-cookbooks/pull/312) with enhancements to the `claude_agent_sdk/` tutorial section. This issue provides a detailed breakdown to facilitate review and discussion.\n\n**I'm happy to split this into smaller PRs if the team prefers - just let me know!**\n\n---\n\n## Detailed Breakdown\n\n### 1\ufe0f\u20e3 Notebook Enhancements\n\n#### `00_The_one_liner_research_agent.ipynb`\n- Added richer output visualization showing tokens, cost, and duration\n- Improved activity printing with cleaner formatting\n- Better examples demonstrating stateless vs stateful patterns\n\n#### `01_The_chief_of_staff_agent.ipynb`\n- Cleaner cell outputs throughout\n- Improved flow between sections\n- Better demonstration of slash commands and hooks\n\n#### `02_The_observability_agent.ipynb`\n- Enhanced MCP server configuration examples\n- Better visualization of agent activity\n- Cleaner output formatting for GitHub integration demos\n\n---\n\n### 2\ufe0f\u20e3 Agent Implementation Improvements\n\n#### `research_agent/agent.py`\n- Refactored for cleaner code structure\n- Improved `print_activity()` and `print_final_result()` functions\n- Better token/cost reporting\n\n#### `observability_agent/agent.py`\n- Enhanced visualization capabilities\n- Improved error handling\n- Better integration with the visualizer utilities\n\n#### `chief_of_staff_agent/agent.py`\n- Minor refactoring for clarity\n- Updated slash command definitions\n\n---\n\n### 3\ufe0f\u20e3 New Utilities\n\n#### `utils/html_renderer.py` (608 lines - NEW)\nProvides rich HTML visualization for Jupyter notebooks:\n- `HTMLConversationRenderer` - Renders full conversation flows\n- `HTMLActivityRenderer` - Real-time activity visualization\n- Styled output with CSS for professional appearance\n- Collapsible sections for tool calls and results\n\n#### `utils/agent_visualizer.py` (Refactored)\n- Major cleanup for maintainability\n- Separated concerns between console and HTML output\n- Improved `visualize_conversation()` function\n\n---\n\n### 4\ufe0f\u20e3 New Documentation\n\n| File | Purpose |\n|------|---------|\n| `docs/README.md` | Entry point explaining the docs structure |\n| `docs/ADDITIONS.md` | Comprehensive list of all enhancements made |\n| `docs/CODEBASE_OVERVIEW.md` | Architecture guide - how the tutorial components fit together |\n| `docs/TROUBLESHOOTING.md` | Common issues and solutions for users working through tutorials |\n\n**Rationale:** The existing tutorials are excellent but lack supporting documentation. These docs help newcomers:\n- Understand the overall architecture before diving in\n- Troubleshoot common issues independently\n- See what was enhanced and why\n\n---\n\n### 5\ufe0f\u20e3 Configuration\n\n#### `pyproject.toml`\n- Added `pyyaml` dependency (used for configuration parsing)\n\n---\n\n## Questions for Maintainers\n\n1. **PR Size**: Would you prefer this split into separate PRs (notebooks, agents, utils, docs)?\n2. **Documentation**: Is the `docs/` structure appropriate, or do you have a preferred format?\n3. **html_renderer.py**: Is this utility welcome, or does it overlap with existing tooling?\n\n---\n\n## Files Changed Summary\n\n```\n19 files changed, +5,225 lines, -686 lines\n\nNotebooks:     3 files modified\nAgents:        3 files modified  \nUtilities:     2 files (1 new, 1 refactored)\nDocumentation: 4 files (all new)\nConfig:        1 file modified\nCommands:      4 files modified\nOther:         2 files modified\n```\n\nLooking forward to your feedback!",
+    "html_url": "https://github.com/anthropics/claude-cookbooks/issues/313",
+    "labels": [],
+    "state": "closed",
+    "title": "[Discussion] Claude Agent SDK Tutorial Enhancements - PR #312 Breakdown"
+  }
+}

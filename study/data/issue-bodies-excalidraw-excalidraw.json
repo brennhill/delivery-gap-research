@@ -1,0 +1,654 @@
+{
+  "excalidraw/excalidraw#2109": {
+    "body": "Currently, `alt-drag` duplicates in such a way that we swap the original element with a new one (with new seed and shape) instead of the one being dragged. This is undesirable.\r\n\r\n:warning: Don't forget to adapt arrow binding as it accounts for current, incorrect behavior, and there are no specs for binding so you won't notice any regressions.",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/2109",
+    "labels": [
+      "bug"
+    ],
+    "state": "closed",
+    "title": "alt-drag should not modify original element"
+  },
+  "excalidraw/excalidraw#3702": {
+    "body": "steps:\r\n\r\n1. start dragging an element\r\n2. press shift in the middle\r\n3. drag some more\r\n4. press option/alt to duplicate\r\n5. the original element tends to get positioned outside its original position\r\n\r\n![excal_shift_duplicate_bug](https://user-images.githubusercontent.com/5153846/121080762-2573a300-c7dc-11eb-8f5e-abde148cffa6.gif)\r\n",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/3702",
+    "labels": [
+      "bug"
+    ],
+    "state": "closed",
+    "title": "Alt-duplicating an element after dragging it with Shift positions the original incorrectly"
+  },
+  "excalidraw/excalidraw#5526": {
+    "body": "To align with other editors.\r\n\r\nMight require some rewriting of keyboard handling to ensure that higher-precedence esc handlers (popups, blurring inputs, ...) doesn't deselect.",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/5526",
+    "labels": [
+      "enhancement"
+    ],
+    "state": "closed",
+    "title": "escape should deselect elements"
+  },
+  "excalidraw/excalidraw#5859": {
+    "body": "\r\nhttps://user-images.githubusercontent.com/11256141/201013205-d01c8f25-b9d3-41e6-a1bc-b355c6ce5cbf.mp4\r\n\r\n",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/5859",
+    "labels": [
+      "bug",
+      "Text containers"
+    ],
+    "state": "closed",
+    "title": "Fix text element inside container when rotated"
+  },
+  "excalidraw/excalidraw#6707": {
+    "body": "see https://github.com/excalidraw/excalidraw/pull/6706",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/6707",
+    "labels": [
+      "package:excalidraw"
+    ],
+    "state": "closed",
+    "title": "expose `props.renderScrollbars` to package api"
+  },
+  "excalidraw/excalidraw#7840": {
+    "body": "## Reproduction\r\n\r\n1. Go to https://excalidraw.com\r\n2. Open Library\r\n3. Click vertical \"...\"\r\n4. Click Open\r\n5. Select any *.excalidrawlib file\r\n6. Same issue with the _Insert Image_ tool when selecting _Choose File_\r\n\r\n## Actual behavior\r\nNothing happens\r\n\r\n## Expected  behavior\r\nFile loads into the library\r\n\r\n## Environment\r\niOS Version 17.4.1\r\n\r\n## PS\r\nIt looks like the issue is reproducible only with the most recent iOS update. I have access to a different phone with iOS 17.3.1 where everything worked fine and after upgrading 17.4.1 the issue appeared again.\r\nLooks like only iOS is affected, could not reproduce on latest iPadOS.\r\n\r\nWhile debugging the issue I can see the following warning in the console\r\nOpening the file was canceled (legacy-fs).\r\nWhich is coming from the following place\r\n\r\nhttps://github.com/kubiksamek/excalidraw/blob/0820231fc4d17f4ee0eda5d1af5a3f2948c4dff2/src/data/filesystem.ts#L80C25-L80C67",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/7840",
+    "labels": [
+      "bug",
+      "mobile"
+    ],
+    "state": "closed",
+    "title": "Can't open excalidrawlib file or insert image on iPhone with iOS 17.4.1"
+  },
+  "excalidraw/excalidraw#7921": {
+    "body": "Local changes within the editor are still being recorded after the `App` component updates. This means that our data flow of capturing changes is `action` -> `componentDidUpdate` -> `store`, but updates through the `updateScene` API end up in the `Store` before component updates - to filter out yet uncommitted local elements and eliminate potential concurrency issues.\r\n\r\nAs stated in https://github.com/excalidraw/excalidraw/pull/7348#discussion_r1516057935, we should not capture the _increments_ post component update, but emit them from the user actions and apply them to the `Store` directly. Additionally, turning on recording in relevant actions and capturing the changes after component updates does not just seem error-prone, but might also lead to unexpected issues related to `React`'s auto-batching & concurrent mode.\r\n\r\nMoreover, from the event sourcing perspective, coupling renders with exactly one user action is just plain wrong - we should be able to have multiple actions as part of one render, as well as one \"async\" action spread across multiple renders.\r\n\r\n> In theory, to support async actions properly, we would likely need to establish transactions on the elements level (with transaction id, rollback possibility, etc.)  in case there are other actions triggered in the meantime - such instances are out of the scope of this initiative.\r\n\r\n```[tasklist]\r\n### Tasks\r\n- [ ] Remove scheduling of increments capture and snapshot update post component update\r\n- [ ] Identify and refactor actions which are dependent on multiple `setState` calls or are generally asynchronous\r\n- [ ] Update local store data flow from `action` -> `state` -> `componentDidUpdate` -> `store` into `action` -> `store` -> `state`.\r\n```\r\n\r\n> Store should not be considered as a mediator of the state, as it is handling only a subset of state operations. Especially it's interested only in (observed) committed data (no ephemerals). ",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/7921",
+    "labels": [
+      "refactor",
+      "store"
+    ],
+    "state": "closed",
+    "title": "Unify `Store` data flow for local updates"
+  },
+  "excalidraw/excalidraw#8223": {
+    "body": "## Steps to reproduce:\r\n1. copy a text container when the text box is selected.\r\n2. Paste it.\r\n3. Double click to come to text editing phase.\r\n4. Hit Cmd + V. it pasts the css that is copied",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/8223",
+    "labels": [],
+    "state": "closed",
+    "title": "Pasted css when writing text"
+  },
+  "excalidraw/excalidraw#8261": {
+    "body": "Firefox version: 128.0. I don't get the same issue on Chromium 127.0.6533.57.\r\n\r\nThe problem goes away when I comment [the lines setting `editable.selectionStart` and `editable.selectionEnd`](https://github.com/excalidraw/excalidraw/blob/df8875a497b2111ec8c21963d66a2e2396d15bbd/packages/excalidraw/element/textWysiwyg.tsx#L223-L224). The problem also goes away if the [`overflow: hidden` line](https://github.com/excalidraw/excalidraw/blob/df8875a497b2111ec8c21963d66a2e2396d15bbd/packages/excalidraw/element/textWysiwyg.tsx#L298) is commented.\r\n\r\nThe following is a video showing the bug in addition to logging the values of `editable.selectionStart` and `editable.selectionEnd` below the mentioned two lines:\r\n\r\nhttps://github.com/user-attachments/assets/12ad41e1-cb09-4a8d-82dc-62030f468770\r\n\r\nThis was a bit annoying while taking notes.\r\n\r\nI hid the menu at the bottom since it covered the text at the bottom (but that's another issue :sweat_smile:).\r\n\r\nThe reason the scroll gets reset instead of just not scrolling is because of [the line setting `scrollTop` to 0](https://github.com/excalidraw/excalidraw/blob/df8875a497b2111ec8c21963d66a2e2396d15bbd/packages/excalidraw/element/textWysiwyg.tsx#L260). If I comment it, the scrolling just stops.",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/8261",
+    "labels": [],
+    "state": "closed",
+    "title": "Bug on Firefox: scroll gets reset on appending text before the end of the text"
+  },
+  "excalidraw/excalidraw#8321": {
+    "body": "**Reproduction**\r\n\r\n1. create a rectangle and trigger it's context menu (with right-click)\r\n2. select \"Copy to clipboard as PNG\" or \"Copy to clipboard as SVG\"\r\n3. paste (i.e. with `cmd + v`)\r\n4. undo (i.e. with `cmd + z`)\r\n\r\n**Expected behaviour**\r\n\r\nPNG or SVG is removed from the scene\r\n\r\n**Actual behaviour**\r\n\r\nNothing is undone (undo stack is likely not populated on paste)\r\n\r\n\r\n\r\n",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/8321",
+    "labels": [
+      "good first issue",
+      "high priority",
+      "history"
+    ],
+    "state": "closed",
+    "title": "copy pasted SVG or PNG cannot be undone"
+  },
+  "excalidraw/excalidraw#8811": {
+    "body": "I have made some lines, rotated and aligned them nicely, but now I realize I wanted them to be arrows instead. Could an option to directly convert the line to an arrow be added, to avoid having to redraw? Maybe the arrow heads option could be added to lines as well instead of a dedicated option to convert?\n\n(Tried looking for this everywhere, but couldn't figure it out, apologies if this is already supported!)",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/8811",
+    "labels": [
+      "enhancement",
+      "UX/UI"
+    ],
+    "state": "closed",
+    "title": "Support converting line to arrow"
+  },
+  "excalidraw/excalidraw#9253": {
+    "body": "Hi,\n\nWhen I try to install this with React 19 via `npm install react@19 react-dom@19 @excalidraw/excalidraw@0.18`\n\nI get some peer dependency warning like below:\n```\nnpm install react@19 react-dom@19 @excalidraw/excalidraw@0.18\nnpm warn ERESOLVE overriding peer dependency\nnpm warn While resolving: ex@1.0.0\nnpm warn Found: react@19.0.0\nnpm warn node_modules/react\nnpm warn   peer react@\">=16.8.0\" from @floating-ui/react-dom@2.1.2\nnpm warn   node_modules/@floating-ui/react-dom\nnpm warn     @floating-ui/react-dom@\"^2.0.0\" from @radix-ui/react-popper@1.2.2\nnpm warn     node_modules/@radix-ui/react-popper\nnpm warn   30 more (@radix-ui/react-arrow, @radix-ui/react-compose-refs, ...)\nnpm warn\nnpm warn Could not resolve dependency:\nnpm warn peer react@\"^18.3.1\" from react-dom@18.3.1\nnpm warn node_modules/react-dom\nnpm warn   peer react-dom@\">=16.8.0\" from @floating-ui/react-dom@2.1.2\nnpm warn   node_modules/@floating-ui/react-dom\nnpm warn   15 more (@radix-ui/react-arrow, ...)\nnpm warn ERESOLVE overriding peer dependency\nnpm warn ERESOLVE overriding peer dependency\nnpm warn ERESOLVE overriding peer dependency\nnpm warn ERESOLVE overriding peer dependency\nnpm warn ERESOLVE overriding peer dependency\nnpm warn ERESOLVE overriding peer dependency\nnpm warn ERESOLVE overriding peer dependency\nnpm warn ERESOLVE overriding peer dependency\nnpm warn ERESOLVE overriding peer dependency\nnpm warn ERESOLVE overriding peer dependency\nnpm warn ERESOLVE overriding peer dependency\nnpm warn ERESOLVE overriding peer dependency\nnpm warn ERESOLVE overriding peer dependency\nnpm warn ERESOLVE overriding peer dependency\nnpm warn ERESOLVE overriding peer dependency\nnpm warn ERESOLVE overriding peer dependency\nnpm warn ERESOLVE overriding peer dependency\nnpm warn ERESOLVE overriding peer dependency\nnpm warn ERESOLVE overriding peer dependency\nnpm warn ERESOLVE overriding peer dependency\nnpm warn ERESOLVE overriding peer dependency\nnpm warn ERESOLVE overriding peer dependency\nnpm warn ERESOLVE overriding peer dependency\n```\n\n\nwhen installing via `npm install react react-dom @excalidraw/excalidraw` \u2014 as described in the README, it seems to install v18 by default and there's no issues.\n\nIn another project where we use Excalidraw, where we previously used React 18 and now updated it to React 19, I get \nquite a few peer dependency issue as well e.g `node_modules/@excalidraw/excalidraw/node_modules/@radix-ui/react-tabs`\n\n```\nnpm warn ERESOLVE overriding peer dependency\nnpm warn While resolving: @radix-ui/react-tabs@1.0.2\nnpm warn Found: react@19.0.0\nnpm warn node_modules/react\nnpm warn   react@\"19.0.0\" from the root project\nnpm warn   34 more (@floating-ui/react-dom, @radix-ui/react-arrow, ...)\nnpm warn\nnpm warn Could not resolve dependency:\nnpm warn peer react@\"^16.8 || ^17.0 || ^18.0\" from @radix-ui/react-tabs@1.0.2\nnpm warn node_modules/@excalidraw/excalidraw/node_modules/@radix-ui/react-tabs\nnpm warn   @radix-ui/react-tabs@\"1.0.2\" from @excalidraw/excalidraw@0.18.0\nnpm warn   node_modules/@excalidraw/excalidraw\nnpm warn\nnpm warn Conflicting peer dependency: react@18.3.1\nnpm warn node_modules/react\nnpm warn   peer react@\"^16.8 || ^17.0 || ^18.0\" from @radix-ui/react-tabs@1.0.2\nnpm warn   node_modules/@excalidraw/excalidraw/node_modules/@radix-ui/react-tabs\nnpm warn     @radix-ui/react-tabs@\"1.0.2\" from @excalidraw/excalidraw@0.18.0\nnpm warn     node_modules/@excalidraw/excalidraw\nnpm warn ERESOLVE overriding peer dependency\nnpm warn While resolving: @radix-ui/react-tabs@1.0.2\nnpm warn Found: react-dom@19.0.0\nnpm warn node_modules/react-dom\nnpm warn   react-dom@\"19.0.0\" from the root project\nnpm warn   10 more (@floating-ui/react-dom, @radix-ui/react-arrow, ...)\nnpm warn\nnpm warn Could not resolve dependency:\nnpm warn peer react-dom@\"^16.8 || ^17.0 || ^18.0\" from @radix-ui/react-tabs@1.0.2\nnpm warn node_modules/@excalidraw/excalidraw/node_modules/@radix-ui/react-tabs\nnpm warn   @radix-ui/react-tabs@\"1.0.2\" from @excalidraw/excalidraw@0.18.0\nnpm warn   node_modules/@excalidraw/excalidraw\nnpm warn\nnpm warn Conflicting peer dependency: react-dom@18.3.1\nnpm warn node_modules/react-dom\nnpm warn   peer react-dom@\"^16.8 || ^17.0 || ^18.0\" from @radix-ui/react-tabs@1.0.2\nnpm warn   node_modules/@excalidraw/excalidraw/node_modules/@radix-ui/react-tabs\nnpm warn     @radix-ui/react-tabs@\"1.0.2\" from @excalidraw/excalidraw@0.18.0\nnpm warn     node_modules/@excalidraw/excalidraw\nnpm warn ERESOLVE overriding peer dependency\nnpm warn While resolving: @radix-ui/react-context@1.0.0\nnpm warn Found: react@19.0.0\nnpm warn node_modules/react\nnpm warn   react@\"19.0.0\" from the root project\nnpm warn   34 more (@floating-ui/react-dom, @radix-ui/react-arrow, ...)\nnpm warn\nnpm warn Could not resolve dependency:\nnpm warn peer react@\"^16.8 || ^17.0 || ^18.0\" from @radix-ui/react-context@1.0.0\nnpm warn node_modules/@excalidraw/excalidraw/node_modules/@radix-ui/react-tabs/node_modules/@radix-ui/react-\n\nand so on\u2026\n```",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/9253",
+    "labels": [
+      "bug"
+    ],
+    "state": "closed",
+    "title": "@radix-ui peer dependency issues with react 19"
+  },
+  "excalidraw/excalidraw#9276": {
+    "body": "If you press Ctrl + F in the help menu it closes the menu and brings up the global find panel. Some way to search the help panel would be nice",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/9276",
+    "labels": [
+      "good first issue",
+      "UX/UI"
+    ],
+    "state": "open",
+    "title": "Ctrl + F does not work in help menu"
+  },
+  "excalidraw/excalidraw#9282": {
+    "body": "**Description:**\nCurrently, Excalidraw allows users to draw lines at fixed angles using the **Shift** key (every 15\u00b0). However, when modifying an existing line by dragging one of its endpoints, there is no way to constrain the adjustment to maintain the original angle. This makes precise modifications difficult, especially for technical drawings.\n\n**Proposed Feature:**\nIntroduce a keyboard shortcut that allows users to preserve the original angle of a line when modifying it. For example:\n- Holding **Shift** while dragging an endpoint should constrain the movement to maintain the initial angle of the line.\n- Alternatively, a combination like **Alt + Shift** or **Ctrl + Shift** could be used if Shift alone is reserved for other functions.\n\n**Benefits:**\n- Ensures consistency in structured diagrams.\n- Improves usability for users working on precise drawings.\n- Aligns with existing behavior of constrained angle drawing but extends it to modifications.\n\n**Possible Implementation:**\n- Detect when a user is modifying a line and pressing the defined shortcut.\n- Calculate the closest point along the original angle where the endpoint can be repositioned.\n- Snap the endpoint accordingly.\n\nhttps://github.com/user-attachments/assets/38301399-7e03-4897-9c78-7ac5a2fb3916\n\n",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/9282",
+    "labels": [
+      "UX/UI"
+    ],
+    "state": "closed",
+    "title": "FR: Maintain Line Angle When Modifying Existing Lines"
+  },
+  "excalidraw/excalidraw#9292": {
+    "body": "### 1. Environment\n- Windows 11\n### 2. Step to reproduce:\n- Step 1:  Initialize vite project with `React` **v19.0.0**, `@excalidraw/excalidraw` **v0.18.0** and `@excalidraw/mermaid-to-excalidraw` **v1.1.2**\n- Step 2: Implement parse function:\n```ts\nasync function parseMermaid() {\n      try {\n        if (mermaidDiagram && excalidrawAPI) {\n          const { elements, files } =\n            await parseMermaidToExcalidraw(mermaidDiagram); // define supported mermaid diagram here (flowchart, class, ...)\n          const excalidrawElements = convertToExcalidrawElements(elements);\n          excalidrawAPI.updateScene({ elements: excalidrawElements });\n          excalidrawAPI.scrollToContent(excalidrawAPI.getSceneElements(), {\n            fitToContent: true\n          });\n          if (files) {\n            excalidrawAPI.addFiles(Object.values(files));\n          }\n        }\n      } catch (error) {\n        handleError({ message: String(error), code: 500 } as CustomError);\n      }\n    }\n```\n- Step 3: Run app and try to move the arrows\n### 3. Expected result:\n- Arrows are drawn on correct position\n### 4. Actual result:\n- Arrows are not drawn on correct position when being dragged (it disappears)\n- It throws error in console: **Linear element is not normalized Error**.\n### 5. Record:\nhttps://github.com/user-attachments/assets/ae07e06b-ce93-4f2a-bffc-7c6b4ed42a08\n\n- **P/s:**  I only caught this error when using version 0.18.0, older version (0.17.6) still works well. Maybe the issue is from `convertToExcalidrawElements`. Please fix this error asap.",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/9292",
+    "labels": [
+      "bug"
+    ],
+    "state": "closed",
+    "title": "BUG: Linear element is not normalized when converting to excalidraw elements"
+  },
+  "excalidraw/excalidraw#9296": {
+    "body": "1) Create new function in `packages/excalidraw/element/utils.ts` with signature `elementCenterPoint(element: ExcalidrawElement): GlobalPoint {...}`.\n\n2) Make use of this new more idiomatically named function by refactoring the files where this formula is used to use the common function. \n\nSome of the files I found as good candidates for review:\n- packages/excalidraw/element/binding.ts\n- packages/excalidraw/element/collision.ts\n- packages/excalidraw/element/cropElement.ts\n- packages/excalidraw/element/distance.ts\n...there are certainly more.",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/9296",
+    "labels": [
+      "good first issue"
+    ],
+    "state": "closed",
+    "title": "Replace `x + width / 2, y + height / 2` expressions a common function `elementCenterPoint()` where applicable in `packages/excalidraw`"
+  },
+  "excalidraw/excalidraw#9305": {
+    "body": "Would it be possible to implement something like AutoCAD where you can have the arrow snap to the midpoint? This would make it easier to make clean-looking UML diagrams, especially in decision trees where you want the midpoint of the edge to be snapped to. \n\nhttps://github.com/user-attachments/assets/5e938817-319b-4929-8d89-83ad7a160b32\n\nI already have Snap To Objects turned on. ",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/9305",
+    "labels": [
+      "UX/UI"
+    ],
+    "state": "closed",
+    "title": "[FR] arrow snap to midpoint"
+  },
+  "excalidraw/excalidraw#9314": {
+    "body": "When toggling arrow binding, be it by pressing Ctrl when moving an arrow tip, or by using the toggle in Obsidian's comment palette, the other end of the arrow binds itself back to the adjacent shape. I was able to reproduce the issue on Obsidian as well as on the official website.\n\nHere is a screen capture of this issue : \n\nhttps://github.com/user-attachments/assets/043224e2-9766-4db1-8d26-e6081632a01f\n\nThe steps to reproduce are as follows : \n\n1. Create a new diagram. Draw two rectangles a few units apart. Let's call the first rectangle A and the second B.\n2. Draw an arrow from A to B and let it bind to the shapes on both of its ends. Check that the two ends are bound to their respective shapes by moving both shapes around.\n3. Unbind the arrow from A by left-clicking and holding its end, dragging it then repositioning it while holding the Ctrl key. Check that this end is not bound to A anymore by moving the A shape around. Then reposition A. Do the same with B to confirm that B is still bound to the other arrow tip.\n4. Repeat the same operation on B side : unbind the arrow from B by moving its tip and repositioning it while holding Ctrl. Check that B is not bound anymore to this tip by moving B around.\n5. **The other end adjacent to A is now bound to A, instead of staying unbound from step 3**",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/9314",
+    "labels": [],
+    "state": "closed",
+    "title": "Bug : arrows bind themselves to a shape they were previously unbound of"
+  },
+  "excalidraw/excalidraw#9331": {
+    "body": "![Image](https://github.com/user-attachments/assets/7ff304b1-b377-4d74-8d82-e55567c72e88)",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/9331",
+    "labels": [
+      "bug"
+    ],
+    "state": "closed",
+    "title": "Specific diamond and flowchart"
+  },
+  "excalidraw/excalidraw#9334": {
+    "body": "[ #6428](https://github.com/excalidraw/excalidraw/pull/6428) successfully implemented wrapping each and every selected text elements into separate containers through context menu.\n\nHowever there seems to be a limitation :\n\nWhen one of the text elements selected is already wrapped in a container, the action doesn't show anymore in the context menu...\n\nWould it be possible to keep the action in the context menu and wrap into containers the text elements that are not already?\n\nThank you :)\n\nalso [#6340](https://github.com/excalidraw/excalidraw/issues/6340) is still pending review ^^U",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/9334",
+    "labels": [
+      "good first issue",
+      "UX/UI"
+    ],
+    "state": "closed",
+    "title": "add container to MORE multiple text elements"
+  },
+  "excalidraw/excalidraw#9357": {
+    "body": "In v0.18.0, when you click on the \"Mermaid to Excalidraw\" TTD modal button, the page autoscrolls to the bottom. You have to scroll back to where to modal was opened.\n\nThis is easily reproduced in the docs demo:\nhttps://docs.excalidraw.com/docs/@excalidraw/excalidraw/api/children-components/main-menu\n\nSee attached video.\n\nhttps://github.com/user-attachments/assets/a10599a8-fad7-4c3b-b799-997dbc03d244",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/9357",
+    "labels": [
+      "bug"
+    ],
+    "state": "closed",
+    "title": "[Bug]: TextToDiagram modal autoscrolls page to bottom"
+  },
+  "excalidraw/excalidraw#9383": {
+    "body": "\n![Image](https://github.com/user-attachments/assets/0fa3a3a6-3c44-42a6-8404-0195ef5166f6)",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/9383",
+    "labels": [
+      "bug"
+    ],
+    "state": "closed",
+    "title": "arrow label angle should always be 0"
+  },
+  "excalidraw/excalidraw#9423": {
+    "body": "by changing X or Y parameters of a frame via the properties pan, the frame moves, but its elements don't follow it.\n\nhttps://github.com/user-attachments/assets/85386973-1025-4140-8b63-e0d362ae48a4",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/9423",
+    "labels": [
+      "bug"
+    ],
+    "state": "open",
+    "title": "bug in changing X Y params of a frame via Properties"
+  },
+  "excalidraw/excalidraw#9448": {
+    "body": "1. https://excalidraw.com/#json=gypjT1pR5KfwQw3EQhnQ1,3Kfz6_toBbyp_O4NmFztNw\n2. select all\n3. convert to elbow arrows\n\n![Image](https://github.com/user-attachments/assets/30e16d62-3e14-4966-8a10-94eeef20c53c)\n\nDoesn't happen if you move either arrow first.\n\nEDIT: also reproduces if you convert to elbow arrows sequentially:\n\n1. select the left arrow and convert to elbow\n2. select the right arrow and convert \n\n(make sure you don't move either arrow during selection)",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/9448",
+    "labels": [
+      "bug",
+      "Labeled Arrows",
+      "elbow arrows"
+    ],
+    "state": "closed",
+    "title": "elbow arrow conversion labels position get mixed up"
+  },
+  "excalidraw/excalidraw#9451": {
+    "body": "![Image](https://github.com/user-attachments/assets/ef3879f4-c114-4b19-b402-ec7a01179e30)\n\nJust select the diamond and try to scale the north side of the selection downward (south) to repro\n\n[reproduction-excalidraw.txt](https://github.com/user-attachments/files/19957825/reproduction-excalidraw.txt)",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/9451",
+    "labels": [
+      "bug"
+    ],
+    "state": "closed",
+    "title": "Minimum scaled bindable element allows overscaling bound arrows"
+  },
+  "excalidraw/excalidraw#9457": {
+    "body": "- Select multiple objects, right - click the mouse, and choose \"Wrap text in a container\"\n- Press Cmd + F to open \"Find on canvas\"\n- Enter the text, In this example, enter \"had\"\n\n**Expect**: The results should highlight and list the frame\n**Actual**: The results do not include any reference to frame\n\n\n![Image](https://github.com/user-attachments/assets/ab043c9f-00a8-4872-b466-791cd335acfc)",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/9457",
+    "labels": [
+      "bug"
+    ],
+    "state": "closed",
+    "title": "\"Find on canvas\" can't find in frame title"
+  },
+  "excalidraw/excalidraw#9459": {
+    "body": "When running `yarn start:example` on Windows machine, I am getting this error:\n`'rm' is not recognized as an internal or external command, operable program or batch file.`",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/9459",
+    "labels": [],
+    "state": "closed",
+    "title": "rm -rf not working on Windows"
+  },
+  "excalidraw/excalidraw#9462": {
+    "body": "The new lasso selection seemingly cannot select objects that are outside the original viewport when starting the selection. Scrolling or zooming after the selection was started is ignored.\n\nDemonstration:\n1. \u2705 Select starting with the middle square and then select all outer ones. No zoom. All squares get selected.\n2. \u274c Zoom in. Start the selection with the middle square. Zoom out. Select the outer ones. Only the center square gets selected.\n3. \u2705 Start selecting outside all squares and select all of them. All squares get selected.\n4. \u274c Scroll such that the squares are just out of view. Start the selection. Scroll back. Select the squares. No square gets selected.\n\nhttps://github.com/user-attachments/assets/95945c9f-c4df-4736-95b4-0c8af9cdc676\n\n",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/9462",
+    "labels": [
+      "bug"
+    ],
+    "state": "closed",
+    "title": "Lasso selection breaks when zooming/scrolling"
+  },
+  "excalidraw/excalidraw#9494": {
+    "body": "1. create line\n2. enter line editor\n3. box-select all points\n4. delete",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/9494",
+    "labels": [
+      "bug"
+    ],
+    "state": "closed",
+    "title": "deleting all points from within line editor throws"
+  },
+  "excalidraw/excalidraw#9500": {
+    "body": "1. enter line editor\n2. move a point\n3. move the whole shape\n4. -> the moved point has a ghost\n\n![Image](https://github.com/user-attachments/assets/0483dc17-30ee-452a-87b7-872d4fa452ae)",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/9500",
+    "labels": [
+      "bug",
+      "linear elements"
+    ],
+    "state": "closed",
+    "title": "line editor point ghosts"
+  },
+  "excalidraw/excalidraw#9511": {
+    "body": "![Image](https://github.com/user-attachments/assets/adc53388-b912-4f68-8206-dae2498dcc05)",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/9511",
+    "labels": [
+      "font",
+      "UX/UI"
+    ],
+    "state": "closed",
+    "title": "Unify line height across fonts for new text elements"
+  },
+  "excalidraw/excalidraw#9521": {
+    "body": "![Image](https://github.com/user-attachments/assets/d504e64b-4fc1-4995-a2ef-3852724fd24d)\n\nWhen starting from inside an element (i.e. hitting an element), lasso selected elements will be discarded on pointer up and only the hit element is kept. This is the same with groups.",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/9521",
+    "labels": [
+      "bug"
+    ],
+    "state": "closed",
+    "title": "bug: alt + cmd lasso does not keep selection in some cases"
+  },
+  "excalidraw/excalidraw#9558": {
+    "body": "When the start/end segments are being fixed (which is always?)\n\nrepro:  https://excalidraw.com/#json=6imPithWPBUcrBGQF-wdj,rarB9vVXffsWC8rjdZqXDw\n\n![Image](https://github.com/user-attachments/assets/36e8e3fb-76aa-4321-a997-ac6ab6ee4765)",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/9558",
+    "labels": [
+      "bug"
+    ],
+    "state": "closed",
+    "title": "line-converted elbow arrows sometimes have incorrect fixed segments"
+  },
+  "excalidraw/excalidraw#9562": {
+    "body": "In a Next.js project, Excalidraw does not render correctly out of the box unless its CSS is explicitly imported. This is due to the fact that, unlike some frameworks, Next.js does not automatically include styles from third-party packages unless they are manually imported.\n\nTo ensure Excalidraw renders properly, you must add the following import statement in your application (wherever you are dynamically* importing it):\n\n```ts\nimport '@excalidraw/excalidraw/index.css';\n```\n\nWithout this import, the Excalidraw canvas will not display or function correctly, as it relies on specific styles for layout and interaction.\n\nAction: Please update the documentation to explicitly mention this requirement for users integrating Excalidraw with Next.js or similar frameworks that do not auto-load package-level CSS.",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/9562",
+    "labels": [
+      "documentation"
+    ],
+    "state": "closed",
+    "title": "Missing CSS import in documentation for NextJs Integration"
+  },
+  "excalidraw/excalidraw#9586": {
+    "body": "This is a regression introduced with #9453\n\nSteps to reproduce:\n- Open excalidraw mobile (I tested it using chrome on Android)\n- Draw a line\n- Long tap on the line to open the context menu\n- The context menu disappears when the click ends\n\n@mtolmacs ",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/9586",
+    "labels": [],
+    "state": "closed",
+    "title": "Regression: Context menu not working on linear elements on mobile"
+  },
+  "excalidraw/excalidraw#9606": {
+    "body": "\n### Discussed in https://github.com/excalidraw/excalidraw/discussions/5051\n\n<div type='discussions-op-text'>\n\n<sup>Originally posted by **Shiraz-V-Kamar** April 16, 2022</sup>\nAt present, when elements are grouped, they do not get affected by any alignment commands like \r\n\r\n- Left align \r\n- Center align \r\n- right alien \r\n\r\nSame for the distribution option as well!\r\n\r\nI hope to bring this to the notice of the devs!\r\nThanks a lot for ur hard work \ud83d\ude04 \ud83d\udc4f\ud83c\udffe !!\r\n</div>",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/9606",
+    "labels": [
+      "enhancement"
+    ],
+    "state": "closed",
+    "title": "Aligning elements in the group"
+  },
+  "excalidraw/excalidraw#9628": {
+    "body": "![Image](https://github.com/user-attachments/assets/27672aa7-3e42-4333-be0f-e94a8f5b1396)",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/9628",
+    "labels": [
+      "bug"
+    ],
+    "state": "closed",
+    "title": "selection cursor doesn't show on hover for other elements if linear element selected"
+  },
+  "excalidraw/excalidraw#9649": {
+    "body": "- so that one could open a an link while presenting\n- for simplification consider skipping internal links to objects\n- consider changing a cursor on hover as well\n- consider current presentation locking in E+",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/9649",
+    "labels": [
+      "enhancement",
+      "UX/UI"
+    ],
+    "state": "closed",
+    "title": "Laser point should allow to click on links"
+  },
+  "excalidraw/excalidraw#9654": {
+    "body": "With dark mode, using the lasso selection shortcut (alt + drag on Linux) causes flickering.\n\nIt seems to be more noticeable after we switch from light to dark (or vice versa) in the same session. So:\n- Switch to light mode\n- Refresh\n- Switch to dark mode\n- Try alt + drag\n\nOtherwise, it is just a small canvas reset flash.\n\nRemoving `flushSync` fixes it.\n\nhttps://github.com/user-attachments/assets/7befa11c-aa45-4d78-8b66-3367502a6888",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/9654",
+    "labels": [
+      "bug",
+      "Linux"
+    ],
+    "state": "closed",
+    "title": "Screen flickering with alt lasso selection"
+  },
+  "excalidraw/excalidraw#9655": {
+    "body": "The scheduled function via `throttleRAF` currently uses the earliest arguments it receives in a requestAnimationFrame window. This can cause latency in things like freedraw.\n\nhttps://discord.com/channels/723672430744174682/1375576873303670784/1375582008872538232",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/9655",
+    "labels": [
+      "bug"
+    ],
+    "state": "closed",
+    "title": "Make scheduled function via `throttleRAF` use latest arguments in RAF window"
+  },
+  "excalidraw/excalidraw#9661": {
+    "body": "Frames should be allowed to snap to its own children.\n\nBelow, figma:\n\n![Image](https://github.com/user-attachments/assets/1dbc7dfc-2c83-44b6-b549-b229597b94fe)",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/9661",
+    "labels": [
+      "enhancement"
+    ],
+    "state": "closed",
+    "title": "frame should snap to its own children"
+  },
+  "excalidraw/excalidraw#9669": {
+    "body": "### Export-to-Image Preview Flickers When Switching Themes\n\n---\n\n#### Steps to Reproduce:\n1. Draw anything using the white color.\n2. Open the **Export to Image** modal.\n3. Switch between **dark mode** and **light mode**.\n4. Observe the preview window.\n\n---\n\n#### Expected Behavior:\nThe export preview should remain **smooth and stable** when switching themes.\n\n#### Actual Behavior:\nThe preview **flickers or jitters momentarily** during the theme transition.\n\n---\n\n#### Environment:\n- **Browser:** Chrome  \n- **Video:**\n\nhttps://github.com/user-attachments/assets/b5eca809-ba68-46f7-b55d-3f8dde92121d",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/9669",
+    "labels": [],
+    "state": "closed",
+    "title": "[Bug] - Export Image Preview Flickers When Switching Between Dark and Light Mode"
+  },
+  "excalidraw/excalidraw#9706": {
+    "body": "If I am on excalidraw.com, then I join a collab room, my local elements are moved into that room.\n\nhttps://github.com/user-attachments/assets/fccbd448-7c14-406b-a646-ce8b03d86358",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/9706",
+    "labels": [
+      "bug"
+    ],
+    "state": "closed",
+    "title": "Bug: Local elements moved into collab room on hash change"
+  },
+  "excalidraw/excalidraw#9714": {
+    "body": "[This closure](https://github.com/excalidraw/excalidraw/blob/258605d1d59c4f6f45ba4d0783d621dc6e73dbe3/packages/excalidraw/components/App.tsx#L1713) causes the toast to re-render, and re-schedule its closing, with each change. ",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/9714",
+    "labels": [],
+    "state": "closed",
+    "title": "Bug: Toast staying for longer than intended due to re-render"
+  },
+  "excalidraw/excalidraw#9753": {
+    "body": "Currently, there are no tests for `distribute`. Establishing a test for `distribute` would ensure the protection against future changes accidentally breaking distribution logic.",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/9753",
+    "labels": [],
+    "state": "closed",
+    "title": "Test: currently no tests for distribute"
+  },
+  "excalidraw/excalidraw#9762": {
+    "body": "Seems to be a regression caused by #9488.\n\nhttps://github.com/user-attachments/assets/65188c76-4b84-44fc-b683-5c7afb8b8be6",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/9762",
+    "labels": [],
+    "state": "closed",
+    "title": "Regression: very hard to erase freehand dots"
+  },
+  "excalidraw/excalidraw#9850": {
+    "body": "When creating, pasting, duplicating, or moving elements over an unlocked frame, Excalidraw finds the top layer frame (`getTopLayerFrameAtSceneCoords`) and assigns frameId (via `addElementsToFrame` or direct constructor frameId).\n\nThis still occurs even if the frame is locked.\n\nIn my view the interaction of a locked frame with its surrounding should be similar to how an arrow interacts with a locked element. If the element is locked, the arrow cannot bind.\n\nhttps://github.com/user-attachments/assets/ffb43c05-d8f5-4c59-8c94-4e2d8c955f44",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/9850",
+    "labels": [],
+    "state": "closed",
+    "title": "Locked frames should not auto-add elements (disable automatic frameId assignment)"
+  },
+  "excalidraw/excalidraw#9878": {
+    "body": "@Mrazator \n\nThe issue can only be reproduced on https://staging.excalidraw.com\nIt was originally reported on the Obsidian issue list [#2453](https://github.com/zsviczian/obsidian-excalidraw-plugin/issues/2453)\n\n- Copy a very large image to the clipboard. (I'll copy a huge Excel as in the Obsidian issue example as well)\n- Paste to Excalidraw\n- An error message is displayed, and the scene is deleted.\n\nhttps://github.com/user-attachments/assets/6447d9f1-13e0-4a55-82ec-143157bf9f17\n\n\nThis is a regression introduced in #9643 (the code on excalidraw.com does not seem to include the changes from 2 months ago yet) \n\n\nDebugging led me to this change as the root cause:\n\n<img width=\"943\" height=\"104\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/f52fb083-c8e5-464d-ba9e-827c72a441e8\" />\n\n",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/9878",
+    "labels": [],
+    "state": "closed",
+    "title": "[Critical] The scene deleted when pica resize of large pasted image fails"
+  },
+  "excalidraw/excalidraw#9888": {
+    "body": "on mobile, double-tap (double click) doesn't require the taps to be in the same position, so it's very common that two drags / clicks on canvas close in time ends up creating a text. Getting a lot of false positives when selecting/dragging.",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/9888",
+    "labels": [
+      "bug",
+      "mobile"
+    ],
+    "state": "closed",
+    "title": "double tap to enter text doesn't enforce same-position"
+  },
+  "excalidraw/excalidraw#9934": {
+    "body": "I imagine it might be caused by an update in the past few weeks. It should have been working before. Incidentally, pasting via right-click works. It's only pasting using Ctrl + V that doesn't work.",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/9934",
+    "labels": [
+      "bug",
+      "high priority"
+    ],
+    "state": "closed",
+    "title": "The paste function using Ctrl + V has stopped working (Windows + Firefox)."
+  },
+  "excalidraw/excalidraw#9941": {
+    "body": "Is there any limit on the number of items in the free version?\n\nhttps://github.com/user-attachments/assets/98fa430d-55b9-46a6-ac8e-c0b3833d2cee",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/9941",
+    "labels": [],
+    "state": "closed",
+    "title": "Copied and pasted items disappear after page update"
+  },
+  "excalidraw/excalidraw#9997": {
+    "body": "I'm trying to add a png image that is attached, but it raises an error.\n\n\n![Image](https://github.com/user-attachments/assets/0c8865b8-a98d-4fd9-82da-50bf3c1c7498)",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/9997",
+    "labels": [
+      "More information needed / cannot reproduce",
+      "images"
+    ],
+    "state": "closed",
+    "title": "bug: adding a png image raises error"
+  },
+  "excalidraw/excalidraw#10009": {
+    "body": "1. install a larger library (20-30 items at least)\n2. select all (hold shift and click on first and then the last)\n3. drag them quickly over to the canvas\n\nIf you're fast enough and the library items are large enough, they won't be inserted on canvas. Also depends on CPU speed.\n\nI haven't checked, but I believe it's because of the delay between starting to drag and how much time the `dataTransfer.setData()` call takes (it's synchronous):\n\nhttps://github.com/excalidraw/excalidraw/blob/f55ecb96cc8db9a2417d48cd8077833c3822d64e/packages/excalidraw/components/LibraryMenuItems.tsx#L176-L184\n\nTODO\n\n- [ ] investigate if this is indeed the root of the problem\n- [ ] if so, only encode a lightweight data that serializes quickly (e.g. list of library ids)\n- [ ] on drop, parse the ids and resolve to the full library items",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/10009",
+    "labels": [
+      "good first issue"
+    ],
+    "state": "closed",
+    "title": "race conditions with drag-dropping library items on canvas"
+  },
+  "excalidraw/excalidraw#10033": {
+    "body": "When you hold shift, you can select multiple library items. Currently this only works in the top-down direction. We should support bottom-top as well.\n\nMake sure that the \"holes\" are still supported. In other words, make the contiguous selection from _last_ selected item (while keeping previous selection).\n\n![Image](https://github.com/user-attachments/assets/30c83f73-d611-4479-9a27-29578b0a066c)",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/10033",
+    "labels": [
+      "good first issue",
+      "libraries"
+    ],
+    "state": "closed",
+    "title": "support bi-directional library item multi-selection"
+  },
+  "excalidraw/excalidraw#10181": {
+    "body": "**Description:**\n\nThe Text Element written inside a Shape (Rectangle, Diamond, Ellipse) appears to retain a reference or association to the Original Container after being \"wrapped\" in a New Container using the \"Wrap text in a container\" action.\n\nThis causes the Text Element to be incorrectly associated with two containers simultaneously, leading to errors when manipulating the original object.\n\nNote. The Shapes are: Rectangle, Diamond, or Ellipse.\n\n**Steps to Reproduce:**\n\n- Insert any shape (e.g., Rectangle).\n- Write embedded text within the shape (the text is part of the shape, not a separate element).\n- Select the shape using the Group Selection action.\n- Right-click and select the Wrap text in a container option.\n- Ungroup using the Ungroup Selection action.\n- Result: There are two separate shapes/containers:\n- New Container (small, associated with the text).\n- Original Shape (the initial large element).\n\n**The Problem:**\n\nWhen moving or resizing the Original Shape, the following is observed:\n\n- Movement Issue: When moving the Original Shape, the Text Element inside the New Container also moves with it incorrectly, indicating it still maintains the association to the original parent.\n\nhttps://github.com/user-attachments/assets/fc39252b-87c7-4f5b-ab75-1244b7876be5\n\n- Resizing/Editing Issue: When changing the size of the Original Shape or trying to edit the text, the text element appears to interact erratically or visually swap between the Original Shape and the New Container.\n\nhttps://github.com/user-attachments/assets/4e2f7c17-5b75-439c-8272-646d38c11c9f\n\n\n**Desired Behaviour:**\n\nhttps://github.com/user-attachments/assets/dcb97579-48b8-4920-90ee-a3fe69de0fd5",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/10181",
+    "labels": [],
+    "state": "closed",
+    "title": "[BUG] Text Element incorrectly associated with the original container after \"Wrap text in a container\""
+  },
+  "excalidraw/excalidraw#10195": {
+    "body": "z-index of canvas menu is 100\n\n  .App-top-bar {\n    z-index: var(--zIndex-ui-top);\n    display: flex;\n    flex-direction: column;\n  }\n\nz-index of the color picker is 40\n\n<img width=\"697\" height=\"1494\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/78b4336c-496c-42f0-91c8-f4e7ab0998ea\" />",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/10195",
+    "labels": [],
+    "state": "closed",
+    "title": "Canvas color picker is behind canvas menu on Mobile"
+  },
+  "excalidraw/excalidraw#10196": {
+    "body": "https://excalidraw-package-example-ndx7wlytq-excalidraw.vercel.app/\n\nhttps://github.com/user-attachments/assets/c48c9956-26e1-40c6-bb1e-bcd63bd5bb1a\n\n<img width=\"567\" height=\"841\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/0bb5931d-17ed-4b96-9534-e27e83facbf4\" />\n\n<img width=\"556\" height=\"476\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/62d50d72-090f-4db8-a981-014415873bcb\" />\n\nObsidian has a mobile navigation bar at the bottom. Shape switcher and other selectors are hidden behind the .mobile-toolbar\n\n<img width=\"611\" height=\"345\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/0781a70f-db30-4e5d-af26-d3d3a1e1c407\" />\n\nsetting Obsidian's mobile-navbar display:none, reveals the shape switcher.\n\n<img width=\"570\" height=\"190\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/5cabd724-5103-4be5-8591-b43da7b2148f\" />\n\nLess likely, but theoretically, there could be an offset on the side as well, in which case the color picker popover is partially blocked.\n\n<img width=\"239\" height=\"539\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/aa11eebf-2a71-465a-ac25-bf0ed1ded64a\" />",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/10196",
+    "labels": [],
+    "state": "closed",
+    "title": "Positioning of mobile .data-radix-popper-content-wrapper does not consider viewport offsets"
+  },
+  "excalidraw/excalidraw#10282": {
+    "body": "- [ ] view mode displays incorrectly on mobile\n\n  <img width=\"442\" height=\"717\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/8904572a-f55e-47f2-83a1-c79e067cddc4\" />\n\n- [ ] exiting view mode leaves toolbar in some weird state (tools) missing:\n  \n  <img width=\"442\" height=\"717\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/f6245039-d39e-423c-b39c-f445985c7849\" />\n\n- [ ] zen mode should likely be disabled on mobile for now (remove from context menu and command palette on mobile)",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/10282",
+    "labels": [],
+    "state": "closed",
+    "title": "view mode and zen mode working in mobile"
+  },
+  "excalidraw/excalidraw#10340": {
+    "body": "On macOS, I move the canvas with two fingers on the trackpad. Once the cursor touches a frame\u2019s title, canvas movement stops, and the only way to keep moving is to manually move the cursor away from the frame title.",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/10340",
+    "labels": [
+      "enhancement",
+      "good first issue",
+      "UX/UI",
+      "frames"
+    ],
+    "state": "closed",
+    "title": "Moving the canvas gets stuck when the cursor hovers over a frame title."
+  },
+  "excalidraw/excalidraw#10528": {
+    "body": "[Commit 8fb16669ab913b7618c6e55a4aba18275fabd1bb](https://github.com/excalidraw/excalidraw/commit/8fb16669ab913b7618c6e55a4aba18275fabd1bb) has introduced a regression on the `examples/with-script-in-browser` application, when running the application, there's an error that blocks the example application from loading.\n```\n TypeError: can't access property \"svg\" of undefined\n    <anonymous> renderElement.ts:372\n ```\n\n## How to reproduce\n\n- clone the project\n- checkout to 8fb1666 (`git checkout 8fb1666`)\n- Run the install and build scripts: `yarn clean-install && yarn rm:build && yarn start:example`\n  - Example application at http://localhost:3001 doesn't work\n- checkout to the previous commit to `8fb1666`, `f2600fe` ( `git checkout f2600fe`)\n- Run the install and build scripts: `yarn clean-install && yarn rm:build && yarn start:example`\n  - Example application at http://localhost:3001 works normally\n",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/10528",
+    "labels": [],
+    "state": "closed",
+    "title": "Regression on examples/with-script-in-browser"
+  },
+  "excalidraw/excalidraw#10540": {
+    "body": "Stroke color of embeddables is not available since ##9996",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/10540",
+    "labels": [],
+    "state": "closed",
+    "title": "Regression: Embeddables lost stroke color option in element properties after #9996"
+  },
+  "excalidraw/excalidraw#10542": {
+    "body": "When you paste by selecting \"Paste\" from the context menu, the image gets inserted twice.\n\nhttps://github.com/user-attachments/assets/95235291-d049-4b65-9e85-ea6bdae83318\n\n",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/10542",
+    "labels": [],
+    "state": "closed",
+    "title": "Context menu paste pastes in image twice"
+  },
+  "excalidraw/excalidraw#10586": {
+    "body": "Could we also have a QR code as well as a link to share white board please. ",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/10586",
+    "labels": [],
+    "state": "closed",
+    "title": "QR code to share link to access whiteboard"
+  },
+  "excalidraw/excalidraw#10599": {
+    "body": "I've noticed that the grid lines in dark mode don't have a subtle color anymore. Instead, they're purely white. It'd be great to have the old look, since it's not that disturbing.\n\nIt might be caused by https://github.com/excalidraw/excalidraw/pull/10578.\n\n[28 Dec 2025](https://web.archive.org/web/20251228141116/https://excalidraw.com/):\n\n<img width=\"3044\" height=\"1350\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/83e8c398-e11d-4d67-b6ef-ec15ca9a3f2d\" />\n\n\nNow:\n\n<img width=\"3044\" height=\"1350\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/e28563fe-a42e-494b-8b58-2db54499ff60\" />\n",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/10599",
+    "labels": [
+      "bug"
+    ],
+    "state": "closed",
+    "title": "Broken grid line color in dark mode"
+  },
+  "excalidraw/excalidraw#10628": {
+    "body": "(regressed in https://github.com/excalidraw/excalidraw/commit/c141960ada4869ee6a3bb8a665e75c0c18ad7f19)\n\n1. crop image\n2. try move move the crop area to a different position\n3. doesn't work",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/10628",
+    "labels": [
+      "bug"
+    ],
+    "state": "closed",
+    "title": "image crop area cannot be moved"
+  },
+  "excalidraw/excalidraw#10642": {
+    "body": "![Image](https://github.com/user-attachments/assets/5e31d5de-475f-42bf-9125-e3996bb60450)",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/10642",
+    "labels": [
+      "bug"
+    ],
+    "state": "closed",
+    "title": "elbow arrow binding detached on segment move"
+  },
+  "excalidraw/excalidraw#10701": {
+    "body": "# Description\nThere appears to be two cases where arrow bindings do not update until the affected elements are manually moved:\n\n## 1. Distribute action on elements with bound elements\n- When distribution is applied to elements with arrow(s) bound to them, the arrows do not render in the correct position until the elements are moved.\n\nhttps://github.com/user-attachments/assets/15f01820-f249-445f-92f5-1dfae4eb25e6\n\n## 2. When editing bound text exceeds its associated container's height\n- When text bound to a container extends beyond the container's height, the associated arrow elements similarly fail to render correctly unless the container is moved.\n\nhttps://github.com/user-attachments/assets/6b4123f4-d802-46e1-8b13-033e3965fbd2\n\n## Potential fix/areas of interest\nFor both cases the `updateBoundElements` method seems most applicable.\n\n- The distribute action currently uses `newElementWith`. Historically, this was also used in the align action, but was later replaced with the more current combination of `mutateElement` and `updateBoundElements` methods. (see PR #8998)\n- The Plan would be to follow similarly and replace the `newElementWith` to mirror the align implementation.\n- For the bound text overflow case, I've located the relevant code path and plan to add `updateBoundElements` after `mutateElement` is applied.\n\n@anviik and I discovered these while looking into a related issue with bound text. We're actively working on a PR to address both these scenarios",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/10701",
+    "labels": [],
+    "state": "closed",
+    "title": "Bug: 2 scenarios where arrow elements are not updated"
+  },
+  "excalidraw/excalidraw#10720": {
+    "body": "Hi Excalidraw team,\n\nI am a developer using Excalidraw via the Obsidian plugin. I've noticed that the current conversion from Mermaid code to Excalidraw elements has a significant limitation regarding **styling**, particularly with **subgraphs**.\n\n### The Problem\n\nWhen using the native converter, custom styles applied to containers (subgraphs) are currently ignored. While `classDef` for individual nodes works well, the `style` directive for subgraphs is lost during the conversion.\n\nFurthermore, the general mapping of styles from code to canvas is limited, creating \"flat\" diagrams that require extensive manual editing to leverage Excalidraw\u2019s full potential.\n\n### Use Case & Productivity\n\nI frequently use **AI to generate complex Mermaid code** for educational and architectural purposes. Moving from AI-generated code to a visual canvas is a massive productivity boost, but only if the visual hierarchy and intent (colors, dashed lines, groupings) are preserved.\n\nImproving the parser to handle global styling would allow users to create expressive, information-dense diagrams and mind maps significantly faster, without losing Mermaid's ability to convey meaning through visual styling.\n\n### Reproducible Example\n\nThe background colors and border styles for `SG_RED` and `SG_BLUE` are lost when importing this code:\n\n```\ngraph TD\n    %% Node styles work fine\n    classDef criticalNode fill:#ff5252,stroke:#b71c1c,color:#fff\n    \n    subgraph SG_RED [\"CRITICAL MODULE\"]\n        Node01[\"Important Service\"]:::criticalNode\n    end\n\n    subgraph SG_BLUE [\"DASHED BORDER MODULE\"]\n        Node02[\"Feature Module\"]\n    end\n\n    %% THESE SUBGRAPH STYLES ARE CURRENTLY IGNORED DURING CONVERSION:\n    style SG_RED fill:#ffebee,stroke:#c62828,stroke-width:3px\n    style SG_BLUE fill:#e3f2fd,stroke:#1565c0,stroke-width:2px,stroke-dasharray: 10 5\n\n```\n\n### Proposed Improvements\n\nI propose enhancing the mapping logic globally to capture more attributes from the Mermaid parser:\n\n* **Containers/Subgraphs**: Map `fill` to `backgroundColor` and ensure proper z-index layering.\n* **Borders**: Map `stroke-dasharray` to `strokeStyle: \"dashed\"` and `stroke-width` to Excalidraw\u2019s native stroke width.\n* **Aesthetics**: Better integration with Excalidraw's styling capabilities, such as fill styles (solid vs. hachure) and opacity.\n\nThis enhancement would bridge the gap between structured code and the flexible, high-quality visual thinking that Excalidraw is known for.\n\nThank you for considering this improvement!\n",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/10720",
+    "labels": [
+      "Mermaid"
+    ],
+    "state": "closed",
+    "title": "Feature Request: Global overhaul of mermaid-to-excalidraw styling (including Subgraph support)"
+  },
+  "excalidraw/excalidraw#10768": {
+    "body": "I don't know the flow I follow to get this.\n\n<img width=\"1281\" height=\"567\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/23133f82-e833-47fc-ac99-50e208ed4760\" />",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/10768",
+    "labels": [],
+    "state": "closed",
+    "title": "Arrow left head icon start as selected even if not drawn"
+  },
+  "excalidraw/excalidraw#10812": {
+    "body": "@mtolmacs \n\nI am getting this error/warning on some of my older drawings:\n\n<img width=\"638\" height=\"303\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/fc234b4e-e9db-4166-ab5e-d8b0056d4d63\" />\n\nThe issue is here `const [fixedX, fixedY] = normalizeFixedPoint(fixedPointRatio);`\n\n\n```ts\nexport const getGlobalFixedPointForBindableElement = (\n  fixedPointRatio: FixedPoint,\n  element: ExcalidrawBindableElement,\n  elementsMap: ElementsMap,\n): GlobalPoint => {\n  const [fixedX, fixedY] = normalizeFixedPoint(fixedPointRatio);\n\n  return pointRotateRads(\n    pointFrom(\n      element.x + element.width * fixedX,\n      element.y + element.height * fixedY,\n    ),\n    elementCenterPoint(element, elementsMap),\n    element.angle,\n  );\n```\n\nHowever, normalizeFixPoint may return null value:\n```ts\nexport const normalizeFixedPoint = <T extends FixedPoint | null>(\n  fixedPoint: T,\n): T extends null ? null : FixedPoint\n```\n\nthe error trickles from repairBinding in restore.ts, when the arrow is bound to a start or end point, but for some reason, fixedPoint was null (I did not investigate why or how).\n\n```ts\n    // migrating legacy focus point bindings\n    if (boundElement && elementsMap) {\n      const p = LinearElementEditor.getPointAtIndexGlobalCoordinates(\n        element,\n        startOrEnd === \"start\" ? 0 : element.points.length - 1,\n        elementsMap,\n      );\n      const mode = isPointInElement(p, boundElement, elementsMap)\n        ? \"inside\"\n        : \"orbit\";\n      const focusPoint =\n        mode === \"inside\"\n          ? p\n          : projectFixedPointOntoDiagonal(\n              element,\n              p,\n              boundElement,\n              startOrEnd,\n              elementsMap,\n              { value: 1 as NormalizedZoomValue },\n            ) || p;\n```\n",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/10812",
+    "labels": [],
+    "state": "closed",
+    "title": "getGlobalFixedPointForBindableElement exception when fixedPointRatio is null"
+  },
+  "excalidraw/excalidraw#10861": {
+    "body": "## Summary\n\nWhen using \"Save to file\" (Cmd+S / main menu \u2192 Save to...) on Excalidraw+, images that haven't finished loading from the server are silently omitted from the exported `.excalidraw` file. There is no warning or indication that the file is incomplete. This results in a file that looks correct on the originating client (due to in-memory cache) but is broken when opened elsewhere.\n\nDiscussed with @dwelle on Discord.\n\n## Steps to Reproduce\n\n1. Open a drawing with many images on [Excalidraw+](https://app.excalidraw.com) (e.g. 59 unique images)\n2. Save to file (Cmd+S or main menu \u2192 \"Save to...\") relatively quickly after the scene loads, before all images have finished loading from Firebase Storage\n3. Open the exported `.excalidraw` file in a fresh browser session (or Obsidian, or any other consumer)\n4. Observe: many images are missing, shown as gray placeholders\n\n## Expected Behavior\n\nEither:\n- All images referenced by elements are included in the export, **or**\n- The editor warns that N images haven't loaded yet and offers the choice to wait or proceed with an incomplete export\n\n## Actual Behavior\n\n- Images that haven't been fetched from the server at the moment of save are **silently dropped** from the `files` map in the exported JSON\n- No warning is shown \u2014 the save appears successful\n- The file may be 13 MB instead of the expected 43 MB, with 23 out of 61 images\n\n## Observed Data\n\nThe same finished drawing (59 unique images, ~43 MB complete) was exported three times via \"Save to file\". The number of embedded files varied depending on how quickly the save was triggered after loading:\n\n```\nLLM Intuition.excalidraw:           files: 23   (13 MB \u2014 incomplete, most images missing)\nLLM Intuition 5.excalidraw:         files: 60   (43 MB \u2014 almost complete)\nLLM Intuition 6.excalidraw:         files: 61   (43 MB \u2014 complete)\n```\n\nIn contrast, duplicating the drawing via Excalidraw+'s built-in \"Duplicate\" feature always produced a complete file (61 files, 41 MB), since duplication happens server-side.\n\n### Downstream Effect in Obsidian\n\nThe Obsidian Excalidraw plugin shares an in-memory image cache keyed by `FileId` (SHA-1 hash) across all open drawings. This leads to confusing behavior:\n\n- Whichever `.excalidraw` file is **active at Obsidian startup** gets loaded first and populates the shared image cache\n- If the **complete** file is active at startup, its images populate the cache, and even the incomplete file appears to render correctly\n- If the **incomplete** file is active at startup, only its subset of images enters the cache, and the complete file also appears broken\n- Restarting Obsidian with different files active flips which set appears complete\n\nThe initial incomplete import likely marks missing files as errored, and doesn't retry them once combined with a complete import in the same session.\n\nThis is a downstream consequence of the export bug \u2014 if the exported file always contained all images, this would never surface.\n\n## Root Cause Analysis\n\nThe issue spans two layers:\n\n### 1. Save action passes `app.files` as-is \u2014 no completeness check\n\nWhen the save action fires, it passes `app.files` directly to the serializer:\n\n**`packages/excalidraw/actions/actionExport.tsx:176`** (actionSaveToActiveFile):\n```typescript\nawait saveAsJSON(elements, appState, app.files, app.getName());\n```\n\n**`packages/excalidraw/data/json.ts:62`** (serializeAsJSON):\n```typescript\nfiles:\n  type === \"local\"\n    ? filterOutDeletedFiles(elements, files)\n    : undefined,\n```\n\n**`packages/excalidraw/data/json.ts:27-43`** (filterOutDeletedFiles):\n```typescript\nconst filterOutDeletedFiles = (elements, files) => {\n  const nextFiles: BinaryFiles = {};\n  for (const element of elements) {\n    if (\n      !element.isDeleted &&\n      \"fileId\" in element &&\n      element.fileId &&\n      files[element.fileId]    // \u2190 if file not fetched yet, this is falsy \u2192 silently skipped\n    ) {\n      nextFiles[element.fileId] = files[element.fileId];\n    }\n  }\n  return nextFiles;\n};\n```\n\nThe critical line is `files[element.fileId]` \u2014 if the image data hasn't arrived from the server, the entry simply doesn't exist in `app.files`, and the image is silently omitted.\n\n### 2. Image fetching is async and fire-and-forget\n\nWhen a cloud scene loads, `loadImages()` fires asynchronous fetches:\n\n**`excalidraw-app/App.tsx:441-506`**:\n```typescript\nconst loadImages = (data, isInitialLoad = false) => {\n  if (collabAPI?.isCollaborating()) {\n    collabAPI.fetchImageFilesFromFirebase({ elements, forceFetchFiles: true })\n      .then(({ loadedFiles, erroredFiles }) => {\n        excalidrawAPI.addFiles(loadedFiles);  // \u2190 updates app.files only AFTER fetch completes\n        updateStaleImageStatuses({ ... });\n      });\n  } else if (data.isExternalScene) {\n    loadFilesFromFirebase(prefix, key, fileIds)\n      .then(({ loadedFiles, erroredFiles }) => {\n        excalidrawAPI.addFiles(loadedFiles);\n        // ...\n      });\n  }\n  // ...\n};\n```\n\nEach image is fetched individually from Firebase Storage via HTTP. For 59 images this can take significant time, especially on slower connections. There is **no mechanism** to:\n- Track that files are still being fetched in the editor/library layer\n- Warn during save that files are missing\n- Block or delay save until all files arrive\n- Count how many files are expected vs. present\n\n### 3. `shouldPreventUnload` only covers saving, not fetching\n\n**`excalidraw-app/data/FileManager.ts:174-182`**:\n```typescript\nshouldPreventUnload = (elements) => {\n  return elements.some((element) => {\n    return (\n      isInitializedImageElement(element) &&\n      !element.isDeleted &&\n      this.savingFiles.has(element.fileId)  // \u2190 only checks uploads, NOT downloads\n    );\n  });\n};\n```\n\nThis only prevents unload while files are being **uploaded** to storage. Files being **downloaded** (fetched) are not protected.\n\n### 4. The editor library has no concept of \"pending remote files\"\n\n`app.files` (`packages/excalidraw/components/App.tsx:622`) is simply `BinaryFiles = {}`. There is no parallel tracking of \"expected but not yet loaded\" file IDs. The editor cannot distinguish between \"this file doesn't exist\" and \"this file exists on the server but hasn't been fetched yet.\"\n\n## Suggested Fix\n\nPer @dwelle's suggestion, the best approach is likely to **hoist the exporter function/component so the host app can decide what's best** \u2014 e.g. the host app knows whether files are still being fetched and can await them, warn, or block the save.\n\nAdditionally:\n\n### Option A: Detect and warn at save time (editor-level fix)\n\nIn the save actions or `serializeAsJSON`, compare file IDs referenced by non-deleted image elements against what's actually in `app.files`. If there are missing files, show a confirmation dialog: *\"N images haven't loaded yet. Save anyway?\"*\n\nThis can work purely at the editor level without host app involvement.\n\n### Option B: `shouldPreventUnload` should also check `fetchingFiles`\n\nAt minimum, `shouldPreventUnload` in `FileManager` should also return `true` when files are actively being fetched, preventing accidental page close during loading.\n\n## Environment\n\n- Browser: Chrome on macOS\n- Source: Excalidraw+ (app.excalidraw.com)\n- Drawing: ~59 unique images, ~43 MB when fully exported",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/10861",
+    "labels": [],
+    "state": "closed",
+    "title": "Save to file silently drops images not yet fetched from server"
+  },
+  "excalidraw/excalidraw#10948": {
+    "body": "# Description\nWhen a curved Linear Element (non elbow) has a curve which extends past the control points bounding box, and rotation is applied to the linear element. Intersection does not align with the visible rendered linear element. \n\nBy using `debugDrawCubicBezier` in `distanceToLinearOrFreeDraElement` you can see the path for hit detection is offset. This is possibly due to using the wrong rotational center.\n\nhttps://github.com/user-attachments/assets/ff5a6c9a-74ee-4947-8fd5-a39c99b4dc04\n\n## Steps to Reproduce\n1. Draw a curved arrow, where a curve extends past an extreme control point\n2. rotate the curved arrow to any non-zero angle\n3. Deselect the arrow\n4. zoom in and hover over the visually rendered path",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/10948",
+    "labels": [
+      "bug"
+    ],
+    "state": "closed",
+    "title": "[Bug] Hit detection on rotated curved arrows"
+  },
+  "excalidraw/excalidraw#11001": {
+    "body": " Bug: isLineSegment does not validate second point\n\nFile: [packages/math/src/segment.ts](https://github.com/excalidraw/excalidraw/blob/master/packages/math/src/segment.ts)\n\nWhile going through the isLineSegment implementation, I noticed that it checks segment[0] twice instead of validating both elements of the segment:\n```\n\nisPoint(segment[0]) &&\nisPoint(segment[0]);\n```\n\nBecause of this, cases like the following incorrectly pass validation:\n\n`isLineSegment([[0, 0], \"invalid\"])` // returns true\n\nIdeally, both elements of the segment should be checked:\n\n```\nisPoint(segment[0]) &&\nisPoint(segment[1]);\n```\n\nThis can lead to invalid segments being treated as valid, which might cause issues later when segment[1] is used assuming it\u2019s a proper point.",
+    "html_url": "https://github.com/excalidraw/excalidraw/issues/11001",
+    "labels": [],
+    "state": "closed",
+    "title": "math: isLineSegment does not validate second point"
+  },
+  "import-js/eslint-plugin-import#3185": {
+    "body": "It's possible to auto-fix detected duplicated import types as inline types with `import/no-duplicates` (\"prefer-inline\": true), but it's not possible to keep type imports as they are.\n\nTherefore, `import/no-duplicate` should be extended to prefer type imports when fixing duplicates \n\n\u274c Invalid `[\"error\", {\"prefer-type-imports\": true}]`\n\n```js\nimport { AValue, type AType, type BType } from './mama-mia'\n\nimport { CValue, type CType } from './papa-mia'\n```\n\n\u2705 Valid with `[\"error\", {\"prefer-type-imports\": true}]`\n\n```js\nimport { AValue, } from './mama-mia'\nimport type { AType , BType } from './mama-mia'\n\nimport { CValue } from './papa-mia'\nimport type { CType } from './papa-mia'\n```\n\n",
+    "html_url": "https://github.com/import-js/eslint-plugin-import/issues/3185",
+    "labels": [
+      "rule proposal",
+      "import/export ordering",
+      "typescript"
+    ],
+    "state": "open",
+    "title": "Prefer type imports in `import/no-duplicates`"
+  },
+  "zsviczian/obsidian-excalidraw-plugin#2636": {
+    "body": "### Have you searched for existing issues (including closed ones)?\n\n- [x] Yes, I have searched the existing issues.\n\n### Does this bug persist in a new vault with only Excalidraw installed?\n\n- [x] Yes, I have verified the issue persists.\n\n### Your environment\n\nSYSTEM INFO:\n\tOperating system: ios 18.7.1 (Apple iPad8,9)\n\tObsidian version: 1.11.5 (279)\n\tAPI version: v1.11.5\n\tLogin status: logged in\n\tLanguage: en\n\tCatalyst license: none\n\tLive preview: on\n\tBase theme: dark\n\tCommunity theme: none\n\tSnippets enabled: 0\n\tRestricted mode: off\n\tPlugins installed: 25\n\tPlugins enabled: 19\n\t\t1: Remotely Save v0.5.25\n\t\t2: Admonition v10.3.2\n\t\t3: Banners v1.3.3\n\t\t4: Better Math in Callouts & Blockquotes v0.3.8\n\t\t5: Custom Font Loader v1.8.0\n\t\t6: Dataview v0.5.68\n\t\t7: Dictionary v2.22.0\n\t\t8: Excalidraw v2.20.0\n\t\t9: Iconize v2.14.7\n\t\t10: Markmind v3.4.2\n\t\t11: MathLinks v0.5.3\n\t\t12: Omnisearch v1.28.0\n\t\t13: Rendered Block Link Suggestions v0.5.0\n\t\t14: TikZJax v0.5.2\n\t\t15: Virtual Linker / Glossary v1.5.2\n\t\t16: Handwritten Notes v1.4.0\n\t\t17: PDF++ v0.40.31\n\t\t18: Image Captions v1.1.7\n\t\t19: Latex Suite v1.9.8\n\nRECOMMENDATIONS:\n\tCommunity plugins: for bugs, please first try updating all your plugins to latest. If still not fixed, please try to make the issue happen in the Sandbox Vault or disable community plugins.\n\n\n### Your NotebookLM query\n\n_No response_\n\n### Describe the bug\n\nNew update immediately made all LaTeX not invert color with theme changes. I flipped through the settings on/off for theme/styling + obsidian themes. Update says I can select whether images invert with theme changes but that doesn\u2019t seem to appear for the LaTeX svgs. Please advise. I\u2019m on Ipad, obsidian is up to date. I also restarted application multiple times.\n\n### Steps to reproduce\n\n1. Set theme/styling to match obisidan\n2. Dark theme obsidian\n3. dark theme excalidraw\n4. Type LaTex into Excalidraw\n\n\n### Expected behavior\n\nExpecting the LaTeX to invert color with theme changes changes as previously.\n\n### Additional context\n\n![Image](https://github.com/user-attachments/assets/a2033979-44b0-4f2a-a869-043c9d41a788)",
+    "html_url": "https://github.com/zsviczian/obsidian-excalidraw-plugin/issues/2636",
+    "labels": [
+      "bug",
+      "transfer to excalidraw.com"
+    ],
+    "state": "closed",
+    "title": "BUG: New update 2.20 - LaTeX stays black, when going dark mode"
+  },
+  "excalidraw/excalidraw#5263": {
+    "_not_found": true
+  }
+}

@@ -1,0 +1,799 @@
+{
+  "cockroachdb/cockroach#20296": {
+    "body": "**FEATURE REQUEST**\r\n\r\nOne big plus for trying cockroachdb was its compatibilty with postgres. I assumed pg_dump would work, instead it errors out.\r\n\r\n```\r\n$ pg_dump -h db1 -p 26257 database\r\npg_dump: [archiver (db)] query failed: ERROR:  unknown function: pg_catalog.pg_is_in_recovery()\r\npg_dump: [archiver (db)] query was: SELECT pg_catalog.pg_is_in_recovery()\r\n```\r\n\r\nI've also tried 'cockroachdb dump > out.sql' but the SQL is not postgres compatible. `id STRING(128)` for example. I hand edited the schema to try and get this route to work, but loading the data itself hits schema constraints since a foreign key field means table B must come before table A, but the sql dump file loads table A then B. pg_restore is supposed to have a work-around for this, which is why I'd like to have pg_dump work. \r\n\r\nI belive pg_is_in_recovery is relatively new for postgres, so perhaps this only recently stopped working.\r\n\n\nJira issue: CRDB-5936\n\nEpic CRDB-28751",
+    "html_url": "https://github.com/cockroachdb/cockroach/issues/20296",
+    "labels": [
+      "C-enhancement",
+      "A-sql-pgcompat",
+      "O-community",
+      "meta-issue",
+      "T-sql-foundations",
+      "A-tools-pgdump"
+    ],
+    "state": "open",
+    "title": "sql: support pg_dump"
+  },
+  "cockroachdb/cockroach#79212": {
+    "body": "Admission control is currently opt-in, in the sense that it's controlled by `BatchRequest.AdmissionHeader` and the zero value for `Source` (`OTHER`) is currently excluded from admission control. I believe all SQL traffic sets this header, but lots of internal traffic does not, which can lead to stores getting overloaded (in particular with bulk operations).\r\n\r\nFor example, the widely used `DB.Txn()` and `kv.NewTxn()` functions do not set admission control headers (nor do any of the other `DB` methods). In 1d4a1a3563d148e0008fb76ba6047210c573172e we added `WithAdmissionControl()` variants of these that allow the caller to specify the admission control source and priority, so one option here is to simply migrate all callers. However, there are hundreds of call sites so this will be spotty and annoying.\r\n\r\nIt would probably be better if we could set the source and priority for an entire component, such that all derived requests get a proper admission control header. One way to do this would be to set it in the context. We should likely also subject all requests to admission control by default, and instead allow callers to explicitly opt out, e.g. by marking themselves as system traffic.\r\n\r\nTest tooling to assert correct admission control headers would also be useful.\n\nJira issue: CRDB-14639\n",
+    "html_url": "https://github.com/cockroachdb/cockroach/issues/79212",
+    "labels": [
+      "C-enhancement",
+      "O-support",
+      "A-admission-control",
+      "T-admission-control",
+      "P-3"
+    ],
+    "state": "open",
+    "title": "admission: subject internal traffic to admission control"
+  },
+  "cockroachdb/cockroach#101715": {
+    "body": "**Describe the problem**\r\n\r\nIn PostgreSQL, `SHOW ALL` returns three columns. From https://www.postgresql.org/docs/current/sql-show.html:\r\n\r\n```\r\nSHOW ALL;\r\n\r\n            name         | setting |                description\r\n-------------------------+---------+-------------------------------------------------\r\n allow_system_table_mods | off     | Allows modifications of the structure of ...\r\n```\r\n\r\nIn CockroachDB, it returns two columns. From https://www.cockroachlabs.com/docs/stable/show-vars.html#showing-the-value-of-all-session-variables:\r\n\r\n```\r\nSHOW ALL;\r\n\r\n       variable       |      value\r\n----------------------+-------------------\r\n  application_name    | $ cockroach demo\r\n```\r\n\r\nDescription is missing.\r\n\r\nThat's the first thing that users of FerretDB notice when they want to try to run it with CockroachDB. See https://github.com/FerretDB/FerretDB/discussions/2462#discussioncomment-5645177\n\nJira issue: CRDB-27099\n\n\nEpic CRDB-49582",
+    "html_url": "https://github.com/cockroachdb/cockroach/issues/101715",
+    "labels": [
+      "C-bug",
+      "A-sql-pgcompat",
+      "O-community",
+      "T-sql-foundations",
+      "v26.2.0-prerelease"
+    ],
+    "state": "closed",
+    "title": "sql: `SHOW ALL` returns two columns instead of three"
+  },
+  "cockroachdb/cockroach#104627": {
+    "body": "```\r\nbazel query \"attr(tags, '\\\\bno-remote-exec\\\\b', pkg/...)\"\r\n```\r\n\r\nAll of these actions (with some exceptions that are properly local-only, like those in `pkg/gen`) must be remotely-executable.\r\n\r\nMany of these are tests. Some tests might be fixable by dev-inf, but others will probably need cooperation from test owners.\r\n\r\nThis is a tracking issue that will probably have to be split into some smaller issues.\r\n\r\nEpic CRDB-14596",
+    "html_url": "https://github.com/cockroachdb/cockroach/issues/104627",
+    "labels": [
+      "C-enhancement",
+      "A-build-system",
+      "T-dev-inf",
+      "branch-release-24.1",
+      "target-release-24.1.27",
+      "target-release-26.1.2",
+      "target-release-25.4.7",
+      "target-release-24.3.30",
+      "target-release-25.2.16",
+      "v26.2.0-prerelease"
+    ],
+    "state": "closed",
+    "title": "build: ensure all build actions work well under remote execution"
+  },
+  "cockroachdb/cockroach#148204": {
+    "body": "ccl/changefeedccl.TestChangefeedIdleness [failed](https://tanzanite.cluster.engflow.com/invocations/default/9c82825a-69c4-4f86-b866-5b87d8db191b?testReportRun=3&testReportShard=2&testReportAttempt=1#targets-Ly9wa2cvY2NsL2NoYW5nZWZlZWRjY2w6Y2hhbmdlZmVlZGNjbF90ZXN0) on release-24.3 @ [e8fc847e816ca85232d6320154b854cd83016b8d](https://github.com/cockroachdb/cockroach/commits/e8fc847e816ca85232d6320154b854cd83016b8d):\n\n\n```\nWrite at 0x00c00ca64768 by goroutine 17487:\n  runtime.racewrite()\n      <autogenerated>:1 +0x1e\n  github.com/cockroachdb/cockroach/pkg/ccl/changefeedccl.TestChangefeedIdleness.func1()\n      pkg/ccl/changefeedccl/changefeed_test.go:542 +0x851\n  github.com/cockroachdb/cockroach/pkg/ccl/changefeedccl.cdcTestNamed.func1()\n      pkg/ccl/changefeedccl/helpers_test.go:1140 +0x93\n  github.com/cockroachdb/cockroach/pkg/ccl/changefeedccl.cdcTestNamedWithSystem.func1()\n      pkg/ccl/changefeedccl/helpers_test.go:1175 +0x40d\n  testing.tRunner()\n      GOROOT/src/testing/testing.go:1689 +0x21e\n  testing.(*T).Run.gowrap1()\n      GOROOT/src/testing/testing.go:1742 +0x44\n\nPrevious read at 0x00c00ca64768 by goroutine 30431:\n  runtime.raceread()\n      <autogenerated>:1 +0x1e\n  github.com/cockroachdb/cockroach/pkg/ccl/changefeedccl.TestChangefeedIdleness.func1.1()\n      pkg/ccl/changefeedccl/changefeed_test.go:494 +0x4a\n  github.com/cockroachdb/cockroach/pkg/ccl/changefeedccl.TestChangefeedIdleness.func1.gowrap3()\n      pkg/ccl/changefeedccl/changefeed_test.go:541 +0x35\n\nGoroutine 17487 (running) created at:\n  testing.(*T).Run()\n      GOROOT/src/testing/testing.go:1742 +0x825\n  github.com/cockroachdb/cockroach/pkg/ccl/changefeedccl.cdcTestNamedWithSystem()\n      pkg/ccl/changefeedccl/helpers_test.go:1165 +0x4ba\n  github.com/cockroachdb/cockroach/pkg/ccl/changefeedccl.cdcTestNamed()\n      pkg/ccl/changefeedccl/helpers_test.go:1142 +0xbd\n  github.com/cockroachdb/cockroach/pkg/ccl/changefeedccl.cdcTest()\n      pkg/ccl/changefeedccl/helpers_test.go:1135 +0x17d\n  github.com/cockroachdb/cockroach/pkg/ccl/changefeedccl.TestChangefeedIdleness()\n      pkg/ccl/changefeedccl/changefeed_test.go:482 +0x111\n  testing.tRunner()\n      GOROOT/src/testing/testing.go:1689 +0x21e\n  testing.(*T).Run.gowrap1()\n      GOROOT/src/testing/testing.go:1742 +0x44\n\nGoroutine 30431 (running) created at:\n  github.com/cockroachdb/cockroach/pkg/ccl/changefeedccl.TestChangefeedIdleness.func1()\n      pkg/ccl/changefeedccl/changefeed_test.go:541 +0x844\n  github.com/cockroachdb/cockroach/pkg/ccl/changefeedccl.cdcTestNamed.func1()\n      pkg/ccl/changefeedccl/helpers_test.go:1140 +0x93\n  github.com/cockroachdb/cockroach/pkg/ccl/changefeedccl.cdcTestNamedWithSystem.func1()\n      pkg/ccl/changefeedccl/helpers_test.go:1175 +0x40d\n  testing.tRunner()\n      GOROOT/src/testing/testing.go:1689 +0x21e\n  testing.(*T).Run.gowrap1()\n      GOROOT/src/testing/testing.go:1742 +0x44\n==================\n```\n\nParameters:\n - <code>attempt=1</code>\n - <code>race=true</code>\n - <code>run=3</code>\n - <code>shard=2</code>\n<details><summary>Help</summary>\n<p>\n\nSee also: [How To Investigate a Go Test Failure \\(internal\\)](https://cockroachlabs.atlassian.net/l/c/HgfXfJgM)\n</p>\n</details>\n/cc @cockroachdb/cdc\n<sub>\n\n[This test on roachdash](https://roachdash.crdb.dev/?filter=status:open%20t:.*TestChangefeedIdleness.*&sort=title+created&display=lastcommented+project) | [Improve this report!](https://github.com/cockroachdb/cockroach/tree/master/pkg/cmd/bazci/githubpost/issues)\n\n</sub>\n\n\nJira issue: CRDB-51473",
+    "html_url": "https://github.com/cockroachdb/cockroach/issues/148204",
+    "labels": [
+      "C-test-failure",
+      "O-robot",
+      "A-cdc",
+      "T-cdc",
+      "P-3",
+      "branch-release-24.3",
+      "target-release-26.3.0"
+    ],
+    "state": "closed",
+    "title": "ccl/changefeedccl: TestChangefeedIdleness failed"
+  },
+  "cockroachdb/cockroach#154384": {
+    "body": "For the sake of simplification, converge on convert-url command instead of encode-uri for external connections in PCR/LDR. This will reduce redundancy. In order to complete this work, we need to add certain encode-uri parameters to convert-url and ensure that there is parity across all the functionality.\n\nJira issue: CRDB-54907\n\nEpic CRDB-50820",
+    "html_url": "https://github.com/cockroachdb/cockroach/issues/154384",
+    "labels": [
+      "C-enhancement",
+      "A-disaster-recovery",
+      "T-disaster-recovery",
+      "GA-blocker",
+      "P-2",
+      "branch-release-26.2",
+      "v26.2.0-prerelease"
+    ],
+    "state": "closed",
+    "title": "c2c: converge on convert-url instead of encode-uri"
+  },
+  "cockroachdb/cockroach#154449": {
+    "body": "Epic: CRDB-54929\n\nThis ticket tracks adding o11y (metrics + logs) to cpu-time token based admission. Here is a TODO in the code with some info on what is needed: https://github.com/cockroachdb/cockroach/blob/cd6b6271e7cfe998ec6a2b65b2776a543aa52e75/pkg/util/admission/granter.go#L367. In general, the prototype has a lot of o11y. Should consider adding everything in prototype: https://github.com/cockroachdb/cockroach/commit/06967f5fa72115348d57fc66fe895aec514261d5\n\nJira issue: CRDB-54940",
+    "html_url": "https://github.com/cockroachdb/cockroach/issues/154449",
+    "labels": [
+      "C-enhancement",
+      "A-admission-control",
+      "T-sre",
+      "target-release-26.2.0",
+      "v26.2.0-prerelease"
+    ],
+    "state": "closed",
+    "title": "admission: add o11y (metrics + logs) to cpu-time token based admission"
+  },
+  "cockroachdb/cockroach#156499": {
+    "body": "Currently, `drt-chaos` executes backup/restore operations from/to GCS. To get a bit more coverage of AWS-specific code, we could move the cluster into AWS. Besides changing GCS to S3 and tweaking permissions, there should be no other material changes, thanks to roachprod/drtprod and the observability infrastructure. The real motivation for this move is to prepare for future scale tests in AWS\n\nJira issue: CRDB-56037\n\nRelated issues,\n\n- https://github.com/cockroachdb/cockroach/issues/153071\n- https://github.com/cockroachdb/cockroach/issues/153072",
+    "html_url": "https://github.com/cockroachdb/cockroach/issues/156499",
+    "labels": [
+      "C-enhancement",
+      "T-testeng",
+      "A-testeng-infra",
+      "target-release-26.2.0",
+      "v26.2.0-prerelease"
+    ],
+    "state": "closed",
+    "title": "drt: move drt-chaos from GCE to AWS"
+  },
+  "cockroachdb/cockroach#156800": {
+    "body": "When an export request encounters intents, it can lead to large volumes of intent resolution done on behalf of the export. Depending on the state of Raft and AC, this work can be slow, leading to backups timing out. \n\nExport request can resolve the abandoned intents of finalized (committed or aborted) transactions, but because export [can run with high priority](https://github.com/cockroachdb/cockroach/blob/bc1b6d6cc313d6fcb909e5e473fddb5ed67722d2/pkg/backup/backup_processor.go#L528), it can also try to push and rewrite the intents of long-running write transactions.\n\nWe already have a test (`TestCleanupIntentsDuringBackupPerformanceRegression`) that exercises the abandoned intents case by ensuring the backup doesn't fail and by asserting on the expected number of intent resolution batches. \n\nAs part of validating the virtualized intent resolution work, it would be helpful to extend this test to a roachtest and measure the actual latency of export requests, as well as the effect on the writers. This test can either assert on various latencies, or export them to roachperf.\n\n\nJira issue: CRDB-56198\n\nEpic CRDB-49120",
+    "html_url": "https://github.com/cockroachdb/cockroach/issues/156800",
+    "labels": [
+      "C-enhancement",
+      "A-kv-transactions",
+      "T-kv",
+      "target-release-26.2.0",
+      "A-non-blocking-reads",
+      "v26.2.0-prerelease"
+    ],
+    "state": "closed",
+    "title": "roachtest: add test for export request with contention"
+  },
+  "cockroachdb/cockroach#156817": {
+    "body": "Following up the Canary Statistics Rollout idea introduced in https://github.com/cockroachdb/cockroach/issues/150015, we should add clearer observability of this feature, since this feature bring more complicated states for statistics, and it might cause confusion and hard to debug. \n\nListing ideas for enhancement:\n\n- [x] Dedicated sql statement statistics for query invocation that uses the canary path. (Frontend: #https://github.com/cockroachdb/cockroach/issues/165250)\n- [x] Dedicated cluster metrics for query latency with the canary path.\n- [x] Session variable `stats_as_of=<timestamp>` and `stats_canary={true|false}` to enable planning a query retroactively with not-most-recent statistics. \n- [x] Showing if canary stats is used in a plan in the output of `EXPLAIN`.\n\nJira issue: CRDB-56201",
+    "html_url": "https://github.com/cockroachdb/cockroach/issues/156817",
+    "labels": [
+      "C-enhancement",
+      "T-sql-queries"
+    ],
+    "state": "closed",
+    "title": "sql: enhance observability of canary statistics rollout"
+  },
+  "cockroachdb/cockroach#157897": {
+    "body": "Split evaluations generate a batch which is eventually applied to storage on all replicas (if committed). This batch contains storage updates that materialize the new RHS (right-hand-side) range, and change some metadata of both LHS/RHS.\n\nBy design, we want this batch to touch only replicated / state machine keys (so that it can be written to the state machine engine). Today, it mostly does, with one exception: it writes [LastReplicaGCTimestamp](https://github.com/cockroachdb/cockroach/blob/82a0890ea98e1d52874a114c0ebf78a3afc4f3b1/pkg/kv/kvserver/batcheval/cmd_end_transaction.go#L1360-L1365) for the RHS. This is a \"log engine\" / unreplicated key which does not make sense outside of a local replica (it's used by replica GC queue on each node). It is marked with `spanset.DisableForbiddenSpanAssertions` accordingly as a workaround.\n\nWe want to stop writing this key at the evaluation end, and instead write it locally at the split [apply](https://github.com/cockroachdb/cockroach/blob/939076d551dacb52d2afd0ab8e157d72c264c22f/pkg/kv/kvserver/store_split.go#L120) side. TBD how the initial timestamp is determined for the RHS replica, one of: (a) copy from the local LHS replica, (b) set to 0, (c) set to `now`, or something else.\n\nBackwards compatibility needs to be considered: we can have historical proposals with this key populated. A workaround could be similar to one for the other user of `spanset.DisableForbiddenSpanAssertions` (the `RaftTruncatedState` key) made recently:\n\nhttps://github.com/cockroachdb/cockroach/blob/82a0890ea98e1d52874a114c0ebf78a3afc4f3b1/pkg/kv/kvserver/store_split.go#L124-L146\n\nEpic: CRDB-55220\nJira issue: CRDB-57004",
+    "html_url": "https://github.com/cockroachdb/cockroach/issues/157897",
+    "labels": [
+      "C-cleanup",
+      "A-kv-replication",
+      "T-kv",
+      "v26.2.0-prerelease"
+    ],
+    "state": "closed",
+    "title": "batcheval: do not write LastReplicaGCTimestamp in splits"
+  },
+  "cockroachdb/cockroach#160004": {
+    "body": "**Describe the problem**\nWhen generating an encryption key using `cockroach gen encryption-key --size 256 --version 2`, the generated JWK incorrectly contains `\"alg\": \"cockroach-aes-192-ctr-v2\"` instead of the expected `\"cockroach-aes-256-ctr-v2\"`.\n\n**To Reproduce**\n1. Run `cockroach gen encryption-key --size 256 --version 2 out.key`\n2. Inspect `out.key`:\n   ```json\n   {\"keys\":[{\"alg\":\"cockroach-aes-192-ctr-v2\",\"k\":\"...\",\"kid\":\"...\",\"kty\":\"oct\"}]}\n   ```\n3. Note that the key `k` is 32 bytes (256 bits) after base64 decoding, but the `alg` field specifies 192 bits.\n\n**Expected behavior**\nThe `alg` field should match the specified size: `\"alg\": \"cockroach-aes-256-ctr-v2\"`.\n\n**Root Cause**\nThere is a typo in `pkg/storage/enginepb/key_registry.go` within the `JWKAlgorithm()` method:\n```go\n\tcase EncryptionType_AES_256_CTR_V2:\n\t\treturn \"cockroach-aes-192-ctr-v2\", nil\n```\nIt should return `\"cockroach-aes-256-ctr-v2\"`.\n\n**Impact**\nWhile the underlying Go `aes` package will use AES-256 because the key is 32 bytes, internal CockroachDB logic that relies on the `EncryptionType` enum (derived from the `alg` string) will incorrectly treat it as a 192-bit key. This might lead to 192-bit data keys being generated even when a 256-bit master key is used.\n\nJira issue: CRDB-58116",
+    "html_url": "https://github.com/cockroachdb/cockroach/issues/160004",
+    "labels": [
+      "C-bug",
+      "O-community",
+      "A-storage",
+      "T-storage",
+      "branch-release-24.1",
+      "target-release-26.3.0"
+    ],
+    "state": "closed",
+    "title": "cli: gen encryption-key --size 256 --version 2 produces incorrect \"alg\" string"
+  },
+  "cockroachdb/cockroach#160443": {
+    "body": "**Note:** This build has runtime assertions enabled. If the same failure was hit in a run without assertions enabled, there should be a similar failure without this message. If there isn&#39;t one, then this failure is likely due to an assertion violation or (assertion) timeout.\n\nroachtest.node-postgres [failed](https://teamcity.cockroachdb.com/buildConfiguration/Cockroach_Nightlies_RoachtestNightlyAzureBazel/20924562?buildTab=log) with [artifacts](https://teamcity.cockroachdb.com/buildConfiguration/Cockroach_Nightlies_RoachtestNightlyAzureBazel/20924562?buildTab=artifacts#/node-postgres) on master @ [f84948abd7db42f8f1030cbe1f9434e3045755b8](https://github.com/cockroachdb/cockroach/commits/f84948abd7db42f8f1030cbe1f9434e3045755b8):\n\nFailed with:\n\n```\n(orm_helpers.go:225).summarizeFailed: \nTests run on Cockroach v26.1.0-alpha.2-dev-f84948abd7db42f8f1030cbe1f9434e3045755b8\nTests run against node-postgres N/A\n171 Total Tests Run\n168 tests passed\n3 tests failed\n2 tests skipped\n2 tests ignored\n0 tests passed unexpectedly\n3 tests failed unexpectedly\n0 tests expected failed but skipped\n0 tests expected failed but not run\n---\n--- FAIL: idle timeout => does not time out clients which are used - unknown (unexpected)\n--- FAIL: lifetime timeout => connection lifetime should expire and remove the client after the client is done working - unknown (unexpected)\n--- FAIL: idle timeout => can remove idle clients and recreate them - unknown (unexpected)\nFor a full summary look at the node-postgres artifacts \nAn updated blocklist (nodePostgresBlockList) is available in the artifacts' node-postgres log\ntest artifacts and logs in: /artifacts/node-postgres/run_1\n```\nCluster Node to Ip Mapping:\n| Node | Public IP | Private IP |\n| --- | --- | --- |\n| teamcity-20924562-1767509199-186-n1cpu4-0001 | 20.55.77.151 | 10.1.0.110 |\n\nParameters:\n - <code>arch=amd64</code>\n - <code>cloud=azure</code>\n - <code>coverageBuild=false</code>\n - <code>cpu=4</code>\n - <code>encrypted=false</code>\n - <code>fs=ext4</code>\n - <code>localSSD=true</code>\n - <code>metamorphicLeases=default</code>\n - <code>metamorphicWriteBuffering=true</code>\n - <code>runtimeAssertionsBuild=true</code>\n - <code>ssd=0</code>\n<details><summary>Help</summary>\n<p>\n\n\nSee: [roachtest README](https://github.com/cockroachdb/cockroach/blob/master/pkg/cmd/roachtest/README.md)\n\n\n\nSee: [How To Investigate \\(internal\\)](https://cockroachlabs.atlassian.net/l/c/SSSBr8c7)\n\n_Grafana is not yet available for azure clusters_</p>\n</details>\n/cc @cockroachdb/sql-foundations\n<sub>\n\n[This test on roachdash](https://roachdash.crdb.dev/?filter=status:open%20t:.*node-postgres.*&sort=title+created&display=lastcommented+project) | [Improve this report!](https://github.com/cockroachdb/cockroach/tree/master/pkg/cmd/bazci/githubpost/issues)\n\n</sub>\n\n\nJira issue: CRDB-58363",
+    "html_url": "https://github.com/cockroachdb/cockroach/issues/160443",
+    "labels": [
+      "C-test-failure",
+      "O-robot",
+      "O-roachtest",
+      "branch-master",
+      "T-sql-foundations",
+      "P-3",
+      "B-runtime-assertions-enabled",
+      "target-release-26.1.2",
+      "v26.2.0-prerelease"
+    ],
+    "state": "closed",
+    "title": "roachtest: node-postgres failed"
+  },
+  "cockroachdb/cockroach#161502": {
+    "body": "cli.TestLossOfQuorumRecovery [failed](https://teamcity.cockroachdb.com/buildConfiguration/Cockroach_Ci_TestsIbmCloudLinuxS390x_UnitTestsS390x/20998338?buildTab=log) with [artifacts](https://teamcity.cockroachdb.com/buildConfiguration/Cockroach_Ci_TestsIbmCloudLinuxS390x_UnitTestsS390x/20998338?buildTab=artifacts#/) on master @ [ab9a17f7cc0567df7f89d066421180e198b556ea](https://github.com/cockroachdb/cockroach/commits/ab9a17f7cc0567df7f89d066421180e198b556ea):\n\n\n```\n=== RUN   TestLossOfQuorumRecovery\n    test_log_scope.go:172: test logs captured to: /artifacts/tmp/_tmp/8b81fbed93efb7ab499843cacefe9048/logTestLossOfQuorumRecovery2043435851\n    test_log_scope.go:82: use -show-logs to present logs inline\n[debug recover collect-info --store=/artifacts/tmp/_tmp/8b81fbed93efb7ab499843cacefe9048/TestLossOfQuorumRecovery2290263589/store-1 /artifacts/tmp/_tmp/8b81fbed93efb7ab499843cacefe9048/TestLossOfQuorumRecovery2290263589/node-1.json]\ndebug recover collect-info --store=/artifacts/tmp/_tmp/8b81fbed93efb7ab499843cacefe9048/TestLossOfQuorumRecovery2290263589/store-1 /artifacts/tmp/_tmp/8b81fbed93efb7ab499843cacefe9048/TestLossOfQuorumRecovery2290263589/node-1.json\nCollected recovery info from:\nnodes             1\nstores            1\nCollected info:\nreplicas          81\nrange descriptors 0\n[debug recover make-plan --confirm=y --plan=/artifacts/tmp/_tmp/8b81fbed93efb7ab499843cacefe9048/TestLossOfQuorumRecovery2290263589/recovery-plan.json /artifacts/tmp/_tmp/8b81fbed93efb7ab499843cacefe9048/TestLossOfQuorumRecovery2290263589/node-1.json]\n[debug recover apply-plan --confirm=y --store=/artifacts/tmp/_tmp/8b81fbed93efb7ab499843cacefe9048/TestLossOfQuorumRecovery2290263589/store-1 /artifacts/tmp/_tmp/8b81fbed93efb7ab499843cacefe9048/TestLossOfQuorumRecovery2290263589/recovery-plan.json]\n\nid\tis_live\treplicas\tis_decommissioning\tmembership\tis_draining\n2\tfalse\t76\ttrue\tdecommissioning\tfalse\n3\tfalse\t76\ttrue\tdecommissioning\tfalse\n    debug_recover_loss_of_quorum_test.go:311: \n        \tError Trace:\t\n        \tError:      \tNot equal: \n        \t            \texpected: \"{1,4,5}\"\n        \t            \tactual  : \"{1,2,3}\"\n        \t            \t\n        \t            \tDiff:\n        \t            \t--- Expected\n        \t            \t+++ Actual\n        \t            \t@@ -1 +1 @@\n        \t            \t-{1,4,5}\n        \t            \t+{1,2,3}\n        \tTest:       \tTestLossOfQuorumRecovery\n        \tMessages:   \tReplicas after loss of quorum recovery\n    panic.go:615: -- test log scope end --\ntest logs left over in: /artifacts/tmp/_tmp/8b81fbed93efb7ab499843cacefe9048/logTestLossOfQuorumRecovery2043435851\n--- FAIL: TestLossOfQuorumRecovery (354.93s)\n```\n<details><summary>Help</summary>\n<p>\n\nSee also: [How To Investigate a Go Test Failure \\(internal\\)](https://cockroachlabs.atlassian.net/l/c/HgfXfJgM)\n</p>\n</details>\n/cc @cockroachdb/kv-triage @cockroachdb/server\n<sub>\n\n[This test on roachdash](https://roachdash.crdb.dev/?filter=status:open%20t:.*TestLossOfQuorumRecovery.*&sort=title+created&display=lastcommented+project) | [Improve this report!](https://github.com/cockroachdb/cockroach/tree/master/pkg/cmd/bazci/githubpost/issues)\n\n</sub>\n\n\nJira issue: CRDB-58913",
+    "html_url": "https://github.com/cockroachdb/cockroach/issues/161502",
+    "labels": [
+      "C-bug",
+      "C-test-failure",
+      "O-robot",
+      "A-testing",
+      "branch-master",
+      "T-kv",
+      "X-nostale",
+      "P-3",
+      "s390x-test-failure",
+      "v26.2.0-prerelease",
+      "target-release-25.4.8",
+      "target-release-25.2.17",
+      "target-release-26.1.3",
+      "target-release-24.3.31"
+    ],
+    "state": "closed",
+    "title": "cli: TestLossOfQuorumRecovery failed"
+  },
+  "cockroachdb/cockroach#163588": {
+    "body": "There are a bunch of drt operations that are failing and exit out immediately on run. The first order of business will be to have a clean slate where all operations at least run in isolation. This means fixing the ones which are failing and removing the clutter of operations which result in a cluster haywire.\n\nJira issue: CRDB-60307",
+    "html_url": "https://github.com/cockroachdb/cockroach/issues/163588",
+    "labels": [
+      "C-enhancement",
+      "T-testeng"
+    ],
+    "state": "closed",
+    "title": "drt: Identify present operations which are successful/failing"
+  },
+  "cockroachdb/cockroach#163906": {
+    "body": "This issue was auto filed by Sentry. It represents a crash or reported error on a live cluster with telemetry enabled.\n\nSentry Link: [https://cockroach-labs.sentry.io/issues/7275353915/?referrer=webhooks_plugin](https://cockroach-labs.sentry.io/issues/7275353915/?referrer=webhooks_plugin)\n\nPanic Message:\n\n```\nsyncing_file.go:65: write \u00d7: permission denied\n(1) attached stack trace\n  -- stack trace:\n  | runtime.gopanic\n  | \tGOROOT/src/runtime/panic.go:791\n  | github.com/cockroachdb/cockroach/pkg/storage.(*writeBatch).SyncWait\n  | \tpkg/storage/pebble_batch.go:406\n  | github.com/cockroachdb/cockroach/pkg/kv/kvserver/logstore.(*SyncWaiterLoop).waitLoop\n  | \tpkg/kv/kvserver/logstore/sync_waiter.go:90\n  | github.com/cockroachdb/cockroach/pkg/kv/kvserver/logstore.(*SyncWaiterLoop).Start.func1\n  | \tpkg/kv/kvserver/logstore/sync_waiter.go:79\n  | [...repeated from below...]\nWraps: (2) attached stack trace\n  -- stack trace:\n  | github.com/cockroachdb/pebble/vfs.(*syncingFile).Write\n  | \texternal/com_github_cockroachdb_pebble/vfs/syncing_file.go:65\n  | github.com/cockroachdb/pebble/record.(*LogWriter).flushPending\n  | \texternal/com_github_cockroachdb_pebble/record/log_writer.go:785\n  | github.com/cockroachdb/pebble/record.(*LogWriter).flushLoop\n  | \texternal/com_github_cockroachdb_pebble/record/log_writer.go:724\n  | runtime/pprof.Do\n  | \tGOROOT/src/runtime/pprof/runtime.go:51\n  | github.com/cockroachdb/pebble/record.NewLogWriter.func2\n  | \texternal/com_github_cockroachdb_pebble/record/log_writer.go:585\n  | runtime.goexit\n  | \tsrc/runtime/asm_amd64.s:1700\nWraps: (3) write \u00d7\nWraps: (4) permission denied\nError types: (1) *withstack.withStack (2) *withstack.withStack (3) *fs.PathError (4) syscall.Errno\n-- report composition:\nsyscall.Errno\n*fs.PathError\nsyncing_file.go:65: *withstack.withStack (top exception)\npanic.go:791: *withstack.withStack (1)\n(check the extra data payloads)\n```\n\n<details>\n<summary>Stacktrace (expand for inline code snippets):</summary>\n\n[src/runtime/asm_amd64.s#L1699-L1701](src/runtime/asm_amd64.s#L1699-L1701)\n[pkg/util/stop/stopper.go#L499-L501](pkg/util/stop/stopper.go#L499-L501)\n[pkg/kv/kvserver/logstore/sync_waiter.go#L78-L80](pkg/kv/kvserver/logstore/sync_waiter.go#L78-L80)\n[pkg/kv/kvserver/logstore/sync_waiter.go#L89-L91](pkg/kv/kvserver/logstore/sync_waiter.go#L89-L91)\n[pkg/storage/pebble_batch.go#L405-L407](pkg/storage/pebble_batch.go#L405-L407)\n[GOROOT/src/runtime/panic.go#L790-L792](GOROOT/src/runtime/panic.go#L790-L792)\n[src/runtime/asm_amd64.s#L1699-L1701](src/runtime/asm_amd64.s#L1699-L1701)\n[external/com_github_cockroachdb_pebble/record/log_writer.go#L584-L586](external/com_github_cockroachdb_pebble/record/log_writer.go#L584-L586)\n[GOROOT/src/runtime/pprof/runtime.go#L50-L52](GOROOT/src/runtime/pprof/runtime.go#L50-L52)\n[external/com_github_cockroachdb_pebble/record/log_writer.go#L723-L725](external/com_github_cockroachdb_pebble/record/log_writer.go#L723-L725)\n[external/com_github_cockroachdb_pebble/record/log_writer.go#L784-L786](external/com_github_cockroachdb_pebble/record/log_writer.go#L784-L786)\n[external/com_github_cockroachdb_pebble/vfs/syncing_file.go#L64-L66](external/com_github_cockroachdb_pebble/vfs/syncing_file.go#L64-L66)\n</details>\n\n\n```\nsrc/runtime/asm_amd64.s in runtime.goexit at line 1700\npkg/util/stop/stopper.go in pkg/util/stop.(*Stopper).RunAsyncTaskEx.func2 at line 500\npkg/kv/kvserver/logstore/sync_waiter.go in pkg/kv/kvserver/logstore.(*SyncWaiterLoop).Start.func1 at line 79\npkg/kv/kvserver/logstore/sync_waiter.go in pkg/kv/kvserver/logstore.(*SyncWaiterLoop).waitLoop at line 90\npkg/storage/pebble_batch.go in pkg/storage.(*writeBatch).SyncWait at line 406\nGOROOT/src/runtime/panic.go in runtime.gopanic at line 791\nsrc/runtime/asm_amd64.s in runtime.goexit at line 1700\nexternal/com_github_cockroachdb_pebble/record/log_writer.go in github.com/cockroachdb/pebble/record.NewLogWriter.func2 at line 585\nGOROOT/src/runtime/pprof/runtime.go in runtime/pprof.Do at line 51\nexternal/com_github_cockroachdb_pebble/record/log_writer.go in github.com/cockroachdb/pebble/record.(*LogWriter).flushLoop at line 724\nexternal/com_github_cockroachdb_pebble/record/log_writer.go in github.com/cockroachdb/pebble/record.(*LogWriter).flushPending at line 785\nexternal/com_github_cockroachdb_pebble/vfs/syncing_file.go in github.com/cockroachdb/pebble/vfs.(*syncingFile).Write at line 65\n```\n\n### Tags\n\n| Tag | Value |\n| --- | --- |\n| Command | server |\n| Environment | v25.2.0 |\n| Go Version | go1.23.7 X:nocoverageredesign |\n| Platform | linux amd64 |\n| Distribution | CCL |\n| Cockroach Release | v25.2.0 |\n| Cockroach SHA | 22cec2232cf3ab2a0e5f93cd35aa1217d62a4400 |\n| # of CPUs | 3 |\n| # of Goroutines | 502 |\n\n\n\nJira issue: CRDB-60514",
+    "html_url": "https://github.com/cockroachdb/cockroach/issues/163906",
+    "labels": [
+      "C-bug",
+      "A-storage",
+      "O-sentry",
+      "X-blathers-triaged",
+      "T-storage",
+      "branch-release-25.2",
+      "target-release-26.3.0"
+    ],
+    "state": "closed",
+    "title": "Sentry: syncing_file.go:65: write \u00d7: permission denied (1) attached stack trace   -- stack trace:   | runtime.gopanic   | \tGOROOT/src/runtime/panic.go:791   | github.com/cockroachdb/cockroach/pkg/sto..."
+  },
+  "cockroachdb/cockroach#164102": {
+    "body": "roachtest.tpcc/large-schema-benchmark/multiregion=false/tables=25000 [failed](https://teamcity.cockroachdb.com/buildConfiguration/Cockroach_Nightlies_RoachtestWeeklyBazel/21139163?buildTab=log) with [artifacts](https://teamcity.cockroachdb.com/buildConfiguration/Cockroach_Nightlies_RoachtestWeeklyBazel/21139163?buildTab=artifacts#/tpcc/large-schema-benchmark/multiregion=false/tables=25000) on master @ [77b654b08c6f6717868d3b279ac028e4d87aaf17](https://github.com/cockroachdb/cockroach/commits/77b654b08c6f6717868d3b279ac028e4d87aaf17):\n\nFailed with:\n\n```\n(cluster.go:2523).Run: full command output in run_182113.303208068_n10_cockroach-workload-i.log: COMMAND_PROBLEM: exit status 1\ntest artifacts and logs in: /artifacts/tpcc/large-schema-benchmark/multiregion=false/tables=25000/run_1\n```\nCluster Node to Ip Mapping:\n| Node | Public IP | Private IP |\n| --- | --- | --- |\n| teamcity-21139163-1771657145-89-n10cpu8-0001 | 104.196.38.8 | 10.142.0.42 |\n| teamcity-21139163-1771657145-89-n10cpu8-0002 | 35.231.81.194 | 10.142.0.110 |\n| teamcity-21139163-1771657145-89-n10cpu8-0003 | 34.148.38.152 | 10.142.0.103 |\n| teamcity-21139163-1771657145-89-n10cpu8-0004 | 34.74.42.162 | 10.142.0.57 |\n| teamcity-21139163-1771657145-89-n10cpu8-0005 | 34.75.15.153 | 10.142.0.47 |\n| teamcity-21139163-1771657145-89-n10cpu8-0006 | 35.237.250.98 | 10.142.0.24 |\n| teamcity-21139163-1771657145-89-n10cpu8-0007 | 34.148.42.19 | 10.142.0.48 |\n| teamcity-21139163-1771657145-89-n10cpu8-0008 | 34.26.45.170 | 10.142.0.53 |\n| teamcity-21139163-1771657145-89-n10cpu8-0009 | 34.75.186.54 | 10.142.0.132 |\n| teamcity-21139163-1771657145-89-n10cpu8-0010 | 34.75.209.135 | 10.142.0.139 |\n\nParameters:\n - <code>arch=amd64</code>\n - <code>cloud=gce</code>\n - <code>coverageBuild=false</code>\n - <code>cpu=8</code>\n - <code>diskCount=0</code>\n - <code>encrypted=false</code>\n - <code>fs=ext4</code>\n - <code>localSSD=false</code>\n - <code>runtimeAssertionsBuild=false</code>\n<details><summary>Help</summary>\n<p>\n\n\nSee: [roachtest README](https://github.com/cockroachdb/cockroach/blob/master/pkg/cmd/roachtest/README.md)\n\n\n\nSee: [How To Investigate \\(internal\\)](https://cockroachlabs.atlassian.net/l/c/SSSBr8c7)\n\n\n\nSee: [Grafana](https://go.crdb.dev/roachtest-grafana/teamcity-21139163/tpcc-large-schema-benchmark-multiregion-false-tables-25000/1771698014832/1771727009143)\n\n</p>\n</details>\n/cc @cockroachdb/sql-foundations\n<sub>\n\n[This test on roachdash](https://roachdash.crdb.dev/?filter=status:open%20t:.*tpcc/large-schema-benchmark/multiregion=false/tables=25000.*&sort=title+created&display=lastcommented+project) | [Improve this report!](https://github.com/cockroachdb/cockroach/tree/master/pkg/cmd/bazci/githubpost/issues)\n\n</sub>\n\n\nJira issue: CRDB-60631",
+    "html_url": "https://github.com/cockroachdb/cockroach/issues/164102",
+    "labels": [
+      "C-test-failure",
+      "O-robot",
+      "O-roachtest",
+      "branch-master",
+      "T-sql-foundations",
+      "P-2",
+      "v26.2.0-prerelease"
+    ],
+    "state": "closed",
+    "title": "roachtest: tpcc/large-schema-benchmark/multiregion=false/tables=25000 failed"
+  },
+  "cockroachdb/cockroach#164351": {
+    "body": "kv/kvserver.TestStoreRangeMergeRaftSnapshot [failed](https://mesolite.cluster.engflow.com/invocations/default/3fd14b12-f445-400d-b9de-0647c05b67eb?testReportRun=2&testReportShard=21&testReportAttempt=1#targets-Ly9wa2cva3Yva3ZzZXJ2ZXI6a3ZzZXJ2ZXJfdGVzdA==) on master @ [1b3e0b4d92bedc6a4d78ca51da53f2886d5bc34a](https://github.com/cockroachdb/cockroach/commits/1b3e0b4d92bedc6a4d78ca51da53f2886d5bc34a):\n\n\n```\nruntime/pprof.Do({0xe1a53c0, 0x14a15b80}, {{0xc001739400?, 0x500a51?, 0x4fd2e1?}}, 0xc00c66afc0)\n\tGOROOT/src/runtime/pprof/runtime.go:51 +0x112\ngithub.com/cockroachdb/pebble/record.NewLogWriter.func2()\n\texternal/com_github_cockroachdb_pebble/record/log_writer.go:596 +0x92\ncreated by github.com/cockroachdb/pebble/record.NewLogWriter in goroutine 26221\n\texternal/com_github_cockroachdb_pebble/record/log_writer.go:595 +0xa3a\n\ngoroutine 28447 [select]:\ngithub.com/cockroachdb/pebble/vfs.(*diskHealthCheckingFile).startTicker.func1()\n\texternal/com_github_cockroachdb_pebble/vfs/disk_health.go:254 +0x18c\ncreated by github.com/cockroachdb/pebble/vfs.(*diskHealthCheckingFile).startTicker in goroutine 28158\n\texternal/com_github_cockroachdb_pebble/vfs/disk_health.go:249 +0xa8\n\ngoroutine 28448 [sync.Cond.Wait, 75 minutes, \"pebble\":\"wal-sync\"]:\nsync.runtime_notifyListWait(0xc01711a0a8, 0x16)\n\tGOROOT/src/runtime/sema.go:606 +0x159\nsync.(*Cond).Wait(0xc01711a098)\n\tGOROOT/src/sync/cond.go:71 +0x6c\ngithub.com/cockroachdb/pebble/record.(*flusherCond).Wait(...)\n\texternal/com_github_cockroachdb_pebble/record/log_writer.go:371\ngithub.com/cockroachdb/pebble/record.(*LogWriter).flushLoop(0xc01711a000, {0xc00c87e420?, 0xb9a4c40?})\n\texternal/com_github_cockroachdb_pebble/record/log_writer.go:682 +0xc0b\nruntime/pprof.Do({0xe1a53c0, 0x14a15b80}, {{0xc001739400?, 0x0?, 0x0?}}, 0xc016af6fc0)\n\tGOROOT/src/runtime/pprof/runtime.go:51 +0x112\ngithub.com/cockroachdb/pebble/record.NewLogWriter.func2()\n\texternal/com_github_cockroachdb_pebble/record/log_writer.go:596 +0x92\ncreated by github.com/cockroachdb/pebble/record.NewLogWriter in goroutine 28158\n\texternal/com_github_cockroachdb_pebble/record/log_writer.go:595 +0xa3a\n\ngoroutine 28607 [sync.Cond.Wait, 75 minutes, \"pebble\":\"wal-sync\"]:\nsync.runtime_notifyListWait(0xc01b8a80a8, 0x1)\n\tGOROOT/src/runtime/sema.go:606 +0x159\nsync.(*Cond).Wait(0xc01b8a8098)\n\tGOROOT/src/sync/cond.go:71 +0x6c\ngithub.com/cockroachdb/pebble/record.(*flusherCond).Wait(...)\n\texternal/com_github_cockroachdb_pebble/record/log_writer.go:371\ngithub.com/cockroachdb/pebble/record.(*LogWriter).flushLoop(0xc01b8a8000, {0xc0098a1db8?, 0xb9a4c40?})\n\texternal/com_github_cockroachdb_pebble/record/log_writer.go:682 +0xc0b\nruntime/pprof.Do({0xe1a53c0, 0x14a15b80}, {{0xc001739400?, 0xb0c3750?, 0x7f2b60162100?}}, 0xc005c87fc0)\n\tGOROOT/src/runtime/pprof/runtime.go:51 +0x112\ngithub.com/cockroachdb/pebble/record.NewLogWriter.func2()\n\texternal/com_github_cockroachdb_pebble/record/log_writer.go:596 +0x92\ncreated by github.com/cockroachdb/pebble/record.NewLogWriter in goroutine 23653\n\texternal/com_github_cockroachdb_pebble/record/log_writer.go:595 +0xa3a\n\ngoroutine 28606 [select]:\ngithub.com/cockroachdb/pebble/vfs.(*diskHealthCheckingFile).startTicker.func1()\n\texternal/com_github_cockroachdb_pebble/vfs/disk_health.go:254 +0x18c\ncreated by github.com/cockroachdb/pebble/vfs.(*diskHealthCheckingFile).startTicker in goroutine 23653\n\texternal/com_github_cockroachdb_pebble/vfs/disk_health.go:249 +0xa8\n```\n\nParameters:\n - <code>attempt=1</code>\n - <code>race=true</code>\n - <code>run=2</code>\n - <code>shard=21</code>\n<details><summary>Help</summary>\n<p>\n\nSee also: [How To Investigate a Go Test Failure \\(internal\\)](https://cockroachlabs.atlassian.net/l/c/HgfXfJgM)\n</p>\n</details>\n/cc @cockroachdb/kv-triage\n<sub>\n\n[This test on roachdash](https://roachdash.crdb.dev/?filter=status:open%20t:.*TestStoreRangeMergeRaftSnapshot.*&sort=title+created&display=lastcommented+project) | [Improve this report!](https://github.com/cockroachdb/cockroach/tree/master/pkg/cmd/bazci/githubpost/issues)\n\n</sub>\n\n\nJira issue: CRDB-60760",
+    "html_url": "https://github.com/cockroachdb/cockroach/issues/164351",
+    "labels": [
+      "C-bug",
+      "C-test-failure",
+      "O-robot",
+      "A-testing",
+      "branch-master",
+      "T-kv",
+      "P-3",
+      "v26.2.0-prerelease"
+    ],
+    "state": "closed",
+    "title": "kv/kvserver: TestStoreRangeMergeRaftSnapshot failed"
+  },
+  "cockroachdb/cockroach#164417": {
+    "body": "roachtest.cdc/frontier-persistence-benchmark/interval=30s/tables=10000/ranges=1 [failed](https://teamcity.cockroachdb.com/buildConfiguration/Cockroach_Nightlies_RoachtestNightlyGceBazel/21161643?buildTab=log) with [artifacts](https://teamcity.cockroachdb.com/buildConfiguration/Cockroach_Nightlies_RoachtestNightlyGceBazel/21161643?buildTab=artifacts#/cdc/frontier-persistence-benchmark/interval=30s/tables=10000/ranges=1) on master @ [e842395e827c7ed19ca7e1d7b973557bf561cfe1](https://github.com/cockroachdb/cockroach/commits/e842395e827c7ed19ca7e1d7b973557bf561cfe1):\n\nFailed with:\n\n```\n(monitor.go:267).Wait: monitor failure: changefeed[default]: max latency was more than allowed: 2m0.833187943s vs 2m0s\ntest artifacts and logs in: /artifacts/cdc/frontier-persistence-benchmark/interval=30s/tables=10000/ranges=1/run_1\n```\nCluster Node to Ip Mapping:\n| Node | Public IP | Private IP |\n| --- | --- | --- |\n| teamcity-21161643-1772090583-46-n4cpu16-0001 | 34.73.58.122 | 10.142.0.6 |\n| teamcity-21161643-1772090583-46-n4cpu16-0002 | 34.26.234.192 | 10.142.0.121 |\n| teamcity-21161643-1772090583-46-n4cpu16-0003 | 35.243.243.118 | 10.142.2.58 |\n| teamcity-21161643-1772090583-46-n4cpu16-0004 | 34.139.95.115 | 10.142.1.50 |\n\nParameters:\n - <code>arch=amd64</code>\n - <code>cloud=gce</code>\n - <code>coverageBuild=false</code>\n - <code>cpu=16</code>\n - <code>diskCount=0</code>\n - <code>encrypted=false</code>\n - <code>fs=ext4</code>\n - <code>localSSD=true</code>\n - <code>runtimeAssertionsBuild=false</code>\n<details><summary>Help</summary>\n<p>\n\n\nSee: [roachtest README](https://github.com/cockroachdb/cockroach/blob/master/pkg/cmd/roachtest/README.md)\n\n\n\nSee: [How To Investigate \\(internal\\)](https://cockroachlabs.atlassian.net/l/c/SSSBr8c7)\n\n\n\nSee: [Grafana](https://go.crdb.dev/roachtest-grafana/teamcity-21161643/cdc-frontier-persistence-benchmark-interval-30s-tables-10000-ra/1772102548064/1772104881220)\n\n</p>\n</details>\n/cc @cockroachdb/cdc\n<sub>\n\n[This test on roachdash](https://roachdash.crdb.dev/?filter=status:open%20t:.*cdc/frontier-persistence-benchmark/interval=30s/tables=10000/ranges=1.*&sort=title+created&display=lastcommented+project) | [Improve this report!](https://github.com/cockroachdb/cockroach/tree/master/pkg/cmd/bazci/githubpost/issues)\n\n</sub>\n\n\nJira issue: CRDB-60792",
+    "html_url": "https://github.com/cockroachdb/cockroach/issues/164417",
+    "labels": [
+      "C-test-failure",
+      "O-robot",
+      "A-cdc",
+      "O-roachtest",
+      "branch-master",
+      "T-cdc",
+      "GA-blocker",
+      "P-2"
+    ],
+    "state": "closed",
+    "title": "roachtest: cdc/frontier-persistence-benchmark/interval=30s/tables=10000/ranges=1 failed"
+  },
+  "cockroachdb/cockroach#164446": {
+    "body": "sql/ttl/ttljob.TestRowLevelTTLJobRandomEntries [failed](https://teamcity.cockroachdb.com/buildConfiguration/Cockroach_Ci_TestsAwsLinuxArm64_UnitTests/21164248?buildTab=log) with [artifacts](https://teamcity.cockroachdb.com/buildConfiguration/Cockroach_Ci_TestsAwsLinuxArm64_UnitTests/21164248?buildTab=artifacts#/) on master @ [0e1b399b6245d94dde7809e608e171a1c5392402](https://github.com/cockroachdb/cockroach/commits/0e1b399b6245d94dde7809e608e171a1c5392402):\n\n\n```\n=== RUN   TestRowLevelTTLJobRandomEntries\n    test_log_scope.go:172: test logs captured to: /artifacts/tmp/_tmp/2369c83d90b731358db5a0b39ab9f352/logTestRowLevelTTLJobRandomEntries3192638767\n    test_log_scope.go:82: use -show-logs to present logs inline\n    ttljob_test.go:1120: -- test log scope end --\ntest logs left over in: /artifacts/tmp/_tmp/2369c83d90b731358db5a0b39ab9f352/logTestRowLevelTTLJobRandomEntries3192638767\n--- FAIL: TestRowLevelTTLJobRandomEntries (225.28s)\n=== RUN   TestRowLevelTTLJobRandomEntries/ttl_expiration_expression\n    ttljob_test.go:1025: test case (runAtMixedClusterVersion=false): ttljob_test.testCase{desc:\"ttl expiration expression\", createTable:\"CREATE TABLE tbl (\\n\\tid UUID PRIMARY KEY DEFAULT gen_random_uuid(),\\n  expire_at TIMESTAMPTZ\\n) WITH (ttl_expiration_expression = 'expire_at')\", preSetup:[]string(nil), postSetup:[]string(nil), numExpiredRows:1001, numNonExpiredRows:5, numSplits:0, expirationExpression:\"expire_at\", addRow:(func(*ttljob_test.rowLevelTTLTestJobTestHelper, *testing.T, *tree.CreateTable, time.Time))(0x4390130)}\n    ttljob_test.go:255: \n        \tError Trace:\tpkg/sql/ttl/ttljob/ttljob_test.go:255\n        \t            \t\t\t\tpkg/sql/ttl/ttljob/ttljob_test.go:1117\n        \tError:      \tNot equal: \n        \t            \texpected: 1001\n        \t            \tactual  : 0\n        \tTest:       \tTestRowLevelTTLJobRandomEntries/ttl_expiration_expression\n--- FAIL: TestRowLevelTTLJobRandomEntries/ttl_expiration_expression (12.76s)\n```\n<details><summary>Help</summary>\n<p>\n\nSee also: [How To Investigate a Go Test Failure \\(internal\\)](https://cockroachlabs.atlassian.net/l/c/HgfXfJgM)\n</p>\n</details>\n/cc @cockroachdb/sql-foundations\n<sub>\n\n[This test on roachdash](https://roachdash.crdb.dev/?filter=status:open%20t:.*TestRowLevelTTLJobRandomEntries.*&sort=title+created&display=lastcommented+project) | [Improve this report!](https://github.com/cockroachdb/cockroach/tree/master/pkg/cmd/bazci/githubpost/issues)\n\n</sub>\n\n\nJira issue: CRDB-60805",
+    "html_url": "https://github.com/cockroachdb/cockroach/issues/164446",
+    "labels": [
+      "C-test-failure",
+      "O-robot",
+      "branch-master",
+      "T-sql-foundations",
+      "P-2",
+      "v26.2.0-prerelease"
+    ],
+    "state": "closed",
+    "title": "sql/ttl/ttljob: TestRowLevelTTLJobRandomEntries failed"
+  },
+  "cockroachdb/cockroach#164590": {
+    "body": "roachtest.cdc/tpcc-100/10min/sink=kafka/envelope=enriched [failed](https://teamcity.cockroachdb.com/buildConfiguration/Cockroach_Nightlies_RoachtestNightlyGceBazel/21176419?buildTab=log) with [artifacts](https://teamcity.cockroachdb.com/buildConfiguration/Cockroach_Nightlies_RoachtestNightlyGceBazel/21176419?buildTab=artifacts#/cdc/tpcc-100/10min/sink=kafka/envelope=enriched) on release-26.1.1-rc @ [0fbf7b3d1b76716bc22e362b21f263d66fc81bf5](https://github.com/cockroachdb/cockroach/commits/0fbf7b3d1b76716bc22e362b21f263d66fc81bf5):\n\nFailed with:\n\n```\n(monitor.go:267).Wait: monitor failure: kafka server: Request was for a topic or partition that does not exist on this broker\ntest artifacts and logs in: /artifacts/cdc/tpcc-100/10min/sink=kafka/envelope=enriched/cpu_arch=fips/run_1\n```\nCluster Node to Ip Mapping:\n| Node | Public IP | Private IP |\n| --- | --- | --- |\n| teamcity-21176419-1772262673-35-n4cpu16-0001 | 34.139.168.29 | 10.142.2.158 |\n| teamcity-21176419-1772262673-35-n4cpu16-0002 | 34.26.173.141 | 10.142.2.206 |\n| teamcity-21176419-1772262673-35-n4cpu16-0003 | 34.75.204.26 | 10.142.2.207 |\n| teamcity-21176419-1772262673-35-n4cpu16-0004 | 34.26.167.21 | 10.142.2.225 |\n\nParameters:\n - <code>arch=fips</code>\n - <code>cloud=gce</code>\n - <code>coverageBuild=false</code>\n - <code>cpu=16</code>\n - <code>diskCount=0</code>\n - <code>encrypted=false</code>\n - <code>metamorphicLeases=default</code>\n - <code>runtimeAssertionsBuild=false</code>\n<details><summary>Help</summary>\n<p>\n\n\nSee: [roachtest README](https://github.com/cockroachdb/cockroach/blob/master/pkg/cmd/roachtest/README.md)\n\n\n\nSee: [How To Investigate \\(internal\\)](https://cockroachlabs.atlassian.net/l/c/SSSBr8c7)\n\n\n\nSee: [Grafana](https://go.crdb.dev/roachtest-grafana/teamcity-21176419/cdc-tpcc-100-10min-sink-kafka-envelope-enriched/1772270738304/1772271568666)\n\n</p>\n</details>\n/cc @cockroachdb/cdc\n<sub>\n\n[This test on roachdash](https://roachdash.crdb.dev/?filter=status:open%20t:.*cdc/tpcc-100/10min/sink=kafka/envelope=enriched.*&sort=title+created&display=lastcommented+project) | [Improve this report!](https://github.com/cockroachdb/cockroach/tree/master/pkg/cmd/bazci/githubpost/issues)\n\n</sub>\n\n\nJira issue: CRDB-60884",
+    "html_url": "https://github.com/cockroachdb/cockroach/issues/164590",
+    "labels": [
+      "C-test-failure",
+      "O-robot",
+      "A-cdc",
+      "O-roachtest",
+      "T-cdc",
+      "P-2",
+      "branch-release-26.1.1-rc",
+      "target-release-26.3.0"
+    ],
+    "state": "closed",
+    "title": "roachtest: cdc/tpcc-100/10min/sink=kafka/envelope=enriched failed"
+  },
+  "cockroachdb/cockroach#164598": {
+    "body": "null\n\nJira issue: CRDB-60891\n\n\nEpic CRDB-59555",
+    "html_url": "https://github.com/cockroachdb/cockroach/issues/164598",
+    "labels": [
+      "C-enhancement",
+      "A-cdc",
+      "T-cdc",
+      "v26.2.0-prerelease"
+    ],
+    "state": "closed",
+    "title": "changefeedccl: stop writing the legacy span-level checkpoint"
+  },
+  "cockroachdb/cockroach#164737": {
+    "body": "**Note:** This build has runtime assertions enabled. If the same failure was hit in a run without assertions enabled, there should be a similar failure without this message. If there isn&#39;t one, then this failure is likely due to an assertion violation or (assertion) timeout.\n\nroachtest.ldr/create/tpcc [failed](https://teamcity.cockroachdb.com/buildConfiguration/Cockroach_Nightlies_RoachtestNightlyGceBazel/21185262?buildTab=log) with [artifacts](https://teamcity.cockroachdb.com/buildConfiguration/Cockroach_Nightlies_RoachtestNightlyGceBazel/21185262?buildTab=artifacts#/ldr/create/tpcc) on release-25.4.6-rc @ [2c0bb76568232c012a617fe5affcf3149a377a95](https://github.com/cockroachdb/cockroach/commits/2c0bb76568232c012a617fe5affcf3149a377a95):\n\n\n```\n(latency_verifier.go:204).assertValid: ldr-right: latency never dropped to acceptable steady level: 3m0s\ntest artifacts and logs in: /artifacts/ldr/create/tpcc/run_1\n```\n\nParameters:\n - <code>arch=amd64</code>\n - <code>cloud=gce</code>\n - <code>coverageBuild=false</code>\n - <code>cpu=8</code>\n - <code>encrypted=false</code>\n - <code>fs=ext4</code>\n - <code>localSSD=false</code>\n - <code>metamorphicBufferedSender=true</code>\n - <code>metamorphicLeases=epoch</code>\n - <code>metamorphicWriteBuffering=true</code>\n - <code>runtimeAssertionsBuild=true</code>\n - <code>ssd=0</code>\n<details><summary>Help</summary>\n<p>\n\n\nSee: [roachtest README](https://github.com/cockroachdb/cockroach/blob/master/pkg/cmd/roachtest/README.md)\n\n\n\nSee: [How To Investigate \\(internal\\)](https://cockroachlabs.atlassian.net/l/c/SSSBr8c7)\n\n\n\nSee: [Grafana](https://go.crdb.dev/roachtest-grafana/teamcity-21185262/ldr-create-tpcc/1772542109250/1772544513274)\n\n</p>\n</details>\n<details><summary>Same failure on other branches</summary>\n<p>\n\n- #163603 roachtest: ldr/create/tpcc failed [A-disaster-recovery C-test-failure O-roachtest O-robot P-1 T-disaster-recovery branch-master release-blocker]\n- #162008 roachtest: ldr/create/tpcc failed [A-disaster-recovery B-runtime-assertions-enabled C-test-failure O-roachtest O-robot T-disaster-recovery branch-release-25.4.4-rc]\n- #158439 roachtest: ldr/create/tpcc failed [A-disaster-recovery B-runtime-assertions-enabled C-test-failure O-roachtest O-robot P-2 T-disaster-recovery branch-release-25.4]\n</p>\n</details>\n/cc @cockroachdb/disaster-recovery\n<sub>\n\n[This test on roachdash](https://roachdash.crdb.dev/?filter=status:open%20t:.*ldr/create/tpcc.*&sort=title+created&display=lastcommented+project) | [Improve this report!](https://github.com/cockroachdb/cockroach/tree/master/pkg/cmd/bazci/githubpost/issues)\n\n</sub>\n\n\nJira issue: CRDB-60998",
+    "html_url": "https://github.com/cockroachdb/cockroach/issues/164737",
+    "labels": [
+      "C-test-failure",
+      "O-robot",
+      "A-disaster-recovery",
+      "O-roachtest",
+      "T-disaster-recovery",
+      "P-3",
+      "B-runtime-assertions-enabled",
+      "branch-release-26.2",
+      "branch-release-25.4.6-rc",
+      "v26.2.0-prerelease",
+      "target-release-26.3.0"
+    ],
+    "state": "closed",
+    "title": "roachtest: ldr/create/tpcc failed"
+  },
+  "cockroachdb/cockroach#164791": {
+    "body": "sql.TestRelocateNonVoters [failed](https://teamcity.cockroachdb.com/buildConfiguration/Cockroach_Ci_TestsAwsLinuxArm64_UnitTests/21190691?buildTab=log) with [artifacts](https://teamcity.cockroachdb.com/buildConfiguration/Cockroach_Ci_TestsAwsLinuxArm64_UnitTests/21190691?buildTab=artifacts#/) on master @ [ce737bca704957fcf69308781ce731ea7cdcc32c](https://github.com/cockroachdb/cockroach/commits/ce737bca704957fcf69308781ce731ea7cdcc32c):\n\n\n```\n=== RUN   TestRelocateNonVoters\n    test_log_scope.go:172: test logs captured to: /artifacts/tmp/_tmp/230b14ff9b70e2729ccc9b9deabcc166/logTestRelocateNonVoters3889208977\n    test_log_scope.go:82: use -show-logs to present logs inline\n    multitenant_admin_function_test.go:987: -- test log scope end --\ntest logs left over in: /artifacts/tmp/_tmp/230b14ff9b70e2729ccc9b9deabcc166/logTestRelocateNonVoters3889208977\n--- FAIL: TestRelocateNonVoters (72.07s)\n=== RUN   TestRelocateNonVoters/ALTER_RANGE_x_RELOCATE_NONVOTERS\n    test_server_shim.go:686: DRPC is enabled (via override by TestingGlobalDRPCOption)\n    multitenant_admin_function_test.go:937: condition failed to evaluate within 45s: from multitenant_admin_function_test.go:953: waiting for LEARNER replicas: {2}\n        \n        goroutine dump: /artifacts/tmp/_tmp/230b14ff9b70e2729ccc9b9deabcc166/goroutine_dump_826182237.txt\n--- FAIL: TestRelocateNonVoters/ALTER_RANGE_x_RELOCATE_NONVOTERS (58.42s)\n```\n<details><summary>Help</summary>\n<p>\n\nSee also: [How To Investigate a Go Test Failure \\(internal\\)](https://cockroachlabs.atlassian.net/l/c/HgfXfJgM)\n</p>\n</details>\n/cc @cockroachdb/sql-foundations\n<sub>\n\n[This test on roachdash](https://roachdash.crdb.dev/?filter=status:open%20t:.*TestRelocateNonVoters.*&sort=title+created&display=lastcommented+project) | [Improve this report!](https://github.com/cockroachdb/cockroach/tree/master/pkg/cmd/bazci/githubpost/issues)\n\n</sub>\n\n\nJira issue: CRDB-61019",
+    "html_url": "https://github.com/cockroachdb/cockroach/issues/164791",
+    "labels": [
+      "C-test-failure",
+      "O-robot",
+      "branch-master",
+      "T-sql-foundations",
+      "P-2",
+      "target-release-26.1.2",
+      "target-release-25.4.7",
+      "target-release-25.2.16",
+      "v26.2.0-prerelease",
+      "target-release-24.3.31"
+    ],
+    "state": "closed",
+    "title": "sql: TestRelocateNonVoters failed"
+  },
+  "cockroachdb/cockroach#165339": {
+    "body": "The `schemachange/bulkingest/nodes=12/rows=4000000000/elastic=false/add_column` roachtest variant shows that disabling elastic CPU control does not improve index backfill throughput compared to the default (elastic=true).\n\n**Expected behavior:** The `elastic=false` variant disables both `kvadmission.elastic_control_bulk_low_priority.enabled` and `bulkio.index_backfill.elastic_control.enabled` ([schemachange.go:648-651](https://github.com/cockroachdb/cockroach/blob/master/pkg/cmd/roachtest/tests/schemachange.go#L648)). Without elastic CPU throttling, the index backfill should be able to use more CPU and achieve higher throughput.\n\n**Observed behavior (from [roachperf](https://roachperf.crdb.dev/?filter=schemachange%2Fbulkingest)):**\n\n`elastic=false/add_column`: ~60,000\u201378,000 rows/s/node (stable, ~1 month of data):\n\n<img width=\"1826\" height=\"820\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/64177916-c160-4b85-8bea-84b13e3c093a\" />\n\nDefault `add_column` (elastic=true): historically ~100,000\u2013110,000 rows/s/node, recently ~70,000\u201390,000:\n\n<img width=\"1760\" height=\"798\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/a1d84bac-3e56-4e48-920d-611302eb4910\" />\n\nThe `elastic=false` variant is consistently **slower** than the default, which is the opposite of what we'd expect. Disabling elastic control should remove throttling and increase throughput, not decrease it.\n\n**Investigation questions:**\n1. Are the two cluster settings actually taking effect? Verify in the test logs that the settings are applied before the backfill starts.\n2. Is there a different bottleneck (disk I/O, network, compaction) that becomes the limiting factor when elastic CPU throttling is removed, causing the system to overload and actually perform worse?\n3. Is the elastic CPU control interacting with admission control in a way that actually improves throughput by pacing work and avoiding contention?\n4. Are the two test variants running on comparable hardware? Check if there are systematic differences in the cloud instance types or disk configurations.\n",
+    "html_url": "https://github.com/cockroachdb/cockroach/issues/165339",
+    "labels": [
+      "C-investigation",
+      "O-roachtest",
+      "T-sql-foundations",
+      "A-roachperf-investigation",
+      "v26.2.0-prerelease"
+    ],
+    "state": "closed",
+    "title": "bulkingest: elastic=false does not improve index backfill throughput"
+  },
+  "cockroachdb/cockroach#165377": {
+    "body": "server.TestDrain [failed](https://teamcity.cockroachdb.com/buildConfiguration/Cockroach_Ci_TestsAwsLinuxArm64_UnitTests/21226939?buildTab=log) with [artifacts](https://teamcity.cockroachdb.com/buildConfiguration/Cockroach_Ci_TestsAwsLinuxArm64_UnitTests/21226939?buildTab=artifacts#/) on master @ [bb02fd678b06df257d9296b22ceb48cba45f0693](https://github.com/cockroachdb/cockroach/commits/bb02fd678b06df257d9296b22ceb48cba45f0693):\n\n\n```\n=== RUN   TestDrain\n    test_log_scope.go:172: test logs captured to: /artifacts/tmp/_tmp/4b992d1f969871bcc9fd338a5653884d/logTestDrain3341812692\n    test_log_scope.go:82: use -show-logs to present logs inline\n--- FAIL: TestDrain (4.48s)\npanic: runtime error: invalid memory address or nil pointer dereference [recovered, repanicked]\n[signal SIGSEGV: segmentation violation code=0x1 addr=0x18 pc=0x1b7e3e0]\n\ngoroutine 17366 [running]:\ntesting.tRunner.func1.2({0x5443000, 0xabc2b40})\n\tGOROOT/src/testing/testing.go:1872 +0x190\ntesting.tRunner.func1()\n\tGOROOT/src/testing/testing.go:1875 +0x31c\npanic({0x5443000?, 0xabc2b40?})\n\tGOROOT/src/runtime/panic.go:783 +0x120\ngithub.com/cockroachdb/cockroach/pkg/util/grpcutil.IsClosedConnection({0x0, 0x0})\n\tpkg/util/grpcutil/grpc_util.go:94 +0xf0\ngithub.com/cockroachdb/cockroach/pkg/server_test.doTestDrain.func3()\n\tpkg/server/drain_test.go:130 +0x6c\ngithub.com/cockroachdb/cockroach/pkg/testutils.SucceedsWithinError.func1()\n\tpkg/testutils/soon.go:95 +0x38\ngithub.com/cockroachdb/cockroach/pkg/util/retry.ForDuration(0xa7a358200, 0x400375fd30)\n\tpkg/util/retry/retry.go:362 +0xbc\ngithub.com/cockroachdb/cockroach/pkg/testutils.SucceedsWithinError(0x400359fec0, 0xa7a358200)\n\tpkg/testutils/soon.go:101 +0x4c\ngithub.com/cockroachdb/cockroach/pkg/testutils.SucceedsWithin({0x6dbf030, 0x4001cff2f0}, 0x400359fec0, 0xa7a358200)\n\tpkg/testutils/soon.go:63 +0x44\ngithub.com/cockroachdb/cockroach/pkg/testutils.SucceedsSoon({0x6dbf030, 0x4001cff2f0}, 0x400359fec0)\n\tpkg/testutils/soon.go:42 +0x4c\ngithub.com/cockroachdb/cockroach/pkg/server_test.doTestDrain(0x4011d5ac40, 0x0)\n\tpkg/server/drain_test.go:128 +0x304\ngithub.com/cockroachdb/cockroach/pkg/server_test.TestDrain.func1(0x4016bbef58?, 0xac?)\n\tpkg/server/drain_test.go:40 +0x1c\ngithub.com/cockroachdb/cockroach/pkg/testutils.RunValues[...].func1()\n\tpkg/testutils/subtest.go:23 +0x28\ntesting.tRunner(0x4011d5ac40, 0x401dc290e0)\n\tGOROOT/src/testing/testing.go:1934 +0xc8\ncreated by testing.(*T).Run in goroutine 17361\n\tGOROOT/src/testing/testing.go:1997 +0x364\n=== RUN   TestDrain/secondaryTenants=false\n    test_server_shim.go:638: DRPC is enabled (via testserver factory defaults)\n    drain_test.go:105: drain response: is_draining:true \n--- FAIL: TestDrain/secondaryTenants=false (4.48s)\n```\n<details><summary>Help</summary>\n<p>\n\nSee also: [How To Investigate a Go Test Failure \\(internal\\)](https://cockroachlabs.atlassian.net/l/c/HgfXfJgM)\n</p>\n</details>\n/cc @cockroachdb/kv-triage @cockroachdb/sql-foundations\n<sub>\n\n[This test on roachdash](https://roachdash.crdb.dev/?filter=status:open%20t:.*TestDrain.*&sort=title+created&display=lastcommented+project) | [Improve this report!](https://github.com/cockroachdb/cockroach/tree/master/pkg/cmd/bazci/githubpost/issues)\n\n</sub>\n\n\nJira issue: CRDB-61358",
+    "html_url": "https://github.com/cockroachdb/cockroach/issues/165377",
+    "labels": [
+      "C-test-failure",
+      "O-robot",
+      "branch-master",
+      "release-blocker",
+      "T-db-server",
+      "branch-release-26.2",
+      "v26.2.0-prerelease",
+      "target-release-26.3.0"
+    ],
+    "state": "closed",
+    "title": "server: TestDrain failed"
+  },
+  "cockroachdb/cockroach#165387": {
+    "body": "The Kafka v2 sink contains logic to split up a large batch to avoid choking on a MessageTooLarge: https://github.com/cockroachdb/cockroach/blob/27a25fc5361acf8027aab6f5ee227fff28611dfd/pkg/ccl/changefeedccl/sink_kafka_v2.go#L158.\n\nThere is a problem with this logic: when multiple parallel batches are submitted, they queue inside franz-go and get coalesced into per-broker requests. If that request ends up being too large, every request in the batch fails with MessageTooLarge.\n\nThis means we sometimes see MessageTooLarge in a single message batch that could fit in its own batch, but it happened to get bundled with other messages. This is an issue because when this occurs, we return the error instead of retrying it: https://github.com/cockroachdb/cockroach/blob/27a25fc5361acf8027aab6f5ee227fff28611dfd/pkg/ccl/changefeedccl/sink_kafka_v2.go#L180. This causes the flow to restart with MessageTooLarge.\n\nThere are a few factors that increase the probability of observing this:\n1. Rows that close to the max message size or batches that are configured to be close to the broker's message size limit.\n2. By default, we set the sink concurrency to the number of cores. The higher the concurrency, the more batches can get coalesced into a single broker flush and trigger this error. \n\nThe reason we run into this is we hard code the max producer max batch size as [256 MiB](https://github.com/cockroachdb/cockroach/blob/27a25fc5361acf8027aab6f5ee227fff28611dfd/pkg/ccl/changefeedccl/sink_kafka_v2.go#L85). The intent of this change is to avoid spurious client errors, but it also means that franz-go will form massive batches internally.\n\nI confirmed that setting ProducerBatchMaxBytes to 1 MiB fixes the spurious errors, but we will need to find a different fix because customers control the maximum value accepted by the kafka brokers. \n\nJira issue: CRDB-61362",
+    "html_url": "https://github.com/cockroachdb/cockroach/issues/165387",
+    "labels": [
+      "C-bug",
+      "A-cdc",
+      "T-cdc",
+      "target-release-26.2.0",
+      "target-release-25.4.8",
+      "target-release-25.2.17",
+      "target-release-26.1.3",
+      "target-release-24.3.31",
+      "target-release-26.3.0"
+    ],
+    "state": "closed",
+    "title": "changefeed: kafka v2 sink can observe spurious large message errors"
+  },
+  "cockroachdb/cockroach#165420": {
+    "body": "ccl/multiregionccl.TestMultiRegionDataDriven_regional_by_table [failed](https://mesolite.cluster.engflow.com/invocations/default/739db00a-798e-49f9-896f-da41310128c7?testReportRun=1&testReportShard=4&testReportAttempt=1#targets-Ly9wa2cvY2NsL211bHRpcmVnaW9uY2NsOm11bHRpcmVnaW9uY2NsX3Rlc3Q=) on release-26.1 @ [7ae562b082a5847d9ba12210e243c20d8612e4df](https://github.com/cockroachdb/cockroach/commits/7ae562b082a5847d9ba12210e243c20d8612e4df):\n\n\n```\n               0.803ms      0.000ms                [dist sender send: {count: 1, duration 32ms}]\n               0.832ms      0.028ms                event:sql/row/kv_batch_fetcher.go:612 [n8,client=127.0.0.1:35818,hostssl,user=root] Scan /Table/108/1/1/0\n               0.841ms      0.010ms                event:sql/row/kv_batch_fetcher.go:285 [n8,client=127.0.0.1:35818,hostssl,user=root] kv fetcher: sending a batch with 1 requests\n               0.844ms      0.003ms                    === operation:txn coordinator send gid:170679 _verbose:1 node:8 client:127.0.0.1:35818 hostssl: user:root txnID:7914569c-97da-46b1-a7f6-53b0955eeb86\n               0.844ms      0.000ms                    [/cockroach.roachpb.Internal/Batch: {count: 2, duration 32ms}]\n               0.844ms      0.000ms                    [dist sender send: {count: 1, duration 32ms}]\n               0.856ms      0.012ms                        === operation:dist sender send gid:170679 _verbose:1 node:8 client:127.0.0.1:35818 hostssl: user:root txn:7914569c\n               0.856ms      0.000ms                        [/cockroach.roachpb.Internal/Batch: {count: 2, duration 32ms}]\n               0.877ms      0.021ms                        event:kv/kvclient/kvcoord/range_iter.go:183 [n8,client=127.0.0.1:35818,hostssl,user=root,txn=7914569c] querying next range at /Table/108/1/1/0\n               0.914ms      0.037ms                        event:kv/kvclient/kvcoord/range_iter.go:220 [n8,client=127.0.0.1:35818,hostssl,user=root,txn=7914569c] key: /Table/108/1/1/0, desc: r81:/{Table/108-Max} [(n3,s3):1, (n2,s2):9, (n1,s1):8, (n7,s7):6NON_VOTER, next=12, gen=34]\n               0.961ms      0.047ms                        event:kv/kvclient/kvcoord/dist_sender.go:2657 [n8,client=127.0.0.1:35818,hostssl,user=root,txn=7914569c] routing to nearest replica; leaseholder not required order=[(n7,s7):6NON_VOTER(health=false match=0 latency=92ms),(n3,s3):1(health=false match=0 latency=95ms),(n1,s1):8(health=false match=0 latency=99ms),(n2,s2):9(health=false match=0 latency=111ms)]\n               0.990ms      0.030ms                        event:kv/kvclient/kvcoord/dist_sender.go:2716 [n8,client=127.0.0.1:35818,hostssl,user=root,txn=7914569c] r81: sending batch 1 Get to (n7,s7):6NON_VOTER\n               1.007ms      0.017ms                        event:rpc/nodedialer/nodedialer.go:230 [n8,client=127.0.0.1:35818,hostssl,user=root,txn=7914569c] sending request to 127.0.0.1:38893\n               1.018ms      0.011ms                        event:kv/kvclient/kvcoord/transport.go:210 [n8,client=127.0.0.1:35818,hostssl,user=root,txn=7914569c] sending batch request\n               1.020ms      0.003ms                            === operation:/cockroach.roachpb.Internal/Batch gid:170679 _verbose:1 node:8 client:127.0.0.1:35818 hostssl: user:root txn:7914569c span.kind:client\n               2.209ms      1.188ms                            === operation:/cockroach.roachpb.Internal/Batch gid:170717 _verbose:1 node:7 span.kind:server request:Get [/Table/108/1/1/0], [txn: 7914569c], [max_span_request_keys: 0], [target_bytes: 46492]\n               2.226ms      0.017ms                            event:server/node.go:1624 [n7] node received request: 1 Get\n               2.259ms      0.033ms                            event:kv/kvserver/store_send.go:149 [n7,s7] executing Get [/Table/108/1/1/0], [txn: 7914569c], [max_span_request_keys: 0], [target_bytes: 46492]\n               2.272ms      0.013ms                            event:kv/kvserver/replica_send.go:195 [n7,s7,r81/6:/{Table/108-Max}] read-only path\n               2.285ms      0.013ms                            event:kv/kvserver/concurrency/concurrency_manager.go:275 [n7,s7,r81/6:/{Table/108-Max}] sequencing request\n               2.292ms      0.007ms                            event:kv/kvserver/concurrency/concurrency_manager.go:356 [n7,s7,r81/6:/{Table/108-Max}] acquiring latches\n               2.302ms      0.009ms                            event:kv/kvserver/concurrency/concurrency_manager.go:400 [n7,s7,r81/6:/{Table/108-Max}] scanning lock table for conflicting locks\n               2.332ms      0.030ms                            event:kv/kvserver/replica_follower_read.go:142 [n7,s7,r81/6:/{Table/108-Max}] serving via follower read; query timestamp below closed timestamp by 473.485661ms\n               2.352ms      0.020ms                            event:\n               2.423ms      0.071ms                            event:kv/kvserver/replica_read.go:320 [n7,s7,r81/6:/{Table/108-Max}] can drop latches early for batch (Get [/Table/108/1/1/0], [txn: 7914569c], [max_span_request_keys: 0], [target_bytes: 46492]); scanning lock table first to detect conflicts\n               2.457ms      0.034ms                            event:storage/engine.go:2018 [n7,s7,r81/6:/{Table/108-Max}] lock table scan stats: seeked 1 times (1 internal); stepped 0 times (0 internal)\n               2.467ms      0.010ms                            event:kv/kvserver/replica_read.go:123 [n7,s7,r81/6:/{Table/108-Max}] lock table scan complete without conflicts; dropping latches early\n               2.479ms      0.012ms                            event:kv/kvserver/replica_read.go:433 [n7,s7,r81/6:/{Table/108-Max}] executing read-only batch\n               2.652ms      0.173ms                            event:kv/kvserver/replica_evaluate.go:567 [n7,s7,r81/6:/{Table/108-Max}] evaluated Get command header:<key:\"\\364\\211\\211\\210\" > expect_exclusion_since:<> , txn=\"sql txn\" meta={id=7914569c key=/Min iso=Serializable pri=0.05723061 epo=0 ts=1773238689.495765000,0 min=1773238689.495765000,0 seq=0} lock=false stat=PENDING rts=1773238689.495765000,0 gul=1773238689.495765000,0 obs={n7@1773238690.498011744,0 n8@1773238690.495692197,0} : resp=header:<num_keys:1 num_bytes:7 > value:<raw_bytes:\"\\375\\311[\\010\\n#\\002\" timestamp:<wall_time:1773238680241222346 logical:2 > > , err=<nil>\n               2.673ms      0.020ms                            event:n7 scan stats: stepped 0 times (0 internal); seeked 1 times (1 internal); block-bytes: (total 7.7 KiB, cached 7.7 KiB, duration 0s); points: (count 1, key-bytes 18 B, value-bytes 14 B, tombstoned: 0) ranges: (count 0), (contained-points 0, skipped-points 0) evaluated requests: 1 gets, 0 scans, 0 reverse scans\n               2.685ms      0.013ms                            event:kv/kvserver/replica_read.go:245 [n7,s7,r81/6:/{Table/108-Max}] read completed\n               2.710ms      0.024ms                            event:server/node.go:1729 [n7] node sending response\n               2.335ms     -0.374ms                            structured:{\"@type\":\"type.googleapis.com/cockroach.roachpb.UsedFollowerRead\"}\n               2.656ms      0.321ms                            structured:{\"@type\":\"type.googleapis.com/cockroach.roachpb.ScanStats\",\"numInterfaceSeeks\":\"1\",\"numInternalSeeks\":\"1\",\"blockBytes\":\"7880\",\"blockBytesInCache\":\"7880\",\"keyBytes\":\"18\",\"valueBytes\":\"14\",\"pointCount\":\"1\",\"numGets\":\"1\",\"nodeId\":7,\"region\":\"us-central-1\"}\n              32.515ms     31.497ms                        event:kv/kvclient/kvcoord/transport.go:212 [n8,client=127.0.0.1:35818,hostssl,user=root,txn=7914569c] received batch response\n              32.567ms     31.723ms                    event:kv/kvclient/kvcoord/txn_interceptor_span_refresher.go:620 [n8,client=127.0.0.1:35818,hostssl,user=root,txn=7914569c] recording span to refresh: /Table/108/1/1/0\n              32.654ms     31.854ms            event:ComponentStats{ID: {0c85128f-62af-4ab6-ba53-2546aca7b4e2 PROCESSOR 0 8 }, used follower read, KV nodes: n7, KV regions: us-central-1, KV time: 32ms, KV rows decoded: 1, KV bytes read: 11 B, KV gRPC calls: 1, KV pairs read: 1, MVCC step count (ext/int): 0/0, MVCC seek count (ext/int): 1/1, max memory allocated: 20 KiB, sql cpu time: 25\u00b5s, batches output: 1, rows output: 1}\n              32.661ms      0.006ms            event:ComponentStats{ID: {00000000-0000-0000-0000-000000000000 UNSET 0 ? }}\n              32.629ms     -0.032ms            structured:{\"@type\":\"type.googleapis.com/cockroach.sql.distsqlrun.ComponentStats\",\"component\":{\"flowId\":\"0c85128f-62af-4ab6-ba53-2546aca7b4e2\",\"type\":\"PROCESSOR\",\"sqlInstanceId\":8},\"netRx\":{\"latency\":{},\"waitTime\":{},\"deserializationTime\":{},\"tuplesReceived\":{},\"bytesReceived\":{},\"messagesReceived\":{}},\"netTx\":{\"tuplesSent\":{},\"bytesSent\":{},\"messagesSent\":{}},\"kv\":{\"bytesRead\":{\"valuePlusOne\":\"12\"},\"kvPairsRead\":{\"valuePlusOne\":\"2\"},\"tuplesRead\":{\"valuePlusOne\":\"2\"},\"batchRequestsIssued\":{\"valuePlusOne\":\"2\"},\"kvTime\":{\"valuePlusOne\":\"0.031804935s\"},\"contentionTime\":{\"valuePlusOne\":\"0.000000001s\"},\"lockWaitTime\":{\"valuePlusOne\":\"0.000000001s\"},\"latchWaitTime\":{\"valuePlusOne\":\"0.000000001s\"},\"numInterfaceSteps\":{\"valuePlusOne\":\"1\"},\"numInternalSteps\":{\"valuePlusOne\":\"1\"},\"numInterfaceSeeks\":{\"valuePlusOne\":\"2\"},\"numInternalSeeks\":{\"valuePlusOne\":\"2\"},\"blockBytes\":{\"valuePlusOne\":\"7881\"},\"blockBytesInCache\":{\"valuePlusOne\":\"7881\"},\"keyBytes\":{\"valuePlusOne\":\"19\"},\"valueBytes\":{\"valuePlusOne\":\"15\"},\"pointCount\":{\"valuePlusOne\":\"2\"},\"pointsCoveredByRangeTombstones\":{\"valuePlusOne\":\"1\"},\"rangeKeyCount\":{\"valuePlusOne\":\"1\"},\"rangeKeyContainedPoints\":{\"valuePlusOne\":\"1\"},\"rangeKeySkippedPoints\":{\"valuePlusOne\":\"1\"},\"kvCpuTime\":{},\"numGets\":{\"valuePlusOne\":\"2\"},\"numScans\":{\"valuePlusOne\":\"1\"},\"numReverseScans\":{\"valuePlusOne\":\"1\"},\"nodeIds\":[7],\"regions\":[\"us-central-1\"],\"usedFollowerRead\":true},\"exec\":{\"execTime\":{},\"maxAllocatedMem\":{\"valuePlusOne\":\"20481\"},\"maxAllocatedDisk\":{},\"consumedRu\":{\"valuePlusOne\":\"1\"},\"cpuTime\":{\"valuePlusOne\":\"0.000024641s\"}},\"output\":{\"numBatches\":{\"valuePlusOne\":\"2\"},\"numTuples\":{\"valuePlusOne\":\"2\"}},\"flowStats\":{\"maxMemUsage\":{},\"maxDiskUsage\":{},\"consumedRu\":{}}}\n              32.657ms      0.028ms            structured:{\"@type\":\"type.googleapis.com/cockroach.sql.distsqlrun.ComponentStats\",\"component\":{\"flowId\":\"00000000-0000-0000-0000-000000000000\"},\"netRx\":{\"latency\":{},\"waitTime\":{},\"deserializationTime\":{},\"tuplesReceived\":{},\"bytesReceived\":{},\"messagesReceived\":{}},\"netTx\":{\"tuplesSent\":{},\"bytesSent\":{},\"messagesSent\":{}},\"kv\":{\"bytesRead\":{},\"kvPairsRead\":{},\"tuplesRead\":{},\"batchRequestsIssued\":{},\"kvTime\":{},\"contentionTime\":{},\"lockWaitTime\":{},\"latchWaitTime\":{},\"numInterfaceSteps\":{},\"numInternalSteps\":{},\"numInterfaceSeeks\":{},\"numInternalSeeks\":{},\"blockBytes\":{},\"blockBytesInCache\":{},\"keyBytes\":{},\"valueBytes\":{},\"pointCount\":{},\"pointsCoveredByRangeTombstones\":{},\"rangeKeyCount\":{},\"rangeKeyContainedPoints\":{},\"rangeKeySkippedPoints\":{},\"kvCpuTime\":{},\"numGets\":{},\"numScans\":{},\"numReverseScans\":{}},\"exec\":{\"execTime\":{},\"maxAllocatedMem\":{},\"maxAllocatedDisk\":{},\"consumedRu\":{},\"cpuTime\":{}},\"output\":{\"numBatches\":{},\"numTuples\":{}},\"flowStats\":{\"maxMemUsage\":{},\"maxDiskUsage\":{},\"consumedRu\":{}}}\n              32.696ms     31.896ms        event:ComponentStats{ID: {0c85128f-62af-4ab6-ba53-2546aca7b4e2 FLOW 0 8 eu-central-1}}\n              32.692ms     -0.004ms        structured:{\"@type\":\"type.googleapis.com/cockroach.sql.distsqlrun.ComponentStats\",\"component\":{\"flowId\":\"0c85128f-62af-4ab6-ba53-2546aca7b4e2\",\"type\":\"FLOW\",\"sqlInstanceId\":8,\"region\":\"eu-central-1\"},\"netRx\":{\"latency\":{},\"waitTime\":{},\"deserializationTime\":{},\"tuplesReceived\":{},\"bytesReceived\":{},\"messagesReceived\":{}},\"netTx\":{\"tuplesSent\":{},\"bytesSent\":{},\"messagesSent\":{}},\"kv\":{\"bytesRead\":{},\"kvPairsRead\":{},\"tuplesRead\":{},\"batchRequestsIssued\":{},\"kvTime\":{},\"contentionTime\":{},\"lockWaitTime\":{},\"latchWaitTime\":{},\"numInterfaceSteps\":{},\"numInternalSteps\":{},\"numInterfaceSeeks\":{},\"numInternalSeeks\":{},\"blockBytes\":{},\"blockBytesInCache\":{},\"keyBytes\":{},\"valueBytes\":{},\"pointCount\":{},\"pointsCoveredByRangeTombstones\":{},\"rangeKeyCount\":{},\"rangeKeyContainedPoints\":{},\"rangeKeySkippedPoints\":{},\"kvCpuTime\":{},\"numGets\":{},\"numScans\":{},\"numReverseScans\":{}},\"exec\":{\"execTime\":{},\"maxAllocatedMem\":{},\"maxAllocatedDisk\":{},\"consumedRu\":{},\"cpuTime\":{}},\"output\":{\"numBatches\":{},\"numTuples\":{}},\"flowStats\":{\"maxMemUsage\":{\"valuePlusOne\":\"20481\"},\"maxDiskUsage\":{\"valuePlusOne\":\"1\"},\"consumedRu\":{}}}\n              32.738ms     32.012ms    event:sql/conn_executor_exec.go:1095 [n8,client=127.0.0.1:35818,hostssl,user=root] execution ends\n              32.751ms      0.013ms    event:sql/conn_executor_exec.go:1095 [n8,client=127.0.0.1:35818,hostssl,user=root] rows affected: 1\n              32.808ms      0.057ms        === operation:commit sql txn gid:170679 _verbose:1 node:8 client:127.0.0.1:35818 hostssl: user:root\n              32.838ms      0.087ms    event:sql/conn_executor_exec.go:4174 [n8,client=127.0.0.1:35818,hostssl,user=root] AutoCommit. err: <nil>\n        \n    panic.go:615: -- test log scope end --\ntest logs left over in: outputs.zip/logTestMultiRegionDataDriven_regional_by_table1382400312\n--- FAIL: TestMultiRegionDataDriven_regional_by_table (106.66s)\n```\n\nParameters:\n - <code>attempt=1</code>\n - <code>run=1</code>\n - <code>shard=4</code>\n<details><summary>Help</summary>\n<p>\n\nSee also: [How To Investigate a Go Test Failure \\(internal\\)](https://cockroachlabs.atlassian.net/l/c/HgfXfJgM)\n</p>\n</details>\n/cc @cockroachdb/sql-foundations\n<sub>\n\n[This test on roachdash](https://roachdash.crdb.dev/?filter=status:open%20t:.*TestMultiRegionDataDriven_regional_by_table.*&sort=title+created&display=lastcommented+project) | [Improve this report!](https://github.com/cockroachdb/cockroach/tree/master/pkg/cmd/bazci/githubpost/issues)\n\n</sub>\n\n\nJira issue: CRDB-61376",
+    "html_url": "https://github.com/cockroachdb/cockroach/issues/165420",
+    "labels": [
+      "C-test-failure",
+      "O-robot",
+      "T-sql-foundations",
+      "P-2",
+      "branch-release-26.1",
+      "v26.2.0-prerelease",
+      "target-release-25.4.8",
+      "target-release-25.2.17",
+      "target-release-26.1.3",
+      "target-release-24.3.31",
+      "target-release-26.3.0"
+    ],
+    "state": "closed",
+    "title": "ccl/multiregionccl: TestMultiRegionDataDriven_regional_by_table failed"
+  },
+  "cockroachdb/cockroach#165431": {
+    "body": "backup.TestRestoreJobMessages [failed](https://mesolite.cluster.engflow.com/invocations/default/d55b62ab-8c62-4e6f-8988-46adf9d062d0?testReportRun=1&testReportShard=32&testReportAttempt=1#targets-Ly9wa2cvYmFja3VwOmJhY2t1cF90ZXN0) on master @ [7b9cb62842fe8ef9cc9216730657a8105e0308ce](https://github.com/cockroachdb/cockroach/commits/7b9cb62842fe8ef9cc9216730657a8105e0308ce):\n\n\n```\n\ngoroutine 101402 [sync.Cond.Wait, 14 minutes, \"pebble\":\"wal-sync\"]:\nsync.runtime_notifyListWait(0xc003dce0a8, 0x0)\n\tGOROOT/src/runtime/sema.go:606 +0x159\nsync.(*Cond).Wait(0xc0000deab8?)\n\tGOROOT/src/sync/cond.go:71 +0x73\ngithub.com/cockroachdb/pebble/record.(*flusherCond).Wait(...)\n\texternal/com_github_cockroachdb_pebble/record/log_writer.go:371\ngithub.com/cockroachdb/pebble/record.(*LogWriter).flushLoop(0xc003dce000, {0x648dae0?, 0xc987d00?})\n\texternal/com_github_cockroachdb_pebble/record/log_writer.go:682 +0x785\nruntime/pprof.Do({0x7f47030?, 0xc987d00?}, {{0xc0012fa0c0?, 0xc0011dd7d0?, 0x48cd32?}}, 0xc0011dd7c0)\n\tGOROOT/src/runtime/pprof/runtime.go:51 +0x8c\ngithub.com/cockroachdb/pebble/record.NewLogWriter.func2()\n\texternal/com_github_cockroachdb_pebble/record/log_writer.go:596 +0x50\ncreated by github.com/cockroachdb/pebble/record.NewLogWriter in goroutine 101389\n\texternal/com_github_cockroachdb_pebble/record/log_writer.go:595 +0x55c\n\ngoroutine 102573 [sync.Cond.Wait, 14 minutes, \"pebble\":\"wal-sync\"]:\nsync.runtime_notifyListWait(0xc00e5e00a8, 0x26c)\n\tGOROOT/src/runtime/sema.go:606 +0x159\nsync.(*Cond).Wait(0xc01a9ce5b0?)\n\tGOROOT/src/sync/cond.go:71 +0x73\ngithub.com/cockroachdb/pebble/record.(*flusherCond).Wait(...)\n\texternal/com_github_cockroachdb_pebble/record/log_writer.go:371\ngithub.com/cockroachdb/pebble/record.(*LogWriter).flushLoop(0xc00e5e0000, {0x648dae0?, 0xc987d00?})\n\texternal/com_github_cockroachdb_pebble/record/log_writer.go:682 +0x785\nruntime/pprof.Do({0x7f47030?, 0xc987d00?}, {{0xc0012fa0c0?, 0x0?, 0xc0034e37d0?}}, 0xc0034e37c0)\n\tGOROOT/src/runtime/pprof/runtime.go:51 +0x8c\ngithub.com/cockroachdb/pebble/record.NewLogWriter.func2()\n\texternal/com_github_cockroachdb_pebble/record/log_writer.go:596 +0x50\ncreated by github.com/cockroachdb/pebble/record.NewLogWriter in goroutine 101906\n\texternal/com_github_cockroachdb_pebble/record/log_writer.go:595 +0x55c\n\ngoroutine 101473 [select, 14 minutes]:\ngithub.com/cockroachdb/cockroach/pkg/util/hlc.(*Clock).StartMonitoringForwardClockJumps.func1()\n\tpkg/util/hlc/hlc.go:298 +0x13d\ncreated by github.com/cockroachdb/cockroach/pkg/util/hlc.(*Clock).StartMonitoringForwardClockJumps in goroutine 101389\n\tpkg/util/hlc/hlc.go:290 +0x106\n\ngoroutine 101933 [select, 2 minutes]:\ngithub.com/cockroachdb/cockroach/pkg/util/admission.makeStoreWorkQueue.func1()\n\tpkg/util/admission/work_queue.go:2568 +0x85\ncreated by github.com/cockroachdb/cockroach/pkg/util/admission.makeStoreWorkQueue in goroutine 101389\n\tpkg/util/admission/work_queue.go:2565 +0x48c\n\ngoroutine 101452 [select]:\ngithub.com/cockroachdb/cockroach/pkg/util/admission.initWorkQueue.func2()\n\tpkg/util/admission/work_queue.go:417 +0x85\ncreated by github.com/cockroachdb/cockroach/pkg/util/admission.initWorkQueue in goroutine 101389\n\tpkg/util/admission/work_queue.go:414 +0x30d\n```\n\nParameters:\n - <code>attempt=1</code>\n - <code>run=1</code>\n - <code>shard=32</code>\n<details><summary>Help</summary>\n<p>\n\nSee also: [How To Investigate a Go Test Failure \\(internal\\)](https://cockroachlabs.atlassian.net/l/c/HgfXfJgM)\n</p>\n</details>\n/cc @cockroachdb/disaster-recovery\n<sub>\n\n[This test on roachdash](https://roachdash.crdb.dev/?filter=status:open%20t:.*TestRestoreJobMessages.*&sort=title+created&display=lastcommented+project) | [Improve this report!](https://github.com/cockroachdb/cockroach/tree/master/pkg/cmd/bazci/githubpost/issues)\n\n</sub>\n\n\nJira issue: CRDB-61380",
+    "html_url": "https://github.com/cockroachdb/cockroach/issues/165431",
+    "labels": [
+      "C-test-failure",
+      "O-robot",
+      "A-disaster-recovery",
+      "branch-master",
+      "T-disaster-recovery",
+      "v26.2.0-prerelease"
+    ],
+    "state": "closed",
+    "title": "backup: TestRestoreJobMessages failed"
+  },
+  "cockroachdb/cockroach#165444": {
+    "body": "**Describe the problem**\n\nThe Overview page of the DB Console will crash despite the user having the permissions required to view the page.\n\nThis occurs when the logged-in SQL user has `MODIFYSQLCLUSTERSETTING` but lacks\n`VIEWCLUSTERSETTING` or `MODIFYCLUSTERSETTING`. The Settings API returns a filtered set of\ncluster settings that excludes \"version\", and the UI crashes trying to access it as it never expects the value to be null.\n\n**To Reproduce**\n\n- Spin up a cockroach cluster (personally I just used cockroach demo) and connect to it\n- Run:\n```\nCREATE USER testuser WITH PASSWORD 'abcd';\nGRANT SYSTEM VIEWACTIVITY TO testuser;\nGRANT SYSTEM MODIFYSQLCLUSTERSETTING TO testuser;\n```\n- Attempt to log in and see the Overview page does not render\n- There will be a trace in the console similar to:\n```\nbundle.js:5033  TypeError: Cannot read properties of undefined (reading 'value')\n    at bundle.js:10086:36129\n    at bundle.js:9986:4310\n    at bundle.js:9986:3728\n    at bundle.js:9986:4449\n    at bundle.js:9986:3728\n    at bundle.js:9986:4417\n    at bundle.js:9986:3728\n    at bundle.js:9986:4417\n    at bundle.js:9986:3728\n    at Ue.mapToProps (bundle.js:10124:4574)\n```\n**Workaround:**\n- Additionally run:\n`GRANT SYSTEM VIEWCLUSTERSETTING TO testuser;`\n- Refresh the page, Overview loads as expected.\n\n**Expected behavior**\nThe Overview page should load, as the user has the relevant permissions.\n\n**Additional data / screenshots**\n\n**Investigation**\n\nThe Settings endpoint (`pkg/server/admin.go`, lines 1957-2032) queries `crdb_internal.cluster_settings`\nas the logged-in user. The virtual table (`pkg/sql/crdb_internal.go`, lines 2031-2082) checks\nprivileges in order:\n\n1. `MODIFYCLUSTERSETTING` or `VIEWCLUSTERSETTING` - all settings returned (includes \"version\")\n2. `MODIFYSQLCLUSTERSETTING` only - only sql.defaults.* settings returned (\"version\" excluded)\n3. None of the above - InsufficientPrivilege error\n\n```\n// crdb_internal.go line 2032\n\t\thasModify, err := p.HasGlobalPrivilegeOrRoleOption(ctx, privilege.MODIFYCLUSTERSETTING)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tcanViewAll := hasModify\n\t\tif !canViewAll {\n\t\t\tcanViewAll, err = p.HasGlobalPrivilegeOrRoleOption(ctx, privilege.VIEWCLUSTERSETTING)\n\t\t\tif err != nil {\n\t\t\t\treturn err\n\t\t\t}\n\t\t}\n\t\tcanViewSqlOnly := false\n\t\tif !canViewAll {\n\t\t\tcanViewSqlOnly, err = p.HasGlobalPrivilegeOrRoleOption(ctx, privilege.MODIFYSQLCLUSTERSETTING)\n\t\t\tif err != nil {\n\t\t\t\treturn err\n\t\t\t}\n\t\t}\n\t\tif !canViewAll && !canViewSqlOnly {\n\t\t\treturn pgerror.Newf(pgcode.InsufficientPrivilege,\n\t\t\t\t\"only users with %s, %s or %s system privileges are allowed to read \"+\n\t\t\t\t\t\"crdb_internal.cluster_settings\", privilege.MODIFYCLUSTERSETTING, privilege.MODIFYSQLCLUSTERSETTING, privilege.VIEWCLUSTERSETTING)\n\t\t}\n```\n\nIn the case of insufficient privilege, the handler in `admin.go` catches the error and correctly falls back to\nConsoleKeys(), which includes \"version\". But in case 2, the query succeeds with\na filtered result set, meaning `err `is nil, and the fallback block is never entered:\n\n```\n// admin.go line 1997\nif err != nil {\n    if pgerror.GetPGCode(err) != pgcode.InsufficientPrivilege {\n        return nil, srverrors.ServerError(ctx, err)\n    }\n    // VIEWACTIVITY check and ConsoleKeys() fallback live here\n    // but are never reached when MODIFYSQLCLUSTERSETTING made the query succeed\n}\n```\n\nIt assumes that no error means all settings were returned, which is false if the user has `VIEWACTIVITY` and\n`MODIFYSQLCLUSTERSETTING`, but not `VIEWCLUSTERSETTING`.\n\nOn the frontend, the selector selectClusterSettingVersion in\n`/ui/workspaces/db-console/src/redux/clusterSettings/clusterSettings.selectors.ts` accesses `settings[\"version\"].value` without handling a missing key.\n\n```\nexport const selectClusterSettingVersion = createSelector(\n  selectClusterSettings,\n  (settings): string => {\n    if (!settings) {\n      return \"\";\n    }\n    return settings[\"version\"].value;  // <--- crashes if \"version\" is missing\n  },\n);\n```\n\nOther selectors in the same file use `settings[\"version\"]?.value || \"\"`, but this one doesn't. \n\n\n\nJira issue: CRDB-61392",
+    "html_url": "https://github.com/cockroachdb/cockroach/issues/165444",
+    "labels": [
+      "C-bug",
+      "O-support",
+      "branch-master",
+      "T-observability",
+      "target-release-26.3.0"
+    ],
+    "state": "closed",
+    "title": "DB Console Overview page crash when user has VIEWACTIVITY and MODIFYSQLCLUSTERSETTING grants"
+  },
+  "cockroachdb/cockroach#165540": {
+    "body": "On the `drt-chaos-aws` cluster, import validation jobs are repeatedly failing. The inspect job reports a row count that is double the expected value \u2014 `actual: 1800009482` vs `expected: 900004741`.\n\nThis is easily reproducible on a fresh `roachprod` cluster. See [reproduction doc](https://docs.google.com/document/d/14QbJZR0oaF1KYpkHJSASgARWnXiNKIKZR49fW1ixV5w/edit?tab=t.0).\n\n```\nroachprod@localhost:26257/defaultdb> SHOW INSPECT ERRORS FOR JOB 1157283206847463425 WITH DETAILS;\n      error_type     | database_name | schema_name | table_name | primary_key |       job_id        |            aost            |          details\n---------------------+---------------+-------------+------------+-------------+---------------------+----------------------------+----------------------------\n  row_count_mismatch | cct_tpcc_drop | public      | order_line |             | 1157283206847463425 | 2026-03-11 16:06:46.741024 | {\n                     |               |             |            |             |                     |                            |     \"actual\": 1800009482,\n                     |               |             |            |             |                     |                            |     \"expected\": 900004741\n                     |               |             |            |             |                     |                            | }\n```\n\n## Environment\n\n- **CockroachDB version:** `v26.2.0-alpha.1-dev-06a675175f81a9896cd93120e72a97959215fb94`\n- **Cluster:** `drt-chaos-aws`\n- **Database:** `cct_tpcc_drop`\n- **Table:** `order_line`\n- [Failed jobs list](https://18.224.52.198:26258/#/jobs?status=failed&type=0)\n- [Recent failed job](https://18.224.52.198:26258/#/jobs/1157283206847463425)\n- [Datadog dashboard](https://us5.datadoghq.com/dashboard/pbe-ic2-3qt/drt?fromUser=true&refresh_mode=paused&storage=flex_tier&tpl_var_cluster%5B0%5D=drt-chaos-aws&tpl_var_node%5B0%5D=%2A&tpl_var_workload_cluster%5B0%5D=workload-chaos-aws&utc_override=true&from_ts=1773240472000&to_ts=1773250467294&live=false) around the time of failure\n\n## Slack Thread\n\nhttps://cockroachlabs.slack.com/archives/C05FHJJ0MD0/p1773295665812029\n\nJira issue: [CRDB-61440](https://cockroachlabs.atlassian.net/browse/CRDB-61440)",
+    "html_url": "https://github.com/cockroachdb/cockroach/issues/165540",
+    "labels": [
+      "C-bug",
+      "branch-master",
+      "T-sql-foundations",
+      "GA-blocker",
+      "O-testcluster",
+      "P-2",
+      "branch-release-26.2",
+      "v26.2.0-prerelease"
+    ],
+    "state": "closed",
+    "title": "sql: import validation jobs report 2x expected row count on drt-chaos-aws"
+  },
+  "cockroachdb/cockroach#165548": {
+    "body": "**Describe the problem:**\n\nIn the legacy schema changer, when a `CREATE TABLE` statement with inline `FOREIGN KEY` constraints is rolled back (e.g. because the schema change job fails permanently), the rollback path marks the new table as `Dropped` and queues it for GC, but **does not remove the `InboundFK` entries** that were added to the referenced table(s) during the original SQL transaction.\n\nThis leaves orphaned FK back-references pointing to a descriptor that no longer exists, causing descriptor validation errors such as:\n\n```\nrelation \"parent\" (209): invalid foreign key backreference:\nmissing table=264: referenced descriptor not found\n```\n\nThe bug is in the ADD-state rollback path of `rollbackSchemaChange()`. View dependency cleanup already exists in that path, but FK back-reference cleanup was missing entirely.\n\n**To Reproduce:**\n\n1. Create a parent table:\n   ```sql\n   CREATE TABLE parent (id INT PRIMARY KEY);\n   ```\n2. Begin a `CREATE TABLE` with an inline `FOREIGN KEY` referencing `parent`, in a way that causes the schema change job to fail permanently (e.g. inject a job failure, or construct a scenario where the job cannot complete):\n   ```sql\n   CREATE TABLE child (\n     id INT PRIMARY KEY,\n     parent_id INT REFERENCES parent(id)\n   );\n   ```\n3. Allow the schema change job to fail and roll back.\n4. Inspect the `parent` table descriptor. It retains an `InboundFK` entry pointing to the now-dropped `child` table.\n5. Run descriptor validation \u2014 observe the error:\n   ```\n   relation \"parent\" (209): invalid foreign key backreference:\n   missing table=264: referenced descriptor not found\n   ```\n\n**Expected behavior:**\n\nWhen the `CREATE TABLE` schema change is rolled back, all FK back-references added to referenced tables (`InboundFK`s) and any outbound FK entries on tables referencing the rolled-back table (`OutboundFK`s) should be cleaned up. After rollback, referenced table descriptors should be left in a valid state with no dangling references.\n\n**Environment:**\n\n- CockroachDB version: v25.1 and later\n- Schema changer: Legacy schema changer\n- Deployment: Any\n\n**Additional context:**\n\nThe fix reuses the existing `removeFKBackReferenceFromTable()` helper (already used by `dropTableImpl()` and `maybeReverseMutations()`) in the ADD-state rollback path of `rollbackSchemaChange()`, iterating over both outbound and inbound FKs on the table being rolled back. Cleanup errors are logged as warnings and skipped (best-effort), matching the pattern used by `dropViewDeps()`.\n\nFixed in commit [`b49a6a2`](https://github.com/cockroachdb/cockroach/commit/b49a6a299bed65e68cd183ff151f4fa59dc6d2ad).\n\nJira issue: CRDB-61445",
+    "html_url": "https://github.com/cockroachdb/cockroach/issues/165548",
+    "labels": [
+      "C-bug",
+      "T-sql-foundations",
+      "branch-release-25.2",
+      "branch-release-25.1",
+      "branch-release-25.3",
+      "branch-release-25.4",
+      "branch-release-26.1",
+      "target-release-26.1.2",
+      "target-release-25.4.7",
+      "v26.2.0-prerelease",
+      "branch-release-25.4.7-rc",
+      "target-release-25.4.8"
+    ],
+    "state": "closed",
+    "title": "sql: CREATE TABLE rollback leaves orphaned FK back-references on referenced tables"
+  },
+  "cockroachdb/cockroach#165702": {
+    "body": "The data and metadata of the ingested sstable will never be synced.\nSee detailed analysis in https://docs.google.com/document/d/1G0zlJ0mwdiYEgvdB7FhDXunSOiKqCANh5Z6I4l0YEzo/edit?tab=t.0#bookmark=id.upwu7f287li7, created due to the discussions in https://cockroachlabs.slack.com/archives/CAC6K3SLU/p1773252199032959 and https://cockroachlabs.slack.com/archives/CAC6K3SLU/p1773159123755159?thread_ts=1773083591.589999&cid=CAC6K3SLU.\n\nIt is unclear whether we need this cluster setting. There are some past suggestions to increase the value from the default of 512KiB, so there seems to be some benefit of keeping it.\n\nJira issue: CRDB-61556",
+    "html_url": "https://github.com/cockroachdb/cockroach/issues/165702",
+    "labels": [
+      "C-enhancement",
+      "v26.2.0-prerelease"
+    ],
+    "state": "closed",
+    "title": "kvserver: setting kv.bulk_sst.sync_size to 0 can cause data loss"
+  },
+  "cockroachdb/cockroach#165771": {
+    "body": "roachtest.db-console/cypress-pages [failed](https://teamcity.cockroachdb.com/buildConfiguration/Cockroach_Nightlies_RoachtestNightlyAzureBazel/21252203?buildTab=log) with [artifacts](https://teamcity.cockroachdb.com/buildConfiguration/Cockroach_Nightlies_RoachtestNightlyAzureBazel/21252203?buildTab=artifacts#/db-console/cypress-pages) on master @ [faea13af3929107bed0057c7e8b2abe3efc9ab4d](https://github.com/cockroachdb/cockroach/commits/faea13af3929107bed0057c7e8b2abe3efc9ab4d):\n\nFailed with:\n\n```\n(assertions.go:387).Fail: \n\tError Trace:\tpkg/cmd/roachtest/tests/db_console_cypress.go:109\n\t            \t\t\t\tpkg/cmd/roachtest/tests/db_console_cypress.go:290\n\t            \t\t\t\tpkg/cmd/roachtest/test_runner.go:1559\n\t            \t\t\t\tsrc/runtime/asm_amd64.s:1693\n\tError:      \tReceived unexpected error:\n\t            \tfull command output in run_060745.615396323_n4_cd-tmpdbconsolecypre.log: COMMAND_PROBLEM: exit status 4\n\t            \t(1) attached stack trace\n\t            \t  -- stack trace:\n\t            \t  | main.(*clusterImpl).RunE\n\t            \t  | \tpkg/cmd/roachtest/cluster.go:2577\n\t            \t  | github.com/cockroachdb/cockroach/pkg/cmd/roachtest/tests.(*dbConsoleCypressTest).RunTest\n\t            \t  | \tpkg/cmd/roachtest/tests/db_console_cypress.go:109\n\t            \t  | github.com/cockroachdb/cockroach/pkg/cmd/roachtest/tests.runDbConsoleCypressPages\n\t            \t  | \tpkg/cmd/roachtest/tests/db_console_cypress.go:290\n\t            \t  | main.(*testRunner).runTest.func2\n\t            \t  | \tpkg/cmd/roachtest/test_runner.go:1559\n\t            \t  | runtime.goexit\n\t            \t  | \tsrc/runtime/asm_amd64.s:1693\n\t            \tWraps: (2) full command output in run_060745.615396323_n4_cd-tmpdbconsolecypre.log\n\t            \tWraps: (3) Node 4. Command with error:\n\t            \t  | ``````\n\t            \t  | cd /tmp/dbconsole-cypress && NO_COLOR=1 npx cypress run --e2e --config baseUrl=https://20.102.115.96:26258,screenshotsFolder=/tmp/dbconsole-cypress/artifacts,videosFolder=/tmp/dbconsole-cypress/artifacts --spec \"cypress/e2e/pages/*.ts\"\n\t            \t  | ``````\n\t            \t  | <truncated> ... \ufffd\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524\n\t            \t  |   \u2502 \u2714  topRanges.cy.ts                          00:11        5        5        -        -        - \u2502\n\t            \t  |   \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n\t            \t  |     \u2716  1 of 9 failed (11%)                      02:49       72       68        4        -        -\n\t            \t  |\n\t            \t  | stderr:DevTools listening on ws://127.0.0.1:34633/devtools/browser/59d277c2-3a9a-4610-88a3-78660b37af77\n\t            \t  | Missing baseUrl in compilerOptions. tsconfig-paths will be skipped\n\t            \t  | tput: No value for $TERM and no -T specified\n\t            \t  | tput: No value for $TERM and no -T specified\n\t            \tWraps: (4) COMMAND_PROBLEM\n\t            \tWraps: (5) exit status 4\n\t            \tError types: (1) *withstack.withStack (2) *errutil.withPrefix (3) *hintdetail.withDetail (4) errors.Cmd (5) *exec.ExitError\n\tTest:       \tdb-console/cypress-pages\n(db_console_cypress.go:115).RunTest: full command output in run_060745.615396323_n4_cd-tmpdbconsolecypre.log: COMMAND_PROBLEM: exit status 4\ntest artifacts and logs in: /artifacts/db-console/cypress-pages/run_1\n```\nCluster Node to Ip Mapping:\n| Node | Public IP | Private IP |\n| --- | --- | --- |\n| teamcity-21252203-1773467543-11-n4cpu4-0001 | 20.102.115.96 | 10.1.0.113 |\n| teamcity-21252203-1773467543-11-n4cpu4-0002 | 40.76.228.132 | 10.1.0.112 |\n| teamcity-21252203-1773467543-11-n4cpu4-0003 | 74.235.162.131 | 10.1.0.11 |\n| teamcity-21252203-1773467543-11-n4cpu4-0004 | 20.51.243.112 | 10.1.0.139 |\n\nParameters:\n - <code>arch=amd64</code>\n - <code>cloud=azure</code>\n - <code>coverageBuild=false</code>\n - <code>cpu=4</code>\n - <code>diskCount=0</code>\n - <code>encrypted=false</code>\n - <code>runtimeAssertionsBuild=false</code>\n<details><summary>Help</summary>\n<p>\n\n\nSee: [roachtest README](https://github.com/cockroachdb/cockroach/blob/master/pkg/cmd/roachtest/README.md)\n\n\n\nSee: [How To Investigate \\(internal\\)](https://cockroachlabs.atlassian.net/l/c/SSSBr8c7)\n\n_Grafana is not yet available for azure clusters_</p>\n</details>\n/cc @cockroachdb/obs-prs\n<sub>\n\n[This test on roachdash](https://roachdash.crdb.dev/?filter=status:open%20t:.*db-console/cypress-pages.*&sort=title+created&display=lastcommented+project) | [Improve this report!](https://github.com/cockroachdb/cockroach/tree/master/pkg/cmd/bazci/githubpost/issues)\n\n</sub>\n\n\nJira issue: CRDB-61576",
+    "html_url": "https://github.com/cockroachdb/cockroach/issues/165771",
+    "labels": [
+      "C-test-failure",
+      "O-robot",
+      "O-roachtest",
+      "branch-master",
+      "release-blocker",
+      "T-observability",
+      "v26.2.0-prerelease"
+    ],
+    "state": "closed",
+    "title": "roachtest: db-console/cypress-pages failed"
+  },
+  "cockroachdb/cockroach#165808": {
+    "body": "workload/conflict.TestWriterRandom [failed](https://mesolite.cluster.engflow.com/invocations/default/41867fcf-944c-4230-a379-110aee50010b?testReportRun=2&testReportShard=1&testReportAttempt=1#targets-Ly9wa2cvd29ya2xvYWQvY29uZmxpY3Q6Y29uZmxpY3RfdGVzdA==) on release-25.4 @ [f224345f5c16ce7e17a0d9203a98ca45599c4742](https://github.com/cockroachdb/cockroach/commits/f224345f5c16ce7e17a0d9203a98ca45599c4742):\n\n\n```\n=== RUN   TestWriterRandom\n    test_log_scope.go:171: test logs captured to: outputs.zip/logTestWriterRandom80009218\n    test_log_scope.go:82: use -show-logs to present logs inline\n    test_server_shim.go:154: automatically injected a shared process virtual cluster under test; see comment at top of test_server_shim.go for details.\n    writer_test.go:84: stmt: CREATE TABLE test_writer (col0_0 CITEXT NOT NULL, col0_1 TIMESTAMP, col0_2 TIME NOT NULL, col0_3 TIMESTAMPTZ, col0_4 INT4 NOT NULL, col0_5 TIMESTAMPTZ NOT NULL, col0_6 OID, col0_7 BOX2D NOT NULL, col0_8 REGCLASS, col0_9 REGCLASS, col0_10 STRING NOT NULL AS (CASE WHEN col0_5 IS NULL THEN 'yX':::STRING ELSE e'Is-H\\f':::STRING END) STORED, col0_11 STRING NOT NULL AS (lower(CAST(col0_7 AS STRING))) STORED, col0_12 STRING NOT NULL AS (lower(CAST(col0_0 AS STRING))) STORED, PRIMARY KEY (col0_4))\n    writer_test.go:85: upsert: \n        \t\t\tINSERT INTO test_writer (\"col0_0\", \"col0_1\", \"col0_2\", \"col0_3\", \"col0_4\", \"col0_5\", \"col0_6\", \"col0_7\", \"col0_8\", \"col0_9\")\n        \t\t\tVALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)\n        \t\t\tON CONFLICT (\"col0_4\") DO UPDATE\n        \t\t\tSET \"col0_0\" = EXCLUDED.\"col0_0\", \"col0_1\" = EXCLUDED.\"col0_1\", \"col0_2\" = EXCLUDED.\"col0_2\", \"col0_3\" = EXCLUDED.\"col0_3\", \"col0_4\" = EXCLUDED.\"col0_4\", \"col0_5\" = EXCLUDED.\"col0_5\", \"col0_6\" = EXCLUDED.\"col0_6\", \"col0_7\" = EXCLUDED.\"col0_7\", \"col0_8\" = EXCLUDED.\"col0_8\", \"col0_9\" = EXCLUDED.\"col0_9\"\n        \t\t\n    writer_test.go:86: delete: \n        \t\tDELETE FROM test_writer\n        \t\tWHERE \"col0_4\" = $1\n        \t\n    writer_test.go:113: \n        \tError Trace:\tpkg/workload/conflict/writer_test.go:113\n        \tError:      \tCondition never satisfied\n        \tTest:       \tTestWriterRandom\n        \tMessages:   \tfailed to insert random row after retries\n    panic.go:635: -- test log scope end --\ntest logs left over in: outputs.zip/logTestWriterRandom80009218\n--- FAIL: TestWriterRandom (40.07s)\n```\n\nParameters:\n - <code>attempt=1</code>\n - <code>race=true</code>\n - <code>run=2</code>\n - <code>shard=1</code>\n<details><summary>Help</summary>\n<p>\n\nSee also: [How To Investigate a Go Test Failure \\(internal\\)](https://cockroachlabs.atlassian.net/l/c/HgfXfJgM)\n</p>\n</details>\n<details><summary>Same failure on other branches</summary>\n<p>\n\n- #160268 workload/conflict: TestWriterRandom failed [C-test-failure O-robot T-testeng X-infra-flake branch-release-26.1]\n</p>\n</details>\n/cc @cockroachdb/test-eng\n<sub>\n\n[This test on roachdash](https://roachdash.crdb.dev/?filter=status:open%20t:.*TestWriterRandom.*&sort=title+created&display=lastcommented+project) | [Improve this report!](https://github.com/cockroachdb/cockroach/tree/master/pkg/cmd/bazci/githubpost/issues)\n\n</sub>\n\n\nJira issue: CRDB-61605",
+    "html_url": "https://github.com/cockroachdb/cockroach/issues/165808",
+    "labels": [
+      "C-test-failure",
+      "O-robot",
+      "T-testeng",
+      "branch-release-25.4"
+    ],
+    "state": "open",
+    "title": "workload/conflict: TestWriterRandom failed"
+  },
+  "cockroachdb/cockroach#165936": {
+    "body": "sql.TestScatterWithOneVoter [failed](https://mesolite.cluster.engflow.com/invocations/default/1782acac-332d-4fe7-9aeb-995fb3cd5ed9?testReportRun=1&testReportShard=8&testReportAttempt=1#targets-Ly9wa2cvc3FsOnNxbF90ZXN0) on release-25.4 @ [43c1a64cfe4cf63f57bfcc33226bd239f9722541](https://github.com/cockroachdb/cockroach/commits/43c1a64cfe4cf63f57bfcc33226bd239f9722541):\n\n\n```\n    scatter_test.go:281: [00:00:00.015737] sending request to local client\n    scatter_test.go:281: [00:00:00.015741] stopped scattering after hitting max 1 attempts\n    scatter_test.go:281: [00:00:00.015742] === SPAN START: /cockroach.roachpb.Internal/Batch ===\n    scatter_test.go:281: [00:00:00.015746] sending batch request\n    scatter_test.go:281: [00:00:00.015749] node received request: 1 AdmScatter\n    scatter_test.go:281: [00:00:00.015753] === SPAN START: /cockroach.roachpb.Internal/Batch ===\n    scatter_test.go:281: [00:00:00.015756] released allocator token\n    scatter_test.go:281: [00:00:00.01576] node received request: 1 AdmScatter\n    scatter_test.go:281: [00:00:00.015762] planning range change desc=r125:/Table/106/1/4{70-80} [(n1,s1):1, next=2, gen=48, sticky=9223372036.854775807,2147483647] config=range_min_bytes:134217728 range_max_bytes:536870912 gc_policy:<ttl_seconds:14400 ignore_strict_enforcement:true > num_replicas:1 rangefeed_enabled:true \n    scatter_test.go:281: [00:00:00.015769] executing AdminScatter [/Table/106/1/420,/Table/106/1/430)\n    scatter_test.go:281: [00:00:00.015773] node sending response\n    scatter_test.go:281: [00:00:00.01578] === SPAN START: *kvpb.AdminScatterRequest ===\n    scatter_test.go:281: [00:00:00.01578] next replica action: consider rebalance\n    scatter_test.go:281: [00:00:00.01578] admin path\n    scatter_test.go:281: [00:00:00.015782] executing AdminScatter [/Table/106/1/480,/Table/106/1/490)\n    scatter_test.go:281: [00:00:00.015792] admin path\n    scatter_test.go:281: [00:00:00.015793] === SPAN START: *kvpb.AdminScatterRequest ===\n    scatter_test.go:281: [00:00:00.015795] acquired allocator token\n    scatter_test.go:281: [00:00:00.015798] received batch response\n    scatter_test.go:281: [00:00:00.015809] acquired allocator token\n    scatter_test.go:281: [00:00:00.01582] stopped scattering after hitting max 1 attempts\n    scatter_test.go:281: [00:00:00.015829] planning range change desc=r120:/Table/106/1/4{20-30} [(n1,s1):1, next=2, gen=43, sticky=9223372036.854775807,2147483647] config=range_min_bytes:134217728 range_max_bytes:536870912 gc_policy:<ttl_seconds:14400 ignore_strict_enforcement:true > num_replicas:1 rangefeed_enabled:true \n    scatter_test.go:281: [00:00:00.015866] next replica action: consider rebalance\n    scatter_test.go:281: [00:00:00.015871] released allocator token\n    scatter_test.go:281: [00:00:00.015874] planning range change desc=r126:/Table/106/1/4{80-90} [(n1,s1):1, next=2, gen=49, sticky=9223372036.854775807,2147483647] config=range_min_bytes:134217728 range_max_bytes:536870912 gc_policy:<ttl_seconds:14400 ignore_strict_enforcement:true > num_replicas:1 rangefeed_enabled:true \n    scatter_test.go:281: [00:00:00.015889] next replica action: consider rebalance\n    scatter_test.go:281: [00:00:00.015891] node sending response\n    scatter_test.go:281: [00:00:00.015901] stopped scattering after hitting max 1 attempts\n    scatter_test.go:281: [00:00:00.015918] released allocator token\n    scatter_test.go:281: [00:00:00.015924] received batch response\n    scatter_test.go:281: [00:00:00.015934] node sending response\n    scatter_test.go:281: [00:00:00.015953] stopped scattering after hitting max 1 attempts\n    scatter_test.go:281: [00:00:00.01596] received batch response\n    scatter_test.go:281: [00:00:00.01597] released allocator token\n    scatter_test.go:281: [00:00:00.015986] node sending response\n    scatter_test.go:281: [00:00:00.016012] received batch response\n    scatter_test.go:281: [00:00:00.016387] ComponentStats{ID: {02de01f0-65f8-4bd2-9546-38e7057fc7ef PROCESSOR 0 1 }, execution time: 5ms, sql cpu time: 3ms, batches output: 6, rows output: 50}\n    scatter_test.go:281: [00:00:00.016394] ComponentStats{ID: {00000000-0000-0000-0000-000000000000 UNSET 0 ? }}\n    scatter_test.go:281: [00:00:00.016493] ComponentStats{ID: {02de01f0-65f8-4bd2-9546-38e7057fc7ef FLOW 0 1 test}}\n    scatter_test.go:281: [00:00:00.016548] execution ends\n    scatter_test.go:281: [00:00:00.016559] rows affected: 50\n    scatter_test.go:281: [00:00:00.016636] === SPAN START: commit sql txn ===\n    scatter_test.go:281: [00:00:00.016689] AutoCommit. err: <nil>\n    scatter_test.go:281: [00:00:00.016873] releasing 0 descriptors\n    scatter_test.go:281: [00:00:00.016912] [NoTxn pos:20] executing Sync\n    scatter_test.go:281: [00:00:00.017203] [NoTxn pos:21] executing ExecStmt: SET TRACING = off\n    scatter_test.go:281: [00:00:00.017219] executing: SET TRACING = off in state: NoTxn\n    panic.go:635: -- test log scope end --\ntest logs left over in: outputs.zip/logTestScatterWithOneVoter805413946\n--- FAIL: TestScatterWithOneVoter (1.39s)\n```\n\nParameters:\n - <code>attempt=1</code>\n - <code>run=1</code>\n - <code>shard=8</code>\n<details><summary>Help</summary>\n<p>\n\nSee also: [How To Investigate a Go Test Failure \\(internal\\)](https://cockroachlabs.atlassian.net/l/c/HgfXfJgM)\n</p>\n</details>\n<sub>\n\n[This test on roachdash](https://roachdash.crdb.dev/?filter=status:open%20t:.*TestScatterWithOneVoter.*&sort=title+created&display=lastcommented+project) | [Improve this report!](https://github.com/cockroachdb/cockroach/tree/master/pkg/cmd/bazci/githubpost/issues)\n\n</sub>\n\n\nJira issue: CRDB-61685",
+    "html_url": "https://github.com/cockroachdb/cockroach/issues/165936",
+    "labels": [
+      "C-bug",
+      "C-test-failure",
+      "O-robot",
+      "A-testing",
+      "T-kv",
+      "X-nostale",
+      "P-3",
+      "branch-release-25.4",
+      "target-release-25.4.8"
+    ],
+    "state": "closed",
+    "title": "sql: TestScatterWithOneVoter failed"
+  },
+  "cockroachdb/cockroach#165940": {
+    "body": "cli.TestZipExcludeRangeInfo [failed](https://mesolite.cluster.engflow.com/invocations/default/5958268c-2abb-44ef-8efb-955fda8f0849?testReportRun=1&testReportShard=13&testReportAttempt=1#targets-Ly9wa2cvY2xpOmNsaV90ZXN0) on master @ [d266eec7d318b010df83151e6bc04338ff64ac41](https://github.com/cockroachdb/cockroach/commits/d266eec7d318b010df83151e6bc04338ff64ac41):\n\n\n```\n=== RUN   TestZipExcludeRangeInfo\n    test_log_scope.go:172: test logs captured to: outputs.zip/logTestZipExcludeRangeInfo1880193582\n    test_log_scope.go:82: use -show-logs to present logs inline\n[debug --host=127.0.0.1:42881 --insecure=false --certs-dir=/mnt/engflow/worker/work/3/exec/_tmp/04933cbd7686f6ed78f5a446d70daf3f/cli-test3521021009 zip --concurrency=1 --cpu-profile-duration=1s --include-range-info=false --validate-zip-file=false /dev/null]\n    zip_test.go:383: \n          /mnt/engflow/worker/work/3/exec/bazel-out/k8-fastbuild/bin/pkg/cli/cli_test_/cli_test.runfiles/com_github_cockroachdb_cockroach/pkg/cli/testdata/zip/testzip_exclude_range_info:1:\n          zip\n        output didn't match expected:\n          @@ -23,10 +23,12 @@\n           [node 1] requesting goroutine profile... received response... writing binary output: debug/nodes/1/stacks.pprof... done\n           [node 1] requesting heap profile... received response... writing binary output: debug/nodes/1/heap.pprof... done\n           [node 1] requesting engine stats... received response... writing binary output: debug/nodes/1/lsm.txt... done\n           [node 1] requesting heap profile list... received response... done\n           [node ?] ? heap profiles found\n          +[node 1] retrieving ash_report.2026-03-17T08_02_14.628.goroutine_dump.json... received response... done\n          +[node 1] retrieving ash_report.2026-03-17T08_02_14.628.goroutine_dump.txt... received response... done\n           [node 1] requesting goroutine dump list... received response... done\n           [node ?] ? goroutine dumps found\n           [node 1] requesting cpu profile list... received response... done\n           [node ?] ? cpu profiles found\n           [node 1] requesting execution trace list... received response... done\n    panic.go:615: -- test log scope end --\ntest logs left over in: outputs.zip/logTestZipExcludeRangeInfo1880193582\n--- FAIL: TestZipExcludeRangeInfo (11.25s)\n```\n\nParameters:\n - <code>attempt=1</code>\n - <code>deadlock=true</code>\n - <code>run=1</code>\n - <code>shard=13</code>\n<details><summary>Help</summary>\n<p>\n\nSee also: [How To Investigate a Go Test Failure \\(internal\\)](https://cockroachlabs.atlassian.net/l/c/HgfXfJgM)\n</p>\n</details>\n/cc @cockroachdb/obs-prs @cockroachdb/server @cockroachdb/obs-india-prs\n<sub>\n\n[This test on roachdash](https://roachdash.crdb.dev/?filter=status:open%20t:.*TestZipExcludeRangeInfo.*&sort=title+created&display=lastcommented+project) | [Improve this report!](https://github.com/cockroachdb/cockroach/tree/master/pkg/cmd/bazci/githubpost/issues)\n\n</sub>\n\n\nJira issue: CRDB-61687",
+    "html_url": "https://github.com/cockroachdb/cockroach/issues/165940",
+    "labels": [
+      "C-test-failure",
+      "O-robot",
+      "branch-master",
+      "release-blocker",
+      "T-observability",
+      "v26.2.0-prerelease"
+    ],
+    "state": "closed",
+    "title": "cli: TestZipExcludeRangeInfo failed"
+  },
+  "cockroachdb/cockroach#165984": {
+    "body": "## Summary\n\n`CREATE TEMP TABLE` fails with a privilege error if the user lacks `CREATE` on the `public` schema, even though temp tables are created in the session's `pg_temp` schema. PostgreSQL allows this.\n\nAdditionally, CockroachDB is missing support for the `TEMPORARY` database-level privilege that PostgreSQL uses to control temp table creation.\n\n## To Reproduce\n\n```sql\n-- As root:\nREVOKE CREATE ON SCHEMA public FROM PUBLIC;\nSET CLUSTER SETTING sql.auth.public_schema_create_privilege.enabled=false;\nCREATE USER temp;\n\n-- As temp:\nSET experimental_enable_temp_tables = 'on';\nCREATE TEMP TABLE users (id UUID PRIMARY KEY);\n-- ERROR: user temp does not have CREATE privilege on schema public\n```\n\n## Expected behavior\n\nThe `CREATE TEMP TABLE` should succeed, matching PostgreSQL behavior. PostgreSQL does not require `CREATE` on `public` to create temporary tables \u2014 they go into `pg_temp_*`.\n\nVerified on PostgreSQL 14:\n```sql\n-- As a user with no CREATE on public:\nCREATE TEMP TABLE users2 (id UUID PRIMARY KEY);\n-- CREATE TABLE (succeeds)\nSELECT schemaname, tablename FROM pg_tables WHERE tablename = 'users2';\n--  pg_temp_39 | users2\n```\n\n## Missing `TEMPORARY` database privilege\n\nIn PostgreSQL, temp table creation is controlled by a **`TEMPORARY`** (aka `TEMP`) database-level privilege, not by any schema-level `CREATE` privilege. Key details:\n\n- `TEMPORARY` is granted to `PUBLIC` by default, so all users can create temp tables unless explicitly revoked.\n- `GRANT/REVOKE TEMPORARY ON DATABASE dbname TO/FROM role` controls it.\n- When revoked, PostgreSQL returns: `permission denied to create temporary tables in database \"postgres\"`\n\n```sql\n-- PostgreSQL behavior:\nREVOKE TEMPORARY ON DATABASE postgres FROM PUBLIC;\n\n-- As any non-superuser:\nCREATE TEMP TABLE t (id int);\n-- ERROR: permission denied to create temporary tables in database \"postgres\"\n\nGRANT TEMPORARY ON DATABASE postgres TO PUBLIC;\n-- Now temp tables work again, regardless of schema-level CREATE privileges.\n```\n\nCockroachDB does not implement the `TEMPORARY` database privilege at all. This means there is no way to explicitly control temp table creation per-user/per-database as PostgreSQL allows.\n\n## Root Cause\n\nIn the optimizer's `buildCreateTable` ([create_table.go:22-37](https://github.com/cockroachdb/cockroach/blob/master/pkg/sql/opt/optbuilder/create_table.go#L22-L37)), when a table is temporary:\n1. The schema name is cleared (`SchemaName = \"\"`, `ExplicitSchema = false`) since temp tables go into `pg_temp`.\n2. `resolveSchemaForCreateTable` is called, which resolves the now-unqualified name to `public` via the search path.\n3. `resolveSchemaForCreate` in [util.go:513](https://github.com/cockroachdb/cockroach/blob/master/pkg/sql/opt/optbuilder/util.go#L513) then checks `CREATE` privilege on the resolved schema (`public`), which fails.\n\nAt execution time, `getSchemaForCreateTable` ([create_table.go:130-152](https://github.com/cockroachdb/cockroach/blob/master/pkg/sql/create_table.go#L130-L152)) correctly resolves to the temporary schema, and `canCreateOnSchema` ([authorization.go:813-815](https://github.com/cockroachdb/cockroach/blob/master/pkg/sql/authorization.go#L813-L815)) correctly skips the privilege check for `SchemaTemporary`. But the optimizer-level check blocks execution before it gets there.\n\n## Suggested Fix\n\n1. **Bug fix (immediate):** Skip the `CREATE` privilege check in `resolveSchemaForCreate` when the table persistence is temporary, since the resolved schema is just a placeholder and the real schema (pg_temp) is determined at execution time.\n2. **Feature (follow-up):** Implement the `TEMPORARY` database privilege to match PostgreSQL's privilege model for controlling temp table creation.\n\nJira issue: CRDB-61706\n\nEpic CRDB-17128",
+    "html_url": "https://github.com/cockroachdb/cockroach/issues/165984",
+    "labels": [
+      "C-bug",
+      "A-sql-pgcompat",
+      "A-sql-optimizer",
+      "T-sql-foundations",
+      "v26.2.0-prerelease"
+    ],
+    "state": "closed",
+    "title": "sql: CREATE TEMP TABLE incorrectly requires CREATE privilege on public schema"
+  },
+  "cockroachdb/cockroach#166055": {
+    "body": "pkg/ccl/logictestccl/tests/local/local_test.TestCCLLogic_as_of [failed](https://mesolite.cluster.engflow.com/invocations/default/44d2b60d-360e-4f10-aa88-b00089ce2c77?testReportRun=2&testReportShard=2&testReportAttempt=1#targets-Ly9wa2cvY2NsL2xvZ2ljdGVzdGNjbC90ZXN0cy9sb2NhbDpsb2NhbF90ZXN0) on master @ [452501a49d6d1e45df61b14846ee6fa0f92df479](https://github.com/cockroachdb/cockroach/commits/452501a49d6d1e45df61b14846ee6fa0f92df479):\n\n\n```\n=== RUN   TestCCLLogic_as_of\n    test_log_scope.go:172: test logs captured to: outputs.zip/logTestCCLLogic_as_of11333181\n    test_log_scope.go:82: use -show-logs to present logs inline\n[13:04:02] setting distsql_workmem='53004B';\n[13:04:04] --- progress: /mnt/engflow/worker/work/3/exec/bazel-out/k8-fastbuild/bin/pkg/ccl/logictestccl/tests/local/local_test_/local_test.runfiles/com_github_cockroachdb_cockroach/pkg/ccl/logictestccl/testdata/logic_test/as_of: 7 statements\n    logic.go:2863: \n         \n        /mnt/engflow/worker/work/3/exec/bazel-out/k8-fastbuild/bin/pkg/ccl/logictestccl/tests/local/local_test_/local_test.runfiles/com_github_cockroachdb_cockroach/pkg/ccl/logictestccl/testdata/logic_test/as_of:104: \n        expected:\n        pq: database \"test\" does not exist\n        got:\n        pq: relation \"t\" does not exist\n[13:04:06] --- done: /mnt/engflow/worker/work/3/exec/bazel-out/k8-fastbuild/bin/pkg/ccl/logictestccl/tests/local/local_test_/local_test.runfiles/com_github_cockroachdb_cockroach/pkg/ccl/logictestccl/testdata/logic_test/as_of with config local: 29 tests, 1 failures\n    logic.go:4657: \n        /mnt/engflow/worker/work/3/exec/bazel-out/k8-fastbuild/bin/pkg/ccl/logictestccl/tests/local/local_test_/local_test.runfiles/com_github_cockroachdb_cockroach/pkg/ccl/logictestccl/testdata/logic_test/as_of:107: error while processing\n    logic.go:4657: /mnt/engflow/worker/work/3/exec/bazel-out/k8-fastbuild/bin/pkg/ccl/logictestccl/tests/local/local_test_/local_test.runfiles/com_github_cockroachdb_cockroach/pkg/ccl/logictestccl/testdata/logic_test/as_of:107: too many errors encountered, skipping the rest of the input\n    panic.go:615: -- test log scope end --\ntest logs left over in: outputs.zip/logTestCCLLogic_as_of11333181\n--- FAIL: TestCCLLogic_as_of (9.98s)\n```\n\nParameters:\n - <code>attempt=1</code>\n - <code>race=true</code>\n - <code>run=2</code>\n - <code>shard=2</code>\n<details><summary>Help</summary>\n<p>\n\nSee also: [How To Investigate a Go Test Failure \\(internal\\)](https://cockroachlabs.atlassian.net/l/c/HgfXfJgM)\n</p>\n</details>\n<sub>\n\n[This test on roachdash](https://roachdash.crdb.dev/?filter=status:open%20t:.*TestCCLLogic_as_of.*&sort=title+created&display=lastcommented+project) | [Improve this report!](https://github.com/cockroachdb/cockroach/tree/master/pkg/cmd/bazci/githubpost/issues)\n\n</sub>\n\n\nJira issue: CRDB-61731",
+    "html_url": "https://github.com/cockroachdb/cockroach/issues/166055",
+    "labels": [
+      "C-test-failure",
+      "O-robot",
+      "branch-master",
+      "T-sql-queries",
+      "target-release-26.2.0",
+      "target-release-25.4.8",
+      "target-release-26.1.3",
+      "target-release-24.3.31",
+      "target-release-26.3.0"
+    ],
+    "state": "closed",
+    "title": "pkg/ccl/logictestccl/tests/local/local_test: TestCCLLogic_as_of failed"
+  },
+  "cockroachdb/cockroach#166212": {
+    "body": "sql.TestTrace [failed](https://teamcity.cockroachdb.com/buildConfiguration/Cockroach_Ci_TestsAwsLinuxArm64_UnitTests/21274246?buildTab=log) with [artifacts](https://teamcity.cockroachdb.com/buildConfiguration/Cockroach_Ci_TestsAwsLinuxArm64_UnitTests/21274246?buildTab=artifacts#/) on master @ [8503499de2b008bbb7767ccc3b86c16f492b5fc1](https://github.com/cockroachdb/cockroach/commits/8503499de2b008bbb7767ccc3b86c16f492b5fc1):\n\n\n```\n        executing Scan [/Tenant/10/Table/106/1,/Tenant/10/Table/106/2), [txn: a0e232bc], [can-forward-ts], [max_span_request_keys: 0], [target_bytes: 10485760]\n        read-only path\n        sequencing request\n        acquiring latches\n        scanning lock table for conflicting locks\n        can't serve follower read; closed timestamp too low by: 3.587203682s; maxClosed: 1773946292.738769769,0 ts: 1773946295.825973451,0 uncertaintyLimit: 1773946296.325973451,0\n        replica.Send got error: [NotLeaseHolderError] lease held by different store; r94: replica (n3,s3):3 not lease holder; current lease is repl=(n1,s1):1 seq=1 start=0,0 type=LeaseExpiration exp=1773946301.352328983,0 pro=1773946295.352328983,0 acq=Request\n        proxy request for Scan [/Tenant/10/Table/106/1,/Tenant/10/Table/106/2), [txn: a0e232bc], [can-forward-ts], [max_span_request_keys: 0], [target_bytes: 10485760] after local error [NotLeaseHolderError] lease held by different store; r94: replica (n3,s3):3 not lease holder; current lease is repl=(n1,s1):1 seq=1 start=0,0 type=LeaseExpiration exp=1773946301.352328983,0 pro=1773946295.352328983,0 acq=Request: \"sql txn\" meta={id=a0e232bc key=/Min iso=Serializable pri=0.06177467 epo=0 ts=1773946295.825973451,0 min=1773946295.825973451,0 seq=0} lock=false stat=PENDING rts=1773946295.825973451,0 gul=1773946296.325973451,0 obs={n3@1773946295.840549148,0}\n        === SPAN START: dist sender send ===\n        processing a proxy request to repl=(n1,s1):1 seq=1 start=0,0 type=LeaseExpiration exp=1773946301.352328983,0 pro=1773946295.352328983,0 acq=Request\n        clearing entries overlapping r94:/Tenant/10/Table/{48-107/1/5} [(n1,s1):1, (n2,s2):2, (n3,s3):3, next=4, gen=17]\n        sending request to 127.0.0.1:33689\n        sending batch request\n        === SPAN START: /cockroach.roachpb.KVBatch/Batch ===\n        === SPAN START: /cockroach.roachpb.KVBatch/Batch ===\n        node received request: 1 Scan\n        executing Scan [/Tenant/10/Table/106/1,/Tenant/10/Table/106/2), [txn: a0e232bc], [can-forward-ts], [max_span_request_keys: 0], [target_bytes: 10485760]\n        read-only path\n        sequencing request\n        acquiring latches\n        scanning lock table for conflicting locks\n        can drop latches early for batch (Scan [/Tenant/10/Table/106/1,/Tenant/10/Table/106/2), [txn: a0e232bc], [can-forward-ts], [max_span_request_keys: 0], [target_bytes: 10485760]); scanning lock table first to detect conflicts\n        lock table scan stats: seeked 1 times (1 internal); stepped 0 times (0 internal)\n        lock table scan complete without conflicts; dropping latches early\n        executing read-only batch\n        evaluated Scan command header:<key:\"\\376\\222\\362\\211\" end_key:\"\\376\\222\\362\\212\" > scan_format:BATCH_RESPONSE , txn=\"sql txn\" meta={id=a0e232bc key=/Min iso=Serializable pri=0.06177467 epo=0 ts=1773946295.825973451,0 min=1773946295.825973451,0 seq=0} lock=false stat=PENDING rts=1773946295.825973451,0 gul=1773946296.325973451,0 obs={n1@1773946295.841179242,0} : resp=header:<> col_batches:<> , err=<nil>\n        n1 scan stats: stepped 0 times (0 internal); seeked 1 times (1 internal); block-bytes: (total 0 B, cached 0 B, duration 0s); points: (count 0, key-bytes 0 B, value-bytes 0 B, tombstoned: 0) ranges: (count 0), (contained-points 0, skipped-points 0) evaluated requests: 0 gets, 1 scans, 0 reverse scans\n        read completed\n        node sending response\n        received batch response\n        proxy result is (err: <nil>), *kvpb.ScanResponse <nil>\n        proxy request completed\n        node sending response\n        received batch response\n        r_u:0.625 \n        recording span to refresh: /Tenant/10/Table/106/{1-2}\n        ComponentStats{ID: {b05c7b67-ec5a-4d87-9577-75bdbfe8eeac PROCESSOR 0 3 }, KV nodes: n1, KV regions: test, KV time: 5ms, KV rows decoded: 0, KV bytes read: 0 B, KV gRPC calls: 1, KV pairs read: 0, MVCC step count (ext/int): 0/0, MVCC seek count (ext/int): 1/1, rows output: 0}\n        ComponentStats{ID: {b05c7b67-ec5a-4d87-9577-75bdbfe8eeac FLOW 0 3 test}}\n        execution ends\n        rows affected: 0\n        === SPAN START: commit sql txn ===\n        AutoCommit. err: <nil>\n        releasing 4 descriptors\n        release: 100(\"defaultdb\",0101805ff23823e663469ca692918213f052c3) ver=1:0,0, refcount=0\n        release: 104(\"test\",0101805ff23823e663469ca692918213f052c3) ver=1:0,0, refcount=0\n        release: 105(\"public\",0101805ff23823e663469ca692918213f052c3) ver=1:0,0, refcount=0\n        release: 106(\"foo\",0101805ff23823e663469ca692918213f052c3) ver=1:0,0, refcount=0\n        [NoTxn pos:10] executing ExecStmt: SET TRACING = off\n        executing: SET TRACING = off in state: NoTxn\n--- FAIL: TestTrace/Session/TracingOff/node-2 (0.19s)\n```\n<details><summary>Help</summary>\n<p>\n\nSee also: [How To Investigate a Go Test Failure \\(internal\\)](https://cockroachlabs.atlassian.net/l/c/HgfXfJgM)\n</p>\n</details>\n<sub>\n\n[This test on roachdash](https://roachdash.crdb.dev/?filter=status:open%20t:.*TestTrace.*&sort=title+created&display=lastcommented+project) | [Improve this report!](https://github.com/cockroachdb/cockroach/tree/master/pkg/cmd/bazci/githubpost/issues)\n\n</sub>\n\n\nJira issue: CRDB-61802",
+    "html_url": "https://github.com/cockroachdb/cockroach/issues/166212",
+    "labels": [
+      "C-test-failure",
+      "O-robot",
+      "branch-master",
+      "T-sql-queries",
+      "target-release-26.2.0",
+      "branch-release-26.2",
+      "target-release-26.3.0"
+    ],
+    "state": "closed",
+    "title": "sql: TestTrace failed"
+  },
+  "cockroachdb/cockroach#166361": {
+    "body": "**Describe the problem**\n\nIt's possible to create a duplicate function (same name, same signature) that can then not be dropped.\n\n**To Reproduce**\n\nCreate a non-public schema, create two functions in that schema, then rename the second to match the first.\n\n```\nCREATE SCHEMA myschema;\n\nCREATE FUNCTION myschema.fa(a INT) RETURNS INT AS 'SELECT a' LANGUAGE SQL;\nCREATE FUNCTION myschema.fb(a INT) RETURNS INT AS 'SELECT a' LANGUAGE SQL;\n\nALTER FUNCTION myschema.fb RENAME TO fa;\n\nDROP FUNCTION myschema.fa;\n```\n\nThe final `DROP FUNCTION` returns this message:\n\n```\nERROR: function name \"fa\" is not unique\nSQLSTATE: 42725\n```\n\n**Expected behavior**\nI suspect the 'public' schema is the only schema being checked instead of the `myschema` schema during the `RENAME`. The expected behaviour would be that the rename would fail because there already exists a function with a matching name+signature.\n\n**Environment:**\n - CockroachDB version: v26.2.0 (master)\n\n**Additional context**\nNot possible to drop either function.\n\nJira issue: CRDB-61872\n\nEpic CRDB-60817",
+    "html_url": "https://github.com/cockroachdb/cockroach/issues/166361",
+    "labels": [
+      "C-bug",
+      "O-support",
+      "T-sql-foundations",
+      "GA-blocker",
+      "branch-release-24.3",
+      "branch-release-25.2",
+      "branch-release-25.4",
+      "branch-release-26.1",
+      "target-release-26.2.0",
+      "branch-release-26.2",
+      "target-release-25.4.8",
+      "target-release-25.2.17",
+      "target-release-26.1.3",
+      "target-release-24.3.31",
+      "target-release-26.3.0"
+    ],
+    "state": "closed",
+    "title": "Rename of functions causes duplicate function signature"
+  },
+  "cockroachdb/cockroach#166364": {
+    "body": "roachtest.kv/restart/nodes=12 [failed](https://teamcity.cockroachdb.com/buildConfiguration/Cockroach_Nightlies_RoachtestWeeklyBazel/21276409?buildTab=log) with [artifacts](https://teamcity.cockroachdb.com/buildConfiguration/Cockroach_Nightlies_RoachtestWeeklyBazel/21276409?buildTab=artifacts#/kv/restart/nodes=12) on master @ [f23224058c9abebd8a5c1c7a64056255ae3c0d70](https://github.com/cockroachdb/cockroach/commits/f23224058c9abebd8a5c1c7a64056255ae3c0d70):\n\nFailed with:\n\n```\n(assertions.go:387).Fail: \n\tError Trace:\tpkg/cmd/roachtest/roachtestutil/profile.go:297\n\t            \t\t\t\tpkg/cmd/roachtest/roachtestutil/profile.go:303\n\t            \t\t\t\tpkg/cmd/roachtest/tests/kv.go:1129\n\t            \t\t\t\tpkg/cmd/roachtest/monitor.go:233\n\t            \t\t\t\texternal/org_golang_x_sync/errgroup/errgroup.go:93\n\t            \t\t\t\tsrc/runtime/asm_amd64.s:1693\n\tError:      \tReceived unexpected error:\n\t            \tread tcp 172.17.0.3:42070->34.139.138.188:26257: i/o timeout\n\tTest:       \tkv/restart/nodes=12\n(require.go:1401).NoError: FailNow called\n(monitor.go:267).Wait: monitor failure: context canceled\ntest artifacts and logs in: /artifacts/kv/restart/nodes=12/run_1\n```\nCluster Node to Ip Mapping:\n| Node | Public IP | Private IP |\n| --- | --- | --- |\n| teamcity-21276409-1774072671-81-n13cpu8-0001 | 35.196.55.115 | 10.142.1.186 |\n| teamcity-21276409-1774072671-81-n13cpu8-0002 | 34.24.88.2 | 10.142.0.88 |\n| teamcity-21276409-1774072671-81-n13cpu8-0003 | 34.139.138.188 | 10.142.1.65 |\n| teamcity-21276409-1774072671-81-n13cpu8-0004 | 34.24.144.228 | 10.142.1.86 |\n| teamcity-21276409-1774072671-81-n13cpu8-0005 | 34.23.46.237 | 10.142.1.188 |\n| teamcity-21276409-1774072671-81-n13cpu8-0006 | 34.148.149.33 | 10.142.1.81 |\n| teamcity-21276409-1774072671-81-n13cpu8-0007 | 35.185.98.85 | 10.142.1.183 |\n| teamcity-21276409-1774072671-81-n13cpu8-0008 | 34.26.200.62 | 10.142.1.187 |\n| teamcity-21276409-1774072671-81-n13cpu8-0009 | 35.237.150.229 | 10.142.0.8 |\n| teamcity-21276409-1774072671-81-n13cpu8-0010 | 34.24.103.104 | 10.142.1.185 |\n| teamcity-21276409-1774072671-81-n13cpu8-0011 | 35.237.197.182 | 10.142.0.247 |\n| teamcity-21276409-1774072671-81-n13cpu8-0012 | 34.75.101.98 | 10.142.0.223 |\n| teamcity-21276409-1774072671-81-n13cpu8-0013 | 34.74.56.1 | 10.142.0.242 |\n\nParameters:\n - <code>MetamorphicFilesystem=ext4</code>\n - <code>MetamorphicVolumeType=pd-ssd</code>\n - <code>arch=amd64</code>\n - <code>cloud=gce</code>\n - <code>coverageBuild=false</code>\n - <code>cpu=8</code>\n - <code>diskCount=0</code>\n - <code>encrypted=false</code>\n - <code>fs=ext4</code>\n - <code>localSSD=false</code>\n - <code>metamorphicLeases=default</code>\n - <code>metamorphicWriteBuffering=true</code>\n - <code>runtimeAssertionsBuild=false</code>\n<details><summary>Help</summary>\n<p>\n\n\nSee: [roachtest README](https://github.com/cockroachdb/cockroach/blob/master/pkg/cmd/roachtest/README.md)\n\n\n\nSee: [How To Investigate \\(internal\\)](https://cockroachlabs.atlassian.net/l/c/SSSBr8c7)\n\n\n\nSee: [Grafana](https://go.crdb.dev/roachtest-grafana/teamcity-21276409/kv-restart-nodes-12/1774109082194/1774115423389)\n\n</p>\n</details>\n/cc @cockroachdb/admission-control\n<sub>\n\n[This test on roachdash](https://roachdash.crdb.dev/?filter=status:open%20t:.*kv/restart/nodes=12.*&sort=title+created&display=lastcommented+project) | [Improve this report!](https://github.com/cockroachdb/cockroach/tree/master/pkg/cmd/bazci/githubpost/issues)\n\n</sub>\n\n\nJira issue: CRDB-61875",
+    "html_url": "https://github.com/cockroachdb/cockroach/issues/166364",
+    "labels": [
+      "C-test-failure",
+      "O-robot",
+      "O-roachtest",
+      "A-admission-control",
+      "branch-master",
+      "T-kv",
+      "X-infra-flake",
+      "target-release-26.3.0"
+    ],
+    "state": "closed",
+    "title": "roachtest: kv/restart/nodes=12 failed"
+  },
+  "cockroachdb/cockroach#166395": {
+    "body": "roachtest.cdc/initial-scan-rolling-restart/normal-checkpoint [failed](https://teamcity.cockroachdb.com/buildConfiguration/Cockroach_Nightlies_RoachtestNightlyGceBazel/21277252?buildTab=log) with [artifacts](https://teamcity.cockroachdb.com/buildConfiguration/Cockroach_Nightlies_RoachtestNightlyGceBazel/21277252?buildTab=artifacts#/cdc/initial-scan-rolling-restart/normal-checkpoint) on master @ [9fc2f395971bd0b3a3336570639d3547b7ac479e](https://github.com/cockroachdb/cockroach/commits/9fc2f395971bd0b3a3336570639d3547b7ac479e):\n\nFailed with:\n\n```\n(test_runner.go:1590).runTest: test timed out (30m0s)\ntest artifacts and logs in: /artifacts/cdc/initial-scan-rolling-restart/normal-checkpoint/run_1\n```\nCluster Node to Ip Mapping:\n| Node | Public IP | Private IP |\n| --- | --- | --- |\n| teamcity-21277252-1774246877-07-n4cpu4-0001 | 35.231.224.65 | 10.142.15.246 |\n| teamcity-21277252-1774246877-07-n4cpu4-0002 | 104.196.22.213 | 10.142.15.243 |\n| teamcity-21277252-1774246877-07-n4cpu4-0003 | 34.24.31.191 | 10.142.15.242 |\n| teamcity-21277252-1774246877-07-n4cpu4-0004 | 34.23.232.224 | 10.142.3.193 |\n\nParameters:\n - <code>arch=amd64</code>\n - <code>cloud=gce</code>\n - <code>coverageBuild=false</code>\n - <code>cpu=4</code>\n - <code>diskCount=0</code>\n - <code>encrypted=false</code>\n - <code>runtimeAssertionsBuild=false</code>\n<details><summary>Help</summary>\n<p>\n\n\nSee: [roachtest README](https://github.com/cockroachdb/cockroach/blob/master/pkg/cmd/roachtest/README.md)\n\n\n\nSee: [How To Investigate \\(internal\\)](https://cockroachlabs.atlassian.net/l/c/SSSBr8c7)\n\n\n\nSee: [Grafana](https://go.crdb.dev/roachtest-grafana/teamcity-21277252/cdc-initial-scan-rolling-restart-normal-checkpoint/1774247210351/1774249228785)\n\n</p>\n</details>\n/cc @cockroachdb/cdc\n<sub>\n\n[This test on roachdash](https://roachdash.crdb.dev/?filter=status:open%20t:.*cdc/initial-scan-rolling-restart/normal-checkpoint.*&sort=title+created&display=lastcommented+project) | [Improve this report!](https://github.com/cockroachdb/cockroach/tree/master/pkg/cmd/bazci/githubpost/issues)\n\n</sub>\n\n\nJira issue: CRDB-61899",
+    "html_url": "https://github.com/cockroachdb/cockroach/issues/166395",
+    "labels": [
+      "C-test-failure",
+      "O-robot",
+      "A-cdc",
+      "O-roachtest",
+      "branch-master",
+      "T-cdc",
+      "P-2",
+      "branch-release-26.2",
+      "v26.2.0-prerelease",
+      "target-release-26.3.0"
+    ],
+    "state": "closed",
+    "title": "roachtest: cdc/initial-scan-rolling-restart/normal-checkpoint failed"
+  },
+  "cockroachdb/cockroach#166425": {
+    "body": "roachtest.cdc/frontier-persistence-benchmark/interval=30s/tables=1000/ranges=10 [failed](https://teamcity.cockroachdb.com/buildConfiguration/Cockroach_Nightlies_RoachtestNightlyGceBazel/21277462?buildTab=log) with [artifacts](https://teamcity.cockroachdb.com/buildConfiguration/Cockroach_Nightlies_RoachtestNightlyGceBazel/21277462?buildTab=artifacts#/cdc/frontier-persistence-benchmark/interval=30s/tables=1000/ranges=10) on release-26.2 @ [de4d315506ea3d4a6c86ab921d54cd1395b7f349](https://github.com/cockroachdb/cockroach/commits/de4d315506ea3d4a6c86ab921d54cd1395b7f349):\n\nFailed with:\n\n```\n(monitor.go:267).Wait: monitor failure: changefeed[default]: max latency was more than allowed: 2m0.851651454s vs 2m0s\ntest artifacts and logs in: /artifacts/cdc/frontier-persistence-benchmark/interval=30s/tables=1000/ranges=10/cpu_arch=arm64/run_1\n```\nCluster Node to Ip Mapping:\n| Node | Public IP | Private IP |\n| --- | --- | --- |\n| teamcity-21277462-1774247100-74-n4cpu16-0001 | 35.188.176.70 | 10.128.0.212 |\n| teamcity-21277462-1774247100-74-n4cpu16-0002 | 136.116.82.89 | 10.128.0.211 |\n| teamcity-21277462-1774247100-74-n4cpu16-0003 | 35.225.205.121 | 10.128.0.213 |\n| teamcity-21277462-1774247100-74-n4cpu16-0004 | 34.122.44.159 | 10.128.0.103 |\n\nParameters:\n - <code>arch=arm64</code>\n - <code>cloud=gce</code>\n - <code>coverageBuild=false</code>\n - <code>cpu=16</code>\n - <code>diskCount=0</code>\n - <code>encrypted=false</code>\n - <code>fs=ext4</code>\n - <code>localSSD=false</code>\n - <code>runtimeAssertionsBuild=false</code>\n<details><summary>Help</summary>\n<p>\n\n\nSee: [roachtest README](https://github.com/cockroachdb/cockroach/blob/master/pkg/cmd/roachtest/README.md)\n\n\n\nSee: [How To Investigate \\(internal\\)](https://cockroachlabs.atlassian.net/l/c/SSSBr8c7)\n\n\n\nSee: [Grafana](https://go.crdb.dev/roachtest-grafana/teamcity-21277462/cdc-frontier-persistence-benchmark-interval-30s-tables-1000-ran/1774269013540/1774271265626)\n\n</p>\n</details>\n/cc @cockroachdb/cdc\n<sub>\n\n[This test on roachdash](https://roachdash.crdb.dev/?filter=status:open%20t:.*cdc/frontier-persistence-benchmark/interval=30s/tables=1000/ranges=10.*&sort=title+created&display=lastcommented+project) | [Improve this report!](https://github.com/cockroachdb/cockroach/tree/master/pkg/cmd/bazci/githubpost/issues)\n\n</sub>\n\n\nJira issue: CRDB-61918",
+    "html_url": "https://github.com/cockroachdb/cockroach/issues/166425",
+    "labels": [
+      "C-test-failure",
+      "O-robot",
+      "A-cdc",
+      "O-roachtest",
+      "T-cdc",
+      "GA-blocker",
+      "branch-release-26.2"
+    ],
+    "state": "closed",
+    "title": "release-26.2: roachtest: cdc/frontier-persistence-benchmark/interval=30s/tables=1000/ranges=10 failed"
+  },
+  "cockroachdb/cockroach#166456": {
+    "body": "**Describe the problem**\n\nIn shared-process multi-tenant mode, the ASH (Active Session History) virtual tables\n`crdb_internal.node_active_session_history` and `crdb_internal.cluster_active_session_history`\ndo not enforce tenant isolation. A secondary tenant can see ASH samples belonging to other\ntenants and the system tenant.\n\nThe root cause is that the virtual table populate functions in `pkg/sql/crdb_internal.go`\ncall `ListLocalActiveSessionHistory` / `ListActiveSessionHistory` without setting the\ntenant context on the `ctx`. Those RPC handlers rely on `roachpb.ClientTenantFromContext(ctx)`\nto determine which tenant is querying and filter samples accordingly. That context value\nis normally set by the gRPC authentication interceptor in `pkg/rpc/auth.go`, but in\nshared-process mode the call is in-process (not gRPC), so the interceptor never runs and\n`ClientTenantFromContext` returns `ok=false`. This makes `filterByTenant = false`,\ncausing the handler to return all samples unfiltered.\n\n**To Reproduce**\n\n1. Start a CockroachDB server with `DefaultTestTenant: base.TestControlsTenantsExplicitly`\n2. Enable ASH: `SET CLUSTER SETTING obs.ash.enabled = true`\n3. Start two shared-process tenants (e.g. tenant IDs 10 and 11)\n4. Generate work on both tenants with distinct `application_name` values\n5. From tenant 10, query `SELECT * FROM crdb_internal.node_active_session_history`\n6. Observe that samples with `tenant_id = 11` (and the other tenant's `app_name`) are visible\n\n**Expected behavior**\n\nEach secondary tenant should only see ASH samples matching its own `tenant_id`. The system\ntenant should see all samples. This is the documented behavior in the code comments on\n`ListLocalActiveSessionHistory`.\n\n**Additional data / screenshots**\n\nThe fix is to propagate the planner's tenant ID into the context before calling the handler:\n\n```go\n// pkg/sql/crdb_internal.go \u2014 node_active_session_history populate function\nashCtx := roachpb.ContextWithClientTenant(ctx, p.extendedEvalCtx.Codec.TenantID)\nresponse, err := p.extendedEvalCtx.SQLStatusServer.ListLocalActiveSessionHistory(\n    ashCtx, &serverpb.ListActiveSessionHistoryRequest{},\n)\n```\n\nThe same fix is needed for the `cluster_active_session_history` populate function.\n\n**Environment:**\n - CockroachDB version: master (post-ASH merge)\n - Affects: shared-process multi-tenant deployments only\n\n**Additional context**\n\nThis does not affect separate-process tenants (each has its own sampler and ring buffer).\nIt only affects shared-process tenants where all tenants share a single process-wide\nASH ring buffer and rely on `ListLocalActiveSessionHistory` for tenant filtering.\n\nNo other virtual table is affected because ASH is the only one that uses\n`ClientTenantFromContext` for tenant-level sample filtering in the RPC handler. Other\ntables (sessions, contention events) either don't have tenant metadata or filter by\nuser identity instead.\n\nJira issue: CRDB-61923",
+    "html_url": "https://github.com/cockroachdb/cockroach/issues/166456",
+    "labels": [
+      "C-bug",
+      "T-observability",
+      "branch-release-26.2",
+      "v26.2.0-prerelease",
+      "target-release-26.3.0"
+    ],
+    "state": "closed",
+    "title": "obs/ash: tenant isolation broken for ASH virtual tables in shared-process mode"
+  },
+  "cockroachdb/cockroach#166476": {
+    "body": "roachtest.perturbation/full/backfill [failed](https://teamcity.cockroachdb.com/buildConfiguration/Cockroach_Nightlies_RoachtestNightlyGceBazel/21277246?buildTab=log) with [artifacts](https://teamcity.cockroachdb.com/buildConfiguration/Cockroach_Nightlies_RoachtestNightlyGceBazel/21277246?buildTab=artifacts#/perturbation/full/backfill) on release-26.2 @ [de4d315506ea3d4a6c86ab921d54cd1395b7f349](https://github.com/cockroachdb/cockroach/commits/de4d315506ea3d4a6c86ab921d54cd1395b7f349):\n\nFailed with:\n\n```\n(framework.go:862).waitForIOOverloadToEnd: dial tcp 35.196.118.136:26257: connect: connection refused\ntest artifacts and logs in: /artifacts/perturbation/full/backfill/run_1\n```\nCluster Node to Ip Mapping:\n| Node | Public IP | Private IP |\n| --- | --- | --- |\n| teamcity-21277246-1774246470-294-n13cpu16sm-0001 | 34.139.96.193 | 10.142.0.237 |\n| teamcity-21277246-1774246470-294-n13cpu16sm-0002 | 34.23.120.73 | 10.142.1.21 |\n| teamcity-21277246-1774246470-294-n13cpu16sm-0003 | 35.196.33.23 | 10.142.1.25 |\n| teamcity-21277246-1774246470-294-n13cpu16sm-0004 | 34.139.99.98 | 10.142.1.3 |\n| teamcity-21277246-1774246470-294-n13cpu16sm-0005 | 104.196.13.136 | 10.142.0.216 |\n| teamcity-21277246-1774246470-294-n13cpu16sm-0006 | 34.73.61.100 | 10.142.1.26 |\n| teamcity-21277246-1774246470-294-n13cpu16sm-0007 | 35.190.176.124 | 10.142.1.24 |\n| teamcity-21277246-1774246470-294-n13cpu16sm-0008 | 34.24.21.248 | 10.142.1.18 |\n| teamcity-21277246-1774246470-294-n13cpu16sm-0009 | 34.23.172.21 | 10.142.1.28 |\n| teamcity-21277246-1774246470-294-n13cpu16sm-0010 | 34.75.254.166 | 10.142.1.16 |\n| teamcity-21277246-1774246470-294-n13cpu16sm-0011 | 34.26.61.130 | 10.142.0.236 |\n| teamcity-21277246-1774246470-294-n13cpu16sm-0012 | 35.196.118.136 | 10.142.1.0 |\n| teamcity-21277246-1774246470-294-n13cpu16sm-0013 | 34.138.38.57 | 10.142.0.244 |\n\nParameters:\n - <code>acMode=defaultOption</code>\n - <code>arch=amd64</code>\n - <code>blockSize=4096</code>\n - <code>cloud=gce</code>\n - <code>coverageBuild=false</code>\n - <code>cpu=16</code>\n - <code>diskBandwidthLimit=0</code>\n - <code>diskCount=2</code>\n - <code>disks=2</code>\n - <code>encrypted=false</code>\n - <code>fillDuration=10m0s</code>\n - <code>fs=ext4</code>\n - <code>leaseType=leader</code>\n - <code>localSSD=true</code>\n - <code>mem=standard</code>\n - <code>numNodes=12</code>\n - <code>numWorkloadNodes=1</code>\n - <code>perturbationDuration=10m0s</code>\n - <code>ratioOfMax=0.5</code>\n - <code>runtimeAssertionsBuild=false</code>\n - <code>seed=0</code>\n - <code>splits=10000</code>\n - <code>validationDuration=5m0s</code>\n - <code>vcpu=16</code>\n<details><summary>Help</summary>\n<p>\n\n\nSee: [roachtest README](https://github.com/cockroachdb/cockroach/blob/master/pkg/cmd/roachtest/README.md)\n\n\n\nSee: [How To Investigate \\(internal\\)](https://cockroachlabs.atlassian.net/l/c/SSSBr8c7)\n\n\n\nSee: [Grafana](https://go.crdb.dev/roachtest-grafana/teamcity-21277246/perturbation-full-backfill/1774299864034/1774300817675)\n\n</p>\n</details>\n/cc @cockroachdb/kv-triage\n<sub>\n\n[This test on roachdash](https://roachdash.crdb.dev/?filter=status:open%20t:.*perturbation/full/backfill.*&sort=title+created&display=lastcommented+project) | [Improve this report!](https://github.com/cockroachdb/cockroach/tree/master/pkg/cmd/bazci/githubpost/issues)\n\n</sub>\n\n\nJira issue: CRDB-61933",
+    "html_url": "https://github.com/cockroachdb/cockroach/issues/166476",
+    "labels": [
+      "C-bug",
+      "C-test-failure",
+      "O-robot",
+      "O-roachtest",
+      "T-kv",
+      "P-2",
+      "branch-release-26.2",
+      "v26.2.0-prerelease",
+      "target-release-25.4.8",
+      "target-release-25.2.17",
+      "target-release-26.1.3",
+      "target-release-26.3.0"
+    ],
+    "state": "closed",
+    "title": "release-26.2: roachtest: perturbation/full/backfill failed"
+  },
+  "cockroachdb/cockroach#166479": {
+    "body": "sql/sqlstats/sslocal.TestTransactionLatencies [failed](https://mesolite.cluster.engflow.com/invocations/default/b574c6e5-1d73-4b3b-8c3c-ddeaa4b60036?testReportRun=1&testReportShard=1&testReportAttempt=1#targets-Ly9wa2cvc3FsL3NxbHN0YXRzL3NzbG9jYWw6c3Nsb2NhbF90ZXN0) on master @ [f504f8453fac4f0d09db29ea27263279c65b202e](https://github.com/cockroachdb/cockroach/commits/f504f8453fac4f0d09db29ea27263279c65b202e):\n\n\n```\n=== RUN   TestTransactionLatencies\n    test_log_scope.go:172: test logs captured to: outputs.zip/logTestTransactionLatencies1454354204\n    test_log_scope.go:82: use -show-logs to present logs inline\n    test_server_shim.go:168: automatically injected a shared process virtual cluster under test; see comment at top of test_server_shim.go for details.\n    test_server_shim.go:638: DRPC is enabled (via testserver factory defaults)\n    sql_stats_test.go:1931: -- test log scope end --\n--- FAIL: TestTransactionLatencies (5.87s)\n=== RUN   TestTransactionLatencies/prepare/bind_statements\n    sql_stats_test.go:1865: \n        \tError Trace:\tpkg/sql/sqlstats/sslocal/sql_stats_test.go:1865\n        \t            \t\t\t\tpkg/sql/sqlstats/sslocal/sql_stats_test.go:1928\n        \tError:      \tMax difference between 1.375408383 and 1.080782183 allowed is 0.06877041915, but difference was 0.29462619999999995\n        \tTest:       \tTestTransactionLatencies/prepare/bind_statements\n--- FAIL: TestTransactionLatencies/prepare/bind_statements (1.38s)\n```\n\nParameters:\n - <code>attempt=1</code>\n - <code>run=1</code>\n - <code>shard=1</code>\n<details><summary>Help</summary>\n<p>\n\nSee also: [How To Investigate a Go Test Failure \\(internal\\)](https://cockroachlabs.atlassian.net/l/c/HgfXfJgM)\n</p>\n</details>\n/cc @cockroachdb/obs-prs\n<sub>\n\n[This test on roachdash](https://roachdash.crdb.dev/?filter=status:open%20t:.*TestTransactionLatencies.*&sort=title+created&display=lastcommented+project) | [Improve this report!](https://github.com/cockroachdb/cockroach/tree/master/pkg/cmd/bazci/githubpost/issues)\n\n</sub>\n\n\nJira issue: CRDB-61935",
+    "html_url": "https://github.com/cockroachdb/cockroach/issues/166479",
+    "labels": [
+      "C-test-failure",
+      "O-robot",
+      "branch-master",
+      "T-observability",
+      "target-release-26.2.0",
+      "branch-release-26.2",
+      "target-release-26.3.0"
+    ],
+    "state": "closed",
+    "title": "sql/sqlstats/sslocal: TestTransactionLatencies failed"
+  },
+  "cockroachdb/cockroach#166500": {
+    "body": "**Note:** This build has runtime assertions enabled. If the same failure was hit in a run without assertions enabled, there should be a similar failure without this message. If there isn&#39;t one, then this failure is likely due to an assertion violation or (assertion) timeout.\n\nroachtest.db-console/mixed-version-endpoints [failed](https://teamcity.cockroachdb.com/buildConfiguration/Cockroach_Nightlies_RoachtestNightlyAzureBazel/21279956?buildTab=log) with [artifacts](https://teamcity.cockroachdb.com/buildConfiguration/Cockroach_Nightlies_RoachtestNightlyAzureBazel/21279956?buildTab=artifacts#/db-console/mixed-version-endpoints) on master @ [d43eedde84a223f35c544c0f633ebda5ceb4c3d5](https://github.com/cockroachdb/cockroach/commits/d43eedde84a223f35c544c0f633ebda5ceb4c3d5):\n\nFailed with:\n\n```\n(cluster.go:2533).Run: full command output in run_065036.714289305_n1_v2610cockroach-workl.log: COMMAND_PROBLEM: exit status 1\n(mixedversion.go:926).Run: panic (stack trace above): t.Fatal() was called\ntest artifacts and logs in: /artifacts/db-console/mixed-version-endpoints/run_1\n```\nCluster Node to Ip Mapping:\n| Node | Public IP | Private IP |\n| --- | --- | --- |\n| teamcity-21279956-1774331108-49-n5cpu4-0001 | 20.127.164.176 | 10.1.0.115 |\n| teamcity-21279956-1774331108-49-n5cpu4-0002 | 172.178.81.86 | 10.1.0.116 |\n| teamcity-21279956-1774331108-49-n5cpu4-0003 | 20.62.193.97 | 10.1.0.106 |\n| teamcity-21279956-1774331108-49-n5cpu4-0004 | 20.55.5.32 | 10.1.0.125 |\n| teamcity-21279956-1774331108-49-n5cpu4-0005 | 20.121.140.127 | 10.1.0.126 |\n\nParameters:\n - <code>arch=amd64</code>\n - <code>cloud=azure</code>\n - <code>coverageBuild=false</code>\n - <code>cpu=4</code>\n - <code>diskCount=0</code>\n - <code>encrypted=false</code>\n - <code>fs=ext4</code>\n - <code>localSSD=true</code>\n - <code>mvtDeploymentMode=shared-process</code>\n - <code>mvtVersions=v26.1.0 \u2192 v26.2.0-alpha.2-dev-d43eedde84a223f35c544c0f633ebda5ceb4c3d5 (master)</code>\n - <code>runtimeAssertionsBuild=true</code>\n<details><summary>Help</summary>\n<p>\n\n\nSee: [roachtest README](https://github.com/cockroachdb/cockroach/blob/master/pkg/cmd/roachtest/README.md)\n\n\n\nSee: [How To Investigate \\(internal\\)](https://cockroachlabs.atlassian.net/l/c/SSSBr8c7)\n\n_Grafana is not yet available for azure clusters_</p>\n</details>\n/cc @cockroachdb/obs-prs\n<sub>\n\n[This test on roachdash](https://roachdash.crdb.dev/?filter=status:open%20t:.*db-console/mixed-version-endpoints.*&sort=title+created&display=lastcommented+project) | [Improve this report!](https://github.com/cockroachdb/cockroach/tree/master/pkg/cmd/bazci/githubpost/issues)\n\n</sub>\n\n\nJira issue: CRDB-61950",
+    "html_url": "https://github.com/cockroachdb/cockroach/issues/166500",
+    "labels": [
+      "C-test-failure",
+      "O-robot",
+      "O-roachtest",
+      "branch-master",
+      "T-observability",
+      "B-runtime-assertions-enabled",
+      "branch-release-26.2",
+      "target-release-26.3.0"
+    ],
+    "state": "closed",
+    "title": "roachtest: db-console/mixed-version-endpoints failed"
+  },
+  "cockroachdb/cockroach#166600": {
+    "body": "kv/kvserver.TestVirtualizedIntentResolution [failed](https://teamcity.cockroachdb.com/buildConfiguration/Cockroach_Ci_TestsAwsLinuxArm64_UnitTests/21281377?buildTab=log) with [artifacts](https://teamcity.cockroachdb.com/buildConfiguration/Cockroach_Ci_TestsAwsLinuxArm64_UnitTests/21281377?buildTab=artifacts#/) on master @ [163b35ce1b965f051d4855cbd381aa62a65676df](https://github.com/cockroachdb/cockroach/commits/163b35ce1b965f051d4855cbd381aa62a65676df):\n\n\n```\n=== RUN   TestVirtualizedIntentResolution\n    test_log_scope.go:172: test logs captured to: /artifacts/tmp/_tmp/521e50704b845324c1d7d2447a7fd31d/logTestVirtualizedIntentResolution2607577965\n    test_log_scope.go:82: use -show-logs to present logs inline\n    replica_read_test.go:161: \n        \tError Trace:\tpkg/kv/kvserver/replica_read_test.go:161\n        \tError:      \tExpected nil, but got: &kvpb.BatchResponse{BatchResponse_Header:kvpb.BatchResponse_Header{Error:(*kvpb.Error)(nil), Timestamp:hlc.Timestamp{WallTime:300, Logical:0}, Txn:(*roachpb.Transaction)(nil), Now:hlc.ClockTimestamp{WallTime:0, Logical:0}, CollectedSpans:[]tracingpb.RecordedSpan(nil), RangeInfos:[]roachpb.RangeInfo(nil), CPUTime:0}, Responses:[]kvpb.ResponseUnion{kvpb.ResponseUnion{Value:(*kvpb.ResponseUnion_Get)(0x40177b1630)}}}\n        \tTest:       \tTestVirtualizedIntentResolution\n    panic.go:615: -- test log scope end --\ntest logs left over in: /artifacts/tmp/_tmp/521e50704b845324c1d7d2447a7fd31d/logTestVirtualizedIntentResolution2607577965\n--- FAIL: TestVirtualizedIntentResolution (0.05s)\n```\n<details><summary>Help</summary>\n<p>\n\nSee also: [How To Investigate a Go Test Failure \\(internal\\)](https://cockroachlabs.atlassian.net/l/c/HgfXfJgM)\n</p>\n</details>\n/cc @cockroachdb/kv-triage\n<sub>\n\n[This test on roachdash](https://roachdash.crdb.dev/?filter=status:open%20t:.*TestVirtualizedIntentResolution.*&sort=title+created&display=lastcommented+project) | [Improve this report!](https://github.com/cockroachdb/cockroach/tree/master/pkg/cmd/bazci/githubpost/issues)\n\n</sub>\n\n\nJira issue: CRDB-62019",
+    "html_url": "https://github.com/cockroachdb/cockroach/issues/166600",
+    "labels": [
+      "C-bug",
+      "C-test-failure",
+      "O-robot",
+      "A-testing",
+      "branch-master",
+      "T-kv",
+      "P-3",
+      "target-release-26.2.0",
+      "branch-release-26.2",
+      "target-release-26.3.0"
+    ],
+    "state": "closed",
+    "title": "kv/kvserver: TestVirtualizedIntentResolution failed"
+  },
+  "cockroachdb/cockroach#166634": {
+    "body": "Extracted from `pg_regress`.\n\n```sql\nCREATE TABLE t (val NUMERIC(210, 10));\nINSERT INTO t VALUES ('0');\n-- PG 17.7 returns '+0.'\n-- CRDB returns '0+.'\nSELECT to_char(val, 'FMS9999999999999999.999999999999999') FROM t;\n```\n\ncc @rafiss \n\nJira issue: CRDB-62042\n\nEpic CRDB-58150",
+    "html_url": "https://github.com/cockroachdb/cockroach/issues/166634",
+    "labels": [
+      "C-bug",
+      "A-sql-builtins",
+      "branch-master",
+      "T-sql-foundations",
+      "GA-blocker",
+      "O-pg-regress",
+      "target-release-26.2.0",
+      "branch-release-26.2",
+      "target-release-26.3.0"
+    ],
+    "state": "closed",
+    "title": "builtins: `to_char` incorrectly adds `+` in the middle of the result for zero decimal"
+  },
+  "cockroachdb/cockroach#166668": {
+    "body": "sql/sqlstats/sslocal.TestSQLStatsDiscardStatsOnFingerprintLimit [failed](https://mesolite.cluster.engflow.com/invocations/default/80415a30-53fd-43a7-8412-3cf376eec7b3?testReportRun=1&testReportShard=1&testReportAttempt=1#targets-Ly9wa2cvc3FsL3NxbHN0YXRzL3NzbG9jYWw6c3Nsb2NhbF90ZXN0) on release-25.4.7-rc @ [4ebdfdf3301fb64e3b726b6c508d23f6cfd27f3f](https://github.com/cockroachdb/cockroach/commits/4ebdfdf3301fb64e3b726b6c508d23f6cfd27f3f):\n\n\n```\n=== RUN   TestSQLStatsDiscardStatsOnFingerprintLimit\n    test_log_scope.go:171: test logs captured to: outputs.zip/logTestSQLStatsDiscardStatsOnFingerprintLimit2339397383\n    test_log_scope.go:82: use -show-logs to present logs inline\n    test_server_shim.go:154: automatically injected an external process virtual cluster under test; see comment at top of test_server_shim.go for details.\n    sql_stats_test.go:1800: -- test log scope end --\ntest logs left over in: outputs.zip/logTestSQLStatsDiscardStatsOnFingerprintLimit2339397383\n--- FAIL: TestSQLStatsDiscardStatsOnFingerprintLimit (16.09s)\n=== RUN   TestSQLStatsDiscardStatsOnFingerprintLimit/statement_and_txn_limit_reached_across_applications\n    sql_stats_test.go:1788: condition failed to evaluate within 5s: from testutils.go:512: expected 1 transaction(s), got 0 filters=\n--- FAIL: TestSQLStatsDiscardStatsOnFingerprintLimit/statement_and_txn_limit_reached_across_applications (5.63s)\n```\n\nParameters:\n - <code>attempt=1</code>\n - <code>race=true</code>\n - <code>run=1</code>\n - <code>shard=1</code>\n<details><summary>Help</summary>\n<p>\n\nSee also: [How To Investigate a Go Test Failure \\(internal\\)](https://cockroachlabs.atlassian.net/l/c/HgfXfJgM)\n</p>\n</details>\n/cc @cockroachdb/obs-prs\n<sub>\n\n[This test on roachdash](https://roachdash.crdb.dev/?filter=status:open%20t:.*TestSQLStatsDiscardStatsOnFingerprintLimit.*&sort=title+created&display=lastcommented+project) | [Improve this report!](https://github.com/cockroachdb/cockroach/tree/master/pkg/cmd/bazci/githubpost/issues)\n\n</sub>\n\n\nJira issue: CRDB-62066",
+    "html_url": "https://github.com/cockroachdb/cockroach/issues/166668",
+    "labels": [
+      "C-test-failure",
+      "O-robot",
+      "release-blocker",
+      "T-observability",
+      "branch-release-25.4",
+      "target-release-26.2.0",
+      "branch-release-26.2",
+      "branch-release-25.4.7-rc",
+      "target-release-25.4.8",
+      "target-release-26.3.0"
+    ],
+    "state": "closed",
+    "title": "sql/sqlstats/sslocal: TestSQLStatsDiscardStatsOnFingerprintLimit failed"
+  },
+  "cockroachdb/pebble#5846": {
+    "body": "Blob files seem to be getting rewritten despite not hitting the maximum blob reference depth.\n\nIn the following cluster, value separation was enabled at 18:13 and it was ~18:41 when the compaction bandwidth finally dropped, causing an increase in SQL throughput. This was probably because even 1 input sstable in a compaction that was written pre-value separation causes blob file rewrites, due to https://github.com/cockroachdb/pebble/blob/d304d514d0d43cc706055fec89ef540865f60729/compaction_value_separation.go#L156\n(`backingProps.ValueSeparationMinSize` will be 0).\n\n<img width=\"981\" height=\"422\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/8a3bead7-e0d7-41ea-8375-d2a16f4a435f\" />\n<img width=\"987\" height=\"759\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/13d7d7d6-37de-4118-9a30-b79ea894e79d\" />\n<img width=\"977\" height=\"418\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/d0eff953-75fb-43f7-a6fc-4e194b6bd565\" />\n\nJira issue: PEBBLE-1370",
+    "html_url": "https://github.com/cockroachdb/pebble/issues/5846",
+    "labels": [
+      "T-storage",
+      "A-storage"
+    ],
+    "state": "closed",
+    "title": "db: enabling value separation continues to aggressively rewrite blob files"
+  },
+  "cockroachlabs/support#3578": {
+    "_not_found": true
+  }
+}

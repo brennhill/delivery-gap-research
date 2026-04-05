@@ -1,0 +1,96 @@
+{
+  "remix-run/react-router#14010": {
+    "body": "### Reproduction\n\nhttps://github.com/richardscarrott/react-router-https-url-bug \n\n1. Clone https://github.com/richardscarrott/react-router-https-url-bug (I couldn't get https working directly on StackBlitz)\n2. `npm run dev`\n3. Visit https://localhost:5173/\n4. Accept warning (I'm using [@vitejs/plugin-basic-ssl](https://github.com/vitejs/vite-plugin-basic-ssl) which generates untrusted certs)\n\nEXPECT: `request.url` to be `https://localhost:5173/`\nACTUAL: `request.url` is `https://undefined/`\n\n<details>\n  <summary><b>Original Repro Steps</b></summary>\n\nCreate a new project using `create-react-router@latest`.\n\nAdd the following to the `vite.config.ts`\n```\nserver: {\n    https: {\n      pfx: [path] // cert and key can also be used\n    },\n    port: 8001 // optional\n}\n```\n\nAdd the following loader to the home route\n```\nexport function loader({ request }: Route.LoaderArgs) {\n  console.log(request.url);\n\n  return {};\n}\n```\n\nThe output is \"http://undefined\".\n</details>\n\n### System Info\n\n```shell\nSystem:\n    OS: Windows 11 10.0.22631\n    CPU: (24) x64 13th Gen Intel(R) Core(TM) i7-13700\n    Memory: 15.20 GB / 31.71 GB\n  Binaries:\n    Node: 22.17.1 - C:\\nvm4w\\nodejs\\node.EXE\n    npm: 10.9.2 - C:\\nvm4w\\nodejs\\npm.CMD\n  Browsers:\n    Edge: Chromium (134.0.3124.51)\n    Internet Explorer: 11.0.22621.3527\n```\n\n### Used Package Manager\n\nnpm\n\n### Expected Behavior\n\nThe `request.url` should be \"https://localhost:8001\".\n\nNote: Host and Referer headers have the expected values.\n\n### Actual Behavior\n\nThe `request.url` is \"http://undefined\".",
+    "html_url": "https://github.com/remix-run/react-router/issues/14010",
+    "labels": [
+      "bug",
+      "pkg:@react-router/dev"
+    ],
+    "state": "closed",
+    "title": "`request.url` is 'http://undefined' when https is enabled in framework mode"
+  },
+  "remix-run/remix#10474": {
+    "body": "### Reproduction\n\nhttps://stackblitz.com/edit/remix-run-remix-rv7ocwf6\n\n### System Info\n\n```shell\nSystem:\n    OS: macOS 14.7\n    CPU: (12) arm64 Apple M2 Pro\n    Memory: 92.02 MB / 32.00 GB\n    Shell: 5.9 - /bin/zsh\n  Binaries:\n    Node: 22.13.1 - /usr/local/bin/node\n    npm: 11.1.0 - /usr/local/bin/npm\n    pnpm: 9.15.3 - /usr/local/bin/pnpm\n    bun: 1.1.38 - ~/.bun/bin/bun\n  Browsers:\n    Brave Browser: 133.1.75.175\n    Chrome: 132.0.6834.160\n    Safari: 17.6\n  npmPackages:\n    @remix-run/css-bundle: 2.15.3 => 2.15.3 \n    @remix-run/dev: 2.15.3 => 2.15.3 \n    @remix-run/eslint-config: 2.15.3 => 2.15.3 \n    @remix-run/express: 2.15.3 => 2.15.3 \n    @remix-run/node: 2.15.3 => 2.15.3 \n    @remix-run/react: 2.15.3 => 2.15.3 \n    @remix-run/serve: 2.15.3 => 2.15.3 \n    @remix-run/server-runtime: ^2.15.3 => 2.15.3 \n    vite: 6.1.0 => 6.1.0\n```\n\n### Used Package Manager\n\npnpm\n\n### Expected Behavior\n\nShould render prefetch link normally\n\n### Actual Behavior\n\nCausing window is not defined error\n\n```\nReferenceError: window is not defined\n    at Object.singleFetchUrl (/home/projects/remix-run-remix-rv7ocwf6/node_modules/@remix-run/react/dist/single-fetch.js:324:58)\n    at eval (/home/projects/remix-run-remix-rv7ocwf6/node_modules/@remix-run/react/dist/components.js:362:27)\n    at Object.useMemo (/home/projects/remix-run-remix-rv7ocwf6/node_modules/react-dom/cjs/react-dom-server.node.development.js:5190:19)\n    at Object.useMemo (/home/projects/remix-run-remix-rv7ocwf6/node_modules/react/cjs/react.development.js:1650:21)\n    at PrefetchPageLinksImpl (/home/projects/remix-run-remix-rv7ocwf6/node_modules/@remix-run/react/dist/components.js:332:36)\n    at renderWithHooks (/home/projects/remix-run-remix-rv7ocwf6/node_modules/react-dom/cjs/react-dom-server.node.development.js:5724:16)\n    at renderIndeterminateComponent (/home/projects/remix-run-remix-rv7ocwf6/node_modules/react-dom/cjs/react-dom-server.node.development.js:5798:15)\n    at renderElement (/home/projects/remix-run-remix-rv7ocwf6/node_modules/react-dom/cjs/react-dom-server.node.development.js:6023:7)\n    at renderNodeDestructiveImpl (/home/projects/remix-run-remix-rv7ocwf6/node_modules/react-dom/cjs/react-dom-server.node.development.js:6181:11)\n    at renderNodeDestructive (/home/projects/remix-run-remix-rv7ocwf6/node_modules/react-dom/cjs/react-dom-server.node.development.js:6153:14)\n```",
+    "html_url": "https://github.com/remix-run/remix/issues/10474",
+    "labels": [
+      "bug:unverified",
+      "awaiting release"
+    ],
+    "state": "closed",
+    "title": "PrefetchPageLink in single fetch mode cause \"window is not defined\""
+  },
+  "remix-run/remix#10701": {
+    "body": "### Reproduction\n\nno reproduction needed. current low sev vuln with on-headers https://github.com/advisories/[REDACTED_GHSA]\n\nhttps://github.com/expressjs/morgan/releases has the fix so we just need to bump it \n\n\n### System Info\n\nN/A\n\n### Used Package Manager\n\npnpm\n\n### Expected Behavior\n\nN/A\n\n### Actual Behavior\n\nN/A",
+    "html_url": "https://github.com/remix-run/remix/issues/10701",
+    "labels": [
+      "bug:unverified",
+      "awaiting release"
+    ],
+    "state": "closed",
+    "title": "vuln - upgrade morgan dependency in remix-run to 1.10.1"
+  },
+  "remix-run/remix#10790": {
+    "body": "This package is a standalone version of Remix v1's session handling.\n\nCurrent code can be found [here](https://github.com/remix-run/react-router/blob/main/packages/react-router/lib/server-runtime/sessions.ts).\n\nIt should also include some concrete implementations of session storage interfaces, including one for the filesystem and one for Redis.",
+    "html_url": "https://github.com/remix-run/remix/issues/10790",
+    "labels": [],
+    "state": "closed",
+    "title": "Add `session` package"
+  },
+  "remix-run/remix#10814": {
+    "body": "## The bug\n\nThe following code does not work (the `console.log` will never trigger):\n\n```ts\nlet dispose = on(button, {\n  [arrowLeft]() {\n    console.log('to the left')\n  },\n})\n\ndispose()\n\non(button, {\n  [arrowLeft]() {\n    console.log('to the left')\n  },\n})\n```\n\n## Problem code\n\nI narrowed down the issue to [these lines](https://github.com/remix-run/remix/blob/f7d4b8761a3675974cedf13ef5b3768648aae5b4/packages/interaction/src/lib/events.ts#L402-L413). I haven't dug into the code enough to know a proper solution, so figured I'd share here in case someone wanted to. For what it's worth, I got an LLM to come up with _a solution_ very quickly, but definitely didn't feel confident enough that I knew what was going on\n\n## Failing test\n\nI did get AI  to write a quick test that shows the problem and fails right now. Throw this in `events.test.ts` to see the issue in action.\n\n```ts\nit('re-initializes interactions after dispose', () => {\n  let hostType = 'host-event-reinit'\n  let myType = defineInteraction('my:reinit-type', Test)\n\n  function Test(target: EventTarget, signal: AbortSignal) {\n    on(target, signal, {\n      [hostType]: () => {\n        target.dispatchEvent(new Event(myType))\n      },\n    })\n  }\n\n  let target = new EventTarget()\n  let listener1 = vi.fn()\n  let dispose1 = on(target, {\n    [myType]: listener1,\n  })\n\n  target.dispatchEvent(new Event(hostType))\n  expect(listener1).toHaveBeenCalledTimes(1)\n\n  dispose1()\n\n  let listener2 = vi.fn()\n  on(target, {\n    [myType]: listener2,\n  })\n\n  target.dispatchEvent(new Event(hostType))\n  expect(listener2).toHaveBeenCalledTimes(1)\n  expect(listener1).toHaveBeenCalledTimes(1)\n})\n```",
+    "html_url": "https://github.com/remix-run/remix/issues/10814",
+    "labels": [],
+    "state": "closed",
+    "title": "Interactions do not re-initializes after dispose"
+  },
+  "remix-run/remix#10833": {
+    "body": "Similar to #10832, this demo should run on Bun. It could potentially demonstrate some unique feature of Bun, like serving a Bunfile from the local filesystem. It should not use `bun install` for package management. Stick with `pnpm` for that (same as the rest of the monorepo).",
+    "html_url": "https://github.com/remix-run/remix/issues/10833",
+    "labels": [
+      "pkg:fetch-router"
+    ],
+    "state": "closed",
+    "title": "Add Bun demo to fetch-router"
+  },
+  "remix-run/remix#10834": {
+    "body": "Similar to #10832, this demo should show fetch-router running on Cloudflare Workers. It should be its own pnpm workspace in `packages/fetch-router/demos/cf-workers`. See [the `multipart-parser` cf-workers demo](https://github.com/remix-run/remix/tree/main/packages/multipart-parser/demos/cf-workers) for an example of setup. It should deploy using `wrangler`.",
+    "html_url": "https://github.com/remix-run/remix/issues/10834",
+    "labels": [
+      "pkg:fetch-router"
+    ],
+    "state": "closed",
+    "title": "Add CF workers demo to fetch-router"
+  },
+  "remix-run/remix#10868": {
+    "body": "## Problem\n\nRunning `pnpm test` on Windows fails for multiple packages.\n\n## Steps to Reproduce\n\n1. Clone the repository on Windows\n2. Run `pnpm install`\n3. Run `pnpm test`\n\n## Errors\n\n### packages/tar-parser\n```\nENOENT: no such file or directory, stat 'D:\\D:\\workspace\\remix\\packages\\tar-parser\\test\\fixtures\\express-4.21.1.tgz'\n```\n\nAll 20 tests fail (duplicated drive letter: `D:\\D:\\...`)\n\n### packages/mime\n```\ncompressible-mime-types.ts does not match expected output.\n+ '// DO NOT EDIT. THIS IS GENERATED CODE.\\r\\n'\n- '// DO NOT EDIT. THIS IS GENERATED CODE.\\n'\n```\n\n2 tests fail (line ending mismatch: CRLF vs LF)\n\n### packages/interaction\n```\nError: browserType.launch: Executable doesn't exist at C:\\Users\\...\\ms-playwright\\chromium_headless_shell-1194\\chrome-win\\headless_shell.exe\n```\n\nPlaywright browsers not installed\n\n## Suspected Root Cause\n\nThe following files use `new URL(import.meta.url).pathname`, which doesn't handle Windows paths correctly:\n\n- `packages/tar-parser/test/utils.ts` (line 4)\n- `scripts/utils/packages.js` (line 4)\n- `packages/node-fetch-server/demos/http2/server.js` (line 6)\n- `packages/static-middleware/demos/list-files/server.js` (line 7)\n\nOn Windows, `new URL(import.meta.url).pathname` returns paths like `/D:/workspace/...`, which when combined with `path.dirname()` or `path.resolve()`, results in duplicated drive letters like `D:\\D:\\workspace\\...`.\n\n## Environment\n\n- OS: Windows\n- Node.js: (version TBD)\n- pnpm: (version TBD)\n",
+    "html_url": "https://github.com/remix-run/remix/issues/10868",
+    "labels": [],
+    "state": "closed",
+    "title": "Bug: `pnpm test` fails on Windows"
+  },
+  "remix-run/remix#10915": {
+    "body": "Components that render SVG don't show up. This is due to the vdom creating these elements with `document.createElement()` instead of `document.createElementNS()`\n\nRendering SVGs works properly when there are no wrapper components like in this example\n\n<img width=\"2560\" height=\"1440\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/5de1e4c4-0926-4b0c-89c6-28d0c520cd8a\" />",
+    "html_url": "https://github.com/remix-run/remix/issues/10915",
+    "labels": [
+      "pkg:component"
+    ],
+    "state": "closed",
+    "title": "SVG namespace not propagated through components"
+  },
+  "remix-run/remix#10918": {
+    "body": "Since experimental (`x-`) and vendor-specific (`vnd.`) MIME types are excluded, please support adding custom MIME types.\n\nWe need a way to register them globally so they are available package-wide:\n```ts\n// index.ts\nimport { mimeTypes } from \"@remix-run/mime\"\n\nmimeTypes[\"swf\"] = \"application/x-shockwave-flash\"\n```\n\n```ts\n// detect.ts\nimport { detectContentType } from \"@remix-run/mime\"\n\ndetectContentType(\"swf\") // Should detect the new type\n```\nThis should also ensure the new types are detected correctly in other packages like `@remix-run/response`",
+    "html_url": "https://github.com/remix-run/remix/issues/10918",
+    "labels": [
+      "pkg:mime"
+    ],
+    "state": "closed",
+    "title": "[mime]: support custom MIME types"
+  },
+  "remix-run/remix-website#355": {
+    "body": "See the link to startup templates here: https://v2.remix.run/docs/guides/deployment/",
+    "html_url": "https://github.com/remix-run/remix-website/issues/355",
+    "labels": [],
+    "state": "closed",
+    "title": "Starter templates link is a 404"
+  }
+}

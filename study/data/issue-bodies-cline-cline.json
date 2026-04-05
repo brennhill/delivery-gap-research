@@ -1,0 +1,159 @@
+{
+  "cline/cline#5749": {
+    "body": "### What happened?\n\nIf you stage changes and click \"Generate Commit Message\" Cline will still generate a message based on all the changes. Not just the staged changes.\n\n### Steps to reproduce\n\n1. Edit some files\n2. Stage just one of the files\n3. Click \"Generate Commit Message with Cline\"\n\n\n### Relevant API REQUEST output\n\n```shell\n\n```\n\n### Provider/Model\n\ngpt-5-mini\n\n### System Information\n\nMacOS\n\n### Cline Version\n\n3.26.1",
+    "html_url": "https://github.com/cline/cline/issues/5749",
+    "labels": [
+      "Good First Issue",
+      "P1",
+      "VS Code",
+      "Bot Responded"
+    ],
+    "state": "closed",
+    "title": "\"Generate Commit Message\" looks at all the changes, not just the staged changes"
+  },
+  "cline/cline#7696": {
+    "body": "### Plugin Type\n\nVSCode Extension\n\n### Cline Version\n\n3.37.1\n\n### What happened?\n\n\n## Description\nStarting from Cline v3.33+, the `focus_chain` tool has an empty `description` field, which causes AWS Bedrock's API validation to fail with a `ParamValidationError`. This breaks Cline for any users routing requests through AWS Bedrock.\n\n## Environment\n- **Cline Version**: 3.33.0 and above (confirmed in 3.37.1 and 3.38.2)\n- **LLM Provider**: AWS Bedrock (Claude Sonnet)\n- **Working Version**: 3.32.7 (focus_chain tool doesn't exist)\n- **Broken Versions**: 3.33.0, 3.37.1, 3.38.2\n\n## Steps to Reproduce\n1. Use Cline v3.33+ with an OpenAI-compatible backend that proxies to AWS Bedrock\n2. Configure Cline to use this backend\n3. Send any prompt to Cline\n4. Backend forwards the request to AWS Bedrock.\n5. AWS Bedrock validates the `toolConfig` before processing\n\n## Expected Behavior\n- Cline sends tools with valid descriptions (minimum 1 character as per AWS Bedrock requirements)\n- Request succeeds and conversation proceeds normally\n\n## Actual Behavior\n- AWS Bedrock rejects the request immediately with validation error\n- Backend returns HTTP 500 error\n- Cline conversation fails to start\n\n## Error Message\n```\nbotocore.exceptions.ParamValidationError: Parameter validation failed:\nInvalid length for parameter toolConfig.tools[15].toolSpec.description, value: 0, valid min length: 1\n```\n\n## Root Cause\n**File**: `src/core/prompts/system-prompt/tools/focus_chain.ts`  \n**Line**: 10\n\n```typescript\nconst generic: ClineToolSpec = {\n\tvariant: ModelFamily.GENERIC,\n\tid: ClineDefaultTool.TODO,\n\tname: \"focus_chain\",\n\tdescription: \"\", //  Empty string violates AWS Bedrock requirements\n\tcontextRequirements: (context) => context.focusChainSettings?.enabled === true,\n}\n```\n\nAWS Bedrock requires tool descriptions to have **minimum length of 1 character**. The empty string fails this validation before the request is even sent to the model.\n\n\n### Provider/Model\n\nbedrock/us.anthropic.claude-sonnet-4-5-20250929-v1:0\n\n### System Information\n\nOS: Ubuntu 22.04",
+    "html_url": "https://github.com/cline/cline/issues/7696",
+    "labels": [
+      "P1",
+      "VS Code",
+      "Bot Responded"
+    ],
+    "state": "closed",
+    "title": "Empty Tool Description Causes AWS Bedrock API Failure"
+  },
+  "cline/cline#8103": {
+    "body": "### Plugin Type\n\nVSCode Extension\n\n### Cline Version\n\n3.42.0\n\n### What happened?\n\nFirst of all, thank you for implementing support for oauth-protected MCP servers \ud83d\ude04 \n\nWhen developing MCP servers that support discovery, you usually have to specify exactly which redirect/callback URIs are supported. This is a bit of a problem when Cline requires a dynamically defined redirect URI, i.e. `vscode://saoudrizwan.claude-dev/mcp-auth/callback/{hash}`, where `hash`  is derived partially from the url provided by users via UI.  More specifically, in our company we have the same mcp server hosted on multiple different domains and manually computing a unique hash for each is not ideal. \n\nI think a better solution would be to have a format like the following\n\n`vscode://saoudrizwan.claude-dev/mcp-auth/callback/{server_name}`, where the server name is hardcoded in the url. \n\n### Steps to reproduce\n\n1.\n2.\n3.\n\n\n### Provider/Model\n\n_No response_\n\n### System Information\n\n_No response_",
+    "html_url": "https://github.com/cline/cline/issues/8103",
+    "labels": [
+      "VS Code"
+    ],
+    "state": "closed",
+    "title": "Incompatible redirect/callback URI used by Cline for oauth-protected MCP servers"
+  },
+  "cline/cline#8203": {
+    "body": "### Plugin Type\n\nJetBrains Plugin\n\n### Cline Version\n\n1.1.14\n\n### What happened?\n\nWhen images and browser tool is enabled, attempting to use the browser tool causes an error with llama cpp. This also happens in VSCode using Cline 3.45.0.\n\nIn general images appear to work as I can upload a sample jpg from google and get a good response back.\n\n*browser tool use*\n<img width=\"749\" height=\"1087\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/fb9547d8-cec7-4c13-aeff-7f9a9a8f4443\" />\n\n\n*random sample image*\n<img width=\"745\" height=\"568\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/ae3d8c43-0f94-4427-964e-b4e853f39d0b\" />\n\n*error to make future searches easier to find this issue.*\n[OPENAI] 400400 Failed to load image or audio file\n{\"message\":\"400 Failed to load image or audio file\",\"status\":400,\"code\":400,\"modelId\":\"GLM 4.6V\",\"providerId\":\"openai\",\"details\":{\"code\":400,\"message\":\"Failed to load image or audio file\",\"type\":\"invalid_request_error\"}}\n\n### Steps to reproduce\n\n1. Run llama server with GLM 4.6V from unsloth https://huggingface.co/unsloth/GLM-4.6V-GGUF\n```bash\ndocker run \n  --runtime nvidia \n  --gpus=all \n  --pull always \n  --init \n  --rm \n  --ipc=host \n  -p 8080:8080 \n  -v llamaswap_models:/models \n  ghcr.io/ggml-org/llama.cpp:server-cuda\n  --slots \n  --metrics \n  --model /models/GLM-4.6V-UD-Q4_K_XL-00001-of-00002.gguf\n  --mmproj /models/GLM-4.6V-mmproj-F32.gguf\n  --n-gpu-layers 99\n  --tensor-split 3,4.5,4.5,4.5,4.5,5,4.5,5.5\n  --ctx-size 131072\n  --jinja\n```\n2. Configure Cline to use model endpoint http://127.0.0.1:8080/v1/ using OpenAI Compatible provider (random key and model id)\n3. Enable images under model configuration\n4. Tell Cline to run a web project and confirm contents using the browser tool\n\n### Provider/Model\n\nGLM 4.6V with llama-server through docker\n\n### System Information\n\nUbuntu 24\nCPU: 11th Gen Intel(R) Core(TM) i9-11900K @ 3.50GHz\nRAM: 128gb DDR4\nGPU: 4060TI 16GB (8x)",
+    "html_url": "https://github.com/cline/cline/issues/8203",
+    "labels": [
+      "Investigation Needed",
+      "JetBrains",
+      "Bot Responded",
+      "P3"
+    ],
+    "state": "closed",
+    "title": "400 Failed to load image or audio file with Llama Server and Browser Tool"
+  },
+  "cline/cline#8761": {
+    "body": "### Plugin Type\n\nVSCode Extension\n\n### Cline Version\n\n3.50\n\n### What happened?\n\n  When working in a project directory that shares a prefix with another directory, Cline incorrectly identifies file locations.              \n\n **Expected behavior:**                                                                                                                     \n  Cline should correctly identify files are in `/home/user/project-backup`                                                                   \n                                                                                                                                             \n  **Actual behavior:**                                                                                                                       \n  Cline may incorrectly match paths because the code uses `string.includes()` for path containment check.                                    \n                                                                                                                                             \n  **Root cause (code location):**                                                                                                            \n  `src/utils/path.ts:98`                                                                                                                     \n  ```typescript                                                                                                                              \n  if (absolutePath.includes(cwd)) {  // BUG: should use isLocatedInPath()                                                                    \n      return normalizedRelPath.toPosix()                                                                                                     \n  }                                                                                                                                          \n                                                                                                                                             \n  The includes() method causes /home/user/project to match /home/user/project-backup incorrectly.                                            \n                                                                                                                                             \n  Suggested fix:                                                                                                                             \n  Replace with the existing isLocatedInPath() function which properly handles path boundaries.  \n\n### Steps to reproduce\n\n  1. Create two folders: `/home/user/project` and `/home/user/project-backup`                                                                \n  2. Open `/home/user/project-backup` as workspace in VS Code                                                                                \n  3. Ask Cline to \"read the current file\" or reference any file    \n\n### Provider/Model\n\n  openai-compatible:qwen/qwen3-coder (via vLLM)                                                                                              \n\n### System Information\n\n  OS: Ubuntu 22.04                                                                                                                           \n  CPU: Intel Xeon                                                                                                                            \n  RAM: 64GB                                                                                                                                  \n  GPU: NVIDIA A100  ",
+    "html_url": "https://github.com/cline/cline/issues/8761",
+    "labels": [
+      "Help Wanted",
+      "Good First Issue",
+      "VS Code",
+      "Bot Responded"
+    ],
+    "state": "closed",
+    "title": "Path containment check uses string.includes() causing false positives"
+  },
+  "cline/cline#8850": {
+    "body": "### Plugin Type\n\nVSCode Extension\n\n### Cline Version\n\nv3.50.0 and above\n\n### What happened?\n\nReceive the following error when switching from Plan to Act mode with Gemini 3 models (Pro and Flash) using OpenRouter. Switching to version v3.49.1 does not have this issue.\n```\n{\n  \"message\": \"400 Provider returned error\",\n  \"status\": 400,\n  \"code\": 400,\n  \"modelId\": \"google/gemini-3-pro-preview\",\n  \"providerId\": \"openrouter\",\n  \"details\": {\n    \"message\": \"Provider returned error\",\n    \"code\": 400,\n    \"metadata\": {\n      \"raw\": \"Gemini models require OpenRouter reasoning details to be preserved in each request. Please refer to our docs: https://openrouter.ai/docs/guides/best-practices/reasoning-tokens#preserving-reasoning-blocks. Upstream error: {\\n  \\\"error\\\": {\\n    \\\"code\\\": 400,\\n    \\\"message\\\": \\\"Unable to submit request because function call `plan_mode_respond` in the 2. content block is missing a `thought_signature`. Learn more: https://docs.cloud.google.com/vertex-ai/generative-ai/docs/thought-signatures\\\",\\n    \\\"status\\\": \\\"INVALID_ARGUMENT\\\"\\n  }\\n}\\n\",\n      \"provider_name\": \"Google\",\n      \"is_byok\": false\n    }\n  }\n}\n```\n\n\n\n### Steps to reproduce\n\n1. Make a request with Gemini 3 (Pro or Flash) via OpenRouter in Plan mode\n2. Switch to Act mode\n\n\n### Provider/Model\n\nopenrouter:google/gemini-3-pro-preview\n\n### System Information\n\n_No response_",
+    "html_url": "https://github.com/cline/cline/issues/8850",
+    "labels": [
+      "Investigation Needed",
+      "VS Code",
+      "Bot Responded",
+      "Regression"
+    ],
+    "state": "open",
+    "title": "Error with Gemini 3 via OpenRouter with Cline v3.50.0 and above"
+  },
+  "cline/cline#8879": {
+    "body": "### Plugin Type\n\nVSCode Extension\n\n### Cline Version\n\n3.53.1\n\n### What happened?\n\nThis is how usually tables are rendered. Not ok format. Before few months was perfect.\n\n<img width=\"625\" height=\"327\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/d6f0aa2b-df19-4d6c-ada8-bdbdbebd56e2\" />\n\n### Steps to reproduce\n\n1.\n2.\n3.\n\n\n\n### Provider/Model\n\ncline:anthropic/claude-opus-4.5\n\n### System Information\n\nFedora 43\nWayland",
+    "html_url": "https://github.com/cline/cline/issues/8879",
+    "labels": [
+      "VS Code",
+      "Bot Responded"
+    ],
+    "state": "closed",
+    "title": "Bad formatting of table data"
+  },
+  "cline/cline#9207": {
+    "body": "### Plugin Type\n\nVSCode Extension\n\n### Cline Version\n\nv3.57+\n\n### What happened?\n\nThe Vertex AI model definition for claude-opus-4-6 in api.ts is missing several capabilities that Google Cloud has confirmed are available (per the Feb 5, 2026 blog post and Marketplace listing).\n\n**Three gaps identified in vertexModels definition:**\n\n1. **No 1M context window variant** \u2014 The Anthropic API has claude-opus-4-6:1m (contextWindow: 1_000_000) and Bedrock has anthropic.claude-opus-4-6-v1:1m, but Vertex AI only has claude-opus-4-6 with contextWindow: 200_000. The Google Cloud Marketplace page explicitly states \"Token Limits: Inputs: 1M in Beta\" and the blog confirms \"1M Context Window: Preview\" for Opus 4.6 on Vertex AI.\n\n2. **Missing supportsGlobalEndpoint: true** \u2014 Only Gemini models (gemini-3-pro-preview, gemini-3-flash-preview) have the supportsGlobalEndpoint flag in vertexModels. However, the Marketplace listing and sample notebook code show claude-opus-4-6 supports global endpoint (available_regions includes \"global\"), and the blog explicitly mentions \"global endpoint for Claude\" as a feature.\n\n3. **maxTokens is 8192 but should be 128,000** \u2014 The Marketplace states \"Output: 128,000 tokens\" as GA for Opus 4.6. The current Vertex AI definition has maxTokens: 8192.\n\n### Current Vertex AI definition (api.ts line ~880):\n\n```typescript\n\"claude-opus-4-6\": {\n    maxTokens: 8192,              // Should be 128_000\n    contextWindow: 200_000,       // Missing 1M variant\n    supportsImages: true,\n    supportsPromptCache: true,\n    // Missing: supportsGlobalEndpoint: true\n    inputPrice: 5.0,\n    outputPrice: 25.0,\n    cacheWritesPrice: 6.25,\n    cacheReadsPrice: 0.5,\n    supportsReasoning: true,\n}\n```\n\n### Sources\n\n- **Google Cloud Blog (Feb 5, 2026):** https://cloud.google.com/blog/products/ai-machine-learning/expanding-vertex-ai-with-claude-opus-4-6\n- **Vertex AI Marketplace:** Feature table shows \"1M Context Window (beta)\", \"128k Output Tokens (GA)\", \"Global endpoint\"\n- **Sample notebook:** https://github.com/GoogleCloudPlatform/vertex-ai-samples/blob/main/notebooks/official/generative_ai/anthropic_claude_intro.ipynb (shows global in available_regions)\n- **Claude Code Vertex AI docs:** https://code.claude.com/docs/en/google-vertex-ai \u2014 The 1M context window requires beta header context-1m-2025-08-07\n\n### Suggested fix\n\n1. Update maxTokens to 128_000\n2. Add supportsGlobalEndpoint: true to the existing definition\n3. Add a 1M variant with CLAUDE_OPUS_1M_TIERS pricing (similar to Anthropic API and Bedrock definitions)\n\n### Steps to reproduce\n\n1. Select Vertex AI as provider\n2. Choose claude-opus-4-6\n3. Note that context window is limited to 200K (no 1M option)\n4. Note that global endpoint is not available for this model\n5. Note that max output tokens is limited to 8192 instead of 128K\n\n### Provider/Model\n\nvertex / claude-opus-4-6\n\n### System Information\n\nmacOS Sequoia, VSCode\n",
+    "html_url": "https://github.com/cline/cline/issues/9207",
+    "labels": [
+      "Help Wanted",
+      "VS Code",
+      "Bot Responded"
+    ],
+    "state": "open",
+    "title": "Vertex AI claude-opus-4-6: Missing 1M context window variant, global endpoint support, and incorrect maxTokens"
+  },
+  "cline/cline#9269": {
+    "body": "### Plugin Type\n\nVSCode Extension\n\n### Cline Version\n\n3.58.0\n\n### What happened?\n\nThinking blocks no longer appear after updating to 3.58.0. Looking in the Cline logs output, I see \"WARN Unsupported content type: thinking\" repeated. The thinking blocks work when switching back to Opus 4.5.\n\nNot sure if it's related, but I'm also seeing `WARN Warning: Component 'TODO_SECTION' not found`\n\n### Steps to reproduce\n\n1.\n2.\n3.\n\n\n### Provider/Model\n\nbedrock:anthropic.claude-opus-4-6-v1\n\n### System Information\n\n_No response_",
+    "html_url": "https://github.com/cline/cline/issues/9269",
+    "labels": [
+      "VS Code"
+    ],
+    "state": "closed",
+    "title": "Thinking blocks missing in Bedrock Opus 4.6: \"WARN Unsupported content type: thinking\""
+  },
+  "cline/cline#9382": {
+    "body": "### Plugin Type\n\nVSCode Extension\n\n### Cline Version\n\n3.64.0\n\n### What happened?\n\nUsing Explain Changes, periodically receiving \"Error: Could not find the file context\".\n\n<img width=\"1071\" height=\"820\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/b93d95af-9d39-4abf-91d5-ec543fe71326\" />\n\n### Steps to reproduce\n\n1. Click the \"Explain Changes\" button \n2. Open a changed file\n3. Click on line and start a discussion\n\n\n### Provider/Model\n\ncline:anthropic/claude-sonnet-4.5\n\n### System Information\n\nOSX 26.3\nApple M1 Max 64GB",
+    "html_url": "https://github.com/cline/cline/issues/9382",
+    "labels": [
+      "VS Code"
+    ],
+    "state": "closed",
+    "title": "Explain Changes: \"Error: Could not find the file context\""
+  },
+  "cline/cline#9385": {
+    "body": "## Problem\n\nCline CLI supports MCP servers, but this is not documented anywhere. The current experience is not straightforward \u2014 users have no way to discover that MCPs work in the CLI or how to set them up.\n\n## What Works Today\n\nCline CLI can use MCP servers. You just need to place your MCP configuration in:\n\n```\n~/.cline/data/settings/cline_mcp_settings.json\n```\n\nThis file follows the same format as the VS Code extension's MCP settings.\n\n## What's Missing\n\n- The `configuration.mdx` doc shows the `~/.cline/data/` directory structure but omits the `settings/cline_mcp_settings.json` file entirely\n- No mention of MCP support anywhere in the CLI docs (`overview.mdx`, `configuration.mdx`, `interactive-mode.mdx`)\n- No `/mcp` slash command yet \u2014 UX is still being figured out\n\n## Proposed Docs Changes\n\n1. **`docs/cline-cli/configuration.mdx`** \u2014 Add `settings/cline_mcp_settings.json` to the directory tree and add a dedicated section explaining how to configure MCP servers for the CLI\n2. **`docs/cline-cli/overview.mdx`** \u2014 Mention MCP support as a supported feature\n3. **`docs/mcp/`** \u2014 Optionally add a note that MCP servers are also supported in the CLI, not just the VS Code extension\n\n## Notes\n\n- There is no `/mcp` slash command yet in the CLI \u2014 this is still being designed (UX TBD)\n- The MCP settings file path is: `~/.cline/data/settings/cline_mcp_settings.json`",
+    "html_url": "https://github.com/cline/cline/issues/9385",
+    "labels": [
+      "documentation"
+    ],
+    "state": "closed",
+    "title": "docs: Add MCP support documentation for Cline CLI"
+  },
+  "cline/cline#9478": {
+    "body": "### Plugin Type\n\nVSCode Extension\n\n### Cline Version\n\n3.66.0\n\n### What happened?\n\nSambaNova provider on cline has out-dated models list, missing some popular ones like MiniMax 2.5 and it still includes some that are depreciated.\n\nlatest models list with pricing are available on https://api.sambanova.ai/v1/models\n\n### Steps to reproduce\n\n1.\n2.\n3.\n\n\n### Provider/Model\n\n_No response_\n\n### System Information\n\n_No response_",
+    "html_url": "https://github.com/cline/cline/issues/9478",
+    "labels": [
+      "VS Code"
+    ],
+    "state": "open",
+    "title": "Sambanova provider has outdated models list"
+  },
+  "cline/cline#9567": {
+    "body": "## Summary\n\nOracle Code Assist (OCA) authentication fails daily after access tokens expire because the refresh token failure path does not clear stale tokens from VS Code's secret storage. Users must manually delete tokens from the SQLite database to recover.\n\n## Environment\n\n- Cline version: 3.67.1\n- VS Code: macOS (Apple Silicon)\n- OCA provider: Oracle Cloud (AAD/IDCS OAuth2)\n\n## Symptoms\n\nAfter initial successful OCA login, authentication breaks (typically overnight) and cannot recover without manual intervention. The Output panel shows:\n\n```\nLOG AuthHandler: Server started on port\nLOG Opening browser:\nLOG AuthHandler: Received request\nINFO SharedUriHandler: Processing URI:{\"path\":\"/auth/oca\",\"query\":{},\"scheme\":\"http:\"}\nLOG SharedUriHandler: Oca Auth callback received:\nERROR oca sign-in error\nERROR Error signing in with custom token:\nERROR Failed to handle auth callback:\nLOG AuthHandler: Got redirect URI:\nINFO SharedUriHandler: Processing URI:{\"path\":\"\",\"query\":{},\"scheme\":\"vscode:\"}\nWARN SharedUriHandler: Unknown path:\nWARN Extension URI handler: Failed to process URI:\n```\n\nRe-attempting sign-in from the UI produces the same errors. Restarting VS Code does not help.\n\n## Root Cause\n\nFour OCA-related secrets are stored in VS Code's secret storage:\n- `ocaAccessToken`\n- `ocaApiKey`\n- `ocaRefreshToken`\n- `ocaTokenSet`\n\nWhen the access token expires (~1 hour), Cline attempts to refresh it using the stored refresh token. If the refresh request is rejected by the server (HTTP 400 `invalid_grant` or 401), the **stale tokens are not cleared from storage**. Every subsequent auth attempt reuses the same invalid tokens and hits the same error in a loop.\n\n## Current Workaround\n\nQuit VS Code completely, then run:\n\n```bash\n# macOS\nsqlite3 ~/Library/Application\\ Support/Code/User/globalStorage/state.vscdb \\\n  \"DELETE FROM ItemTable WHERE key LIKE 'secret://%oca%';\"\n\n# Windows\nsqlite3 \"%APPDATA%\\Code\\User\\globalStorage\\state.vscdb\" \\\n  \"DELETE FROM ItemTable WHERE key LIKE 'secret://%oca%';\"\n\n# Linux\nsqlite3 ~/.config/Code/User/globalStorage/state.vscdb \\\n  \"DELETE FROM ItemTable WHERE key LIKE 'secret://%oca%';\"\n```\n\nRelaunch VS Code and sign in again. This must be repeated each time the tokens go stale.\n\n## Expected Behavior\n\nWhen a token refresh fails with 400/401:\n1. All OCA secrets should be cleared automatically\n2. User should be prompted to re-authenticate\n3. The extension should not retry with known-invalid tokens\n\n## Suggested Fix\n\nIn the OCA auth provider's refresh error handler:\n\n```typescript\ncatch (error) {\n    if (error instanceof OcaRefreshError &&\n        (error.statusCode === 400 || error.statusCode === 401)) {\n        // Clear stale tokens so next attempt starts fresh\n        await this.stateManager.deleteSecret(\"ocaAccessToken\");\n        await this.stateManager.deleteSecret(\"ocaApiKey\");\n        await this.stateManager.deleteSecret(\"ocaRefreshToken\");\n        await this.stateManager.deleteSecret(\"ocaTokenSet\");\n        // Prompt user to re-authenticate\n        await this.notifyReauthenticationRequired();\n    }\n}\n```",
+    "html_url": "https://github.com/cline/cline/issues/9567",
+    "labels": [],
+    "state": "closed",
+    "title": "OCA auth: stale tokens not cleared on refresh failure, causing repeated sign-in errors"
+  },
+  "cline/cline#9604": {
+    "body": "### Plugin Type\n\nVSCode Extension\n\n### Cline Version\n\nv3.68.0\n\n### What happened?\n\n\u7814\u7a76\u5185\u5bb9-\u5927\u7eb2.md becomes escaped file name, and cannot be opened.\n\n<img width=\"1964\" height=\"506\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/fdbc547a-b0b6-4e65-b547-ae05550861ef\" />",
+    "html_url": "https://github.com/cline/cline/issues/9604",
+    "labels": [
+      "VS Code"
+    ],
+    "state": "closed",
+    "title": "Cannot \"View Changes\" with Chinese file name in vscode plugin"
+  },
+  "cline/cline#9672": {
+    "body": "### Plugin Type\n\nVSCode Extension\n\n### Cline Version\n\nlatest\n\n### What happened?\n\nI have a global commit prehook, if you try to make a commit not matching the semantics it does not let you commit. It appears that Cline tries to do so. My prompt was `what can you do?` with llama-grok3-tool-use.\n\n<img width=\"757\" height=\"128\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/5aa95f74-b7e7-46f3-84be-4844aec073ce\" />\n\n### Steps to reproduce\n\nSee above\n\n\n### Provider/Model\n\nllama-grok3-tool-use\n\n### System Information\n\n_No response_",
+    "html_url": "https://github.com/cline/cline/issues/9672",
+    "labels": [
+      "VS Code"
+    ],
+    "state": "closed",
+    "title": "If you use a global precommit hook with conventional commits Cline fails to initialize"
+  },
+  "ollama/ollama#2876": {
+    "body": "Hi there,\r\nI am using Ollama and I found it awesome.\r\n\r\nOne question, when calling Ollama using REST APIs (i.e. generate API), if the client cancels the HTTP request, will Ollama stop processing the request?\r\n\r\nI found this issue here for JS client library https://github.com/ollama/ollama-js/issues/39 but it doesn't mention what happens on the server when the client abort the request.",
+    "html_url": "https://github.com/ollama/ollama/issues/2876",
+    "labels": [],
+    "state": "closed",
+    "title": "REST APIs Request Cancellation"
+  }
+}

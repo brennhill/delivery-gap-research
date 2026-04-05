@@ -60,7 +60,7 @@ def build_rows():
         q_by_num = {}
         if quality_data:
             for r in quality_data:
-                if "error" not in r:
+                if "error" not in r and "_script_error" not in r and "_parse_error" not in r:
                     q_by_num[r["pr_number"]] = r
 
         # Rework signals: which target PRs were reworked + type

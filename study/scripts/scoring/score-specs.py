@@ -1,24 +1,95 @@
 #!/usr/bin/env python3
-"""Score spec quality using Claude Haiku — detailed inventory approach.
+"""Score specification quality using Claude Haiku.
 
-Rather than pre-deciding what matters, we capture detailed presence/absence
-of every spec dimension and let the correlation with rework tell us which
-ones actually predict outcomes.
+Reads spec'd PRs from prs-*.json (identified via spec-signals-*.json),
+scores each on 7 quality dimensions via LLM, and saves results to
+spec-quality-*.json. Has resume support — re-run safely to continue
+where it left off.
+
+To reproduce from scratch: delete data/spec-quality-*.json, then run:
+    python3 scripts/scoring/score-specs.py
+
+Requires: ANTHROPIC_API_KEY environment variable, anthropic package.
 
 Usage:
-    python score-specs.py                  # score all repos
-    python score-specs.py --repo cli-cli   # score one repo
-    python score-specs.py --dry-run        # show what would be scored
+    python3 score-specs.py                      # score all repos (20 workers)
+    python3 score-specs.py --repo cli-cli       # score one repo
+    python3 score-specs.py --workers 5          # fewer concurrent workers
+    python3 score-specs.py --dry-run            # show what would be scored
 """
 
 from __future__ import annotations
 
 import argparse
+import asyncio
 import json
+import os
+import re
+import sys
 import time
 from pathlib import Path
 
-DATA_DIR = Path(__file__).resolve().parent / "data"
+DATA_DIR = Path(__file__).resolve().parent.parent.parent / "data"
+
+# ── LLM utilities ───────────────────────────────────────────────────
+
+def _has_api_key() -> bool:
+    return bool(os.environ.get("ANTHROPIC_API_KEY"))
+
+
+async def _call_llm_async(client, prompt: str, model: str, max_tokens: int = 2048) -> str:
+    """Call Anthropic API asynchronously."""
+    message = await client.messages.create(
+        model=model,
+        max_tokens=max_tokens,
+        messages=[{"role": "user", "content": prompt}],
+    )
+    return message.content[0].text
+
+
+def _parse_response(text: str) -> dict:
+    """Parse JSON from LLM response, stripping markdown fences.
+
+    Handles truncated responses by extracting numeric scores via regex
+    when full JSON parsing fails.
+    """
+    text = text.strip()
+    if text.startswith("```"):
+        text = text.split("\n", 1)[1] if "\n" in text else text[3:]
+        if text.endswith("```"):
+            text = text[:-3]
+        text = text.strip()
+    try:
+        return json.loads(text)
+    except json.JSONDecodeError:
+        match = re.search(r"\{.*\}", text, re.DOTALL)
+        if match:
+            try:
+                return json.loads(match.group())
+            except json.JSONDecodeError:
+                pass
+
+    # Truncated JSON — extract what we can via regex
+    extracted = {}
+    for dim in NUMERIC_DIMS:
+        m = re.search(rf'"{dim}"\s*:\s*(\d+)', text)
+        if m:
+            extracted[dim] = int(m.group(1))
+    # Also try change_type and spec_length_signal
+    ct = re.search(r'"change_type"\s*:\s*"(\w+)"', text)
+    if ct:
+        extracted["change_type"] = ct.group(1)
+    sl = re.search(r'"spec_length_signal"\s*:\s*"(\w+)"', text)
+    if sl:
+        extracted["spec_length_signal"] = sl.group(1)
+
+    if len(extracted) >= 5:  # got at least 5 of 7 numeric dims
+        return extracted
+
+    return {"_parse_error": f"Parse error: {text[:200]}"}
+
+
+# ── Scoring prompt ──────────────────────────────────────────────────
 
 SCORING_PROMPT = """\
 You are analyzing a software specification (GitHub issue, PR description, or ticket).
@@ -56,7 +127,7 @@ Are there testable success conditions?
 Are data shapes, API contracts, or schema changes described?
 - Field names, types, required vs optional?
 - Request/response shapes?
-- Score 0 if no data structures are mentioned. Score N/A for non-data-related changes.
+- Score 0 if no data structures are mentioned or if the change is not data-related.
 
 ### 6. dependency_context (0-100)
 Does it reference what existing code/modules/APIs this touches?
@@ -86,240 +157,336 @@ Return ONLY valid JSON, no markdown:
   "dependency_context": N,
   "behavioral_specificity": N,
   "change_type": "...",
-  "spec_length_signal": "...",
-  "missing": ["list of important things NOT in this spec"],
-  "present": ["list of concrete things this spec DOES describe well"],
-  "reasoning": "1-2 sentences on overall quality"
+  "spec_length_signal": "..."
 }
 
 ## Spec text:
 """
 
-
-def _ensure_prs_cached(repo_slug: str) -> Path:
-    """Ensure PR data is cached locally. Fetches from GitHub if missing."""
-    prs_path = DATA_DIR / f"prs-{repo_slug}.json"
-    if prs_path.exists():
-        return prs_path
-
-    # Convert slug back to owner/repo
-    parts = repo_slug.split("-", 1)
-    if len(parts) == 2:
-        # Handle cases like "calcom-cal.com" or "astral-sh-ruff"
-        # Try the slug as-is first with / separator
-        repo = repo_slug.replace("-", "/", 1)
-    else:
-        return prs_path  # can't determine repo name
-
-    print(f"  Fetching PRs for {repo} (not cached)...")
-    try:
-        from delivery_gap_signals.sources import auto_fetch
-        changes = auto_fetch(repo, lookback_days=90)
-        data = [c.to_dict() for c in changes]
-        DATA_DIR.mkdir(parents=True, exist_ok=True)
-        prs_path.write_text(json.dumps(data, indent=2, default=str))
-        print(f"  -> {len(data)} PRs fetched and cached")
-    except Exception as e:
-        print(f"  -> FETCH FAILED: {e}")
-
-    return prs_path
-
-
-def extract_specs(repo_slug: str) -> list[dict]:
-    """Extract spec'd PRs with body text from a repo's PR data."""
-    prs_path = _ensure_prs_cached(repo_slug)
-    if not prs_path.exists():
-        return []
-
-    prs = json.loads(prs_path.read_text())
-    specs = []
-    for pr in prs:
-        if pr.get("ticket_ids") and pr.get("body") and len(pr.get("body", "")) > 20:
-            specs.append({
-                "pr_number": pr["pr_number"],
-                "title": pr["title"],
-                "body": pr["body"][:4000],
-                "repo": pr.get("repo", repo_slug),
-                "author": pr.get("author", ""),
-                "additions": pr.get("additions", 0),
-                "deletions": pr.get("deletions", 0),
-            })
-    return specs
-
-
-from llm_utils import has_api_key as _has_api_key, score_via_api as _score_via_api, \
-    score_via_cli as _score_via_cli, parse_llm_response as _parse_llm_response
-
-
-_NUMERIC_DIMS = [
+NUMERIC_DIMS = [
     "outcome_clarity", "error_states", "scope_boundaries",
     "acceptance_criteria", "data_contracts", "dependency_context",
     "behavioral_specificity",
 ]
 
-
-def _single_score(title: str, body: str, model: str) -> dict:
-    """One scoring run."""
-    spec_text = f"Title: {title}\n\n{body}"
-    prompt = SCORING_PROMPT + spec_text
-
-    if _has_api_key():
-        text = _score_via_api(prompt, model)
-    else:
-        text = _score_via_cli(prompt, model)
-
-    return _parse_llm_response(text)
+MODEL = "claude-haiku-4-5-20251001"
+MIN_BODY_LENGTH = 50  # characters
+MAX_RETRIES = 3
+RETRY_BACKOFF = [2, 5, 15]  # seconds
+DEFAULT_WORKERS = 20
 
 
-def score_spec(title: str, body: str, model: str = "claude-haiku-4-5-20251001", runs: int = 1) -> dict:
-    """Score a single spec. Multiple runs are averaged for stability.
+# ── Spec extraction ────────────────────────────────────────────────
 
-    With runs=1: returns raw scores (fast, cheap).
-    With runs=3: scores 3 times, returns averaged numeric dims + individual runs.
+def _get_specd_pr_numbers(repo_slug: str) -> set[int]:
+    """Get spec'd PR numbers from spec-signals classification."""
+    ss_path = DATA_DIR / f"spec-signals-{repo_slug}.json"
+    if not ss_path.exists():
+        return set()
+    with open(ss_path) as f:
+        data = json.load(f)
+    prs = data.get("coverage", {}).get("prs", [])
+    return {int(p["number"]) for p in prs if p.get("specd")}
+
+
+def _load_issue_bodies(repo_slug: str) -> dict[str, str]:
+    """Load fetched issue bodies for a repo. Returns {issue_key: body_text}."""
+    path = DATA_DIR / f"issue-bodies-{repo_slug}.json"
+    if not path.exists():
+        return {}
+    with open(path) as f:
+        data = json.load(f)
+    # Map issue keys to body text, skip not-found
+    bodies = {}
+    for key, val in data.items():
+        if val.get("_not_found") or not val.get("body"):
+            continue
+        bodies[key] = val["body"]
+    return bodies
+
+
+def _get_spec_sources(repo_slug: str) -> dict[int, str]:
+    """Get spec_source for each spec'd PR number."""
+    ss_path = DATA_DIR / f"spec-signals-{repo_slug}.json"
+    if not ss_path.exists():
+        return {}
+    with open(ss_path) as f:
+        data = json.load(f)
+    sources = {}
+    for p in data.get("coverage", {}).get("prs", []):
+        if p.get("specd") and p.get("spec_source"):
+            sources[int(p["number"])] = p["spec_source"]
+    return sources
+
+
+def _resolve_issue_key(spec_source: str, repo: str) -> str | None:
+    """Convert a spec_source to an issue-bodies key (owner/repo#NNN)."""
+    if not spec_source:
+        return None
+    if spec_source in ("#000", "#0"):
+        return None
+    m = re.match(r"https?://github\.com/([^/]+/[^/]+)/issues/(\d+)", spec_source)
+    if m:
+        return f"{m.group(1)}#{m.group(2)}"
+    m = re.match(r"#(\d+)$", spec_source)
+    if m and int(m.group(1)) > 0:
+        return f"{repo}#{m.group(1)}"
+    return None
+
+
+def extract_specs(repo_slug: str) -> list[dict]:
+    """Extract spec'd PRs with body text from a repo's PR data.
+
+    When issue bodies are available (from fetch-issue-bodies.py),
+    concatenates the issue body with the PR body to give the scorer
+    the full specification context.
     """
-    try:
-        first = _single_score(title, body, model)
-    except Exception as e:
-        return {"error": str(e)}
-
-    if "error" in first or runs <= 1:
-        return first
-
-    # Multiple runs — collect all, average numeric dims
-    all_runs = [first]
-    for _ in range(runs - 1):
-        try:
-            r = _single_score(title, body, model)
-            if "error" not in r:
-                all_runs.append(r)
-        except Exception:
-            pass  # skip failed runs, use what we have
-
-    if len(all_runs) == 1:
-        return first
-
-    # Average numeric dimensions
-    averaged = {}
-    for dim in _NUMERIC_DIMS:
-        vals = [r[dim] for r in all_runs if isinstance(r.get(dim), (int, float))]
-        if vals:
-            averaged[dim] = round(sum(vals) / len(vals))
-
-    # Take non-numeric fields from first run
-    for key in first:
-        if key not in averaged:
-            averaged[key] = first[key]
-
-    # Store individual run scores and variance for transparency
-    averaged["_runs"] = len(all_runs)
-    averaged["_run_scores"] = [
-        {dim: r.get(dim) for dim in _NUMERIC_DIMS if dim in r}
-        for r in all_runs
-    ]
-    # Compute max spread per dimension
-    spreads = {}
-    for dim in _NUMERIC_DIMS:
-        vals = [r[dim] for r in all_runs if isinstance(r.get(dim), (int, float))]
-        if len(vals) >= 2:
-            spreads[dim] = max(vals) - min(vals)
-    averaged["_max_spread"] = spreads
-
-    return averaged
-
-
-def score_repo(repo_slug: str, dry_run: bool = False, runs: int = 1) -> list[dict]:
-    """Score all specs in a repo."""
-    specs = extract_specs(repo_slug)
-    if not specs:
-        print(f"  No specs found for {repo_slug}")
+    prs_path = DATA_DIR / f"prs-{repo_slug}.json"
+    if not prs_path.exists():
         return []
 
-    print(f"  {len(specs)} specs to score")
+    specd_numbers = _get_specd_pr_numbers(repo_slug)
+    if not specd_numbers:
+        return []
 
-    # Resume support: load existing results
-    repo_path = DATA_DIR / f"spec-quality-{repo_slug}.json"
-    results = []
-    scored_prs = set()
-    if not dry_run and repo_path.exists():
+    with open(prs_path) as f:
+        prs = json.load(f)
+
+    # Load issue bodies and spec sources
+    issue_bodies = _load_issue_bodies(repo_slug)
+    spec_sources = _get_spec_sources(repo_slug)
+    # Get canonical repo name from spec-signals (not from slug — hyphen splitting is ambiguous)
+    ss_path = DATA_DIR / f"spec-signals-{repo_slug}.json"
+    if ss_path.exists():
+        with open(ss_path) as f:
+            repo_name = json.load(f).get("repo", repo_slug.replace("-", "/", 1))
+    else:
+        repo_name = repo_slug.replace("-", "/", 1)
+
+    enriched_count = 0
+    specs = []
+    for pr in prs:
+        pr_num = pr.get("pr_number") or pr.get("number")
+        if pr_num is None:
+            continue
+        pr_num = int(pr_num)
+        if pr_num not in specd_numbers:
+            continue
+
+        pr_body = pr.get("body") or ""
+
+        # Try to enrich with issue body
+        issue_body = ""
+        spec_source = spec_sources.get(pr_num, "")
+        issue_key = _resolve_issue_key(spec_source, repo_name)
+        if issue_key and issue_key in issue_bodies:
+            issue_body = issue_bodies[issue_key]
+            enriched_count += 1
+
+        # Combine: issue body first (the spec), then PR body (implementation notes)
+        if issue_body:
+            combined = f"=== LINKED ISSUE ===\n{issue_body[:3000]}\n\n=== PR DESCRIPTION ===\n{pr_body[:1000]}"
+        else:
+            combined = pr_body
+
+        if len(combined) <= MIN_BODY_LENGTH:
+            continue
+
+        specs.append({
+            "pr_number": pr_num,
+            "title": pr.get("title", ""),
+            "body": combined[:4000],
+            "repo": pr.get("repo", repo_slug),
+            "author": pr.get("author", ""),
+            "has_issue_body": bool(issue_body),
+        })
+
+    if enriched_count > 0:
+        print(f"  {enriched_count} PRs enriched with issue body", flush=True)
+
+    return specs
+
+
+# ── Scoring ─────────────────────────────────────────────────────────
+
+def _save_atomic(path: Path, data: list[dict]) -> None:
+    """Atomic write via temp file + rename."""
+    tmp = path.with_suffix(".json.tmp")
+    tmp.write_text(json.dumps(data, indent=2), encoding="utf-8")
+    os.replace(str(tmp), str(path))
+
+
+def _validate_scores(scores: dict) -> dict:
+    """Clamp numeric dimensions to 0-100, default missing to 0."""
+    for dim in NUMERIC_DIMS:
+        val = scores.get(dim)
+        if isinstance(val, (int, float)):
+            scores[dim] = max(0, min(100, int(round(val))))
+        elif isinstance(val, str) and val.lower() in ("n/a", "na"):
+            scores[dim] = 0
+        else:
+            scores[dim] = 0  # missing or wrong type
+    return scores
+
+
+async def _score_one(client, spec: dict, sem: asyncio.Semaphore) -> dict:
+    """Score a single spec with retry and concurrency limiting."""
+    prompt = SCORING_PROMPT + f"Title: {spec['title']}\n\n{spec['body']}"
+    last_err = None
+
+    for attempt in range(MAX_RETRIES):
         try:
-            loaded = json.loads(repo_path.read_text())
-            # Keep only successful results; retry errors
-            results = [r for r in loaded if 'error' not in r]
+            async with sem:
+                text = await _call_llm_async(client, prompt, MODEL)
+            result = _parse_response(text)
+            if "_parse_error" in result:
+                last_err = result["_parse_error"]
+                if attempt < MAX_RETRIES - 1:
+                    wait = RETRY_BACKOFF[min(attempt, len(RETRY_BACKOFF) - 1)]
+                    await asyncio.sleep(wait)
+                continue
+            return _validate_scores(result)
+        except Exception as e:
+            last_err = str(e)
+            if attempt < MAX_RETRIES - 1:
+                wait = RETRY_BACKOFF[min(attempt, len(RETRY_BACKOFF) - 1)]
+                await asyncio.sleep(wait)
+
+    return {"_script_error": last_err or "unknown"}
+
+
+async def score_repo_async(repo_slug: str, workers: int, dry_run: bool = False) -> list[dict]:
+    """Score all specs in a repo with async concurrency. Resume-safe."""
+    specs = extract_specs(repo_slug)
+    if not specs:
+        print(f"  No scoreable specs for {repo_slug}")
+        return []
+
+    # Resume: load existing results
+    out_path = DATA_DIR / f"spec-quality-{repo_slug}.json"
+    results = []
+    scored_prs: set[int] = set()
+    if not dry_run and out_path.exists():
+        try:
+            loaded = json.loads(out_path.read_text())
+            results = [r for r in loaded if "_script_error" not in r]
             scored_prs = {r["pr_number"] for r in results}
             errors = len(loaded) - len(results)
-            print(f"  Resuming: {len(scored_prs)} already scored" +
-                  (f", {errors} errors will be retried" if errors else ""))
-        except Exception:
-            pass
-
-    for i, spec in enumerate(specs):
-        if dry_run:
-            print(f"    [{i+1}/{len(specs)}] PR #{spec['pr_number']}: {spec['title'][:50]}")
-            continue
-
-        if spec["pr_number"] in scored_prs:
-            continue
-
-        try:
-            scores = score_spec(spec["title"], spec["body"], runs=runs)
-
-            # Compute an overall from the numeric dimensions (for bucketing)
-            dims = ["outcome_clarity", "error_states", "scope_boundaries",
-                     "acceptance_criteria", "behavioral_specificity"]
-            dim_scores = [scores.get(d, 0) for d in dims if isinstance(scores.get(d), (int, float))]
-            overall = round(sum(dim_scores) / len(dim_scores)) if dim_scores else 0
-
-            result = {
-                "pr_number": spec["pr_number"],
-                "title": spec["title"],
-                "repo": spec["repo"],
-                "author": spec["author"],
-                "additions": spec["additions"],
-                "deletions": spec["deletions"],
-                **scores,
-                "overall": overall,
-            }
-            results.append(result)
-
-            print(f"    [{i+1}/{len(specs)}] #{spec['pr_number']}: "
-                  f"outcome={scores.get('outcome_clarity','?')} "
-                  f"errors={scores.get('error_states','?')} "
-                  f"scope={scores.get('scope_boundaries','?')} "
-                  f"AC={scores.get('acceptance_criteria','?')} "
-                  f"type={scores.get('change_type','?')} "
-                  f"overall={overall}", flush=True)
-
+            remaining = len(specs) - len(scored_prs)
+            print(f"  {len(specs)} specs, {len(scored_prs)} done, {remaining} remaining" +
+                  (f", {errors} errors retrying" if errors else ""))
         except Exception as e:
-            print(f"    [{i+1}/{len(specs)}] #{spec['pr_number']}: ERROR - {e}", flush=True)
-            results.append({
-                "pr_number": spec["pr_number"],
-                "title": spec["title"],
-                "repo": spec["repo"],
-                "author": spec["author"],
-                "error": str(e),
-            })
+            print(f"  Warning: could not load existing results: {e}")
+    else:
+        print(f"  {len(specs)} specs to score")
 
-        # Save incrementally every 10 items
-        if not dry_run and len(results) % 10 == 0:
-            repo_path.write_text(json.dumps(results, indent=2), encoding="utf-8")
+    # Filter to unscored
+    to_score = [s for s in specs if s["pr_number"] not in scored_prs]
 
-        # Light rate limiting
-        if not dry_run and i < len(specs) - 1:
-            time.sleep(0.05)
+    if dry_run:
+        for i, spec in enumerate(to_score):
+            print(f"    [{i+1}/{len(to_score)}] PR #{spec['pr_number']}: {spec['title'][:60]}")
+        return results
 
-    # Final save
-    if not dry_run and results:
-        repo_path.write_text(json.dumps(results, indent=2), encoding="utf-8")
+    if not to_score:
+        return results
 
+    import anthropic
+    import traceback as tb
+
+    print(f"  Starting async scoring: {len(to_score)} PRs, {workers} workers, "
+          f"batch size {workers * 2}", flush=True)
+
+    client = anthropic.AsyncAnthropic()
+    sem = asyncio.Semaphore(workers)
+    BATCH_SIZE = workers * 2
+    total_batches = (len(to_score) + BATCH_SIZE - 1) // BATCH_SIZE
+
+    try:
+        for batch_idx, batch_start in enumerate(range(0, len(to_score), BATCH_SIZE)):
+            batch = to_score[batch_start:batch_start + BATCH_SIZE]
+            print(f"\n  Batch {batch_idx + 1}/{total_batches} "
+                  f"({len(batch)} PRs, #{batch[0]['pr_number']}..#{batch[-1]['pr_number']})",
+                  flush=True)
+
+            tasks = [_score_one(client, spec, sem) for spec in batch]
+            batch_results = await asyncio.gather(*tasks, return_exceptions=True)
+
+            print(f"  Batch {batch_idx + 1} gather returned {len(batch_results)} results", flush=True)
+
+            ok_count = 0
+            err_count = 0
+            for spec, scores in zip(batch, batch_results):
+                if isinstance(scores, BaseException):
+                    scores = {"_script_error": f"{type(scores).__name__}: {scores}"}
+
+                dim_scores = [scores.get(d) for d in NUMERIC_DIMS
+                              if isinstance(scores.get(d), (int, float))]
+                overall = round(sum(dim_scores) / len(dim_scores)) if dim_scores else 0
+
+                result = {**scores}
+                result["pr_number"] = spec["pr_number"]
+                result["title"] = spec["title"]
+                result["repo"] = spec["repo"]
+                result["author"] = spec["author"]
+                result["overall"] = overall
+                result["has_issue_body"] = spec.get("has_issue_body", False)
+                results.append(result)
+
+                if "_script_error" in scores:
+                    print(f"    #{spec['pr_number']}: FAILED - {scores['_script_error']}", flush=True)
+                    err_count += 1
+                else:
+                    print(f"    #{spec['pr_number']}: overall={overall} "
+                          f"type={scores.get('change_type', '?')}", flush=True)
+                    ok_count += 1
+
+            print(f"  Processing {ok_count + err_count}/{len(batch)} results complete",
+                  file=sys.stderr, flush=True)
+            _save_atomic(out_path, results)
+            total_done = batch_start + len(batch)
+            total_ok = sum(1 for r in results if "_script_error" not in r)
+            msg = (f"  Batch {batch_idx + 1} done: {ok_count} ok, {err_count} failed | "
+                   f"Progress: {total_done}/{len(to_score)} | "
+                   f"Total scored: {total_ok}")
+            print(msg, flush=True)
+            print(msg, file=sys.stderr, flush=True)
+
+    except BaseException as e:
+        print(f"\n  CRASH in {repo_slug}: {type(e).__name__}: {e}", flush=True)
+        tb.print_exc()
+        if results:
+            _save_atomic(out_path, results)
+            print(f"  Saved {len(results)} results before crash", flush=True)
+        raise
+    finally:
+        try:
+            await client.close()
+        except Exception:
+            pass  # don't mask the real error
+
+    print(f"  Repo complete: {sum(1 for r in results if '_script_error' not in r)} scored, "
+          f"{sum(1 for r in results if '_script_error' in r)} failed", flush=True)
     return results
 
 
+# ── Main ────────────────────────────────────────────────────────────
+
 def main():
-    parser = argparse.ArgumentParser(description="Score spec quality via LLM")
+    parser = argparse.ArgumentParser(
+        description="Score specification quality via Claude Haiku. "
+                    "Resume-safe: re-run to continue where you left off. "
+                    "Delete spec-quality-*.json to rescore from scratch."
+    )
     parser.add_argument("--repo", help="Score a single repo slug (e.g., cli-cli)")
+    parser.add_argument("--workers", type=int, default=DEFAULT_WORKERS,
+                        help=f"Concurrent API calls (default: {DEFAULT_WORKERS})")
     parser.add_argument("--dry-run", action="store_true", help="Show specs without scoring")
-    parser.add_argument("--runs", type=int, default=1, help="Score each spec N times and average (default: 1)")
     args = parser.parse_args()
+
+    if not args.dry_run and not _has_api_key():
+        print("Error: ANTHROPIC_API_KEY not set. Set it or use --dry-run.")
+        sys.exit(1)
 
     if args.repo:
         slugs = [args.repo]
@@ -329,42 +496,41 @@ def main():
             for p in DATA_DIR.glob("prs-*.json")
         )
 
-    all_results = []
-    for slug in slugs:
-        print(f"\n{slug}:")
-        results = score_repo(slug, dry_run=args.dry_run, runs=args.runs)
-        all_results.extend(results)
+    async def run_all():
+        total_scored = 0
+        total_repos = 0
+        print(f"Scoring {len(slugs)} repos with {args.workers} workers\n", flush=True)
+        for i, slug in enumerate(slugs):
+            print(f"\n{'='*60}", flush=True)
+            print(f"[{i+1}/{len(slugs)}] {slug}:", flush=True)
+            try:
+                results = await score_repo_async(slug, workers=args.workers, dry_run=args.dry_run)
+                scored = sum(1 for r in results if "_script_error" not in r)
+                total_scored += scored
+                if results:
+                    total_repos += 1
+            except BaseException as e:
+                import traceback
+                print(f"\n  ERROR on {slug}: {type(e).__name__}: {e}", flush=True)
+                traceback.print_exc()
+                if isinstance(e, (KeyboardInterrupt, SystemExit)):
+                    raise
+                print(f"  Skipping — will retry on next run", flush=True)
 
-        # Save incrementally per repo
-        if not args.dry_run and results:
-            repo_path = DATA_DIR / f"spec-quality-{slug}.json"
-            repo_path.write_text(json.dumps(results, indent=2), encoding="utf-8")
+        print(f"\n{'='*60}", flush=True)
+        print(f"Done. {total_scored} PRs scored across {total_repos} repos.", flush=True)
 
-    if not args.dry_run and all_results:
-        out_path = DATA_DIR / "spec-quality-all.json"
-        out_path.write_text(json.dumps(all_results, indent=2), encoding="utf-8")
-        print(f"\nSaved {len(all_results)} scores to {out_path}")
-
-        # Summary
-        valid = [r for r in all_results if "overall" in r and r.get("overall", -1) >= 0]
-        if valid:
-            avg = sum(r["overall"] for r in valid) / len(valid)
-            tiers = {"high (70+)": 0, "medium (40-69)": 0, "low (<40)": 0}
-            for r in valid:
-                o = r["overall"]
-                if o >= 70: tiers["high (70+)"] += 1
-                elif o >= 40: tiers["medium (40-69)"] += 1
-                else: tiers["low (<40)"] += 1
-            print(f"Average overall: {avg:.0f}")
-            print(f"Quality tiers: {tiers}")
-
-            # Per-dimension averages
-            for dim in ["outcome_clarity", "error_states", "scope_boundaries",
-                        "acceptance_criteria", "data_contracts", "dependency_context",
-                        "behavioral_specificity"]:
-                vals = [r[dim] for r in valid if isinstance(r.get(dim), (int, float))]
-                if vals:
-                    print(f"  {dim}: avg={sum(vals)/len(vals):.0f}")
+    try:
+        asyncio.run(run_all())
+        print("\n*** SCRIPT COMPLETED NORMALLY ***", file=sys.stderr, flush=True)
+    except KeyboardInterrupt:
+        print("\nInterrupted — progress saved to last completed batch.",
+              file=sys.stderr, flush=True)
+    except BaseException as e:
+        import traceback
+        print(f"\nFATAL: {type(e).__name__}: {e}", file=sys.stderr, flush=True)
+        traceback.print_exc(file=sys.stderr)
+        sys.exit(1)
 
 
 if __name__ == "__main__":

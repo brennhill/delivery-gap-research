@@ -1,0 +1,21 @@
+{
+  "astral-sh/ty#2403": {
+    "body": null,
+    "html_url": "https://github.com/astral-sh/ty/issues/2403",
+    "labels": [
+      "library"
+    ],
+    "state": "open",
+    "title": "add dedicated support for pydantic"
+  },
+  "langflow-ai/langflow#11548": {
+    "body": "### Bug Description\n\nI am encountering a persistent and inconsistent error with the **File Component** when uploading Markdown (`.md`) files.\n\nThe issue is specifically regarding the error:\n> `ValueError: called add_log but no component context found`\n\n**The Behavior:**\n- I have multiple `.md` files in the **same local directory**.\n- Some files upload and process correctly without any issues.\n- Other files (from the same directory, same extension) fail immediately with the error above.\n- Retrying the failed files multiple times, deleting the component, or refreshing the page does not solve the issue for those specific files.\n\nThis suggests the error is not related to directory permissions (since some files work) but might be related to a race condition in the backend logging mechanism or how specific file content is being handled.\n\n\n### Environment\n- **OS:** Windows 11\n- **Browser:** Edge\n- **Langflow Version:** 1.7.2\n\n### Reproduction\n\n1. Drag a `File` component into the canvas.\n2. Select a `.md` file from the local disk.\n3. (Scenario A) The file loads correctly.\n4. (Scenario B) I select a different `.md` file from the *same* folder.\n5. The UI shows an error or the build fails with: `called add_log but no component context found`.\n\n### Expected behavior\n\n### Actual Behavior\nThe component fails to load/process specific files and throws a context error, blocking the flow.\n\n### Expected Behavior\nAll valid `.md` files should be uploaded and processed consistently, regardless of the specific file selection.\n\n\n### Who can help?\n\n_No response_\n\n### Operating System\n\nWindows 11\n\n### Langflow Version\n\nVersion: 1.7.2\n\n### Python Version\n\n3.12\n\n### Screenshot\n\n<img width=\"1753\" height=\"1386\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/2f06bd14-3d06-4576-99ff-5b80ceec73a2\" />\n\n### Flow File\n\n_No response_",
+    "html_url": "https://github.com/langflow-ai/langflow/issues/11548",
+    "labels": [
+      "bug",
+      "jira"
+    ],
+    "state": "open",
+    "title": "File Component throws \"no component context\" error for specific .md files"
+  }
+}

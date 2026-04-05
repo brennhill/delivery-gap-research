@@ -1,0 +1,319 @@
+{
+  "PyCQA/isort#2352": {
+    "body": "On Django, our `isort` config is:\n```\n[tool.isort]\nprofile = \"black\"\ndefault_section = \"THIRDPARTY\"\nknown_first_party = \"django\"\n```\n\nWith `isort==5.13.2`, the following imports are sorted as:\n```python\nfrom django.db.models.sql.compiler import (\n    SQLAggregateCompiler,\n    SQLCompiler,\n    SQLDeleteCompiler,\n)\nfrom django.db.models.sql.compiler import SQLInsertCompiler as BaseSQLInsertCompiler\nfrom django.db.models.sql.compiler import SQLUpdateCompiler\n```\n\nBut on `isort==6.0.0`, they are now sorted as:\n```python\nfrom django.db.models.sql.compiler import (\n    SQLAggregateCompiler,\n    SQLCompiler,\n    SQLDeleteCompiler,\n)\nfrom django.db.models.sql.compiler import SQLInsertCompiler as BaseSQLInsertCompiler\nfrom django.db.models.sql.compiler import (\n    SQLUpdateCompiler,\n)\n```\n\nWe don't believe this is a desirable change and so are pinned at 5.13.2\n\n(Please let me know if you need more details. Our pr for reference: https://github.com/django/django/pull/19109)",
+    "html_url": "https://github.com/PyCQA/isort/issues/2352",
+    "labels": [
+      "bug",
+      "help wanted"
+    ],
+    "state": "closed",
+    "title": "6.0.0: `isort` is not stable on a file which imports multiple members from the same module, one aliased and another imported directly, with `--profile black`"
+  },
+  "actions/first-interaction#365": {
+    "body": "From v3.1.0. `issue_message` is a required parameter. Is this expected? I want to use `first-interaction` only for pull requests.\n\n```\nRunning actions/first-interaction!\nfile:///home/runner/work/_actions/actions/first-interaction/v3.1.0/dist/index.js:27041\n\t\t        throw new Error(`Input required and not supplied: ${name}`);\n\t\t              ^\n\nError: Input required and not supplied: issue_message\n    at Object.getInput (file:///home/runner/work/_actions/actions/first-interaction/v3.1.0/dist/index.js:27041:17)\n    at run (file:///home/runner/work/_actions/actions/first-interaction/v3.1.0/dist/index.js:34844:38)\n    at file:///home/runner/work/_actions/actions/first-interaction/v3.1.0/dist/index.js:34917:1\n    at ModuleJob.run (node:internal/modules/esm/module_job:371:25)\n    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:669:26)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)\n```",
+    "html_url": "https://github.com/actions/first-interaction/issues/365",
+    "labels": [],
+    "state": "open",
+    "title": "issue_message is now a required parameter."
+  },
+  "django/channels#2208": {
+    "body": "When running multiple ChannelsLiveServerTestCase tests, the id values of the contenttypes change between test runs, yet the cache is not emptied. So `ContentType.get_for_model(X)` will get the instance from a previous test.\n\nThe only work-around I found was to add the following within the django view itself:\n\n```py\nif 'test' in sys.argv:\n            ContentType.objects.clear_cache()\n```\n\nIt is not enough to add this in the `setUp` or `tearDown` methods of the test, as the test runs in a separate thread and therefore has a separate cache. If someone can tell me how to, I'd very much like to move this to to the test code.\n\nTested with Django 5.2.9 and Django Channels 4.3.2.",
+    "html_url": "https://github.com/django/channels/issues/2208",
+    "labels": [],
+    "state": "open",
+    "title": "ChannelsLiveServerTestCase keeps old ContentType cache between tests"
+  },
+  "django/django#470": {
+    "body": "Also updated 1.5-proper release notes a bit.\n",
+    "html_url": "https://github.com/django/django/pull/470",
+    "labels": [],
+    "state": "closed",
+    "title": "Added release notes for Django 1.5 alpha 1."
+  },
+  "django/django#12529": {
+    "body": "Mostly to make it clear that `params` may be a list or tuple.",
+    "html_url": "https://github.com/django/django/pull/12529",
+    "labels": [],
+    "state": "closed",
+    "title": "Doc'd return values of as_sql() for Func and query expressions."
+  },
+  "django/django#15578": {
+    "body": "#33636 , New Feature for bulk create/update\r\n\r\nWith ModelBulkProcessMixin , We could minimize memory usage.\r\nWithout ModelBulkProcessMixin, We shold maintain bulk array size up to 100_000  or manually maintain arraysize up to batch_size like 10_000\r\n\r\n`       \r\n\r\n        class BulkyModel(models.Model, ModelBulkProcessMixin):\r\n            id = models.BigAutoField(primary_key=True)\r\n            name = models.CharField(max_length=30, null=False)\r\n\r\n        names = [f\"name-{num}\" for num in range(100_100_000)]\r\n\r\n        # Case : Raw bulk_create\r\n        objs = [BulkyModel(name=name) for name in names]\r\n        BulkyModel.objects.bulk_create(\r\n            objs\r\n        )  # We should maintain big array size and this leades to OOM error\r\n\r\n        # Case : Chunked bulk_create\r\n        objs = list()\r\n        for name in names:\r\n            obj = BulkyModel(name=name)\r\n            objs.append(obj)\r\n            if len(objs) > 10_1000:\r\n                BulkyModel.objects.bulk_create(objs)\r\n                objs.clear()\r\n\r\n        if len(objs) > 0:\r\n            BulkyModel.objects.bulk_create(objs)\r\n            objs.clear()\r\n\r\n        # Case : With ModelBulkProcessMixin\r\n        with BulkyModel.gen_bulk_create(batch_size=10_000) as bulk:\r\n            for name in names:\r\n                bulk.add(BulkyModel(name=name))`",
+    "html_url": "https://github.com/django/django/pull/15578",
+    "labels": [],
+    "state": "closed",
+    "title": "#33636 , New Feature for bulk create/update"
+  },
+  "django/django#19221": {
+    "body": null,
+    "html_url": "https://github.com/django/django/pull/19221",
+    "labels": [
+      "no ticket"
+    ],
+    "state": "closed",
+    "title": "Fixed typo in django/core/cache/backends/redis.py comment."
+  },
+  "django/new-features#39": {
+    "body": "### Code of Conduct\n\n- [x] I agree to follow Django's Code of Conduct\n\n### Feature Description\n\nAdd links to popular third-party libraries in the documentation in areas to increase visibility to the third-party ecosystem. The mentions of these libraries should be clear that they are not part of \"Django\" core and may go out of date.\n\n### Problem\n\nThere are too many feature ideas to be incorporated into Django core, but we also need to provide people with pathways to find these packages. By defining a pattern in the documentation that links people to a third-party package or resource to find out more about a relevant component or piece of logic, we make the ecosystem more visible.\n\n### Request or proposal\n\nproposal\n\n### Additional Details\n\nFor quite a bit of time, Django has said no to including links to third-party packages. This started changing with the inclusion of the Django Debug Toolbar in the official tutorial. The current steering council is [working on a community page](https://github.com/django/djangoproject.com/pull/2060) that highlights various aspects of the community, as well as third-party packages, that are popular.\n\nIf we can write the references to these other packages to be clear that they are additional information, not part of django/django and suspect to change because of the nature of open-source, we may be able to get the risk of stale links to an acceptable level.\n\n### Implementation Suggestions\n\nSome initial areas we could get started on:\n- Getting started contributing could mention Djangonaut Space as a resource\n- Getting started contributing could mention Jazzband and Django Commons to find other projects to work on\n- The how to create custom django-admin commands could mention `django-extensions`\n- The reference docs for storages could mention django-storages\n- The production deployment and static files docs could mention `whitenoise`\n- Authentication docs could mention `django-allauth`\n- The permissions docs could mention `django-guardian`\n- The settings topics could mention `python-dotenv` and `django-environ`\n- Sending email could mention `django-anymail`\n- The internationalization and localization could mention `django-modeltranslation`, `django-modeltrans`, `django-rosetta`\n",
+    "html_url": "https://github.com/django/new-features/issues/39",
+    "labels": [
+      "Django Core",
+      "Documentation"
+    ],
+    "state": "open",
+    "title": "Add links to third-party packages in documentation"
+  },
+  "django/new-features#71": {
+    "body": "### Code of Conduct\n\n- [x] I agree to follow Django's Code of Conduct\n\n### Feature Description\n\nDjango's `QuerySet` class currently supports a method called `.first()`, which does the following:\n- Check whether or not the QuerySet instance already specifies a `.order_by(...)`, and if not applies `.order_by(\"pk\")`\n- Returns the first record in the result set if one exists, else `None`.\n\nThis request is to support an additional method to `QuerySet`, `.take()` or `.take_first()`, which does the following:\n- Returns the first record in the result set if one exists, else `None`.\n\nIn other words, it does the same thing as `.first()`, but without forcing an ordering onto the QuerySet.\n\n### Problem\n\nContext copy/pasted from [my post](https://forum.djangoproject.com/t/openness-to-adding-take-as-an-unordered-alt-to-first/42719) in the django forums:\n\n>We recently had an incident at work that was partially due to our use of the `QuerySet.first()` method in scenarios where we want to get the first result of a query, or if one does not exist, just `None`. The problem here is that we don\u2019t actually care about the ordering of the results, but `.first()` will automatically add `.order_by(\u201cpk\u201d)` if the query is not already ordered, and this additional unnecessary ordering caused postgres to incorrectly use the primary key index on our table (due to the order by), rather than using the index relevant to the `.filter(\u2026)` in our query, which led to massively degraded performance in a hotpath.\n\n>So far as I can tell, there are no methods available in `QuerySet` that are equivalent to `.first()`, but unordered, and so to achieve similar functionality, you generally have to write several lines of code instead. This creates a natural incentive to use `.first()` instead of those alternatives (due to the ergonomics), even though it may improperly apply ordering to a query which does not otherwise need or want it.\n\nThe tersest option I have seen here (as mentioned by Jacob Tyler Wells in the forum thread), is `next(iter(qs[:1]), None)`, but I hope the reader will agree that this is significantly less ergonomic than `.take_first()`.\n\n### Request or proposal\n\nproposal\n\n### Additional Details\n\nThe `take`/`take_first` naming is inspired by the `take` method in Ruby on Rails' ActiveRecord ORM: https://api.rubyonrails.org/classes/ActiveRecord/FinderMethods.html#method-i-take\n\nMost other ORMs support getting an unordered first result or null-value across many other languages and frameworks, usually under a `.first()` method:\n- SQLAlchemy: https://docs.sqlalchemy.org/en/20/core/connections.html#sqlalchemy.engine.Result.first\n- Prisma: https://www.prisma.io/docs/orm/reference/prisma-client-reference#findfirst\n- Knex: https://knexjs.org/guide/query-builder.html#first\n\nIn this way, Django is actually divergent from most ORMs other than ActiveRecord in its handling of `.first()`, and is largely alone in its lack of any method for querying for an unordered first result at all. Because of this divergence from most other frameworks, I also propose that the docstring for `QuerySet.first()` be updated to clearly call out the auto-ordering-by-`pk` behavior, and to point developers to `QuerySet.take_first()` if they wish to avoid it.\n\n### Implementation Suggestions\n\nThis is the current code for `QuerySet.first()`:\n\n```py\n    def first(self):\n        \"\"\"Return the first object of a query or None if no match is found.\"\"\"\n        if self.ordered:\n            queryset = self\n        else:\n            self._check_ordering_first_last_queryset_aggregation(method=\"first\")\n            queryset = self.order_by(\"pk\")\n        for obj in queryset[:1]:\n            return obj\n```\n\nI propose adding this code for `QuerySet.take_first()`:\n```py\n    def take_first(self):\n        \"\"\"Return the first object of a query (which may be unordered) or None if no match is found.\"\"\"\n        for obj in self[:1]:\n            return obj\n```\n\nAdditionally, I would propose we simultaneously update the docstring for `QuerySet.first()` like so:\n```py\n    def first(self):\n        \"\"\"\n        Return the first object of a query or None if no match is found.\n        \n        Orders by `pk` if ordering is not already set. Use `take_first` to query without using `order_by`. \n        \"\"\"\n        ...\n```\n\nEdit: Updated to use snake_case rather than camelCase for `.take_first()`, to match conventions properly.",
+    "html_url": "https://github.com/django/new-features/issues/71",
+    "labels": [],
+    "state": "closed",
+    "title": "Add `QuerySet.take()` (or `.take_first()`) as an unordered alternative to `QuerySet.first()`"
+  },
+  "freelawproject/courtlistener#6790": {
+    "body": "## Problem\n\nSearching in `/admin/search/recapdocument/?q=<any_value>` times out in production.\n\n## Investigation Summary\n\n### What works\n- **Admin list view (no search)**: Loads quickly in production\n- **Direct Django shell queries**: Fast\n  ```python\n  RECAPDocument.objects.filter(pk=464673643).count()  # ~0.3s\n  list(RECAPDocument.objects.filter(pk=464673643))    # ~0.6s\n  ```\n\n### What doesn't work\n- **Admin search**: Hangs indefinitely on any search term, regardless of whether the pk exists\n\n### Ruled out\n- **DB query performance**: Shell queries against the same data return quickly\n- **Specific search terms**: All searches hang, not just certain pks\n\n### Current configuration\n\n`RECAPDocumentAdmin` (cl/search/admin.py):\n- Inherits from `CursorPaginatorAdmin` (django-admin-cursor-paginator)\n- `search_fields = (\"pk__exact\",)`\n\n### Tested locally (did not help)\n- Setting `show_query_result_count = False` - hang persists\n\n### Still unknown\n- Exact location in Django admin/CursorPaginatorChangeList where the hang occurs\n- Whether this is related to recent Django 6.0.1 upgrade\n\n## Next steps to try\n- Check postgres for long-running queries during the hang\n- Git bisect to identify when the issue started\n\n## Related\n- RECAPDocumentAdmin also has an N+1 query issue (204 queries on list view due to `__str__` traversing relations) - separate from the search hang but worth fixing with `list_select_related`",
+    "html_url": "https://github.com/freelawproject/courtlistener/issues/6790",
+    "labels": [],
+    "state": "closed",
+    "title": "RECAPDocument admin search times out on any query"
+  },
+  "psycopg/psycopg#1273": {
+    "body": "While looking at the other perf fixes in psycopg, I noticed that our Django app was doing pure-Python `TimestampTzLoader` even when `psycopg-binary` was available. That led me to open https://code.djangoproject.com/ticket/36960 in Django's Trac; see the details there, but the TL;DR is that the psycopg3 support merged in https://github.com/django/django/pull/15687 replaces Django's adapter context's TimestampTzLoader, with one deriving from the pure-Python one.\n\nSince the Cython `TimestamptzLoader` is marked final, one can't derive from it, and Django is (understandably; see Trac) unwilling to use the private `_get_optimised` API to get a reference to the optimised loader; right now, with the private API, one _can_ do something like\n\n```python\nclass TzLoader(TimestamptzLoader):\n    \"\"\"\n    Load a PostgreSQL timestamptz using the a specific timezone.\n    The timezone can be None too, in which case it will be chopped.\n    \"\"\"\n\n    timezone = tz\n    fast_load = None\n\n    def __init__(self, oid, context):\n        super().__init__(oid, context)\n        try:\n            optimised_class = context.adapters._get_optimised(TimestamptzLoader)\n            if optimised_class is not TimestamptzLoader:\n                self.fast_load = optimised_class(oid, context).load\n        except Exception:\n            pass\n\n    def load(self, data):\n        res = (self.fast_load or super().load)(data)\n        return res.replace(tzinfo=self.timezone)\n```\n\nwhich is ugly but does the trick.\n\nTo resolve this: would it make sense for instance for `get_optimised` to be a public, but expert API? \n",
+    "html_url": "https://github.com/psycopg/psycopg/issues/1273",
+    "labels": [],
+    "state": "closed",
+    "title": "Unable to subclass optimised loaders"
+  },
+  "python/cpython#141560": {
+    "body": "# Bug report\n\n### Bug description:\n\n`inspect.getfullargspec` isn't compatible with 3.14 signatures that depend on deferred evaluation of annotations, and doesn't expose an argument to pass through `annotationlib.Format.FORWARDREF` to prevent the failure.\n\n```python\nimport inspect\nfrom typing import TYPE_CHECKING\n\nif TYPE_CHECKING:\n    from collections.abc import Iterable\n\ndef func(a: Iterable):\n    return\n\ninspect.getfullargspec(func)\n```\n\n```py\nTraceback (most recent call last):\n  File \"/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/inspect.py\", line 1261, in getfullargspec\n    sig = _signature_from_callable(func,\n                                   follow_wrapper_chains=False,\n                                   skip_bound_arg=False,\n                                   sigcls=Signature,\n                                   eval_str=False)\n  File \"/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/inspect.py\", line 2502, in _signature_from_callable\n    return _signature_from_function(sigcls, obj,\n                                    skip_bound_arg=skip_bound_arg,\n                                    globals=globals, locals=locals, eval_str=eval_str,\n                                    annotation_format=annotation_format)\n  File \"/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/inspect.py\", line 2325, in _signature_from_function\n    annotations = get_annotations(func, globals=globals, locals=locals, eval_str=eval_str,\n                                  format=annotation_format)\n  File \"/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/annotationlib.py\", line 890, in get_annotations\n    ann = _get_dunder_annotations(obj)\n  File \"/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/annotationlib.py\", line 1059, in _get_dunder_annotations\n    ann = getattr(obj, \"__annotations__\", None)\n  File \"<stdin>\", line 1, in __annotate__\n    def func(a: Iterable):\n                ^^^^^^^^\nNameError: name 'Iterable' is not defined\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"<stdin>\", line 1, in <module>\n    inspect.getfullargspec(func)\n    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^\n  File \"/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/inspect.py\", line 1271, in getfullargspec\n    raise TypeError('unsupported callable') from ex\nTypeError: unsupported callable\n```\n\n***\n\nI know `getfullargspec()` is threatened with deprecation (#108901, #76371), but over at Django we're going to need to build a \"safe\" version of this function (or migrate away from it entirely) unless an upstream patch makes more sense.\n\nI presume that's either:\n- always passing through `annotationlib.Format.FORWARDREF` to inspect.Signature\n- exposing an argument\n\nDefensively always using `FORWARDREF` or similar seems simplest. Happy to provide a PR.\n\n### CPython versions tested on:\n\n3.14\n\n### Operating systems tested on:\n\nmacOS",
+    "html_url": "https://github.com/python/cpython/issues/141560",
+    "labels": [
+      "type-bug",
+      "stdlib",
+      "topic-typing",
+      "3.14",
+      "3.15"
+    ],
+    "state": "open",
+    "title": "`inspect.getfullargspec` isn't ready for deferred evaluation of annotations"
+  },
+  "typeddjango/django-stubs#2697": {
+    "body": "# Bug report\n\nThanks so much for this library! It's invaluable\n\n## What's wrong\n\nI've just updated to version 5.2.0 and am trying to set the new type parameter on `SetPasswordForm` but I'm getting an error at runtime\n\n```\nTraceback (most recent call last):\nFile \"/home/appuser/manage.py\", line 22, in <module>\n  execute_from_command_line(sys.argv)\n  ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^\nFile \"/venv/lib/python3.13/site-packages/django/core/management/__init__.py\", line 442, in execute_from_command_line\n  utility.execute()\n  ~~~~~~~~~~~~~~~^^\nFile \"/venv/lib/python3.13/site-packages/django/core/management/__init__.py\", line 416, in execute\n  django.setup()\n  ~~~~~~~~~~~~^^\nFile \"/venv/lib/python3.13/site-packages/django/__init__.py\", line 24, in setup\n  apps.populate(settings.INSTALLED_APPS)\n  ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^\nFile \"/venv/lib/python3.13/site-packages/django/apps/registry.py\", line 124, in populate\n  app_config.ready()\n  ~~~~~~~~~~~~~~~~^^\nFile \"/venv/lib/python3.13/site-packages/django/contrib/admin/apps.py\", line 27, in ready\n  self.module.autodiscover()\n  ~~~~~~~~~~~~~~~~~~~~~~~~^^\nFile \"/venv/lib/python3.13/site-packages/django/contrib/admin/__init__.py\", line 52, in autodiscover\n  autodiscover_modules(\"admin\", register_to=site)\n  ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFile \"/venv/lib/python3.13/site-packages/django/utils/module_loading.py\", line 58, in autodiscover_modules\n  import_module(\"%s.%s\" % (app_config.name, module_to_search))\n  ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFile \"/usr/local/lib/python3.13/importlib/__init__.py\", line 88, in import_module\n  return _bootstrap._gcd_import(name[level:], package, level)\n         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFile \"<frozen importlib._bootstrap>\", line 1387, in _gcd_import\nFile \"<frozen importlib._bootstrap>\", line 1360, in _find_and_load\nFile \"<frozen importlib._bootstrap>\", line 1331, in _find_and_load_unlocked\nFile \"<frozen importlib._bootstrap>\", line 935, in _load_unlocked\nFile \"<frozen importlib._bootstrap_external>\", line 1026, in exec_module\nFile \"<frozen importlib._bootstrap>\", line 488, in _call_with_frames_removed\nFile \"/home/appuser/accounts/admin.py\", line 9, in <module>\n  from . import forms, models\nFile \"/home/appuser/accounts/forms.py\", line 306, in <module>\n  class SetPasswordForm(auth_forms.SetPasswordForm[User]):\n                        ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nTypeError: type 'SetPasswordForm' is not subscriptable\n```\n\nThis seems to have been discussed here:\nhttps://github.com/typeddjango/django-stubs/pull/2384#discussion_r2072873073\n\nBut I tried the latest version off master and I'm still seeing the error\n\n## How is that should be\n\nThere should be no runtime error!\n\n## System information\n\n- OS: `python:3.13-slim-bookworm` Dockerfile\n- `python` version: 3.13\n- `django` version: 5.1.7\n- `mypy` version: 1.15\n- `django-stubs` version: master\n- `django-stubs-ext` version: master\n",
+    "html_url": "https://github.com/typeddjango/django-stubs/issues/2697",
+    "labels": [
+      "bug"
+    ],
+    "state": "closed",
+    "title": "TypeError: type 'SetPasswordForm' is not subscriptable"
+  },
+  "django/django#21961": {
+    "_not_found": true
+  },
+  "django/django#23395": {
+    "_not_found": true
+  },
+  "django/django#23919": {
+    "_not_found": true
+  },
+  "django/django#24920": {
+    "_not_found": true
+  },
+  "django/django#24928": {
+    "_not_found": true
+  },
+  "django/django#25508": {
+    "_not_found": true
+  },
+  "django/django#27100": {
+    "_not_found": true
+  },
+  "django/django#27222": {
+    "_not_found": true
+  },
+  "django/django#27380": {
+    "_not_found": true
+  },
+  "django/django#27834": {
+    "_not_found": true
+  },
+  "django/django#27890": {
+    "_not_found": true
+  },
+  "django/django#28455": {
+    "_not_found": true
+  },
+  "django/django#28526": {
+    "_not_found": true
+  },
+  "django/django#28877": {
+    "_not_found": true
+  },
+  "django/django#31055": {
+    "_not_found": true
+  },
+  "django/django#33579": {
+    "_not_found": true
+  },
+  "django/django#33647": {
+    "_not_found": true
+  },
+  "django/django#33735": {
+    "_not_found": true
+  },
+  "django/django#33772": {
+    "_not_found": true
+  },
+  "django/django#34118": {
+    "_not_found": true
+  },
+  "django/django#35381": {
+    "_not_found": true
+  },
+  "django/django#35444": {
+    "_not_found": true
+  },
+  "django/django#35535": {
+    "_not_found": true
+  },
+  "django/django#35581": {
+    "_not_found": true
+  },
+  "django/django#35744": {
+    "_not_found": true
+  },
+  "django/django#35809": {
+    "_not_found": true
+  },
+  "django/django#35844": {
+    "_not_found": true
+  },
+  "django/django#35859": {
+    "_not_found": true
+  },
+  "django/django#35875": {
+    "_not_found": true
+  },
+  "django/django#35961": {
+    "_not_found": true
+  },
+  "django/django#35972": {
+    "_not_found": true
+  },
+  "django/django#36005": {
+    "_not_found": true
+  },
+  "django/django#36031": {
+    "_not_found": true
+  },
+  "django/django#36036": {
+    "_not_found": true
+  },
+  "django/django#36128": {
+    "_not_found": true
+  },
+  "django/django#36143": {
+    "_not_found": true
+  },
+  "django/django#36315": {
+    "_not_found": true
+  },
+  "django/django#36382": {
+    "_not_found": true
+  },
+  "django/django#36485": {
+    "_not_found": true
+  },
+  "django/django#36491": {
+    "_not_found": true
+  },
+  "django/django#36494": {
+    "_not_found": true
+  },
+  "django/django#36499": {
+    "_not_found": true
+  },
+  "django/django#36520": {
+    "_not_found": true
+  },
+  "django/django#36526": {
+    "_not_found": true
+  },
+  "django/django#36580": {
+    "_not_found": true
+  },
+  "django/django#36590": {
+    "_not_found": true
+  },
+  "django/django#36595": {
+    "_not_found": true
+  },
+  "django/django#36619": {
+    "_not_found": true
+  },
+  "django/django#36620": {
+    "_not_found": true
+  },
+  "django/django#36644": {
+    "_not_found": true
+  },
+  "django/django#36646": {
+    "_not_found": true
+  },
+  "django/django#36648": {
+    "_not_found": true
+  },
+  "django/django#36652": {
+    "_not_found": true
+  },
+  "django/django#36664": {
+    "_not_found": true
+  },
+  "django/django#36680": {
+    "_not_found": true
+  },
+  "django/django#36705": {
+    "_not_found": true
+  },
+  "django/django#36735": {
+    "_not_found": true
+  },
+  "django/django#36739": {
+    "_not_found": true
+  },
+  "django/django#36743": {
+    "_not_found": true
+  },
+  "django/django#36769": {
+    "_not_found": true
+  },
+  "django/django#36770": {
+    "_not_found": true
+  },
+  "django/django#36789": {
+    "_not_found": true
+  },
+  "django/django#36806": {
+    "_not_found": true
+  },
+  "django/django#36862": {
+    "_not_found": true
+  },
+  "django/django#36879": {
+    "_not_found": true
+  },
+  "django/django#36883": {
+    "_not_found": true
+  },
+  "django/django#36913": {
+    "_not_found": true
+  },
+  "django/django#36926": {
+    "_not_found": true
+  },
+  "django/django#36938": {
+    "_not_found": true
+  },
+  "django/django#36944": {
+    "_not_found": true
+  }
+}

@@ -1,0 +1,712 @@
+{
+  "commercialhaskell/stackage#7838": {
+    "body": "tar-0.7.0.0 ([changelog](http://hackage.haskell.org/package/tar-0.7.0.0/changelog)) (Grandfathered dependencies) is out of bounds for:\n- [x] cabal-flatpak-0.1.2 (>=0.5.0.3 && < 0.7). Henning Thielemann <stackage@henning-thielemann.de> @thielema. Used by: executable\n- [x] cabal-install-3.14.1.1 (>=0.5.0.3 && < 0.7). Mikolaj Konarski <mikolaj.konarski@funktory.com> @Mikolaj, Stackage upper bounds. Used by: library\n- [x] hackage-security-0.6.3.1 (>=0.5 && < 0.7). Andreas Abel <andreas.abel@gu.se> @andreasabel. Used by: library\n- [x] keter-2.2.0 (>=0.6.0.0 && < 0.7). Jappie Klooster <hi@jappie.me> @jappeace. Used by: library\n- [ ] serialise-0.2.6.1 (>=0.4 && < 0.7). Grandfathered dependencies. Used by: benchmark",
+    "html_url": "https://github.com/commercialhaskell/stackage/issues/7838",
+    "labels": [
+      "failure: bounds"
+    ],
+    "state": "closed",
+    "title": "tar 0.7.0.0"
+  },
+  "haskell-actions/setup#136": {
+    "body": "@andreasabel I think the second commit here might be an unintended change, the \"vanilla\" channel is the bindists \"as released by GHC upstream\", which is a change from the default, which provides curated bindists. In particular on the cabal repo this meant a 9.0.2 bindist without profiling libraries was downloaded by CI and caused a test to fail.\r\n\r\n_Originally posted by @mpickering in https://github.com/haskell-actions/setup/issues/132#issuecomment-3729931809_\r\n            ",
+    "html_url": "https://github.com/haskell-actions/setup/issues/136",
+    "labels": [
+      "ghcup"
+    ],
+    "state": "closed",
+    "title": "Remove 'vanilla' from default ghcup channels"
+  },
+  "haskell/alex#288": {
+    "body": "I'm seeing this (on a VM with cabal and ghc but not alex or happy in the path):\n```\n$ cabal install alex\nResolving dependencies...\nBuild profile: -w ghc-9.8.4 -O1\nIn order, the following will be built (use -v for more details):\n - alex-3.5.4.1 (exe:alex) (requires build)\nStarting     alex-3.5.4.1 (exe:alex)\nBuilding     alex-3.5.4.1 (exe:alex)\n\nFailed to build exe:alex from alex-3.5.4.1.\nBuild log (\n/home/lima.linux/.cache/cabal/logs/ghc-9.8.4/alex-3.5.4.1-e-alex-78ebd3bc3335c8530dd239cf41ea71c77b428047bbe16443c765137e9ab70e1c.log\n):\nConfiguring executable 'alex' for alex-3.5.4.1...\nPreprocessing executable 'alex' for alex-3.5.4.1...\nError: [Cabal-4123]\nThe program 'alex' is required but it could not be found\n\nError: [Cabal-7125]\nFailed to build exe:alex from alex-3.5.4.1. See the build log above for details.\n```\n\nThis seems new. At least, until yesterday I never ran into this problem in my CI, and I haven't changed anything. I noticed there was just a release of alex, so I thought it might be related to that, though I don't see relevant changes.\n\nLooking at the alex sdist, it seems that the alex files have been bootstrapped and replaced with relevant .hs files, so alex shouldn't be needed.  alex is needed for the test suite, but this shouldn't run on a regular `cabal install` (and `--disable-tests` doesn't change things). Not sure what is going on here but it is a problem.  Any advice?\n",
+    "html_url": "https://github.com/haskell/alex/issues/288",
+    "labels": [
+      "build / install"
+    ],
+    "state": "closed",
+    "title": "cabal install alex requires alex to be installed (?)"
+  },
+  "haskell/cabal#2015": {
+    "body": "# Description\n\nA change in the PATH environment variable is not visible in cabal repl.\n# Versions\n\nConfirmed in versions:\n- Linux,\n  cabal-install version 1.20.0.3,\n  using version 1.20.0.1 of the Cabal library,\n  ghc 7.6.3,\n- OS X 10.9,\n  cabal-install version 1.18.0.5,\n  ghc 7.8.3\n# Steps to reproduce\n\n```\n$ echo $PATH\n/home/jakobro/.opam/4.01.0/bin:/home/jakobro/.cabal/bin:/home/jakobro/bin:/home/jakobro/.cabal/bin:/home/jakobro/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games\n$ export PATH=$PATH:/tmp\n$ cabal repl\nPrelude> :m Control.Monad System.Environment\nPrelude Control.Monad System.Environment> liftM (lookup \"PATH\") getEnvironment \nJust \"/home/jakobro/.opam/4.01.0/bin:/home/jakobro/.cabal/bin:/home/jakobro/bin:/home/jakobro/.cabal/bin:/home/jakobro/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games\"\n```\n\nThe environment when accessed from cabal repl-based ghci does not reflect the change in the PATH variable.\n\nIt does work with newly created environment variables, though.\n# GHCI\n\nIn pure GHCI everything works fine:\n\n```\n$ echo $PATH\n/home/jakobro/.opam/4.01.0/bin:/home/jakobro/.cabal/bin:/home/jakobro/bin:/home/jakobro/.cabal/bin:/home/jakobro/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/tmp\n$ ghci\nGHCi, version 7.6.3: http://www.haskell.org/ghc/  :? for help\nLoading package ghc-prim ... linking ... done.\nLoading package integer-gmp ... linking ... done.\nLoading package base ... linking ... done.\nPrelude> :m System.Environment Control.Monad\nPrelude System.Environment Control.Monad> liftM (lookup \"PATH\") getEnvironment \nJust \"/home/jakobro/.opam/4.01.0/bin:/home/jakobro/.cabal/bin:/home/jakobro/bin:/home/jakobro/.cabal/bin:/home/jakobro/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/tmp\"\n```\n",
+    "html_url": "https://github.com/haskell/cabal/issues/2015",
+    "labels": [
+      "type: bug",
+      "Cabal: cmd/repl",
+      "cabal-install: cmd/repl",
+      "can-workaround"
+    ],
+    "state": "closed",
+    "title": "cabal repl: Change in PATH environment variable not reflected"
+  },
+  "haskell/cabal#4251": {
+    "body": "I recently ran into a solver error which was due to my index not being sufficiently up to date (I had updated a Git checkout which specified a bound requiring a version of a package which did not exist at all). Here's the message I got:\r\n\r\n```\r\ncabal: Could not resolve dependencies:\r\ntrying: cabal-testsuite-1.25.0.0 (user goal)\r\nnext goal: aeson (dependency of cabal-testsuite-1.25.0.0)\r\nrejecting: aeson-1.0.2.1, aeson-1.0.2.0, aeson-1.0.1.0, aeson-1.0.0.0,\r\naeson-0.11.2.1, aeson-0.11.2.0, aeson-0.11.1.4, aeson-0.11.1.3,\r\naeson-0.11.1.2, aeson-0.11.1.1, aeson-0.11.1.0, aeson-0.11.0.0, aeson-0.9.0.1,\r\naeson-0.9.0.0, aeson-0.8.1.1, aeson-0.8.1.0, aeson-0.8.0.2, aeson-0.7.0.6,\r\naeson-0.7.0.4, aeson-0.6.2.1, aeson-0.6.2.0, aeson-0.6.1.0, aeson-0.6.0.2,\r\naeson-0.6.0.1, aeson-0.6.0.0, aeson-0.5.0.0, aeson-0.4.0.1, aeson-0.4.0.0,\r\naeson-0.3.2.14, aeson-0.3.2.13, aeson-0.3.2.12, aeson-0.3.2.11,\r\naeson-0.3.2.10, aeson-0.3.2.9, aeson-0.3.2.8, aeson-0.3.2.7, aeson-0.3.2.6,\r\naeson-0.3.2.5, aeson-0.3.2.4, aeson-0.3.2.3, aeson-0.3.2.2, aeson-0.3.2.1,\r\naeson-0.3.2.0, aeson-0.3.1.1, aeson-0.3.1.0, aeson-0.3.0.0, aeson-0.2.0.0,\r\naeson-0.1.0.0, aeson-0.10.0.0, aeson-0.8.0.1, aeson-0.8.0.0, aeson-0.7.0.5,\r\naeson-0.7.0.3, aeson-0.7.0.2, aeson-0.7.0.1, aeson-0.7.0.0 (conflict:\r\ncabal-testsuite => aeson==1.1.*)\r\nAfter searching the rest of the dependency tree exhaustively, these were the\r\ngoals I've had most trouble fulfilling: cabal-testsuite (65), aeson (57)\r\n```\r\n\r\nIn terms of \"information communicated to me\", this is totally backwards. Here are the important pieces of information I want to know:\r\n\r\n* What my constraint is, and where it came from (`cabal-testsuite => aeson==1.1.*`)\r\n* That there doesn't exist any version of aeson which fulfills this constraint. I don't need a list of every version in the index",
+    "html_url": "https://github.com/haskell/cabal/issues/4251",
+    "labels": [
+      "type: enhancement",
+      "cabal-install: solver"
+    ],
+    "state": "open",
+    "title": "Solver \"rejecting\" message is too verbose"
+  },
+  "haskell/cabal#4548": {
+    "body": "Simple way to reproduce this:\r\n\r\n```\r\n$ cabal get network-2.6.3.2 && cd network-2.6.3.2/\r\n$ cabal new-build --enable-tests -j4 all\r\nResolving dependencies...\r\nIn order, the following will be built (use -v for more details):\r\n - network-2.6.3.2 {network-2.6.3.2-inplace} (lib) (first run)\r\n - network-2.6.3.2 {network-2.6.3.2-inplace-doctest} (test:doctest) (first run)\r\n - network-2.6.3.2 {network-2.6.3.2-inplace-simple} (test:simple) (first run)\r\n - network-2.6.3.2 {network-2.6.3.2-inplace-regression} (test:regression) (first run)\r\nConfiguring library for network-2.6.3.2..\r\nConfiguring test suite 'doctest' for network-2.6.3.2..\r\nconfigure: WARNING: unrecognized options: --with-compiler\r\nconfigure: WARNING: unrecognized options: --with-compiler\r\nchecking build system type... checking build system type... x86_64-pc-linux-gnu\r\nchecking host system type... x86_64-pc-linux-gnu\r\nchecking for gcc... /usr/bin/gcc\r\nchecking whether the C compiler works... x86_64-pc-linux-gnu\r\nchecking host system type... x86_64-pc-linux-gnu\r\nchecking for gcc... /usr/bin/gcc\r\nchecking whether the C compiler works... no\r\nconfigure: error: in `/tmp/network-2.6.3.2':\r\nconfigure: error: C compiler cannot create executables\r\nSee `config.log' for more details\r\nno\r\nsed: can't read conftest.c: No such file or directory\r\nconfigure: error: in `/tmp/network-2.6.3.2':\r\nconfigure: error: C compiler cannot create executables\r\nSee `config.log' for more details\r\ncabal: Failed to build network-2.6.3.2 (which is required by test:simple from\r\nnetwork-2.6.3.2 and test:regression from network-2.6.3.2). The failure\r\noccurred during the configure step. The build process terminated with exit\r\ncode 77\r\nFailed to build test:doctest from network-2.6.3.2. The failure occurred during\r\nthe configure step. The build process terminated with exit code 77\r\n```\r\n\r\nNotice how `configure` is invoked simultaneously for the `lib` and `test:doctest` component, finally resulting in two `configure`-runs corrupting each other.\r\n\r\nThis would be fine for non-local per-component builds, but local builds of local per-components share a common work-folder where `configure` operates, so this is redundant work (as all `configure` invocations are supposed to have the same result -- NB: `.buildinfo` files are often generated by those which the subsequent build-process depends upon!) and more importantly causes actual failures.\r\n\r\n/cc @ezyang\r\n",
+    "html_url": "https://github.com/haskell/cabal/issues/4548",
+    "labels": [
+      "type: bug",
+      "blocked: needs reproducer"
+    ],
+    "state": "closed",
+    "title": "`configure` phases of `build-type:configure` replicated for multiple components for local builds"
+  },
+  "haskell/cabal#5124": {
+    "body": "* Cabal-1.24.2.0\r\n* cabal-install:\r\n    ```\r\n    cabal-install version 2.0.0.0\r\n    compiled using version 2.0.0.2 of the Cabal library\r\n    ```\r\n* NixOS 17.09\r\n\r\nUsing the bar.cabal and Bar.hs as listed at https://www.haskell.org/cabal/users-guide/developing-packages.html#example-package-using-detailed-0-9-interface\r\n\r\nThis is what I get:\r\n\r\n```\r\n$ cabal configure --enable-tests; cabal build; cabal test\r\nResolving dependencies...\r\nConfiguring bar-1.0...\r\nPreprocessing test suite 'test-bar' for bar-1.0..\r\nBuilding test suite 'test-bar' for bar-1.0..\r\n[1 of 1] Compiling Main             ( dist/build/test-barStub/test-barStub-tmp/test-barStub.hs, dist/build/test-barStub/test-barStub-tmp/Main.o )\r\nLinking dist/build/test-barStub/test-barStub ...\r\nPreprocessing test suite 'test-bar' for bar-1.0..\r\nBuilding test suite 'test-bar' for bar-1.0..\r\n[1 of 1] Compiling Main             ( dist/build/test-barStub/test-barStub-tmp/test-barStub.hs, dist/build/test-barStub/test-barStub-tmp/Main.o )\r\nLinking dist/build/test-barStub/test-barStub ...\r\nRunning 1 test suites...\r\nTest suite test-bar: RUNNING...\r\nPrelude.read: no parse\r\n```",
+    "html_url": "https://github.com/haskell/cabal/issues/5124",
+    "labels": [
+      "type: bug",
+      "documentation",
+      "Cabal: cmd/test"
+    ],
+    "state": "closed",
+    "title": "Documented example of detailed-0.9 test-suite has runtime error"
+  },
+  "haskell/cabal#5932": {
+    "body": "Running `cabal gen-bounds` will give bounds for the library in my .cabal file. I would also like to see additional bounds for the executables, test-suites and benchmarks.",
+    "html_url": "https://github.com/haskell/cabal/issues/5932",
+    "labels": [
+      "type: enhancement",
+      "cabal-install: cmd/gen-bounds"
+    ],
+    "state": "closed",
+    "title": "gen-bounds for more than library stanzas"
+  },
+  "haskell/cabal#6186": {
+    "body": "I use `plan.json` to generate Flatpak manifests. Flatpak expects immutable sources fixed by hashes, e.g.:\r\n\r\n~~~~\r\n{\r\n  \"url\": \"https://hackage.haskell.org/package/integer-logarithms-1.0.3/integer-logarithms.cabal\",\r\n  \"type\": \"file\",\r\n  \"sha256\": \"21cdc5661958a703303d2b430220908db8c2c42dbc58db0d7baac1d171f31768\"\r\n}\r\n~~~~\r\n\r\nHowever, the Cabal file may change due to an update to the Cabal file. Thus I would actually need to specifiy the URL:\r\n    https://hackage.haskell.org/package/integer-logarithms-1.0.3/revision/1.cabal\r\n\r\nBut `plan.json` does not tell the revision where its `pkg-cabal-sha256` refers to.\r\nPlease add the revision number to `plan.json`.\r\nOr is there an easy way to retrieve this information from 01-index.tar and friends?",
+    "html_url": "https://github.com/haskell/cabal/issues/6186",
+    "labels": [
+      "type: enhancement",
+      "re: pvp"
+    ],
+    "state": "closed",
+    "title": "plan.json should contain the Hackage revision number"
+  },
+  "haskell/cabal#7192": {
+    "body": "Consider the following snippet:\r\n```\r\nlibrary test\r\n  hs-source-dirs: test\r\n  signatures:     Signature\r\n```\r\n\r\nif instead, the user mistakenly created a signature `test/SigTypo.hsig`, cabal will give the uninformative error\r\n\r\n```\r\ncabal: Error: Could not find module: Signature with any suffix:\r\n[\"gc\",\"chs\",\"hsc\",\"x\",\"y\",\"ly\",\"cpphs\",\"hs\",\"lhs\",\"hsig\",\"lhsig\"]. If the\r\nmodule is autogenerated it should be added to 'autogen-modules'.\r\n```\r\n\r\nSurely some more information could be given? Compare this to the error messages for missing `main-is` files:\r\n```\r\ncabal-3.2.0.0: can't find source for ExecTypo in dir\r\n\r\ncabal: repl failed for exe:runner from project-0.1.0.0.\r\n```\r\nand for missing modules:\r\n```\r\ncabal-3.2.0.0: can't find source for LibTypo in dir,\r\n```\r\n\r\nAlso, some highlighting to make the errors pop out from the informational output would be nice.",
+    "html_url": "https://github.com/haskell/cabal/issues/7192",
+    "labels": [
+      "type: enhancement",
+      "cabal-install: Backpack"
+    ],
+    "state": "open",
+    "title": "Error message for missing signatures is unclear"
+  },
+  "haskell/cabal#7401": {
+    "body": "The error message claims there is no .cabal file nor a cabal.project,\r\nwhen in fact they both exist.\r\n\r\n```\r\nVerse$ cabal --version\r\ncabal-install version 3.4.0.0\r\ncompiled using version 3.4.0.0 of the Cabal library\r\nVerse$ cabal build\r\nWarning: There are no packages or optional-packages in the project\r\ncabal.exe: There is no <pkgname>.cabal package file or cabal.project file. To\r\nbuild packages locally you need at minimum a <pkgname>.cabal file. You can use\r\n'cabal init' to create one.\r\n\r\nFor non-trivial projects you will also want a cabal.project file in the root\r\ndirectory of your project. This file lists the packages in your project and\r\nall other build configuration. See the Cabal user guide for full details.\r\n\r\nVerse$ ls -l\r\ntotal 14\r\n-rw-r--r-- 1 lennart.augustsson Domain Users   14 May 18 17:18 cabal.project\r\n-rw-r--r-- 1 lennart.augustsson Domain Users  113 May 18 16:33 CHANGELOG.md\r\ndrwxr-xr-x 1 lennart.augustsson Domain Users    0 May 18 15:39 dist-newstyle\r\ndrwxr-xr-x 1 lennart.augustsson Domain Users    0 May 18 17:12 src\r\n-rw-r--r-- 1 lennart.augustsson Domain Users 1305 May 18 17:15 Verse.cabal\r\n```\r\n",
+    "html_url": "https://github.com/haskell/cabal/issues/7401",
+    "labels": [
+      "type: bug",
+      "attention: pr-welcome",
+      "re: error-message"
+    ],
+    "state": "closed",
+    "title": "Misleading error message when `cabal.project` does not have `packages` field"
+  },
+  "haskell/cabal#7481": {
+    "body": "Include the `cabal-install-solver` test suit introduced by https://github.com/haskell/cabal/pull/7473 in CI run unit tests.",
+    "html_url": "https://github.com/haskell/cabal/issues/7481",
+    "labels": [
+      "cabal-install: solver",
+      "attention: pr-welcome"
+    ],
+    "state": "closed",
+    "title": "Include new cabal-install-solver test suit in CI run tests"
+  },
+  "haskell/cabal#7899": {
+    "body": "PR is welcome to (see the \"Initial description\" below if you need more detail on the issue)\n\n1. inline the list of known programs that you can get from `cabal v1-build --help` (see the very bottom) [into the docs](https://cabal.readthedocs.io/en/3.16/setup-commands.html#cmdoption-runhaskell-Setup.hs-configure-with-PROG),\n\n2. add a NOTE on `builtinPrograms` (https://github.com/haskell/cabal/blob/f83f91edf4b237d34fd910fa9af37429ddd9ddaa/Cabal/src/Distribution/Simple/Program/Builtin.hs#L66-L94) to update that place of the docs if this list is updated (I confirmed that what v1-build prints it takes from this list).\n\n---\n\nInitial description:\n\nI'm unable to locate list of programs for which executables and options can be supplied via e.g. `cabal configure --with-gcc=... --with-gcc-options=...`.\n\nThe manual at https://cabal.readthedocs.io/en/latest/setup-commands.html?highlight=--with-prog#cmdoption-runhaskell-Setup.hs-configure-with-prog directs to use `cabal install --help`. But there's no such info there:\n```\n$ cabal --version\ncabal-install version 3.7\ncompiled using version 3.7.0.0 of the Cabal library \n$ cabal install --help\n...\n --with-PROG=PATH               give the path to PROG\n --PROG-option=OPT              give an extra option to PROG (no need to quote\n                                options containing spaces)\n --PROG-options=OPTS            give extra options to PROG\n...\n```\n\nThere's mention that it is possible but list of programs is nowhere to be found. For instance,`cabal install --help | awk '/gcc|alex/'` returns nothing but shouldn't since `--with-gcc` and `--with-alex` are accepted options so they should've been mentioned somewhere.\n\nNow, I can find list of programs at `~/.cabal/config` but that's probably not the way to do it. Perhaps the list should be enumerated in the Cabal User Guide?",
+    "html_url": "https://github.com/haskell/cabal/issues/7899",
+    "labels": [
+      "type: enhancement",
+      "type: user-question",
+      "documentation",
+      "re: --with-compiler"
+    ],
+    "state": "closed",
+    "title": "Document which programs can be overridden with flags like --with-gcc"
+  },
+  "haskell/cabal#8283": {
+    "body": "E.g. in the root of this repo:\r\n```\r\ncabal[master]$ cabal outdated\r\nError: cabal: No cabal file found.\r\nPlease create a package description file <pkgname>.cabal\r\n```\r\n\r\nIt would be helpful if `cabal outdated` could also deal with a `cabal.project` file (instead of `.cabal` files only), similar to `cabal build` etc.  It could list the outdated dependencies for all packages mentioned in `cabal.project` (grouped per package).\r\n",
+    "html_url": "https://github.com/haskell/cabal/issues/8283",
+    "labels": [
+      "type: enhancement",
+      "cabal-install: cmd/outdated",
+      "re: project-file"
+    ],
+    "state": "closed",
+    "title": "Extend `cabal outdated` to multi-package"
+  },
+  "haskell/cabal#8419": {
+    "body": "Successful test runs cause error annotations in Github Actions, making it easy to miss actual problems with the CI.\r\n\r\nE.g. here https://github.com/haskell/cabal/actions/runs/2904212306\r\n<img width=\"592\" alt=\"Screenshot 2022-08-22 at 16 13 38\" src=\"https://user-images.githubusercontent.com/132113/185942734-0c388939-f1ad-4308-b43d-4b4a270ab035.png\">\r\n\r\nRaw log output shows this:\r\n\r\n```\r\n2022-08-22T13:41:09.8074706Z Main.hs:1:8: error: Variable not in scope: thisNameDoesNotExist\r\n2022-08-22T13:41:09.8075066Z   |\r\n2022-08-22T13:41:09.8075443Z 1 | main = thisNameDoesNotExist\r\n2022-08-22T13:41:09.8075680Z   |        ^^^^^^^^^^^^^^^^^^^^\r\n2022-08-22T13:41:24.6900541Z \r\n2022-08-22T13:41:24.6928686Z P.hs:4:5: error:\r\n2022-08-22T13:41:24.6957177Z ##[error]    Variable not in scope: this_is_not_expected_to_compile :: Int\r\n2022-08-22T13:41:24.6968223Z   |\r\n2022-08-22T13:41:24.6968691Z 4 | p = this_is_not_expected_to_compile\r\n2022-08-22T13:41:24.6968952Z   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n2022-08-22T13:41:27.8968239Z \r\n2022-08-22T13:41:27.8990740Z P.hs:4:5: error:\r\n2022-08-22T13:41:27.8992090Z ##[error]    Variable not in scope: this_is_not_expected_to_compile :: Int\r\n2022-08-22T13:41:27.8992957Z   |\r\n2022-08-22T13:41:27.8993344Z 4 | p = this_is_not_expected_to_compile\r\n2022-08-22T13:41:27.8993685Z   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n2022-08-22T13:41:37.6667032Z \r\n2022-08-22T13:41:37.6670365Z Q.hs:3:1: error:\r\n2022-08-22T13:41:37.6672015Z ##[error]    Could not load module \u2018P\u2019\r\n2022-08-22T13:41:37.6677914Z     It is a member of the hidden package \u2018p-0.1\u2019.\r\n2022-08-22T13:41:37.6679288Z     Perhaps you need to add \u2018p\u2019 to the build-depends in your .cabal file.\r\n2022-08-22T13:41:37.6680249Z     It is a member of the hidden package \u2018p-0.1\u2019.\r\n2022-08-22T13:41:37.6680990Z     Perhaps you need to add \u2018p\u2019 to the build-depends in your .cabal file.\r\n2022-08-22T13:41:37.6681451Z     Use -v (or `:set -v` in ghci) to see a list of the files searched for.\r\n2022-08-22T13:41:37.6681684Z   |\r\n2022-08-22T13:41:37.6681864Z 3 | import P\r\n2022-08-22T13:41:37.6682047Z   | ^^^^^^^^\r\n2022-08-22T13:41:49.4512830Z \r\n2022-08-22T13:41:49.4535576Z All 31 tests passed (129.89s)\r\n2022-08-22T13:41:49.4817071Z ^[[0;32m<<< **/integration-tests2 -j1 --hide-successes --with-ghc=ghc ^[[0m (130/321 sec)\r\n2022-08-22T13:41:49.4817596Z \r\n2022-08-22T13:41:49.4853596Z ##[group]Run sh validate.sh $FLAGS -s cli-suite\r\n2022-08-22T13:41:49.4854431Z ^[[36;1msh validate.sh $FLAGS -s cli-suite^[[0m\r\n2022-08-22T13:41:49.4916107Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}\r\n2022-08-22T13:41:49.4916326Z env:\r\n2022-08-22T13:41:49.4916512Z   GHC_FOR_RELEASE: 9.2.3\r\n2022-08-22T13:41:49.4916825Z   GHC_FOR_SOLVER_BENCHMARKS: 9.2.3\r\n2022-08-22T13:41:49.4917054Z   GHC_FOR_COMPLETE_HACKAGE_TESTS: 9.2.3\r\n2022-08-22T13:41:49.4917273Z   COMMON_FLAGS: -j 2 -v\r\n2022-08-22T13:41:49.4917458Z   FLAGS: -j 2 -v\r\n2022-08-22T13:41:49.4917642Z ##[endgroup]\r\n2022-08-22T13:41:49.5506766Z ^[[0;96m=== cabal-install: cabal-testsuite ============================= 13:41:49 ===^[[0m\r\n```\r\n\r\nThe `##[error]` markup seems to be involved. No idea where it comes from, it doesn't seem to be as simple as any `error:` or just stderr output causing this, compare the `thisNameDoesNotExist` line which doesn't cause an annotation.",
+    "html_url": "https://github.com/haskell/cabal/issues/8419",
+    "labels": [
+      "continuous-integration"
+    ],
+    "state": "closed",
+    "title": "ci: github action error annotations despite passing tests"
+  },
+  "haskell/cabal#9115": {
+    "body": "## Proposal\r\n\r\nWe already have:\r\n- `--ghc-options` specifies options that are used for compilation.\r\n- `--with-ghc` specifies the executable that is used for compilation.\r\n- `--repl-options` specifies options that are used when opening a REPL.\r\n\r\nIn addition to those, I would love to see:\r\n\r\n- `--with-repl` specifies the executable that is used when  opening a REPL.\r\n\r\n\r\n## Motivation\r\n This can be useful  for running arbitrary tools that  require  the same command line options  as `ghci`.\r\n\r\nPersonally, I want to use this with `doctest`?\r\n\r\nAs of now, the way I recommend to run `doctest` with `cabal` is:\r\n\r\n    $ cabal repl --with-ghc=doctest\r\n\r\nFor this to this work, `doctest` has to proxy all invocations to `ghc`, unless it sees `--interactive`, at which point it takes over.\r\n\r\nThis mostly works, but has the following issues:\r\n\r\n1. The need for `doctest` to proxy invocations to `ghc` complicates `doctest`.  While `doctest` could technically be agnostic to  command  line  options, it currently has to look at them to decide whether to proxy the invocation, or whether to start an API session and `ghci` to do its thing .\r\n1. Some packages (notably `ghc-paths`) will be broken when they are built with `doctest` proxying to `ghc`. For that reason, a user needs to take great care to ensure that any such packages have already been  built before they invoke `doctest` in such a manner.\r\n\r\n`--with-repl` will address those issues.",
+    "html_url": "https://github.com/haskell/cabal/issues/9115",
+    "labels": [
+      "type: enhancement",
+      "priority: high :fire:",
+      "cabal-install: cmd/repl",
+      "re: --with-repl"
+    ],
+    "state": "closed",
+    "title": "Feature request: Add `--with-repl` option"
+  },
+  "haskell/cabal#9694": {
+    "body": "`Distribution.Simple.Haddock.haddockPackagePaths` currently has (extract):\r\n~~~haskell\r\n      warning =\r\n        \"The documentation for the following packages are not \"\r\n          ++ \"installed. No links will be generated to these packages: \"\r\n          ++ intercalate \", \" (map prettyShow missing)\r\n~~~\r\n\r\nThe use of the `The` in `The documentation` implies that documentation exists but is not installed. In fact, the message is also generated when a package has no Haddock documentation for legitimate reasons (for example see the `mtl-compat` package, which can expose no modules for legitimate reasons).\r\n\r\nI suggest this message should be re-phrased, as follows:\r\n~~~haskell\r\n      warning =\r\n        \"The following packages have no Haddock documentation \"\r\n          ++ \"installed. No links will be generated to these packages: \"\r\n          ++ intercalate \", \" (map prettyShow missing)\r\n~~~\r\n\r\nI will raise a pull request, accordingly.",
+    "html_url": "https://github.com/haskell/cabal/issues/9694",
+    "labels": [
+      "type: bug",
+      "needs triage"
+    ],
+    "state": "closed",
+    "title": "Warning when no Haddock documentation installed could be rephrased, for accuracy"
+  },
+  "haskell/cabal#9734": {
+    "body": "Here's the warning\r\n\r\nhttps://github.com/haskell/cabal/blob/3a275e5c7758372780fb1ad3247aa7c2d1297d31/Cabal/src/Distribution/Simple/GHC.hs#L164-L174\r\n\r\nThe rationale is that our release sync method with GHC releases has changed and now Cabal is supposed to release a new version *before* GHC releases theirs and so we can't easily test that the new GHC works fine with the new cabal release. What we and the fine GHC folk can do is analyse the API and make the best effort and then be on a lookup for problems. That makes this warning much weaker than it was before (or rather, the lack of the warning gives much weaker guarantees than if GHC was in CI before the warning is enabled for a given GHC version). So I'd propose to show it only at verbosity one notch higher than the default. We also had a case where we needed to do a lightning fixup release only to silence the warning, because it's so spammy and that's not a good use of cabal maintainer time and sanity.\r\n\r\nThoughts? Related: https://github.com/haskell/cabal/issues/9729",
+    "html_url": "https://github.com/haskell/cabal/issues/9734",
+    "labels": [
+      "type: discussion",
+      "release",
+      "type: RFC",
+      "re: version",
+      "re: warnings"
+    ],
+    "state": "closed",
+    "title": "Don't show the \"Unknown/unsupported 'ghc' version detected\" warning at default verbosity"
+  },
+  "haskell/cabal#10170": {
+    "body": "The current logic says\r\n\r\n```\r\ncompilerAbiTag :: AbiTag\r\n      compilerAbiTag = maybe NoAbiTag AbiTag (Map.lookup \"Project Unit Id\" ghcInfoMap >>= stripPrefix (prettyShow compilerId <> \"-\"))\r\n```\r\n\r\nIf we look at `ghc --info` for a development build of GHC then we see..\r\n\r\n```\r\n(\"Project Unit Id\",\"ghc-9.11-inplace\")\r\n```\r\n\r\nbut the version is reported as\r\n\r\n```\r\nThe Glorious Glasgow Haskell Compilation System, version 9.11.20240612\r\n```\r\n\r\nSo the call to `stripPrefix` will fail and no ABI tag will be used because the `Project Unit Id` is not prefixed by `ghc-9.11.20240612`.\r\n\r\nPerhaps a more robust but confusing tactic is to hash the contents of `Project Unit Id` rather than attempting to parse it.",
+    "html_url": "https://github.com/haskell/cabal/issues/10170",
+    "labels": [
+      "type: bug",
+      "needs triage"
+    ],
+    "state": "closed",
+    "title": "cabal accidentally doesn't include abi hash for development compilers"
+  },
+  "haskell/cabal#10181": {
+    "body": "**Describe the bug**\r\n\r\nLoading mutliple components where one reexports a module from the other one fails with:\r\n```\r\ncabal repl io-classes:io-classes io-classes:strict-stm \r\nResolving dependencies...\r\nBuild profile: -w ghc-9.8.2 -O1\r\nIn order, the following will be built (use -v for more details):\r\n - io-classes-1.5.0.0 (interactive) (lib) (configuration changed)\r\n - io-classes-1.5.0.0 (interactive) (lib:strict-stm) (configuration changed)\r\nConfiguring library for io-classes-1.5.0.0...\r\nPreprocessing library for io-classes-1.5.0.0...\r\nConfiguring library 'strict-stm' for io-classes-1.5.0.0...\r\nPreprocessing library 'strict-stm' for io-classes-1.5.0.0...\r\nGHCi, version 9.8.2: https://www.haskell.org/ghc/  :? for help\r\nCommand is not supported (yet) in multi-mode\r\nCommand is not supported (yet) in multi-mode\r\nCommand is not supported (yet) in multi-mode\r\nCommand is not supported (yet) in multi-mode\r\nCommand is not supported (yet) in multi-mode\r\nCommand is not supported (yet) in multi-mode\r\nCommand is not supported (yet) in multi-mode\r\nLoaded GHCi configuration from /home/coot/.ghci\r\n\r\n<no location info>: error: [GHC-68286]\r\n    Modules are listed as reexported in options for \u2018io-classes-1.5.0.0-inplace-strict-stm\u2019 but can't be found in any dependency:\r\n        Control.Concurrent.Class.MonadSTM.Strict.TSem\r\n\r\n```\r\n\r\n**To Reproduce**\r\nThis can be reproduced using `coot/io-classes` branch of the [input-output-hk/io-sim](https://github.com/input-output-hk/io-sim/tree/coot/io-classes) repo. If `reexported-modules` in `strict-stm` package is removed from the `io-classes.cabal` file the session is loaded.\r\n\r\n\r\n**System information**\r\n - `cabal-3.12.1.0`\r\n - `ghc-9.8.2`\r\n\r\n",
+    "html_url": "https://github.com/haskell/cabal/issues/10181",
+    "labels": [
+      "type: bug",
+      "blocked: ghc",
+      "needs triage",
+      "re: multi-repl"
+    ],
+    "state": "closed",
+    "title": "Multi-repl doesn't support renaming of reexported modules"
+  },
+  "haskell/cabal#10295": {
+    "body": "**Describe the feature request**\r\n\r\nMake cabal check reject packages when source distribution contains files with invalid names on any operating system. For example `aux` is not valid on Windows (and Windows file systems are case insensitive)., so e.g. module `Foo.Aux.Helpers`  or `Language.Con`, `Foreign.Nul` are a bad idea.\r\n\r\n**Additional context**\r\n\r\nI think calling explicitly, `System.FilePath.Posix.isValid` **and** `System.FilePath.Windows.isValid` would be enough.\r\n",
+    "html_url": "https://github.com/haskell/cabal/issues/10295",
+    "labels": [
+      "type: enhancement",
+      "cabal-install: cmd/check"
+    ],
+    "state": "closed",
+    "title": "Make cabal check reject packages with invalid file names"
+  },
+  "haskell/cabal#10706": {
+    "body": "If I have\r\n\r\n```\r\npackages:   indexed-traversable\r\npackages:   indexed-traversable-instances\r\nif impl(ghc <9.12)\r\n  tests: False\r\n  packages: indexed-traversable-benchmarks\r\n\r\ntests:      True\r\nbenchmarks: True\r\n```\r\n\r\nit seems that with GHC-9.10 (i.e. when conditional is true), the tests are turned off, even lexically `tests: True` comes later.\r\n\r\nThis is consistent with how conditionals work in `.cabal` files (conditional sections processed as if they appear last), but it's **undocumented** in https://cabal.readthedocs.io/en/3.12/cabal-project-description-file.html#conditionals-and-imports so I report this as a bug.",
+    "html_url": "https://github.com/haskell/cabal/issues/10706",
+    "labels": [
+      "type: bug",
+      "documentation"
+    ],
+    "state": "closed",
+    "title": "Document how conditionals in project files work, processed in order or not?"
+  },
+  "haskell/cabal#10717": {
+    "body": "**Describe the bug**\r\n\r\nWhen building the mentioned versions of alex and happy with `--enable-tests` via `Setup.hs` and Cabal 3.14, `Setup.hs test` will yield a lot of errors like this and ultimately fail. This is a regression, as downgrading to Cabal 3.12 solves the issue. `v1-test` is also affected, but `v2-test` works as it should.\r\n\r\n```\r\n../dist/build/happy/happy --strict -agc issue91.y -o issue91.agc.hs\r\nhappy: Uncaught exception ghc-internal:GHC.Internal.IO.Exception.IOException:\r\n\r\ndata//HappyTemplate-arrays-coerce: openFile: does not exist (No such file or directory)\r\n\r\nHasCallStack backtrace:\r\n  ioError, called at libraries/ghc-internal/src/GHC/Internal/Foreign/C/Error.hs:291:5 in ghc-internal:GHC.Internal.Foreign.C.Error\r\n\r\nmake: *** [Makefile:74: issue91.agc.hs] Error 1\r\n```\r\n\r\nThis is pretty annoying since alex and happy are used to build Cabal, so it's best to be able to use the GHC bundled version.\r\n\r\n**To Reproduce**\r\n\r\nFor `v1-test`:\r\n\r\n1. `cabal get happy-1.20.1.1 && cd happy*`\r\n2. `cabal v1-test` \r\n\r\nFor `Setup.hs`:\r\n\r\n- Use `Setup.hs` to build the mentioned alex/happy versions and run their tests using GHC 9.12.1 and the version of Cabal it ships.\r\n- You can use Nix to reproduce it a bit easier, just build `Cabal_3_14.alex`, `Cabal_3_14.happy` for the error and\r\n  observe that the same builds work in the `Cabal_3_12` set.\r\n\r\n```nix\r\n{ pkgs ? import (builtins.fetchTarball {\r\n    url = \"https://github.com/sternenseemann/nixpkgs/archive/263f0a1f6557b6849a4ae83e8f391efe9b289ab3.tar.gz\";\r\n    sha256 = \"0xqdd6cch8fg5zghknvvxy4kpxz2fimn8czci6clj2p8r1qvwj7r\";\r\n  }) { }\r\n}:\r\n\r\nwith pkgs;\r\nwith haskell.lib.compose;\r\n\r\nlet\r\n  hpkgs = haskell.packages.ghc9121;\r\nin\r\n\r\nrec {\r\n  Cabal_3_14 = {\r\n    inherit (hpkgs) alex happy;\r\n  };\r\n\r\n  Cabal_3_12 = lib.mapAttrs (_: drv: overrideCabal {\r\n    preCompileBuildDriver = ''\r\n      export setupCompileFlags=\"-ignore-package Cabal-3.14.1.0 $setupCompileFlags\";\r\n    '';\r\n    setupHaskellDepends = [\r\n      # We still need alex and happy to build Cabal-syntax to get Cabal-3.12\r\n      ((hpkgs.override {\r\n        overrides = self: super: { alex = dontCheck super.alex; happy = dontCheck super.happy; };\r\n      }).Cabal_3_12_1_0)\r\n    ];\r\n  } (drv.override {\r\n    ${if drv.pname == \"alex\" then \"happy\" else null} = Cabal_3_12.happy;\r\n  })) Cabal_3_14;\r\n}\r\n```\r\n\r\n**Expected behavior**\r\nThe tests succeed.\r\n\r\n**System information**\r\n - NixOS\r\n - Cabal 3.14.1.0, GHC 9.12.1\r\n\r\n**Additional context**\r\n\r\nSince this happens in the test suite which is executed from a subdirectory of the main project, it seems to me that Cabal stopped setting the `happy_datadir` and `alex_datadir` environment variables in `test`. This is just a hunch though, I haven't tried to verify it yet since someone here probably knows whether this changed or not.\r\n\r\n",
+    "html_url": "https://github.com/haskell/cabal/issues/10717",
+    "labels": [
+      "type: bug",
+      "data-files",
+      "regression in 3.14"
+    ],
+    "state": "closed",
+    "title": "Regression: Cabal-3.14.1.0: v1-test, Setup.hs test: test suites of alex-3.4.0.1 and happy-1.20.1.1 unable to find data files"
+  },
+  "haskell/cabal#10721": {
+    "body": "**Describe the feature request**\r\nSee the GHC ticket and description of the issue: https://gitlab.haskell.org/ghc/ghc/-/issues/25632#note_602729\r\n\r\nThere seems to be currently no way to pass JS CPP options for js-sources, like defining your own macros.\r\n\r\n**Additional context**\r\nThis would enable things like TRACE flags in libraries that conditionally compile logging directives, for instance.\r\n\r\n",
+    "html_url": "https://github.com/haskell/cabal/issues/10721",
+    "labels": [
+      "type: enhancement"
+    ],
+    "state": "closed",
+    "title": "Add js-options field so that user-defined options can be passed to javascript preprocessor"
+  },
+  "haskell/cabal#10726": {
+    "body": "Since some version of `cabal-install`, the locations of ghc-specific store take \"project unit id\" (e.g. `,(\"Project Unit Id\",\"ghc-9.10.1-69c3\")`) into account. So it's not `store/ghc-9.10.1` but `store/ghc-9.10.1-69c3`). However this information is absent from `plan.json`. `plan.json` contains just a version as `compiler-id`:\r\n\r\n```\r\n% python3 -m json.tool dist-newstyle/cache/plan.json|less\r\n{\r\n    \"cabal-version\": \"3.14.1.1\",\r\n    \"cabal-lib-version\": \"3.14.1.1\",\r\n    \"compiler-id\": \"ghc-9.10.1\",\r\n    \"os\": \"linux\",\r\n    \"arch\": \"x86_64\",\r\n    \"install-plan\": [\r\n...\r\n```\r\n\r\nTherefore tools (e.g. `cabal-plan`) which traverse the `plan.json` but also information in the store (e.g. license files), cannot do this anymore without also somehow finding the corresponding GHC (which can be anywhere, that's the point of an additional few bits - to disambiguate different GHC builds even with the same main version).",
+    "html_url": "https://github.com/haskell/cabal/issues/10726",
+    "labels": [
+      "type: bug",
+      "re: cabal-plan"
+    ],
+    "state": "closed",
+    "title": "`plan.json` doesn't include compiler id."
+  },
+  "haskell/cabal#10797": {
+    "body": "**Describe the feature request**\n\nSince Cabal has some support for C++ (`cxx-options`, `cxx-sources`), I think we should also support passing standard C++ toolchain environment variables to the configure script analogously to how we do with C:\n\nhttps://github.com/haskell/cabal/blob/595d0238c97e6e63d992f35f2047691da2460602/Cabal/src/Distribution/Simple/ConfigureScript.hs#L171-L177\n\nI think this would be\n\n- `CXX` (like `CC`)\n- `CXXFLAGS` (like `CFLAGS`)\n\n**Additional context**\n\nThis came up in https://gitlab.haskell.org/ghc/ghc/-/issues/25767#note_610831\n",
+    "html_url": "https://github.com/haskell/cabal/issues/10797",
+    "labels": [
+      "type: enhancement"
+    ],
+    "state": "closed",
+    "title": "Pass C++ environment variables to configure scripts"
+  },
+  "haskell/cabal#10831": {
+    "body": "cabal-install is still using a plain-text `changelog` file, could it please be changed to `ChangeLog.md` in line with Cabal - then at least the links will become clickable.\n\n",
+    "html_url": "https://github.com/haskell/cabal/issues/10831",
+    "labels": [
+      "type: enhancement",
+      "documentation"
+    ],
+    "state": "closed",
+    "title": "[cabal-install] please switch to changelog.md"
+  },
+  "haskell/cabal#10885": {
+    "body": "Switch to any package with `cabal.project` and execute\n```\n$ cabal-3.14.1.1-p1 --semaphore build\n...does some work...\n$ cabal-3.14.1.1-p1 --semaphore build\nConfiguration is affected by the following files:\n- cabal.project\nUp to date\nCreated semaphore called cabal_semaphore_1 with 8 slots.\n```\n\nThat's awful lot of lines to tell me that there is nothing to do. Older versions of cabal used to report briefly `Up to date`, which is much better. Could the default log level of `Configuration is affected by...` and `Created semaphore...` be adjusted please? \n\nI mean, I definitely do not need to be reminded every single time that there is `cabal.project` in my folder. And it gets even worse if there is more than one `*.project` file. This is a valuable information to display at some verbosity level, but definitely not by default.\n\nAs for semaphores, I don't even see how one can act upon this message. Could it be relegated to `-v3` only? Seeing it every time I run any Cabal command is mildly infuriating.",
+    "html_url": "https://github.com/haskell/cabal/issues/10885",
+    "labels": [
+      "type: discussion",
+      "re: project-file",
+      "re: user experience"
+    ],
+    "state": "closed",
+    "title": "cabal got annoyingly chatty"
+  },
+  "haskell/cabal#10916": {
+    "body": "```\n$ cabal install cabal-install-3.14.2.0\n\n...\n\n[134 of 151] Compiling Distribution.PackageDescription.Check.Target ( src/Distribution/PackageDescription/Check/Target.hs, dist/build/Distribution/PackageDescription/Check/Target.o, dist/build/Distribution/PackageDescription/Check/Target.dyn_o )\nsrc/Distribution/PackageDescription/Check/Target.hs:351:45: error: [GHC-88464]\n    Variable not in scope: hasLEUpperBound :: VersionRange -> Bool\n    Suggested fix:\n      Perhaps use one of these:\n        \u2018hasUpperBound\u2019 (imported from Distribution.Version),\n        data constructor \u2018LEUpperBounds\u2019 (imported from Distribution.PackageDescription.Check.Monad),\n        \u2018hasLowerBound\u2019 (imported from Distribution.Version)\n    |\n351 |     (checkPVPs (checkDependencyVersionRange hasLEUpperBound) leuck ds)\n    |                                             ^^^^^^^^^^^^^^^\n\nsrc/Distribution/PackageDescription/Check/Target.hs:354:45: error: [GHC-88464]\n    Variable not in scope:\n      hasTrailingZeroUpperBound :: VersionRange -> Bool\n    Suggested fix:\n      Perhaps use data constructor \u2018TrailingZeroUpperBounds\u2019 (imported from Distribution.PackageDescription.Check.Monad)\n    |\n354 |     (checkPVPs (checkDependencyVersionRange hasTrailingZeroUpperBound) tzuck ds)\n    |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^\n\nsrc/Distribution/PackageDescription/Check/Target.hs:357:45: error: [GHC-88464]\n    Variable not in scope: hasGTLowerBound :: VersionRange -> Bool\n    Suggested fix:\n      Perhaps use one of these:\n        \u2018hasLowerBound\u2019 (imported from Distribution.Version),\n        data constructor \u2018GTLowerBounds\u2019 (imported from Distribution.PackageDescription.Check.Monad)\n    |\n357 |     (checkPVPs (checkDependencyVersionRange hasGTLowerBound) gtlck ds)\n    |                                             ^^^^^^^^^^^^^^^\n\n```\n\nwith\n```\n$ cabal --version\ncabal-install version 3.14.1.1\ncompiled using version 3.14.1.0 of the Cabal library \n$ ghc --version\nThe Glorious Glasgow Haskell Compilation System, version 9.12.2\n$ uname -a\nLinux ...... 6.14.0-63.fc42.x86_64 #1 SMP PREEMPT_DYNAMIC Mon Mar 24 19:53:37 UTC 2025 x86_64 GNU/Linux\n\n```\n\nBuild seems to work fine with\n```\ncabal install cabal-install -w /opt/ghc/ghc-9.10.1/bin/ghc\n```\n\n\n",
+    "html_url": "https://github.com/haskell/cabal/issues/10916",
+    "labels": [
+      "type: bug",
+      "release",
+      "re: dependencies"
+    ],
+    "state": "closed",
+    "title": "cannot build with ghc-9.12.2 (Variable not in scope: hasLEUpperBound)"
+  },
+  "haskell/cabal#10927": {
+    "body": "Test PackageTests/ProjectImport/DedupUsingConfigFromComplex/cabal.test.hs added in\n- #10646\n\nseems flakey, e.g. https://github.com/haskell/cabal/actions/runs/14452017585/job/40526710202\n\n@philderbeast maybe it should be marked as such to not fail the Validate job in CI?",
+    "html_url": "https://github.com/haskell/cabal/issues/10927",
+    "labels": [
+      "cabal-testsuite",
+      "re: devx"
+    ],
+    "state": "closed",
+    "title": "Test DedupUsingConfigFromComplex flakey?"
+  },
+  "haskell/cabal#10938": {
+    "body": "https://github.com/haskell/cabal/blob/c2d835310c0e8c0b1008c8970e2f5f085c38078c/Cabal-syntax/src/Distribution/Utils/Generic.hs#L184-L200\n\nSo if `renameFile` failed we immediately try `copyFile` followed by `removeFile`. My experience however is that this is not helpful, at least on Windows. The most common reason for `renameFile` to fail is because another process (typically, an antivirus) opened the source file for reading. If this is the case then `copyFile` is likely to be too short delay for `removeFile` to succeed, because the source file remains locked by antivirus. \n\nTo make it worse, `copyFile` from `directory` internally makes its own attempt at atomicity, creating a temporary file and renaming it, which triggers the antivirus yet again. \n\nIn short, if `renameFile` fails then there is no reason to expect `copyFile` / `removeFile` to succeed. \n\nI'd suggest to scrap `copyFile` / `removeFile` catch: just keep retrying `renameFile` after `threadDelay 10000` a few times more.\n\nCC @GulinSS who was looking at `writeFileAtomic` recently.",
+    "html_url": "https://github.com/haskell/cabal/issues/10938",
+    "labels": [
+      "type: enhancement",
+      "platform: windows"
+    ],
+    "state": "closed",
+    "title": "writeFileAtomic retry strategy could be improved with threadDelay"
+  },
+  "haskell/cabal#10944": {
+    "body": "It would be nice to have cabal-install back in Stackage Nightly.\n\nUnfortunately due to hashable-1.5, cabal-install-3.12.1 does not build there.\n\nIs it possible to relax the upper bound?\n\nOtherwise hopefully 3.14+ may improve the situation...",
+    "html_url": "https://github.com/haskell/cabal/issues/10944",
+    "labels": [
+      "type: enhancement"
+    ],
+    "state": "closed",
+    "title": "Can cabal-install 3.12.1 build with hashable-1.5?"
+  },
+  "haskell/cabal#10950": {
+    "body": "### Describe the bug\n/\n```\nError parsing project file https://www.stackage.org/nightly-2024-12-05/cabal.config:9:\n - \"<eitherParsec>\" (line 2543, column 4):\n   unexpected end of input\n   expecting \".\", \":\", white space, \"+\", \"-\", opening paren, operator, \"installed\", \"source\", \"test\" or \"bench\"\n\n...\n*** unexpected failure for PackageTests/ProjectImport/UntrimmedImport/cabal.test.hs\n```\n\nExample run: https://github.com/haskell/cabal/actions/runs/14853023896/job/41700087129?pr=10946#step:17:3022\n\nApparently, this has to do with the recent migration of Stackage and changes in caching of these `cabal.config` files. @chreekat says it may be https://github.com/commercialhaskell/stackage-server/issues/347\n\n### Notes\n\nI don't think it's a good idea to have a test that downloads anything from the Internet. So, instead of \"simply\" marking it as flaky, we could instead fix it to avoid that.\n",
+    "html_url": "https://github.com/haskell/cabal/issues/10950",
+    "labels": [
+      "type: bug",
+      "continuous-integration",
+      "cabal-testsuite"
+    ],
+    "state": "open",
+    "title": "testsuite: UntrimmedImport test often fails in CI lately"
+  },
+  "haskell/cabal#10975": {
+    "body": "We have CI hiccups lately because of `DedupUsingConfigFromSimple`. E.g https://github.com/haskell/cabal/actions/runs/15456775661/job/43510406325?pr=10854\n\nI propose to mark it flaky ASAP and then investigate. /cc @philderbeast ",
+    "html_url": "https://github.com/haskell/cabal/issues/10975",
+    "labels": [
+      "type: bug",
+      "priority: high :fire:",
+      "cabal-testsuite"
+    ],
+    "state": "closed",
+    "title": "test suite: DedupUsingConfigFromSimple is flaky"
+  },
+  "haskell/cabal#10998": {
+    "body": "Increasingly, we've been seeing this lately:\n\n```\nFetching http://hackage.haskell.org/package/os-string-2.0.7/revision/0.cabal...\nTraceback (most recent call last):\n  File \"/usr/lib/python3.12/http/client.py\", line 579, in _get_chunk_left\n    chunk_left = self._read_next_chunk_size()\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/http/client.py\", line 546, in _read_next_chunk_size\n    return int(line, 16)\n           ^^^^^^^^^^^^^\nValueError: invalid literal for int() with base 16: b'\\r\\n'\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/usr/lib/python3.12/http/client.py\", line 595, in _read_chunked\n    while (chunk_left := self._get_chunk_left()) is not None:\n                         ^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/http/client.py\", line 581, in _get_chunk_left\n    raise IncompleteRead(b'')\nhttp.client.IncompleteRead: IncompleteRead(0 bytes read)\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"/home/runner/work/cabal/cabal/bootstrap/bootstrap.py\", line 504, in <module>\n    main()\n  File \"/home/runner/work/cabal/cabal/bootstrap/bootstrap.py\", line 445, in main\n    fetch_from_plan(plan, rootdir)\n  File \"/home/runner/work/cabal/cabal/bootstrap/bootstrap.py\", line 355, in fetch_from_plan\n    shutil.copyfileobj(resp, output_path.open('wb'))\n  File \"/usr/lib/python3.12/shutil.py\", line 203, in copyfileobj\n    while buf := fsrc_read(length):\n                 ^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/http/client.py\", line 473, in read\n    return self._read_chunked(amt)\n           ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/http/client.py\", line 607, in _read_chunked\n    raise IncompleteRead(b''.join(value)) from exc\nhttp.client.IncompleteRead: IncompleteRead(3298 bytes read)\nError: Process completed with exit code 1.\n```\n\n(example: https://github.com/haskell/cabal/actions/runs/15705524267/job/44250333302?pr=10988)",
+    "html_url": "https://github.com/haskell/cabal/issues/10998",
+    "labels": [
+      "type: bug",
+      "continuous-integration",
+      "cabal-install: bootstrap"
+    ],
+    "state": "closed",
+    "title": "bootstrap.py intermittent failure when fetching from Hackage"
+  },
+  "haskell/cabal#11023": {
+    "body": "```\nWarning: Both /home/phadej/.cabal and /home/phadej/.config/cabal/config exist\n- ignoring the former.\n```\n\neven I have `$CABAL_CONFIG` set. The `- ignoring the former` makes me think that my `$CABAL_CONFIG` variables is not respected.\n\nI consider this a bug, it misleads the user. I have no idea what happens.",
+    "html_url": "https://github.com/haskell/cabal/issues/11023",
+    "labels": [
+      "type: bug",
+      "priority: high :fire:",
+      "re: config-file"
+    ],
+    "state": "closed",
+    "title": "Why cabal-install warns about duplicate config files when CABAL_CONFIG is set?"
+  },
+  "haskell/cabal#11034": {
+    "body": "The following tests fail on FreeBSD:\n\n* cabal-testsuite/PackageTests/PathsModule/Executable-Relocatable/setup.test.hs\n* cabal-testsuite/PackageTests/Regression/T4291/setup.test.hs\n\nCI run: https://github.com/stable-haskell/cabal/actions/runs/16048264984/job/45284894052\n\nThis is running against our own branch of cabal, which might have some patches, but the tests for other platforms succeed.\n\nLogs:\n\n```\n2025-07-03T10:54:38.5403468Z cabal-testsuite/PackageTests/PathsModule/Executable-Relocatable/setup.test.hs                                                     FAIL (0.92s)\n2025-07-03T10:54:38.5406499Z $ /usr/home/github/.cache/act/8f724a6f53d6e49a/hostexecutor/.ghcup/ghc/9.6.7/bin/runghc-9.6.7 -- '--ghc-arg=-i' '--ghc-arg=-hide-all-packages' '--ghc-arg=-no-user-package-db' '--ghc-arg=-package-db' '--ghc-arg=/usr/home/github/.cache/act/8f724a6f53d6e49a/hostexecutor/.cabal/store/ghc-9.6.7/package.db' '--ghc-arg=-package-db' '--ghc-arg=/usr/home/github/.cache/act/8f724a6f53d6e49a/hostexecutor/dist-newstyle/packagedb/ghc-9.6.7' '--ghc-arg=-package-id' '--ghc-arg=Cabal-3.15.0.0-inplace' '--ghc-arg=-package-id' '--ghc-arg=Cabal-hooks-3.16-inplace' '--ghc-arg=-package-id' '--ghc-arg=Cabal-syntax-3.15.0.0-inplace' '--ghc-arg=-package-id' '--ghc-arg=base-4.18.3.0' '--ghc-arg=-package-id' '--ghc-arg=bytestring-0.11.5.4' '--ghc-arg=-package-id' '--ghc-arg=cabal-testsuite-3-inplace' '--ghc-arg=-package-id' '--ghc-arg=containers-0.6.7' '--ghc-arg=-package-id' '--ghc-arg=directory-1.3.8.5' '--ghc-arg=-package-id' '--ghc-arg=exceptions-0.10.7' '--ghc-arg=-package-id' '--ghc-arg=filepath-1.4.301.0' '--ghc-arg=-package-id' '--ghc-arg=process-1.6.19.0' '--ghc-arg=-package-id' '--ghc-arg=time-1.12.2' '--ghc-arg=-package-id' '--ghc-arg=transformers-0.6.1.0' '--ghc-arg=-package-id' '--ghc-arg=unix-2.8.6.0' cabal-testsuite/PackageTests/PathsModule/Executable-Relocatable/setup.test.hs --builddir dist-newstyle/build/x86_64-freebsd/ghc-9.6.7/cabal-testsuite-3 cabal-testsuite/PackageTests/PathsModule/Executable-Relocatable/setup.test.hs '--extra-package-db=/usr/home/github/.cache/act/8f724a6f53d6e49a/hostexecutor/testdb/intree/store/ghc-9.6.7/package.db' '--extra-package-db=/usr/home/github/.cache/act/8f724a6f53d6e49a/hostexecutor/testdb/intree/dist-newstyle/packagedb/ghc-9.6.7' --with-cabal /usr/home/github/.cache/act/8f724a6f53d6e49a/hostexecutor/out/cabal\n2025-07-03T10:54:38.5417717Z stdout:\n2025-07-03T10:54:38.5419238Z + /usr/local/bin/git ls-files --cached --modified\n2025-07-03T10:54:38.5420767Z Main.hs\n2025-07-03T10:54:38.5421978Z my.cabal\n2025-07-03T10:54:38.5423224Z setup.cabal.out\n2025-07-03T10:54:38.5424474Z setup.out\n2025-07-03T10:54:38.5425647Z setup.test.hs\n2025-07-03T10:54:38.5426883Z Copying /usr/home/github/.cache/act/8f724a6f53d6e49a/hostexecutor/cabal-testsuite/PackageTests/PathsModule/Executable-Relocatable/Main.hs to /tmp/cabal-testsuite-60998/Main.hs\n2025-07-03T10:54:38.5429153Z Copying /usr/home/github/.cache/act/8f724a6f53d6e49a/hostexecutor/cabal-testsuite/PackageTests/PathsModule/Executable-Relocatable/my.cabal to /tmp/cabal-testsuite-60998/my.cabal\n2025-07-03T10:54:38.5431515Z Copying /usr/home/github/.cache/act/8f724a6f53d6e49a/hostexecutor/cabal-testsuite/PackageTests/PathsModule/Executable-Relocatable/setup.cabal.out to /tmp/cabal-testsuite-60998/setup.cabal.out\n2025-07-03T10:54:38.5433970Z Copying /usr/home/github/.cache/act/8f724a6f53d6e49a/hostexecutor/cabal-testsuite/PackageTests/PathsModule/Executable-Relocatable/setup.out to /tmp/cabal-testsuite-60998/setup.out\n2025-07-03T10:54:38.5436279Z + /usr/home/github/.cache/act/8f724a6f53d6e49a/hostexecutor/.ghcup/ghc/9.6.7/bin/ghc-pkg-9.6.7 init '--package-db=/tmp/cabal-testsuite-60998/setup.dist/packagedb' /tmp/cabal-testsuite-60998/setup.dist/packagedb\n2025-07-03T10:54:38.5438849Z # Setup configure\n2025-07-03T10:54:38.5440131Z + /usr/home/github/.cache/act/8f724a6f53d6e49a/hostexecutor/dist-newstyle/build/x86_64-freebsd/ghc-9.6.7/cabal-testsuite-3/build/setup/setup configure '-vverbose +markoutput +nowrap' --distdir setup.dist/work/dist --global --with-ghc /home/github/.cache/act/8f724a6f53d6e49a/hostexecutor/.ghcup/bin/ghc --with-haddock /usr/home/github/.cache/act/8f724a6f53d6e49a/hostexecutor/.ghcup/ghc/9.6.7/bin/haddock-ghc-9.6.7 --enable-deterministic '--prefix=/tmp/cabal-testsuite-60998/setup.dist/usr' '--package-db=clear' '--package-db=global' '--package-db=/tmp/cabal-testsuite-60998/setup.dist/packagedb' --enable-relocatable\n2025-07-03T10:54:38.5454596Z Using Parsec parser\n2025-07-03T10:54:38.5455868Z -----BEGIN CABAL OUTPUT-----\n2025-07-03T10:54:38.5457104Z Configuring PathsModule-0.1...\n2025-07-03T10:54:38.5458305Z -----END CABAL OUTPUT-----\n2025-07-03T10:54:38.5459580Z Dependency base: using base-4.18.3.0\n2025-07-03T10:54:38.5460810Z Source component graph: component exe:TestPathsModule\n2025-07-03T10:54:38.5462349Z Configured component graph:\n2025-07-03T10:54:38.5463532Z     component PathsModule-0.1-TestPathsModule include base-4.18.3.0\n2025-07-03T10:54:38.5464942Z Linked component graph:\n2025-07-03T10:54:38.5466241Z     unit PathsModule-0.1-TestPathsModule include base-4.18.3.0\n2025-07-03T10:54:38.5467842Z Ready component graph:\n2025-07-03T10:54:38.5469112Z     definite PathsModule-0.1-TestPathsModule depends base-4.18.3.0\n2025-07-03T10:54:38.5470608Z -----BEGIN CABAL OUTPUT-----\n2025-07-03T10:54:38.5471739Z Error: [Cabal-3339]\n2025-07-03T10:54:38.5472828Z -----END CABAL OUTPUT-----\n2025-07-03T10:54:38.5474058Z -----BEGIN CABAL OUTPUT-----\n2025-07-03T10:54:38.5475237Z Operating system: freebsd, does not support relocatable builds\n2025-07-03T10:54:38.5476595Z -----END CABAL OUTPUT-----\n2025-07-03T10:54:38.5477826Z CallStack (from HasCallStack):\n2025-07-03T10:54:38.5479202Z   dieWithException, called at src/Distribution/Simple/Configure.hs:2771:9 in Cabal-3.15.0.0-inplace:Distribution.Simple.Configure\n2025-07-03T10:54:38.5481282Z \n2025-07-03T10:54:38.5482533Z \n2025-07-03T10:54:38.5483782Z stderr:\n2025-07-03T10:54:38.5485091Z *** Exception: Command /usr/home/github/.cache/act/8f724a6f53d6e49a/hostexecutor/dist-newstyle/build/x86_64-freebsd/ghc-9.6.7/cabal-testsuite-3/build/setup/setup configure '-vverbose +markoutput +nowrap' --distdir setup.dist/work/dist --global --with-ghc /home/github/.cache/act/8f724a6f53d6e49a/hostexecutor/.ghcup/bin/ghc --with-haddock /usr/home/github/.cache/act/8f724a6f53d6e49a/hostexecutor/.ghcup/ghc/9.6.7/bin/haddock-ghc-9.6.7 --enable-deterministic '--prefix=/tmp/cabal-testsuite-60998/setup.dist/usr' '--package-db=clear' '--package-db=global' '--package-db=/tmp/cabal-testsuite-60998/setup.dist/packagedb' --enable-relocatable failed.\n2025-07-03T10:54:38.5490216Z Output:\n2025-07-03T10:54:38.5491708Z Using Parsec parser\n2025-07-03T10:54:38.5492983Z -----BEGIN CABAL OUTPUT-----\n2025-07-03T10:54:38.5494197Z Configuring PathsModule-0.1...\n2025-07-03T10:54:38.5495470Z -----END CABAL OUTPUT-----\n2025-07-03T10:54:38.5496702Z Dependency base: using base-4.18.3.0\n2025-07-03T10:54:38.5497976Z Source component graph: component exe:TestPathsModule\n2025-07-03T10:54:38.5499326Z Configured component graph:\n2025-07-03T10:54:38.5500641Z     component PathsModule-0.1-TestPathsModule include base-4.18.3.0\n2025-07-03T10:54:38.5502311Z Linked component graph:\n2025-07-03T10:54:38.5503838Z     unit PathsModule-0.1-TestPathsModule include base-4.18.3.0\n2025-07-03T10:54:38.5505565Z Ready component graph:\n2025-07-03T10:54:38.5506770Z     definite PathsModule-0.1-TestPathsModule depends base-4.18.3.0\n2025-07-03T10:54:38.5508360Z -----BEGIN CABAL OUTPUT-----\n2025-07-03T10:54:38.5509789Z Error: [Cabal-3339]\n2025-07-03T10:54:38.5511008Z -----END CABAL OUTPUT-----\n2025-07-03T10:54:38.5512247Z -----BEGIN CABAL OUTPUT-----\n2025-07-03T10:54:38.5513474Z Operating system: freebsd, does not support relocatable builds\n2025-07-03T10:54:38.5514820Z -----END CABAL OUTPUT-----\n2025-07-03T10:54:38.5515989Z CallStack (from HasCallStack):\n2025-07-03T10:54:38.5517216Z   dieWithException, called at src/Distribution/Simple/Configure.hs:2771:9 in Cabal-3.15.0.0-inplace:Distribution.Simple.Configure\n2025-07-03T10:54:38.5519120Z \n2025-07-03T10:54:38.5520418Z \n2025-07-03T10:54:38.5521551Z \n2025-07-03T10:54:38.5522630Z \n2025-07-03T10:54:38.5523753Z *** unexpected failure for cabal-testsuite/PackageTests/PathsModule/Executable-Relocatable/setup.test.hs\n```\n\n```\n2025-07-03T10:53:48.9533422Z cabal-testsuite/PackageTests/Regression/T4291/setup.test.hs                                                                       FAIL (0.85s)\n2025-07-03T10:53:48.9536496Z $ /usr/home/github/.cache/act/8f724a6f53d6e49a/hostexecutor/.ghcup/ghc/9.6.7/bin/runghc-9.6.7 -- '--ghc-arg=-i' '--ghc-arg=-hide-all-packages' '--ghc-arg=-no-user-package-db' '--ghc-arg=-package-db' '--ghc-arg=/usr/home/github/.cache/act/8f724a6f53d6e49a/hostexecutor/.cabal/store/ghc-9.6.7/package.db' '--ghc-arg=-package-db' '--ghc-arg=/usr/home/github/.cache/act/8f724a6f53d6e49a/hostexecutor/dist-newstyle/packagedb/ghc-9.6.7' '--ghc-arg=-package-id' '--ghc-arg=Cabal-3.15.0.0-inplace' '--ghc-arg=-package-id' '--ghc-arg=Cabal-hooks-3.16-inplace' '--ghc-arg=-package-id' '--ghc-arg=Cabal-syntax-3.15.0.0-inplace' '--ghc-arg=-package-id' '--ghc-arg=base-4.18.3.0' '--ghc-arg=-package-id' '--ghc-arg=bytestring-0.11.5.4' '--ghc-arg=-package-id' '--ghc-arg=cabal-testsuite-3-inplace' '--ghc-arg=-package-id' '--ghc-arg=containers-0.6.7' '--ghc-arg=-package-id' '--ghc-arg=directory-1.3.8.5' '--ghc-arg=-package-id' '--ghc-arg=exceptions-0.10.7' '--ghc-arg=-package-id' '--ghc-arg=filepath-1.4.301.0' '--ghc-arg=-package-id' '--ghc-arg=process-1.6.19.0' '--ghc-arg=-package-id' '--ghc-arg=time-1.12.2' '--ghc-arg=-package-id' '--ghc-arg=transformers-0.6.1.0' '--ghc-arg=-package-id' '--ghc-arg=unix-2.8.6.0' cabal-testsuite/PackageTests/Regression/T4291/setup.test.hs --builddir dist-newstyle/build/x86_64-freebsd/ghc-9.6.7/cabal-testsuite-3 cabal-testsuite/PackageTests/Regression/T4291/setup.test.hs '--extra-package-db=/usr/home/github/.cache/act/8f724a6f53d6e49a/hostexecutor/testdb/intree/store/ghc-9.6.7/package.db' '--extra-package-db=/usr/home/github/.cache/act/8f724a6f53d6e49a/hostexecutor/testdb/intree/dist-newstyle/packagedb/ghc-9.6.7' --with-cabal /usr/home/github/.cache/act/8f724a6f53d6e49a/hostexecutor/out/cabal\n2025-07-03T10:53:48.9548091Z stdout:\n2025-07-03T10:53:48.9549464Z + /usr/local/bin/git ls-files --cached --modified\n2025-07-03T10:53:48.9551015Z dependee/Dependee.hs\n2025-07-03T10:53:48.9552325Z dependee/dependee.cabal\n2025-07-03T10:53:48.9553613Z depender/depender.cabal\n2025-07-03T10:53:48.9554992Z setup.cabal.out\n2025-07-03T10:53:48.9556380Z setup.out\n2025-07-03T10:53:48.9557750Z setup.test.hs\n2025-07-03T10:53:48.9559173Z Copying /usr/home/github/.cache/act/8f724a6f53d6e49a/hostexecutor/cabal-testsuite/PackageTests/Regression/T4291/dependee/Dependee.hs to /tmp/cabal-testsuite-61031/dependee/Dependee.hs\n2025-07-03T10:53:48.9561787Z Copying /usr/home/github/.cache/act/8f724a6f53d6e49a/hostexecutor/cabal-testsuite/PackageTests/Regression/T4291/dependee/dependee.cabal to /tmp/cabal-testsuite-61031/dependee/dependee.cabal\n2025-07-03T10:53:48.9564277Z Copying /usr/home/github/.cache/act/8f724a6f53d6e49a/hostexecutor/cabal-testsuite/PackageTests/Regression/T4291/depender/depender.cabal to /tmp/cabal-testsuite-61031/depender/depender.cabal\n2025-07-03T10:53:48.9566757Z Copying /usr/home/github/.cache/act/8f724a6f53d6e49a/hostexecutor/cabal-testsuite/PackageTests/Regression/T4291/setup.cabal.out to /tmp/cabal-testsuite-61031/setup.cabal.out\n2025-07-03T10:53:48.9569233Z Copying /usr/home/github/.cache/act/8f724a6f53d6e49a/hostexecutor/cabal-testsuite/PackageTests/Regression/T4291/setup.out to /tmp/cabal-testsuite-61031/setup.out\n2025-07-03T10:53:48.9571832Z + /usr/home/github/.cache/act/8f724a6f53d6e49a/hostexecutor/.ghcup/ghc/9.6.7/bin/ghc-pkg-9.6.7 init '--package-db=/tmp/cabal-testsuite-61031/setup.dist/packagedb' /tmp/cabal-testsuite-61031/setup.dist/packagedb\n2025-07-03T10:53:48.9574539Z # Setup configure\n2025-07-03T10:53:48.9575918Z + /usr/home/github/.cache/act/8f724a6f53d6e49a/hostexecutor/dist-newstyle/build/x86_64-freebsd/ghc-9.6.7/cabal-testsuite-3/build/setup/setup --working-dir ./dependee configure '-vverbose +markoutput +nowrap' --distdir ../setup.dist/work/dependee/dist --global --with-ghc /home/github/.cache/act/8f724a6f53d6e49a/hostexecutor/.ghcup/bin/ghc --with-haddock /usr/home/github/.cache/act/8f724a6f53d6e49a/hostexecutor/.ghcup/ghc/9.6.7/bin/haddock-ghc-9.6.7 --enable-deterministic '--prefix=/tmp/cabal-testsuite-61031/setup.dist/usr' '--package-db=clear' '--package-db=global' '--package-db=/tmp/cabal-testsuite-61031/setup.dist/packagedb' --enable-relocatable --prefix /tmp/cabal-testsuite-61031/prefix\n2025-07-03T10:53:48.9581355Z Using Parsec parser\n2025-07-03T10:53:48.9582857Z -----BEGIN CABAL OUTPUT-----\n2025-07-03T10:53:48.9584185Z Configuring dependee-0.1.0.0...\n2025-07-03T10:53:48.9585740Z -----END CABAL OUTPUT-----\n2025-07-03T10:53:48.9587140Z Dependency base: using base-4.18.3.0\n2025-07-03T10:53:48.9588757Z Source component graph: component lib\n2025-07-03T10:53:48.9590273Z Configured component graph:\n2025-07-03T10:53:48.9591596Z     component dependee-0.1.0.0 include base-4.18.3.0\n2025-07-03T10:53:48.9593274Z Linked component graph:\n2025-07-03T10:53:48.9594632Z     unit dependee-0.1.0.0\n2025-07-03T10:53:48.9596006Z         include base-4.18.3.0\n2025-07-03T10:53:48.9597287Z         Dependee=dependee-0.1.0.0:Dependee\n2025-07-03T10:53:48.9598736Z Ready component graph:\n2025-07-03T10:53:48.9600137Z     definite dependee-0.1.0.0 depends base-4.18.3.0\n2025-07-03T10:53:48.9601891Z -----BEGIN CABAL OUTPUT-----\n2025-07-03T10:53:48.9603646Z Error: [Cabal-3339]\n2025-07-03T10:53:48.9604987Z -----END CABAL OUTPUT-----\n2025-07-03T10:53:48.9606222Z -----BEGIN CABAL OUTPUT-----\n2025-07-03T10:53:48.9607467Z Operating system: freebsd, does not support relocatable builds\n2025-07-03T10:53:48.9609088Z -----END CABAL OUTPUT-----\n2025-07-03T10:53:48.9610740Z CallStack (from HasCallStack):\n2025-07-03T10:53:48.9612173Z   dieWithException, called at src/Distribution/Simple/Configure.hs:2771:9 in Cabal-3.15.0.0-inplace:Distribution.Simple.Configure\n2025-07-03T10:53:48.9614236Z \n2025-07-03T10:53:48.9615563Z \n2025-07-03T10:53:48.9616735Z stderr:\n2025-07-03T10:53:48.9618114Z *** Exception: Command /usr/home/github/.cache/act/8f724a6f53d6e49a/hostexecutor/dist-newstyle/build/x86_64-freebsd/ghc-9.6.7/cabal-testsuite-3/build/setup/setup --working-dir ./dependee configure '-vverbose +markoutput +nowrap' --distdir ../setup.dist/work/dependee/dist --global --with-ghc /home/github/.cache/act/8f724a6f53d6e49a/hostexecutor/.ghcup/bin/ghc --with-haddock /usr/home/github/.cache/act/8f724a6f53d6e49a/hostexecutor/.ghcup/ghc/9.6.7/bin/haddock-ghc-9.6.7 --enable-deterministic '--prefix=/tmp/cabal-testsuite-61031/setup.dist/usr' '--package-db=clear' '--package-db=global' '--package-db=/tmp/cabal-testsuite-61031/setup.dist/packagedb' --enable-relocatable --prefix /tmp/cabal-testsuite-61031/prefix failed.\n2025-07-03T10:53:48.9623443Z Output:\n2025-07-03T10:53:48.9624714Z Using Parsec parser\n2025-07-03T10:53:48.9625971Z -----BEGIN CABAL OUTPUT-----\n2025-07-03T10:53:48.9627376Z Configuring dependee-0.1.0.0...\n2025-07-03T10:53:48.9628763Z -----END CABAL OUTPUT-----\n2025-07-03T10:53:48.9633129Z Dependency base: using base-4.18.3.0\n2025-07-03T10:53:48.9636401Z Source component graph: component lib\n2025-07-03T10:53:48.9637899Z Configured component graph:\n2025-07-03T10:53:48.9639193Z     component dependee-0.1.0.0 include base-4.18.3.0\n2025-07-03T10:53:48.9640690Z Linked component graph:\n2025-07-03T10:53:48.9641952Z     unit dependee-0.1.0.0\n2025-07-03T10:53:48.9643191Z         include base-4.18.3.0\n2025-07-03T10:53:48.9644448Z         Dependee=dependee-0.1.0.0:Dependee\n2025-07-03T10:53:48.9645790Z Ready component graph:\n2025-07-03T10:53:48.9647193Z     definite dependee-0.1.0.0 depends base-4.18.3.0\n2025-07-03T10:53:48.9648720Z -----BEGIN CABAL OUTPUT-----\n2025-07-03T10:53:48.9650031Z Error: [Cabal-3339]\n2025-07-03T10:53:48.9651306Z -----END CABAL OUTPUT-----\n2025-07-03T10:53:48.9652845Z -----BEGIN CABAL OUTPUT-----\n2025-07-03T10:53:48.9654144Z Operating system: freebsd, does not support relocatable builds\n2025-07-03T10:53:48.9655746Z -----END CABAL OUTPUT-----\n2025-07-03T10:53:48.9657044Z CallStack (from HasCallStack):\n2025-07-03T10:53:48.9658351Z   dieWithException, called at src/Distribution/Simple/Configure.hs:2771:9 in Cabal-3.15.0.0-inplace:Distribution.Simple.Configure\n2025-07-03T10:53:48.9660518Z \n2025-07-03T10:53:48.9661743Z \n2025-07-03T10:53:48.9662957Z \n2025-07-03T10:53:48.9664201Z \n2025-07-03T10:53:48.9665463Z *** unexpected failure for cabal-testsuite/PackageTests/Regression/T4291/setup.test.hs\n```",
+    "html_url": "https://github.com/haskell/cabal/issues/11034",
+    "labels": [
+      "type: bug",
+      "needs triage"
+    ],
+    "state": "closed",
+    "title": "Test failures on FreeBSD"
+  },
+  "haskell/cabal#11041": {
+    "body": "On alpine x86_64, the following test fails:\n\n* cabal-testsuite/PackageTests/Backpack/T5634/setup.test.hs\n\nCI: https://github.com/stable-haskell/cabal/actions/runs/16065635741/job/45340648767\n\nLog: https://gist.github.com/hasufell/a4f13cd9c994d6adfcab51230c7543ed\n\n----\n\nOn ARM, the following tests fail:\n\n* ~~cabal-testsuite/PackageTests/ProfLate/cabal.test.hs~~\n* ~~cabal-testsuite/PackageTests/ProfShared/setup.test.hs~~\n* cabal-testsuite/PackageTests/Backpack/T5634/setup.test.hs\n\nCI: https://github.com/stable-haskell/cabal/actions/runs/16065635741/job/45339864618\n\nLogs: https://gist.github.com/hasufell/86dc869f8ceb669e1a210c228199a9f8\n\n----\n\nI have been using GHC-9.6.7 for the tests. But it uses the in-tree Cabal library. Some of the GHC bindists are also \"unofficial\", so a distribution issue can't be ruled out.",
+    "html_url": "https://github.com/haskell/cabal/issues/11041",
+    "labels": [
+      "type: bug",
+      "Cabal: Backpack",
+      "needs triage"
+    ],
+    "state": "open",
+    "title": "Test failures on Alpine"
+  },
+  "haskell/cabal#11050": {
+    "body": "The user configuration file installed by `cabal update` when no configuration file exists contains the commented-out hint `-- builddir:`, implying that this can be used in that configuration file. It cannot, and thus this comment should not be in the default file that is installed.\n\nReproduce with:\n```\n$ rm -rf ~/.cabal/ ~/.config/cabal/config\n$ cabal-3.14.2.0 update        # latest version installed with GHCup\nConfig file path source is default config file.\nConfig file not found: /home/cjs/.config/cabal/config\nWriting default configuration to /home/cjs/.config/cabal/config\n...\n$ grep builddir ~/.config/cabal/config \n-- builddir:\n\n#   Confirm that Cabal doesn't accept 'builddir:' in this config file.\n$ echo 'builddir: ./.cabal/' >> ~/.config/cabal/config\n$ cabal update\nWarning: The builddir option is not supported in project and config files. It\nwill be ignored.\n...\n```\n",
+    "html_url": "https://github.com/haskell/cabal/issues/11050",
+    "labels": [
+      "type: enhancement",
+      "attention: pr-welcome",
+      "cabal-install: cmd/update",
+      "re: config-file"
+    ],
+    "state": "closed",
+    "title": "Cabal incorrectly adds `-- builddir:` to default configuration file"
+  },
+  "haskell/cabal#11073": {
+    "body": "https://github.com/haskell/cabal/pull/10092 dropped 8.6.5 instead of moving it to the old-ghc's section.\n\nThis has ben noticed by @geekosaur.",
+    "html_url": "https://github.com/haskell/cabal/issues/11073",
+    "labels": [
+      "type: bug",
+      "continuous-integration"
+    ],
+    "state": "closed",
+    "title": "CI doesn't test GHC 8.6.5 in the \"old GHCs\" section but it should"
+  },
+  "haskell/cabal#11090": {
+    "body": "In #10684 @philderbeast noticed that if you triggered an assertion error when using 9.12.2 as the boot compiler, you would not get a source location printed.\n\nIt is necessary on 9.12.2 to print the exception context as well as the exception itself in order to print the backtrace.",
+    "html_url": "https://github.com/haskell/cabal/issues/11090",
+    "labels": [
+      "type: bug"
+    ],
+    "state": "closed",
+    "title": "assertion failures don't show error location when using 9.12.2"
+  },
+  "haskell/cabal#11099": {
+    "body": "## Context\n\nIn light of the recent cabal-3.16 release, we realised that no currently released HLS binary is going to be compatible with cabal-3.16.\nUsers would have to build HLS from source to be able to use it with cabal-3.16.\n\nIssues for context:\n\n* https://github.com/haskell/cabal/issues/9115\n* https://github.com/haskell/cabal/issues/10915\n* https://github.com/haskell/cabal/pull/10828\n\n## Solution\n\nTo give us a slightly better migration window, we undo some of the improvements to cabal, and make sure that --interactive is always passed as the first argument to the underlying ghc invocation. This hack is supposed to be temporary, and removed for cabal 3.18.\n",
+    "html_url": "https://github.com/haskell/cabal/issues/11099",
+    "labels": [
+      "type: bug",
+      "status: consider closing"
+    ],
+    "state": "closed",
+    "title": "Pass `--interactive` as the first argument of the `ghc` invocation"
+  },
+  "haskell/cabal#11145": {
+    "body": "/cc @hasufell @mpickering \n\nE.g. https://github.com/haskell/cabal/actions/runs/16854126958/job/47744616554?pr=11143",
+    "html_url": "https://github.com/haskell/cabal/issues/11145",
+    "labels": [
+      "type: bug",
+      "continuous-integration"
+    ],
+    "state": "closed",
+    "title": "CI is stuck on PRs from outside this repo because of the FreeBSD self-hosted runner"
+  },
+  "haskell/cabal#11173": {
+    "body": "It was noted before (#10402) that Cabal (the library) codebase isn't clean w.r.t. `-Wincomplete-record-selectors`, which was subsequently fixed in [#10403](https://github.com/haskell/cabal/pull/10403). Sadly, the same wasn't done for cabal-install. Now, with GHC 9.14 (that moved the warning into `-Wall`) I'm getting:\n\n```\n2025-08-20T16:11:06.5311473Z src/Distribution/Client/ProjectPlanning.hs:1249:65: error: [GHC-17335] [-Wincomplete-record-selectors, Werror=incomplete-record-selectors]\n2025-08-20T16:11:06.5314264Z ##[error]    Selecting the record field \u2018repoRemote\u2019 may fail for the following constructors:\n2025-08-20T16:11:06.5315593Z       RepoLocalNoIndex\n2025-08-20T16:11:06.5315898Z      |\n2025-08-20T16:11:06.5316372Z 1249 |                       . NE.groupBy ((==) `on` (remoteRepoName . repoRemote . fst))\n2025-08-20T16:11:06.5316944Z      |                                                                 ^^^^^^^^^^\n2025-08-20T16:11:06.5317209Z \n2025-08-20T16:11:06.5319370Z src/Distribution/Client/ProjectPlanning.hs:1250:64: error: [GHC-17335] [-Wincomplete-record-selectors, Werror=incomplete-record-selectors]\n2025-08-20T16:11:06.5322520Z ##[error]    Selecting the record field \u2018repoRemote\u2019 may fail for the following constructors:\n2025-08-20T16:11:06.5324077Z       RepoLocalNoIndex\n2025-08-20T16:11:06.5324395Z      |\n2025-08-20T16:11:06.5324845Z 1250 |                       . sortBy (compare `on` (remoteRepoName . repoRemote . fst))\n2025-08-20T16:11:06.5325672Z      |                                                                ^^^^^^^^^^\n```\n\nShouldnt' be hard to fix.",
+    "html_url": "https://github.com/haskell/cabal/issues/11173",
+    "labels": [
+      "attention: pr-welcome",
+      "type: refactor"
+    ],
+    "state": "closed",
+    "title": "Refactor to avoid incomplete record selection warning in cabal-install"
+  },
+  "haskell/cabal#11188": {
+    "body": "GHC ticket: https://gitlab.haskell.org/ghc/ghc/-/issues/26298\n\nGHC will be adding support for producing bytecode files and bytecode libraries in GHC-9.16. \n\nThis ticket tracks the cabal support for this feature.",
+    "html_url": "https://github.com/haskell/cabal/issues/11188",
+    "labels": [
+      "type: RFC"
+    ],
+    "state": "closed",
+    "title": "Add support for producing byte code objects and libraries"
+  },
+  "haskell/cabal#11217": {
+    "body": "The `pkgroot` variable isn't expanded when present in the `haddock-html` field. This leads to broken links in documentation when you are generating haddocks locally. For example, links to identifiers defined in base if your distribution has relative links in package registrations. \n\nFound whilst investigating #11215",
+    "html_url": "https://github.com/haskell/cabal/issues/11217",
+    "labels": [
+      "type: bug",
+      "needs triage"
+    ],
+    "state": "closed",
+    "title": "${pkgroot} is not expanded when present in html-haddock field"
+  },
+  "haskell/cabal#11245": {
+    "body": "It seems that releases are signed with a different key depending on who the release manager is. Is there a central place where I can go to see which key should be used to check a release's signature?\n\nI'm asking in the context of https://github.com/haskell/docker-haskell/pull/159/files, where I don't know how to validate the choice of signing keys.\n\n(I could also ask that Cabal use a single signing key for all releases, which is common practice in some places. But I know it would take some infrastructure work to figure out how to share access to release managers in a trusted, time-bound way.)\n",
+    "html_url": "https://github.com/haskell/cabal/issues/11245",
+    "labels": [
+      "type: enhancement"
+    ],
+    "state": "closed",
+    "title": "How to verify which signing key to use"
+  },
+  "haskell/cabal#11246": {
+    "body": "**What is wrong with the docs?**\nhttps://cabal.readthedocs.io/en/stable/cabal-package-description-file.html#old-style-build-tool-depends is formatted rather strangely in my browser.\n\n**Additional context**\n\n<img width=\"2556\" height=\"1416\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/15ae8c8b-e22a-436d-a9d5-65b50fd7fa70\" />\nChrome Version 141.0.7390.54 (Official Build) (64-bit) Linux\n",
+    "html_url": "https://github.com/haskell/cabal/issues/11246",
+    "labels": [
+      "documentation"
+    ],
+    "state": "closed",
+    "title": "footnote in cabal manual is misformatted"
+  },
+  "haskell/cabal#11349": {
+    "body": "**Describe the bug**\n\nAs the title describes. This is the CLI output:\n\n```\n\u276f cabal check\nThe following errors will cause portability problems on other environments:\nError: [missing-setup] The package is missing a Setup.hs or Setup.lhs script.\nError: Hackage would reject this package.\n```\n\n**To Reproduce**\n\nFollow the steps for setting up a project with the `Hooks` build type: https://cabal.readthedocs.io/en/stable/cabal-package-description-file.html#hooks\n\nI've also included a reproducer here: [foo.tar.gz](https://github.com/user-attachments/files/24171004/foo.tar.gz)\n\nThen just run `cabal check` in the package's directory.\n\n**Expected behavior**\n\nNo error should be thrown\n\n**System information**\n - Ubuntu 22.04\n - GHC: ghc-9.6.7\n - Cabal: 3.14.2.0 or 3.16.0.0\n",
+    "html_url": "https://github.com/haskell/cabal/issues/11349",
+    "labels": [
+      "type: bug",
+      "cabal-install: cmd/check"
+    ],
+    "state": "closed",
+    "title": "`cabal check` complains about a missing `Setup.hs` script when using `build-type: Hooks`"
+  },
+  "haskell/cabal#11373": {
+    "body": "**Describe the bug**\n`cabal build` doesn't respect user-provided `ghc-pkg` path (in some circumstances), causing version mismatch between compiler and compiler-package commands. This occurs which using GHCup-managed WASM GHC toolchain\n\n```\nCloning into '/root/cabal-wasm-bug/dist-newstyle/src/miso-7fdae9da4bdb552ef2daf21700284a28ca9d60f6abf96b737c89243d4bad27dc'...\nremote: Enumerating objects: 194, done.\nremote: Counting objects: 100% (194/194), done.\nremote: Compressing objects: 100% (164/164), done.\nremote: Total 194 (delta 26), reused 93 (delta 6), pack-reused 0 (from 0)\nReceiving objects: 100% (194/194), 266.10 KiB | 5.91 MiB/s, done.\nResolving deltas: 100% (26/26), done.\nFrom https://github.com/dmjio/miso\n * branch            2e8dd81f9731229f83cac6137843ec3a9d498b86 -> FETCH_HEAD\nHEAD is now at 2e8dd81 Reset `components` global state on hydration failure. (#1299)\nError: [Cabal-4000]\nVersion mismatch between ghc and ghc-pkg: /root/.ghcup/bin/wasm32-wasi-ghc is version 9.12.2.20250327 /root/.ghcup/bin/ghc-pkg is version 9.6.7\n```\n\n**To Reproduce**\nFollow the steps in https://github.com/andremarianiello/cabal-wasm-bug to reproduce the bug.\n\n**Expected behavior**\nI expect the project to build successfully using wasm GHC and cabal 3.16.0.0, just like with 3.14.2.0\n\n**System information**\n - Operating system\n Linux - CentOS stream 9\n - `cabal`, `ghc` versions\n Cabal\n```sh\n# cabal --version\ncabal-install version 3.16.0.0\ncompiled using version 3.16.0.0 of the Cabal library (in-tree)\n```\n\nFor ghc I am using WASM ghc 9.12.2. See README for details\n\n**Additional context**\nIt seems like in 3.16.0.0 that cabal is choosing the `ghc-pkg` binary over the user-specified `wasm32-wasi-ghc-pkg` binary, so the build is failing. But this appears to have worked in 3.14.2.0.\n\n",
+    "html_url": "https://github.com/haskell/cabal/issues/11373",
+    "labels": [
+      "type: bug",
+      "regression in 3.16"
+    ],
+    "state": "closed",
+    "title": "Cabal 3.16.0.0 chooses discovered ghc-pkg binary over user-provided binary, leading to version mismatch when doing WASM builds with GHCup-managed GHC"
+  },
+  "haskell/cabal#11381": {
+    "body": "Could we use [uv](https://github.com/astral-sh/uv/blob/main/README.md) for making our users guide?\n\nIt can [manage Python versions](https://github.com/astral-sh/uv?tab=readme-ov-file#python-versions) and is a [drop-in replacement](https://github.com/astral-sh/uv?tab=readme-ov-file#the-pip-interface) for `pip` with its `uv pip` command. It can also be [used with read the docs](https://github.com/astral-sh/uv/issues/10074).\n\n\n\n",
+    "html_url": "https://github.com/haskell/cabal/issues/11381",
+    "labels": [
+      "type: user-question"
+    ],
+    "state": "closed",
+    "title": "Could we use uv for building the users guide?"
+  },
+  "haskell/cabal#11389": {
+    "body": "**What is wrong with the docs?**\nThere's a TODO for the [`autogen-modules` field](https://cabal.readthedocs.io/en/latest/cabal-package-description-file.html#pkg-field-autogen-modules).\n\nhttps://github.com/haskell/cabal/blame/7da2987abb234a9710d290568ee90de37d5742e1/doc/cabal-package-description-file.rst#L3037\n\n\n",
+    "html_url": "https://github.com/haskell/cabal/issues/11389",
+    "labels": [
+      "documentation"
+    ],
+    "state": "closed",
+    "title": "Document the autogen-modules field"
+  },
+  "haskell/cabal#11393": {
+    "body": "**Describe the bug**\n\nWhen I do `cabal test --test-options '@foo'`, cabal prints out a question mark:\n```shell\n$ cabal test --test-options '@foo'\n\"?\"\nBuild profile: -w ghc-9.12.2 -O1\n```\n\nProbably comes from here, although I have no idea why it's printing out a question mark:\nhttps://github.com/haskell/cabal/blob/9ea037b084125ecdd024aad02565b34b9db8316f/Cabal/src/Distribution/Compat/ResponseFile.hs#L36\n\n1. Why is a question mark being printed out?\n2. Why is this running on `--test-options`?\n\n**To Reproduce**\n\n**Expected behavior**\n\n**System information**\n - Operating system\n - `cabal`, `ghc` versions\n\n**Additional context**\nAdd any other context about the problem here.\n\n",
+    "html_url": "https://github.com/haskell/cabal/issues/11393",
+    "labels": [
+      "type: user-question",
+      "re: user experience"
+    ],
+    "state": "closed",
+    "title": "Using `--test-option` with an argument starting with `@` prints `?` to the screen"
+  },
+  "haskell/cabal#11404": {
+    "body": "**What is wrong with the docs?**\nIn #7976, I added instructions to the docs readme explaining how to use gitpod.io to edit the docs. [Gitpod is now Ona](https://ona.com/stories/gitpod-is-now-ona). On the [free plan](https://ona.com/pricing), I tried the instructions as before and couldn't create an environment without blocking on being asked for credit card details \"to receive $10 of free credits to block the bots\" and couldn't actually bring up an environment.\n\nThe instructions we have in the docs readme no longer work and should be removed.",
+    "html_url": "https://github.com/haskell/cabal/issues/11404",
+    "labels": [
+      "documentation"
+    ],
+    "state": "closed",
+    "title": "Remove docs gitpod workflow"
+  },
+  "haskell/cabal#11410": {
+    "body": "**What is wrong with the docs?**\n\nApart from the flags, `--[en|dis]able-multi-repl`, `cabal repl --help` doesn't mention, explain or give examples of multi-repl use.\n\nhttps://github.com/haskell/cabal/blob/a3162dab11f5f083d73a1d841124afb48e7262b6/cabal-install/src/Distribution/Client/CmdRepl.hs#L210-L220\n\n",
+    "html_url": "https://github.com/haskell/cabal/issues/11410",
+    "labels": [
+      "documentation"
+    ],
+    "state": "closed",
+    "title": "Mention multi-repl in `cabal repl help`"
+  },
+  "haskell/cabal#11451": {
+    "body": "**Describe the feature request**\nWith a project, allow `cabal repl` to default the target when none is given in these two cases:\n\n1. If there is only one package in the project use that as the target.\n2. If there is more than one package and `--enable-multi-repl` is an option then pick `all` as the target.\n\n**Additional context**\nWhen we are working with a package, `cabal repl` needs no target.\n\n```\n$ cabal unpack Cabal-syntax\nWarning: this is a debug build of cabal-install with assertions enabled.\nDownloading  Cabal-syntax-3.16.1.0\nDownloaded   Cabal-syntax-3.16.1.0\nUnpacking to Cabal-syntax-3.16.1.0/\n\n$ cd Cabal-syntax-3.16.1.0/\n\n$ cabal repl\nWarning: this is a debug build of cabal-install with assertions enabled.\nResolving dependencies...\nBuild profile: -w ghc-9.12.2 -O1\nIn order, the following will be built (use -v for more details):\n - alex-3.5.4.0 (exe:alex) (requires build)\n - Cabal-syntax-3.16.1.0 (interactive) (lib) (first run)\nStarting     alex-3.5.4.0 (exe:alex)\nBuilding     alex-3.5.4.0 (exe:alex)\nInstalling   alex-3.5.4.0 (exe:alex)\nCompleted    alex-3.5.4.0 (exe:alex)\nWarning: this is a debug build of cabal-install with assertions enabled.\nConfiguring library for Cabal-syntax-3.16.1.0...\nWarning: this is a debug build of cabal-install with assertions enabled.\nPreprocessing library for Cabal-syntax-3.16.1.0...\nGHCi, version 9.12.2: https://www.haskell.org/ghc/  :? for help\nwhen making flags consistent: warning: [GHC-74335] [-Winconsistent-flags]\n    Ignoring optimization flags since they are experimental for the byte-code interpreter.\n    Pass -fno-unoptimized-core-for-interpreter to enable this feature.\n\n[  1 of 139] Compiling Distribution.Compat.Binary\n...\n[139 of 139] Compiling Distribution.InstalledPackageInfo\nOk, 139 modules loaded.\nghci> \n```",
+    "html_url": "https://github.com/haskell/cabal/issues/11451",
+    "labels": [
+      "type: enhancement"
+    ],
+    "state": "closed",
+    "title": "Default targets for REPL command with a project"
+  },
+  "haskell/cabal#11473": {
+    "body": "**Describe the bug**\nReported in #11472 for the `target` command, `cabal COMMAND --help` should end with a trailing newline.\n\n> $ `cabal target` seems to be the first `cabal-install` command that uses a prettyprinter for its `--help` output. This is all very nice, but you do need to add your own newline if you do so. :)\n\n**To Reproduce**\nThe `\u23ce` symbol is the fish shell showing that there is a missing newline.\n\n```\n$ cabal hscolour --help\n...\nDeprecated in favour of 'cabal haddock --hyperlink-source'.\u23ce \n```\n\n**Expected behavior**\nThat the command help's string should end with a newline. This could be tested. We already use [fix-whitespace]()\n\n\n\n",
+    "html_url": "https://github.com/haskell/cabal/issues/11473",
+    "labels": [
+      "type: enhancement",
+      "re: error-message",
+      "re: user experience"
+    ],
+    "state": "closed",
+    "title": "Command help should end with newline"
+  },
+  "haskell/cabal#11475": {
+    "body": "**Describe the bug**\n\nWhen a package has an internal library and the main library re-exports from it using `module X` syntax, `cabal haddock --haddock-all` fails to find the internal library's `.haddock` interface file because it looks for it at the wrong path.\n\nHaddock dumps the internal library's interface file to:\n\n```\n.../l/internal/doc/html/cabal-bug/internal/internal.haddock\n```\n\nBut when processing the main library, cabal looks for it at (missing the extra `internal/` subdirectory):\n\n```\n.../l/internal/doc/html/cabal-bug/internal.haddock\n```\n\nBecause the file is not found, no `--read-interface` flag is passed for the internal library, so haddock cannot resolve re-exported documentation.\n\n**To Reproduce**\n\nUsing the attached minimal reproduction (`cabal-haddock-bug.zip`):\n\n```\n$ cabal haddock --haddock-all\n```\n\nThe `.cabal` file defines an internal library `internal` and a main library that re-exports it via `module Internal`:\n\n```cabal\ncabal-version: 2.2\nname: cabal-bug\nversion: 0.1.0.0\n\nlibrary internal\n  default-language: Haskell2010\n  hs-source-dirs: libs/internal/src\n  exposed-modules: Internal\n  build-depends: base >= 4.18 && < 4.22\n\nlibrary\n  default-language: Haskell2010\n  hs-source-dirs: src\n  exposed-modules: Lib\n  build-depends:\n    base >= 4.18 && < 4.22,\n    internal\n```\n\nVerbose output (`cabal haddock -v3 --haddock-all`) confirms:\n- `--dump-interface` for the internal library writes to `.../cabal-bug/internal/internal.haddock`\n- Cabal checks for the file at `.../cabal-bug/internal.haddock` (without the subdirectory)\n- No `--read-interface` is emitted for the internal library\n\n**Expected behavior**\n\n100% haddock coverage for `Lib`, with all re-exported items (`hello`, `Greeting`) documented from the internal library.\n\n**Actual behavior**\n\n```\nWarning: Lib: Could not find documentation for exported module: Internal\nWarning: Lib: Couldn't find .haddock for export hello\nWarning: Lib: Couldn't find .haddock for export Greeting\n  33% (  1 /  3) in 'Lib'\n  Missing documentation for:\n    hello\n    Greeting\n```\n\n**System information**\n- Operating system: Linux (x86_64)\n- `cabal`: 3.16.1.0, also reproduced with 3.14.2.0\n- `ghc`: 9.12.2, also reproduced with 9.10.3 and 9.8.4\n- Works correctly with GHC 9.6.7\n\n**Additional context**\n\nNo known workaround. The `--haddock-all` flag correctly triggers haddock for the internal library, but the resulting `.haddock` file is not found by the main library's haddock invocation due to the path mismatch. This appears to be a regression introduced somewhere between GHC 9.6 and 9.8. \n\n[cabal-haddock-bug.zip](https://github.com/user-attachments/files/25093466/cabal-haddock-bug.zip)",
+    "html_url": "https://github.com/haskell/cabal/issues/11475",
+    "labels": [
+      "type: bug",
+      "cabal-install: cmd/haddock"
+    ],
+    "state": "closed",
+    "title": "Internal library .haddock path mismatch in cabal haddock --haddock-all"
+  },
+  "haskell/cabal#11490": {
+    "body": "The implementation of `transformCaret` is correct but the implementations of `transformCaretLower` and `transformCaretUpper` are swapped, aren't they?\n\nhttps://github.com/haskell/cabal/blob/fb32f3d1c06d1731b474908e4b86559b202a3d7e/Cabal-syntax/src/Distribution/Version.hs#L164-L189",
+    "html_url": "https://github.com/haskell/cabal/issues/11490",
+    "labels": [
+      "type: user-question"
+    ],
+    "state": "open",
+    "title": "`transformCaret*` function typos"
+  },
+  "haskell/cabal#11498": {
+    "body": "Cabal supports semaphore, but that is not documented online:\n* https://cabal.readthedocs.io/en/stable/setup-commands.html#runhaskell-setup-hs-build\n\nand the in-app help is very limited:\n~~~text\n> stack runghc -- Setup.hs build --help # With GHC 9.12.3\nFlags for build:\n ...\n --semaphore=SEMAPHORE          semaphore\n ...\n~~~",
+    "html_url": "https://github.com/haskell/cabal/issues/11498",
+    "labels": [
+      "documentation"
+    ],
+    "state": "closed",
+    "title": "No documentation for Cabal's `--semaphore`"
+  },
+  "haskell/cabal#11504": {
+    "body": "**What is wrong with the docs?**\nSome `@since x.y.z` annotations in `Distribution.Utils.MD5` are not rendering properly when they have more than one space between `@since` and `x.y.z`. They're rendering as `@since x.y.z` instead of `Since: x.y.z`.\n\n\n",
+    "html_url": "https://github.com/haskell/cabal/issues/11504",
+    "labels": [
+      "documentation"
+    ],
+    "state": "closed",
+    "title": "`@since x.y.z` annotation with extra space"
+  },
+  "haskell/cabal#11511": {
+    "body": "**Describe the bug**\nA clear and concise description of what the bug is.\n\n**To Reproduce**\nSteps to reproduce the behavior:\n\n1. `git clone https://github.com/stable-haskell/filemonitor-test.git`\n2. `cd filemonitor-test`\n3. `cabal build`\n4. `cabal build`\n\nResult:\n\n```\n$ cabal build\nDownloading\nhttps://hackage.haskell.org/package/filepath-1.5.5.0/filepath-1.5.5.0.tar.gz\nConfiguration is affected by the following files:\n- cabal.project\nUp to date\n\n$ cabal build\nDownloading\nhttps://hackage.haskell.org/package/filepath-1.5.5.0/filepath-1.5.5.0.tar.gz\nConfiguration is affected by the following files:\n- cabal.project\nUp to date\n```\n\n**Expected behavior**\n\nWe download only once.\n\n**System information**\n - Operating system: OpenSUSE Tumbleweed\n - `cabal-3.16.1.0`, `ghc-9.14.1` \n\n**Additional context**\n\nThis seems to be an issue with the file monitoring in `fetchAndReadSourcePackageRemoteTarball`, detecting an mtime change of the tarball compared to the \"start time\" of the monitor. This whole file monitoring is over-engineered garbage and should be ripped out and implemented like `make` does (by synchronizing mtime of input and output files).\n\n",
+    "html_url": "https://github.com/haskell/cabal/issues/11511",
+    "labels": [
+      "type: bug"
+    ],
+    "state": "closed",
+    "title": "Caching downloaded remote source package tarballs is broken"
+  },
+  "haskell/cabal#11518": {
+    "body": "<!-- where are my dots -->\n\n**Describe the bug**\nSince Cabal V3.0, `freeTextField` `freeTextFieldDef`, `freeTextFieldDefST` uses the function `fieldlinesToFreeText3`. Prior to Cabal V3.0, we use `fieldlinesToFreeText`. However, `fieldlinesToFreeText` treats lines with only dots (let's call them dotlines) as empty lines and `fieldlinesToFreeText3` doesn't. \n\n\n**To Reproduce**\nSteps to reproduce the behavior:\n\n- Look at cabal on hackage\n- <img width=\"994\" height=\"354\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/fe8c9fc1-72df-4bea-93fe-769bea01e496\" />\n\nThis dot is a dotline that used to be interpreted as a empty newline.\n<img width=\"1019\" height=\"348\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/f8cc1be0-8e61-40cd-92a8-9d8f36bef20a\" />\n\n\n**Expected behavior**\nIs this a breaking change in the cabal parser since cabal3.0?\n\n",
+    "html_url": "https://github.com/haskell/cabal/issues/11518",
+    "labels": [
+      "type: enhancement",
+      "Cabal: parser",
+      "cabal-install: cmd/check"
+    ],
+    "state": "open",
+    "title": "Cabal V3.0 changes how \"freeform\" fields are parsed"
+  },
+  "haskell/cabal#11534": {
+    "body": "```diff\n-  case Map.lookup cname comps of\n-    Just clbis -> clbis\n-    Nothing -> []\n+  fromMaybe [] (Map.lookup cname comps)\n```\n\n> Could we use `Map.findWithDefault`?\n\n_Originally posted by @Bodigrim in https://github.com/haskell/cabal/pull/11529#discussion_r2861111822_\n\nThere are several places where we could make this replacement.\n            ",
+    "html_url": "https://github.com/haskell/cabal/issues/11534",
+    "labels": [],
+    "state": "closed",
+    "title": "Could we use `Map.findWithDefault`?"
+  },
+  "haskell/cabal#11589": {
+    "body": "Cabal code is littered with calls to [`getDirectoryContents`](https://hackage.haskell.org/package/directory-1.3.7.1/docs/System-Directory.html#v:getDirectoryContents), which lists all entries including `.` and `..`. This is pretty much never what we want; we should migrate to [`listDirectory`](https://hackage.haskell.org/package/directory-1.3.7.1/docs/System-Directory.html#v:listDirectory).",
+    "html_url": "https://github.com/haskell/cabal/issues/11589",
+    "labels": [
+      "type: refactor"
+    ],
+    "state": "closed",
+    "title": "Replace getDirectoryContents with listDirectory"
+  },
+  "haskell/cabal#11591": {
+    "body": "There are several instances of code like this:\n```haskell\ndeletePackageDB :: FilePath -> IO ()\ndeletePackageDB dbPath = do\n  -- currently one impl for all compiler flavours, but could change if needed\n  dir_exists <- doesDirectoryExist dbPath\n  if dir_exists\n    then removeDirectoryRecursive dbPath\n    else do\n      file_exists <- doesFileExist dbPath\n      when file_exists $ removeFile dbPath\n```\n\nThis is very excessive, a single [`removePathForcibly`](https://hackage-content.haskell.org/package/directory-1.3.10.1/docs/System-Directory.html#v:removePathForcibly) would do the trick.",
+    "html_url": "https://github.com/haskell/cabal/issues/11591",
+    "labels": [],
+    "state": "closed",
+    "title": "Replace removeDirectoryRecursive with removePathForcibly"
+  },
+  "haskell/cabal#11606": {
+    "body": "Cabal code is full of things like \n```haskell\n    exists <- doesFileExist buildInfoFile\n    when exists $ removeFile buildInfoFile\n```\n\nThis is suboptimal. It's possible that the file got removed by a concurrent thread in between `doesFileExist` and `removeFile`. In such case `removeFile` will fail with exception about non-existent file, which is very stupid. A more robust way is to call `removeFile` straight ahead and catch `isDoesNotExistError`. \n\nBonus points for catching `isPermissionError` to disable read-only flag on Windows and trying `removeFile` again. \n\nPerhaps checking for `EBUSY` (aka `UnsatisfiedConstraints`) to wait a millisecond and retry would be also helpful.",
+    "html_url": "https://github.com/haskell/cabal/issues/11606",
+    "labels": [],
+    "state": "closed",
+    "title": "Handle removing files better"
+  },
+  "haskell/cabal#11608": {
+    "body": "**What is wrong with the docs?**\nWe miss a clear specification of what exactly we do mean with \"support\" for GHC. Compiling? Driving?\nLet us clarify that in `CONTRIBUTING.md`.\n\n~~Also we might or might not want to switch from \u201c\ud835\udc65 years\u201d to \u201clast \ud835\udc66 major versions\u201d.~~ No, we will do it in another ticket, once we agree to document what we are doing now. \n \nRelated PR: #11530 ",
+    "html_url": "https://github.com/haskell/cabal/issues/11608",
+    "labels": [
+      "documentation"
+    ],
+    "state": "closed",
+    "title": "State current GHC support window (and other support windows)"
+  },
+  "haskell/cabal#11635": {
+    "body": "From #11634, we're missing these language extensions:\n\n- [ExplicitLevelImports](https://ghc.gitlab.haskell.org/ghc/doc/users_guide/exts/template_haskell.html#extension-ExplicitLevelImports)\n- [ImplicitStagePersistence](https://ghc.gitlab.haskell.org/ghc/doc/users_guide/exts/template_haskell.html#extension-ImplicitStagePersistence)",
+    "html_url": "https://github.com/haskell/cabal/issues/11635",
+    "labels": [
+      "type: enhancement"
+    ],
+    "state": "closed",
+    "title": "ExplicitLevelImports and ImplicitStagePersistence extensions"
+  },
+  "haskell/cabal#11638": {
+    "body": "**Describe the feature request**\nWhen I run `fix-whitespace --check` after generating haddocks, the haddocks files trigger whitespace violations.\n\n```pre\n$ cabal haddock-project\n$ fix-whitespace --check 2&> whitespace-violations.txt\n```\n[whitespace-violations.txt](https://github.com/user-attachments/files/26118794/whitespace-violations.txt)\n\nCan we please add the haddocks folder to the exclusion list in `fix-whitespace.yaml`:\n\nhttps://github.com/haskell/cabal/blob/c5c2072fc522ddfe4c613790eeefb3b20fddebb9/fix-whitespace.yaml#L28-L34\n",
+    "html_url": "https://github.com/haskell/cabal/issues/11638",
+    "labels": [
+      "type: enhancement"
+    ],
+    "state": "closed",
+    "title": "Can we ignore haddocks in fix-whitespace?"
+  },
+  "haskell/core-libraries-committee#292": {
+    "body": "Following the past decisions in respect of `Data.List.head` and `Data.List.tail` in:\n* #87 \n* #114\n\nimplemented in `base-4.19.0.0` (GHC 9.8.1), which also added `Data.List.unsnoc`, I propose, for consistency, that the same idea is extended to `Data.List.init` and `Data.List.last`. Their Haddock documentation has warned that they are partial and suggested alternatives since `base-4.17.0.0` (GHC 9.4.1).\n\nThe basis for the proposal is purely consistency of treatment of `Data.List.{head,tail,init,last}`. It seems to me that the principal merits and drawbacks applicable to `head` and `tail`, discussed at some length in the past approved proposals, are equally applicable to `init` and `last`. \n\n@Bodigrim, on introducing #87 (at https://github.com/haskell/core-libraries-committee/issues/87#issue-1369083584), gave as a reason that it was not extended then to `init` or `last` that doing so would require `Data.List.unsnoc` first. That barrier no longer applies.\n\nIn case it is relevant, I note:\n1.  that other (total) functions in `base` are defined in terms of `Data.List.init` or `Data.List.last`. For example, `Data.List.NonEmpty.init`:\n    ~~~haskell\n    init :: NonEmpty a -> [a]\n    init ~(a :| as) = List.init (a : as)\n    ~~~\n2.  that Cabal's autogenerated `Paths_<package_name>.hs` module makes use of `Data.List.last` - see https://hackage.haskell.org/package/Cabal-3.14.0.0/src/src/Distribution/Simple/Build/PathsModule/Z.hs.\n\nEDIT: The resolution of this issue may depend on the resolution of the following issue, given that this issue provides advice (as does the existing Haddock documentation) about the use of `unsnoc`:\n* #307\n\n----\n\nCLC update:\n\n* GHC MR: https://gitlab.haskell.org/ghc/ghc/-/merge_requests/13564\n* GHC issue: https://gitlab.haskell.org/ghc/ghc/-/issues/25852\n* Approval: 8 out of 10",
+    "html_url": "https://github.com/haskell/core-libraries-committee/issues/292",
+    "labels": [
+      "approved",
+      "base-4.23"
+    ],
+    "state": "closed",
+    "title": "Add a suitable {-# WARNING in \"x-partial\" ... #-} to Data.List.{init,last}"
+  },
+  "haskellari/lukko#39": {
+    "body": "> [__2] trying: hackage-security-0.6.2.6 (user goal)\r\n> [__4] rejecting: lukko-0.1.2 (conflict: base==4.21.0.0/installed-d274, lukko => base>=4.12.0.0 && <4.21)\r\n",
+    "html_url": "https://github.com/haskellari/lukko/issues/39",
+    "labels": [],
+    "state": "closed",
+    "title": "GHC 9.12"
+  }
+}

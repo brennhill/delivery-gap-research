@@ -1,0 +1,639 @@
+{
+  "abseil/abseil-cpp#1624": {
+    "body": "### Describe the issue\n\nWhile https://github.com/conda-forge/grpc-cpp-feedstock/pull/348 grpc with `-DgRPC_ABSL_PROVIDER=\"package\"` in conda-forge against abseil 20240116.0, the sanity check of compiling an [example](https://github.com/grpc/grpc/blob/master/examples/cpp/helloworld/greeter_client.cc) against the library fails:\r\n```\r\n[7/18] Linking CXX executable greeter_client\r\nFAILED: greeter_client \r\n: && $PREFIX/bin/x86_64-conda-linux-gnu-c++ -fvisibility-inlines-hidden -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem $PREFIX/include -fdebug-prefix-map=$SRC_DIR=/usr/local/src/conda/libgrpc-1.61.0 -fdebug-prefix-map=$PREFIX=/usr/local/src/conda-prefix -Wl,-O2 -Wl,--sort-common -Wl,--as-needed -Wl,-z,relro -Wl,-z,now -Wl,--disable-new-dtags -Wl,--gc-sections -Wl,--allow-shlib-undefined -Wl,-rpath,$PREFIX/lib -Wl,-rpath-link,$PREFIX/lib -L$PREFIX/lib CMakeFiles/greeter_client.dir/greeter_client.cc.o -o greeter_client  libhw_grpc_proto.a  $PREFIX/lib/libabsl_flags_parse.so.2401.0.0  $PREFIX/lib/libgrpc++_reflection.so.1.61.0  $PREFIX/lib/libgrpc++.so.1.61.0  $PREFIX/lib/libprotobuf.so.25.2.0  $PREFIX/lib/libgrpc.so.38.0.0  $PREFIX/lib/libaddress_sorting.so.38.0.0  $PREFIX/lib/libupb_json_lib.so.38.0.0  $PREFIX/lib/libupb_textformat_lib.so.38.0.0  $PREFIX/lib/libupb_message_lib.so.38.0.0  $PREFIX/lib/libupb_base_lib.so.38.0.0  $PREFIX/lib/libupb_mem_lib.so.38.0.0  $PREFIX/lib/libutf8_range_lib.so.38.0.0  $PREFIX/lib/libssl.so  $PREFIX/lib/libcrypto.so  $PREFIX/lib/libgpr.so.38.0.0  -ldl  -lm  -lrt  $PREFIX/lib/libabsl_random_distributions.so.2401.0.0  $PREFIX/lib/libabsl_random_seed_sequences.so.2401.0.0  $PREFIX/lib/libabsl_random_internal_pool_urbg.so.2401.0.0  $PREFIX/lib/libabsl_random_internal_randen.so.2401.0.0  $PREFIX/lib/libabsl_random_internal_randen_hwaes.so.2401.0.0  $PREFIX/lib/libabsl_random_internal_randen_hwaes_impl.so.2401.0.0  $PREFIX/lib/libabsl_random_internal_randen_slow.so.2401.0.0  $PREFIX/lib/libabsl_random_internal_platform.so.2401.0.0  $PREFIX/lib/libabsl_random_internal_seed_material.so.2401.0.0  $PREFIX/lib/libabsl_random_seed_gen_exception.so.2401.0.0  $PREFIX/lib/libabsl_log_internal_check_op.so.2401.0.0  $PREFIX/lib/libabsl_leak_check.so.2401.0.0  $PREFIX/lib/libabsl_die_if_null.so.2401.0.0  $PREFIX/lib/libabsl_log_internal_conditions.so.2401.0.0  $PREFIX/lib/libabsl_log_internal_message.so.2401.0.0  $PREFIX/lib/libabsl_log_internal_nullguard.so.2401.0.0  $PREFIX/lib/libabsl_examine_stack.so.2401.0.0  $PREFIX/lib/libabsl_log_internal_format.so.2401.0.0  $PREFIX/lib/libabsl_log_internal_proto.so.2401.0.0  $PREFIX/lib/libabsl_log_internal_log_sink_set.so.2401.0.0  $PREFIX/lib/libabsl_log_sink.so.2401.0.0  $PREFIX/lib/libabsl_log_entry.so.2401.0.0  $PREFIX/lib/libabsl_log_initialize.so.2401.0.0  $PREFIX/lib/libabsl_log_globals.so.2401.0.0  $PREFIX/lib/libabsl_vlog_config_internal.so.2401.0.0  $PREFIX/lib/libabsl_log_internal_fnmatch.so.2401.0.0  $PREFIX/lib/libabsl_log_internal_globals.so.2401.0.0  $PREFIX/lib/libabsl_statusor.so.2401.0.0  $PREFIX/lib/libabsl_status.so.2401.0.0  $PREFIX/lib/libabsl_strerror.so.2401.0.0  $PREFIX/lib/libabsl_flags_usage.so.2401.0.0  $PREFIX/lib/libabsl_flags_usage_internal.so.2401.0.0  $PREFIX/lib/libabsl_flags_internal.so.2401.0.0  $PREFIX/lib/libabsl_flags_marshalling.so.2401.0.0  $PREFIX/lib/libabsl_flags_reflection.so.2401.0.0  $PREFIX/lib/libabsl_flags_config.so.2401.0.0  $PREFIX/lib/libabsl_cord.so.2401.0.0  $PREFIX/lib/libabsl_cordz_info.so.2401.0.0  $PREFIX/lib/libabsl_cord_internal.so.2401.0.0  $PREFIX/lib/libabsl_cordz_functions.so.2401.0.0  $PREFIX/lib/libabsl_cordz_handle.so.2401.0.0  $PREFIX/lib/libabsl_crc_cord_state.so.2401.0.0  $PREFIX/lib/libabsl_crc32c.so.2401.0.0  $PREFIX/lib/libabsl_str_format_internal.so.2401.0.0  $PREFIX/lib/libabsl_crc_internal.so.2401.0.0  $PREFIX/lib/libabsl_crc_cpu_detect.so.2401.0.0  $PREFIX/lib/libabsl_raw_hash_set.so.2401.0.0  $PREFIX/lib/libabsl_hash.so.2401.0.0  $PREFIX/lib/libabsl_bad_variant_access.so.2401.0.0  $PREFIX/lib/libabsl_city.so.2401.0.0  $PREFIX/lib/libabsl_low_level_hash.so.2401.0.0  $PREFIX/lib/libabsl_hashtablez_sampler.so.2401.0.0  $PREFIX/lib/libabsl_exponential_biased.so.2401.0.0  $PREFIX/lib/libabsl_flags_private_handle_accessor.so.2401.0.0  $PREFIX/lib/libabsl_flags_commandlineflag.so.2401.0.0  $PREFIX/lib/libabsl_bad_optional_access.so.2401.0.0  $PREFIX/lib/libabsl_flags_commandlineflag_internal.so.2401.0.0  $PREFIX/lib/libabsl_flags_program_name.so.2401.0.0  $PREFIX/lib/libabsl_synchronization.so.2401.0.0  $PREFIX/lib/libabsl_graphcycles_internal.so.2401.0.0  $PREFIX/lib/libabsl_kernel_timeout_internal.so.2401.0.0  $PREFIX/lib/libabsl_time.so.2401.0.0  $PREFIX/lib/libabsl_civil_time.so.2401.0.0  $PREFIX/lib/libabsl_time_zone.so.2401.0.0  $PREFIX/lib/libabsl_stacktrace.so.2401.0.0  $PREFIX/lib/libabsl_symbolize.so.2401.0.0  $PREFIX/lib/libabsl_strings.so.2401.0.0  $PREFIX/lib/libabsl_strings_internal.so.2401.0.0  $PREFIX/lib/libabsl_string_view.so.2401.0.0  $PREFIX/lib/libabsl_int128.so.2401.0.0  $PREFIX/lib/libabsl_throw_delegate.so.2401.0.0  $PREFIX/lib/libabsl_malloc_internal.so.2401.0.0  $PREFIX/lib/libabsl_debugging_internal.so.2401.0.0  $PREFIX/lib/libabsl_demangle_internal.so.2401.0.0  $PREFIX/lib/libabsl_base.so.2401.0.0  -lpthread  $PREFIX/lib/libabsl_raw_logging_internal.so.2401.0.0  $PREFIX/lib/libabsl_log_severity.so.2401.0.0  $PREFIX/lib/$PREFIX/x86_64-conda-linux-gnu/bin/ld: libhw_grpc_proto.a(helloworld.grpc.pb.cc.o): in function `grpc::CompletionQueue::~CompletionQueue()':\r\nhelloworld.grpc.pb.cc:(.text._ZN4grpc15CompletionQueueD2Ev[_ZN4grpc15CompletionQueueD5Ev]+0x4d): undefined reference to `absl::lts_20240116::Mutex::Dtor()'\r\n$PREFIX/x86_64-conda-linux-gnu/bin/ld: libhw_grpc_proto.a(helloworld.grpc.pb.cc.o): in function `grpc::ClientReader<helloworld::HelloReply>::~ClientReader()':\r\nhelloworld.grpc.pb.cc:(.text._ZN4grpc12ClientReaderIN10helloworld10HelloReplyEED2Ev[_ZN4grpc12ClientReaderIN10helloworld10HelloReplyEED5Ev]+0x6c): undefined reference to `absl::lts_20240116::Mutex::Dtor()'\r\n$PREFIX/x86_64-conda-linux-gnu/bin/ld: libhw_grpc_proto.a(helloworld.grpc.pb.cc.o): in function `non-virtual thunk to grpc::ClientReader<helloworld::HelloReply>::~ClientReader()':\r\nhelloworld.grpc.pb.cc:(.text._ZN4grpc12ClientReaderIN10helloworld10HelloReplyEED2Ev[_ZN4grpc12ClientReaderIN10helloworld10HelloReplyEED5Ev]+0x10c): undefined reference to `absl::lts_20240116::Mutex::Dtor()'\r\n$PREFIX/x86_64-conda-linux-gnu/bin/ld: libhw_grpc_proto.a(helloworld.grpc.pb.cc.o): in function `non-virtual thunk to grpc::ClientReaderWriter<helloworld::HelloRequest, helloworld::HelloReply>::~ClientReaderWriter()':\r\nhelloworld.grpc.pb.cc:(.text._ZN4grpc18ClientReaderWriterIN10helloworld12HelloRequestENS1_10HelloReplyEED2Ev[_ZN4grpc18ClientReaderWriterIN10helloworld12HelloRequestENS1_10HelloReplyEED5Ev]+0x7c): undefined reference to `absl::lts_20240116::Mutex::Dtor()'\r\n$PREFIX/x86_64-conda-linux-gnu/bin/ld: libhw_grpc_proto.a(helloworld.grpc.pb.cc.o): in function `grpc::ClientReaderWriter<helloworld::HelloRequest, helloworld::HelloReply>::~ClientReaderWriter()':\r\nhelloworld.grpc.pb.cc:(.text._ZN4grpc18ClientReaderWriterIN10helloworld12HelloRequestENS1_10HelloReplyEED2Ev[_ZN4grpc18ClientReaderWriterIN10helloworld12HelloRequestENS1_10HelloReplyEED5Ev]+0x12c): undefined reference to `absl::lts_20240116::Mutex::Dtor()'\r\n$PREFIX/x86_64-conda-linux-gnu/bin/ld: libhw_grpc_proto.a(helloworld.grpc.pb.cc.o):helloworld.grpc.pb.cc:(.text._ZN4grpc18ClientReaderWriterIN10helloworld12HelloRequestENS1_10HelloReplyEED2Ev[_ZN4grpc18ClientReaderWriterIN10helloworld12HelloRequestENS1_10HelloReplyEED5Ev]+0x1dc): more undefined references to `absl::lts_20240116::Mutex::Dtor()' follow\r\ncollect2: error: ld returned 1 exit status\r\n```\r\n\r\nPreviously I had opened #1614 and https://github.com/grpc/grpc/issues/35854, but it now looks like this might be related to https://github.com/abseil/abseil-cpp/commit/f3760b4d3b2773d1cb8e9ddda29dc9bce386d540. In particular, the following looks like a likely culprit\r\nhttps://github.com/abseil/abseil-cpp/blob/119e0d3f74733aff2999d39cb8be99ddcb081c66/absl/synchronization/mutex.cc#L734-L739\r\n\r\nI'm not sure what grpc does that (apparently) invalidates the assumptions explained in the commit message of that change.\n\n### Steps to reproduce the problem\n\nBuild https://github.com/grpc/grpc with `-DgRPC_ABSL_PROVIDER=\"package\"` against abseil 20240116.0 and then compile the grpc helloworld [example](https://github.com/grpc/grpc/blob/master/examples/cpp/helloworld). It would also be possible to replay the [recipe](https://github.com/conda-forge/grpc-cpp-feedstock/blob/main/recipe/build-cpp.bat) we have in conda-forge.\n\n### What version of Abseil are you using?\n\n20240116.0\n\n### What operating system and version are you using?\n\nLinux\n\n### What compiler and version are you using?\n\nGCC 12\n\n### What build system are you using?\n\nCMake\n\n### Additional context\n\n_No response_",
+    "html_url": "https://github.com/abseil/abseil-cpp/issues/1624",
+    "labels": [],
+    "state": "closed",
+    "title": "[Bug]: missing Mutex::Dtor on linux?"
+  },
+  "apache/arrow#19596": {
+    "body": "I added some assertions to the C++ library and found that the body length in the file footer and the IPC message were different\r\n\r\n```Java\n\r\n##########################################################\r\nJS producing, C++ consuming\r\n##########################################################\r\n==========================================================\r\nTesting file /home/travis/build/apache/arrow/integration/data/struct_example.json\r\n==========================================================\r\n-- Creating binary inputs\r\nnode --no-warnings /home/travis/build/apache/arrow/js/bin/json-to-arrow.js -a /tmp/tmplbm3vbwz/3d2269c960f148b6b94e5f881c0bf9ca_struct_example.json_to_arrow -j /home/travis/build/apache/arrow/integration/data/struct_example.json\r\n-- Validating file\r\n/home/travis/build/apache/arrow/cpp-build/debug/json-integration-test --integration --arrow=/tmp/tmplbm3vbwz/3d2269c960f148b6b94e5f881c0bf9ca_struct_example.json_to_arrow --json=/home/travis/build/apache/arrow/integration/data/struct_example.json --mode=VALIDATE\r\nCommand failed: /home/travis/build/apache/arrow/cpp-build/debug/json-integration-test --integration --arrow=/tmp/tmplbm3vbwz/3d2269c960f148b6b94e5f881c0bf9ca_struct_example.json_to_arrow --json=/home/travis/build/apache/arrow/integration/data/struct_example.json --mode=VALIDATE\r\nWith output:\r\n--------------\r\n/home/travis/build/apache/arrow/cpp/src/arrow/ipc/reader.cc:581 Check failed: (message->body_length()) == (block.body_length)\r\n```\r\n\r\nI'm not sure what's wrong. I'll remove the assertions for now\n\n**Reporter**: [Wes McKinney](https://issues.apache.org/jira/browse/ARROW-3256) / @wesm\n**Assignee**: [Paul Taylor](https://issues.apache.org/jira/browse/ARROW-3256) / @trxcllnt\n#### PRs and other links:\n- [GitHub Pull Request #2616](https://github.com/apache/arrow/pull/2616)\n\n<sub>**Note**: *This issue was originally created as [ARROW-3256](https://issues.apache.org/jira/browse/ARROW-3256). Please see the [migration documentation](https://github.com/apache/arrow/issues/14542) for further details.*</sub>",
+    "html_url": "https://github.com/apache/arrow/issues/19596",
+    "labels": [
+      "Type: bug",
+      "Component: JavaScript"
+    ],
+    "state": "closed",
+    "title": "[JS] File footer and message metadata is inconsistent"
+  },
+  "apache/arrow#36889": {
+    "body": "### Describe the bug, including details regarding any error messages, version, and platform.\n\n`pyarrow.csv.write_csv` works as expected, but when the first record batch in a table is empty, it writes two headers (on 2 different lines) instead of one:\r\n\r\n\r\n```python\r\nimport pyarrow.csv\r\nimport pyarrow as pa\r\nimport io\r\n\r\ntable = pa.table({\"col1\": [\"a\", \"b\", \"c\"]})\r\n\r\nwith io.BytesIO() as fp:\r\n    pyarrow.csv.write_csv(table, fp)\r\n    fp.seek(0)\r\n    assert fp.read() == b'\"col1\"\\n\"a\"\\n\"b\"\\n\"c\"\\n'\r\n\r\nwith io.BytesIO() as fp:\r\n    pyarrow.csv.write_csv(pa.concat_tables([table.schema.empty_table(), table]), fp)\r\n    fp.seek(0)\r\n    # THIS IS WRONG:\r\n    assert fp.read() == b'\"col1\"\\n\"col1\"\\n\"a\"\\n\"b\"\\n\"c\"\\n'\r\n\r\n```\n\n### Component(s)\n\nPython",
+    "html_url": "https://github.com/apache/arrow/issues/36889",
+    "labels": [
+      "Type: bug",
+      "Component: C++",
+      "Component: Python",
+      "good-first-issue"
+    ],
+    "state": "closed",
+    "title": "[C++][Python] Duplicate csv header when table batches start with empty"
+  },
+  "apache/arrow#39195": {
+    "body": "https://github.com/apache/arrow/pull/37797 added a Python layer for working with the C Data Interface through capsules and defined dunder methods, described at https://arrow.apache.org/docs/dev/format/CDataInterface/PyCapsuleInterface.html.\r\n\r\nCurrently, libraries are using pyarrow's `_export_to_c`/`_import_from_c` semi-private methods to get the C Data Interface structs / construct pyarrow object from the structs. \r\nWith the formalized PyCapsule protocol, the idea is that this communication of the structs now happens with defined dunder methods `__arrow_c_schema__` / `__arrow_c_array__` / `__arrow_c_stream__` to get the data as a C Data Interface struct wrapped into a capsule instead as raw integer (export). In addition, the pyarrow constructors (`pa.array(..)`, `pa.table(..)`, ..) will now also accept any object implementing the relevant dunder method (import). \r\n\r\nThis new Python-level interface has the benefits to be 1) more robust (not passing around pointers as integers, the capsule will ensure the data is released when an error would happen in the middle), and 2) not tied to pyarrow the library. This means that other libraries can also start accepting any Arrow-compatible data structure, instead of harcoding support for pyarrow and using pyarrow's `_export_to_c`.\r\n\r\nWe want to promote other libraries to start supporting this protocol as well, which can mean:\r\n\r\n- Add the dunders on their own objects where appropriate (so that other libraries will recognize your data structures as holding Arrow-compatible data)\r\n- Where ingesting data (eg where there might be specific pyarrow support right now), recognize objects that implement the dunder methods\r\n\r\nLinking some issues here: https://github.com/pola-rs/polars/issues/12530, https://github.com/data-apis/dataframe-api/issues/279, https://github.com/pandas-dev/pandas/pull/56587, https://github.com/OSGeo/gdal/pull/9043 and https://github.com/OSGeo/gdal/issues/9132 \r\n\r\nIn addition, there are also some steps we can take within the Arrow project itself to further promote this:\r\n\r\n- [x] ADBC support: https://github.com/apache/arrow-adbc/pull/1346\r\n- [x] nanoarrow support: https://github.com/apache/arrow-adbc/pull/1346\r\n- [x] apache/arrow#39196\r\n- [ ] apache/arrow#44872\r\n- [ ] apache/arrow#39198\r\n\r\nThere are also some other follow-up discussions about certain aspects of the protocol or APIs we provide in pyarrow:\r\n\r\n- [x] https://github.com/apache/arrow/issues/39217\r\n- [x] https://github.com/apache/arrow/issues/38010\r\n- [ ] https://github.com/apache/arrow/issues/39689",
+    "html_url": "https://github.com/apache/arrow/issues/39195",
+    "labels": [
+      "Component: Python"
+    ],
+    "state": "open",
+    "title": "[Python] Promote usage of the Arrow PyCapsule Protocol (for the C Data Inteface)"
+  },
+  "apache/arrow#40053": {
+    "body": "### Describe the bug, including details regarding any error messages, version, and platform.\n\nIf I give a column of structs, then pyarrow seems to sort the fields by name. I would expect the field order to be preserved.\r\n\r\n```python\r\nimport pandas as pd\r\nimport pyarrow as pa\r\n\r\nprint(pa.__version__)\r\n# 15.0.0\r\n\r\ns = pd.Series([{\"b\": 2, \"a\": 1}, {\"b\": 4, \"a\": 3}])\r\na = pa.array(s)\r\nprint(a.type)\r\n# struct<a: int64, b: int64>\r\n```\r\n\r\nThis was discovered in https://github.com/ibis-project/ibis/issues/8166\n\n### Component(s)\n\nPython",
+    "html_url": "https://github.com/apache/arrow/issues/40053",
+    "labels": [
+      "Type: bug",
+      "Component: Python"
+    ],
+    "state": "closed",
+    "title": "[Python] `pa.array(<pd.Series of structs>)` changes field order to be sorted"
+  },
+  "apache/arrow#41246": {
+    "body": "### Describe the bug, including details regarding any error messages, version, and platform.\r\n\r\npyarrow 15.0.2\r\n\r\nChanging the table definition for example at python/examples/parquet_encryption/sample_vault_kms_client.py to this:\r\n\r\n```\r\n    table = pa.Table.from_pydict({\r\n        'a': pa.array([1, 2, 3]),\r\n        'b': pa.array([['a', 'b', 'c'], ['a', 'b', 'c'], ['a', 'b', 'c']]),\r\n        'c': pa.array(['x', 'y', 'z'])\r\n    })\r\n```\r\n\r\nproduces an exception:\r\n`OSError: Encrypted column b not in file schema`\r\n\r\n\r\nI expected the encryption to work on a list type. I didn't test other non-fundamental types (like structs) or nested types. I did look for clarification on the capability in Parquet and Arrow, without much luck. Apologies if I missed something.\r\n\r\nThanks for Arrow, it's quite nice!\r\n\r\n### Component(s)\r\n\r\nPython\r\nParquet",
+    "html_url": "https://github.com/apache/arrow/issues/41246",
+    "labels": [
+      "Type: bug",
+      "Component: Python"
+    ],
+    "state": "closed",
+    "title": "[Python][Parquet] Attempt to encrypt column of type 'list' produces OSError"
+  },
+  "apache/arrow#41863": {
+    "body": "### Describe the enhancement requested\n\n`pyarrow.dataset.write_dataset(compression='lz4_raw')` currently fails with:\r\n\r\n```\r\nTraceback (most recent call last):\r\n  File \"/work/projects/lisa/testpyarrow.py\", line 3, in <module>\r\n    _reencode_parquet('sched_switch.lz4.parquet', 'updated.parquet', compression='lz4_raw')#, row_group_size=128*1024*1024, compression='LZ4')\r\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n  File \"x.py\", line 1, in my_write_parquet\r\n    options = pyarrow.dataset.ParquetFileFormat().make_write_options(\r\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n  File \"pyarrow/_dataset_parquet.pyx\", line 206, in pyarrow._dataset_parquet.ParquetFileFormat.make_write_options\r\n  File \"pyarrow/_dataset_parquet.pyx\", line 594, in pyarrow._dataset_parquet.ParquetFileWriteOptions.update\r\n  File \"pyarrow/_dataset_parquet.pyx\", line 599, in pyarrow._dataset_parquet.ParquetFileWriteOptions._set_properties\r\n  File \"pyarrow/_parquet.pyx\", line 1855, in pyarrow._parquet._create_writer_properties\r\n  File \"pyarrow/_parquet.pyx\", line 1369, in pyarrow._parquet.check_compression_name\r\npyarrow.lib.ArrowException: Unsupported compression: lz4_raw\r\n``` \r\n\r\nAnd indeed, no mention of `lz4_raw` is to be found in `python/pyarrow/_parquet.pyx`.\r\n\r\nWould it be possible to add support for LZ4_RAW codec when writing parquet files, particularly using the dataset API ?\n\n### Component(s)\n\nPython",
+    "html_url": "https://github.com/apache/arrow/issues/41863",
+    "labels": [
+      "Type: enhancement",
+      "Component: Python"
+    ],
+    "state": "closed",
+    "title": "[Python][Parquet] Support LZ4_RAW for parquet writing"
+  },
+  "apache/arrow#41990": {
+    "body": "### Describe the bug, including details regarding any error messages, version, and platform.\n\nIn this PR (https://github.com/conda-forge/arrow-cpp-feedstock/pull/1431), I attempted to modify the Conda recipe to add the necessary dependencies for packaging the Azure filesystem in the `arrow-cpp` packages on conda-forge. I was able to successfully build the package for Linux and MacOS, but ran into an error when compiling on MSVC:\r\n\r\n```\r\nFAILED: src/arrow/CMakeFiles/arrow_filesystem_shared.dir/filesystem/filesystem.cc.obj \r\nC:\\PROGRA~1\\MICROS~2\\2022\\ENTERP~1\\VC\\Tools\\MSVC\\1429~1.301\\bin\\HostX64\\x64\\cl.exe  /nologo /TP -DABSL_CONSUME_DLL -DARROW_EXPORTING -DARROW_HAVE_RUNTIME_AVX2 -DARROW_HAVE_RUNTIME_AVX512 -DARROW_HAVE_RUNTIME_BMI2 -DARROW_HAVE_RUNTIME_SSE4_2 -DARROW_WITH_TIMING_TESTS -DAWS_AUTH_USE_IMPORT_EXPORT -DAWS_CAL_USE_IMPORT_EXPORT -DAWS_CHECKSUMS_USE_IMPORT_EXPORT -DAWS_COMMON_USE_IMPORT_EXPORT -DAWS_COMPRESSION_USE_IMPORT_EXPORT -DAWS_CRT_CPP_USE_IMPORT_EXPORT -DAWS_EVENT_STREAM_USE_IMPORT_EXPORT -DAWS_HTTP_USE_IMPORT_EXPORT -DAWS_IO_USE_IMPORT_EXPORT -DAWS_MQTT_USE_IMPORT_EXPORT -DAWS_S3_USE_IMPORT_EXPORT -DAWS_SDKUTILS_USE_IMPORT_EXPORT -DAWS_SDK_VERSION_MAJOR=1 -DAWS_SDK_VERSION_MINOR=11 -DAWS_SDK_VERSION_PATCH=329 -DAWS_USE_IO_COMPLETION_PORTS -DAZ_CORE_DLL -DAZ_IDENTITY_DLL -DAZ_RTTI -DAZ_STORAGE_BLOBS_DLL -DAZ_STORAGE_COMMON_DLL -DAZ_STORAGE_FILES_DATALAKE_DLL -DPROTOBUF_USE_DLLS -DUSE_IMPORT_EXPORT -DUSE_IMPORT_EXPORT=1 -DUSE_WINDOWS_DLL_SEMANTICS -D_CRT_SECURE_NO_WARNINGS -D_ENABLE_EXTENDED_ALIGNED_STORAGE -I%SRC_DIR%\\cpp\\build\\src -I%SRC_DIR%\\cpp\\src -I%SRC_DIR%\\cpp\\src\\generated -external:I%PREFIX%\\Library\\include -external:I%SRC_DIR%\\cpp\\thirdparty\\hadoop\\include -external:W0 /DWIN32 /D_WINDOWS /GR /EHsc /D_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING  /EHsc /wd5105 /bigobj /utf-8 /W3 /wd4800 /wd4996 /wd4065  /O2 /Ob2 /DNDEBUG -std:c++17 -MD /showIncludes /Fosrc\\arrow\\CMakeFiles\\arrow_filesystem_shared.dir\\filesystem\\filesystem.cc.obj /Fdsrc\\arrow\\CMakeFiles\\arrow_filesystem_shared.dir\\ /FS -c %SRC_DIR%\\cpp\\src\\arrow\\filesystem\\filesystem.cc\r\nC:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\VC\\Tools\\MSVC\\14.29.30133\\include\\memory(3089): error C2027: use of undefined type 'arrow::fs::AzureFileSystem::Impl'\r\n%SRC_DIR%\\cpp\\src\\arrow/filesystem/azurefs.h(232): note: see declaration of 'arrow::fs::AzureFileSystem::Impl'\r\nC:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\VC\\Tools\\MSVC\\14.29.30133\\include\\memory(3088): note: while compiling class template member function 'void std::default_delete<arrow::fs::AzureFileSystem::Impl>::operator ()(_Ty *) noexcept const'\r\n        with\r\n        [\r\n            _Ty=arrow::fs::AzureFileSystem::Impl\r\n        ]\r\nC:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\VC\\Tools\\MSVC\\14.29.30133\\include\\memory(3198): note: see reference to function template instantiation 'void std::default_delete<arrow::fs::AzureFileSystem::Impl>::operator ()(_Ty *) noexcept const' being compiled\r\n        with\r\n        [\r\n            _Ty=arrow::fs::AzureFileSystem::Impl\r\n        ]\r\nC:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\VC\\Tools\\MSVC\\14.29.30133\\include\\memory(3125): note: see reference to class template instantiation 'std::default_delete<arrow::fs::AzureFileSystem::Impl>' being compiled\r\n%SRC_DIR%\\cpp\\src\\arrow/filesystem/azurefs.h(233): note: see reference to class template instantiation 'std::unique_ptr<arrow::fs::AzureFileSystem::Impl,std::default_delete<arrow::fs::AzureFileSystem::Impl>>' being compiled\r\nC:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\VC\\Tools\\MSVC\\14.29.30133\\include\\memory(3089): error C2338: can't delete an incomplete type\r\nC:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\VC\\Tools\\MSVC\\14.29.30133\\include\\memory(3090): warning C4150: deletion of pointer to incomplete type 'arrow::fs::AzureFileSystem::Impl'; no destructor called\r\n%SRC_DIR%\\cpp\\src\\arrow/filesystem/azurefs.h(232): note: see declaration of 'arrow::fs::AzureFileSystem::Impl'\r\n```\r\n\r\nI'm not familiar with Windows / MSVC so need some help debugging.\n\n### Component(s)\n\nC++",
+    "html_url": "https://github.com/apache/arrow/issues/41990",
+    "labels": [
+      "Type: bug",
+      "Component: C++"
+    ],
+    "state": "closed",
+    "title": "[C++] Error when building Arrow-CPP w/ Azure Filesystem for Conda-Forge"
+  },
+  "apache/arrow#43660": {
+    "body": "### Describe the bug, including details regarding any error messages, version, and platform.\n\nWhen specifying the column as `LargeStringType` during a Parquet read with a small batch size (4096), we noticed some very bad performance. On investigation, we discovered that the cast from `StringType` to `LargeStringType`, which requires casting the offsets from int32 to int64 was very expensive. The reason was that the cast is performed on small slices of the original table that is read from Parquet row-groups (as a single Arrow table). Each slice has an `offset` to identify its starting point in its buffers and a `length` (<=4096) to identify its end from the offset. \nThe way the cast is performed for the string offsets buffer of a slice is that it \n1. Allocates a buffer of (offset + length + 1) elements (https://github.com/apache/arrow/blob/6a2e19a852b367c72d7b12da4d104456491ed8b7/cpp/src/arrow/compute/kernels/scalar_cast_string.cc#L251)\n2. It then `memset`s the first `offset` elements to `0` (https://github.com/apache/arrow/blob/6a2e19a852b367c72d7b12da4d104456491ed8b7/cpp/src/arrow/compute/kernels/scalar_cast_string.cc#L252-#L253)\n3. Finally, it then performs the cast on the `length` many elements (https://github.com/apache/arrow/blob/6a2e19a852b367c72d7b12da4d104456491ed8b7/cpp/src/arrow/compute/kernels/scalar_cast_string.cc#L254-#L256).\n\nWhen the original row group is large, say a few million rows, and the batch size is small, this can mean that steps 1 & 2 are repeated many times, each on an increasingly larger number. E.g. When the batch size is 4096, the first offset is 0 and there's no wasted computation. However, on every successive batch, the offset grows linearly, and the work adds up when there are many batches: 4096 + 8192 + 12288 + 16384 + 20480 + .... which means that for N total rows, we're doing O(N^2) work and allocating O(N^2) space.\n\nWe were able to resolve this by doing the following:\n- In `ParquetFileFormat::ScanBatchesAsync`, set the `batch_size` for the `reader` to INT64_MAX. Since we already have a `SlicingGenerator` that is responsible for converting the reader's output into `batch_size` sized batches, we don't need the reader to batch its output.\n- Add a `CastingGenerator` that applies any required casts to the output of the reader _before_ the output is passed to `SlicingGenerator`. The logic for the cast closely follows the logic in `MakeExecBatch` (https://github.com/apache/arrow/blob/6a2e19a852b367c72d7b12da4d104456491ed8b7/cpp/src/arrow/compute/expression.cc#L644). There's an existing note in that function which states that the readers should be the ones performing the cast (https://github.com/apache/arrow/blob/6a2e19a852b367c72d7b12da4d104456491ed8b7/cpp/src/arrow/compute/expression.cc#L672), so I believe this change gets us closer to that goal.\n\nI have an implementation here: https://github.com/apache/arrow/compare/main...bodo-ai:arrow-bodo-fork:sahil/pq-read-add-casting-gen that I will open a PR with. I have tested this on our use cases and it performs very well. Even for small files, we were able to improve E2E read performance by 8x since this step was the main bottleneck.\n\n### Component(s)\n\nC++, Parquet",
+    "html_url": "https://github.com/apache/arrow/issues/43660",
+    "labels": [
+      "Type: bug",
+      "Component: Parquet",
+      "Component: C++"
+    ],
+    "state": "closed",
+    "title": "Casting from String to LargeString during Parquet read with small batch size can have very high overheads"
+  },
+  "apache/arrow#44248": {
+    "body": "### Describe the enhancement requested\n\nRelational databases Snowflake, MSSQL, Oracle, Teradata, and SAP SQL Anywhere all support a data type which stores both a timestamp and a time zone offset. This differs from the existing Arrow timestamp type by letting each individual value in the column have a different offset and by not being tied to a geopolitical time zone. This type also appears in Java as `OffsetDateTime` and in .NET as `DateTimeOffset`. It would be nice given how commonly it appears if there were a standard way to represent this in Arrow.\r\n\r\nThis could be done as an extension type for a structure consisting of separate 8-byte timestamp and 2-byte offset values, or as a new first-class type. Intervals are a structure with some similarity to this type and were done as a first-class type, but they also predate the extension type mechanism.\n\n### Component(s)\n\nFormat",
+    "html_url": "https://github.com/apache/arrow/issues/44248",
+    "labels": [
+      "Type: enhancement",
+      "Component: Format"
+    ],
+    "state": "closed",
+    "title": "[Format] Support an official \"timestamp with time zone offset\" type"
+  },
+  "apache/arrow#45449": {
+    "body": "### Describe the enhancement requested\n\nOur R CI jobs still have some builds with OpenSSL 1.0 and 1.1, however, the OpenSSL website [states that](https://openssl-library.org/source/):\n\n> The latest stable version is the 3.4 series supported until 22nd October 2026. Also available is the 3.3 series supported until 9th April 2026, the 3.2 series supported until 23rd November 2025, the 3.1 series supported until 14th March 2025, and the 3.0 series which is a Long Term Support (LTS) version and is supported until 7th September 2026.  All older versions (including 1.1.1, 1.1.0, 1.0.2, 1.0.0 and 0.9.8) are now out of support and should not be used. \n\nIs there a reason to keep those builds?\n\n### Component(s)\n\nR, Continuous Integration",
+    "html_url": "https://github.com/apache/arrow/issues/45449",
+    "labels": [
+      "Type: enhancement",
+      "Component: R",
+      "Component: Continuous Integration"
+    ],
+    "state": "closed",
+    "title": "[R][CI] Remove OpenSSL 1.x builds"
+  },
+  "apache/arrow#45867": {
+    "body": "### Describe the bug, including details regarding any error messages, version, and platform.\n\nSome of our nightly jobs have started failing with:\n```\n     File \"/arrow-dev/lib/python3.10/site-packages/setuptools/dist.py\", line 506, in _find_pattern\n      raise InvalidConfigError(f\"Pattern {pattern!r} cannot contain '..'\")\n  setuptools.errors.InvalidConfigError: Pattern '../LICENSE.txt' cannot contain '..'\n  error: subprocess-exited-with-error\n```\n\nThis is a new check introduced on setuptools 77.0.2 (released some hours ago):\nhttps://github.com/pypa/setuptools/commit/732ec1afb8456809828c2205cc3d6ced2ea8ae61\n\n### Component(s)\n\nContinuous Integration, Python",
+    "html_url": "https://github.com/apache/arrow/issues/45867",
+    "labels": [
+      "Type: bug",
+      "Component: Python",
+      "Component: Continuous Integration"
+    ],
+    "state": "closed",
+    "title": "[CI][Python] A new version (77.0.2) of setuptools seems to have broken some of our builds"
+  },
+  "apache/arrow#46465": {
+    "body": "### Describe the enhancement requested\n\nFor context, see[ this comment](https://github.com/apache/arrow/pull/40939#discussion_r2089940266). There's many unneeded nesting inside the Arrow Flight SQL ODBC driver, such as `odbc/odbcabstraction/include/odbcabstraction`. We should refactor to remove the nesting. For example, headers in `odbc/odbcabstraction/include/odbcabstraction` can be moved to `odbc/odbcabstraction`.\n\n### Component(s)\n\nFlightRPC",
+    "html_url": "https://github.com/apache/arrow/issues/46465",
+    "labels": [
+      "Type: enhancement",
+      "Component: FlightRPC"
+    ],
+    "state": "closed",
+    "title": "[C++][Arrow Flight SQL ODBC] Refactor unnecessary nesting in include folders"
+  },
+  "apache/arrow#47279": {
+    "body": "### Describe the bug, including details regarding any error messages, version, and platform.\n\nHi,\n\nI am receiving the following error when trying the method` pyarrow.Table.nbytes` on a table that has a column with _string_view_ type\n\n`ArrowTypeError: Extracting byte ranges not supported for type string_view\n`\n\n## MRE \n\n``` py \nimport pyarrow as pa\n\nschema = pa.schema([pa.field(\"a\", pa.string_view())])\ntable = pa.Table.from_pylist([{\"a\": \"1\"}], schema=schema)\ntable.nbytes\n\n### Component(s)\n\nPython",
+    "html_url": "https://github.com/apache/arrow/issues/47279",
+    "labels": [
+      "Type: bug",
+      "Component: Python"
+    ],
+    "state": "closed",
+    "title": "[Python] Unable to calculate pyarrow.Table.nbytes if column type is string_view"
+  },
+  "apache/arrow#47659": {
+    "body": "### Describe the bug, including details regarding any error messages, version, and platform.\n\nOn Windows MSVC, when I try to build arrow-flight-testing, I see the following 12 errors:\n```\n11>   Creating library C:/path/to/arrow/cpp/debug-build/debug/Debug/arrow_flight_testing.lib and object C:/path/to/arrow/cpp/debug-build/debug/Debug/arrow_flight_testing.exp\n11>test_definitions.obj : error LNK2019: unresolved external symbol \"__declspec(dllimport) public: __cdecl testing::internal::MatchMatrix::MatchMatrix(unsigned __int64,unsigned __int64)\" (__imp_??0MatchMatrix@internal@testing@@QEAA@_K0@Z) referenced in function \"private: class testing::internal::MatchMatrix __cdecl testing::internal::UnorderedElementsAreMatcherImpl<class std::vector<struct std::pair<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > >,class std::allocator<struct std::pair<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > > > > const &>::AnalyzeElements<class std::_Vector_const_iterator<class std::_Vector_val<struct std::_Simple_types<struct std::pair<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > > > > > >(class std::_Vector_const_iterator<class std::_Vector_val<struct std::_Simple_types<struct std::pair<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > > > > >,class std::_Vector_const_iterator<class std::_Vector_val<struct std::_Simple_types<struct std::pair<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > > > > >,class std::vector<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::allocator<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > > > *,class testing::MatchResultListener *)const \" (??$AnalyzeElements@V?$_Vector_const_iterator@V?$_Vector_val@U?$_Simple_types@U?$pair@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@std@@@std@@@std@@@std@@@?$UnorderedElementsAreMatcherImpl@AEBV?$vector@U?$pair@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@std@@V?$allocator@U?$pair@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@std@@@2@@std@@@internal@testing@@AEBA?AVMatchMatrix@12@V?$_Vector_const_iterator@V?$_Vector_val@U?$_Simple_types@U?$pair@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@std@@@std@@@std@@@std@@0PEAV?$vector@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@5@PEAVMatchResultListener@2@@Z)\n11>test_definitions.obj : error LNK2019: unresolved external symbol \"__declspec(dllimport) public: void __cdecl testing::internal::MatchMatrix::SetEdge(unsigned __int64,unsigned __int64,bool)\" (__imp_?SetEdge@MatchMatrix@internal@testing@@QEAAX_K0_N@Z) referenced in function \"private: class testing::internal::MatchMatrix __cdecl testing::internal::UnorderedElementsAreMatcherImpl<class std::vector<struct std::pair<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > >,class std::allocator<struct std::pair<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > > > > const &>::AnalyzeElements<class std::_Vector_const_iterator<class std::_Vector_val<struct std::_Simple_types<struct std::pair<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > > > > > >(class std::_Vector_const_iterator<class std::_Vector_val<struct std::_Simple_types<struct std::pair<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > > > > >,class std::_Vector_const_iterator<class std::_Vector_val<struct std::_Simple_types<struct std::pair<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > > > > >,class std::vector<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::allocator<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > > > *,class testing::MatchResultListener *)const \" (??$AnalyzeElements@V?$_Vector_const_iterator@V?$_Vector_val@U?$_Simple_types@U?$pair@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@std@@@std@@@std@@@std@@@?$UnorderedElementsAreMatcherImpl@AEBV?$vector@U?$pair@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@std@@V?$allocator@U?$pair@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@std@@@2@@std@@@internal@testing@@AEBA?AVMatchMatrix@12@V?$_Vector_const_iterator@V?$_Vector_val@U?$_Simple_types@U?$pair@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@std@@@std@@@std@@@std@@0PEAV?$vector@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@5@PEAVMatchResultListener@2@@Z)\n11>test_definitions.obj : error LNK2019: unresolved external symbol \"__declspec(dllimport) public: __cdecl testing::internal::MatchMatrix::~MatchMatrix(void)\" (__imp_??1MatchMatrix@internal@testing@@QEAA@XZ) referenced in function \"private: class testing::internal::MatchMatrix __cdecl testing::internal::UnorderedElementsAreMatcherImpl<class std::vector<struct std::pair<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > >,class std::allocator<struct std::pair<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > > > > const &>::AnalyzeElements<class std::_Vector_const_iterator<class std::_Vector_val<struct std::_Simple_types<struct std::pair<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > > > > > >(class std::_Vector_const_iterator<class std::_Vector_val<struct std::_Simple_types<struct std::pair<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > > > > >,class std::_Vector_const_iterator<class std::_Vector_val<struct std::_Simple_types<struct std::pair<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > > > > >,class std::vector<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::allocator<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > > > *,class testing::MatchResultListener *)const \" (??$AnalyzeElements@V?$_Vector_const_iterator@V?$_Vector_val@U?$_Simple_types@U?$pair@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@std@@@std@@@std@@@std@@@?$UnorderedElementsAreMatcherImpl@AEBV?$vector@U?$pair@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@std@@V?$allocator@U?$pair@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@std@@@2@@std@@@internal@testing@@AEBA?AVMatchMatrix@12@V?$_Vector_const_iterator@V?$_Vector_val@U?$_Simple_types@U?$pair@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@std@@@std@@@std@@@std@@0PEAV?$vector@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@5@PEAVMatchResultListener@2@@Z)\n11>test_definitions.obj : error LNK2019: unresolved external symbol \"__declspec(dllimport) public: __cdecl testing::internal::MatchMatrix::MatchMatrix(class testing::internal::MatchMatrix &&)\" (__imp_??0MatchMatrix@internal@testing@@QEAA@$$QEAV012@@Z) referenced in function \"private: class testing::internal::MatchMatrix __cdecl testing::internal::UnorderedElementsAreMatcherImpl<class std::vector<struct std::pair<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > >,class std::allocator<struct std::pair<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > > > > const &>::AnalyzeElements<class std::_Vector_const_iterator<class std::_Vector_val<struct std::_Simple_types<struct std::pair<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > > > > > >(class std::_Vector_const_iterator<class std::_Vector_val<struct std::_Simple_types<struct std::pair<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > > > > >,class std::_Vector_const_iterator<class std::_Vector_val<struct std::_Simple_types<struct std::pair<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > > > > >,class std::vector<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::allocator<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > > > *,class testing::MatchResultListener *)const \" (??$AnalyzeElements@V?$_Vector_const_iterator@V?$_Vector_val@U?$_Simple_types@U?$pair@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@std@@@std@@@std@@@std@@@?$UnorderedElementsAreMatcherImpl@AEBV?$vector@U?$pair@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@std@@V?$allocator@U?$pair@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@std@@@2@@std@@@internal@testing@@AEBA?AVMatchMatrix@12@V?$_Vector_const_iterator@V?$_Vector_val@U?$_Simple_types@U?$pair@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@std@@@std@@@std@@@std@@0PEAV?$vector@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@5@PEAVMatchResultListener@2@@Z)\n11>test_definitions.obj : error LNK2019: unresolved external symbol \"__declspec(dllimport) protected: __cdecl testing::internal::UnorderedElementsAreMatcherImplBase::UnorderedElementsAreMatcherImplBase(enum testing::internal::UnorderedMatcherRequire::Flags)\" (__imp_??0UnorderedElementsAreMatcherImplBase@internal@testing@@IEAA@W4Flags@UnorderedMatcherRequire@12@@Z) referenced in function \"public: __cdecl testing::internal::UnorderedElementsAreMatcherImpl<class std::vector<struct std::pair<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > >,class std::allocator<struct std::pair<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > > > > const &>::UnorderedElementsAreMatcherImpl<class std::vector<struct std::pair<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > >,class std::allocator<struct std::pair<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > > > > const &><class std::_Vector_const_iterator<class std::_Vector_val<struct std::_Simple_types<struct std::pair<char const *,char const *> > > > >(enum testing::internal::UnorderedMatcherRequire::Flags,class std::_Vector_const_iterator<class std::_Vector_val<struct std::_Simple_types<struct std::pair<char const *,char const *> > > >,class std::_Vector_const_iterator<class std::_Vector_val<struct std::_Simple_types<struct std::pair<char const *,char const *> > > >)\" (??$?0V?$_Vector_const_iterator@V?$_Vector_val@U?$_Simple_types@U?$pair@PEBDPEBD@std@@@std@@@std@@@std@@@?$UnorderedElementsAreMatcherImpl@AEBV?$vector@U?$pair@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@std@@V?$allocator@U?$pair@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@std@@@2@@std@@@internal@testing@@QEAA@W4Flags@UnorderedMatcherRequire@12@V?$_Vector_const_iterator@V?$_Vector_val@U?$_Simple_types@U?$pair@PEBDPEBD@std@@@std@@@std@@@std@@1@Z)\n11>test_definitions.obj : error LNK2019: unresolved external symbol \"__declspec(dllimport) protected: void __cdecl testing::internal::UnorderedElementsAreMatcherImplBase::DescribeToImpl(class std::basic_ostream<char,struct std::char_traits<char> > *)const \" (__imp_?DescribeToImpl@UnorderedElementsAreMatcherImplBase@internal@testing@@IEBAXPEAV?$basic_ostream@DU?$char_traits@D@std@@@std@@@Z) referenced in function \"public: virtual void __cdecl testing::internal::UnorderedElementsAreMatcherImpl<class std::vector<struct std::pair<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > >,class std::allocator<struct std::pair<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > > > > const &>::DescribeTo(class std::basic_ostream<char,struct std::char_traits<char> > *)const \" (?DescribeTo@?$UnorderedElementsAreMatcherImpl@AEBV?$vector@U?$pair@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@std@@V?$allocator@U?$pair@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@std@@@2@@std@@@internal@testing@@UEBAXPEAV?$basic_ostream@DU?$char_traits@D@std@@@std@@@Z)\n11>test_definitions.obj : error LNK2019: unresolved external symbol \"__declspec(dllimport) protected: void __cdecl testing::internal::UnorderedElementsAreMatcherImplBase::DescribeNegationToImpl(class std::basic_ostream<char,struct std::char_traits<char> > *)const \" (__imp_?DescribeNegationToImpl@UnorderedElementsAreMatcherImplBase@internal@testing@@IEBAXPEAV?$basic_ostream@DU?$char_traits@D@std@@@std@@@Z) referenced in function \"public: virtual void __cdecl testing::internal::UnorderedElementsAreMatcherImpl<class std::vector<struct std::pair<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > >,class std::allocator<struct std::pair<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > > > > const &>::DescribeNegationTo(class std::basic_ostream<char,struct std::char_traits<char> > *)const \" (?DescribeNegationTo@?$UnorderedElementsAreMatcherImpl@AEBV?$vector@U?$pair@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@std@@V?$allocator@U?$pair@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@std@@@2@@std@@@internal@testing@@UEBAXPEAV?$basic_ostream@DU?$char_traits@D@std@@@std@@@Z)\n11>test_definitions.obj : error LNK2019: unresolved external symbol \"__declspec(dllimport) protected: bool __cdecl testing::internal::UnorderedElementsAreMatcherImplBase::VerifyMatchMatrix(class std::vector<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::allocator<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > > > const &,class testing::internal::MatchMatrix const &,class testing::MatchResultListener *)const \" (__imp_?VerifyMatchMatrix@UnorderedElementsAreMatcherImplBase@internal@testing@@IEBA_NAEBV?$vector@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@AEBVMatchMatrix@23@PEAVMatchResultListener@3@@Z) referenced in function \"public: virtual bool __cdecl testing::internal::UnorderedElementsAreMatcherImpl<class std::vector<struct std::pair<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > >,class std::allocator<struct std::pair<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > > > > const &>::MatchAndExplain(class std::vector<struct std::pair<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > >,class std::allocator<struct std::pair<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > > > > const &,class testing::MatchResultListener *)const \" (?MatchAndExplain@?$UnorderedElementsAreMatcherImpl@AEBV?$vector@U?$pair@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@std@@V?$allocator@U?$pair@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@std@@@2@@std@@@internal@testing@@UEBA_NAEBV?$vector@U?$pair@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@std@@V?$allocator@U?$pair@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@std@@@2@@std@@PEAVMatchResultListener@3@@Z)\n11>test_definitions.obj : error LNK2019: unresolved external symbol \"__declspec(dllimport) protected: bool __cdecl testing::internal::UnorderedElementsAreMatcherImplBase::FindPairing(class testing::internal::MatchMatrix const &,class testing::MatchResultListener *)const \" (__imp_?FindPairing@UnorderedElementsAreMatcherImplBase@internal@testing@@IEBA_NAEBVMatchMatrix@23@PEAVMatchResultListener@3@@Z) referenced in function \"public: virtual bool __cdecl testing::internal::UnorderedElementsAreMatcherImpl<class std::vector<struct std::pair<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > >,class std::allocator<struct std::pair<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > > > > const &>::MatchAndExplain(class std::vector<struct std::pair<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > >,class std::allocator<struct std::pair<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > > > > const &,class testing::MatchResultListener *)const \" (?MatchAndExplain@?$UnorderedElementsAreMatcherImpl@AEBV?$vector@U?$pair@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@std@@V?$allocator@U?$pair@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@std@@@2@@std@@@internal@testing@@UEBA_NAEBV?$vector@U?$pair@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@std@@V?$allocator@U?$pair@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@std@@@2@@std@@PEAVMatchResultListener@3@@Z)\n11>test_definitions.obj : error LNK2019: unresolved external symbol \"__declspec(dllimport) protected: class std::vector<class testing::MatcherDescriberInterface const *,class std::allocator<class testing::MatcherDescriberInterface const *> > & __cdecl testing::internal::UnorderedElementsAreMatcherImplBase::matcher_describers(void)\" (__imp_?matcher_describers@UnorderedElementsAreMatcherImplBase@internal@testing@@IEAAAEAV?$vector@PEBVMatcherDescriberInterface@testing@@V?$allocator@PEBVMatcherDescriberInterface@testing@@@std@@@std@@XZ) referenced in function \"public: __cdecl testing::internal::UnorderedElementsAreMatcherImpl<class std::vector<struct std::pair<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > >,class std::allocator<struct std::pair<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > > > > const &>::UnorderedElementsAreMatcherImpl<class std::vector<struct std::pair<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > >,class std::allocator<struct std::pair<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > > > > const &><class std::_Vector_const_iterator<class std::_Vector_val<struct std::_Simple_types<struct std::pair<char const *,char const *> > > > >(enum testing::internal::UnorderedMatcherRequire::Flags,class std::_Vector_const_iterator<class std::_Vector_val<struct std::_Simple_types<struct std::pair<char const *,char const *> > > >,class std::_Vector_const_iterator<class std::_Vector_val<struct std::_Simple_types<struct std::pair<char const *,char const *> > > >)\" (??$?0V?$_Vector_const_iterator@V?$_Vector_val@U?$_Simple_types@U?$pair@PEBDPEBD@std@@@std@@@std@@@std@@@?$UnorderedElementsAreMatcherImpl@AEBV?$vector@U?$pair@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@std@@V?$allocator@U?$pair@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@std@@@2@@std@@@internal@testing@@QEAA@W4Flags@UnorderedMatcherRequire@12@V?$_Vector_const_iterator@V?$_Vector_val@U?$_Simple_types@U?$pair@PEBDPEBD@std@@@std@@@std@@@std@@1@Z)\n11>test_definitions.obj : error LNK2019: unresolved external symbol \"__declspec(dllimport) public: __cdecl testing::internal::UnorderedElementsAreMatcherImplBase::~UnorderedElementsAreMatcherImplBase(void)\" (__imp_??1UnorderedElementsAreMatcherImplBase@internal@testing@@QEAA@XZ) referenced in function \"int `public: __cdecl testing::internal::UnorderedElementsAreMatcherImpl<class std::vector<struct std::pair<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > >,class std::allocator<struct std::pair<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > > > > const &>::UnorderedElementsAreMatcherImpl<class std::vector<struct std::pair<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > >,class std::allocator<struct std::pair<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > > > > const &><class std::_Vector_const_iterator<class std::_Vector_val<struct std::_Simple_types<struct std::pair<char const *,char const *> > > > >(enum internal::UnorderedElementsAreMatcherImpl<class std::vector<struct std::pair<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > >,class std::allocator<struct std::pair<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > > > > const &>::UnorderedMatcherRequire::Flags,class std::_Vector_const_iterator<class std::_Vector_val<struct std::_Simple_types<struct std::pair<char const *,char const *> > > >,class std::_Vector_const_iterator<class std::_Vector_val<struct std::_Simple_types<struct std::pair<char const *,char const *> > > >)'::`1'::dtor$3\" (?dtor$3@?0???$?0V?$_Vector_const_iterator@V?$_Vector_val@U?$_Simple_types@U?$pair@PEBDPEBD@std@@@std@@@std@@@std@@@?$UnorderedElementsAreMatcherImpl@AEBV?$vector@U?$pair@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@std@@V?$allocator@U?$pair@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@std@@@2@@std@@@internal@testing@@QEAA@W4Flags@UnorderedMatcherRequire@12@V?$_Vector_const_iterator@V?$_Vector_val@U?$_Simple_types@U?$pair@PEBDPEBD@std@@@std@@@std@@@std@@1@Z@4HA)\n11>C:\\path\\to\\arrow\\cpp\\debug-build\\debug\\Debug\\arrow_flight_testing.dll : fatal error LNK1120: 11 unresolved externals\n11>Done building project \"arrow_flight_testing_shared.vcxproj\" -- FAILED.\n```\n\nThis errors occur because the compiler cannot find the internal implementation of some google test functions. I found that adding `ARROW_GTEST_GMOCK` to the linked libraries fixes this issue.\n\n### Component(s)\n\nC++, FlightRPC",
+    "html_url": "https://github.com/apache/arrow/issues/47659",
+    "labels": [
+      "Type: bug",
+      "Component: C++",
+      "Component: FlightRPC"
+    ],
+    "state": "closed",
+    "title": "[C++] unresolved external symbol from missing gtest mock link on Windows"
+  },
+  "apache/arrow#47719": {
+    "body": "### Describe the enhancement requested\n\nImplement SQLTables \n\nParent issue: https://github.com/apache/arrow/issues/30622\n\n### Component(s)\n\nC++, FlightRPC",
+    "html_url": "https://github.com/apache/arrow/issues/47719",
+    "labels": [
+      "Type: enhancement",
+      "Component: C++",
+      "Component: FlightRPC"
+    ],
+    "state": "closed",
+    "title": "[C++][FlightRPC][ODBC] SQLTables implementation"
+  },
+  "apache/arrow#47786": {
+    "body": "### Describe the enhancement requested\n\nEstablish initial tests for ODBC.\n\n### Component(s)\n\nC++",
+    "html_url": "https://github.com/apache/arrow/issues/47786",
+    "labels": [
+      "Type: enhancement",
+      "Component: C++"
+    ],
+    "state": "closed",
+    "title": "[C++][FlightSQL] Add tests for arrow::flight::sql::odbc"
+  },
+  "apache/arrow#47797": {
+    "body": "### Describe the enhancement requested\n\nThis is a follow-up of https://github.com/apache/arrow/issues/47438 which includes:\n\n- usage of one of the binaries provided by https://github.com/astral-sh/python-build-standalone/releases in the free-threaded musllinux builds, see https://github.com/apache/arrow/pull/47616#discussion_r2425387802\n- usage of Python install manager for the free-threaded Win wheels, see https://github.com/apache/arrow/pull/47616#discussion_r2425395860 and https://github.com/apache/arrow/issues/47437#issuecomment-3228683217\n\n### Component(s)\n\nContinuous Integration, Python",
+    "html_url": "https://github.com/apache/arrow/issues/47797",
+    "labels": [
+      "Type: enhancement",
+      "Component: Python",
+      "Component: Continuous Integration"
+    ],
+    "state": "closed",
+    "title": "[CI][Python] Update Python installs for free-threaded wheels"
+  },
+  "apache/arrow#47823": {
+    "body": "### Describe the bug, including details regarding any error messages, version, and platform.\n\n[Python v3.15.0a1](https://github.com/python/cpython/releases/tag/v3.15.0a1) is out, and after building it from source I'm trying to build `pyarrow` from [apache-arrow-22.0.0-rc0](https://github.com/apache/arrow/releases/tag/apache-arrow-22.0.0-rc0).\n\nI'm following the same steps to build `pyarrow` that I've used successfully on Python 3.14.0.\n\nHere's the error output:\n\n```shell\n234.8       /root/builds/arrow/python/pyarrow/src/arrow/python/extension_type.cc:\n234.8       In member function \u2018PyObject* arrow::py::PyExtensionType::GetInstance()\n234.8       const\u2019:\n234.8       /root/builds/arrow/python/pyarrow/src/arrow/python/extension_type.cc:167:20:\n234.8       error: \u2018PyWeakref_GET_OBJECT\u2019 was not declared in this scope\n234.8         167 |   PyObject* inst = PyWeakref_GET_OBJECT(type_instance_.obj());\n234.8             |                    ^~~~~~~~~~~~~~~~~~~~\n234.8       gmake[2]: *** [CMakeFiles/arrow_python.dir/build.make:160:\n234.8       CMakeFiles/arrow_python.dir/pyarrow/src/arrow/python/extension_type.cc.o]\n234.8       Error 1\n234.8       gmake[2]: *** Waiting for unfinished jobs....\n234.8       gmake[1]: *** [CMakeFiles/Makefile2:126:\n234.8       CMakeFiles/arrow_python.dir/all] Error 2\n234.8       gmake: *** [Makefile:136: all] Error 2\n234.8       error: command '/usr/bin/cmake' failed with exit code 2\n```\n\nI'm running this in Docker on Ubuntu 24.04, it's available as the `next` image [here](https://github.com/corbel-spatial/here-be-dragons/pkgs/container/here-be-dragons).\n\n### Component(s)\n\nPython, C++",
+    "html_url": "https://github.com/apache/arrow/issues/47823",
+    "labels": [
+      "Type: bug",
+      "Component: Python"
+    ],
+    "state": "closed",
+    "title": "[Python][C++] Python 3.15 Builds Fail due to PyWeakref_GET_OBJECT Removal"
+  },
+  "apache/arrow#47926": {
+    "body": "### Describe the enhancement requested\n\nOur safe math routines currently use the [portable-snippets library](https://github.com/nemequ/portable-snippets/blob/master/safe-math/safe-math.h). Besides being unmaintained, this library includes Windows headers, which has unfortunate effects such as defining multiple unwanted macros (`GetObject`, etc.).\n\nWe should try to find another approach that's hopefully performant but doesn't include Windows headers.\n\n### Component(s)\n\nC++",
+    "html_url": "https://github.com/apache/arrow/issues/47926",
+    "labels": [
+      "Type: enhancement",
+      "Component: C++"
+    ],
+    "state": "closed",
+    "title": "[C++] Adopt alternative safe math approach"
+  },
+  "apache/arrow#47986": {
+    "body": "### Describe the enhancement requested\n\nInspired by @jecsand838 on\n- https://github.com/apache/arrow/issues/47930\n\nAs well as redirecting the rust status page here\n- https://github.com/apache/arrow-rs/pull/8732\n\nLet's update the page for the Rust implementation:\n- https://arrow.apache.org/docs/status.html\n\n\n\n### Component(s)\n\nWebsite, Documentation",
+    "html_url": "https://github.com/apache/arrow/issues/47986",
+    "labels": [
+      "Type: enhancement",
+      "Component: Documentation",
+      "Component: Website"
+    ],
+    "state": "closed",
+    "title": "[Docs] Update the Rust implementation status page"
+  },
+  "apache/arrow#47989": {
+    "body": "### Describe the enhancement requested\n\nFrom the discussion in https://github.com/apache/arrow/discussions/47988, `pyarrow.parquet.filters_to_expression` feels useful enough me to be to be added to the public API reference docs.\nI did not see it there at the moment (unless I made a mistake).\n\n### Component(s)\n\nDocumentation",
+    "html_url": "https://github.com/apache/arrow/issues/47989",
+    "labels": [
+      "Type: enhancement",
+      "Component: Python",
+      "Component: Documentation"
+    ],
+    "state": "closed",
+    "title": "[Python][Docs] Add `pyarrow.parquet.filters_to_expression` to API reference docs"
+  },
+  "apache/arrow#48062": {
+    "body": "### Describe the bug, including details regarding any error messages, version, and platform.\n\nIn function `arrow::compute::MakeExecBatch` it checks for the input Datum's type id:\n\nhttps://github.com/apache/arrow/blob/5eaf553bfc7aa639fd67bd622b6b808e71fbba39/cpp/src/arrow/compute/expression.cc#L690\n\n`Datum::type()` can return null pointers. This will happen when the Datum is constructed from a record batch or a table:\n\nhttps://github.com/apache/arrow/blob/5eaf553bfc7aa639fd67bd622b6b808e71fbba39/cpp/src/arrow/datum.cc#L76-L88\n\nHowever, the `MakeExecBatch` function does not check whether the datum is a table before `Datum::type()` is used. This leads to a null pointer dereference when the `id()` function is called.\n\nI suggest we additionally check that `Datum::type()` does not return a null pointer before calling `id()` on it.\n\n### Component(s)\n\nC++",
+    "html_url": "https://github.com/apache/arrow/issues/48062",
+    "labels": [
+      "Type: bug",
+      "Component: C++"
+    ],
+    "state": "closed",
+    "title": "[C++] MakeExecBatch would dereference null pointer when the input Datum is constructed from a Table"
+  },
+  "apache/arrow#48123": {
+    "body": "### Describe the enhancement requested\n\nCurrently, Arrow employs an **absolute tolerance** approach for approximate floating-point comparisons. However, this method is suboptimal for `Float16` values. The default absolute tolerance is too small relative to the representational granularity of half-precision floats. Specifically, a difference of one ULP after `1.0` corresponds to an increment of `1/1024`, which is approximately **100 times larger** than Arrow\u2019s default tolerance. Consequently, the following assertion incorrectly passes, even though the two values differ by exactly one ULP:\n\n```c++\nunion Float16Union {\n  explicit Float16Union(Float16 value) : value(value) {}\n  uint16_t u_int_val;\n  Float16 value;\n};\n\nTEST(Compare, Float16ULPs) {\n  Float16 a = Float16::FromBits(0b0011110000000000);\n  ASSERT_EQ(a.ToFloat(), 1);\n  Float16Union a_union(a);\n  // Increment by one ULP\n  a_union.u_int_val += 1;\n  // One ULP after 1.0 in Float16 equals 1/1024\n  ASSERT_EQ(a_union.value.ToFloat(), (1.0f + 1.0f / 1024.0f));\n  auto b = a_union.value;\n  HalfFloatScalar a_scalar(a);\n  HalfFloatScalar b_scalar(b);\n  // This assertion passes because one ULP in [1, 2)\n  // is roughly 100\u00d7 larger than Arrow\u2019s default tolerance\n  ASSERT_FALSE(a_scalar.ApproxEquals(b_scalar));\n}\n```\nOne possible solution is to use a different absolute tolerance value for `Float16`. However, this approach is not very practical, because the size of one ULP doubles with each power of two. For example, after the number 1024, one ULP equals 1.0.\nThere are other comparison methods\u2014such as **relative difference** or **ULP-based distance**\u2014tend to work better for numbers larger than one.\n\n### Component(s)\n\nC++",
+    "html_url": "https://github.com/apache/arrow/issues/48123",
+    "labels": [
+      "Type: enhancement",
+      "Component: C++"
+    ],
+    "state": "closed",
+    "title": "[C++][Float16] Enhance Arrow\u2019s comparison logic to produce more meaningful Float16 comparison results"
+  },
+  "apache/arrow#48142": {
+    "body": "### Describe the bug, including details regarding any error messages, version, and platform.\n\nI noticed my fork of `apache/arrow` has github action workflows running periodically and also failing \nhttps://github.com/kevinjqliu/arrow/actions\n\nThere are a number of github action workflows on a scheduled trigger and not gated by the main repo name. \nhttps://grep.app/search?f.path=.github%2F&f.repo=apache%2Farrow&f.repo.pattern=apache%2Farrow&q=schedule%3A\n- [x] .github/dependabot.yml (N/A in forked repo)\n- [x] .github/workflows/stale.yml (N/A in forked repo)\n- [x] .github/workflows/r_nightly.yml (already gated with main repo name, https://github.com/apache/arrow/blob/7c3d4867e40dd0100542247a61cb83520369b2d4/.github/workflows/r_nightly.yml#L44) \n- [ ] .github/workflows/package_linux.yml\n- [ ] .github/workflows/cpp_extra.yml\n\n`cpp_extra.yml` in particular fails and generates an email each time. \n\nProposed solution: \nAdd a gate to the 2 workflows on main repo name (`apache/arrow`)\n\n### Component(s)\n\nContinuous Integration",
+    "html_url": "https://github.com/apache/arrow/issues/48142",
+    "labels": [
+      "Type: bug",
+      "Component: Continuous Integration"
+    ],
+    "state": "closed",
+    "title": "[CI] Disallow scheduled GitHub Actions run on forked repos"
+  },
+  "apache/arrow#48151": {
+    "body": "### Describe the enhancement requested\n\nApache Arrow repo support is not enabled on IBM Z systems.. There are ~14\ntest suite failures seen. The list is as below\n\n[Parquet-test-failure-summary.txt](https://github.com/user-attachments/files/23606066/Parquet-test-failure-summary.txt)\n\n test suite failures encountered when tried to build and run the tests on s390x machine.\n\nThe test suite failures are listed below:\narrow-acero-asof-join-node-test - Aborted/Core dumped\narrow-ipc-message-internal-test - 1 Test case Failure\narrow-acero-hash-join-node-test - 1 Test case Failure\narrow-ipc-message-internal-test - 1 Test case Failure\narrow-dataset-file-parquet-test - Testcase Hang\narrow-bit-utility-test - 1 Test case Failure\narrow-compute-row-test - Aborted/Core dumped\nparquet-arrow-internals-test - Testcase Hang\nparquet-arrow-reader-writer-test - Aborted/Core dumped\nparquet-chunker-test - Aborted/Core dumped\nparquet-encoding-test - 19 Test case Failures\nparquet-internals-test - 43 Test case Failures\nparquet-reader-test - Aborted/Core dumped\nparquet-writer-test - 5 Test case Failures\n\nCouple of testcase execution hangs as well. The error details are attached in the txt file.\nIn general, there no big-endian support enabled for this repo.\n\n### Component(s)\n\nParquet",
+    "html_url": "https://github.com/apache/arrow/issues/48151",
+    "labels": [
+      "Type: enhancement",
+      "Component: Parquet"
+    ],
+    "state": "open",
+    "title": "[C++][Parquet] Enable Parquet DB support on Big Endian (IBM Z) systems"
+  },
+  "apache/arrow#48241": {
+    "body": "### Describe the bug, including details regarding any error messages, version, and platform.\n\n```\n>>> import uuid\n>>> pa.scalar(uuid.uuid4())\nTraceback (most recent call last):\n  File \"<stdin>\", line 1, in <module>\n  File \"pyarrow/scalar.pxi\", line 1673, in pyarrow.lib.scalar\n    chunked = GetResultValue(ConvertPySequence(value, None, options, pool))\n  File \"pyarrow/error.pxi\", line 155, in pyarrow.lib.pyarrow_internal_check_status\n    return check_status(status)\n  File \"pyarrow/error.pxi\", line 92, in pyarrow.lib.check_status\n    raise convert_status(status)\npyarrow.lib.ArrowInvalid: Could not convert UUID('69db4352-8da4-425b-bb36-0b2b35953f32') with type UUID: did not recognize Python value type when inferring an Arrow data type\n>>> pa.scalar(uuid.uuid4().bytes, type=pa.uuid())\n<pyarrow.UuidScalar: UUID('30897c0a-f649-4155-800a-ed6581f9c08f')>\n>>> pa.scalar(uuid.uuid4().bytes, type=pa.uuid()).as_py()\nUUID('f96615a8-dee4-4379-803d-a067225a166f')\n>>>\n```\nBut seems like it should be supported, since as_py for UUIDScalar returns it.\n\n### Component(s)\n\nPython",
+    "html_url": "https://github.com/apache/arrow/issues/48241",
+    "labels": [
+      "Type: bug",
+      "Component: Python"
+    ],
+    "state": "closed",
+    "title": "[Python] Scalar inferencing doesn't infer UUID"
+  },
+  "apache/arrow#48311": {
+    "body": "### Describe the bug, including details regarding any error messages, version, and platform.\n\n\nAfter this resize \nhttps://github.com/apache/arrow/blob/57cb17259cdbebec0741dfc20aff210f32a80b1e/cpp/src/arrow/io/buffered.cc#L328-L332\n\nIt's not guaranteed that `buffer_->size() - buffer_pos_ >= nbytes` because of the special case here:\nhttps://github.com/apache/arrow/blob/57cb17259cdbebec0741dfc20aff210f32a80b1e/cpp/src/arrow/io/buffered.cc#L302-L306\n\nThat code path assumes that buffer_pos_ will be reset to zero after the resize, but it is not reset. As a result, in this code:\n\nhttps://github.com/apache/arrow/blob/57cb17259cdbebec0741dfc20aff210f32a80b1e/cpp/src/arrow/io/buffered.cc#L340-L343\n\nwe write to `buffer_->mutable_data() + buffer_pos_ + bytes_buffered_`, which can access memory beyond the end of the buffer in some cases\n\nI have a repro, but it requires a very large file and a significant amount of internal code, so I cannot post it.\n\nSuch diff fixed the issue for me https://github.com/apache/arrow/compare/main...chegoryu:arrow:fix-buffered-io\n\n### Component(s)\n\nC++",
+    "html_url": "https://github.com/apache/arrow/issues/48311",
+    "labels": [
+      "Type: bug",
+      "Component: C++"
+    ],
+    "state": "closed",
+    "title": "[C++] OOB write in buffered IO"
+  },
+  "apache/arrow#48312": {
+    "body": "### Describe the enhancement requested\n\nCreate a CI that builds ODBC. It will be triggered by any ODBC-related changes, as well as running on a schedule. \n\n### Component(s)\n\nFlightRPC, C++",
+    "html_url": "https://github.com/apache/arrow/issues/48312",
+    "labels": [
+      "Type: enhancement",
+      "Component: C++",
+      "Component: FlightRPC"
+    ],
+    "state": "closed",
+    "title": "[C++][FlightSQL][ODBC] Windows ODBC standalone CI"
+  },
+  "apache/arrow#48340": {
+    "body": "### Describe the bug, including details regarding any error messages, version, and platform.\n\nWe aren't fully respecting `MAKEFLAGS` that have been set when building libarrow and the R package. We should not ignore those, and instead pass them on.\n\n### Component(s)\n\nR",
+    "html_url": "https://github.com/apache/arrow/issues/48340",
+    "labels": [
+      "Type: bug",
+      "Component: R"
+    ],
+    "state": "closed",
+    "title": "[R] `MAKEFLAGS` is not being respected fully."
+  },
+  "apache/arrow#48436": {
+    "body": "### Describe the enhancement requested\n\nAs demonstrated in https://github.com/apache/arrow/pull/48401, `pyarrow.fs.copy_files` requires for the base destination directory to exist. Should probably consider automatically generating the directories.\n\n### Component(s)\n\nPython",
+    "html_url": "https://github.com/apache/arrow/issues/48436",
+    "labels": [
+      "Type: enhancement",
+      "Component: Python"
+    ],
+    "state": "open",
+    "title": "[Python] Automatically create child directories in `pyarrow.fs.copy_files`"
+  },
+  "apache/arrow#48470": {
+    "body": "### Describe the bug, including details regarding any error messages, version, and platform.\n\nMight be the same issue as https://github.com/apache/arrow/issues/43855, feel free to close if this is the case.\n\n```pytb\n>>> import pyarrow as pa\n>>> pa.array([pa.scalar(b'1'*16, type=pa.uuid())], type=pa.uuid())\n---------------------------------------------------------------------------\nArrowInvalid                              Traceback (most recent call last)\nFile \u2026/pyarrow/array.pxi:375, in pyarrow.lib.array()\nFile \u2026/pyarrow/array.pxi:46, in pyarrow.lib._sequence_to_array()\nFile \u2026/pyarrow/error.pxi:155, in pyarrow.lib.pyarrow_internal_check_status()\nFile \u2026/pyarrow/error.pxi:92, in pyarrow.lib.check_status()\nArrowInvalid: Cannot append scalar of type extension<arrow.uuid> to builder for type fixed_size_binary[16]\n```\n\nVersion: 22.0.0\nPlatform: MacOS, but probably everywhere\n\n### Component(s)\n\nPython",
+    "html_url": "https://github.com/apache/arrow/issues/48470",
+    "labels": [
+      "Type: bug",
+      "Component: Python"
+    ],
+    "state": "closed",
+    "title": "[Python] Cannot construct `UuidArray` from list of `UuidScalar`s"
+  },
+  "apache/arrow#48478": {
+    "body": "### Describe the bug, including details regarding any error messages, version, and platform.\n\nWhen creating an `Arrow::Table` from a Ruby Hash, if a column contains nested arrays consisting solely of non-negative Integer values, the column is incorrectly inferred as `string` (utf8) instead of a list of integers.\n\nHowever, if a negative integer is present in the data, the column is correctly inferred as a list type.\n\n#### Analysis (suspected root cause)\n\nIt appears the issue lies within `red-arrow/lib/arrow/array-builder.rb`.\n`detect_builder_info()` returns `UIntArrayBuilder` with `detected: false` for non-negative Integers (presumably to allow upgrading to a signed type if a negative value appears later).\n\nIn the case of Arrays, a `ListArrayBuilder` seems to be constructed only when `sub_builder_info[:detected]` is `true`. Consequently, nested arrays containing only non-negative integers fail to produce a list type, causing the column to fall back to `string` (utf8).\n\n### Steps to reproduce the bug\n\n```ruby\nrequire \"arrow\"\n\n# Case 1: Only non-negative integers (Bug)\np Arrow::Table.new({ id: [1, 2], values: [[0, 1, 2], [3, 4]] }).schema\n# Actual: values is inferred as string (utf8)\n# Output:\n# #<Arrow::Schema:... id: uint8 \n# values: string>\n```\n\n```ruby\nrequire \"arrow\"\n\n# Case 2: Contains a negative integer (Works as expected)\np Arrow::Table.new({ id: [1, 2], values: [[0, -1, 2], [3, 4]] }).schema\n# Actual: values is inferred as list<int8>\n# Output:\n# #<Arrow::Schema:... id: uint8\n# values: list<item: int8>>\n```\n\n### Expected behavior\n\n`values` should be inferred as a list of integers (e.g. `list<item: int*>`), not `string`,\neven when all integers are non-negative. (The exact integer bit width may vary.)\n\n### Actual behavior\n\nWhen all integers are non-negative, `values` is inferred as `string` (utf8). Adding a negative integer results in the correct list type inference.\n\n### Environment\n\n- OS: macOS 26.1\n- CPU arch: Apple M4 Pro\n- Ruby: 3.4.7\n- Gems: red-arrow 22.0.0\n- Arrow installation method: Homebrew\n\n\n### Component(s)\n\nRuby",
+    "html_url": "https://github.com/apache/arrow/issues/48478",
+    "labels": [
+      "Type: bug",
+      "Component: Ruby"
+    ],
+    "state": "closed",
+    "title": "[Ruby] Arrow::Table.new infers nested integer arrays as utf8 when all values are non-negative"
+  },
+  "apache/arrow#48637": {
+    "body": "### Describe the bug, including details regarding any error messages, version, and platform.\n\nThere are flakey mutex deadlock errors occurring in the Arrow Flight SQL ODBC tests after C++ 20 is enabled https://github.com/apache/arrow/commit/30809c6f48a1a74b40dafd6bb27ac4b9aeded93e, almost occurring in every test run. Mutex related changes have been made to enable C++ 20, so it could possibly be related. \n\nI am only seeing this error in MSVC Windows, and I cannot reproduce it on MSYS2.\n\nAcceptance Criteria:\n- investigate, find root cause of the error and resolve it\n\nLog:\nThe error has been seen in different tests as the appearance is random\n```\n[ RUN      ] ConnectionAttributeTest/1.TestSQLSetConnectAttrTranslateLabDMOnly\n[mutex.cc : 1426] RAW: Potential Mutex deadlock:\n        @ 00007FFF48880260\n        @ 00007FFF48878EB3\n        @ 00007FFF49A7C999\n        @ 00007FFF49BAC90A\n        @ 00007FFF4A05861C\n        @ 00007FFF4A01DF64\n        @ 00007FFF4A01D388\n        @ 00007FFF49CBD881\n        @ 00007FFF49CBE5B0\n        @ 00007FFF49CC2ACC\n        @ 00007FFF49CC18BC\n        @ 00007FFF49CC194D\n        @ 00007FFF49FF903E\n        @ 00007FFF49FF5332\n        @ 00007FFF49FF7F54\n        @ 00007FFF49FF756C\n        @ 00007FFF49FF78E1\n        @ 00007FFF4A0D16EA\n        @ 00007FFF4A7FDF8B\n        @ 00007FFF4A7F09C3\n        @ 00007FFF4A7F0519\n        @ 00007FFF4A7F1283\n        @ 00007FFF4A7F12E6\n        @ 00007FFF4A9C0B26\n        @ 00007FF84F09E8D7\n        @ 00007FF8500EC53C\n\n[mutex.cc : 1438] RAW: Acquiring absl::Mutex 00000228D94F54B0 while holding  00000228D9C1D380; a cycle in the historical lock ordering graph has been observed\n[mutex.cc : 1439] RAW: Cycle:\n[mutex.cc : 1453] RAW: mutex@00000228D94F54B0 stack:\n        @ 00007FFF48880260\n        @ 00007FFF48878EB3\n        @ 00007FFF49A7C999\n        @ 00007FFF49BAC90A\n        @ 00007FFF4A05861C\n        @ 00007FFF4A40CE64\n        @ 00007FFF49FF2BA3\n        @ 00007FFF49FF28EC\n        @ 00007FFF49C9A141\n        @ 00007FFF49C9A33F\n        @ 00007FFF49C9A797\n        @ 00007FFF49C9CCF5\n        @ 00007FFF49C9DF9F\n        @ 00007FFF49E74EB5\n        @ 00007FFF49E73EA6\n        @ 00007FFF49CCB22D\n        @ 00007FFF49B63B81\n        @ 00007FFF49B348CA\n        @ 00007FFF49A48EBC\n        @ 00007FFF499D4B0A\n        @ 00007FF72955BF60\n        @ 00007FF72955CB04\n        @ 00007FFFA5966AED\n        @ 00007FFFA5966723\n        @ 00007FFFA592E76C\n        @ 00007FFFA592F474\n        @ 00007FFFA592FEF1\n        @ 00007FFFA59375C6\n        @ 00007FFFA5966BAD\n        @ 00007FFFA5966A33\n        @ 00007FFFA5930793\n        @ 00007FFFA59F2DE3\n        @ 00007FFFA59F2DB5\n        @ 00007FF729AE53F9\n        @ 00007FF729AE52A2\n        @ 00007FF729AE515E\n        @ 00007FF729AE548E\n        @ 00007FF84F09E8D7\n        @ 00007FF8500EC53C\n\n[mutex.cc : 1453] RAW: mutex@00000228D9C1D380 stack:\n        @ 00007FFF48880260\n        @ 00007FFF48878EB3\n        @ 00007FFF4A9BCE74\n        @ 00007FFF4A2F2C4C\n        @ 00007FFF4A2F3146\n        @ 00007FFF4A2F412B\n        @ 00007FFF49DD8608\n        @ 00007FFF49BAD948\n        @ 00007FFF49BACE4B\n        @ 00007FFF4A05A3BC\n        @ 00007FFF4A40DAD8\n        @ 00007FFF4A426438\n        @ 00007FFF49C9D880\n        @ 00007FFF49C9DECD\n        @ 00007FFF499BA8F3\n        @ 00007FFF49B27584\n        @ 00007FFF49B240A4\n        @ 00007FFF4A685645\n        @ 00007FFF4A68B118\n        @ 00007FFF4A68A2E6\n        @ 00007FFF4A68B98B\n        @ 00007FFF499BA8F3\n        @ 00007FFF4A68B8E4\n        @ 00007FFF4A68AE24\n        @ 00007FFF4A683C97\n        @ 00007FFF4A7F0D0C\n        @ 00007FFF4A7F0519\n        @ 00007FFF4A7F1283\n        @ 00007FFF4A7F12E6\n        @ 00007FFF4A9C0B26\n        @ 00007FF84F09E8D7\n        @ 00007FF8500EC53C\n\n[mutex.cc : 1461] RAW: dying due to potential deadlock\n```\n\nParent issue: https://github.com/apache/arrow/issues/30622\n\n### Component(s)\n\nC++, FlightRPC",
+    "html_url": "https://github.com/apache/arrow/issues/48637",
+    "labels": [
+      "Type: bug",
+      "Component: C++",
+      "Component: FlightRPC"
+    ],
+    "state": "closed",
+    "title": "[C++][FlightRPC][MSVC] Flight SQL ODBC: Potential deadlock error after C++ 20 requirement is enabled"
+  },
+  "apache/arrow#48783": {
+    "body": "### Describe the enhancement requested\n\nThe runs-on GPU instances we use are built [with CUDA 12](https://github.com/runs-on/runner-images-for-aws?tab=readme-ov-file#gpu). See log from `nvidia-smi`:\n```\n| NVIDIA-SMI 575.57.08              Driver Version: 575.57.08      CUDA Version: 12.9     |\n```\n\nI tried installing `cuda-compat-13-0` as suggested [here](https://github.com/apache/arrow/pull/48583#issuecomment-3719253654):\n```\n+-----------------------------------------------------------------------------------------+\n| NVIDIA-SMI 575.57.08              Driver Version: 575.57.08      CUDA Version: 13.0     |\n|-----------------------------------------+------------------------+----------------------+\n```\n\nBut the job still failed with:\n```\ncuda.core._utils.cuda_utils.CUDAError: CUDA_ERROR_INVALID_IMAGE: This indicates that the device kernel image is invalid. This can also indicate an invalid CUDA module.\n```\n\nWe might need to, build our own instances with packer installing newer versions of CUDA as suggested [here](https://runs-on.com/runners/gpu/#workflow-job-definition-1), wait until runs-on provides images with CUDA 13 or try reinstalling the drivers on the instance.\n\nThis is a follow up issue to:\n- https://github.com/apache/arrow/issues/48582\n\n\n### Component(s)\n\nContinuous Integration, GPU",
+    "html_url": "https://github.com/apache/arrow/issues/48783",
+    "labels": [
+      "Type: enhancement",
+      "Component: Continuous Integration",
+      "Component: GPU"
+    ],
+    "state": "open",
+    "title": "[CI][GPU] Add jobs for CUDA 13"
+  },
+  "apache/arrow#48834": {
+    "body": "### Describe the enhancement requested\n\n- Add instructions to run ODBC unit and remote tests, so folks in the community can run the tests on their local Windows machines\n\nParent issue: https://github.com/apache/arrow/issues/30622\n\n### Component(s)\n\nFlightRPC, C++",
+    "html_url": "https://github.com/apache/arrow/issues/48834",
+    "labels": [
+      "Type: enhancement",
+      "Component: C++",
+      "Component: FlightRPC"
+    ],
+    "state": "closed",
+    "title": "[C++][FlightRPC][ODBC] Add instructions to run ODBC tests to `README`"
+  },
+  "apache/arrow#48853": {
+    "body": "### Describe the bug, including details regarding any error messages, version, and platform.\n\nWhen the `dev/release/download_rc_binaries.py` script fails downloading a file it checks whether it has to retry or not.\nhttps://github.com/apache/arrow/actions/runs/20957811272/job/60324652206?pr=48843\nThe check is currently failing due to bytes to string comparison failure:\n```python\n Traceback (most recent call last):\n  File \"/usr/lib/python3.12/concurrent/futures/process.py\", line 263, in _process_worker\n    r = call_item.fn(*call_item.args, **call_item.kwargs)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/arrow/arrow/dev/release/download_rc_binaries.py\", line 237, in _download_file\n    self._download_url(url, dest_path, extra_args=extra_args)\n  File \"/home/runner/work/arrow/arrow/dev/release/download_rc_binaries.py\", line 139, in _download_url\n    if \"OpenSSL\" not in stderr:\n       ^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: a bytes-like object is required, not 'str'\n\"\"\"\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"/home/runner/work/arrow/arrow/dev/release/download_rc_binaries.py\", line 355, in <module>\n    download_rc_binaries(\n  File \"/home/runner/work/arrow/arrow/dev/release/download_rc_binaries.py\", line 303, in download_rc_binaries\n    downloader.download_files(\n  File \"/home/runner/work/arrow/arrow/dev/release/download_rc_binaries.py\", line 89, in download_files\n    parallel_map_terminate_early(\n  File \"/home/runner/work/arrow/arrow/dev/release/download_rc_binaries.py\", line 251, in parallel_map_terminate_early\n    raise e\nTypeError: a bytes-like object is required, not 'str'\n```\n\n### Component(s)\n\nRelease",
+    "html_url": "https://github.com/apache/arrow/issues/48853",
+    "labels": [
+      "Type: bug",
+      "Component: Release",
+      "backport-candidate"
+    ],
+    "state": "closed",
+    "title": "[Release] download_rc_binaries.py fails validating sterr on download failure due to bytes to string comparison"
+  },
+  "apache/arrow#48866": {
+    "body": "### Describe the bug, including details regarding any error messages, version, and platform.\n\nThe Gandiva precompiled time casting functions (`castTIMESTAMP_utf8` and `castTIME_utf8`) incorrectly reject timestamp and time string literals with more than 3 subsecond digits (beyond millisecond precision), instead of truncating them as other implementations do.\n\nCurrent behavior:\n\n```cpp\ncastTIMESTAMP_utf8(\"2025-03-26 11:34:56.123456789\")\n// Returns: 0 (error)\n// Error: \"Invalid millis for timestamp value 2025-03-26 11:34:56.123456789\"\n\ncastTIME_utf8(\"09:45:30.123456789\")\n// Returns: 0 (error)  \n// Error: \"Invalid millis for time value 09:45:30.123456789\"\n```\n\nExpected behavior:\n\n```cpp\ncastTIMESTAMP_utf8(\"2025-03-26 11:34:56.123456789\")\n// Should return: equivalent to \"2025-03-26 11:34:56.123\" (truncated to milliseconds)\n\ncastTIME_utf8(\"09:45:30.123456789\")\n// Should return: equivalent to \"09:45:30.123\" (truncated to milliseconds)\n```\n\nI'm going to open PR with the fix.\n\n### Component(s)\n\nGandiva",
+    "html_url": "https://github.com/apache/arrow/issues/48866",
+    "labels": [
+      "Type: bug",
+      "Component: Gandiva"
+    ],
+    "state": "closed",
+    "title": "[C++][Gandiva] `castTIMESTAMP_utf8` and `castTIME_utf8` should truncate subseconds beyond milliseconds, not reject them"
+  },
+  "apache/arrow#48872": {
+    "body": "### Describe the enhancement requested\n\n- Publish ODBC nightly release so developers can test with nightly version\n\n### Component(s)\n\nFlightRPC, C++, Packaging",
+    "html_url": "https://github.com/apache/arrow/issues/48872",
+    "labels": [
+      "Type: enhancement",
+      "Component: C++",
+      "Component: FlightRPC",
+      "Component: Packaging"
+    ],
+    "state": "closed",
+    "title": "[C++][FlightRPC] ODBC Nightly release"
+  },
+  "apache/arrow#48961": {
+    "body": "### Describe the bug, including details regarding any error messages, version, and platform.\n\nIt seems pandas 3 changed default string type when going from python types?\n\n```python\n_________________ [doctest] pyarrow.lib.RecordBatch.add_column _________________\n2861 >>> import pyarrow as pa\n2862 >>> import pandas as pd\n2863 >>> df = pd.DataFrame({'n_legs': [2, 4, 5, 100],\n2864 ...                    'animals': [\"Flamingo\", \"Horse\", \"Brittle stars\", \"Centipede\"]})\n2865 >>> batch = pa.RecordBatch.from_pandas(df)\n2866 \n2867 Add column:\n2868 \n2869 >>> year = [2021, 2022, 2019, 2021]\n2870 >>> batch.add_column(0,\"year\", year)\nDifferences (unified diff with -expected +actual):\n    @@ -2,5 +2,5 @@\n     year: int64\n     n_legs: int64\n    -animals: string\n    +animals: large_string\n     ----\n     year: [2021,2022,2019,2021]\n```\n\nHere's the same check before and after the upgrade:\n[pandas 2.3.3](https://github.com/apache/arrow/actions/runs/21043431508/job/60511139081?pr=48727)\n[pandas 3.0.0](https://github.com/apache/arrow/actions/runs/21251665557/job/61163539974?pr=48727)\n\n\n\n\n### Component(s)\n\nPython",
+    "html_url": "https://github.com/apache/arrow/issues/48961",
+    "labels": [
+      "Type: bug",
+      "Component: Python",
+      "good-first-issue"
+    ],
+    "state": "closed",
+    "title": "[Docs][Python] Doctest fails on pandas 3.0"
+  },
+  "apache/arrow#48978": {
+    "body": "### Describe the bug, including details regarding any error messages, version, and platform.\n\nAs also reported by @h-vetinari on #48961 - in conda-forge, failures for arrow v23 (& v22) with pandas v3.\nI replicated the same with platform darwin, Python 3.13.9, pandas 3.0.0\n\nA) requires fastparquet to run the test;\n`pytest -r s --pyargs pyarrow/tests/parquet/test_basic.py`\n```Shell\npyarrow/tests/parquet/test_basic.py::test_fastparquet_cross_compatibility FAILED       [ 67%]\n...\n        fp_file = fp.ParquetFile(file_arrow)\n        df_fp = fp_file.to_pandas()\n>       tm.assert_frame_equal(df, df_fp)\nE       AssertionError: Attributes of DataFrame.iloc[:, 0] (column name=\"a\") are different\nE       \nE       Attribute \"dtype\" are different\nE       [left]:  <StringDtype(na_value=nan)>\nE       [right]: object\n\npyarrow/tests/parquet/test_basic.py:754: AssertionError\n```\nB) To replicate the following I had to uninstall pytz first ( `pip uninstall pytz` ) so Python's native `zoneinfo` is utilized;\n`pytest -r s --pyargs pyarrow/tests/test_pandas.py::test_timestamp_as_object_non_nanosecond`\n```Shell\npyarrow/tests/test_pandas.py::test_timestamp_as_object_non_nanosecond[dt0-America/New_York-s] FAILED [ 33%]\npyarrow/tests/test_pandas.py::test_timestamp_as_object_non_nanosecond[dt0-America/New_York-ms] FAILED [ 41%]\npyarrow/tests/test_pandas.py::test_timestamp_as_object_non_nanosecond[dt0-America/New_York-us] FAILED [ 50%]\n... PASSED ...\npyarrow/tests/test_pandas.py::test_timestamp_as_object_non_nanosecond[dt1-America/New_York-s] FAILED [ 83%]\npyarrow/tests/test_pandas.py::test_timestamp_as_object_non_nanosecond[dt1-America/New_York-ms] FAILED [ 91%]\npyarrow/tests/test_pandas.py::test_timestamp_as_object_non_nanosecond[dt1-America/New_York-us] FAILED [100%]\n```\n\n```python\nresolution = 's', tz = 'America/New_York', dt = datetime.datetime(1553, 1, 1, 0, 0)\n...\n            if tz:\n                assert result[0].tzinfo is not None\n>               expected = result[0].tzinfo.fromutc(dt)\n                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nE               ValueError: fromutc: dt.tzinfo is not self\n\npyarrow/tests/test_pandas.py:4959: ValueError\n```\n\n\nCI does not show these failures yet, even for [the CI job \"AMD64 Conda Python 3.13 Pandas latest\" logs from related PR still list pandas 2.3.3](https://github.com/apache/arrow/actions/runs/21251665573/job/61163509833?pr=48727#step:6:546) ;\n```Shell\n    PANDAS: latest\n...\n  #5 importing cache manifest from apache/arrow-dev:amd64-conda-python-3.13-pandas-latest\n...\npandas                                        2.3.3               pypi_0                  pypi\n```\n\n### Component(s)\n\nContinuous Integration, Python",
+    "html_url": "https://github.com/apache/arrow/issues/48978",
+    "labels": [
+      "Type: bug",
+      "Component: Python",
+      "Component: Continuous Integration"
+    ],
+    "state": "closed",
+    "title": "[Python] test failures on pandas 3.0 for fastparquet and for zoneinfo w/o pytz"
+  },
+  "apache/arrow#49003": {
+    "body": "### Describe the bug, including details regarding any error messages, version, and platform.\n\nThis is currently causing failures on the pandas CI.\n\n```python\nimport pyarrow.csv\n\ntable = pyarrow.csv.read_csv(io.BytesIO(f\"data\\n10E-617\".encode()))\nprint(table)\n# pyarrow.Table  <-- pyarrow 22.0.0\n# data: double\n# ----\n# data: [[0]]\n\n# pyarrow.Table  <-- pyarrow 23.0.0\n# data: string\n# ----\n# data: [[\"10E-617\"]]\n```\n\nIt's not clear to me if this was an intentional change. The only thing that looked possibly related from the release notes was\n\nhttps://github.com/apache/arrow/pull/47925\n\nbut I haven't bisected to find if this was the cause.\n\n### Component(s)\n\nPython",
+    "html_url": "https://github.com/apache/arrow/issues/49003",
+    "labels": [
+      "Type: bug",
+      "Component: C++",
+      "Component: Python",
+      "good-first-issue"
+    ],
+    "state": "closed",
+    "title": "[Python] CSV reader returns different values in 23.0.0"
+  },
+  "apache/arrow#49043": {
+    "body": "### Describe the bug, including details regarding any error messages, version, and platform.\n\nWe found an obscure edgecase in a production usecase where the Arrow `AzureFileSystem::GetFileInfo` incorrectly returns `FileType::NotFound`. \n\nI think this is going to be very hard to create a reproduce for that doesn't need to read our Azure storage account, but I have idenitified the root cause. \n\n`GetFileInfo` on flat namespace Azure blob storage accounts does the following\n```\n    Blobs::ListBlobsOptions options;\n    options.Prefix = internal::RemoveTrailingSlash(location.path);\n    options.PageSizeHint = 1;\n\n    auto list_response = container_client.ListBlobsByHierarchy(\"/\", options);\n    if (!list_response.BlobPrefixes.empty()) {\n        ...\n    }\n    if (!list_response.Blobs.empty()) {\n        ...\n    }\n    info.set_type(FileType::NotFound);\n    return info;\n```\n`list_response` contains the results of the first page, but to see all the results requires calling `MoveToNextPage`. In the above code we only check the first page, because order is guaranteed and we only want the first result. However, it seems that in some rare cases `container_client.ListBlobsByHierarchy` can return an empty first page while other pages are not empty. Therefore we incorrectly get `FileType::NotFound`. \n\nI think I can probably make a PR to fix this, but I don't know how to write a test for it. The issue only occurs when Azure does a somewhat strange thing, that may well not exist in the azurite emulator. \n\n### Component(s)\n\nC++",
+    "html_url": "https://github.com/apache/arrow/issues/49043",
+    "labels": [
+      "Type: bug",
+      "Component: C++"
+    ],
+    "state": "closed",
+    "title": "[C++][FS][Azure] `GetFileInfo` occasionally resports NOT_FOUND on directories that do exist"
+  },
+  "apache/arrow#49078": {
+    "body": "### Describe the bug, including details regarding any error messages, version, and platform.\n\n### Reproduce:\n```\nimport pyarrow.fs\n\nazure_fs = pyarrow.fs.AzureFileSystem(account_name=\"test\", sas_token=\"test\")\nprint(azure_fs.__reduce__())\n\nsubtree_fs = pyarrow.fs.SubTreeFileSystem(\"/tmp\", azure_fs)\nprint(subtree_fs.base_fs.__reduce__())\n```\n\nReturns\n```\n(<cyfunction AzureFileSystem._reconstruct at 0x79d22010c940>, ({'account_name': 'test', 'account_key': '', 'blob_storage_authority': '.blob.core.windows.net', 'blob_storage_scheme': 'https', 'client_id': '', 'client_secret': '', 'dfs_storage_authority': '.dfs.core.windows.net', 'dfs_storage_scheme': 'https', 'sas_token': 'test', 'tenant_id': ''},))\n(<cyfunction AzureFileSystem._reconstruct at 0x79d22010c940>, ({'account_name': 'test', 'account_key': '', 'blob_storage_authority': '.blob.core.windows.net', 'blob_storage_scheme': 'https', 'client_id': '', 'client_secret': '', 'dfs_storage_authority': '.dfs.core.windows.net', 'dfs_storage_scheme': 'https', 'sas_token': '', 'tenant_id': ''},))\n```\nNotice how the first result the `sas_token` is not empty but the second one is. \n\n### Cause:\nThe `sas_token` and a couple of the other values returned by `AzureFileSystem.__reduce__` read from `self` of the python side `AzureFileSystem` object. When constructing a `SubTreeFileSystem`, the python side `AzureFileSystem` object is discarded and the `SubTreeFileSystem` only holds a pointer to the `CAzureFileSystem`. Therefore its not possible to reconstruct a python side `AzureFileSystem` including the attributes on `self` of the original `AzureFileSystem`. \n\n### Component(s)\n\nPython",
+    "html_url": "https://github.com/apache/arrow/issues/49078",
+    "labels": [
+      "Type: bug",
+      "Component: Python"
+    ],
+    "state": "closed",
+    "title": "[Python][FS][Azure] Pickling `SubTreeFileSystem(base_path, AzureFileSystem(...))` is lossy"
+  },
+  "apache/arrow#49138": {
+    "body": "### Describe the bug, including details regarding any error messages, version, and platform.\n\nWe use a nightlies version of Cython for free-threaded PyArrow:\n> https://pypi.anaconda.org/scientific-python-nightly-wheels/simple/cython/3.3.0a0/cython-3.3.0a0-py3-none-any.whl\n\n\nThis is currently failing with:\n```python\n[13/115] Compiling Cython CXX source for lib...\nFAILED: CMakeFiles/lib_pyx /arrow/python/build/temp.linux-x86_64-cpython-313t/CMakeFiles/lib_pyx \ncd /arrow/python/build/temp.linux-x86_64-cpython-313t && /opt/python/cp313-cp313t/bin/python -m cython --cplus --warning-errors --no-c-in-traceback -Xfreethreading_compatible=True --directive embedsignature=True --working /arrow/python --output-file /arrow/python/build/temp.linux-x86_64-cpython-313t/lib.cpp /arrow/python/pyarrow/lib.pyx\n\nError compiling Cython file:\n------------------------------------------------------------\n...\n    options.field_merge_options = _parse_field_merge_options(\n        \"default\" if promote_options == \"none\" else promote_options\n    )\n\n    with nogil:\n        options.unify_schemas = promote_options != \"none\"\n                                                ^\n------------------------------------------------------------\npyarrow/table.pxi:6320:48: Coercion from Python not allowed without the GIL\n\nError compiling Cython file:\n------------------------------------------------------------\n...\n    options.field_merge_options = _parse_field_merge_options(\n        \"default\" if promote_options == \"none\" else promote_options\n    )\n\n    with nogil:\n        options.unify_schemas = promote_options != \"none\"\n                                                ^\n------------------------------------------------------------\npyarrow/table.pxi:6320:48: Operation not allowed without gil\n```\n\nTaking a look at latest Cython commits the following could be related:\nhttps://github.com/cython/cython/commit/46e961eeed1c4c3206dce21377edccfbb57577eb\n\nI am unsure what the problem is and whether is a regression on Cython or we should fix the comparison to require the GIL.\n\nThis is happening both on main and the 23.0.1 maintenance branch so it has to be fixed for the release.\n\n### Component(s)\n\nPackaging, Python",
+    "html_url": "https://github.com/apache/arrow/issues/49138",
+    "labels": [
+      "Type: bug",
+      "Component: Python",
+      "Component: Packaging"
+    ],
+    "state": "closed",
+    "title": "[Packaging][Python] PyArrow fails building with nightlies Cython"
+  },
+  "apache/arrow#49227": {
+    "body": "### Describe the enhancement requested\n\nI don't think `pyarrow.gandiva` is getting a lot of usage. The [last non-trivial change](https://github.com/apache/arrow/pull/39098) was made 2 years ago by @niyue . It is not packaged on PyPI, but it's part of the [pyarrow-all](https://anaconda.org/channels/conda-forge/packages/pyarrow-all/overview) package on conda-forge which is not downloaded much (35K downloads for 6 months compared to 3M for pyarrow-core).\n\nDeprecating and then dropping `pyarrow.gandiva` would simplify some CI build and remove some light maintenance burden from the team. It would also make it easier to later move Gandiva C++ to a separate repository.\n\n\n### Component(s)\n\nPython",
+    "html_url": "https://github.com/apache/arrow/issues/49227",
+    "labels": [
+      "Type: enhancement",
+      "Component: Python"
+    ],
+    "state": "closed",
+    "title": "[Python] Deprecate `pyarrow.gandiva`"
+  },
+  "apache/arrow#49248": {
+    "body": "### Describe the enhancement requested\n\nAs discussed in https://lists.apache.org/thread/o2mpsf5okhzfz2k4mbg5d4s9ror69587, it would be an improvement if the vote thread email included the checksum of the RC archive instead of only linking to it.\n\n### Component(s)\n\nRelease",
+    "html_url": "https://github.com/apache/arrow/issues/49248",
+    "labels": [
+      "Type: enhancement",
+      "Component: Release"
+    ],
+    "state": "closed",
+    "title": "[Release] Update vote thread email template to include checkum"
+  },
+  "apache/arrow#49268": {
+    "body": "### Describe the bug, including details regarding any error messages, version, and platform.\n\nODBC tests do not yet pass on MacOS.\n\nFix all remaining ODBC tests for MacOS.\n\n### Component(s)\n\nC++, FlightRPC",
+    "html_url": "https://github.com/apache/arrow/issues/49268",
+    "labels": [
+      "Type: bug",
+      "Component: C++",
+      "Component: FlightRPC"
+    ],
+    "state": "closed",
+    "title": "[C++][FlightRPC] Fix ODBC tests for MacOS"
+  },
+  "apache/arrow#49283": {
+    "body": "### Describe the enhancement requested\n\nCurrently we only have debug workflows for ODBC on MacOS. We want a release workflow as well.\n\n### Component(s)\n\nC++, FlightRPC",
+    "html_url": "https://github.com/apache/arrow/issues/49283",
+    "labels": [
+      "Type: enhancement",
+      "Component: C++",
+      "Component: FlightRPC"
+    ],
+    "state": "closed",
+    "title": "[C++][FlightRPC] Add separate release & debug workflows for MacOS ODBC"
+  },
+  "apache/arrow#49311": {
+    "body": "### Describe the enhancement requested\n\nThe IPC file fuzzer could also try to read the file as an IPC stream and validate that it reads the same.\n\n### Component(s)\n\nC++, Continuous Integration",
+    "html_url": "https://github.com/apache/arrow/issues/49311",
+    "labels": [
+      "Type: enhancement",
+      "Component: C++",
+      "Component: Continuous Integration"
+    ],
+    "state": "closed",
+    "title": "[C++][CI] Use differential fuzzing on IPC file fuzzer"
+  },
+  "apache/arrow#49349": {
+    "body": "a) Change tables.pxi and types.pxi doctests to pandas 3 specific output as CI conda-python-docs got updated from using both pandas 2.3.3 and 3 to only pandas 3 - https://github.com/apache/arrow/pull/49088#discussion_r2747150383\nb) Simplify doctests - replace pa.Table.from_arrays([...], names=[...]) with  pa.table({...}) as suggested by @jorisvandenbossche in [#48969](https://github.com/apache/arrow/pull/48969/changes#r2750001373)\n\n### Component(s)\n\nDocumentation, Python",
+    "html_url": "https://github.com/apache/arrow/issues/49349",
+    "labels": [
+      "Component: Documentation"
+    ],
+    "state": "closed",
+    "title": "[Doc][Python] Simplify doctests in tables.pxi and types.pxi"
+  },
+  "apache/arrow#49371": {
+    "body": "### Describe the bug, including details regarding any error messages, version, and platform.\n\n#49298 introduced the failure on our CRAN-like Crossbow job: https://github.com/ursacomputing/crossbow/actions/runs/22267571643/job/64416504261#step:9:982\n\n```\n[  4%] Building C object _deps/lz4-build/CMakeFiles/lz4_static.dir/__/lz4-src/lib/lz4frame.c.o\nIn file included from /Users/runner/work/crossbow/crossbow/arrow/cpp/src/arrow/array/array_base.cc:18:\nIn file included from /Users/runner/work/crossbow/crossbow/arrow/cpp/src/arrow/array/array_base.h:26:\nIn file included from /Users/runner/work/crossbow/crossbow/arrow/cpp/src/arrow/array/data.h:32:\n/Users/runner/work/crossbow/crossbow/arrow/cpp/src/arrow/util/bit_util.h:141:15: error: no member named 'bit_width' in namespace 'std'\n  141 |   return std::bit_width(x - 1);\n      |          ~~~~~^\n[  4%] Building C object _deps/lz4-build/CMakeFiles/lz4_static.dir/__/lz4-src/lib/lz4hc.c.o\n1 error generated.\nmake[2]: *** [src/arrow/CMakeFiles/arrow_array.dir/array/array_base.cc.o] Error 1\nmake[1]: *** [src/arrow/CMakeFiles/arrow_array.dir/all] Error 2\nmake[1]: *** Waiting for unfinished jobs....\n[  4%] Building C object _deps/lz4-build/CMakeFiles/lz4_static.dir/__/lz4-src/lib/xxhash.c.o\n[  4%] Linking C static library liblz4.a\n[  4%] Built target lz4_static\nmake: *** [all] Error 2\n**** Complete build log may still be present at \n```\n\nWe'll need to walk this back or work around it until CRAN fully supports C++20. cc @Anakin100100 @pitrou \n\n### Component(s)\n\nC++",
+    "html_url": "https://github.com/apache/arrow/issues/49371",
+    "labels": [
+      "Type: bug",
+      "Component: C++"
+    ],
+    "state": "closed",
+    "title": "[C++]: Work around `bit_width` not being available on MacOS's partially compatible C++20 build"
+  },
+  "apache/arrow#49435": {
+    "body": "### Describe the bug, including details regarding any error messages, version, and platform.\n\nI've seen this issue in the ARM64 macOS 14 GLib & Ruby  job here:\nhttps://github.com/apache/arrow/actions/runs/22618042997/job/65535748275?pr=49429\n\n```\n [522/661] Building CXX object src/arrow/flight/CMakeFiles/arrow_flight_objlib.dir/transport/grpc/serialization_internal.cc.o\nFAILED: [code=1] src/arrow/flight/CMakeFiles/arrow_flight_objlib.dir/transport/grpc/serialization_internal.cc.o \n/opt/homebrew/bin/ccache /usr/bin/c++ -DARROW_FLIGHT_EXPORTING -DARROW_HAVE_NEON -DARROW_WITH_TIMING_TESTS -DGRPC_ENABLE_ASYNC -DGRPC_NAMESPACE_FOR_TLS_CREDENTIALS_OPTIONS=grpc::experimental -DGRPC_USE_CERTIFICATE_VERIFIER -DGRPC_USE_TLS_CHANNEL_CREDENTIALS_OPTIONS -DPROTOBUF_USE_DLLS -I/Users/runner/work/arrow/arrow/build/cpp/src -I/Users/runner/work/arrow/arrow/cpp/src -I/Users/runner/work/arrow/arrow/cpp/src/generated -isystem /opt/homebrew/include -isystem /opt/homebrew/opt/openssl@3/include -fno-aligned-new  -Qunused-arguments -fcolor-diagnostics  -Wall -Wextra -Wdocumentation -DARROW_WARN_DOCUMENTATION -Wshorten-64-to-32 -Wno-missing-braces -Wno-unused-parameter -Wno-constant-logical-operand -Wno-return-stack-address -Wdate-time -Wno-unknown-warning-option -Wno-pass-failed -march=armv8-a  -g -Werror -O0 -ggdb -g1 -std=c++20 -arch arm64 -fPIC -MD -MT src/arrow/flight/CMakeFiles/arrow_flight_objlib.dir/transport/grpc/serialization_internal.cc.o -MF src/arrow/flight/CMakeFiles/arrow_flight_objlib.dir/transport/grpc/serialization_internal.cc.o.d -o src/arrow/flight/CMakeFiles/arrow_flight_objlib.dir/transport/grpc/serialization_internal.cc.o -c /Users/runner/work/arrow/arrow/cpp/src/arrow/flight/transport/grpc/serialization_internal.cc\n/Users/runner/work/arrow/arrow/cpp/src/arrow/flight/transport/grpc/serialization_internal.cc:356:9: error: ignoring return value of function declared with 'nodiscard' attribute [-Werror,-Wunused-result]\n  356 |         pb_stream.ReadString(&buffer, length);\n      |         ^~~~~~~~~~~~~~~~~~~~ ~~~~~~~~~~~~~~~\n1 error generated.\n[523/661] Building CXX object src/arrow/flight/CMakeFiles/arrow_flight_objlib.dir/transport/grpc/grpc_server.cc.o\n[524/661] Building CXX object src/arrow/flight/CMakeFiles/arrow_flight_objlib.dir/transport/grpc/grpc_client.cc.o\n[525/661] Building CXX object src/arrow/flight/CMakeFiles/arrow_flight_objlib.dir/transport/grpc/protocol_grpc_internal.cc.o\nninja: build stopped: subcommand failed.\n```\n\nFrom what I can see protobuf has started to add a bunch of nodiscard to some of their methods which are part of v34.0:\nhttps://github.com/protocolbuffers/protobuf/commit/10af44bb0b8e2428b072c06ca0cee7ff0b38c624\n\n### Component(s)\n\nC++, FlightRPC",
+    "html_url": "https://github.com/apache/arrow/issues/49435",
+    "labels": [
+      "Type: bug",
+      "Component: C++",
+      "Component: FlightRPC"
+    ],
+    "state": "closed",
+    "title": "[C++][FlightRPC] Flight fails building with protobuf v34.0+ due to functions updated with nodiscard"
+  },
+  "apache/arrow#49452": {
+    "body": "### Describe the enhancement requested\n\nDocstring injection is removed with setup.py with https://github.com/apache/arrow/pull/49259. We want to reintroduce it in somewhat similar form to what was done in https://github.com/apache/arrow/pull/48618.\n\n### Component(s)\n\nPython",
+    "html_url": "https://github.com/apache/arrow/issues/49452",
+    "labels": [
+      "Type: enhancement",
+      "Component: Python"
+    ],
+    "state": "closed",
+    "title": "[Python] Reintroduce docstring injection for stubfiles"
+  },
+  "apache/arrow#49506": {
+    "body": "### Describe the bug, including details regarding any error messages, version, and platform.\n\nE.g.: https://github.com/apache/arrow/actions/runs/23038298907/job/66911072830:\n\n```python\npytest -r s --doctest-modules --doctest-cython --pyargs pyarrow\n============================= test session starts ==============================\nplatform linux -- Python 3.11.15, pytest-9.0.2, pluggy-1.6.0\nrootdir: /\nplugins: hypothesis-6.151.9, anyio-4.12.1, cython-0.4.0\ncollected 398 items / 1 error\n\n==================================== ERRORS ====================================\n_ ERROR collecting opt/conda/envs/arrow/lib/python3.11/site-packages/pyarrow/_cuda.pyx _\nImportError while importing test module '/opt/conda/envs/arrow/lib/python3.11/site-packages/pyarrow/_cuda.pyx'.\nHint: make sure your test modules/packages have valid Python names.\nTraceback:\nopt/conda/envs/arrow/lib/python3.11/importlib/__init__.py:126: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nE   ModuleNotFoundError: No module named 'pyarrow._cuda'\n!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n=============================== 1 error in 1.50s ===============================\n```\n\n### Component(s)\n\nContinuous Integration, Python",
+    "html_url": "https://github.com/apache/arrow/issues/49506",
+    "labels": [
+      "Type: bug",
+      "Component: Python",
+      "Component: Continuous Integration"
+    ],
+    "state": "closed",
+    "title": "[CI][Python] Doctest fails when pyarrow._cuda absent"
+  },
+  "apache/arrow#49509": {
+    "body": "### Describe the enhancement requested\n\nWhen building html with `sphinx-build -j auto -b html` there are several warnings and docutils warnings/errors logged and for several causes can be eliminated.\n\nExamples of CI logs\n[AMD64 Conda Python 3.11 Sphinx & Numpydoc](https://github.com/apache/arrow/actions/runs/23050423049/job/66949934952#step:6:3962)\n\n[AMD64 Debian 12 Complete Documentation](https://github.com/apache/arrow/actions/runs/23047453009/job/66939994537#step:7:5012)\n\n[AMD64 Conda Python 3.12 Sphinx Documentation](https://github.com/apache/arrow/actions/runs/22908104584/job/66472440794#step:6:4096)\n\n```\n/opt/conda/envs/arrow/lib/python3.12/site-packages/numpydoc/docscrape.py:203: UserWarning: potentially wrong underline length... \nExample \n-------- in \n...\n/opt/conda/envs/arrow/lib/python3.12/site-packages/pyarrow/compute.py:docstring of pyarrow.compute.atanh_checked:4: ERROR: Undefined substitution referenced: \"x\". [docutils]\ndocstring of pyarrow.lib.BaseListArray.flatten:44: ERROR: Unexpected indentation. [docutils]\ndocstring of pyarrow.lib.BaseListArray.flatten:47: WARNING: Definition list ends without a blank line; unexpected unindent. [docutils]\n...\n/build/python/docs/source/cpp/api/cuda.rst:73: WARNING: Error when parsing function declaration\n...\nWARNING: unknown role name: python:mod\n/build/python/docs/source/cpp/env_vars.rst:96: ERROR: Unknown interpreted text role \"python:mod\". [docutils]\n...\n/build/python/docs/source/format/Security.rst:62: WARNING: undefined label: '_format_columnar' [ref.ref]\n/build/python/docs/source/format/Security.rst:173: WARNING: undefined label: '_ipc-message-format' [ref.ref]\n...\n```\n\n### Component(s)\n\nDocumentation, Python",
+    "html_url": "https://github.com/apache/arrow/issues/49509",
+    "labels": [
+      "Type: enhancement",
+      "Component: Python",
+      "Component: Documentation"
+    ],
+    "state": "closed",
+    "title": "[Docs][Python][C++] Minimize warnings and docutils errors for Sphinx build html where possible"
+  },
+  "apache/arrow-rs#4886": {
+    "body": "**Is your feature request related to a problem or challenge? Please describe what you are trying to do.**\n<!--\nA clear and concise description of what the problem is. Ex. I'm always frustrated when [...] \n(This section helps Arrow developers understand the context and *why* for this feature, in addition to  the *what*)\n-->\n\n[Avro](https://avro.apache.org/docs/1.11.1/specification/) is a widely used binary, row-oriented data encoding. It is very similar to protobuf, and has seen very wide adoption in the data ecosystem, especially for streaming workloads.\n\n**Describe the solution you'd like**\n<!--\nA clear and concise description of what you want to happen.\n-->\n\nA new arrow_avro crate will provide vectorised support for reading and writing avro data. The APIs should be designed in such a way as to work for the various different container formats for avro encoded data, including [single object encoding](https://avro.apache.org/docs/1.11.1/specification/#single-object-encoding), [object container files](https://avro.apache.org/docs/1.11.1/specification/#object-container-files) and [message](https://avro.apache.org/docs/1.11.1/specification/#protocol-wire-format) even if first-class support is not provided for all these framing mechanisms.\n\n**Describe alternatives you've considered**\n<!--\nA clear and concise description of any alternative solutions or features you've considered.\n-->\n\n**Additional context**\n<!--\nAdd any other context or screenshots about the feature request here.\n-->\n\nDataFusion has some avro support, however, it is based on the row-based apache_avro crate and is therefore likely extremely sub-optimal.\n\nFYI @Samrose-Ahmed @sarutak @devinjdangelo I intend to work on this, but any help with reviews / testing would be most welcome\n\n\nSubtasks\n- https://github.com/apache/arrow-rs/issues/8428",
+    "html_url": "https://github.com/apache/arrow-rs/issues/4886",
+    "labels": [
+      "enhancement",
+      "arrow-avro"
+    ],
+    "state": "closed",
+    "title": "Add Avro Support"
+  },
+  "assignUser/arrow#23": {
+    "body": "### Describe the enhancement requested\n\ngo problem\n\n### Component(s)\n\nGo",
+    "html_url": "https://github.com/assignUser/arrow/issues/23",
+    "labels": [],
+    "state": "open",
+    "title": "Go Code "
+  },
+  "aws/aws-lc#2995": {
+    "body": "### Problem:\n\nFail to build on Arch Linux without `-Wno-discarded-qualifiers`.\n\nWith the extra cflag above it can build successfully. But I'm not sure if I should suppress the warning blindly.\n\nA rough Googling shows that `-Wno-discarded-qualifiers` was introduced in GCC 5 which is released roughly 10 years ago. I believe that ruled out Arch Linux being too bleeding edge... Or maybe it is?\n\n#### Relevant details\nAWS-LC commit: https://github.com/aws/aws-lc/commit/728811eecec794802c78105be6dbfe9d79870ac7 tagged v1.66.2\n\nSystem information:\n * CPU architecture: x86-64\n * CPU name: AMD Ryzen 7 5800X\n * OS: Arch Linux\n * C Compiler: gcc 15.2.1 but I believe Arch Linux ships commit=`0b99615a8aef011cff76c6caa8c09434f46598b3`, not a tagged release. See [gcc package in Arch](https://gitlab.archlinux.org/archlinux/packaging/packages/gcc/-/blob/main/PKGBUILD?ref_type=heads)\n\nBuild log: \nSee the gist: https://gist.github.com/5long/be83f0b1ac35b88129ca2dd3228c0c1a",
+    "html_url": "https://github.com/aws/aws-lc/issues/2995",
+    "labels": [],
+    "state": "closed",
+    "title": "Fails to build on Arch Linux without -Wno-discarded-qualifiers"
+  },
+  "boostorg/context#296": {
+    "body": "Two probably related issues with using Windows on ARM64 using Parallels:\n\n1) When using B2 the output of configuration checks is:\n\n```\n    - default address-model    : 64-bit [1]\n    - default architecture     : none [1]\n```\n\nIf you specify `architecture=arm` on the command line things build and run just fine\n\n2) When using CMAKE the configuration step successfully completes, but the build always fails with: `unknown command-line argument or argument value -DBOOST_CONTEXT_EXPORT=`\n\nI am able to build and run CMAKE using the x64 cross compiler after manually specifying the architecture and the assembler in Visual Studio.",
+    "html_url": "https://github.com/boostorg/context/issues/296",
+    "labels": [],
+    "state": "open",
+    "title": "Windows ARM64 Support"
+  },
+  "google/oss-fuzz#1830": {
+    "body": "In bug #1817 @Dor1s suggested that I take a look at [oss-fuzz #7803](https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=7803)\r\nJust like in [oss-fuzz #5679](https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=5679) mupdf runs out of memory.\r\n\r\n```\r\nerror: syntax error in content stream\r\nerror: syntax error in content stream\r\nwarning: cannot render glyph\r\n==8== ERROR: libFuzzer: out-of-memory (used: 2976Mb; limit: 2048Mb)\r\n   To change the out-of-memory limit use -rss_limit_mb=<N>\r\n\r\nSUMMARY: libFuzzer: out-of-memory\r\n```\r\n\r\nI know from [the faq](https://github.com/google/oss-fuzz/blob/master/docs/faq.md) that the fuzzer is restricted to 2Gbyte of memory. As we will always run into some fuzzed file that may cause us to attempt large allocations mupdf handles this by attempting to call `malloc()` and handle failures where it returns `NULL` and error out. What seems counterintuitive though is that `malloc()` in the fuzzer does *not* return `NULL` at this point, instead the fuzzer aborts like in the log above, thereby not allowing mupdf to do its error recovery.\r\n\r\nI saw that in `infra/base-images/base-runner/Dockerfile` you set `ASAN_OPTIONS=\"allocator_may_return_null=1\"`, however this seems does not seem to have any effect as it aborts before `malloc()` is allowed to return `NULL`. How can I change my project so that `malloc()` *does* return `NULL` when it runs out of memory?",
+    "html_url": "https://github.com/google/oss-fuzz/issues/1830",
+    "labels": [],
+    "state": "closed",
+    "title": "[mupdf]: malloc() does not return NULL upon out of memory..."
+  },
+  "r-lib/roxygen2#1587": {
+    "body": "Having an entry like this:\r\n```r\r\n#' @export\r\nall.equal.keras.src.backend.common.variables.KerasVariable <-\r\n  function(target, current, ...) { }\r\n```\r\n\r\nProduces this in the NAMESPACE\r\n```\r\nS3method(all,equal.keras.src.backend.common.variables.KerasVariable)\r\n```\r\nIt should match `all.equal`, not `all`.\r\n\r\nSeems like a return of https://github.com/r-lib/roxygen2/issues/147 \r\n\r\n",
+    "html_url": "https://github.com/r-lib/roxygen2/issues/1587",
+    "labels": [],
+    "state": "closed",
+    "title": "`@export` all.equal S3 method error"
+  },
+  "rails/rails#55886": {
+    "body": "When running any HTTPS requests (e.g., through Net::HTTP, ActiveStorage::Service::S3Service, or AWS SDK) on macOS with Ruby 3.4.x and OpenSSL 3.6, SSL handshakes fail with the error:\n\n```bash\nOpenSSL::SSL::SSLError:\n  SSL_connect returned=1 errno=0 peeraddr=1xx.1xx.6x.1xx:443 state=error:\n  certificate verify failed (unable to get certificate CRL)\n```\n\nThis occurs on a clean macOS (M2) setup using Homebrew OpenSSL@3 and rbenv.\n\n### Steps to reproduce\n\n1. On macOS (Apple Silicon):\n```bash\nbrew install openssl@3 ca-certificates rbenv ruby-build\nRUBY_CONFIGURE_OPTS=\"--with-openssl-dir=$(brew --prefix openssl@3)\" rbenv install 3.4.1\nrbenv global 3.4.1\n```\n\n2. Run inside IRB:\n```bash\nrequire 'net/http'\nNet::HTTP.get(URI('https://aws.amazon.com'))\n```\n\n3. Observe the error:\n```bash\nSSL_connect ... certificate verify failed (unable to get certificate CRL)\n```\n\n### Expected behavior\nRuby (and by extension, Rails apps using Net::HTTP or ActiveStorage) should complete HTTPS requests successfully without manual CRL configuration.\n\n### Actual behavior\nThe SSL handshake fails because OpenSSL\u2019s default verification flags include V_FLAG_CRL_CHECK and V_FLAG_CRL_CHECK_ALL.\nmacOS\u2019s OpenSSL build does not provide a CRL bundle, so verification fails even though the certificate chain is valid.\n\n### Workarounds\nDisabling CRL checking resolves the issue:\n```bash\n# config/initializers/ssl_fix.rb\nrequire 'openssl'\nOpenSSL::SSL::SSLContext::DEFAULT_PARAMS[:verify_mode] = OpenSSL::SSL::VERIFY_PEER\nOpenSSL::SSL::SSLContext::DEFAULT_PARAMS[:verify_flags] &=\n  ~(OpenSSL::X509::V_FLAG_CRL_CHECK_ALL | OpenSSL::X509::V_FLAG_CRL_CHECK)\n```\n\n### System configuration\n\n**Rails version**: 8.0.2\n\n**Ruby version**: 3.4.1\n",
+    "html_url": "https://github.com/rails/rails/issues/55886",
+    "labels": [
+      "third party issue"
+    ],
+    "state": "closed",
+    "title": "SSL certificate verification fails on macOS (OpenSSL 3.6 + Ruby 3.4) due to CRL check"
+  }
+}

