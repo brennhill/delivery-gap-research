@@ -1,4 +1,4 @@
-Analysis run: 2026-04-05T19:09:42.734520+00:00
+Analysis run: 2026-04-05T20:07:18.532785+00:00
 Script: /Users/brenn/dev/ai-augmented-dev/research/study/scripts/pipeline/full-szz-analysis.py
 
 Dataset: 100,247 PRs, 119 repos
@@ -434,6 +434,28 @@ Within-author results (the most credible estimates):
     Interaction (spec x AI): coef=+0.0002, p=0.9970 — not significant
 
   8. JIT features: see detailed results above.
+
+======================================================================
+JIT FEATURE PROFILE: SPEC'D vs UNSPEC'D PRs
+======================================================================
+
+JIT-matched PRs: 77,684
+Median JIT feature values for spec'd vs unspec'd PRs:
+                lines added: specd=53.0, unspecd=29.0, ratio=1.83x
+              lines deleted: specd=7.0, unspecd=7.0, ratio=1.00x
+              files changed: specd=3.0, unspecd=2.0, ratio=1.50x
+             change entropy: specd=1.0, unspecd=0.9, ratio=1.15x
+          file age (months): specd=20.1, unspecd=8.8, ratio=2.27x
+           prior developers: specd=10.0, unspecd=8.0, ratio=1.25x
+       developer experience: specd=64.0, unspecd=116.0, ratio=0.55x
+
+Merge time (non-bot):
+  Spec'd median: 29.4h, Unspec'd median: 11.6h, ratio: 2.5x
+
+Quality comparison by spec source (issue-linked vs description-only):
+  Issue-linked: N=10,190, median quality=49
+  Description-only: N=12,128, median quality=47
+  Mann-Whitney p=0.0000
 
 Caveats:
   - Spec quality scored on 25,209/88,052 PRs (28.6%) — selection bias

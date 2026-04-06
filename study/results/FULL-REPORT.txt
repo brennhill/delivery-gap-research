@@ -1,7 +1,7 @@
 ======================================================================
 FULL REPLICATION REPORT
 Does Spec-Driven Development Reduce Defects?
-Generated: 2026-04-05T21:10:49.015901
+Generated: 2026-04-05T22:08:38.700982
 ======================================================================
 
 DATA NOTES
@@ -28,7 +28,7 @@ SZZ blame links vs JIT features:
 # analysis-results.txt
 ######################################################################
 
-Analysis run: 2026-04-05T19:09:42.734520+00:00
+Analysis run: 2026-04-05T20:07:18.532785+00:00
 Script: /Users/brenn/dev/ai-augmented-dev/research/study/scripts/pipeline/full-szz-analysis.py
 
 Dataset: 100,247 PRs, 119 repos
@@ -465,6 +465,28 @@ Within-author results (the most credible estimates):
 
   8. JIT features: see detailed results above.
 
+======================================================================
+JIT FEATURE PROFILE: SPEC'D vs UNSPEC'D PRs
+======================================================================
+
+JIT-matched PRs: 77,684
+Median JIT feature values for spec'd vs unspec'd PRs:
+                lines added: specd=53.0, unspecd=29.0, ratio=1.83x
+              lines deleted: specd=7.0, unspecd=7.0, ratio=1.00x
+              files changed: specd=3.0, unspecd=2.0, ratio=1.50x
+             change entropy: specd=1.0, unspecd=0.9, ratio=1.15x
+          file age (months): specd=20.1, unspecd=8.8, ratio=2.27x
+           prior developers: specd=10.0, unspecd=8.0, ratio=1.25x
+       developer experience: specd=64.0, unspecd=116.0, ratio=0.55x
+
+Merge time (non-bot):
+  Spec'd median: 29.4h, Unspec'd median: 11.6h, ratio: 2.5x
+
+Quality comparison by spec source (issue-linked vs description-only):
+  Issue-linked: N=10,190, median quality=49
+  Description-only: N=12,128, median quality=47
+  Mann-Whitney p=0.0000
+
 Caveats:
   - Spec quality scored on 25,209/88,052 PRs (28.6%) — selection bias
   - AI detection uses co-author tags (voluntary) — unknown false negative rate
@@ -478,7 +500,7 @@ Results saved to: /Users/brenn/dev/ai-augmented-dev/research/study/results/analy
 # robustness-subgroups.txt
 ######################################################################
 
-Subgroup robustness run: 2026-04-05T19:09:59.223139+00:00
+Subgroup robustness run: 2026-04-05T20:07:37.507883+00:00
 Script: /Users/brenn/dev/ai-augmented-dev/research/study/scripts/pipeline/robustness-subgroups.py
 
 Bot exclusion:
@@ -699,7 +721,7 @@ Results saved to: /Users/brenn/dev/ai-augmented-dev/research/study/results/robus
 # robustness-highquality.txt
 ######################################################################
 
-High-quality robustness run: 2026-04-05T19:10:03.261297+00:00
+High-quality robustness run: 2026-04-05T20:07:42.245817+00:00
 Script: /Users/brenn/dev/ai-augmented-dev/research/study/scripts/pipeline/robustness-highquality.py
 
 Dataset (bots excluded): 88,052 PRs
@@ -799,7 +821,7 @@ Results saved to: /Users/brenn/dev/ai-augmented-dev/research/study/results/robus
 # robustness-temporal.txt
 ######################################################################
 
-Temporal robustness run: 2026-04-05T19:10:07.075527+00:00
+Temporal robustness run: 2026-04-05T20:07:46.666889+00:00
 Script: /Users/brenn/dev/ai-augmented-dev/research/study/scripts/pipeline/robustness-temporal.py
 
 ======================================================================
@@ -1006,7 +1028,7 @@ Results saved to: /Users/brenn/dev/ai-augmented-dev/research/study/results/robus
 # robustness-complexity.txt
 ######################################################################
 
-Complexity stratification run: 2026-04-05T19:10:11.894853+00:00
+Complexity stratification run: 2026-04-05T20:07:52.646585+00:00
 Script: /Users/brenn/dev/ai-augmented-dev/research/study/scripts/pipeline/robustness-complexity.py
 
 Dataset: 88,052 PRs (non-bot), 77,814 in SZZ repos
@@ -1282,7 +1304,7 @@ Results saved to: /Users/brenn/dev/ai-augmented-dev/research/study/results/robus
 # robustness-issue-linked.txt
 ######################################################################
 
-Issue-linked robustness run: 2026-04-05T19:10:18.101243+00:00
+Issue-linked robustness run: 2026-04-05T20:07:58.658947+00:00
 Script: /Users/brenn/dev/ai-augmented-dev/research/study/scripts/pipeline/robustness-issue-linked.py
 
 Dataset: 88,052 PRs (non-bot)
@@ -1536,7 +1558,7 @@ Results saved to: /Users/brenn/dev/ai-augmented-dev/research/study/results/robus
 # primary-with-jit-controls.txt
 ######################################################################
 
-Analysis run: 2026-04-05T19:10:25.644606+00:00
+Analysis run: 2026-04-05T20:08:08.641155+00:00
 Script: /Users/brenn/dev/ai-augmented-dev/research/study/scripts/pipeline/primary-with-jit-controls.py
 
 PURPOSE: Does adding JIT features change the spec coefficient?
@@ -1630,7 +1652,7 @@ Done. Output written to: /Users/brenn/dev/ai-augmented-dev/research/study/result
 # propensity-score-matching.txt
 ######################################################################
 
-Analysis run: 2026-04-05T19:10:28.786265+00:00
+Analysis run: 2026-04-05T20:08:12.624431+00:00
 Script: /Users/brenn/dev/ai-augmented-dev/research/study/scripts/pipeline/propensity-score-matching.py
 
 PURPOSE: Match spec'd and unspec'd PRs on JIT risk profile,

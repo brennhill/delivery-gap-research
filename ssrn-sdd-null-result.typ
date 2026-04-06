@@ -774,7 +774,9 @@ Three important caveats bound these findings. First, we test organic specificati
 
 Specifications may still have value --- but not the value being claimed. A specification is an auditable record of what the code was _meant_ to do, which is valuable for compliance, debugging, and onboarding regardless of whether it prevents defects. Specifications may improve developer efficiency by enabling task batching: a developer can queue structured work for an AI agent and shift attention elsewhere, reclaiming time without improving code quality. Specifications create accountability, making it harder for defects to pass unchallenged through review --- and the zero-AI rework finding suggests this accountability mechanism may genuinely reduce rework in human-reviewed workflows. These are real benefits. They are not "fewer defects" in the aggregate, and the evidence does not support the claim that specifications are most valuable when AI implements the code.
 
-The dataset and analysis code are available at: `github.com/brennhill/delivery-gap-research`.
+== Data Availability
+
+The dataset, analysis scripts, and replication package supporting this study are openly available on Zenodo at https://doi.org/10.5281/zenodo.19415187 under a CC-BY 4.0 license. The repository contains all source data, the full 11-step analysis pipeline, and a single-command replication script (`python3 replicate-results.py`) that reproduces every result reported in this paper. Source code is also available at `github.com/brennhill/delivery-gap-research`.
 
 #pagebreak()
 
