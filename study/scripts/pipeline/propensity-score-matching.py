@@ -35,6 +35,12 @@ from datetime import datetime, timezone
 
 warnings.filterwarnings("ignore")
 
+UTIL_DIR = Path(__file__).resolve().parents[1] / "util"
+if str(UTIL_DIR) not in sys.path:
+    sys.path.insert(0, str(UTIL_DIR))
+
+from effect_units import format_percentage_point_delta  # noqa: E402
+
 DATA_DIR = Path(__file__).resolve().parent.parent.parent / "data"
 OUT_FILE = Path(__file__).resolve().parent.parent.parent / "results" / "propensity-score-matching.txt"
 PAIRS_FILE = Path(__file__).resolve().parent.parent.parent / "results" / "psm-matched-pairs.csv"
@@ -320,7 +326,7 @@ def run_psm(data, treatment_col, outcome_col, feature_cols, caliper_sd_multiplie
     print(f"\n  --- Treatment effect in matched sample ---")
     print(f"  Spec'd rate:   {rate_treated:.4f}  ({int(matched_treated[outcome_col].sum())} / {len(matched_treated)} pairs)")
     print(f"  Unspec'd rate: {rate_control:.4f}  ({int(matched_control[outcome_col].sum())} / {len(matched_control)} pairs)")
-    print(f"  Difference:    {diff:+.4f} pp")
+    print(f"  Difference:    {format_percentage_point_delta(diff)}")
     print(f"  McNemar test:  chi2={mcnemar_stat:.3f}  p={mcnemar_p:.4f}")
 
     sig = "SIGNIFICANT (p<0.05)" if mcnemar_p < 0.05 else "not significant"
@@ -330,7 +336,7 @@ def run_psm(data, treatment_col, outcome_col, feature_cols, caliper_sd_multiplie
     raw_t = work[work[treatment_col] == 1][outcome_col].mean()
     raw_c = work[work[treatment_col] == 0][outcome_col].mean()
     print(f"\n  Raw (unmatched) rates for reference:")
-    print(f"  Spec'd: {raw_t:.4f}  Unspec'd: {raw_c:.4f}  Diff: {raw_t-raw_c:+.4f}")
+    print(f"  Spec'd: {raw_t:.4f}  Unspec'd: {raw_c:.4f}  Diff: {format_percentage_point_delta(raw_t - raw_c)}")
 
     attenuation = ((diff - (raw_t - raw_c)) / abs(raw_t - raw_c) * 100
                    if (raw_t - raw_c) != 0 else float("nan"))
@@ -477,9 +483,9 @@ for result in [r_szz, r_rework]:
           f"(unmatched treated: {result['n_unmatched']:,})")
     print(f"  Spec'd defect rate:    {result['rate_treated']:.4f}")
     print(f"  Matched control rate:  {result['rate_control']:.4f}")
-    print(f"  ATT estimate:          {result['diff']:+.4f} pp")
+    print(f"  ATT estimate:          {format_percentage_point_delta(result['diff'])}")
     print(f"  McNemar p:             {result['mcnemar_p']:.4f}  [{result['sig']}]")
-    print(f"  Raw (unmatched) diff:  {result['raw_diff']:+.4f} pp")
+    print(f"  Raw (unmatched) diff:  {format_percentage_point_delta(result['raw_diff'])}")
     pct = result['attenuation_pct']
     if not np.isnan(pct):
         print(f"  Attenuation:           {pct:+.1f}%")

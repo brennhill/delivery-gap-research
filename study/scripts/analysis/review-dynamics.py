@@ -59,7 +59,7 @@ for col in ["review_comments", "comments", "review_cycles",
         review_cols.append(col)
 
 print(f"Dataset: {len(df):,} PRs (bots excluded)")
-print(f"Recent (Jan-Mar 2026): {len(recent):,} PRs")
+print(f"Recent (Jan-Apr 2026): {len(recent):,} PRs")
 print(f"Review columns available: {review_cols}")
 
 

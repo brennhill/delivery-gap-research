@@ -94,10 +94,13 @@ def main():
         row = dict(base_row)  # start with all unified columns
 
         # Compute strict_escaped: escaped AND has a fix-titled follow-up
-        row['strict_escaped'] = (
-            str(row.get('escaped', '')).lower() == 'true'
-            and key in spec_fix_targets
-        )
+        escaped_val = str(row.get('escaped', '')).strip().lower()
+        if escaped_val == 'true':
+            row['strict_escaped'] = key in spec_fix_targets
+        elif escaped_val == 'false':
+            row['strict_escaped'] = False
+        else:
+            row['strict_escaped'] = ''
 
         # Add regex features (prefix: f_)
         for col in ['is_bot_author', 'ai_tagged', 'typos', 'casual', 'questions',

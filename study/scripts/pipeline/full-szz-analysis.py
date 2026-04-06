@@ -30,6 +30,12 @@ from datetime import datetime, timezone
 
 warnings.filterwarnings("ignore")
 
+UTIL_DIR = Path(__file__).resolve().parents[1] / "util"
+if str(UTIL_DIR) not in sys.path:
+    sys.path.insert(0, str(UTIL_DIR))
+
+from effect_units import format_percentage_point_delta  # noqa: E402
+
 DATA_DIR = Path(__file__).resolve().parent.parent.parent / "data"
 OUT_FILE = Path(__file__).resolve().parent.parent.parent / "results" / "analysis-results.txt"
 
@@ -223,9 +229,12 @@ def within_author_lpm(data, treatment_col, outcome_col, controls=None,
     print(f"  Within-author LPM: N={len(multi):,}, "
           f"authors={n_authors:,} ({n_with_variation:,} with treatment variation)")
     print(f"  {treatment_col}: coef={coef:.4f}, p={pval:.6f}")
-    print(f"  95% CI: [{ci_lo:+.4f}, {ci_hi:+.4f}]")
     if binary_outcome:
-        print(f"  Interpretation: {coef:+.4f} pp change in P({outcome_col})")
+        print(f"  95% CI: [{format_percentage_point_delta(ci_lo)}, {format_percentage_point_delta(ci_hi)}]")
+    else:
+        print(f"  95% CI: [{ci_lo:+.4f}, {ci_hi:+.4f}]")
+    if binary_outcome:
+        print(f"  Interpretation: {format_percentage_point_delta(coef)} change in P({outcome_col})")
     else:
         pct_change = (np.exp(coef) - 1) * 100
         print(f"  Interpretation: {pct_change:+.1f}% change in {outcome_col} "
@@ -838,7 +847,7 @@ def summarize(key, label):
     sig = r["sig"]
     n_var = r.get("n_with_variation", "?")
     print(f"  {label}:")
-    print(f"    coef={coef:+.4f} pp, p={p:.4f} — {direction} ({sig})")
+    print(f"    coef={format_percentage_point_delta(coef)}, p={p:.4f} — {direction} ({sig})")
     print(f"    Identified from {n_var} authors with treatment variation")
 
 

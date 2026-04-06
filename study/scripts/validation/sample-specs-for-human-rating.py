@@ -91,12 +91,12 @@ print(f"""
 Instructions for human rating:
 1. Open human-rating-sheet.csv
 2. For each PR, read the title and body_excerpt
-3. Rate each dimension 1-5 (same rubric as the LLM):
-   - 1 = Not present at all
-   - 2 = Mentioned vaguely
-   - 3 = Partially specified
-   - 4 = Well specified
-   - 5 = Thoroughly specified with examples/detail
+3. Rate each dimension 1-10:
+   - 1-2 = Not present at all
+   - 3-4 = Mentioned vaguely
+   - 5-6 = Partially specified
+   - 7-8 = Well specified
+   - 9-10 = Thoroughly specified with examples/detail
 4. Save the completed sheet
 5. Run compare-human-llm-ratings.py to compute Cohen's kappa
 """)

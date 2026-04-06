@@ -7,8 +7,8 @@ Jira tickets are not real specs. Only high-quality structured specs should
 show the SDD benefit."
 
 Tests:
-  1. Top-quartile specs (q_overall >= 66) vs everything else
-  2. Top-decile specs (q_overall >= 76) vs everything else
+  1. Top-quartile specs (q_overall >= 58) vs everything else
+  2. Top-decile specs (q_overall >= 66) vs everything else
   3. High-quality specs vs NO spec (excludes low-quality specs entirely)
   4. AI-tagged PRs with high-quality specs (closest proxy to agentic SDD)
 
@@ -21,6 +21,15 @@ import statsmodels.api as sm
 import sys
 from pathlib import Path
 from datetime import datetime, timezone
+
+UTIL_DIR = Path(__file__).resolve().parents[1] / "util"
+if str(UTIL_DIR) not in sys.path:
+    sys.path.insert(0, str(UTIL_DIR))
+
+from quality_tiers import (  # noqa: E402
+    LOCKED_TOP_DECILE_CUTOFF,
+    LOCKED_TOP_QUARTILE_CUTOFF,
+)
 
 DATA_DIR = Path(__file__).resolve().parent.parent.parent / "data"
 OUT_FILE = Path(__file__).resolve().parent.parent.parent / "results" / "robustness-highquality.txt"
@@ -77,9 +86,13 @@ print(f"\nDataset (bots excluded): {len(df):,} PRs")
 print(f"Quality scored: {len(q_valid):,}")
 print(f"Quality distribution: median={q_valid.median():.0f}, "
       f"p75={q_valid.quantile(0.75):.0f}, p90={q_valid.quantile(0.90):.0f}")
+print(
+    f"Locked AI cutoffs: top quartile >= {LOCKED_TOP_QUARTILE_CUTOFF:.0f}, "
+    f"top decile >= {LOCKED_TOP_DECILE_CUTOFF:.0f}"
+)
 
-Q_P75 = q_valid.quantile(0.75)
-Q_P90 = q_valid.quantile(0.90)
+Q_P75 = LOCKED_TOP_QUARTILE_CUTOFF
+Q_P90 = LOCKED_TOP_DECILE_CUTOFF
 
 
 def within_author_lpm(data, treatment_col, outcome_col, controls=None,

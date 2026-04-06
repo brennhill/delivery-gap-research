@@ -9,9 +9,25 @@ import numpy as np
 from scipy.stats import fisher_exact
 import statsmodels.api as sm
 import warnings
+from pathlib import Path
+import sys
 # Only suppress specific known-harmless warnings, not everything.
 warnings.filterwarnings("ignore", message=".*divide by zero.*")
 warnings.filterwarnings("ignore", message=".*invalid value.*")
+
+UTIL_DIR = Path(__file__).resolve().parents[1] / "util"
+if str(UTIL_DIR) not in sys.path:
+    sys.path.insert(0, str(UTIL_DIR))
+
+from quality_tiers import (  # noqa: E402
+    BOTTOM_75,
+    TOP_10,
+    TOP_25_ONLY,
+    TIER_ORDER,
+    TIER_DISPLAY,
+    UNSCORED,
+    quality_tier,
+)
 
 CSV = "/Users/brenn/dev/ai-augmented-dev/research/study/data/master-prs.csv"
 
@@ -32,16 +48,14 @@ for col in ["reworked", "escaped", "strict_escaped"]:
 # ── Quality tiers ──────────────────────────────────────────────────────────
 def q_tier(val):
     if pd.isna(val):
-        return "UNSPEC"
-    if val < 40:
-        return "LOW"
-    if val < 70:
-        return "MEDIUM"
-    return "HIGH"
+        return UNSCORED
+    return quality_tier(val)
 
 df["q_tier"] = df["q_overall"].apply(q_tier)
 print(f"\nSpec quality tier distribution:")
-print(df["q_tier"].value_counts().to_string())
+for tier in [*TIER_ORDER, UNSCORED]:
+    n_tier = (df["q_tier"] == tier).sum()
+    print(f"  {TIER_DISPLAY.get(tier, 'Unscored'):<26} {n_tier:>8,}")
 
 # ══════════════════════════════════════════════════════════════════════════
 # ANALYSIS 1: Approximate SZZ
@@ -99,19 +113,20 @@ print(f"Fix→candidate links created: {fix_link_count:,}")
 # Step 3: SZZ buggy rate by spec quality tier
 print(f"\n{'Tier':<10} {'N':>6} {'SZZ Buggy':>10} {'Rate':>8}  {'strict_escaped':>15} {'Esc Rate':>9}")
 print("-" * 65)
-for tier in ["LOW", "MEDIUM", "HIGH", "UNSPEC"]:
+for tier in [*TIER_ORDER, UNSCORED]:
     subset = df[df["q_tier"] == tier]
     n = len(subset)
     buggy = subset["szz_buggy"].sum()
     rate = buggy / n if n > 0 else 0
     esc = subset["strict_escaped"].sum()
     esc_rate = esc / n if n > 0 else 0
-    print(f"{tier:<10} {n:>6,} {buggy:>10,} {rate:>8.3f}  {esc:>15,} {esc_rate:>9.3f}")
+    label = TIER_DISPLAY.get(tier, "Unscored")
+    print(f"{label:<26} {n:>6,} {buggy:>10,} {rate:>8.3f}  {esc:>15,} {esc_rate:>9.3f}")
 
-# Step 4: Fisher's exact test HIGH vs LOW
-spec_df = df[df["q_tier"].isin(["HIGH", "LOW"])]
-high = spec_df[spec_df["q_tier"] == "HIGH"]
-low = spec_df[spec_df["q_tier"] == "LOW"]
+# Step 4: Fisher's exact test top decile vs bottom 75%
+spec_df = df[df["q_tier"].isin([TOP_10, BOTTOM_75])]
+high = spec_df[spec_df["q_tier"] == TOP_10]
+low = spec_df[spec_df["q_tier"] == BOTTOM_75]
 
 # SZZ buggy contingency table
 table_szz = np.array([
@@ -119,8 +134,8 @@ table_szz = np.array([
     [low["szz_buggy"].sum(), (~low["szz_buggy"]).sum()],
 ])
 odds_szz, p_szz = fisher_exact(table_szz)
-print(f"\nFisher's exact (SZZ buggy): HIGH vs LOW")
-print(f"  HIGH: {high['szz_buggy'].mean():.3f}  LOW: {low['szz_buggy'].mean():.3f}")
+print(f"\nFisher's exact (SZZ buggy): TOP10 vs BOTTOM75")
+print(f"  TOP10: {high['szz_buggy'].mean():.3f}  BOTTOM75: {low['szz_buggy'].mean():.3f}")
 print(f"  Odds ratio: {odds_szz:.3f}, p = {p_szz:.4f}")
 
 # Strict escaped comparison
@@ -129,8 +144,8 @@ table_esc = np.array([
     [low["strict_escaped"].sum(), (~low["strict_escaped"]).sum()],
 ])
 odds_esc, p_esc = fisher_exact(table_esc)
-print(f"\nFisher's exact (strict_escaped): HIGH vs LOW")
-print(f"  HIGH: {high['strict_escaped'].mean():.3f}  LOW: {low['strict_escaped'].mean():.3f}")
+print(f"\nFisher's exact (strict_escaped): TOP10 vs BOTTOM75")
+print(f"  TOP10: {high['strict_escaped'].mean():.3f}  BOTTOM75: {low['strict_escaped'].mean():.3f}")
 print(f"  Odds ratio: {odds_esc:.3f}, p = {p_esc:.4f}")
 
 # Reworked comparison
@@ -139,8 +154,8 @@ table_rw = np.array([
     [low["reworked"].sum(), (~low["reworked"]).sum()],
 ])
 odds_rw, p_rw = fisher_exact(table_rw)
-print(f"\nFisher's exact (reworked): HIGH vs LOW")
-print(f"  HIGH: {high['reworked'].mean():.3f}  LOW: {low['reworked'].mean():.3f}")
+print(f"\nFisher's exact (reworked): TOP10 vs BOTTOM75")
+print(f"  TOP10: {high['reworked'].mean():.3f}  BOTTOM75: {low['reworked'].mean():.3f}")
 print(f"  Odds ratio: {odds_rw:.3f}, p = {p_rw:.4f}")
 
 # ══════════════════════════════════════════════════════════════════════════
@@ -165,29 +180,29 @@ for col in jit_features:
     df[col] = pd.to_numeric(df[col], errors="coerce")
 
 # Only look at spec'd PRs (those with a quality score)
-spec_only = df[df["q_tier"].isin(["LOW", "MEDIUM", "HIGH"])].copy()
+spec_only = df[df["q_tier"].isin(TIER_ORDER)].copy()
 print(f"\nSpec'd PRs with quality scores: {len(spec_only):,}")
 
 # Median table
-print(f"\n{'Feature':<25} {'LOW':>10} {'MEDIUM':>10} {'HIGH':>10}  {'Interpretation'}")
+print(f"\n{'Feature':<25} {'<58':>10} {'58-65':>10} {'66+':>10}  {'Interpretation'}")
 print("-" * 85)
 for col, label in jit_features.items():
     medians = {}
-    for tier in ["LOW", "MEDIUM", "HIGH"]:
+    for tier in TIER_ORDER:
         subset = spec_only[spec_only["q_tier"] == tier]
         medians[tier] = subset[col].median()
     # Interpretation
-    if pd.notna(medians["HIGH"]) and pd.notna(medians["LOW"]):
-        ratio = medians["HIGH"] / medians["LOW"] if medians["LOW"] > 0 else float("inf")
+    if pd.notna(medians[TOP_10]) and pd.notna(medians[BOTTOM_75]):
+        ratio = medians[TOP_10] / medians[BOTTOM_75] if medians[BOTTOM_75] > 0 else float("inf")
         if ratio > 1.2:
-            interp = f"HIGH {ratio:.1f}x larger"
+            interp = f"TOP10 {ratio:.1f}x larger"
         elif ratio < 0.8:
-            interp = f"HIGH {1/ratio:.1f}x smaller"
+            interp = f"TOP10 {1/ratio:.1f}x smaller"
         else:
             interp = "~similar"
     else:
         interp = "N/A"
-    print(f"{label:<25} {medians['LOW']:>10.1f} {medians['MEDIUM']:>10.1f} {medians['HIGH']:>10.1f}  {interp}")
+    print(f"{label:<25} {medians[BOTTOM_75]:>10.1f} {medians[TOP_25_ONLY]:>10.1f} {medians[TOP_10]:>10.1f}  {interp}")
 
 # ── Logistic regression: strict_escaped ~ q_overall + JIT features ─────
 print("\n" + "-" * 70)

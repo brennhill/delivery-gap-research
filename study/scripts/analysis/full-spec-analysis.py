@@ -5,12 +5,31 @@ import csv
 import math
 import sys
 from collections import defaultdict
+from pathlib import Path
 
 import numpy as np
 from scipy import stats
 import statsmodels.api as sm
 
+UTIL_DIR = Path(__file__).resolve().parents[1] / "util"
+if str(UTIL_DIR) not in sys.path:
+    sys.path.insert(0, str(UTIL_DIR))
+
+from quality_tiers import (  # noqa: E402
+    BOTTOM_75,
+    TOP_10,
+    TOP_25_ONLY,
+    TIER_ORDER,
+    TIER_DISPLAY,
+    quality_tier,
+)
+
 DATA = "/Users/brenn/dev/ai-augmented-dev/research/study/data/master-prs.csv"
+TIER_HEADERS = {
+    BOTTOM_75: "<58",
+    TOP_25_ONLY: "58-65",
+    TOP_10: "66+",
+}
 
 
 def load_data():
@@ -45,12 +64,7 @@ def to_bool(v):
 
 
 def tier_label(q):
-    if q <= 2.0:
-        return "LOW"
-    elif q <= 3.5:
-        return "MEDIUM"
-    else:
-        return "HIGH"
+    return quality_tier(q)
 
 
 def safe_log(v):
@@ -125,7 +139,7 @@ for r in all_rows:
 # All PRs (for spec vs no-spec)
 all_prepped = []
 for r in all_rows:
-    r["_has_spec"] = 1 if to_float(r["q_overall"]) is not None else 0
+    r["_has_spec"] = 1 if to_bool(r.get("specd")) is True else 0
     r["_escaped"] = to_bool(r["strict_escaped"])
     r["_reworked"] = to_bool(r["reworked"])
     r["_additions"] = to_float(r["additions"]) or 0
@@ -150,39 +164,50 @@ print("\n" + "=" * 70)
 print("ANALYSIS 1: REPO DISTRIBUTION ACROSS QUALITY TIERS")
 print("=" * 70)
 
-repo_tiers = defaultdict(lambda: {"LOW": 0, "MEDIUM": 0, "HIGH": 0, "total": 0})
+repo_tiers = defaultdict(lambda: {BOTTOM_75: 0, TOP_25_ONLY: 0, TOP_10: 0, "total": 0})
 for r in scored:
     repo_tiers[r["repo"]][r["_tier"]] += 1
     repo_tiers[r["repo"]]["total"] += 1
 
-tier_totals = {"LOW": 0, "MEDIUM": 0, "HIGH": 0}
-print(f"\n{'Repo':<35} {'LOW':>6} {'MED':>6} {'HIGH':>6} {'Total':>6}  {'%LOW':>5} {'%MED':>5} {'%HI':>5}")
+tier_totals = {tier: 0 for tier in TIER_ORDER}
+print(
+    f"\n{'Repo':<35} "
+    f"{TIER_HEADERS[BOTTOM_75]:>6} {TIER_HEADERS[TOP_25_ONLY]:>6} {TIER_HEADERS[TOP_10]:>6} "
+    f"{'Total':>6}  {'%<58':>5} {'%58-65':>7} {'%66+':>5}"
+)
 print("-" * 95)
 for repo in sorted(repo_tiers.keys(), key=lambda x: -repo_tiers[x]["total"]):
     d = repo_tiers[repo]
     t = d["total"]
-    pct_l = 100 * d["LOW"] / t
-    pct_m = 100 * d["MEDIUM"] / t
-    pct_h = 100 * d["HIGH"] / t
-    print(f"{repo:<35} {d['LOW']:>6} {d['MEDIUM']:>6} {d['HIGH']:>6} {t:>6}  {pct_l:>4.1f}% {pct_m:>4.1f}% {pct_h:>4.1f}%")
-    for tier in ("LOW", "MEDIUM", "HIGH"):
+    pct_l = 100 * d[BOTTOM_75] / t
+    pct_m = 100 * d[TOP_25_ONLY] / t
+    pct_h = 100 * d[TOP_10] / t
+    print(
+        f"{repo:<35} {d[BOTTOM_75]:>6} {d[TOP_25_ONLY]:>6} {d[TOP_10]:>6} {t:>6}  "
+        f"{pct_l:>4.1f}% {pct_m:>6.1f}% {pct_h:>4.1f}%"
+    )
+    for tier in TIER_ORDER:
         tier_totals[tier] += d[tier]
 
 total = sum(tier_totals.values())
 print("-" * 95)
-print(f"{'TOTAL':<35} {tier_totals['LOW']:>6} {tier_totals['MEDIUM']:>6} {tier_totals['HIGH']:>6} {total:>6}  "
-      f"{100*tier_totals['LOW']/total:>4.1f}% {100*tier_totals['MEDIUM']/total:>4.1f}% {100*tier_totals['HIGH']/total:>4.1f}%")
+print(
+    f"{'TOTAL':<35} {tier_totals[BOTTOM_75]:>6} {tier_totals[TOP_25_ONLY]:>6} {tier_totals[TOP_10]:>6} {total:>6}  "
+    f"{100*tier_totals[BOTTOM_75]/total:>4.1f}% "
+    f"{100*tier_totals[TOP_25_ONLY]/total:>6.1f}% "
+    f"{100*tier_totals[TOP_10]/total:>4.1f}%"
+)
 
 # Escape/rework rates by tier
 print(f"\n  Outcome rates by tier:")
-print(f"  {'Tier':<8} {'N':>6} {'Escaped':>8} {'Esc%':>6} {'Reworked':>8} {'Rwk%':>6}")
+print(f"  {'Tier':<26} {'N':>6} {'Escaped':>8} {'Esc%':>6} {'Reworked':>8} {'Rwk%':>6}")
 print(f"  {'-'*50}")
-for tier in ("LOW", "MEDIUM", "HIGH"):
+for tier in TIER_ORDER:
     tier_rows = [r for r in scored if r["_tier"] == tier]
     n = len(tier_rows)
     esc = sum(1 for r in tier_rows if r["_escaped"])
     rwk = sum(1 for r in tier_rows if r["_reworked"])
-    print(f"  {tier:<8} {n:>6} {esc:>8} {100*esc/n:>5.1f}% {rwk:>8} {100*rwk/n:>5.1f}%")
+    print(f"  {TIER_DISPLAY[tier]:<26} {n:>6} {esc:>8} {100*esc/n:>5.1f}% {rwk:>8} {100*rwk/n:>5.1f}%")
 
 
 # ─────────────────────────────────────────────
@@ -192,7 +217,8 @@ print("\n" + "=" * 70)
 print("ANALYSIS 2: SPECS VS NO-SPECS (controlling for change size)")
 print("=" * 70)
 
-# Only use repos that have scored PRs (so has_spec=0 means unscored in a scored repo)
+# Only use repos that have scored PRs so the spec/no-spec comparison stays
+# inside the subset of repos where quality scoring was actually run.
 scored_repo_set = set(r["repo"] for r in scored)
 repo_rows = [r for r in all_prepped if r["repo"] in scored_repo_set]
 
@@ -316,33 +342,33 @@ for repo in sorted(scored_repos):
     print(f"\n  {repo} (n={len(repo_scored)})")
 
     # Tier breakdown
-    tiers = {"LOW": [], "MEDIUM": [], "HIGH": []}
+    tiers = {tier: [] for tier in TIER_ORDER}
     for r in repo_scored:
         tiers[r["_tier"]].append(r)
 
-    print(f"    {'Tier':<8} {'N':>5} {'Esc%':>6} {'Rwk%':>6}")
+    print(f"    {'Tier':<26} {'N':>5} {'Esc%':>6} {'Rwk%':>6}")
     print(f"    {'-'*30}")
 
     tier_esc_rates = {}
-    for tier in ("LOW", "MEDIUM", "HIGH"):
+    for tier in TIER_ORDER:
         t_rows = tiers[tier]
         n = len(t_rows)
         if n == 0:
-            print(f"    {tier:<8} {0:>5}    n/a    n/a")
+            print(f"    {TIER_DISPLAY[tier]:<26} {0:>5}    n/a    n/a")
             continue
         esc = sum(1 for r in t_rows if r["_escaped"])
         rwk = sum(1 for r in t_rows if r["_reworked"])
         esc_rate = 100 * esc / n
         rwk_rate = 100 * rwk / n
         tier_esc_rates[tier] = esc_rate
-        print(f"    {tier:<8} {n:>5} {esc_rate:>5.1f}% {rwk_rate:>5.1f}%")
+        print(f"    {TIER_DISPLAY[tier]:<26} {n:>5} {esc_rate:>5.1f}% {rwk_rate:>5.1f}%")
 
-    # Determine if paradox holds (HIGH escape > LOW escape)
-    if "HIGH" in tier_esc_rates and "LOW" in tier_esc_rates:
-        if tier_esc_rates["HIGH"] > tier_esc_rates["LOW"]:
-            direction = "PARADOX (HIGH > LOW)"
-        elif tier_esc_rates["HIGH"] < tier_esc_rates["LOW"]:
-            direction = "EXPECTED (LOW > HIGH)"
+    # Determine if paradox holds (top decile escape > bottom 75%)
+    if TOP_10 in tier_esc_rates and BOTTOM_75 in tier_esc_rates:
+        if tier_esc_rates[TOP_10] > tier_esc_rates[BOTTOM_75]:
+            direction = "PARADOX (TOP10 > BOTTOM75)"
+        elif tier_esc_rates[TOP_10] < tier_esc_rates[BOTTOM_75]:
+            direction = "EXPECTED (BOTTOM75 > TOP10)"
         else:
             direction = "EQUAL"
     else:
@@ -393,19 +419,19 @@ print(f"  FULL ANALYSIS ON {len(scored)} SCORED PRs ({len(scored_repos)} REPOS)"
 print("=" * 70)
 
 print("\n1. REPO DISTRIBUTION")
-print(f"   {'Repo':<35} {'LOW':>5} {'MED':>5} {'HIGH':>5} {'N':>5}")
+print(f"   {'Repo':<35} {'<58':>5} {'58-65':>6} {'66+':>5} {'N':>5}")
 print(f"   {'-'*60}")
 for repo in sorted(repo_tiers.keys(), key=lambda x: -repo_tiers[x]["total"]):
     d = repo_tiers[repo]
-    print(f"   {repo:<35} {d['LOW']:>5} {d['MEDIUM']:>5} {d['HIGH']:>5} {d['total']:>5}")
+    print(f"   {repo:<35} {d[BOTTOM_75]:>5} {d[TOP_25_ONLY]:>6} {d[TOP_10]:>5} {d['total']:>5}")
 
 print(f"\n   Tier escape rates:")
-for tier in ("LOW", "MEDIUM", "HIGH"):
+for tier in TIER_ORDER:
     tier_rows = [r for r in scored if r["_tier"] == tier]
     n = len(tier_rows)
     esc = sum(1 for r in tier_rows if r["_escaped"])
     rwk = sum(1 for r in tier_rows if r["_reworked"])
-    print(f"   {tier:<8}: escape={100*esc/n:.1f}%, rework={100*rwk/n:.1f}% (n={n})")
+    print(f"   {TIER_DISPLAY[tier]:<26}: escape={100*esc/n:.1f}%, rework={100*rwk/n:.1f}% (n={n})")
 
 print("\n2. SPECS VS NO-SPECS (with size controls)")
 for dv_name, dv_key in [("strict_escaped", "_escaped"), ("reworked", "_reworked")]:

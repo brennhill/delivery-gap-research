@@ -11,12 +11,25 @@ from statsmodels.discrete.discrete_model import Logit
 import warnings
 warnings.filterwarnings("ignore")
 
+SPECD_MAP = {
+    True: 1.0,
+    False: 0.0,
+    "True": 1.0,
+    "False": 0.0,
+    "true": 1.0,
+    "false": 0.0,
+    1: 1.0,
+    0: 0.0,
+    "1": 1.0,
+    "0": 0.0,
+}
+
 # ── Load data ──────────────────────────────────────────────────────
 df = pd.read_csv("data/master-prs.csv")
 print(f"Loaded {len(df):,} PRs")
 
 # ── Create variables ───────────────────────────────────────────────
-df["has_spec"] = df["q_overall"].notna().astype(int)
+df["has_spec"] = df["specd"].map(SPECD_MAP)
 df["log_additions"] = np.log1p(df["additions"])
 df["log_deletions"] = np.log1p(df["deletions"])
 df["log_files"] = np.log1p(df["files_count"])
@@ -113,10 +126,10 @@ print("\n" + "=" * 70)
 print("AMONG SPEC'D PRs: q_overall (continuous) → DV")
 print("=" * 70)
 
-specd = df[df["has_spec"] == 1].copy()
-print(f"\n  Spec'd PRs: {len(specd):,}")
-print(f"  q_overall range: {specd['q_overall'].min():.2f} – {specd['q_overall'].max():.2f}")
-print(f"  q_overall median: {specd['q_overall'].median():.2f}")
+specd_scored = df[(df["has_spec"] == 1) & df["q_overall"].notna()].copy()
+print(f"\n  Spec'd + scored PRs: {len(specd_scored):,}")
+print(f"  q_overall range: {specd_scored['q_overall'].min():.2f} – {specd_scored['q_overall'].max():.2f}")
+print(f"  q_overall median: {specd_scored['q_overall'].median():.2f}")
 
 for dv in ["strict_escaped", "reworked"]:
     print(f"\n{'─' * 60}")
@@ -125,17 +138,17 @@ for dv in ["strict_escaped", "reworked"]:
 
     # Raw
     print(f"\n  Raw (q_overall only):")
-    r1 = run_logit(dv, ["q_overall"], specd)
+    r1 = run_logit(dv, ["q_overall"], specd_scored)
     print(fmt_result(r1))
 
     # + size
     print(f"\n  Controlling for change size:")
-    r2 = run_logit(dv, ["q_overall"] + size_ivs, specd, focus_var="q_overall")
+    r2 = run_logit(dv, ["q_overall"] + size_ivs, specd_scored, focus_var="q_overall")
     print(fmt_result(r2))
 
     # + size + review
     print(f"\n  Controlling for change size + review effort:")
-    r3 = run_logit(dv, ["q_overall"] + size_ivs + review_ivs, specd, focus_var="q_overall")
+    r3 = run_logit(dv, ["q_overall"] + size_ivs + review_ivs, specd_scored, focus_var="q_overall")
     print(fmt_result(r3))
 
 # ── Clean summary ──────────────────────────────────────────────────
@@ -164,8 +177,8 @@ for dv in ["strict_escaped", "reworked"]:
 
 # Continuous q_overall summary
 for dv in ["strict_escaped", "reworked"]:
-    r_raw = run_logit(dv, ["q_overall"], specd)
-    r_size = run_logit(dv, ["q_overall"] + size_ivs, specd, focus_var="q_overall")
+    r_raw = run_logit(dv, ["q_overall"], specd_scored)
+    r_size = run_logit(dv, ["q_overall"] + size_ivs, specd_scored, focus_var="q_overall")
 
     print(f"\nQUESTION: Among spec'd PRs, do better specs reduce {dv}?")
     if r_raw:

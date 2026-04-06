@@ -1,4 +1,4 @@
-Analysis run: 2026-04-05T20:08:12.624431+00:00
+Analysis run: 2026-04-06T11:35:22.291855+00:00
 Script: /Users/brenn/dev/ai-augmented-dev/research/study/scripts/pipeline/propensity-score-matching.py
 
 PURPOSE: Match spec'd and unspec'd PRs on JIT risk profile,
@@ -54,12 +54,12 @@ PSM: specs → SZZ bugs
   --- Treatment effect in matched sample ---
   Spec'd rate:   0.1466  (2548 / 17375 pairs)
   Unspec'd rate: 0.1524  (2648 / 17375 pairs)
-  Difference:    -0.0058 pp
+  Difference:    -0.58 pp
   McNemar test:  chi2=2.257  p=0.1330
   -> not significant
 
   Raw (unmatched) rates for reference:
-  Spec'd: 0.1468  Unspec'd: 0.1309  Diff: +0.0159
+  Spec'd: 0.1468  Unspec'd: 0.1309  Diff: +1.59 pp
   Attenuation after matching: -136.1%
   *** Large attenuation: matching substantially reduces the effect.
   *** JIT risk profile explains much of the raw association.
@@ -104,12 +104,12 @@ PSM: specs → rework
   --- Treatment effect in matched sample ---
   Spec'd rate:   0.1520  (2986 / 19648 pairs)
   Unspec'd rate: 0.1467  (2883 / 19648 pairs)
-  Difference:    +0.0052 pp
+  Difference:    +0.52 pp
   McNemar test:  chi2=2.116  p=0.1458
   -> not significant
 
   Raw (unmatched) rates for reference:
-  Spec'd: 0.1520  Unspec'd: 0.1319  Diff: +0.0201
+  Spec'd: 0.1520  Unspec'd: 0.1319  Diff: +2.01 pp
   Attenuation after matching: -73.9%
   *** Large attenuation: matching substantially reduces the effect.
   *** JIT risk profile explains much of the raw association.
@@ -125,18 +125,18 @@ specs → SZZ bugs:
   Matched pairs: 17,375  (unmatched treated: 192)
   Spec'd defect rate:    0.1466
   Matched control rate:  0.1524
-  ATT estimate:          -0.0058 pp
+  ATT estimate:          -0.58 pp
   McNemar p:             0.1330  [not significant]
-  Raw (unmatched) diff:  +0.0159 pp
+  Raw (unmatched) diff:  +1.59 pp
   Attenuation:           -136.1%
 
 specs → rework:
   Matched pairs: 19,648  (unmatched treated: 165)
   Spec'd defect rate:    0.1520
   Matched control rate:  0.1467
-  ATT estimate:          +0.0052 pp
+  ATT estimate:          +0.52 pp
   McNemar p:             0.1458  [not significant]
-  Raw (unmatched) diff:  +0.0201 pp
+  Raw (unmatched) diff:  +2.01 pp
   Attenuation:           -73.9%
 
 Interpretation:

@@ -89,6 +89,11 @@ def build_rows():
         repo_name = prs[0].get("repo", slug.replace("-", "/", 1)) if prs else slug
         tier = _get_tier(slug)
 
+        def catchrate_value(field):
+            if not cr:
+                return ""
+            return cr.get(field, "")
+
         for pr in prs:
             num = pr["pr_number"]
             title = pr["title"]
@@ -110,8 +115,8 @@ def build_rows():
                 # Size
                 "additions": pr.get("additions", 0),
                 "deletions": pr.get("deletions", 0),
-                "lines_changed": cr.get("lines_changed", 0),
-                "size_bucket": cr.get("size_bucket", ""),
+                "lines_changed": catchrate_value("lines_changed"),
+                "size_bucket": catchrate_value("size_bucket"),
                 "files_count": len(pr.get("files", [])),
 
                 # Spec coverage
@@ -119,12 +124,12 @@ def build_rows():
                 "spec_source": cov.get("spec_source", ""),
 
                 # Catchrate
-                "classification": cr.get("classification", ""),
-                "ci_status": cr.get("ci_status", ""),
-                "review_modified": cr.get("review_modified", False),
-                "escaped": cr.get("escaped", False),
-                "review_cycles": cr.get("review_cycles", 0),
-                "time_to_merge_hours": cr.get("time_to_merge_hours", 0),
+                "classification": catchrate_value("classification"),
+                "ci_status": catchrate_value("ci_status"),
+                "review_modified": catchrate_value("review_modified"),
+                "escaped": catchrate_value("escaped"),
+                "review_cycles": catchrate_value("review_cycles"),
+                "time_to_merge_hours": catchrate_value("time_to_merge_hours"),
 
                 # Workflow
                 "approval_mechanism": wf.get("approval_mechanism", ""),

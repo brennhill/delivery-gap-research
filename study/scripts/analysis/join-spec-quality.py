@@ -10,11 +10,25 @@ Then re-runs the quality-tier paradox analysis.
 import csv
 import json
 import shutil
-from pathlib import Path
 from collections import defaultdict
+from pathlib import Path
+import sys
 
 import scipy.stats as stats
 import numpy as np
+
+UTIL_DIR = Path(__file__).resolve().parents[1] / "util"
+if str(UTIL_DIR) not in sys.path:
+    sys.path.insert(0, str(UTIL_DIR))
+
+from quality_tiers import (  # noqa: E402
+    BOTTOM_75,
+    TOP_10,
+    TOP_25_ONLY,
+    TIER_ORDER,
+    TIER_DISPLAY,
+    quality_tier,
+)
 
 DATA_DIR = Path(__file__).resolve().parent / "data"
 CSV_PATH = DATA_DIR / "master-prs.csv"
@@ -144,35 +158,29 @@ def main():
     scored = [r for r in scored if r.get("reworked", "").strip() and r.get("strict_escaped", "").strip()]
 
     def tier(q):
-        q = float(q)
-        if q < 40:
-            return "LOW"
-        elif q < 70:
-            return "MEDIUM"
-        else:
-            return "HIGH"
+        return quality_tier(float(q))
 
     tier_data = defaultdict(list)
     for r in scored:
         t = tier(r["q_overall"])
         tier_data[t].append(r)
 
-    print(f"\n{'Tier':<10s} {'N':>6s} {'Reworked%':>10s} {'Escaped%':>10s}")
-    print(f"{'-'*10} {'-'*6} {'-'*10} {'-'*10}")
-    for t in ["LOW", "MEDIUM", "HIGH"]:
+    print(f"\n{'Tier':<26s} {'N':>6s} {'Reworked%':>10s} {'Escaped%':>10s}")
+    print(f"{'-'*26} {'-'*6} {'-'*10} {'-'*10}")
+    for t in TIER_ORDER:
         group = tier_data[t]
         n = len(group)
         reworked = sum(1 for r in group if r["reworked"].strip().lower() in ("true", "1", "yes"))
         escaped = sum(1 for r in group if r["strict_escaped"].strip().lower() in ("true", "1", "yes"))
         rw_pct = 100 * reworked / n if n else 0
         es_pct = 100 * escaped / n if n else 0
-        print(f"{t:<10s} {n:>6d} {rw_pct:>9.1f}% {es_pct:>9.1f}%")
+        print(f"{TIER_DISPLAY[t]:<26s} {n:>6d} {rw_pct:>9.1f}% {es_pct:>9.1f}%")
 
-    # Fisher's exact: HIGH vs LOW for reworked
-    print("\nFisher's exact test (HIGH vs LOW):")
+    # Fisher's exact: top decile vs bottom 75%
+    print("\nFisher's exact test (TOP10 vs BOTTOM75):")
     for outcome_col, label in [("reworked", "Reworked"), ("strict_escaped", "Escaped")]:
-        high = tier_data["HIGH"]
-        low = tier_data["LOW"]
+        high = tier_data[TOP_10]
+        low = tier_data[BOTTOM_75]
         if not high or not low:
             print(f"  {label}: insufficient data")
             continue
@@ -187,7 +195,7 @@ def main():
 
         table = [[h_yes, h_no], [l_yes, l_no]]
         odds, p = stats.fisher_exact(table)
-        print(f"  {label}: HIGH {h_yes}/{len(high)} vs LOW {l_yes}/{len(low)}, OR={odds:.3f}, p={p:.4f}")
+        print(f"  {label}: TOP10 {h_yes}/{len(high)} vs BOTTOM75 {l_yes}/{len(low)}, OR={odds:.3f}, p={p:.4f}")
 
     # Repo distribution across tiers
     print(f"\nRepo distribution across tiers:")
@@ -196,12 +204,12 @@ def main():
         t = tier(r["q_overall"])
         repo_tiers[r["repo"]][t] += 1
 
-    print(f"  {'Repo':<35s} {'LOW':>6s} {'MED':>6s} {'HIGH':>6s} {'Total':>6s}")
+    print(f"  {'Repo':<35s} {'<58':>6s} {'58-65':>6s} {'66+':>6s} {'Total':>6s}")
     print(f"  {'-'*35} {'-'*6} {'-'*6} {'-'*6} {'-'*6}")
     for repo in sorted(repo_tiers.keys()):
         tiers_d = repo_tiers[repo]
         total = sum(tiers_d.values())
-        print(f"  {repo:<35s} {tiers_d['LOW']:>6d} {tiers_d['MEDIUM']:>6d} {tiers_d['HIGH']:>6d} {total:>6d}")
+        print(f"  {repo:<35s} {tiers_d[BOTTOM_75]:>6d} {tiers_d[TOP_25_ONLY]:>6d} {tiers_d[TOP_10]:>6d} {total:>6d}")
 
 
 if __name__ == "__main__":

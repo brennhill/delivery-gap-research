@@ -16,6 +16,15 @@ import sys
 from pathlib import Path
 from datetime import datetime, timezone
 
+UTIL_DIR = Path(__file__).resolve().parents[1] / "util"
+if str(UTIL_DIR) not in sys.path:
+    sys.path.insert(0, str(UTIL_DIR))
+
+from quality_tiers import (  # noqa: E402
+    LOCKED_TOP_DECILE_CUTOFF,
+    LOCKED_TOP_QUARTILE_CUTOFF,
+)
+
 DATA_DIR = Path(__file__).resolve().parent.parent.parent / "data"
 OUT_FILE = Path(__file__).resolve().parent.parent.parent / "results" / "robustness-temporal.txt"
 
@@ -271,10 +280,11 @@ print("=" * 70)
 
 q_valid = recent["q_overall"].dropna()
 if len(q_valid) > 50:
-    Q_P75 = q_valid.quantile(0.75)
-    Q_P90 = q_valid.quantile(0.90)
+    Q_P75 = LOCKED_TOP_QUARTILE_CUTOFF
+    Q_P90 = LOCKED_TOP_DECILE_CUTOFF
     print(f"  Quality distribution (recent): median={q_valid.median():.0f}, "
-          f"p75={Q_P75:.0f}, p90={Q_P90:.0f}")
+          f"empirical p75={q_valid.quantile(0.75):.0f}, empirical p90={q_valid.quantile(0.90):.0f}")
+    print(f"  Locked AI cutoffs: p75={Q_P75:.0f}, p90={Q_P90:.0f}")
 
     recent_szz["high_quality"] = (recent_szz["q_overall"].fillna(0) >= Q_P75).astype(int)
     n_hq = recent_szz["high_quality"].sum()

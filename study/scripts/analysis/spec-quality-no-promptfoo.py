@@ -3,11 +3,25 @@
 Spec paradox robustness check: does the inverted spec-quality effect
 survive after excluding promptfoo (314 HIGH-tier PRs)?
 
-Tiers: LOW (<40), MEDIUM (40-69), HIGH (>=70) on q_overall.
+Locked AI tiers: bottom 75% (<58), p75-p89 (58-65), top 10% (>=66).
 """
 
 import pandas as pd
 from scipy.stats import fisher_exact
+from pathlib import Path
+import sys
+
+UTIL_DIR = Path(__file__).resolve().parents[1] / "util"
+if str(UTIL_DIR) not in sys.path:
+    sys.path.insert(0, str(UTIL_DIR))
+
+from quality_tiers import (  # noqa: E402
+    BOTTOM_75,
+    TOP_10,
+    TIER_ORDER,
+    TIER_DISPLAY,
+    quality_tier,
+)
 
 CSV = "/Users/brenn/dev/ai-augmented-dev/research/study/data/master-prs.csv"
 
@@ -35,29 +49,25 @@ for col in ["reworked", "strict_escaped"]:
 def q_tier(val):
     if pd.isna(val):
         return "UNSPEC"
-    if val < 40:
-        return "LOW"
-    if val < 70:
-        return "MEDIUM"
-    return "HIGH"
+    return quality_tier(val)
 
 specd["q_tier"] = specd["q_overall"].apply(q_tier)
 
 # ── Tier breakdown ───────────────────────────────────────────────────
-print(f"\n{'Tier':<8} {'n':>6} {'Rework%':>9} {'Escape%':>9}")
+print(f"\n{'Tier':<26} {'n':>6} {'Rework%':>9} {'Escape%':>9}")
 print("-" * 35)
-for tier in ["LOW", "MEDIUM", "HIGH"]:
+for tier in TIER_ORDER:
     subset = specd[specd["q_tier"] == tier]
     n = len(subset)
     rework_rate = subset["reworked"].mean() * 100
     escape_rate = subset["strict_escaped"].mean() * 100
-    print(f"{tier:<8} {n:>6} {rework_rate:>8.1f}% {escape_rate:>8.1f}%")
+    print(f"{TIER_DISPLAY[tier]:<26} {n:>6} {rework_rate:>8.1f}% {escape_rate:>8.1f}%")
 
-# ── Fisher's exact: HIGH vs LOW ─────────────────────────────────────
-low = specd[specd["q_tier"] == "LOW"]
-high = specd[specd["q_tier"] == "HIGH"]
+# ── Fisher's exact: top decile vs bottom 75% ────────────────────────
+low = specd[specd["q_tier"] == BOTTOM_75]
+high = specd[specd["q_tier"] == TOP_10]
 
-print(f"\nFisher's exact test: HIGH (n={len(high)}) vs LOW (n={len(low)})")
+print(f"\nFisher's exact test: TOP10 (n={len(high)}) vs BOTTOM75 (n={len(low)})")
 print("-" * 60)
 
 for outcome, label in [("reworked", "Rework"), ("strict_escaped", "Escape")]:
@@ -75,7 +85,7 @@ for outcome, label in [("reworked", "Rework"), ("strict_escaped", "Escape")]:
     delta = h_pct - l_pct
     sig = "***" if p_value < 0.001 else "**" if p_value < 0.01 else "*" if p_value < 0.05 else "ns"
 
-    print(f"  {label:8s}: HIGH={h_pct:.1f}%  LOW={l_pct:.1f}%  "
+    print(f"  {label:8s}: TOP10={h_pct:.1f}%  BOTTOM75={l_pct:.1f}%  "
           f"Δ={delta:+.1f}pp  OR={odds_ratio:.2f}  p={p_value:.4f}  {sig}")
 
 # ── Verdict ──────────────────────────────────────────────────────────
@@ -86,13 +96,13 @@ h_escape = high["strict_escaped"].mean()
 l_escape = low["strict_escaped"].mean()
 
 if h_rework > l_rework and h_escape > l_escape:
-    print("PARADOX SURVIVES: Higher-quality specs → MORE rework AND escapes")
+    print("PARADOX SURVIVES: Top-decile specs → MORE rework AND escapes than bottom-75% specs")
 elif h_rework > l_rework:
-    print("PARTIAL: Higher-quality specs → more rework, but NOT more escapes")
+    print("PARTIAL: Top-decile specs → more rework, but NOT more escapes")
 elif h_escape > l_escape:
-    print("PARTIAL: Higher-quality specs → more escapes, but NOT more rework")
+    print("PARTIAL: Top-decile specs → more escapes, but NOT more rework")
 else:
-    print("PARADOX GONE: Without promptfoo, better specs → better outcomes")
+    print("PARADOX GONE: Without promptfoo, top-decile specs outperform bottom-75% specs")
 print("=" * 60)
 
 # ── Also show promptfoo's contribution for context ───────────────────
