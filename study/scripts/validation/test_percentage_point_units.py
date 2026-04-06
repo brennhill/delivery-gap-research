@@ -37,6 +37,12 @@ class TestPercentagePointUnits(unittest.TestCase):
                 self.assertNotIn(snippet, src, f"{path.name} still prints raw decimals as percentage points")
             self.assertIn("format_percentage_point_delta", src, f"{path.name} should use the shared pp formatter")
 
+    def test_full_szz_controlled_logit_reports_coef_and_or(self):
+        src = (ROOT_DIR / "scripts" / "pipeline" / "full-szz-analysis.py").read_text()
+        self.assertIn("Controlled (logistic regression + repo FE): log-odds coefficients", src)
+        self.assertIn("OR=", src)
+        self.assertIn("np.exp(coef)", src)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -1,4 +1,4 @@
-Analysis run: 2026-04-06T11:34:38.312592+00:00
+Analysis run: 2026-04-06T15:14:16.034447+00:00
 Script: /Users/brenn/dev/ai-augmented-dev/research/study/scripts/pipeline/full-szz-analysis.py
 
 Dataset: 100,247 PRs, 119 repos
@@ -20,10 +20,10 @@ Pooled rates:
   Unspec'd: 0.120 (56,056 PRs)
   Fisher's exact: OR=1.202, p=0.000000
 
-Controlled (logistic regression + repo FE):
+Controlled (logistic regression + repo FE): log-odds coefficients
   [specs-szz] Logit failed: Singular matrix
   [specs-szz] Retrying without repo FE...
-  specd_int: coef=0.0673, p=0.006352
+  specd_int: coef=0.0673, OR=1.070, p=0.006352
   (size controls only — repo FE caused singular matrix)
 
 Within-author (LPM, clustered SEs):
@@ -42,10 +42,10 @@ Scored PRs in SZZ repos: 22,672
   Selection: only spec'd PRs with substantial descriptions were scored.
   Results may not generalize to unscored PRs.
 
-Controlled (logistic regression + repo FE):
+Controlled (logistic regression + repo FE): log-odds coefficients
   [quality-szz] Logit failed: Singular matrix
   [quality-szz] Retrying without repo FE...
-  q_overall: coef=-0.0020, p=0.079998
+  q_overall: coef=-0.0020, OR=0.998, p=0.079998
   (size controls only — repo FE caused singular matrix)
 
 Within-author (LPM, clustered SEs):
@@ -81,8 +81,8 @@ Pooled rates:
   Human:     0.122 (72,490 PRs)
   Fisher's exact: OR=1.443, p=0.000000
 
-Controlled (logistic regression + repo FE):
-  ai_int: coef=-0.0680, p=0.172305
+Controlled (logistic regression + repo FE): log-odds coefficients
+  ai_int: coef=-0.0680, OR=0.934, p=0.172305
   (with 102 repo dummies + size controls)
 
 Within-author (LPM, clustered SEs):
@@ -138,8 +138,8 @@ Pooled rates:
   Unspec'd: 0.129 rework rate (63,754 PRs)
   Fisher's exact: OR=1.179, p=0.000000
 
-Controlled (logistic regression + repo FE):
-  specd_int: coef=0.1780, p=0.000000
+Controlled (logistic regression + repo FE): log-odds coefficients
+  specd_int: coef=0.1780, OR=1.195, p=0.000000
   (with 117 repo dummies + size controls)
 
 Within-author (LPM, clustered SEs):
@@ -156,8 +156,8 @@ ANALYSIS 7: DOES SPEC QUALITY REDUCE REWORK?
 Scored PRs: 25,209
   NOTE: 28.6% of all PRs — selection bias caveat applies.
 
-Controlled (logistic regression + repo FE):
-  q_overall: coef=-0.0001, p=0.919857
+Controlled (logistic regression + repo FE): log-odds coefficients
+  q_overall: coef=-0.0001, OR=1.000, p=0.919857
   (with 111 repo dummies + size controls)
 
 Within-author (LPM, clustered SEs):

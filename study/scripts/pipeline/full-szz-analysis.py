@@ -157,15 +157,17 @@ def controlled_logit(data, treatment_col, outcome_col, label=""):
         m = safe_logit(y, X, f"{label}-no-repo-fe")
         if m:
             coef = m.params[treatment_col]
+            odds_ratio = np.exp(coef)
             pval = m.pvalues[treatment_col]
-            print(f"  {treatment_col}: coef={coef:.4f}, p={pval:.6f}")
+            print(f"  {treatment_col}: coef={coef:.4f}, OR={odds_ratio:.3f}, p={pval:.6f}")
             print(f"  (size controls only — repo FE caused singular matrix)")
             return {"coef": coef, "p": pval}
         return None
 
     coef = m.params[treatment_col]
+    odds_ratio = np.exp(coef)
     pval = m.pvalues[treatment_col]
-    print(f"  {treatment_col}: coef={coef:.4f}, p={pval:.6f}")
+    print(f"  {treatment_col}: coef={coef:.4f}, OR={odds_ratio:.3f}, p={pval:.6f}")
     print(f"  (with {len(repo_cols)} repo dummies + size controls)")
     return {"coef": coef, "p": pval}
 
@@ -271,7 +273,7 @@ d = n_unspecd - c
 odds, p = fisher_exact([[a, b], [c, d]])
 print(f"  Fisher's exact: OR={odds:.3f}, p={p:.6f}")
 
-print(f"\nControlled (logistic regression + repo FE):")
+print(f"\nControlled (logistic regression + repo FE): log-odds coefficients")
 szz_df["specd_int"] = szz_df["specd"].astype(int)
 r1_ctrl = controlled_logit(szz_df, "specd_int", "szz_buggy", label="specs-szz")
 
@@ -293,7 +295,7 @@ print(f"  NOTE: Only {len(scored)/len(szz_df)*100:.1f}% of PRs have quality scor
 print(f"  Selection: only spec'd PRs with substantial descriptions were scored.")
 print(f"  Results may not generalize to unscored PRs.")
 
-print(f"\nControlled (logistic regression + repo FE):")
+print(f"\nControlled (logistic regression + repo FE): log-odds coefficients")
 r2_ctrl = controlled_logit(scored, "q_overall", "szz_buggy", label="quality-szz")
 
 print(f"\nWithin-author (LPM, clustered SEs):")
@@ -384,7 +386,7 @@ if n_ai > 0:
     odds, p = fisher_exact([[a, b], [c, d]])
     print(f"  Fisher's exact: OR={odds:.3f}, p={p:.6f}")
 
-    print(f"\nControlled (logistic regression + repo FE):")
+    print(f"\nControlled (logistic regression + repo FE): log-odds coefficients")
     szz_df["ai_int"] = szz_df["ai_tagged"].astype(int)
     r4_ctrl = controlled_logit(szz_df, "ai_int", "szz_buggy", label="ai-szz")
 
@@ -494,7 +496,7 @@ d_ = (~df["specd"]).sum() - c
 odds, p = fisher_exact([[a, b], [c, d_]])
 print(f"  Fisher's exact: OR={odds:.3f}, p={p:.6f}")
 
-print(f"\nControlled (logistic regression + repo FE):")
+print(f"\nControlled (logistic regression + repo FE): log-odds coefficients")
 df["specd_int"] = df["specd"].astype(int)
 r6_ctrl = controlled_logit(df, "specd_int", "reworked", label="specs-rework")
 
@@ -514,7 +516,7 @@ scored_all = df[df["q_overall"].notna()].copy()
 print(f"\nScored PRs: {len(scored_all):,}")
 print(f"  NOTE: {len(scored_all)/len(df)*100:.1f}% of all PRs — selection bias caveat applies.")
 
-print(f"\nControlled (logistic regression + repo FE):")
+print(f"\nControlled (logistic regression + repo FE): log-odds coefficients")
 r7_ctrl = controlled_logit(scored_all, "q_overall", "reworked", label="quality-rework")
 
 print(f"\nWithin-author (LPM, clustered SEs):")
