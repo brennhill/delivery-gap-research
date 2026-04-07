@@ -15,8 +15,9 @@ Methodology notes:
     exact for OLS (Frisch-Waugh-Lovell) but biased for logit (incidental
     parameters problem). LPM with clustered SEs is standard for binary
     outcomes with fixed effects (Angrist & Pischke 2009, Wooldridge 2010).
-  - 8 analyses with no multiple-comparison correction. Interpret p-values
-    with appropriate skepticism — at alpha=0.05, ~0.4 false positives expected.
+  - The summary reports Bonferroni-adjusted p-values and BH q-values for the
+    primary family of within-author headline tests. Exploratory robustness
+    and JIT sections remain unadjusted.
 """
 
 import pandas as pd
@@ -35,9 +36,13 @@ if str(UTIL_DIR) not in sys.path:
     sys.path.insert(0, str(UTIL_DIR))
 
 from effect_units import format_percentage_point_delta  # noqa: E402
+from multiple_testing import benjamini_hochberg_qvalues, bonferroni_adjust  # noqa: E402
+from result_paths import result_path  # noqa: E402
+from szz_data import load_szz_results  # noqa: E402
 
-DATA_DIR = Path(__file__).resolve().parent.parent.parent / "data"
-OUT_FILE = Path(__file__).resolve().parent.parent.parent / "results" / "analysis-results.txt"
+ROOT_DIR = Path(__file__).resolve().parents[2]
+DATA_DIR = ROOT_DIR / "data"
+OUT_FILE = result_path(ROOT_DIR, "analysis-results.txt")
 
 # Redirect stdout to both file and terminal
 class Tee:
@@ -60,11 +65,17 @@ print(f"Script: {__file__}")
 # ── Load data ─────────────────────────────────────────────────────────
 
 df = pd.read_csv(DATA_DIR / "master-prs.csv", low_memory=False)
-szz = pd.read_csv(DATA_DIR / "szz-results-merged.csv")
+szz, szz_meta = load_szz_results(DATA_DIR)
 jit = pd.read_csv(DATA_DIR / "jit-features-merged.csv")
 
 print(f"\nDataset: {len(df):,} PRs, {df['repo'].nunique()} repos")
 print(f"SZZ: {len(szz):,} blame links, {szz['repo'].nunique()} repos")
+if szz_meta["mode"] == "exact_only":
+    print(
+        "SZZ filter: exact merge-SHA only "
+        f"({szz_meta['exact_rows']:,}/{szz_meta['source_rows']:,} rows kept; "
+        f"{szz_meta['fallback_rows']:,} fallback, {szz_meta['unmapped_rows']:,} unmapped dropped)"
+    )
 print(f"JIT: {len(jit):,} feature rows, {jit['repo'].nunique()} repos")
 
 # Parse and prep
@@ -120,6 +131,16 @@ SIZE_CONTROLS = ["log_add", "log_del", "log_files"]
 
 # Collect results for dynamic summary
 results = {}
+
+PRIMARY_FAMILY_TESTS = [
+    ("1. Specs -> SZZ bugs", "1_specs_bugs"),
+    ("2. Spec quality -> SZZ bugs", "2_quality_bugs"),
+    ("3. Review engagement -> SZZ bugs", "3_engagement_bugs"),
+    ("4. AI-tagged -> SZZ bugs", "4_ai_bugs"),
+    ("5. Scope interaction -> log_churn", "5_scope_interaction"),
+    ("6. Specs -> rework", "6_specs_rework"),
+    ("7. Spec quality -> rework", "7_quality_rework"),
+]
 
 
 def safe_logit(y, X, label=""):
@@ -247,6 +268,52 @@ def within_author_lpm(data, treatment_col, outcome_col, controls=None,
             "n": len(multi),
             "n_authors": n_authors, "n_with_variation": n_with_variation,
             "direction": direction, "sig": sig}
+
+
+def format_p_value(p):
+    """Compact p-value formatting for summary tables."""
+    return f"{p:.2e}" if p < 1e-4 else f"{p:.4f}"
+
+
+def print_primary_family_adjustment():
+    family = []
+    for label, key in PRIMARY_FAMILY_TESTS:
+        result = results.get(key)
+        if result is not None and result.get("p") is not None:
+            family.append((label, result["p"]))
+
+    if not family:
+        print("\nPRIMARY-FAMILY MULTIPLE-TESTING ADJUSTMENT")
+        print("  No estimable primary-family tests found.")
+        return
+
+    raw_p = [p for _, p in family]
+    bonf = bonferroni_adjust(raw_p)
+    bh_q = benjamini_hochberg_qvalues(raw_p)
+
+    print("\n" + "=" * 70)
+    print("PRIMARY-FAMILY MULTIPLE-TESTING ADJUSTMENT")
+    print("=" * 70)
+    print("\nPrimary family: within-author headline tests for Analyses 1-7.")
+    print("Analysis 5 uses the spec x AI interaction as the primary inferential test.")
+    print("Exploratory JIT/robustness tests are not part of this family.")
+    print(f"Family size: {len(family)} tests")
+    print(f"\n  {'Test':<46s} {'raw p':>10s} {'Bonferroni-adjusted p':>24s} {'BH q-value':>12s}  Result")
+
+    for (label, raw), bonf_p, q_val in zip(family, bonf, bh_q):
+        if bonf_p < 0.05 and q_val < 0.05:
+            status = "survives both"
+        elif q_val < 0.05:
+            status = "FDR only"
+        else:
+            status = "not robust"
+        print(
+            f"  {label:<46.46s} "
+            f"{format_p_value(raw):>10s} "
+            f"{format_p_value(bonf_p):>24s} "
+            f"{format_p_value(q_val):>12s}  "
+            f"{status}"
+        )
 
 
 # ════════════════════════════════════════════════════════════════════
@@ -831,7 +898,8 @@ Methodology:
   - Controlled regressions include repo fixed effects + size controls
   - Within-author uses LPM with full demeaning (Frisch-Waugh-Lovell)
     and author-clustered standard errors
-  - 8 analyses, no multiple-comparison correction applied
+  - Primary within-author headline tests receive Bonferroni and BH-FDR adjustment
+  - Exploratory JIT/robustness sections remain unadjusted
   - Coefficients are percentage-point changes in probability
 
 Within-author results (the most credible estimates):
@@ -870,6 +938,8 @@ if r5h:
     print(f"    Human: coef={r5h['coef']:+.4f}, p={r5h['p']:.4f} — {r5h['direction']} ({r5h['sig']})")
 if r5i:
     print(f"    Interaction (spec x AI): coef={r5i['coef']:+.4f}, p={r5i['p']:.4f} — {r5i['sig']}")
+
+print_primary_family_adjustment()
 
 print(f"\n  8. JIT features: see detailed results above.")
 

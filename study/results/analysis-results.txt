@@ -1,4 +1,4 @@
-Analysis run: 2026-04-06T15:14:16.034447+00:00
+Analysis run: 2026-04-06T16:54:39.936664+00:00
 Script: /Users/brenn/dev/ai-augmented-dev/research/study/scripts/pipeline/full-szz-analysis.py
 
 Dataset: 100,247 PRs, 119 repos
@@ -404,7 +404,8 @@ Methodology:
   - Controlled regressions include repo fixed effects + size controls
   - Within-author uses LPM with full demeaning (Frisch-Waugh-Lovell)
     and author-clustered standard errors
-  - 8 analyses, no multiple-comparison correction applied
+  - Primary within-author headline tests receive Bonferroni and BH-FDR adjustment
+  - Exploratory JIT/robustness sections remain unadjusted
   - Coefficients are percentage-point changes in probability
 
 Within-author results (the most credible estimates):
@@ -432,6 +433,24 @@ Within-author results (the most credible estimates):
     AI: coef=+0.1201, p=0.0297 — INCREASES (SIGNIFICANT)
     Human: coef=+0.1401, p=0.0000 — INCREASES (SIGNIFICANT)
     Interaction (spec x AI): coef=+0.0002, p=0.9970 — not significant
+
+======================================================================
+PRIMARY-FAMILY MULTIPLE-TESTING ADJUSTMENT
+======================================================================
+
+Primary family: within-author headline tests for Analyses 1-7.
+Analysis 5 uses the spec x AI interaction as the primary inferential test.
+Exploratory JIT/robustness tests are not part of this family.
+Family size: 7 tests
+
+  Test                                                raw p    Bonferroni-adjusted p   BH q-value  Result
+  1. Specs -> SZZ bugs                               0.0026                   0.0182       0.0091  survives both
+  2. Spec quality -> SZZ bugs                        0.1644                   1.0000       0.3835  not robust
+  3. Review engagement -> SZZ bugs                   0.3467                   1.0000       0.6067  not robust
+  4. AI-tagged -> SZZ bugs                           0.4972                   1.0000       0.6961  not robust
+  5. Scope interaction -> log_churn                  0.9970                   1.0000       0.9970  not robust
+  6. Specs -> rework                                 0.0012                   0.0083       0.0083  survives both
+  7. Spec quality -> rework                          0.8603                   1.0000       0.9970  not robust
 
   8. JIT features: see detailed results above.
 

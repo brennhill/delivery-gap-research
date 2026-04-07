@@ -24,9 +24,12 @@ from quality_tiers import (  # noqa: E402
     LOCKED_TOP_DECILE_CUTOFF,
     LOCKED_TOP_QUARTILE_CUTOFF,
 )
+from result_paths import result_path  # noqa: E402
+from szz_data import load_szz_results  # noqa: E402
 
-DATA_DIR = Path(__file__).resolve().parent.parent.parent / "data"
-OUT_FILE = Path(__file__).resolve().parent.parent.parent / "results" / "robustness-temporal.txt"
+ROOT_DIR = Path(__file__).resolve().parents[2]
+DATA_DIR = ROOT_DIR / "data"
+OUT_FILE = result_path(ROOT_DIR, "robustness-temporal.txt")
 
 
 class Tee:
@@ -50,7 +53,13 @@ print(f"Script: {__file__}")
 # ── Load and prep ─────────────────────────────────────────────────────
 
 df = pd.read_csv(DATA_DIR / "master-prs.csv", low_memory=False)
-szz = pd.read_csv(DATA_DIR / "szz-results-merged.csv")
+szz, szz_meta = load_szz_results(DATA_DIR)
+if szz_meta["mode"] == "exact_only":
+    print(
+        "SZZ filter: exact merge-SHA only "
+        f"({szz_meta['exact_rows']:,}/{szz_meta['source_rows']:,} rows kept; "
+        f"{szz_meta['fallback_rows']:,} fallback, {szz_meta['unmapped_rows']:,} unmapped dropped)"
+    )
 
 df["merged_at"] = pd.to_datetime(df["merged_at"], utc=True, errors="coerce")
 

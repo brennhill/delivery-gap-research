@@ -40,12 +40,13 @@ if str(UTIL_DIR) not in sys.path:
     sys.path.insert(0, str(UTIL_DIR))
 
 from effect_units import format_percentage_point_delta  # noqa: E402
+from result_paths import result_path  # noqa: E402
+from szz_data import load_szz_results  # noqa: E402
 
-DATA_DIR = Path(__file__).resolve().parent.parent.parent / "data"
-OUT_FILE = Path(__file__).resolve().parent.parent.parent / "results" / "propensity-score-matching.txt"
-PAIRS_FILE = Path(__file__).resolve().parent.parent.parent / "results" / "psm-matched-pairs.csv"
-
-OUT_FILE.parent.mkdir(parents=True, exist_ok=True)
+ROOT_DIR = Path(__file__).resolve().parents[2]
+DATA_DIR = ROOT_DIR / "data"
+OUT_FILE = result_path(ROOT_DIR, "propensity-score-matching.txt")
+PAIRS_FILE = result_path(ROOT_DIR, "psm-matched-pairs.csv")
 
 
 class Tee:
@@ -79,11 +80,17 @@ print("explain the observed spec–defect association.")
 # ── Load data ──────────────────────────────────────────────────────────────
 
 df = pd.read_csv(DATA_DIR / "master-prs.csv", low_memory=False)
-szz = pd.read_csv(DATA_DIR / "szz-results-merged.csv")
+szz, szz_meta = load_szz_results(DATA_DIR)
 jit = pd.read_csv(DATA_DIR / "jit-features-merged.csv")
 
 print(f"\nDataset: {len(df):,} PRs, {df['repo'].nunique()} repos")
 print(f"SZZ:     {len(szz):,} blame links, {szz['repo'].nunique()} repos")
+if szz_meta["mode"] == "exact_only":
+    print(
+        "SZZ filter: exact merge-SHA only "
+        f"({szz_meta['exact_rows']:,}/{szz_meta['source_rows']:,} rows kept; "
+        f"{szz_meta['fallback_rows']:,} fallback, {szz_meta['unmapped_rows']:,} unmapped dropped)"
+    )
 print(f"JIT:     {len(jit):,} feature rows, {jit['repo'].nunique()} repos")
 
 # ── Prep ────────────────────────────────────────────────────────────────────

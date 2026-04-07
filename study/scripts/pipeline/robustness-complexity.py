@@ -23,8 +23,16 @@ import sys
 from pathlib import Path
 from datetime import datetime, timezone
 
-DATA_DIR = Path(__file__).resolve().parent.parent.parent / "data"
-OUT_FILE = Path(__file__).resolve().parent.parent.parent / "results" / "robustness-complexity.txt"
+UTIL_DIR = Path(__file__).resolve().parents[1] / "util"
+if str(UTIL_DIR) not in sys.path:
+    sys.path.insert(0, str(UTIL_DIR))
+
+from result_paths import result_path  # noqa: E402
+from szz_data import load_szz_results  # noqa: E402
+
+ROOT_DIR = Path(__file__).resolve().parents[2]
+DATA_DIR = ROOT_DIR / "data"
+OUT_FILE = result_path(ROOT_DIR, "robustness-complexity.txt")
 
 class Tee:
     def __init__(self, *files):
@@ -46,8 +54,14 @@ print(f"Script: {__file__}")
 # ── Load and prep ─────────────────────────────────────────────────────
 
 df = pd.read_csv(DATA_DIR / "master-prs.csv", low_memory=False)
-szz = pd.read_csv(DATA_DIR / "szz-results-merged.csv")
+szz, szz_meta = load_szz_results(DATA_DIR)
 jit = pd.read_csv(DATA_DIR / "jit-features-merged.csv")
+if szz_meta["mode"] == "exact_only":
+    print(
+        "SZZ filter: exact merge-SHA only "
+        f"({szz_meta['exact_rows']:,}/{szz_meta['source_rows']:,} rows kept; "
+        f"{szz_meta['fallback_rows']:,} fallback, {szz_meta['unmapped_rows']:,} unmapped dropped)"
+    )
 
 for col in ["reworked", "specd"]:
     df[col] = df[col].fillna(False).astype(bool)

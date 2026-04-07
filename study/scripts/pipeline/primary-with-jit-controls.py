@@ -23,10 +23,16 @@ from datetime import datetime, timezone
 
 warnings.filterwarnings("ignore")
 
-DATA_DIR = Path(__file__).resolve().parent.parent.parent / "data"
-OUT_FILE = Path(__file__).resolve().parent.parent.parent / "results" / "primary-with-jit-controls.txt"
+UTIL_DIR = Path(__file__).resolve().parents[1] / "util"
+if str(UTIL_DIR) not in sys.path:
+    sys.path.insert(0, str(UTIL_DIR))
 
-OUT_FILE.parent.mkdir(parents=True, exist_ok=True)
+from result_paths import result_path  # noqa: E402
+from szz_data import load_szz_results  # noqa: E402
+
+ROOT_DIR = Path(__file__).resolve().parents[2]
+DATA_DIR = ROOT_DIR / "data"
+OUT_FILE = result_path(ROOT_DIR, "primary-with-jit-controls.txt")
 
 
 class Tee:
@@ -59,11 +65,17 @@ print("reviewer concern is supported: JIT features confound the spec effect.")
 # ── Load data ──────────────────────────────────────────────────────────────
 
 df = pd.read_csv(DATA_DIR / "master-prs.csv", low_memory=False)
-szz = pd.read_csv(DATA_DIR / "szz-results-merged.csv")
+szz, szz_meta = load_szz_results(DATA_DIR)
 jit = pd.read_csv(DATA_DIR / "jit-features-merged.csv")
 
 print(f"\nDataset: {len(df):,} PRs, {df['repo'].nunique()} repos")
 print(f"SZZ:     {len(szz):,} blame links, {szz['repo'].nunique()} repos")
+if szz_meta["mode"] == "exact_only":
+    print(
+        "SZZ filter: exact merge-SHA only "
+        f"({szz_meta['exact_rows']:,}/{szz_meta['source_rows']:,} rows kept; "
+        f"{szz_meta['fallback_rows']:,} fallback, {szz_meta['unmapped_rows']:,} unmapped dropped)"
+    )
 print(f"JIT:     {len(jit):,} feature rows, {jit['repo'].nunique()} repos")
 
 # ── Prep ────────────────────────────────────────────────────────────────────

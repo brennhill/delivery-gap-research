@@ -24,6 +24,18 @@ cd "$STUDY_DIR"
 
 echo "Study dir: $STUDY_DIR"
 
+RESULTS_DIR="${RESULTS_DIR:-}"
+if [ -z "$RESULTS_DIR" ]; then
+  case "${SZZ_EXACT_ONLY:-}" in
+    1|true|TRUE|yes|YES|on|ON)
+      RESULTS_DIR="results/exact-only"
+      ;;
+    *)
+      RESULTS_DIR="results"
+      ;;
+  esac
+fi
+
 echo ""
 echo "=========================================="
 echo "Step 1/11: Merge SZZ/JIT checkpoints"
@@ -126,14 +138,14 @@ echo "=========================================="
 echo "DONE"
 echo "=========================================="
 echo "Results:"
-echo "  results/analysis-results.txt"
-echo "  results/robustness-subgroups.txt"
-echo "  results/robustness-highquality.txt"
-echo "  results/robustness-temporal.txt"
-echo "  results/robustness-complexity.txt"
-echo "  results/robustness-issue-linked.txt"
-echo "  results/primary-with-jit-controls.txt"
-echo "  results/propensity-score-matching.txt"
+echo "  $RESULTS_DIR/analysis-results.txt"
+echo "  $RESULTS_DIR/robustness-subgroups.txt"
+echo "  $RESULTS_DIR/robustness-highquality.txt"
+echo "  $RESULTS_DIR/robustness-temporal.txt"
+echo "  $RESULTS_DIR/robustness-complexity.txt"
+echo "  $RESULTS_DIR/robustness-issue-linked.txt"
+echo "  $RESULTS_DIR/primary-with-jit-controls.txt"
+echo "  $RESULTS_DIR/propensity-score-matching.txt"
 echo ""
 echo "Source data untouched:"
 echo "  prs-*.json: $(ls data/prs-*.json 2>/dev/null | wc -l | tr -d ' ') files"
