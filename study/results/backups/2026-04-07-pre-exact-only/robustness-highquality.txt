@@ -1,0 +1,95 @@
+High-quality robustness run: 2026-04-06T11:34:58.605258+00:00
+Script: /Users/brenn/dev/ai-augmented-dev/research/study/scripts/pipeline/robustness-highquality.py
+
+Dataset (bots excluded): 88,052 PRs
+Quality scored: 25,209
+Quality distribution: median=48, p75=58, p90=66
+Locked AI cutoffs: top quartile >= 58, top decile >= 66
+
+======================================================================
+TEST 1: TOP-QUARTILE SPECS (q_overall >= 58) vs ALL OTHERS
+======================================================================
+If SDD claims hold, the BEST specs should show the strongest effect.
+
+  High-quality spec'd: 5,833 PRs, bug rate: 0.135
+  All others:          71,981 PRs, bug rate: 0.125
+
+  High-quality specs → SZZ bugs (within-author):
+  N=72,046, authors=4,328 (1,370 with variation)
+  coef=-0.0073, p=0.1899 → DECREASES 
+
+  High-quality specs → rework (within-author):
+  N=81,647, authors=4,892 (1,553 with variation)
+  coef=+0.0093, p=0.1000 → INCREASES 
+
+======================================================================
+TEST 2: TOP-DECILE SPECS (q_overall >= 66) vs ALL OTHERS
+======================================================================
+Even more selective: only the very best specs.
+
+  Top-decile spec'd: 2,438 PRs, bug rate: 0.144
+
+  Top-decile specs → SZZ bugs (within-author):
+  N=72,046, authors=4,328 (751 with variation)
+  coef=-0.0046, p=0.5448 → DECREASES 
+
+  Top-decile specs → rework (within-author):
+  N=81,647, authors=4,892 (821 with variation)
+  coef=+0.0024, p=0.7715 → INCREASES 
+
+======================================================================
+TEST 3: HIGH-QUALITY SPECS vs NO SPEC (exclude low-quality)
+======================================================================
+Remove the 'junk specs' objection entirely: compare only top-quartile
+specs against PRs with NO spec at all.
+
+  High-quality spec'd: 5,833 PRs
+  No spec at all:      55,476 PRs
+  (Low-quality specs excluded: 16,505 PRs)
+
+  High-quality spec vs no spec → SZZ bugs (within-author):
+  N=56,456, authors=3,536 (1,117 with variation)
+  coef=-0.0059, p=0.3478 → DECREASES 
+
+  High-quality spec vs no spec → rework (within-author):
+  N=64,131, authors=4,012 (1,281 with variation)
+  coef=+0.0108, p=0.0850 → INCREASES 
+
+======================================================================
+TEST 4: AI-TAGGED PRs — DO HIGH-QUALITY SPECS HELP?
+======================================================================
+Closest proxy to the agentic SDD workflow the vendors are selling.
+
+  AI-tagged PRs in SZZ repos: 5,324
+  AI + any spec: 1,712 (32.2%)
+  AI + high-quality spec: 987 (18.5%)
+
+  AI: any spec → SZZ bugs (within-author):
+  N=4,797, authors=422 (224 with variation)
+  coef=+0.0114, p=0.4239 → INCREASES 
+
+  AI: high-quality spec → SZZ bugs (within-author):
+  N=4,797, authors=422 (175 with variation)
+  coef=-0.0048, p=0.7898 → DECREASES 
+
+======================================================================
+SUMMARY: DO HIGH-QUALITY SPECS REDUCE DEFECTS?
+======================================================================
+
+If the reviewer objection is correct — that our specd=True includes junk
+and only "real" SDD specs should show a benefit — then restricting to
+high-quality specs should reveal the hidden protective effect.
+
+Results (within-author LPM, all with size controls):
+
+                                           Test   → bugs coef         p
+  ─────────────────────────────────────────────  ────────────  ────────
+              Top-quartile specs (q>=58) vs all       -0.0073    0.1899
+                Top-decile specs (q>=66) vs all       -0.0046    0.5448
+        High-quality vs NO spec (junk excluded)       -0.0059    0.3478
+
+No protective effect emerges at any quality threshold. High-quality specs
+do not reduce defects. The objection that our measure is "too loose" does
+not explain the null result — even the best specs show no benefit.
+
+Results saved to: /Users/brenn/dev/ai-augmented-dev/research/study/results/robustness-highquality.txt

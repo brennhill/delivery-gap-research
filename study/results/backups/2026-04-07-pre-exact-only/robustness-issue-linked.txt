@@ -1,0 +1,248 @@
+Issue-linked robustness run: 2026-04-06T11:35:11.079627+00:00
+Script: /Users/brenn/dev/ai-augmented-dev/research/study/scripts/pipeline/robustness-issue-linked.py
+
+Dataset: 88,052 PRs (non-bot)
+  Issue-linked: 18,600
+  Ticket-only: 5,113
+  Spec'd (any): 24,298
+  No spec: 63,754
+  Quality scored: 25,209
+  AI-tagged: 5,989
+
+======================================================================
+TEST 1: ISSUE-LINKED vs NO SPEC (cleanest comparison)
+======================================================================
+  Treated: 18,600 | Control: 63,754
+  Raw rates: bugs 13.1% vs 12.0% | rework 15.2% vs 12.9%
+
+  → bugs:
+  [issue-vs-none-bugs] N=66,761, authors=4,051 (1,815 with variation)
+  coef=+0.0111, p=0.0370, 95% CI [+0.0007, +0.0215] *
+  → rework:
+  [issue-vs-none-rework] N=76,104, authors=4,599 (2,124 with variation)
+  coef=+0.0140, p=0.0005, 95% CI [+0.0061, +0.0219] ***
+  → quality → bugs (N=16,284 scored):
+  [issue-vs-none-q-bugs] N=13,678, authors=1,569 (1,548 with variation)
+  coef=-0.0004, p=0.0676, 95% CI [-0.0009, +0.0000] 
+  → quality → rework (N=18,567 scored):
+  [issue-vs-none-q-rework] N=15,633, authors=1,807 (1,785 with variation)
+  coef=+0.0002, p=0.4037, 95% CI [-0.0003, +0.0006] 
+
+======================================================================
+TEST 2: ISSUE-LINKED vs EVERYTHING ELSE
+======================================================================
+  Treated: 18,600 | Control: 69,452
+  Raw rates: bugs 13.1% vs 12.4% | rework 15.2% vs 12.9%
+
+  → bugs:
+  [issue-vs-all-bugs] N=72,046, authors=4,328 (1,883 with variation)
+  coef=+0.0108, p=0.0385, 95% CI [+0.0006, +0.0210] *
+  → rework:
+  [issue-vs-all-rework] N=81,647, authors=4,892 (2,196 with variation)
+  coef=+0.0144, p=0.0003, 95% CI [+0.0066, +0.0223] ***
+  → quality → bugs (N=16,284 scored):
+  [issue-vs-all-q-bugs] N=13,678, authors=1,569 (1,548 with variation)
+  coef=-0.0004, p=0.0676, 95% CI [-0.0009, +0.0000] 
+  → quality → rework (N=18,567 scored):
+  [issue-vs-all-q-rework] N=15,633, authors=1,807 (1,785 with variation)
+  coef=+0.0002, p=0.4037, 95% CI [-0.0003, +0.0006] 
+
+======================================================================
+TEST 3: AI-TAGGED + ISSUE-LINKED vs AI + NO SPEC
+======================================================================
+  AI + issue: 1,350 | AI + no spec: 4,068
+  Raw rates: bugs 14.6% vs 15.6% | rework 18.4% vs 18.5%
+
+  → bugs:
+  [ai-issue-vs-none-bugs] N=4,287, authors=389 (151 with variation)
+  coef=+0.0141, p=0.4358, 95% CI [-0.0214, +0.0496] 
+  → rework:
+  [ai-issue-vs-none-rework] N=4,881, authors=412 (166 with variation)
+  coef=+0.0171, p=0.1919, 95% CI [-0.0086, +0.0428] 
+  → quality → bugs (N=1,183 scored):
+  [ai-issue-vs-none-q-bugs] N=958, authors=130 (129 with variation)
+  coef=+0.0012, p=0.2988, 95% CI [-0.0011, +0.0035] 
+  → quality → rework (N=1,350 scored):
+  [ai-issue-vs-none-q-rework] N=1,109, authors=140 (139 with variation)
+  coef=+0.0009, p=0.3385, 95% CI [-0.0010, +0.0029] 
+
+======================================================================
+TEST 4: HUMAN-ONLY + ISSUE-LINKED vs HUMAN + NO SPEC
+======================================================================
+  Human + issue: 17,250 | Human + no spec: 59,686
+  Raw rates: bugs 13.0% vs 11.7% | rework 15.0% vs 12.5%
+
+  → bugs:
+  [human-issue-vs-none-bugs] N=62,118, authors=3,900 (1,742 with variation)
+  coef=+0.0118, p=0.0349, 95% CI [+0.0008, +0.0227] *
+  → rework:
+  [human-issue-vs-none-rework] N=70,840, authors=4,439 (2,041 with variation)
+  coef=+0.0131, p=0.0022, 95% CI [+0.0047, +0.0215] **
+  → quality → bugs (N=15,101 scored):
+  [human-issue-vs-none-q-bugs] N=12,572, authors=1,487 (1,466 with variation)
+  coef=-0.0006, p=0.0233, 95% CI [-0.0010, -0.0001] *
+  → quality → rework (N=17,217 scored):
+  [human-issue-vs-none-q-rework] N=14,367, authors=1,720 (1,698 with variation)
+  coef=+0.0001, p=0.7196, 95% CI [-0.0004, +0.0005] 
+
+======================================================================
+TEST 5: ISSUE-LINKED ON TOP-20% COMPLEXITY (by churn)
+======================================================================
+  P80 churn threshold: 307
+  Hard + issue: 3,588 | Hard + no spec: 12,291
+  Raw rates: bugs 26.7% vs 27.0% | rework 27.4% vs 24.9%
+
+  → bugs:
+  [hard-issue-vs-none-bugs] N=12,684, authors=1,358 (539 with variation)
+  coef=+0.0355, p=0.0118, 95% CI [+0.0079, +0.0632] *
+  → rework:
+  [hard-issue-vs-none-rework] N=14,231, authors=1,520 (608 with variation)
+  coef=+0.0594, p=0.0000, 95% CI [+0.0376, +0.0812] ***
+  → quality → bugs (N=3,242 scored):
+  [hard-issue-vs-none-q-bugs] N=2,496, authors=463 (456 with variation)
+  coef=-0.0013, p=0.0990, 95% CI [-0.0028, +0.0002] 
+  → quality → rework (N=3,582 scored):
+  [hard-issue-vs-none-q-rework] N=2,746, authors=517 (509 with variation)
+  coef=+0.0006, p=0.2953, 95% CI [-0.0005, +0.0018] 
+
+======================================================================
+TEST 6: TOP-20% QUALITY ISSUE-LINKED vs NO SPEC
+======================================================================
+  Quality P80 threshold: 59
+  Quality distribution: median=49, p80=59, p90=65
+  Top-20% issue: 4,162 | No spec: 63,754
+  Raw rates: bugs 11.5% vs 12.0% | rework 16.0% vs 12.9%
+
+  → bugs:
+  [top20q-issue-vs-none-bugs] N=55,067, authors=3,426 (847 with variation)
+  coef=-0.0072, p=0.3632, 95% CI [-0.0226, +0.0083] 
+  → rework:
+  [top20q-issue-vs-none-rework] N=62,629, authors=3,889 (979 with variation)
+  coef=+0.0191, p=0.0070, 95% CI [+0.0052, +0.0330] **
+
+  Top-10% issue (threshold=65): 1,951
+  Raw rates: bugs 10.9% vs 12.0% | rework 15.2% vs 12.9%
+
+  → bugs:
+  [top10q-issue-vs-none-bugs] N=53,376, authors=3,301 (479 with variation)
+  coef=-0.0151, p=0.1251, 95% CI [-0.0343, +0.0042] 
+  → rework:
+  [top10q-issue-vs-none-rework] N=60,705, authors=3,745 (541 with variation)
+  coef=+0.0068, p=0.4988, 95% CI [-0.0130, +0.0267] 
+
+======================================================================
+TEST 7: ISSUE-LINKED vs TICKET-ONLY SPECS
+======================================================================
+  Issue-linked: 18,600 | Ticket-only: 5,113
+  Raw rates: bugs 13.1% vs 17.4% | rework 15.2% vs 13.0%
+
+  → bugs:
+  [issue-vs-ticket-bugs] N=18,305, authors=1,963 (458 with variation)
+  coef=+0.0066, p=0.6368, 95% CI [-0.0208, +0.0341] 
+  → rework:
+  [issue-vs-ticket-rework] N=20,482, authors=2,231 (525 with variation)
+  coef=+0.0263, p=0.0252, 95% CI [+0.0033, +0.0493] *
+
+======================================================================
+TEST 8: RECENT 3 MONTHS — ISSUE-LINKED vs NO SPEC
+======================================================================
+  Window: 2026-01-01 to 2026-04-03
+  Recent PRs: 44,706
+  Recent + issue: 9,675 | Recent + no spec: 31,618
+  Raw rates: bugs 9.1% vs 9.3% | rework 16.1% vs 13.5%
+
+  → bugs:
+  [recent-issue-vs-none-bugs] N=34,111, authors=2,730 (1,176 with variation)
+  coef=+0.0038, p=0.5330, 95% CI [-0.0082, +0.0158] 
+  → rework:
+  [recent-issue-vs-none-rework] N=37,793, authors=3,109 (1,369 with variation)
+  coef=+0.0222, p=0.0000, 95% CI [+0.0115, +0.0328] ***
+  → quality → bugs (N=8,646 scored):
+  [recent-issue-vs-none-q-bugs] N=7,079, authors=1,032 (1,016 with variation)
+  coef=-0.0001, p=0.8122, 95% CI [-0.0005, +0.0004] 
+  → quality → rework (N=9,670 scored):
+  [recent-issue-vs-none-q-rework] N=7,868, authors=1,175 (1,158 with variation)
+  coef=+0.0001, p=0.8568, 95% CI [-0.0006, +0.0007] 
+
+======================================================================
+TEST 9: RECENT 3 MONTHS — AI + ISSUE-LINKED vs AI + NO SPEC
+======================================================================
+  Recent AI + issue: 906 | Recent AI + no spec: 2,763
+  Raw rates: bugs 12.0% vs 13.3% | rework 18.7% vs 19.7%
+
+  → bugs:
+  [recent-ai-issue-bugs] N=3,136, authors=307 (121 with variation)
+  coef=+0.0022, p=0.8852, 95% CI [-0.0283, +0.0328] 
+  → rework:
+  [recent-ai-issue-rework] N=3,255, authors=320 (127 with variation)
+  coef=+0.0333, p=0.0303, 95% CI [+0.0032, +0.0634] *
+
+======================================================================
+TEST 10: RECENT 3 MONTHS — HUMAN + ISSUE-LINKED vs HUMAN + NO SPEC
+======================================================================
+  Recent human + issue: 8,769 | Recent human + no spec: 28,855
+  Raw rates: bugs 8.7% vs 8.9% | rework 15.8% vs 12.9%
+
+  → bugs:
+  [recent-human-issue-bugs] N=30,677, authors=2,591 (1,102 with variation)
+  coef=+0.0043, p=0.5079, 95% CI [-0.0085, +0.0171] 
+  → rework:
+  [recent-human-issue-rework] N=34,221, authors=2,963 (1,290 with variation)
+  coef=+0.0215, p=0.0002, 95% CI [+0.0100, +0.0330] ***
+
+======================================================================
+TEST 11: DOSE-RESPONSE — QUALITY TIERS WITHIN ISSUE-LINKED
+======================================================================
+  Quality quartiles: p25=33, p50=49, p75=57, p90=65
+
+  Bottom quartile (≤p25) (N=4,737, threshold=33) vs no spec:
+  [dose-Bottom q-bugs] N=55,872, authors=3,339 (742 with variation)
+  coef=+0.0229, p=0.0044, 95% CI [+0.0071, +0.0387] **
+  [dose-Bottom q-rework] N=63,579, authors=3,785 (882 with variation)
+  coef=+0.0192, p=0.0056, 95% CI [+0.0056, +0.0328] **
+
+  Below median (≤p50) (N=9,664, threshold=49) vs no spec:
+  [dose-Below me-bugs] N=59,737, authors=3,561 (1,260 with variation)
+  coef=+0.0174, p=0.0114, 95% CI [+0.0039, +0.0309] *
+  [dose-Below me-rework] N=68,109, authors=4,048 (1,494 with variation)
+  coef=+0.0117, p=0.0271, 95% CI [+0.0013, +0.0220] *
+
+  Top quartile (≥p75) (N=5,037, threshold=57) vs no spec:
+  [dose-Top quar-bugs] N=55,745, authors=3,484 (945 with variation)
+  coef=-0.0021, p=0.7796, 95% CI [-0.0165, +0.0124] 
+  [dose-Top quar-rework] N=63,408, authors=3,952 (1,102 with variation)
+  coef=+0.0178, p=0.0069, 95% CI [+0.0049, +0.0308] **
+
+  Top decile (≥p90) (N=1,951, threshold=65) vs no spec:
+  [dose-Top deci-bugs] N=53,376, authors=3,301 (479 with variation)
+  coef=-0.0151, p=0.1251, 95% CI [-0.0343, +0.0042] 
+  [dose-Top deci-rework] N=60,705, authors=3,745 (541 with variation)
+  coef=+0.0068, p=0.4988, 95% CI [-0.0130, +0.0267] 
+
+
+======================================================================
+SUMMARY: ISSUE-LINKED SPECS — EVERY CUT
+======================================================================
+
+                                         Test      → Bugs           p    → Rework           p
+─────────────────────────────────────────────  ──────────  ──────────  ──────────  ──────────
+                             Issue vs no spec     +0.0111     0.0370*     +0.0140   0.0005***
+                          Issue vs everything     +0.0108     0.0385*     +0.0144   0.0003***
+                   AI + issue vs AI + no spec     +0.0141      0.4358     +0.0171      0.1919
+             Human + issue vs human + no spec     +0.0118     0.0349*     +0.0131    0.0022**
+           Hard tasks (top 20% churn) + issue     +0.0355     0.0118*     +0.0594   0.0000***
+             Top-20% quality issue vs no spec     -0.0072      0.3632     +0.0191    0.0070**
+                         Issue vs ticket-only     +0.0066      0.6368     +0.0263     0.0252*
+                 Recent 3mo: issue vs no spec     +0.0038      0.5330     +0.0222   0.0000***
+                       Recent 3mo: AI + issue     +0.0022      0.8852     +0.0333     0.0303*
+                    Recent 3mo: human + issue     +0.0043      0.5079     +0.0215   0.0002***
+
+Interpretation:
+  If linked GitHub issues (pre-implementation specs) prevent defects,
+  we should see NEGATIVE bug coefficients in at least some cuts.
+
+  Positive coefficients = confounding by indication.
+  Null across all cuts = specs do not prevent defects regardless of
+  how they are operationalized.
+
+Results saved to: /Users/brenn/dev/ai-augmented-dev/research/study/results/robustness-issue-linked.txt

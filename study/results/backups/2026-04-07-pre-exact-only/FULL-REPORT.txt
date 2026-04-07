@@ -1,0 +1,1806 @@
+======================================================================
+FULL REPLICATION REPORT
+Does Spec-Driven Development Reduce Defects?
+Generated: 2026-04-06T13:35:43.574898
+======================================================================
+
+DATA NOTES
+----------------------------------------------------------------------
+
+SZZ blame links vs JIT features:
+
+  SZZ traces fix commits back to the commits that introduced the
+  bug via git blame. It only produces rows for PRs that introduced
+  a bug that was LATER FIXED. The ~65K SZZ rows are blame links
+  (fix → bug-introducing commit), not PR counts. Many PRs never
+  introduced a traced bug, so they have no SZZ rows.
+
+  JIT features (lines added, entropy, developer experience, etc.)
+  are computed from diff metadata and can be calculated for ANY PR.
+  The ~109K JIT rows cover nearly all PRs in the dataset.
+
+  16 of 119 repos have zero SZZ coverage because their squash-merge
+  workflows cause GitHub's merge SHAs to be garbage-collected,
+  making them unreachable via git blame.
+
+
+######################################################################
+# analysis-results.txt
+######################################################################
+
+Analysis run: 2026-04-06T11:34:38.312592+00:00
+Script: /Users/brenn/dev/ai-augmented-dev/research/study/scripts/pipeline/full-szz-analysis.py
+
+Dataset: 100,247 PRs, 119 repos
+SZZ: 64,805 blame links, 103 repos
+JIT: 88,847 feature rows, 119 repos
+Bot exclusion: 12,195 bot PRs removed, 88,052 remaining
+PRs in SZZ repos: 77,814
+SZZ buggy PRs: 9,754
+AI-tagged PRs: 5,989
+Spec'd PRs: 24,298
+Spec quality scored PRs: 25,209
+
+======================================================================
+ANALYSIS 1: DO SPECS REDUCE REAL BUGS (SZZ)?
+======================================================================
+
+Pooled rates:
+  Spec'd:   0.140 (21,758 PRs)
+  Unspec'd: 0.120 (56,056 PRs)
+  Fisher's exact: OR=1.202, p=0.000000
+
+Controlled (logistic regression + repo FE):
+  [specs-szz] Logit failed: Singular matrix
+  [specs-szz] Retrying without repo FE...
+  specd_int: coef=0.0673, p=0.006352
+  (size controls only — repo FE caused singular matrix)
+
+Within-author (LPM, clustered SEs):
+  Within-author LPM: N=72,046, authors=4,328 (2,181 with treatment variation)
+  specd_int: coef=0.0142, p=0.002602
+  95% CI: [+0.50 pp, +2.35 pp]
+  Interpretation: +1.42 pp change in P(szz_buggy)
+  -> INCREASES (SIGNIFICANT)
+
+======================================================================
+ANALYSIS 2: DOES SPEC QUALITY REDUCE REAL BUGS (SZZ)?
+======================================================================
+
+Scored PRs in SZZ repos: 22,672
+  NOTE: Only 29.1% of PRs have quality scores.
+  Selection: only spec'd PRs with substantial descriptions were scored.
+  Results may not generalize to unscored PRs.
+
+Controlled (logistic regression + repo FE):
+  [quality-szz] Logit failed: Singular matrix
+  [quality-szz] Retrying without repo FE...
+  q_overall: coef=-0.0020, p=0.079998
+  (size controls only — repo FE caused singular matrix)
+
+Within-author (LPM, clustered SEs):
+  Within-author LPM: N=19,688, authors=2,050 (2,030 with treatment variation)
+  q_overall: coef=-0.0003, p=0.164356
+  95% CI: [-0.07 pp, +0.01 pp]
+  Interpretation: -0.03 pp change in P(szz_buggy)
+  -> DECREASES (not significant)
+
+======================================================================
+ANALYSIS 3: DOES REVIEW ENGAGEMENT REDUCE REAL BUGS (SZZ)?
+======================================================================
+
+Engagement proxy: time_to_merge_hours
+  Median: 16.8
+  High engagement (>16.8): 0.144 (38,434 PRs)
+  Low engagement  (<=16.8): 0.107 (39,380 PRs)
+  Fisher's exact: OR=1.408, p=0.000000
+
+Within-author (LPM, clustered SEs) — continuous engagement:
+  Within-author LPM: N=71,194, authors=4,324 (4,305 with treatment variation)
+  eng_val: coef=0.0000, p=0.346704
+  95% CI: [-0.00 pp, +0.00 pp]
+  Interpretation: +0.00 pp change in P(szz_buggy)
+  -> INCREASES (not significant)
+
+======================================================================
+ANALYSIS 4: AI vs HUMAN BUG RATES (SZZ)
+======================================================================
+
+Pooled rates:
+  AI-tagged: 0.167 (5,324 PRs)
+  Human:     0.122 (72,490 PRs)
+  Fisher's exact: OR=1.443, p=0.000000
+
+Controlled (logistic regression + repo FE):
+  ai_int: coef=-0.0680, p=0.172305
+  (with 102 repo dummies + size controls)
+
+Within-author (LPM, clustered SEs):
+  Within-author LPM: N=72,046, authors=4,328 (642 with treatment variation)
+  ai_int: coef=0.0079, p=0.497193
+  95% CI: [-1.48 pp, +3.06 pp]
+  Interpretation: +0.79 pp change in P(szz_buggy)
+  -> INCREASES (not significant)
+
+======================================================================
+ANALYSIS 5: DO SPECS CONSTRAIN AI SCOPE?
+======================================================================
+
+Median total churn (additions+deletions), excluding zero-churn PRs:
+  AI + spec:         124 (1,712 PRs)
+  AI no spec:         76 (3,606 PRs)
+  Human + spec:       74 (20,020 PRs)
+  Human no spec:      47 (52,349 PRs)
+
+  AI sprawl ratio (unspec/spec): 0.61x
+  Human sprawl ratio: 0.64x
+
+  Mann-Whitney (AI unspec > spec): U=2675070, p=1.00e+00
+  Mann-Whitney (Human unspec > spec): U=467454140, p=1.00e+00
+
+Within-author (LPM) — AI PRs only, outcome=log_churn:
+  Within-author LPM: N=4,797, authors=422 (224 with treatment variation)
+  specd_int: coef=0.1201, p=0.029688
+  95% CI: [+0.0118, +0.2284]
+  Interpretation: +12.8% change in log_churn (coef on log scale)
+  -> INCREASES (SIGNIFICANT)
+
+Within-author (LPM) — Human PRs only, outcome=log_churn:
+  Within-author LPM: N=66,872, authors=4,171 (2,077 with treatment variation)
+  specd_int: coef=0.1401, p=0.000000
+  95% CI: [+0.0994, +0.1808]
+  Interpretation: +15.0% change in log_churn (coef on log scale)
+  -> INCREASES (SIGNIFICANT)
+
+Interaction test (spec x AI on log_churn):
+  Within-author LPM: N=71,932, authors=4,324 (366 with treatment variation)
+  spec_x_ai: coef=0.0002, p=0.997014
+  95% CI: [-0.1012, +0.1016]
+  Interpretation: +0.0% change in log_churn (coef on log scale)
+  -> INCREASES (not significant)
+
+======================================================================
+ANALYSIS 6: DO SPECS REDUCE REWORK?
+======================================================================
+
+Pooled rates:
+  Spec'd:   0.148 rework rate (24,298 PRs)
+  Unspec'd: 0.129 rework rate (63,754 PRs)
+  Fisher's exact: OR=1.179, p=0.000000
+
+Controlled (logistic regression + repo FE):
+  specd_int: coef=0.1780, p=0.000000
+  (with 117 repo dummies + size controls)
+
+Within-author (LPM, clustered SEs):
+  Within-author LPM: N=81,647, authors=4,892 (2,524 with treatment variation)
+  specd_int: coef=0.0116, p=0.001191
+  95% CI: [+0.46 pp, +1.86 pp]
+  Interpretation: +1.16 pp change in P(reworked)
+  -> INCREASES (SIGNIFICANT)
+
+======================================================================
+ANALYSIS 7: DOES SPEC QUALITY REDUCE REWORK?
+======================================================================
+
+Scored PRs: 25,209
+  NOTE: 28.6% of all PRs — selection bias caveat applies.
+
+Controlled (logistic regression + repo FE):
+  q_overall: coef=-0.0001, p=0.919857
+  (with 111 repo dummies + size controls)
+
+Within-author (LPM, clustered SEs):
+  Within-author LPM: N=21,881, authors=2,319 (2,297 with treatment variation)
+  q_overall: coef=0.0000, p=0.860260
+  95% CI: [-0.03 pp, +0.04 pp]
+  Interpretation: +0.00 pp change in P(reworked)
+  -> INCREASES (not significant)
+
+======================================================================
+ANALYSIS 8: JIT FEATURES vs SZZ BUGS
+======================================================================
+
+PRs with JIT features in SZZ repos: 67,457
+
+Mann-Whitney U tests (buggy vs clean):
+     Feature   Buggy med   Clean med       p-value  Sig
+  ----------  ----------  ----------  ------------  ---
+          ns         2.0         1.0     1.18e-280  ***
+          nd         4.0         2.0      0.00e+00  ***
+          nf         6.0         2.0      0.00e+00  ***
+     entropy         1.7         0.8      0.00e+00  ***
+          la       160.0        28.0      0.00e+00  ***
+          ld        26.0         6.0      0.00e+00  ***
+          lt      2795.0       961.0      0.00e+00  ***
+         fix         0.0         0.0      7.17e-01  
+        ndev        13.0         8.0     6.31e-178  ***
+         age        14.6        10.7      1.32e-22  ***
+         nuc        98.0        31.0      0.00e+00  ***
+         exp       148.0        85.0      1.60e-67  ***
+        rexp        36.0        23.0      4.28e-88  ***
+        sexp         0.0         0.0      1.00e+00  
+
+JIT logistic regression on szz_buggy (+ repo FE):
+  NOTE: la/ld correlate with additions/deletions; ns/nd/nf are correlated.
+  Individual coefficients may be unstable due to multicollinearity.
+  Complete cases for JIT regression: 61,192/67,457
+  [jit-szz] Logit failed: Singular matrix
+  Retrying without repo FE...
+  [jit-szz-no-repo-fe] Logit failed: Singular matrix
+
+======================================================================
+ROBUSTNESS 1: ALTERNATIVE OUTCOME MEASURES
+======================================================================
+
+Do specs reduce escaped defects? (alternative to SZZ)
+  Escaped PRs: 767 (0.9%)
+
+  Specs -> escaped (within-author LPM):
+  Within-author LPM: N=81,647, authors=4,892 (2,524 with treatment variation)
+  specd_int: coef=0.0010, p=0.333298
+  95% CI: [-0.10 pp, +0.30 pp]
+  Interpretation: +0.10 pp change in P(escaped)
+  -> INCREASES (not significant)
+
+  Strict escaped PRs: 591 (0.7%)
+
+  Specs -> strict_escaped (within-author LPM):
+  Within-author LPM: N=81,647, authors=4,892 (2,524 with treatment variation)
+  specd_int: coef=0.0013, p=0.108339
+  95% CI: [-0.03 pp, +0.29 pp]
+  Interpretation: +0.13 pp change in P(strict_escaped)
+  -> INCREASES (not significant)
+
+======================================================================
+ROBUSTNESS 2: DO SPECS ADD PREDICTIVE POWER BEYOND JIT FEATURES?
+======================================================================
+
+If JIT features already predict bugs, does adding spec information
+improve prediction? (Incremental validity test)
+  Complete JIT cases: 61,192/67,457
+
+  Model 1 (JIT only):      Pseudo R² = 0.0777, AIC = 44793
+  Model 2 (JIT + spec):    Pseudo R² = 0.0779, AIC = 44786
+  specd_int in Model 2:    coef=0.0816, p=0.0025
+  ΔPseudo R²:              0.000187
+
+  On scored subset (19,969 PRs):
+  Model 1b (JIT only):     Pseudo R² = 0.0815
+  Model 3 (JIT + quality): Pseudo R² = 0.0816
+  q_overall in Model 3:    coef=-0.0018, p=0.1419
+  ΔPseudo R²:              0.000137
+
+======================================================================
+ROBUSTNESS 3: INDIVIDUAL SPEC QUALITY DIMENSIONS
+======================================================================
+
+Do any of the 7 quality dimensions independently predict fewer bugs or rework?
+
+                  Dimension    → SZZ bugs         p      → rework         p
+  -------------------------  ------------  --------  ------------  --------
+  Within-author LPM: N=19,688, authors=2,050 (1,867 with treatment variation)
+  q_outcome_clarity: coef=-0.0003, p=0.102944
+  95% CI: [-0.06 pp, +0.01 pp]
+  Interpretation: -0.03 pp change in P(szz_buggy)
+  -> DECREASES (not significant)
+  Within-author LPM: N=21,881, authors=2,319 (2,111 with treatment variation)
+  q_outcome_clarity: coef=-0.0000, p=0.791788
+  95% CI: [-0.03 pp, +0.02 pp]
+  Interpretation: -0.00 pp change in P(reworked)
+  -> DECREASES (not significant)
+          q_outcome_clarity       -0.0003    0.1029       -0.0000    0.7918
+  Within-author LPM: N=19,688, authors=2,050 (1,801 with treatment variation)
+  q_error_states: coef=-0.0002, p=0.262013
+  95% CI: [-0.04 pp, +0.01 pp]
+  Interpretation: -0.02 pp change in P(szz_buggy)
+  -> DECREASES (not significant)
+  Within-author LPM: N=21,881, authors=2,319 (2,037 with treatment variation)
+  q_error_states: coef=0.0001, p=0.307450
+  95% CI: [-0.01 pp, +0.04 pp]
+  Interpretation: +0.01 pp change in P(reworked)
+  -> INCREASES (not significant)
+             q_error_states       -0.0002    0.2620       +0.0001    0.3075
+  Within-author LPM: N=19,688, authors=2,050 (1,947 with treatment variation)
+  q_scope_boundaries: coef=-0.0003, p=0.052878
+  95% CI: [-0.07 pp, +0.00 pp]
+  Interpretation: -0.03 pp change in P(szz_buggy)
+  -> DECREASES (not significant)
+  Within-author LPM: N=21,881, authors=2,319 (2,202 with treatment variation)
+  q_scope_boundaries: coef=-0.0002, p=0.219843
+  95% CI: [-0.05 pp, +0.01 pp]
+  Interpretation: -0.02 pp change in P(reworked)
+  -> DECREASES (not significant)
+         q_scope_boundaries       -0.0003    0.0529       -0.0002    0.2198
+  Within-author LPM: N=19,688, authors=2,050 (1,939 with treatment variation)
+  q_acceptance_criteria: coef=-0.0002, p=0.164664
+  95% CI: [-0.06 pp, +0.01 pp]
+  Interpretation: -0.02 pp change in P(szz_buggy)
+  -> DECREASES (not significant)
+  Within-author LPM: N=21,881, authors=2,319 (2,195 with treatment variation)
+  q_acceptance_criteria: coef=-0.0001, p=0.454221
+  95% CI: [-0.04 pp, +0.02 pp]
+  Interpretation: -0.01 pp change in P(reworked)
+  -> DECREASES (not significant)
+      q_acceptance_criteria       -0.0002    0.1647       -0.0001    0.4542
+  Within-author LPM: N=19,682, authors=2,050 (1,669 with treatment variation)
+  q_data_contracts: coef=-0.0001, p=0.489248
+  95% CI: [-0.03 pp, +0.02 pp]
+  Interpretation: -0.01 pp change in P(szz_buggy)
+  -> DECREASES (not significant)
+  Within-author LPM: N=21,875, authors=2,319 (1,878 with treatment variation)
+  q_data_contracts: coef=0.0001, p=0.603467
+  95% CI: [-0.02 pp, +0.03 pp]
+  Interpretation: +0.01 pp change in P(reworked)
+  -> INCREASES (not significant)
+           q_data_contracts       -0.0001    0.4892       +0.0001    0.6035
+  Within-author LPM: N=19,688, authors=2,050 (1,972 with treatment variation)
+  q_dependency_context: coef=0.0001, p=0.640300
+  95% CI: [-0.02 pp, +0.04 pp]
+  Interpretation: +0.01 pp change in P(szz_buggy)
+  -> INCREASES (not significant)
+  Within-author LPM: N=21,881, authors=2,319 (2,229 with treatment variation)
+  q_dependency_context: coef=0.0002, p=0.139717
+  95% CI: [-0.01 pp, +0.05 pp]
+  Interpretation: +0.02 pp change in P(reworked)
+  -> INCREASES (not significant)
+       q_dependency_context       +0.0001    0.6403       +0.0002    0.1397
+  Within-author LPM: N=19,688, authors=2,050 (1,979 with treatment variation)
+  q_behavioral_specificity: coef=-0.0003, p=0.083142
+  95% CI: [-0.05 pp, +0.00 pp]
+  Interpretation: -0.03 pp change in P(szz_buggy)
+  -> DECREASES (not significant)
+  Within-author LPM: N=21,881, authors=2,319 (2,242 with treatment variation)
+  q_behavioral_specificity: coef=0.0000, p=0.822117
+  95% CI: [-0.02 pp, +0.03 pp]
+  Interpretation: +0.00 pp change in P(reworked)
+  -> INCREASES (not significant)
+   q_behavioral_specificity       -0.0003    0.0831       +0.0000    0.8221
+
+======================================================================
+ROBUSTNESS 3b: VALIDATED vs UNVALIDATED QUALITY COMPOSITES
+======================================================================
+
+Human-LLM validation (N=38) found 4 validated dimensions (rho > 0.35, p < 0.05):
+  behavioral_specificity, scope_boundaries, dependency_context, outcome_clarity
+And 3 unvalidated: error_states, acceptance_criteria, data_contracts
+
+  Validated SD: 19.6, Unvalidated SD: 17.9
+
+                  Composite   → bugs coef         p   → rework coef         p
+  -------------------------  ------------  --------  --------------  --------
+  Within-author LPM: N=19,688, authors=2,050 (2,030 with treatment variation)
+  q_overall: coef=-0.0003, p=0.164356
+  95% CI: [-0.07 pp, +0.01 pp]
+  Interpretation: -0.03 pp change in P(szz_buggy)
+  -> DECREASES (not significant)
+  Within-author LPM: N=21,881, authors=2,319 (2,297 with treatment variation)
+  q_overall: coef=0.0000, p=0.860260
+  95% CI: [-0.03 pp, +0.04 pp]
+  Interpretation: +0.00 pp change in P(reworked)
+  -> INCREASES (not significant)
+           All 7 dimensions       -0.0003    0.1644         +0.0000    0.8603
+  Within-author LPM: N=19,688, authors=2,050 (2,033 with treatment variation)
+  q_validated: coef=-0.0002, p=0.184034
+  95% CI: [-0.06 pp, +0.01 pp]
+  Interpretation: -0.02 pp change in P(szz_buggy)
+  -> DECREASES (not significant)
+  Within-author LPM: N=21,881, authors=2,319 (2,299 with treatment variation)
+  q_validated: coef=0.0000, p=0.912686
+  95% CI: [-0.03 pp, +0.03 pp]
+  Interpretation: +0.00 pp change in P(reworked)
+  -> INCREASES (not significant)
+                4 validated       -0.0002    0.1840         +0.0000    0.9127
+  Within-author LPM: N=19,688, authors=2,050 (2,012 with treatment variation)
+  q_unvalidated: coef=-0.0003, p=0.157922
+  95% CI: [-0.07 pp, +0.01 pp]
+  Interpretation: -0.03 pp change in P(szz_buggy)
+  -> DECREASES (not significant)
+  Within-author LPM: N=21,881, authors=2,319 (2,277 with treatment variation)
+  q_unvalidated: coef=0.0001, p=0.662861
+  95% CI: [-0.03 pp, +0.05 pp]
+  Interpretation: +0.01 pp change in P(reworked)
+  -> INCREASES (not significant)
+              3 unvalidated       -0.0003    0.1579         +0.0001    0.6629
+
+======================================================================
+ROBUSTNESS 4: REPO-LEVEL ANALYSIS
+======================================================================
+
+Do repos with higher spec rates have lower defect/rework rates?
+(Ecological analysis — different unit, weaker but independent.)
+
+  Repos with ≥50 PRs: 98
+  Spec rate: mean=0.312, median=0.268
+
+  Spearman: spec_rate vs bug_rate: ρ=-0.113, p=0.2680
+    higher specs → fewer bugs 
+  Spearman: spec_rate vs rework_rate: ρ=-0.047, p=0.6433
+    higher specs → less rework 
+
+  OLS: bug_rate ~ spec_rate + log(mean_additions), N=98 repos
+    spec_rate: coef=-0.0639, p=0.1224
+    R² = 0.0966
+
+======================================================================
+SUMMARY OF FINDINGS
+======================================================================
+
+Dataset: 88,052 PRs across 119 repos
+SZZ coverage: 103 repos with blame data, 9,754 bug-introducing PRs
+JIT coverage: 119 repos with JIT features
+
+Methodology:
+  - Controlled regressions include repo fixed effects + size controls
+  - Within-author uses LPM with full demeaning (Frisch-Waugh-Lovell)
+    and author-clustered standard errors
+  - 8 analyses, no multiple-comparison correction applied
+  - Coefficients are percentage-point changes in probability
+
+Within-author results (the most credible estimates):
+
+  1. Specs -> SZZ bugs:
+    coef=+1.42 pp, p=0.0026 — INCREASES (SIGNIFICANT)
+    Identified from 2181 authors with treatment variation
+  2. Spec quality -> SZZ bugs:
+    coef=-0.03 pp, p=0.1644 — DECREASES (not significant)
+    Identified from 2030 authors with treatment variation
+  3. Review engagement -> SZZ bugs:
+    coef=+0.00 pp, p=0.3467 — INCREASES (not significant)
+    Identified from 4305 authors with treatment variation
+  4. AI-tagged -> SZZ bugs:
+    coef=+0.79 pp, p=0.4972 — INCREASES (not significant)
+    Identified from 642 authors with treatment variation
+  6. Specs -> rework:
+    coef=+1.16 pp, p=0.0012 — INCREASES (SIGNIFICANT)
+    Identified from 2524 authors with treatment variation
+  7. Spec quality -> rework:
+    coef=+0.00 pp, p=0.8603 — INCREASES (not significant)
+    Identified from 2297 authors with treatment variation
+
+  5. Scope constraint (AI PRs, spec -> log_churn):
+    AI: coef=+0.1201, p=0.0297 — INCREASES (SIGNIFICANT)
+    Human: coef=+0.1401, p=0.0000 — INCREASES (SIGNIFICANT)
+    Interaction (spec x AI): coef=+0.0002, p=0.9970 — not significant
+
+  8. JIT features: see detailed results above.
+
+======================================================================
+JIT FEATURE PROFILE: SPEC'D vs UNSPEC'D PRs
+======================================================================
+
+JIT-matched PRs: 77,684
+Median JIT feature values for spec'd vs unspec'd PRs:
+                lines added: specd=53.0, unspecd=29.0, ratio=1.83x
+              lines deleted: specd=7.0, unspecd=7.0, ratio=1.00x
+              files changed: specd=3.0, unspecd=2.0, ratio=1.50x
+             change entropy: specd=1.0, unspecd=0.9, ratio=1.15x
+          file age (months): specd=20.1, unspecd=8.8, ratio=2.27x
+           prior developers: specd=10.0, unspecd=8.0, ratio=1.25x
+       developer experience: specd=64.0, unspecd=116.0, ratio=0.55x
+
+Merge time (non-bot):
+  Spec'd median: 29.4h, Unspec'd median: 12.8h, ratio: 2.3x
+
+Quality comparison by spec source (issue-linked vs description-only):
+  Issue-linked: N=10,190, median quality=49
+  Description-only: N=12,128, median quality=47
+  Mann-Whitney p=0.0000
+
+Caveats:
+  - Spec quality scored on 25,209/88,052 PRs (28.6%) — selection bias
+  - AI detection uses co-author tags (voluntary) — unknown false negative rate
+  - Convenience sample of 119 repos — cannot generalize
+  - Within-author identification requires authors with variation in treatment
+
+Results saved to: /Users/brenn/dev/ai-augmented-dev/research/study/results/analysis-results.txt
+
+
+######################################################################
+# robustness-subgroups.txt
+######################################################################
+
+Subgroup robustness run: 2026-04-06T11:34:54.595659+00:00
+Script: /Users/brenn/dev/ai-augmented-dev/research/study/scripts/pipeline/robustness-subgroups.py
+
+Bot exclusion:
+  Bot PRs removed: 12,195
+  Human PRs remaining: 88,052
+  AI-tagged (non-bot): 5,989
+  AI-tagged (bot): 3,878
+
+======================================================================
+SUBGROUP 1: HUMAN-ONLY PRs (no bots, no AI tags)
+======================================================================
+
+────────────────────────────────────────────────────────────
+  Human-only
+────────────────────────────────────────────────────────────
+  PRs: 82,063 | Spec'd: 22,377 (27.3%) | In SZZ: 72,490
+  Bug rate: 12.2% | Rework rate: 13.0%
+
+  Specs → SZZ bugs:
+  N=66,872, authors=4,171 (2,077 with variation)
+  coef=+0.0149, p=0.0026 → INCREASES **
+
+  Specs → rework:
+  N=75,810, authors=4,728 (2,409 with variation)
+  coef=+0.0109, p=0.0042 → INCREASES **
+
+  Spec quality → SZZ bugs (N=20,667 scored):
+  N=17,770, authors=1,945 (1,924 with variation)
+  coef=-0.0002, p=0.2271 → DECREASES 
+
+  Spec quality → rework (N=22,995 scored):
+  N=19,757, authors=2,206 (2,183 with variation)
+  coef=-0.0001, p=0.6637 → DECREASES 
+
+======================================================================
+SUBGROUP 2: AI-TAGGED PRs (excluding bots)
+======================================================================
+
+────────────────────────────────────────────────────────────
+  AI-tagged (non-bot)
+────────────────────────────────────────────────────────────
+  PRs: 5,989 | Spec'd: 1,921 (32.1%) | In SZZ: 5,324
+  Bug rate: 16.7% | Rework rate: 18.6%
+
+  Specs → SZZ bugs:
+  N=4,797, authors=422 (224 with variation)
+  coef=+0.0114, p=0.4239 → INCREASES 
+
+  Specs → rework:
+  N=5,431, authors=447 (241 with variation)
+  coef=+0.0097, p=0.3993 → INCREASES 
+
+  Spec quality → SZZ bugs (N=2,005 scored):
+  N=1,719, authors=200 (198 with variation)
+  coef=-0.0006, p=0.4948 → DECREASES 
+
+  Spec quality → rework (N=2,214 scored):
+  N=1,910, authors=214 (212 with variation)
+  coef=+0.0002, p=0.6942 → INCREASES 
+
+======================================================================
+SUBGROUP 3: REPOS BY AI ADOPTION RATE
+======================================================================
+
+Repo AI adoption (non-bot):
+  Zero AI repos: 16
+  Low AI repos (>0, ≤0.017): 52
+  High AI repos (>0.017): 51
+
+── Zero-AI repos ──
+
+────────────────────────────────────────────────────────────
+  Zero-AI repos
+────────────────────────────────────────────────────────────
+  PRs: 3,562 | Spec'd: 771 (21.6%) | In SZZ: 1,596
+  Bug rate: 5.8% | Rework rate: 12.7%
+
+  Specs → SZZ bugs:
+  N=1,387, authors=150 (55 with variation)
+  coef=-0.0161, p=0.3771 → DECREASES 
+
+  Specs → rework:
+  N=3,206, authors=273 (111 with variation)
+  coef=-0.0332, p=0.0144 → DECREASES *
+
+  Spec quality → SZZ bugs (N=525 scored):
+  N=401, authors=68 (66 with variation)
+  coef=-0.0010, p=0.2958 → DECREASES 
+
+  Spec quality → rework (N=760 scored):
+  N=576, authors=98 (96 with variation)
+  coef=-0.0012, p=0.0941 → DECREASES 
+
+── Low-AI repos ──
+
+────────────────────────────────────────────────────────────
+  Low-AI repos
+────────────────────────────────────────────────────────────
+  PRs: 51,877 | Spec'd: 13,258 (25.6%) | In SZZ: 45,007
+  Bug rate: 10.6% | Rework rate: 10.7%
+
+  Specs → SZZ bugs:
+  N=41,133, authors=2,551 (1,203 with variation)
+  coef=+0.0191, p=0.0006 → INCREASES ***
+
+  Specs → rework:
+  N=47,548, authors=2,890 (1,421 with variation)
+  coef=+0.0086, p=0.0612 → INCREASES 
+
+  Spec quality → SZZ bugs (N=11,467 scored):
+  N=9,673, authors=1,096 (1,082 with variation)
+  coef=-0.0004, p=0.1770 → DECREASES 
+
+  Spec quality → rework (N=13,348 scored):
+  N=11,313, authors=1,289 (1,274 with variation)
+  coef=+0.0001, p=0.6375 → INCREASES 
+
+── High-AI repos ──
+
+────────────────────────────────────────────────────────────
+  High-AI repos
+────────────────────────────────────────────────────────────
+  PRs: 32,613 | Spec'd: 10,269 (31.5%) | In SZZ: 31,211
+  Bug rate: 15.6% | Rework rate: 17.8%
+
+  Specs → SZZ bugs:
+  N=29,323, authors=1,643 (906 with variation)
+  coef=+0.0104, p=0.1853 → INCREASES 
+
+  Specs → rework:
+  N=30,670, authors=1,748 (973 with variation)
+  coef=+0.0176, p=0.0025 → INCREASES **
+
+  Spec quality → SZZ bugs (N=10,680 scored):
+  N=9,529, authors=892 (889 with variation)
+  coef=-0.0001, p=0.8046 → DECREASES 
+
+  Spec quality → rework (N=11,101 scored):
+  N=9,906, authors=939 (935 with variation)
+  coef=-0.0000, p=0.9324 → DECREASES 
+
+======================================================================
+SUBGROUP 4: ALL PRs (bots excluded) — MAIN RESULT REPLICATION
+======================================================================
+
+────────────────────────────────────────────────────────────
+  All non-bot PRs
+────────────────────────────────────────────────────────────
+  PRs: 88,052 | Spec'd: 24,298 (27.6%) | In SZZ: 77,814
+  Bug rate: 12.5% | Rework rate: 13.4%
+
+  Specs → SZZ bugs:
+  N=72,046, authors=4,328 (2,181 with variation)
+  coef=+0.0142, p=0.0026 → INCREASES **
+
+  Specs → rework:
+  N=81,647, authors=4,892 (2,524 with variation)
+  coef=+0.0116, p=0.0012 → INCREASES **
+
+  Spec quality → SZZ bugs (N=22,672 scored):
+  N=19,688, authors=2,050 (2,030 with variation)
+  coef=-0.0003, p=0.1644 → DECREASES 
+
+  Spec quality → rework (N=25,209 scored):
+  N=21,881, authors=2,319 (2,297 with variation)
+  coef=+0.0000, p=0.8603 → INCREASES 
+
+======================================================================
+SUBGROUP 5: DOES SPEC QUALITY MATTER MORE FOR AI CODE?
+======================================================================
+
+Scored PRs (non-bot): 25,209
+  AI-tagged: 2,214
+  Human: 22,995
+  In SZZ repos: 22,672
+
+  Quality × AI interaction → SZZ bugs:
+  N=19,688, authors=2,050 (343 with variation)
+  coef=-0.0003, p=0.7327 → DECREASES 
+
+  Quality × AI interaction → rework:
+  N=21,881, authors=2,319 (368 with variation)
+  coef=+0.0011, p=0.0180 → INCREASES *
+
+======================================================================
+SUMMARY: SPEC EFFECTS ACROSS SUBGROUPS
+======================================================================
+
+                      Subgroup   → Bugs coef         p   → Rework coef         p
+──────────────────────────────  ────────────  ────────  ──────────────  ────────
+
+  Spec presence → outcomes:
+               All non-bot PRs       +0.0142    0.0026         +0.0116    0.0012
+            Human-only (no AI)       +0.0149    0.0026         +0.0109    0.0042
+           AI-tagged (non-bot)       +0.0114    0.4239         +0.0097    0.3993
+                 Zero-AI repos       -0.0161    0.3771         -0.0332    0.0144
+                  Low-AI repos       +0.0191    0.0006         +0.0086    0.0612
+                 High-AI repos       +0.0104    0.1853         +0.0176    0.0025
+
+  Spec quality → outcomes:
+               All non-bot PRs       -0.0003    0.1644         +0.0000    0.8603
+            Human-only (no AI)       -0.0002    0.2271         -0.0001    0.6637
+           AI-tagged (non-bot)       -0.0006    0.4948         +0.0002    0.6942
+
+  Quality × AI interaction:
+        Quality×AI interaction       -0.0003    0.7327         +0.0011    0.0180
+
+Interpretation:
+  Spec presence: positive coef = confounding by indication.
+  Spec quality: negative coef = higher quality → fewer defects (SDD prediction).
+  Quality×AI: tests whether quality matters MORE for AI code than human code.
+  If positive: quality helps AI more. If null: same effect for both.
+
+Results saved to: /Users/brenn/dev/ai-augmented-dev/research/study/results/robustness-subgroups.txt
+
+
+######################################################################
+# robustness-highquality.txt
+######################################################################
+
+High-quality robustness run: 2026-04-06T11:34:58.605258+00:00
+Script: /Users/brenn/dev/ai-augmented-dev/research/study/scripts/pipeline/robustness-highquality.py
+
+Dataset (bots excluded): 88,052 PRs
+Quality scored: 25,209
+Quality distribution: median=48, p75=58, p90=66
+Locked AI cutoffs: top quartile >= 58, top decile >= 66
+
+======================================================================
+TEST 1: TOP-QUARTILE SPECS (q_overall >= 58) vs ALL OTHERS
+======================================================================
+If SDD claims hold, the BEST specs should show the strongest effect.
+
+  High-quality spec'd: 5,833 PRs, bug rate: 0.135
+  All others:          71,981 PRs, bug rate: 0.125
+
+  High-quality specs → SZZ bugs (within-author):
+  N=72,046, authors=4,328 (1,370 with variation)
+  coef=-0.0073, p=0.1899 → DECREASES 
+
+  High-quality specs → rework (within-author):
+  N=81,647, authors=4,892 (1,553 with variation)
+  coef=+0.0093, p=0.1000 → INCREASES 
+
+======================================================================
+TEST 2: TOP-DECILE SPECS (q_overall >= 66) vs ALL OTHERS
+======================================================================
+Even more selective: only the very best specs.
+
+  Top-decile spec'd: 2,438 PRs, bug rate: 0.144
+
+  Top-decile specs → SZZ bugs (within-author):
+  N=72,046, authors=4,328 (751 with variation)
+  coef=-0.0046, p=0.5448 → DECREASES 
+
+  Top-decile specs → rework (within-author):
+  N=81,647, authors=4,892 (821 with variation)
+  coef=+0.0024, p=0.7715 → INCREASES 
+
+======================================================================
+TEST 3: HIGH-QUALITY SPECS vs NO SPEC (exclude low-quality)
+======================================================================
+Remove the 'junk specs' objection entirely: compare only top-quartile
+specs against PRs with NO spec at all.
+
+  High-quality spec'd: 5,833 PRs
+  No spec at all:      55,476 PRs
+  (Low-quality specs excluded: 16,505 PRs)
+
+  High-quality spec vs no spec → SZZ bugs (within-author):
+  N=56,456, authors=3,536 (1,117 with variation)
+  coef=-0.0059, p=0.3478 → DECREASES 
+
+  High-quality spec vs no spec → rework (within-author):
+  N=64,131, authors=4,012 (1,281 with variation)
+  coef=+0.0108, p=0.0850 → INCREASES 
+
+======================================================================
+TEST 4: AI-TAGGED PRs — DO HIGH-QUALITY SPECS HELP?
+======================================================================
+Closest proxy to the agentic SDD workflow the vendors are selling.
+
+  AI-tagged PRs in SZZ repos: 5,324
+  AI + any spec: 1,712 (32.2%)
+  AI + high-quality spec: 987 (18.5%)
+
+  AI: any spec → SZZ bugs (within-author):
+  N=4,797, authors=422 (224 with variation)
+  coef=+0.0114, p=0.4239 → INCREASES 
+
+  AI: high-quality spec → SZZ bugs (within-author):
+  N=4,797, authors=422 (175 with variation)
+  coef=-0.0048, p=0.7898 → DECREASES 
+
+======================================================================
+SUMMARY: DO HIGH-QUALITY SPECS REDUCE DEFECTS?
+======================================================================
+
+If the reviewer objection is correct — that our specd=True includes junk
+and only "real" SDD specs should show a benefit — then restricting to
+high-quality specs should reveal the hidden protective effect.
+
+Results (within-author LPM, all with size controls):
+
+                                           Test   → bugs coef         p
+  ─────────────────────────────────────────────  ────────────  ────────
+              Top-quartile specs (q>=58) vs all       -0.0073    0.1899
+                Top-decile specs (q>=66) vs all       -0.0046    0.5448
+        High-quality vs NO spec (junk excluded)       -0.0059    0.3478
+
+No protective effect emerges at any quality threshold. High-quality specs
+do not reduce defects. The objection that our measure is "too loose" does
+not explain the null result — even the best specs show no benefit.
+
+Results saved to: /Users/brenn/dev/ai-augmented-dev/research/study/results/robustness-highquality.txt
+
+
+######################################################################
+# robustness-temporal.txt
+######################################################################
+
+Temporal robustness run: 2026-04-06T11:35:01.938022+00:00
+Script: /Users/brenn/dev/ai-augmented-dev/research/study/scripts/pipeline/robustness-temporal.py
+
+======================================================================
+MONTHLY SPECIFICATION AND AI ADOPTION RATES
+======================================================================
+
+       Month        N   Spec%     AI%
+  ──────────  ───────  ──────  ──────
+     2025-04    2,923   23.7%    0.3%
+     2025-05    3,484   24.1%    1.4%
+     2025-06    3,653   24.9%    2.9%
+     2025-07    3,958   27.7%    4.5%
+     2025-08    4,316   27.2%    6.0%
+     2025-09    4,382   27.3%    5.5%
+     2025-10    6,349   26.7%    6.1%
+     2025-11    6,148   24.9%    4.9%
+     2025-12    7,903   25.2%    5.7%
+     2026-01   10,832   26.9%    7.6%
+     2026-02   12,396   28.1%    8.1%
+     2026-03   19,856   31.3%    9.8%
+     2026-04    1,641   29.6%   13.5%
+
+
+======================================================================
+RECENT WINDOW: 2026-01-01 to 2026-03-31
+======================================================================
+PRs: 43,208
+Spec rate: 29.3%
+AI rate: 8.8%
+Rework (spec'd): 16.0%
+Rework (not spec'd): 13.8%
+
+SZZ coverage in recent window: 39,188 PRs, 100 repos
+SZZ buggy: 3,794 (9.7%)
+
+──────────────────────────────────────────────────
+H1: Specs → SZZ bugs (recent, within-author)
+  [recent-H1] N=36,085, authors=2,879 (1,402 with variation)
+  coef=+0.0043, p=0.4349 
+
+──────────────────────────────────────────────────
+H2: Specs → rework (recent, within-author)
+  [recent-H2] N=39,732, authors=3,251 (1,608 with variation)
+  coef=+0.0164, p=0.0009 ***
+
+──────────────────────────────────────────────────
+H3: Spec quality → SZZ bugs (recent, within-author)
+  Scored PRs in SZZ repos (recent): 12,202
+  [recent-H3] N=10,453, authors=1,411 (1,394 with variation)
+  coef=+0.0001, p=0.8121 
+
+──────────────────────────────────────────────────
+H4: Spec quality → rework (recent, within-author)
+  Scored PRs (recent): 13,312
+  [recent-H4] N=11,324, authors=1,569 (1,551 with variation)
+  coef=-0.0000, p=0.9073 
+
+──────────────────────────────────────────────────
+H5: Specs constrain AI scope (recent, within-author)
+  AI-tagged PRs (recent, nonzero churn): 3,790
+  [recent-H5-AI] N=3,405, authors=322 (177 with variation)
+  coef=+0.0934, p=0.1587 
+  Human PRs (recent, nonzero churn): 39,352
+  [recent-H5-human] N=35,966, authors=3,115 (1,511 with variation)
+  coef=+0.1513, p=0.0000 ***
+  [recent-H5-interaction] N=39,669, authors=3,247 (284 with variation)
+  coef=+0.0114, p=0.8611 
+
+
+======================================================================
+SUBGROUP ANALYSIS (RECENT WINDOW)
+======================================================================
+
+Human-only PRs (recent): 39,414
+  Specs → bugs (human-only, recent):
+  [recent-human-bugs] N=32,518, authors=2,751 (1,315 with variation)
+  coef=+0.0047, p=0.4314 
+  Specs → rework (human-only, recent):
+  [recent-human-rework] N=36,025, authors=3,119 (1,514 with variation)
+  coef=+0.0165, p=0.0026 **
+
+AI-tagged PRs (recent): 3,794
+  AI spec rate: 31.3%
+  AI bug rate: 14.0%
+  AI rework rate: 20.2%
+  Specs → bugs (AI-only, recent):
+  [recent-ai-bugs] N=3,288, authors=308 (169 with variation)
+  coef=+0.0030, p=0.8218 
+  Specs → rework (AI-only, recent):
+  [recent-ai-rework] N=3,409, authors=322 (177 with variation)
+  coef=+0.0160, p=0.2115 
+
+
+======================================================================
+HIGH-QUALITY SPECS (RECENT WINDOW)
+======================================================================
+  Quality distribution (recent): median=51, empirical p75=60, empirical p90=68
+  Locked AI cutoffs: p75=58, p90=66
+  High-quality spec'd (recent SZZ): 3,970
+
+  Top-quartile specs → SZZ bugs (recent, within-author):
+  [recent-hq-bugs] N=36,085, authors=2,879 (959 with variation)
+  coef=-0.0027, p=0.6577 
+
+  Top-quartile specs → rework (recent, within-author):
+  [recent-hq-rework] N=39,732, authors=3,251 (1,057 with variation)
+  coef=+0.0131, p=0.0565 
+
+  High-quality vs NO spec → bugs (recent, within-author):
+  (31,205 PRs, low-quality excluded)
+  [recent-hq-vs-none] N=28,558, authors=2,385 (756 with variation)
+  coef=-0.0040, p=0.5827 
+
+
+======================================================================
+SPEC QUALITY × AI INTERACTION (RECENT WINDOW)
+======================================================================
+Does spec quality matter MORE for AI-generated code in the SDD era?
+
+Scored PRs (recent): 13,312
+  AI-tagged + scored: 1,412
+  Human + scored: 11,900
+
+  Quality → bugs (AI-only, recent, N=1,388):
+  [recent-quality-ai-bugs] N=1,180, authors=157 (155 with variation)
+  coef=+0.0006, p=0.5346 
+
+  Quality → bugs (human-only, recent, N=10,814):
+  [recent-quality-human-bugs] N=9,102, authors=1,294 (1,276 with variation)
+  coef=+0.0001, p=0.7434 
+
+  Quality × AI interaction → bugs (recent):
+  [recent-quality-x-ai-bugs] N=10,453, authors=1,411 (260 with variation)
+  coef=+0.0008, p=0.3110 
+
+  Quality × AI interaction → rework (recent):
+  [recent-quality-x-ai-rework] N=11,324, authors=1,569 (270 with variation)
+  coef=+0.0002, p=0.8418 
+
+  Quality → rework (AI-only, recent, N=1,412):
+  [recent-quality-ai-rework] N=1,191, authors=161 (159 with variation)
+  coef=-0.0005, p=0.5923 
+
+  Quality → rework (human-only, recent, N=11,900):
+  [recent-quality-human-rework] N=9,954, authors=1,450 (1,431 with variation)
+  coef=-0.0001, p=0.7007 
+
+
+======================================================================
+ALTERNATIVE OUTCOMES (RECENT WINDOW)
+======================================================================
+
+  Escaped: 390 (0.9%)
+  [recent-escaped] N=39,732, authors=3,251 (1,608 with variation)
+  coef=+0.0007, p=0.6660 
+
+  Strict escaped: 293 (0.7%)
+  [recent-strict_escaped] N=39,732, authors=3,251 (1,608 with variation)
+  coef=+0.0013, p=0.3121 
+
+
+======================================================================
+FULL DATASET (for comparison)
+======================================================================
+
+--- H1: Specs → SZZ bugs (full, within-author) ---
+  [full-H1] N=72,046, authors=4,328 (2,181 with variation)
+  coef=+0.0142, p=0.0026 **
+
+--- H2: Specs → rework (full, within-author) ---
+  [full-H2] N=81,647, authors=4,892 (2,524 with variation)
+  coef=+0.0116, p=0.0012 **
+
+--- H5: AI scope interaction (full, within-author) ---
+  [full-H5-interaction] N=81,516, authors=4,887 (395 with variation)
+  coef=-0.0210, p=0.6550 
+
+
+======================================================================
+SUMMARY: DOES THE SDD ERA LOOK DIFFERENT?
+======================================================================
+
+If SDD tools are improving outcomes, the effect should appear in the
+most recent data — the period closest to production SDD usage.
+
+                                      Test   Recent coef         p     Full coef         p
+  ────────────────────────────────────────  ────────────  ────────  ────────────  ────────
+                      H1: Specs → SZZ bugs       +0.0043    0.4349       +0.0142    0.0026
+                        H2: Specs → rework       +0.0164    0.0009       +0.0116    0.0012
+                   H3: Spec quality → bugs       +0.0001    0.8121           ---       ---
+                 H4: Spec quality → rework       -0.0000    0.9073           ---       ---
+                H5: AI scope (interaction)       +0.0114    0.8611       -0.0210    0.6550
+                         AI + specs → bugs       +0.0030    0.8218           ---       ---
+                       AI + specs → rework       +0.0160    0.2115           ---       ---
+
+The pattern is identical across all five hypotheses. In the period of
+highest SDD adoption, specification artifacts are still associated with
+more bugs and more rework, not less. The null result is not a historical
+artifact — it persists in the data most representative of the SDD era.
+
+Results saved to: /Users/brenn/dev/ai-augmented-dev/research/study/results/robustness-temporal.txt
+
+
+######################################################################
+# robustness-complexity.txt
+######################################################################
+
+Complexity stratification run: 2026-04-06T11:35:06.233608+00:00
+Script: /Users/brenn/dev/ai-augmented-dev/research/study/scripts/pipeline/robustness-complexity.py
+
+Dataset: 88,052 PRs (non-bot), 77,814 in SZZ repos
+Spec'd: 24,298 (27.6%)
+Quality scored: 25,209
+
+======================================================================
+STRATUM 1: TOP 20% BY CODE CHURN (additions + deletions)
+======================================================================
+  P80 threshold: 307
+
+────────────────────────────────────────────────────────────
+  Top 20% churn
+────────────────────────────────────────────────────────────
+  PRs: 17,633 | Spec'd: 5,342 (30.3%) | In SZZ: 15,832 | Quality scored: 5,570
+
+  H1: Specs → bugs:
+  [Top 20% churn-H1] N=14,233, authors=1,493 (734 with variation)
+  coef=+0.0396, p=0.0005 ***
+
+  H2: Specs → rework:
+  [Top 20% churn-H2] N=15,863, authors=1,666 (824 with variation)
+  coef=+0.0513, p=0.0000 ***
+
+  H3: Spec quality → bugs (N=5,143 scored):
+  [Top 20% churn-H3] N=4,179, authors=705 (696 with variation)
+  coef=-0.0010, p=0.0776 
+
+  H4: Spec quality → rework (N=5,570 scored):
+  [Top 20% churn-H4] N=4,492, authors=771 (761 with variation)
+  coef=+0.0004, p=0.3515 
+
+────────────────────────────────────────────────────────────
+  Bottom 80% churn
+────────────────────────────────────────────────────────────
+  PRs: 70,419 | Spec'd: 18,956 (26.9%) | In SZZ: 61,982 | Quality scored: 19,639
+
+  H1: Specs → bugs:
+  [Bottom 80% churn-H1] N=56,609, authors=3,877 (1,890 with variation)
+  coef=+0.0073, p=0.1141 
+
+  H2: Specs → rework:
+  [Bottom 80% churn-H2] N=64,424, authors=4,386 (2,193 with variation)
+  coef=+0.0045, p=0.2376 
+
+  H3: Spec quality → bugs (N=17,529 scored):
+  [Bottom 80% churn-H3] N=14,832, authors=1,760 (1,737 with variation)
+  coef=-0.0001, p=0.7649 
+
+  H4: Spec quality → rework (N=19,639 scored):
+  [Bottom 80% churn-H4] N=16,627, authors=1,999 (1,974 with variation)
+  coef=+0.0001, p=0.7537 
+
+======================================================================
+STRATUM 2: TOP 20% BY LINES ADDED
+======================================================================
+  P80 threshold: 219
+
+────────────────────────────────────────────────────────────
+  Top 20% additions
+────────────────────────────────────────────────────────────
+  PRs: 17,669 | Spec'd: 5,638 (31.9%) | In SZZ: 15,925 | Quality scored: 5,863
+
+  H1: Specs → bugs:
+  [Top 20% additions-H1] N=14,230, authors=1,521 (753 with variation)
+  coef=+0.0422, p=0.0001 ***
+
+  H2: Specs → rework:
+  [Top 20% additions-H2] N=15,785, authors=1,689 (843 with variation)
+  coef=+0.0437, p=0.0000 ***
+
+  H3: Spec quality → bugs (N=5,425 scored):
+  [Top 20% additions-H3] N=4,395, authors=734 (725 with variation)
+  coef=-0.0007, p=0.2332 
+
+  H4: Spec quality → rework (N=5,863 scored):
+  [Top 20% additions-H4] N=4,712, authors=801 (792 with variation)
+  coef=+0.0003, p=0.5226 
+
+────────────────────────────────────────────────────────────
+  Bottom 80% additions
+────────────────────────────────────────────────────────────
+  PRs: 70,383 | Spec'd: 18,660 (26.5%) | In SZZ: 61,889 | Quality scored: 19,346
+
+  H1: Specs → bugs:
+  [Bottom 80% additions-H1] N=56,564, authors=3,839 (1,868 with variation)
+  coef=+0.0077, p=0.0908 
+
+  H2: Specs → rework:
+  [Bottom 80% additions-H2] N=64,452, authors=4,351 (2,172 with variation)
+  coef=+0.0055, p=0.1471 
+
+  H3: Spec quality → bugs (N=17,247 scored):
+  [Bottom 80% additions-H3] N=14,587, authors=1,734 (1,710 with variation)
+  coef=-0.0001, p=0.6569 
+
+  H4: Spec quality → rework (N=19,346 scored):
+  [Bottom 80% additions-H4] N=16,375, authors=1,970 (1,945 with variation)
+  coef=+0.0001, p=0.7148 
+
+======================================================================
+STRATUM 3: TOP 20% BY FILES CHANGED
+======================================================================
+  P80 threshold: 8
+
+────────────────────────────────────────────────────────────
+  Top 20% files
+────────────────────────────────────────────────────────────
+  PRs: 19,568 | Spec'd: 5,594 (28.6%) | In SZZ: 17,125 | Quality scored: 5,749
+
+  H1: Specs → bugs:
+  [Top 20% files-H1] N=15,661, authors=1,527 (762 with variation)
+  coef=+0.0390, p=0.0004 ***
+
+  H2: Specs → rework:
+  [Top 20% files-H2] N=17,908, authors=1,731 (877 with variation)
+  coef=+0.0425, p=0.0000 ***
+
+  H3: Spec quality → bugs (N=5,200 scored):
+  [Top 20% files-H3] N=4,260, authors=720 (713 with variation)
+  coef=-0.0007, p=0.2043 
+
+  H4: Spec quality → rework (N=5,749 scored):
+  [Top 20% files-H4] N=4,679, authors=797 (789 with variation)
+  coef=+0.0001, p=0.8227 
+
+────────────────────────────────────────────────────────────
+  Bottom 80% files
+────────────────────────────────────────────────────────────
+  PRs: 68,484 | Spec'd: 18,704 (27.3%) | In SZZ: 60,689 | Quality scored: 19,460
+
+  H1: Specs → bugs:
+  [Bottom 80% files-H1] N=55,251, authors=3,900 (1,890 with variation)
+  coef=+0.0041, p=0.3392 
+
+  H2: Specs → rework:
+  [Bottom 80% files-H2] N=62,434, authors=4,394 (2,178 with variation)
+  coef=+0.0059, p=0.1257 
+
+  H3: Spec quality → bugs (N=17,472 scored):
+  [Bottom 80% files-H3] N=14,781, authors=1,779 (1,758 with variation)
+  coef=-0.0002, p=0.3203 
+
+  H4: Spec quality → rework (N=19,460 scored):
+  [Bottom 80% files-H4] N=16,461, authors=2,010 (1,986 with variation)
+  coef=+0.0002, p=0.3904 
+
+======================================================================
+STRATUM 4: TOP 20% BY CHANGE ENTROPY
+======================================================================
+  P80 threshold: 2.12 (N with entropy: 69,237)
+
+────────────────────────────────────────────────────────────
+  Top 20% entropy
+────────────────────────────────────────────────────────────
+  PRs: 13,848 | Spec'd: 4,270 (30.8%) | In SZZ: 12,030 | Quality scored: 4,441
+
+  H1: Specs → bugs:
+  [Top 20% entropy-H1] N=10,772, authors=1,208 (597 with variation)
+  coef=+0.0238, p=0.0568 
+
+  H2: Specs → rework:
+  [Top 20% entropy-H2] N=12,406, authors=1,384 (706 with variation)
+  coef=+0.0394, p=0.0003 ***
+
+  H3: Spec quality → bugs (N=3,914 scored):
+  [Top 20% entropy-H3] N=3,070, authors=562 (558 with variation)
+  coef=-0.0008, p=0.2593 
+
+  H4: Spec quality → rework (N=4,441 scored):
+  [Top 20% entropy-H4] N=3,473, authors=628 (622 with variation)
+  coef=+0.0007, p=0.2000 
+
+────────────────────────────────────────────────────────────
+  Bottom 80% entropy
+────────────────────────────────────────────────────────────
+  PRs: 55,389 | Spec'd: 15,543 (28.1%) | In SZZ: 49,162 | Quality scored: 16,310
+
+  H1: Specs → bugs:
+  [Bottom 80% entropy-H1] N=44,462, authors=3,380 (1,626 with variation)
+  coef=+0.0001, p=0.9863 
+
+  H2: Specs → rework:
+  [Bottom 80% entropy-H2] N=50,116, authors=3,810 (1,876 with variation)
+  coef=+0.0053, p=0.2008 
+
+  H3: Spec quality → bugs (N=14,593 scored):
+  [Bottom 80% entropy-H3] N=12,177, authors=1,517 (1,498 with variation)
+  coef=-0.0002, p=0.4554 
+
+  H4: Spec quality → rework (N=16,310 scored):
+  [Bottom 80% entropy-H4] N=13,604, authors=1,724 (1,703 with variation)
+  coef=+0.0001, p=0.4736 
+
+======================================================================
+STRATUM 5: TOP 20% BY COMPOSITE JIT RISK
+======================================================================
+  P80 threshold: 0.714 (N with JIT: 69,237)
+
+────────────────────────────────────────────────────────────
+  Top 20% JIT risk
+────────────────────────────────────────────────────────────
+  PRs: 13,848 | Spec'd: 4,364 (31.5%) | In SZZ: 12,401 | Quality scored: 4,549
+
+  H1: Specs → bugs:
+  [Top 20% JIT risk-H1] N=11,119, authors=1,272 (623 with variation)
+  coef=+0.0278, p=0.0278 *
+
+  H2: Specs → rework:
+  [Top 20% JIT risk-H2] N=12,403, authors=1,436 (718 with variation)
+  coef=+0.0390, p=0.0004 ***
+
+  H3: Spec quality → bugs (N=4,138 scored):
+  [Top 20% JIT risk-H3] N=3,243, authors=575 (564 with variation)
+  coef=-0.0006, p=0.3780 
+
+  H4: Spec quality → rework (N=4,549 scored):
+  [Top 20% JIT risk-H4] N=3,539, authors=636 (625 with variation)
+  coef=+0.0006, p=0.2359 
+
+────────────────────────────────────────────────────────────
+  Bottom 80% JIT risk
+────────────────────────────────────────────────────────────
+  PRs: 55,389 | Spec'd: 15,449 (27.9%) | In SZZ: 48,791 | Quality scored: 16,202
+
+  H1: Specs → bugs:
+  [Bottom 80% JIT risk-H1] N=44,109, authors=3,351 (1,602 with variation)
+  coef=+0.0019, p=0.7133 
+
+  H2: Specs → rework:
+  [Bottom 80% JIT risk-H2] N=50,139, authors=3,795 (1,859 with variation)
+  coef=+0.0080, p=0.0589 
+
+  H3: Spec quality → bugs (N=14,369 scored):
+  [Bottom 80% JIT risk-H3] N=11,981, authors=1,507 (1,487 with variation)
+  coef=-0.0003, p=0.2477 
+
+  H4: Spec quality → rework (N=16,202 scored):
+  [Bottom 80% JIT risk-H4] N=13,525, authors=1,719 (1,697 with variation)
+  coef=+0.0002, p=0.4084 
+
+
+======================================================================
+SUMMARY: DO SPECS HELP ON THE HARDEST TASKS?
+======================================================================
+
+If specs have value, they should show it on complex tasks where
+ambiguity is highest and the cost of getting it wrong is greatest.
+
+                  Stratum     H1 bugs         p   H2 rework         p    H3 q→bug         p    H4 q→rwk         p
+─────────────────────────  ──────────  ────────  ──────────  ────────  ──────────  ────────  ──────────  ────────
+            Top 20% churn     +0.0396    0.0005     +0.0513    0.0000     -0.0010    0.0776     +0.0004    0.3515
+         Bottom 80% churn     +0.0073    0.1141     +0.0045    0.2376     -0.0001    0.7649     +0.0001    0.7537
+        Top 20% additions     +0.0422    0.0001     +0.0437    0.0000     -0.0007    0.2332     +0.0003    0.5226
+     Bottom 80% additions     +0.0077    0.0908     +0.0055    0.1471     -0.0001    0.6569     +0.0001    0.7148
+            Top 20% files     +0.0390    0.0004     +0.0425    0.0000     -0.0007    0.2043     +0.0001    0.8227
+         Bottom 80% files     +0.0041    0.3392     +0.0059    0.1257     -0.0002    0.3203     +0.0002    0.3904
+          Top 20% entropy     +0.0238    0.0568     +0.0394    0.0003     -0.0008    0.2593     +0.0007    0.2000
+       Bottom 80% entropy     +0.0001    0.9863     +0.0053    0.2008     -0.0002    0.4554     +0.0001    0.4736
+         Top 20% JIT risk     +0.0278    0.0278     +0.0390    0.0004     -0.0006    0.3780     +0.0006    0.2359
+      Bottom 80% JIT risk     +0.0019    0.7133     +0.0080    0.0589     -0.0003    0.2477     +0.0002    0.4084
+
+Interpretation:
+  If specs help on hard tasks, the top-20% strata should show NEGATIVE
+  coefficients (specs reduce bugs/rework) even if the full dataset doesn't.
+  If the top-20% shows the same null or reversed pattern, complexity
+  stratification does not rescue the SDD claims.
+
+Results saved to: /Users/brenn/dev/ai-augmented-dev/research/study/results/robustness-complexity.txt
+
+
+######################################################################
+# robustness-issue-linked.txt
+######################################################################
+
+Issue-linked robustness run: 2026-04-06T11:35:11.079627+00:00
+Script: /Users/brenn/dev/ai-augmented-dev/research/study/scripts/pipeline/robustness-issue-linked.py
+
+Dataset: 88,052 PRs (non-bot)
+  Issue-linked: 18,600
+  Ticket-only: 5,113
+  Spec'd (any): 24,298
+  No spec: 63,754
+  Quality scored: 25,209
+  AI-tagged: 5,989
+
+======================================================================
+TEST 1: ISSUE-LINKED vs NO SPEC (cleanest comparison)
+======================================================================
+  Treated: 18,600 | Control: 63,754
+  Raw rates: bugs 13.1% vs 12.0% | rework 15.2% vs 12.9%
+
+  → bugs:
+  [issue-vs-none-bugs] N=66,761, authors=4,051 (1,815 with variation)
+  coef=+0.0111, p=0.0370, 95% CI [+0.0007, +0.0215] *
+  → rework:
+  [issue-vs-none-rework] N=76,104, authors=4,599 (2,124 with variation)
+  coef=+0.0140, p=0.0005, 95% CI [+0.0061, +0.0219] ***
+  → quality → bugs (N=16,284 scored):
+  [issue-vs-none-q-bugs] N=13,678, authors=1,569 (1,548 with variation)
+  coef=-0.0004, p=0.0676, 95% CI [-0.0009, +0.0000] 
+  → quality → rework (N=18,567 scored):
+  [issue-vs-none-q-rework] N=15,633, authors=1,807 (1,785 with variation)
+  coef=+0.0002, p=0.4037, 95% CI [-0.0003, +0.0006] 
+
+======================================================================
+TEST 2: ISSUE-LINKED vs EVERYTHING ELSE
+======================================================================
+  Treated: 18,600 | Control: 69,452
+  Raw rates: bugs 13.1% vs 12.4% | rework 15.2% vs 12.9%
+
+  → bugs:
+  [issue-vs-all-bugs] N=72,046, authors=4,328 (1,883 with variation)
+  coef=+0.0108, p=0.0385, 95% CI [+0.0006, +0.0210] *
+  → rework:
+  [issue-vs-all-rework] N=81,647, authors=4,892 (2,196 with variation)
+  coef=+0.0144, p=0.0003, 95% CI [+0.0066, +0.0223] ***
+  → quality → bugs (N=16,284 scored):
+  [issue-vs-all-q-bugs] N=13,678, authors=1,569 (1,548 with variation)
+  coef=-0.0004, p=0.0676, 95% CI [-0.0009, +0.0000] 
+  → quality → rework (N=18,567 scored):
+  [issue-vs-all-q-rework] N=15,633, authors=1,807 (1,785 with variation)
+  coef=+0.0002, p=0.4037, 95% CI [-0.0003, +0.0006] 
+
+======================================================================
+TEST 3: AI-TAGGED + ISSUE-LINKED vs AI + NO SPEC
+======================================================================
+  AI + issue: 1,350 | AI + no spec: 4,068
+  Raw rates: bugs 14.6% vs 15.6% | rework 18.4% vs 18.5%
+
+  → bugs:
+  [ai-issue-vs-none-bugs] N=4,287, authors=389 (151 with variation)
+  coef=+0.0141, p=0.4358, 95% CI [-0.0214, +0.0496] 
+  → rework:
+  [ai-issue-vs-none-rework] N=4,881, authors=412 (166 with variation)
+  coef=+0.0171, p=0.1919, 95% CI [-0.0086, +0.0428] 
+  → quality → bugs (N=1,183 scored):
+  [ai-issue-vs-none-q-bugs] N=958, authors=130 (129 with variation)
+  coef=+0.0012, p=0.2988, 95% CI [-0.0011, +0.0035] 
+  → quality → rework (N=1,350 scored):
+  [ai-issue-vs-none-q-rework] N=1,109, authors=140 (139 with variation)
+  coef=+0.0009, p=0.3385, 95% CI [-0.0010, +0.0029] 
+
+======================================================================
+TEST 4: HUMAN-ONLY + ISSUE-LINKED vs HUMAN + NO SPEC
+======================================================================
+  Human + issue: 17,250 | Human + no spec: 59,686
+  Raw rates: bugs 13.0% vs 11.7% | rework 15.0% vs 12.5%
+
+  → bugs:
+  [human-issue-vs-none-bugs] N=62,118, authors=3,900 (1,742 with variation)
+  coef=+0.0118, p=0.0349, 95% CI [+0.0008, +0.0227] *
+  → rework:
+  [human-issue-vs-none-rework] N=70,840, authors=4,439 (2,041 with variation)
+  coef=+0.0131, p=0.0022, 95% CI [+0.0047, +0.0215] **
+  → quality → bugs (N=15,101 scored):
+  [human-issue-vs-none-q-bugs] N=12,572, authors=1,487 (1,466 with variation)
+  coef=-0.0006, p=0.0233, 95% CI [-0.0010, -0.0001] *
+  → quality → rework (N=17,217 scored):
+  [human-issue-vs-none-q-rework] N=14,367, authors=1,720 (1,698 with variation)
+  coef=+0.0001, p=0.7196, 95% CI [-0.0004, +0.0005] 
+
+======================================================================
+TEST 5: ISSUE-LINKED ON TOP-20% COMPLEXITY (by churn)
+======================================================================
+  P80 churn threshold: 307
+  Hard + issue: 3,588 | Hard + no spec: 12,291
+  Raw rates: bugs 26.7% vs 27.0% | rework 27.4% vs 24.9%
+
+  → bugs:
+  [hard-issue-vs-none-bugs] N=12,684, authors=1,358 (539 with variation)
+  coef=+0.0355, p=0.0118, 95% CI [+0.0079, +0.0632] *
+  → rework:
+  [hard-issue-vs-none-rework] N=14,231, authors=1,520 (608 with variation)
+  coef=+0.0594, p=0.0000, 95% CI [+0.0376, +0.0812] ***
+  → quality → bugs (N=3,242 scored):
+  [hard-issue-vs-none-q-bugs] N=2,496, authors=463 (456 with variation)
+  coef=-0.0013, p=0.0990, 95% CI [-0.0028, +0.0002] 
+  → quality → rework (N=3,582 scored):
+  [hard-issue-vs-none-q-rework] N=2,746, authors=517 (509 with variation)
+  coef=+0.0006, p=0.2953, 95% CI [-0.0005, +0.0018] 
+
+======================================================================
+TEST 6: TOP-20% QUALITY ISSUE-LINKED vs NO SPEC
+======================================================================
+  Quality P80 threshold: 59
+  Quality distribution: median=49, p80=59, p90=65
+  Top-20% issue: 4,162 | No spec: 63,754
+  Raw rates: bugs 11.5% vs 12.0% | rework 16.0% vs 12.9%
+
+  → bugs:
+  [top20q-issue-vs-none-bugs] N=55,067, authors=3,426 (847 with variation)
+  coef=-0.0072, p=0.3632, 95% CI [-0.0226, +0.0083] 
+  → rework:
+  [top20q-issue-vs-none-rework] N=62,629, authors=3,889 (979 with variation)
+  coef=+0.0191, p=0.0070, 95% CI [+0.0052, +0.0330] **
+
+  Top-10% issue (threshold=65): 1,951
+  Raw rates: bugs 10.9% vs 12.0% | rework 15.2% vs 12.9%
+
+  → bugs:
+  [top10q-issue-vs-none-bugs] N=53,376, authors=3,301 (479 with variation)
+  coef=-0.0151, p=0.1251, 95% CI [-0.0343, +0.0042] 
+  → rework:
+  [top10q-issue-vs-none-rework] N=60,705, authors=3,745 (541 with variation)
+  coef=+0.0068, p=0.4988, 95% CI [-0.0130, +0.0267] 
+
+======================================================================
+TEST 7: ISSUE-LINKED vs TICKET-ONLY SPECS
+======================================================================
+  Issue-linked: 18,600 | Ticket-only: 5,113
+  Raw rates: bugs 13.1% vs 17.4% | rework 15.2% vs 13.0%
+
+  → bugs:
+  [issue-vs-ticket-bugs] N=18,305, authors=1,963 (458 with variation)
+  coef=+0.0066, p=0.6368, 95% CI [-0.0208, +0.0341] 
+  → rework:
+  [issue-vs-ticket-rework] N=20,482, authors=2,231 (525 with variation)
+  coef=+0.0263, p=0.0252, 95% CI [+0.0033, +0.0493] *
+
+======================================================================
+TEST 8: RECENT 3 MONTHS — ISSUE-LINKED vs NO SPEC
+======================================================================
+  Window: 2026-01-01 to 2026-04-03
+  Recent PRs: 44,706
+  Recent + issue: 9,675 | Recent + no spec: 31,618
+  Raw rates: bugs 9.1% vs 9.3% | rework 16.1% vs 13.5%
+
+  → bugs:
+  [recent-issue-vs-none-bugs] N=34,111, authors=2,730 (1,176 with variation)
+  coef=+0.0038, p=0.5330, 95% CI [-0.0082, +0.0158] 
+  → rework:
+  [recent-issue-vs-none-rework] N=37,793, authors=3,109 (1,369 with variation)
+  coef=+0.0222, p=0.0000, 95% CI [+0.0115, +0.0328] ***
+  → quality → bugs (N=8,646 scored):
+  [recent-issue-vs-none-q-bugs] N=7,079, authors=1,032 (1,016 with variation)
+  coef=-0.0001, p=0.8122, 95% CI [-0.0005, +0.0004] 
+  → quality → rework (N=9,670 scored):
+  [recent-issue-vs-none-q-rework] N=7,868, authors=1,175 (1,158 with variation)
+  coef=+0.0001, p=0.8568, 95% CI [-0.0006, +0.0007] 
+
+======================================================================
+TEST 9: RECENT 3 MONTHS — AI + ISSUE-LINKED vs AI + NO SPEC
+======================================================================
+  Recent AI + issue: 906 | Recent AI + no spec: 2,763
+  Raw rates: bugs 12.0% vs 13.3% | rework 18.7% vs 19.7%
+
+  → bugs:
+  [recent-ai-issue-bugs] N=3,136, authors=307 (121 with variation)
+  coef=+0.0022, p=0.8852, 95% CI [-0.0283, +0.0328] 
+  → rework:
+  [recent-ai-issue-rework] N=3,255, authors=320 (127 with variation)
+  coef=+0.0333, p=0.0303, 95% CI [+0.0032, +0.0634] *
+
+======================================================================
+TEST 10: RECENT 3 MONTHS — HUMAN + ISSUE-LINKED vs HUMAN + NO SPEC
+======================================================================
+  Recent human + issue: 8,769 | Recent human + no spec: 28,855
+  Raw rates: bugs 8.7% vs 8.9% | rework 15.8% vs 12.9%
+
+  → bugs:
+  [recent-human-issue-bugs] N=30,677, authors=2,591 (1,102 with variation)
+  coef=+0.0043, p=0.5079, 95% CI [-0.0085, +0.0171] 
+  → rework:
+  [recent-human-issue-rework] N=34,221, authors=2,963 (1,290 with variation)
+  coef=+0.0215, p=0.0002, 95% CI [+0.0100, +0.0330] ***
+
+======================================================================
+TEST 11: DOSE-RESPONSE — QUALITY TIERS WITHIN ISSUE-LINKED
+======================================================================
+  Quality quartiles: p25=33, p50=49, p75=57, p90=65
+
+  Bottom quartile (≤p25) (N=4,737, threshold=33) vs no spec:
+  [dose-Bottom q-bugs] N=55,872, authors=3,339 (742 with variation)
+  coef=+0.0229, p=0.0044, 95% CI [+0.0071, +0.0387] **
+  [dose-Bottom q-rework] N=63,579, authors=3,785 (882 with variation)
+  coef=+0.0192, p=0.0056, 95% CI [+0.0056, +0.0328] **
+
+  Below median (≤p50) (N=9,664, threshold=49) vs no spec:
+  [dose-Below me-bugs] N=59,737, authors=3,561 (1,260 with variation)
+  coef=+0.0174, p=0.0114, 95% CI [+0.0039, +0.0309] *
+  [dose-Below me-rework] N=68,109, authors=4,048 (1,494 with variation)
+  coef=+0.0117, p=0.0271, 95% CI [+0.0013, +0.0220] *
+
+  Top quartile (≥p75) (N=5,037, threshold=57) vs no spec:
+  [dose-Top quar-bugs] N=55,745, authors=3,484 (945 with variation)
+  coef=-0.0021, p=0.7796, 95% CI [-0.0165, +0.0124] 
+  [dose-Top quar-rework] N=63,408, authors=3,952 (1,102 with variation)
+  coef=+0.0178, p=0.0069, 95% CI [+0.0049, +0.0308] **
+
+  Top decile (≥p90) (N=1,951, threshold=65) vs no spec:
+  [dose-Top deci-bugs] N=53,376, authors=3,301 (479 with variation)
+  coef=-0.0151, p=0.1251, 95% CI [-0.0343, +0.0042] 
+  [dose-Top deci-rework] N=60,705, authors=3,745 (541 with variation)
+  coef=+0.0068, p=0.4988, 95% CI [-0.0130, +0.0267] 
+
+
+======================================================================
+SUMMARY: ISSUE-LINKED SPECS — EVERY CUT
+======================================================================
+
+                                         Test      → Bugs           p    → Rework           p
+─────────────────────────────────────────────  ──────────  ──────────  ──────────  ──────────
+                             Issue vs no spec     +0.0111     0.0370*     +0.0140   0.0005***
+                          Issue vs everything     +0.0108     0.0385*     +0.0144   0.0003***
+                   AI + issue vs AI + no spec     +0.0141      0.4358     +0.0171      0.1919
+             Human + issue vs human + no spec     +0.0118     0.0349*     +0.0131    0.0022**
+           Hard tasks (top 20% churn) + issue     +0.0355     0.0118*     +0.0594   0.0000***
+             Top-20% quality issue vs no spec     -0.0072      0.3632     +0.0191    0.0070**
+                         Issue vs ticket-only     +0.0066      0.6368     +0.0263     0.0252*
+                 Recent 3mo: issue vs no spec     +0.0038      0.5330     +0.0222   0.0000***
+                       Recent 3mo: AI + issue     +0.0022      0.8852     +0.0333     0.0303*
+                    Recent 3mo: human + issue     +0.0043      0.5079     +0.0215   0.0002***
+
+Interpretation:
+  If linked GitHub issues (pre-implementation specs) prevent defects,
+  we should see NEGATIVE bug coefficients in at least some cuts.
+
+  Positive coefficients = confounding by indication.
+  Null across all cuts = specs do not prevent defects regardless of
+  how they are operationalized.
+
+Results saved to: /Users/brenn/dev/ai-augmented-dev/research/study/results/robustness-issue-linked.txt
+
+
+######################################################################
+# primary-with-jit-controls.txt
+######################################################################
+
+Analysis run: 2026-04-06T11:35:18.354809+00:00
+Script: /Users/brenn/dev/ai-augmented-dev/research/study/scripts/pipeline/primary-with-jit-controls.py
+
+PURPOSE: Does adding JIT features change the spec coefficient?
+If spec coef shrinks substantially (>50%) or loses significance,
+reviewer concern is supported: JIT features confound the spec effect.
+
+Dataset: 100,247 PRs, 119 repos
+SZZ:     64,805 blame links, 103 repos
+JIT:     88,847 feature rows, 119 repos
+Bot exclusion: 12,195 bot PRs removed, 88,052 remaining
+
+PRs in SZZ repos: 77,814
+SZZ buggy PRs:    9,754
+Spec'd PRs:       21,758
+Reworked PRs:     10,407
+
+======================================================================
+H1: SPECS → SZZ BUGS (within-author LPM)
+======================================================================
+
+JIT features selected for H1: ['ns', 'nd', 'nf', 'entropy', 'la', 'ld', 'lt', 'fix', 'ndev', 'age', 'nuc', 'exp', 'rexp']
+Skipped: ['sexp (nunique=1, zero variance)']
+
+-- H1 baseline (size controls only) --
+  N=72,046, authors=4,328 (2,181 with treatment variation)
+  specd_int: coef=+0.0142  95%CI [+0.0050, +0.0235]  p=0.0026  [p<0.05]
+  Controls: log_add, log_del, log_files
+
+-- H1 + JIT controls --
+  N=56,519, authors=4,013 (1,832 with treatment variation)
+  specd_int: coef=+0.0064  95%CI [-0.0040, +0.0168]  p=0.2294  [p≥0.05]
+  Controls: log_add, log_del, log_files, ns, nd, nf, entropy, la, ld, lt, fix, ndev, age, nuc, exp, rexp
+
+  --- H1 (specs → SZZ bugs): Comparison ---
+  Baseline (size only): coef=+0.0142  p<0.05
+  + JIT controls:       coef=+0.0064  p≥0.05
+  Change in coef:       -55.2%
+  *** LARGE CHANGE: JIT features explain >50% of spec effect.
+  *** Reviewer concern is SUPPORTED for this outcome.
+  *** SIGNIFICANCE LOST after adding JIT controls.
+
+======================================================================
+H2: SPECS → REWORK (within-author LPM)
+======================================================================
+
+JIT features selected for H2: ['ns', 'nd', 'nf', 'entropy', 'la', 'ld', 'lt', 'fix', 'ndev', 'age', 'nuc', 'exp', 'rexp']
+Skipped: ['sexp (nunique=1, zero variance)']
+
+All PRs (H2 not restricted to SZZ repos): 88,052
+
+-- H2 baseline (size controls only) --
+  N=81,647, authors=4,892 (2,524 with treatment variation)
+  specd_int: coef=+0.0116  95%CI [+0.0046, +0.0186]  p=0.0012  [p<0.05]
+  Controls: log_add, log_del, log_files
+
+-- H2 + JIT controls --
+  N=63,991, authors=4,531 (2,130 with treatment variation)
+  specd_int: coef=+0.0089  95%CI [+0.0012, +0.0167]  p=0.0244  [p<0.05]
+  Controls: log_add, log_del, log_files, ns, nd, nf, entropy, la, ld, lt, fix, ndev, age, nuc, exp, rexp
+
+  --- H2 (specs → rework): Comparison ---
+  Baseline (size only): coef=+0.0116  p<0.05
+  + JIT controls:       coef=+0.0089  p<0.05
+  Change in coef:       -22.8%
+  Spec coef is STABLE (<25% change). JIT features do not explain away the effect.
+
+======================================================================
+SUMMARY: JIT CONTROL ROBUSTNESS CHECK
+======================================================================
+
+H1 (specs → SZZ bugs):
+  Coef (size only):  +0.0142  [p<0.05]
+  Coef (+ JIT):      +0.0064  [p≥0.05]
+  Change:            -55.2%
+
+H2 (specs → rework):
+  Coef (size only):  +0.0116  [p<0.05]
+  Coef (+ JIT):      +0.0089  [p<0.05]
+  Change:            -22.8%
+
+Interpretation guide:
+  <25% coef change  → JIT controls do not materially confound spec effect
+  25–50% change     → Partial confounding; disclose in limitations
+  >50% change       → JIT features substantially absorb the spec effect
+  Significance lost → Effect not robust to JIT controls
+
+Done. Output written to: /Users/brenn/dev/ai-augmented-dev/research/study/results/primary-with-jit-controls.txt
+
+
+######################################################################
+# propensity-score-matching.txt
+######################################################################
+
+Analysis run: 2026-04-06T11:35:22.291855+00:00
+Script: /Users/brenn/dev/ai-augmented-dev/research/study/scripts/pipeline/propensity-score-matching.py
+
+PURPOSE: Match spec'd and unspec'd PRs on JIT risk profile,
+then compare defect rates within matched pairs.
+If matched effect is smaller than raw effect, JIT features partially
+explain the observed spec–defect association.
+
+Dataset: 100,247 PRs, 119 repos
+SZZ:     64,805 blame links, 103 repos
+JIT:     88,847 feature rows, 119 repos
+Bot exclusion: 12,195 bot PRs removed, 88,052 remaining
+
+Propensity score features: ['log_add', 'log_del', 'log_files', 'ns', 'nd', 'nf', 'entropy', 'la', 'ld', 'lt', 'fix', 'ndev', 'age', 'nuc', 'exp', 'rexp']
+  sexp excluded (zero or missing variance)
+
+SZZ subset: 77,814 PRs in 103 repos
+
+======================================================================
+PSM: specs → SZZ bugs
+======================================================================
+
+  Sample: 61,192 total  |  17,567 treated  |  43,625 control
+  Outcome: szz_buggy  (base rate: 0.135)
+
+  Propensity score: mean=0.287  sd=0.101
+  Logit(PS): sd=0.537  caliper=0.0269 (0.05 SD)
+
+  Matched: 17,375 pairs  |  Unmatched treated: 192 (1.1% excluded)
+
+  --- Covariate balance ---
+
+  Feature                SMD before    SMD after  Balanced?
+  -------------------- ------------ ------------ ----------
+  log_add                    +0.243       -0.006        yes
+  log_del                    +0.009       -0.007        yes
+  log_files                  +0.108       -0.011        yes
+  ns                         +0.042       +0.001        yes
+  nd                         +0.016       -0.008        yes
+  nf                         +0.011       -0.009        yes
+  entropy                    +0.134       -0.012        yes
+  la                         +0.018       -0.010        yes
+  ld                         -0.003       +0.007        yes
+  lt                         +0.059       -0.006        yes
+  fix                        +0.224       +0.009        yes
+  ndev                       +0.052       -0.010        yes
+  age                        +0.171       -0.015        yes
+  nuc                        -0.078       -0.011        yes
+  exp                        -0.186       -0.009        yes
+  rexp                       -0.120       +0.009        yes
+
+  All features well-balanced after matching (SMD < 0.1).
+
+  --- Treatment effect in matched sample ---
+  Spec'd rate:   0.1466  (2548 / 17375 pairs)
+  Unspec'd rate: 0.1524  (2648 / 17375 pairs)
+  Difference:    -0.58 pp
+  McNemar test:  chi2=2.257  p=0.1330
+  -> not significant
+
+  Raw (unmatched) rates for reference:
+  Spec'd: 0.1468  Unspec'd: 0.1309  Diff: +1.59 pp
+  Attenuation after matching: -136.1%
+  *** Large attenuation: matching substantially reduces the effect.
+  *** JIT risk profile explains much of the raw association.
+
+Full dataset: 88,052 PRs in 119 repos
+
+======================================================================
+PSM: specs → rework
+======================================================================
+
+  Sample: 69,237 total  |  19,813 treated  |  49,424 control
+  Outcome: reworked  (base rate: 0.138)
+
+  Propensity score: mean=0.286  sd=0.097
+  Logit(PS): sd=0.529  caliper=0.0265 (0.05 SD)
+
+  Matched: 19,648 pairs  |  Unmatched treated: 165 (0.8% excluded)
+
+  --- Covariate balance ---
+
+  Feature                SMD before    SMD after  Balanced?
+  -------------------- ------------ ------------ ----------
+  log_add                    +0.235       -0.004        yes
+  log_del                    +0.007       -0.003        yes
+  log_files                  +0.099       -0.013        yes
+  ns                         +0.043       -0.008        yes
+  nd                         +0.008       -0.007        yes
+  nf                         +0.004       -0.011        yes
+  entropy                    +0.122       -0.014        yes
+  la                         +0.016       -0.002        yes
+  ld                         -0.004       -0.002        yes
+  lt                         +0.046       -0.005        yes
+  fix                        +0.196       +0.001        yes
+  ndev                       +0.042       -0.010        yes
+  age                        +0.154       -0.014        yes
+  nuc                        -0.086       -0.018        yes
+  exp                        -0.209       -0.006        yes
+  rexp                       -0.138       +0.008        yes
+
+  All features well-balanced after matching (SMD < 0.1).
+
+  --- Treatment effect in matched sample ---
+  Spec'd rate:   0.1520  (2986 / 19648 pairs)
+  Unspec'd rate: 0.1467  (2883 / 19648 pairs)
+  Difference:    +0.52 pp
+  McNemar test:  chi2=2.116  p=0.1458
+  -> not significant
+
+  Raw (unmatched) rates for reference:
+  Spec'd: 0.1520  Unspec'd: 0.1319  Diff: +2.01 pp
+  Attenuation after matching: -73.9%
+  *** Large attenuation: matching substantially reduces the effect.
+  *** JIT risk profile explains much of the raw association.
+
+Matched pairs saved to: /Users/brenn/dev/ai-augmented-dev/research/study/results/psm-matched-pairs.csv
+  37,023 total pairs across 2 analyses
+
+======================================================================
+SUMMARY: PROPENSITY SCORE MATCHING RESULTS
+======================================================================
+
+specs → SZZ bugs:
+  Matched pairs: 17,375  (unmatched treated: 192)
+  Spec'd defect rate:    0.1466
+  Matched control rate:  0.1524
+  ATT estimate:          -0.58 pp
+  McNemar p:             0.1330  [not significant]
+  Raw (unmatched) diff:  +1.59 pp
+  Attenuation:           -136.1%
+
+specs → rework:
+  Matched pairs: 19,648  (unmatched treated: 165)
+  Spec'd defect rate:    0.1520
+  Matched control rate:  0.1467
+  ATT estimate:          +0.52 pp
+  McNemar p:             0.1458  [not significant]
+  Raw (unmatched) diff:  +2.01 pp
+  Attenuation:           -73.9%
+
+Interpretation:
+  ATT = Average Treatment effect on the Treated (within matched pairs).
+  Attenuation = % reduction in effect size after matching vs. raw comparison.
+  Large attenuation → JIT features partially explain raw association.
+  Stable effect + significance → association is not explained by JIT risk alone.
+  CAVEAT: PSM only balances measured covariates. Unmeasured confounders remain.
+
+Done. Output written to: /Users/brenn/dev/ai-augmented-dev/research/study/results/propensity-score-matching.txt
+

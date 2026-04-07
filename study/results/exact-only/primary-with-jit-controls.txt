@@ -1,0 +1,89 @@
+Analysis run: 2026-04-07T20:35:13.725645+00:00
+Script: /Users/brenn/dev/ai-augmented-dev/research/study/scripts/pipeline/primary-with-jit-controls.py
+
+PURPOSE: Does adding JIT features change the spec coefficient?
+If spec coef shrinks substantially (>50%) or loses significance,
+reviewer concern is supported: JIT features confound the spec effect.
+
+Dataset: 100,247 PRs, 119 repos
+SZZ:     36,695 blame links, 99 repos
+SZZ filter: exact merge-SHA only (36,695/64,805 rows kept; 25,724 fallback, 2,386 unmapped dropped)
+JIT:     88,847 feature rows, 119 repos
+Bot exclusion: 12,195 bot PRs removed, 88,052 remaining
+
+PRs in SZZ repos: 76,200
+SZZ buggy PRs:    9,685
+Spec'd PRs:       20,828
+Reworked PRs:     10,278
+
+======================================================================
+H1: SPECS → SZZ BUGS (within-author LPM)
+======================================================================
+
+JIT features selected for H1: ['ns', 'nd', 'nf', 'entropy', 'la', 'ld', 'lt', 'fix', 'ndev', 'age', 'nuc', 'exp', 'rexp']
+Skipped: ['sexp (nunique=1, zero variance)']
+
+-- H1 baseline (size controls only) --
+  N=70,643, authors=4,139 (2,084 with treatment variation)
+  specd_int: coef=+0.0147  95%CI [+0.0053, +0.0241]  p=0.0021  [p<0.05]
+  Controls: log_add, log_del, log_files
+
+-- H1 + JIT controls --
+  N=55,419, authors=3,839 (1,757 with treatment variation)
+  specd_int: coef=+0.0067  95%CI [-0.0038, +0.0173]  p=0.2106  [p≥0.05]
+  Controls: log_add, log_del, log_files, ns, nd, nf, entropy, la, ld, lt, fix, ndev, age, nuc, exp, rexp
+
+  --- H1 (specs → SZZ bugs): Comparison ---
+  Baseline (size only): coef=+0.0147  p<0.05
+  + JIT controls:       coef=+0.0067  p≥0.05
+  Change in coef:       -54.1%
+  *** LARGE CHANGE: JIT features explain >50% of spec effect.
+  *** Reviewer concern is SUPPORTED for this outcome.
+  *** SIGNIFICANCE LOST after adding JIT controls.
+
+======================================================================
+H2: SPECS → REWORK (within-author LPM)
+======================================================================
+
+JIT features selected for H2: ['ns', 'nd', 'nf', 'entropy', 'la', 'ld', 'lt', 'fix', 'ndev', 'age', 'nuc', 'exp', 'rexp']
+Skipped: ['sexp (nunique=1, zero variance)']
+
+All PRs (H2 not restricted to SZZ repos): 88,052
+
+-- H2 baseline (size controls only) --
+  N=81,647, authors=4,892 (2,524 with treatment variation)
+  specd_int: coef=+0.0116  95%CI [+0.0046, +0.0186]  p=0.0012  [p<0.05]
+  Controls: log_add, log_del, log_files
+
+-- H2 + JIT controls --
+  N=63,991, authors=4,531 (2,130 with treatment variation)
+  specd_int: coef=+0.0089  95%CI [+0.0012, +0.0167]  p=0.0244  [p<0.05]
+  Controls: log_add, log_del, log_files, ns, nd, nf, entropy, la, ld, lt, fix, ndev, age, nuc, exp, rexp
+
+  --- H2 (specs → rework): Comparison ---
+  Baseline (size only): coef=+0.0116  p<0.05
+  + JIT controls:       coef=+0.0089  p<0.05
+  Change in coef:       -22.8%
+  Spec coef is STABLE (<25% change). JIT features do not explain away the effect.
+
+======================================================================
+SUMMARY: JIT CONTROL ROBUSTNESS CHECK
+======================================================================
+
+H1 (specs → SZZ bugs):
+  Coef (size only):  +0.0147  [p<0.05]
+  Coef (+ JIT):      +0.0067  [p≥0.05]
+  Change:            -54.1%
+
+H2 (specs → rework):
+  Coef (size only):  +0.0116  [p<0.05]
+  Coef (+ JIT):      +0.0089  [p<0.05]
+  Change:            -22.8%
+
+Interpretation guide:
+  <25% coef change  → JIT controls do not materially confound spec effect
+  25–50% change     → Partial confounding; disclose in limitations
+  >50% change       → JIT features substantially absorb the spec effect
+  Significance lost → Effect not robust to JIT controls
+
+Done. Output written to: /Users/brenn/dev/ai-augmented-dev/research/study/results/exact-only/primary-with-jit-controls.txt

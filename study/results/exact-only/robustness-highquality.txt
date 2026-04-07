@@ -1,0 +1,96 @@
+High-quality robustness run: 2026-04-07T20:34:48.739466+00:00
+Script: /Users/brenn/dev/ai-augmented-dev/research/study/scripts/pipeline/robustness-highquality.py
+SZZ filter: exact merge-SHA only (36,695/64,805 rows kept; 25,724 fallback, 2,386 unmapped dropped)
+
+Dataset (bots excluded): 88,052 PRs
+Quality scored: 25,209
+Quality distribution: median=48, p75=58, p90=66
+Locked AI cutoffs: top quartile >= 58, top decile >= 66
+
+======================================================================
+TEST 1: TOP-QUARTILE SPECS (q_overall >= 58) vs ALL OTHERS
+======================================================================
+If SDD claims hold, the BEST specs should show the strongest effect.
+
+  High-quality spec'd: 5,698 PRs, bug rate: 0.137
+  All others:          70,502 PRs, bug rate: 0.126
+
+  High-quality specs → SZZ bugs (within-author):
+  N=70,643, authors=4,139 (1,308 with variation)
+  coef=-0.0086, p=0.1204 → DECREASES 
+
+  High-quality specs → rework (within-author):
+  N=81,647, authors=4,892 (1,553 with variation)
+  coef=+0.0093, p=0.1000 → INCREASES 
+
+======================================================================
+TEST 2: TOP-DECILE SPECS (q_overall >= 66) vs ALL OTHERS
+======================================================================
+Even more selective: only the very best specs.
+
+  Top-decile spec'd: 2,403 PRs, bug rate: 0.145
+
+  Top-decile specs → SZZ bugs (within-author):
+  N=70,643, authors=4,139 (730 with variation)
+  coef=-0.0052, p=0.4987 → DECREASES 
+
+  Top-decile specs → rework (within-author):
+  N=81,647, authors=4,892 (821 with variation)
+  coef=+0.0024, p=0.7715 → INCREASES 
+
+======================================================================
+TEST 3: HIGH-QUALITY SPECS vs NO SPEC (exclude low-quality)
+======================================================================
+Remove the 'junk specs' objection entirely: compare only top-quartile
+specs against PRs with NO spec at all.
+
+  High-quality spec'd: 5,698 PRs
+  No spec at all:      54,792 PRs
+  (Low-quality specs excluded: 15,710 PRs)
+
+  High-quality spec vs no spec → SZZ bugs (within-author):
+  N=55,796, authors=3,416 (1,078 with variation)
+  coef=-0.0071, p=0.2524 → DECREASES 
+
+  High-quality spec vs no spec → rework (within-author):
+  N=64,131, authors=4,012 (1,281 with variation)
+  coef=+0.0108, p=0.0850 → INCREASES 
+
+======================================================================
+TEST 4: AI-TAGGED PRs — DO HIGH-QUALITY SPECS HELP?
+======================================================================
+Closest proxy to the agentic SDD workflow the vendors are selling.
+
+  AI-tagged PRs in SZZ repos: 5,313
+  AI + any spec: 1,706 (32.1%)
+  AI + high-quality spec: 986 (18.6%)
+
+  AI: any spec → SZZ bugs (within-author):
+  N=4,795, authors=421 (224 with variation)
+  coef=+0.0105, p=0.4623 → INCREASES 
+
+  AI: high-quality spec → SZZ bugs (within-author):
+  N=4,795, authors=421 (174 with variation)
+  coef=-0.0063, p=0.7263 → DECREASES 
+
+======================================================================
+SUMMARY: DO HIGH-QUALITY SPECS REDUCE DEFECTS?
+======================================================================
+
+If the reviewer objection is correct — that our specd=True includes junk
+and only "real" SDD specs should show a benefit — then restricting to
+high-quality specs should reveal the hidden protective effect.
+
+Results (within-author LPM, all with size controls):
+
+                                           Test   → bugs coef         p
+  ─────────────────────────────────────────────  ────────────  ────────
+              Top-quartile specs (q>=58) vs all       -0.0086    0.1204
+                Top-decile specs (q>=66) vs all       -0.0052    0.4987
+        High-quality vs NO spec (junk excluded)       -0.0071    0.2524
+
+No protective effect emerges at any quality threshold. High-quality specs
+do not reduce defects. The objection that our measure is "too loose" does
+not explain the null result — even the best specs show no benefit.
+
+Results saved to: /Users/brenn/dev/ai-augmented-dev/research/study/results/exact-only/robustness-highquality.txt
